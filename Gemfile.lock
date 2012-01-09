@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: 25f8c811d4260d17aa31939794a780229732583a
+  specs:
+    simple_form (2.0.0.dev)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
+
+GIT
   remote: git://github.com/sporkd/compass-html5-boilerplate.git
   revision: 72a79894417bbc59099f7ed002a31ebee03d514c
   specs:
@@ -170,9 +178,6 @@ GEM
     settingslogic (2.0.6)
     simple-navigation (3.5.0)
       activesupport (>= 2.3.2)
-    simple_form (1.5.2)
-      actionpack (~> 3.0)
-      activemodel (~> 3.0)
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -216,6 +221,6 @@ DEPENDENCIES
   sass-rails (~> 3.1.0)
   settingslogic
   simple-navigation
-  simple_form
+  simple_form!
   twitter-bootstrap-rails
   uglifier
