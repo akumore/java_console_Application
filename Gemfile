@@ -11,6 +11,8 @@ gem 'settingslogic'
 gem 'rails-backbone'
 gem 'simple-navigation'
 gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static" # we don't want the LESS version
+gem 'blazing'
+gem 'blazing-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
