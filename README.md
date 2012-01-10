@@ -11,10 +11,7 @@
 
 * `mmode enable alfred_mueller`: enable the maintenance mode on the server, so nine does not get bugged
 * `git push <staging|production> <git ref>` push the code
-* `mmode enable alfred_mueller`: disable the maintenance mode on the server
-
-
-TODO
+* `mmode disable alfred_mueller`: disable the maintenance mode on the server
 
 # Environments
 
@@ -22,7 +19,8 @@ TODO
 
 The app runs on the screenconcept2 server:
 
-Home: /home/usr/alfred_mueller/public_html
+Home: `/home/usr/alfred_mueller/public_html`
+
 Web: [alfred_mueller.scrcpt2.nine.ch](http://alfred_mueller.scrcpt2.nine.ch/)
 
 ## Production
