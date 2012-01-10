@@ -10,4 +10,15 @@
 #= require backbone
 #= require backbone_rails_sync
 #= require backbone_datalink
-#= require backend/am_backend
+#= require twitter/bootstrap
+#= require_tree ./templates
+#= require_tree ./models
+#= require_tree ./views
+#= require_tree ./routers
+
+window.AlfredMueller =
+  Models: {}
+  Collections: {}
+  Routers: {}
+  Views: {}
+  

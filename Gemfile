@@ -10,7 +10,7 @@ gem 'bson_ext', '~> 1.5'
 gem 'settingslogic'
 gem 'rails-backbone'
 gem 'simple-navigation'
-gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git", :branch => "static" # we don't want the LESS version
+gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git" #, :branch => "static" # we don't want the LESS version
 gem 'blazing'
 gem 'blazing-rails'
 gem 'devise', '1.5.3'

@@ -10,4 +10,15 @@
 #= require backbone
 #= require backbone_rails_sync
 #= require backbone_datalink
-#= require frontend/am_frontend
+#= require_tree ./templates
+#= require_tree ./models
+#= require_tree ./views
+#= require_tree ./routers
+
+window.AlfredMueller = 
+  Cms: {
+    Models: {}
+    Collections: {}
+    Routers: {}
+    Views: {} 
+  }

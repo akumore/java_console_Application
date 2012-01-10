@@ -4,7 +4,10 @@
   %head
     -# To render a different stylesheet partial inside the head (i.e. for admin layout)
     -# just copy _stylesheets.html.haml, and point to that partial instead.
-    = render "layouts/head", :stylesheet_partial => "layouts/cms/stylesheets"
+    -# CSS: implied media="all"
+    = stylesheet_link_tag 'cms/application'
+    -# Append your own using content_for :stylesheets
+    = yield :stylesheets
   
   %body{ :class => "#{controller.controller_name}" }
     #container
@@ -17,4 +20,6 @@
       %footer#footer
         
     -# Javascript at the bottom for fast page loading
-    = render "layouts/javascripts", :javascripts_partial => "layouts/cms/javascripts"
+    = javascript_include_tag 'cms/application'
+    -#  Append your own using content_for :javascripts
+    = yield :javascripts
