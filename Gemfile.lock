@@ -17,12 +17,13 @@ GIT
       railties
 
 GIT
-  remote: git://github.com/sporkd/compass-html5-boilerplate.git
-  revision: 72a79894417bbc59099f7ed002a31ebee03d514c
+  remote: git://github.com/sporkd/html5-rails.git
+  revision: 4a22124d916fa6714dcaf503c70464bb5ef085e8
   specs:
-    html5-boilerplate (2.0.0)
-      compass
-      compass-h5bp
+    html5-rails (0.0.2)
+      jquery-rails (~> 1.0.19)
+      railties (~> 3.1.0)
+      thor (~> 0.14)
 
 GEM
   remote: http://rubygems.org/
@@ -242,11 +243,12 @@ DEPENDENCIES
   capybara
   capybara-webkit
   coffee-rails (~> 3.1.0)
-  compass (~> 0.12.alpha.0)
+  compass (~> 0.12.alpha.2)
+  compass-h5bp
   devise (= 1.5.3)
   fabrication
   haml-rails
-  html5-boilerplate!
+  html5-rails!
   jquery-rails
   json
   mongoid (~> 2.4)

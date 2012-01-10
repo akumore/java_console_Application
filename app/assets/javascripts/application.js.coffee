@@ -10,7 +10,7 @@
 #= require backbone
 #= require backbone_rails_sync
 #= require backbone_datalink
-#= require twitter/bootstrap
+#= require h5bp
 #= require_tree ./templates
 #= require_tree ./models
 #= require_tree ./views

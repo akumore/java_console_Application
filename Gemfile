@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'rails', '~> 3.1.0'
 gem 'json'
 gem 'haml-rails'
+gem 'html5-rails', :git => 'git://github.com/sporkd/html5-rails.git'
 gem 'jquery-rails'
 gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git' # for tw-bootstrap integration
 gem 'mongoid', '~> 2.4'
@@ -21,8 +22,8 @@ group :assets do
   gem 'sass-rails', '~> 3.1.0'
   gem 'coffee-rails', '~> 3.1.0'
   gem 'uglifier'
-  gem 'compass', '~> 0.12.alpha.0'
-  gem 'html5-boilerplate', :group => :production, :git => 'git://github.com/sporkd/compass-html5-boilerplate.git'
+  gem 'compass', '~> 0.12.alpha.2'
+  gem 'compass-h5bp'
 end
 
 group :development, :test do
