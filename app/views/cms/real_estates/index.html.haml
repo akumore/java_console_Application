@@ -1,0 +1,41 @@
+%h1 Listing cms_real_estates
+
+%table
+  %tr
+    %th Category
+    %th Reference
+    %th Contact
+    %th Utilization
+    %th Offer
+    %th Channels
+    %th Title
+    %th Property name
+    %th Description
+    %th Short description
+    %th Keywords
+    %th Is first marketing
+    %th
+    %th
+    %th
+
+  - @real_estates.each do |cms_real_estate|
+    %tr
+      %td= cms_real_estate.category
+      %td= cms_real_estate.reference
+      %td= cms_real_estate.contact
+      %td= cms_real_estate.utilization
+      %td= cms_real_estate.offer
+      %td= cms_real_estate.channels
+      %td= cms_real_estate.title
+      %td= cms_real_estate.property_name
+      %td= cms_real_estate.description
+      %td= cms_real_estate.short_description
+      %td= cms_real_estate.keywords
+      %td= cms_real_estate.is_first_marketing
+      %td= link_to 'Show', cms_real_estate
+      %td= link_to 'Edit', edit_cms_real_estate_path(cms_real_estate)
+      %td= link_to 'Destroy', cms_real_estate, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Real estate', new_cms_real_estate_path

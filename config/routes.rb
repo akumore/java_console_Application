@@ -1,5 +1,7 @@
 AlfredMueller::Application.routes.draw do
 
+  namespace :cms do resources :real_estates end
+
   devise_for :users, :class_name => 'Cms::User'
   
   namespace :cms do
