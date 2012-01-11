@@ -1,11 +1,8 @@
-source 'http://rubygems.org'
-
 gem 'rails', '~> 3.1.0'
 gem 'json'
 gem 'haml-rails'
 gem 'html5-rails', :git => 'git://github.com/sporkd/html5-rails.git'
 gem 'jquery-rails'
-gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git' # for tw-bootstrap integration
 gem 'mongoid', '~> 2.4'
 gem 'bson_ext', '~> 1.5'
 gem 'settingslogic'
