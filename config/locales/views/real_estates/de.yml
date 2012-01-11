@@ -1,0 +1,12 @@
+de:
+  cms:
+    real_estates:
+      form:
+        private: 'Privat'
+        commercial: 'Gewerblich'
+        for_rent: 'Mieten'
+        for_sale: 'Kaufen'
+        channels:
+          website: 'Website'
+          homegate: 'Homegate'
+          print: 'Mini Doku'
