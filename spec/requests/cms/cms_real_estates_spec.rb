@@ -140,6 +140,10 @@ describe "Cms::RealEstates" do
         @real_estate.reference.unit_key.should == 'E_OR12345'
         @real_estate.utilization_description.should == 'Gewerbe, Hotel, Restaurant'
       end
+
+      it 'has the Child Category 2 selected' do
+        find(:css, '#real_estate_category_id option[selected]').text.should == 'Child Category 2'
+      end
     end
   end
 end

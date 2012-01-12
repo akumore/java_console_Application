@@ -4,7 +4,7 @@ de:
       real_estate: 'Immobilie'
     attributes:
       real_estate:
-        category: 'Kategorie'
+        category_id: 'Kategorie'
         reference: 'Referenz'
         contact: 'Kontaktperson'
         utilization: 'Gebäudenutzung'

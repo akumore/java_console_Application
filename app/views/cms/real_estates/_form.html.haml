@@ -8,9 +8,9 @@
     
   %fieldset
     .clearfix
-      = f.label :category
+      = f.label :category_id
       .input
-        = f.grouped_collection_select :category, Category.top_level, :categories, :label, :id, :label
+        = f.grouped_collection_select :category_id, Category.top_level, :categories, :label, :id, :label
     - if @real_estate.row_house?
       .clearfix
         = f.label :building_type
