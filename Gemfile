@@ -1,3 +1,5 @@
+source "http://rubygems.org"
+
 gem 'rails', '~> 3.1.0'
 gem 'json'
 gem 'haml-rails'
@@ -28,4 +30,8 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'fabrication'
+end
+
+group :test do
+  gem "launchy", "~> 2.0.5"
 end
