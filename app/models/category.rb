@@ -9,5 +9,7 @@ class Category
   scope :top_level, where(:parent_id => nil)
 
   field :name, :type => String
-  field :label, :type => String  
+  field :label, :type => String
+
+  validates :name, :uniqueness => true
 end

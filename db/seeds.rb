@@ -17,6 +17,7 @@ module InitialCategories
   {
     'apartment' => { :label => 'Wohnung' },
     'gastronomy' => { :label => 'Gastronomie' },
+    'house' => { :label => 'Haus' },
     'industrial' => { :label => 'Gewerbe/Industrie' },
     'parking' => { :label => 'Parkplatz' },
     'properties' => { :label => 'Grundstück' },
@@ -119,7 +120,7 @@ module InitialCategories
       :name => 'multiple_dwelling' 
     }
   ].each do |sublevel_category|
-    create_sublevel_for('industrial', sublevel_category)
+    create_sublevel_for('house', sublevel_category)
   end
 
   [{
@@ -133,7 +134,129 @@ module InitialCategories
     {
       :label => 'Werbefläche',
       :name => 'advertising_area'
+    },
+    {
+      :label => 'Gewerbe',
+      :name => 'commercial'
+    },
+    {
+      :label => 'Praxis',
+      :name => 'practice'
+    },
+    {
+      :label => 'Kiosk',
+      :name => 'kiosk'
+    },
+    {
+      :label => 'Autogarage',
+      :name => 'garage'
+    },
+    {
+      :label => 'Bäckerei',
+      :name => 'bakery'
+    },
+    {
+      :label => 'Coiffeursalon',
+      :name => 'hairdresser'
+    },
+    {
+      :label => 'Fabrik',
+      :name => 'factory'
+    },
+    {
+      :label => 'Industrieobjekt',
+      :name => 'industrial_object'
+    },
+    {
+      :label => 'Atelier',
+      :name => 'aterlier'
+    },
+    {
+      :label => 'Wohn- / Geschäftshaus',
+      :name => 'living_commercial_building'
+    },
+    {
+      :label => 'Werkstatt',
+      :name => 'workshop'
+    },
+    {
+      :label => 'Geschäftshaus',
+      :name => 'department_store'
+    },
+    {
+      :label => 'Schaufenster',
+      :name => 'display_window'
+    },
+    {
+      :label => 'Parkhaus',
+      :name => 'parking_garage'
+    },
+    {
+      :label => 'Parkfläche',
+      :name => 'parking_surface'
     }
-  ]
+  ].each do |sublevel_category|
+    create_sublevel_for('industrial', sublevel_category)
+  end
+
+  [{
+      :label => 'Offener Parkplatz',
+      :name => 'open_slot'
+    },
+    {
+      :label => 'Unterstand',
+      :name => 'covered_slot'
+    },
+    {
+      :label => 'Einzelgarage',
+      :name => 'single_garage'
+    },
+    {
+      :label => 'Doppelgarage',
+      :name => 'double_garage'
+    },
+    {
+      :label => 'Tiefgarage',
+      :name => 'underground_slot'
+    },
+    {
+      :label => 'Moto Hallenplatz',
+      :name => 'covered_parking_place_bike'
+    },
+    {
+      :label => 'Moto Aussenplatz',
+      :name => 'outdoor_parking_place_bike'
+    }
+  ].each do |sublevel_category|
+      create_sublevel_for('parking', sublevel_category)
+  end
+
+  [{
+      :label => 'Bauland',
+      :name => 'building_land'
+    },
+    {
+      :label => 'Agrarland',
+      :name => 'agricultural_land'
+    },
+    {
+      :label => 'Gewerbeland',
+      :name => 'commercial_land'
+    },
+    {
+      :label => 'Industriebauland',
+      :name => 'industrial_land'
+    }
+  ].each do |sublevel_category|
+    create_sublevel_for('properties', sublevel_category)
+  end
+
+  [{
+      :label => 'Hobbyraum',
+      :name => 'hobby_room'
+    }
+  ].each do |sublevel_category|
+    create_sublevel_for('secondary', sublevel_category)
+  end
 end
 
