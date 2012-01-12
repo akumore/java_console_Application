@@ -3,27 +3,27 @@ require 'spec_helper'
 
 describe "Cms::RealEstates" do
   login_cms_user
-  
+
   before do
     parent_category = Fabricate(:category,
-      :name => 'parent_category',
-      :label => 'Parent Category'
+                                :name => 'parent_category',
+                                :label => 'Parent Category'
     )
 
     Fabricate(:category,
-      :name => 'child_category_1',
-      :label => 'Child Category 1',
-      :parent =>  parent_category
+              :name => 'child_category_1',
+              :label => 'Child Category 1',
+              :parent => parent_category
     )
 
     Fabricate(:category,
-      :name => 'child_category_2',
-      :label => 'Child Category 2',
-      :parent => parent_category
+              :name => 'child_category_2',
+              :label => 'Child Category 2',
+              :parent => parent_category
     )
   end
-  
-  
+
+
   describe "Visit cms_real_estates path" do
     before do
       @category = Fabricate :category, :name=>'single_house', :label=>'Einfamilienhaus'
@@ -51,43 +51,43 @@ describe "Cms::RealEstates" do
     end
   end
 
-  
+
   describe '#new' do
     before :each do
       visit new_cms_real_estate_path
     end
 
-  	it 'opens the create form' do
-  		current_path.should == new_cms_real_estate_path
-  	end
+    it 'opens the create form' do
+      current_path.should == new_cms_real_estate_path
+    end
 
-  	context 'a valid RealEstate' do
-  		before :each do
-  			within(".new_real_estate") do
-  				select 'Child Category 1', :from => 'Kategorie'
-  				choose 'Gewerblich'
-  				choose 'Kaufen'
-  				check 'Erstvermarktung'
-  				check 'Website'
-  				check 'Homegate'
+    context 'a valid RealEstate' do
+      before :each do
+        within(".new_real_estate") do
+          select 'Child Category 1', :from => 'Kategorie'
+          choose 'Gewerblich'
+          choose 'Kaufen'
+          check 'Erstvermarktung'
+          check 'Website'
+          check 'Homegate'
 
-  				fill_in 'Titel', :with => 'My Real Estate'
-  				fill_in 'Liegenschaftsname', :with => 'Gartenstadt'
-  				fill_in 'Beschreibung', :with => 'Some description...'
-  				fill_in 'Kurzbeschreibung', :with => 'Some short description...'
-  				fill_in 'Schlüsselwörter', :with => 'Premium, Realty'
-  				fill_in 'Liegenschaftsreferenz', :with => 'LR12345'
-  				fill_in 'Gebäudereferenz', :with => 'GR12345'
-  				fill_in 'Objektreferenz', :with => 'OR12345'
+          fill_in 'Titel', :with => 'My Real Estate'
+          fill_in 'Liegenschaftsname', :with => 'Gartenstadt'
+          fill_in 'Beschreibung', :with => 'Some description...'
+          fill_in 'Kurzbeschreibung', :with => 'Some short description...'
+          fill_in 'Schlüsselwörter', :with => 'Premium, Realty'
+          fill_in 'Liegenschaftsreferenz', :with => 'LR12345'
+          fill_in 'Gebäudereferenz', :with => 'GR12345'
+          fill_in 'Objektreferenz', :with => 'OR12345'
           fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel'
-  			end
-  		end
+        end
+      end
 
-  		it 'save a new RealEstate' do
-  			lambda do
-  				click_on 'Immobilie erstellen'
-  			end.should change(RealEstate, :count).from(0).to(1)
-  		end
+      it 'save a new RealEstate' do
+        lambda do
+          click_on 'Immobilie erstellen'
+        end.should change(RealEstate, :count).from(0).to(1)
+      end
 
       context '#create' do
         before :each do
@@ -116,10 +116,10 @@ describe "Cms::RealEstates" do
           @real_estate.state.should == RealEstate::STATE_EDITING
         end
       end
-  	end
+    end
   end
 
-  
+
   describe '#edit' do
     before :each do
       @fabricated_real_estate = Fabricate(:real_estate, :reference => Reference.new)
@@ -177,5 +177,5 @@ describe "Cms::RealEstates" do
       end
     end
   end
-  
+
 end
