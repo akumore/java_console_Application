@@ -24,12 +24,7 @@ class Cms::RealEstatesController < Cms::SecuredController
   # GET /cms/real_estates/new
   # GET /cms/real_estates/new.json
   def new
-    @real_estate = RealEstate.new(
-      :reference => Reference.new, 
-      :utilization => RealEstate::UTILIZATION_PRIVATE,
-      :offer => RealEstate::OFFER_FOR_RENT,
-      :channels => [RealEstate::CHANNELS.first]
-    )
+    @real_estate = RealEstate.new(:reference => Reference.new)
   
     respond_to do |format|
       format.html # new.html.erb
@@ -45,11 +40,11 @@ class Cms::RealEstatesController < Cms::SecuredController
   # POST /cms/real_estates
   # POST /cms/real_estates.json
   def create
-    @real_estate = RealEstate.new(params[:cms_real_estate])
+    @real_estate = RealEstate.new(params[:real_estate])
 
     respond_to do |format|
       if @real_estate.save
-        format.html { redirect_to @real_estate, notice: 'Real estate was successfully created.' }
+        format.html { redirect_to edit_cms_real_estate_path(@real_estate), notice: 'Real estate was successfully created.' }
         format.json { render json: @real_estate, status: :created, location: @real_estate }
       else
         format.html { render action: "new" }
@@ -64,8 +59,8 @@ class Cms::RealEstatesController < Cms::SecuredController
     @real_estate = RealEstate.find(params[:id])
 
     respond_to do |format|
-      if @real_estate.update_attributes(params[:cms_real_estate])
-        format.html { redirect_to @real_estate, notice: 'Real estate was successfully updated.' }
+      if @real_estate.update_attributes(params[:real_estate])
+        format.html { redirect_to edit_cms_real_estate_path(@real_estate), notice: 'Real estate was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

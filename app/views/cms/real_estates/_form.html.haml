@@ -49,32 +49,34 @@
           - RealEstate::CHANNELS.each do |channel|
             %li
               %label
-                = check_box_tag "channels[]", channel, @real_estate.channels.include?(channel)
+                = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel)
                 %span= t(".channels.#{channel}")
   .clearfix
     = f.label :contact
     .input
       = f.select :contact, [], :prompt => 'Kontaktperson auswählen', :class => 'span8'
-  .clearfix
-    = f.label :title
-    .input
-      = f.text_field :title, :class => 'span8'
-  .clearfix
-    = f.label :property_name
-    .input
-      = f.text_field :property_name, :class => 'span8'
-  .clearfix
-    = f.label :description
-    .input
-      = f.text_area :description, :class => 'span8'
-  .clearfix
-    = f.label :short_description
-    .input
-      = f.text_area :short_description, :class => 'span8 short'
-  .clearfix
-    = f.label :keywords
-    .input
-      = f.text_area :keywords, :class => 'span8 short'
+  %fieldset
+    %legend Titel und Beschreibungen
+    .clearfix
+      = f.label :title
+      .input
+        = f.text_field :title, :class => 'span8'
+    .clearfix
+      = f.label :property_name
+      .input
+        = f.text_field :property_name, :class => 'span8'
+    .clearfix
+      = f.label :description
+      .input
+        = f.text_area :description, :class => 'span8'
+    .clearfix
+      = f.label :short_description
+      .input
+        = f.text_area :short_description, :class => 'span8 short'
+    .clearfix
+      = f.label :keywords
+      .input
+        = f.text_area :keywords, :class => 'span8 short'
   %fieldset
     %legend= Reference.model_name.human
     = f.fields_for @real_estate.reference do |rf|
@@ -91,4 +93,4 @@
         .input
           = rf.text_field :unit_key, :class => 'span8'
   .actions
-    = f.submit 'Save', :class => 'btn primary'
+    = f.submit nil, :class => 'btn primary'
