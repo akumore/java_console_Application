@@ -11,6 +11,19 @@
       = f.label :category
       .input
         = f.grouped_collection_select :category, Category.top_level, :categories, :label, :id, :label
+    - if @real_estate.row_house?
+      .clearfix
+        = f.label :building_type
+        .input
+          %ul.inputs-list
+            %li
+              %label 
+                = f.radio_button :building_type, RealEstate::BUILDING_CORNER_HOUSE
+                %span= t(".#{RealEstate::BUILDING_CORNER_HOUSE}")
+            %li
+              %label
+                = f.radio_button :building_type, RealEstate::BUILDING_MIDDLE_HOUSE
+                %span= t(".#{RealEstate::BUILDING_MIDDLE_HOUSE}")      
     .clearfix
       = f.label :utilization
       .input
@@ -77,6 +90,10 @@
       = f.label :keywords
       .input
         = f.text_area :keywords, :class => 'span8 short'
+    .clearfix
+      = f.label :utilization_description
+      .input
+        = f.text_area :utilization_description, :class => 'span8 short'
   %fieldset
     %legend= Reference.model_name.human
     = f.fields_for @real_estate.reference do |rf|

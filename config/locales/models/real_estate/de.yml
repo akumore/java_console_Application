@@ -16,3 +16,5 @@ de:
         short_description: 'Kurzbeschreibung'
         keywords: 'Schlüsselwörter'
         is_first_marketing: 'Erstvermarktung'
+        building_type: 'Haustyp'
+        utilization_description: 'Nutzungsarten'

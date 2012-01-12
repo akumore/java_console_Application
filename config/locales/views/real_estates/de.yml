@@ -6,6 +6,8 @@ de:
         commercial: 'Gewerblich'
         for_rent: 'Mieten'
         for_sale: 'Kaufen'
+        corner_house: 'Eckhaus'
+        middle_house: 'Mittelhaus'
         channels:
           website: 'Website'
           homegate: 'Homegate'

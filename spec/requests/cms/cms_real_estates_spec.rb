@@ -4,14 +4,21 @@ require 'spec_helper'
 describe "Cms::RealEstates" do
 	login_cms_user
   before :all do
+    parent_category = Fabricate(:category, 
+      :name => 'parent_category', 
+      :label => 'Parent Category'
+    )
+
     Fabricate(:category, 
-      :name => 'child_category', 
-      :label => 'Child Category', 
-      :parent => 
-        Fabricate(:category, 
-          :name => 'parent_category', 
-          :label => 'Parent Category'
-        )
+      :name => 'child_category_1', 
+      :label => 'Child Category 1', 
+      :parent =>  parent_category        
+    )
+
+    Fabricate(:category,
+      :name => 'child_category_2',
+      :label => 'Child Category 2',
+      :parent => parent_category
     )
   end
 
@@ -27,7 +34,7 @@ describe "Cms::RealEstates" do
   	context 'a valid RealEstate' do
   		before :each do
   			within(".new_real_estate") do
-  				select 'Child Category', :from => 'Kategorie'
+  				select 'Child Category 1', :from => 'Kategorie'
   				choose 'Gewerblich'
   				choose 'Kaufen'
   				check 'Erstvermarktung'
@@ -42,6 +49,7 @@ describe "Cms::RealEstates" do
   				fill_in 'Liegenschaftsreferenz', :with => 'LR12345'
   				fill_in 'Gebäudereferenz', :with => 'GR12345'
   				fill_in 'Objektreferenz', :with => 'OR12345'
+          fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel'
   			end
   		end
 
@@ -58,7 +66,7 @@ describe "Cms::RealEstates" do
         end
 
         it 'has saved the provided attributes' do
-          @real_estate.category.label.should == 'Child Category'
+          @real_estate.category.label.should == 'Child Category 1'
           @real_estate.utilization.should == RealEstate::UTILIZATION_COMMERICAL
           @real_estate.offer.should == RealEstate::OFFER_FOR_SALE
           @real_estate.is_first_marketing.should == true
@@ -71,6 +79,7 @@ describe "Cms::RealEstates" do
           @real_estate.reference.property_key.should == 'LR12345'
           @real_estate.reference.building_key.should == 'GR12345'
           @real_estate.reference.unit_key.should == 'OR12345'
+          @real_estate.utilization_description.should == 'Gewerbe, Hotel'
         end
 
         it 'is in the editing state' do
@@ -93,6 +102,7 @@ describe "Cms::RealEstates" do
     context '#update' do
       before :each do
         within(".edit_real_estate") do
+          select 'Child Category 2', :from => 'Kategorie'
           choose 'Privat'
           choose 'Mieten'
           uncheck 'Erstvermarktung'
@@ -107,6 +117,7 @@ describe "Cms::RealEstates" do
           fill_in 'Liegenschaftsreferenz', :with => 'E_LR12345'
           fill_in 'Gebäudereferenz', :with => 'E_GR12345'
           fill_in 'Objektreferenz', :with => 'E_OR12345'
+          fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel, Restaurant'
         end
 
         click_on 'Immobilie speichern'
@@ -114,6 +125,7 @@ describe "Cms::RealEstates" do
 
       it 'has updated the edited attributes' do
         @real_estate = RealEstate.find(@fabricated_real_estate.id)
+        @real_estate.category.label.should == 'Child Category 2'
         @real_estate.utilization.should == RealEstate::UTILIZATION_PRIVATE
         @real_estate.offer.should == RealEstate::OFFER_FOR_RENT
         @real_estate.is_first_marketing.should == false
@@ -126,6 +138,7 @@ describe "Cms::RealEstates" do
         @real_estate.reference.property_key.should == 'E_LR12345'
         @real_estate.reference.building_key.should == 'E_GR12345'
         @real_estate.reference.unit_key.should == 'E_OR12345'
+        @real_estate.utilization_description.should == 'Gewerbe, Hotel, Restaurant'
       end
     end
   end

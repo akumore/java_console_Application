@@ -5,6 +5,9 @@ class RealEstate
   UTILIZATION_PRIVATE = 'private'
   UTILIZATION_COMMERICAL = 'commercial'
 
+  BUILDING_CORNER_HOUSE = 'corner_house'
+  BUILDING_MIDDLE_HOUSE = 'middle_house'
+
   OFFER_FOR_RENT = 'for_rent'
   OFFER_FOR_SALE = 'for_sale'
 
@@ -26,4 +29,10 @@ class RealEstate
   field :short_description, :type => String
   field :keywords, :type => String
   field :is_first_marketing, :type => Boolean
+  field :building_type, :type => String
+  field :utilization_description, :type => String
+
+  def row_house?
+    category.present? && category.name == 'row_house'
+  end
 end
