@@ -36,7 +36,15 @@ describe "Cms::RealEstates" do
       page.should have_selector('table tr', :count => RealEstate.count+1)
     end
 
-    it "shows the expected real estate attributes"
+    it "shows the expected real estate attributes" do
+      within("#real_estate_#{@real_estate.id}") do
+        #TODO double-check for city
+        page.should have_content @real_estate.title
+        page.should have_content I18n.t("cms.real_estates.index.#{@real_estate.offer}")
+        page.should have_content I18n.t("cms.real_estates.index.#{@real_estate.utilization}")
+        page.should have_content I18n.t("cms.real_estates.index.#{@real_estate.state}")
+      end
+    end
 
     it "takes me to the edit page of a certain real estate" do
       within("#real_estate_#{@real_estate.id}") do
