@@ -72,11 +72,11 @@ describe "Cms::RealEstates" do
           @real_estate.reference.building_key.should == 'GR12345'
           @real_estate.reference.unit_key.should == 'OR12345'
         end
+
+        it 'is in the editing state' do
+          @real_estate.state.should == RealEstate::STATE_EDITING
+        end
       end
-  	end
-
-  	context 'an invalid RealEstate' do
-
   	end
   end
 
