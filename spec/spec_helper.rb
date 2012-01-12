@@ -29,7 +29,7 @@ RSpec.configure do |config|
   config.extend ControllerMacros, :type => :controller
   config.extend RequestMacros, :type => :request
 
-  config.after(:all) do 
+  config.after(:each) do
     Mongoid.database.collections.each do |collection|
       collection.remove unless collection.name =~ /^system\./
     end
