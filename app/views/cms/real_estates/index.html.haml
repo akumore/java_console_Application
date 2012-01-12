@@ -15,7 +15,7 @@
       %td= real_estate.title
       %td= t ".#{real_estate.offer}"
       %td= t ".#{real_estate.utilization}"
-      %td TODO Status: review/published
+      %td= t ".#{real_estate.state}"
       %td= link_to  t('cms.real_estates.index.edit'), edit_cms_real_estate_path(real_estate)
 
 %br
