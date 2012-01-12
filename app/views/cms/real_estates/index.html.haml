@@ -1,41 +1,23 @@
-%h1 Listing cms_real_estates
+%h1 Erfasste Immobilen
 
-%table
+%table.zebra-striped.bordered-table{:id=>'real_estate'}
   %tr
-    %th Category
-    %th Reference
-    %th Contact
-    %th Utilization
-    %th Offer
-    %th Channels
-    %th Title
-    %th Property name
-    %th Description
-    %th Short description
-    %th Keywords
-    %th Is first marketing
-    %th
-    %th
+    %th Stadt
+    %th= RealEstate.human_attribute_name :titel
+    %th= RealEstate.human_attribute_name :offer
+    %th= RealEstate.human_attribute_name :utilization
+    %th Status
     %th
 
-  - @real_estates.each do |cms_real_estate|
-    %tr
-      %td= cms_real_estate.category
-      %td= cms_real_estate.reference
-      %td= cms_real_estate.contact
-      %td= cms_real_estate.utilization
-      %td= cms_real_estate.offer
-      %td= cms_real_estate.channels
-      %td= cms_real_estate.title
-      %td= cms_real_estate.property_name
-      %td= cms_real_estate.description
-      %td= cms_real_estate.short_description
-      %td= cms_real_estate.keywords
-      %td= cms_real_estate.is_first_marketing
-      %td= link_to 'Show', cms_real_estate
-      %td= link_to 'Edit', edit_cms_real_estate_path(cms_real_estate)
-      %td= link_to 'Destroy', cms_real_estate, :confirm => 'Are you sure?', :method => :delete
+  - @real_estates.each do |real_estate|
+    %tr{:id => "real_estate_#{real_estate.id}"}
+      %td TODO Stadt
+      %td= real_estate.title
+      %td= t ".#{real_estate.offer}"
+      %td= t ".#{real_estate.utilization}"
+      %td TODO Status: review/published
+      %td= link_to  t('cms.real_estates.index.edit'), edit_cms_real_estate_path(real_estate)
 
 %br
 
-= link_to 'New Real estate', new_cms_real_estate_path
+= link_to t('cms.real_estates.index.new'), new_cms_real_estate_path
