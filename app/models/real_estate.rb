@@ -32,7 +32,16 @@ class RealEstate
   field :building_type, :type => String
   field :utilization_description, :type => String
 
+  after_initialize :init_channels
+  
   def row_house?
     category.present? && category.name == 'row_house'
   end
+  
+  
+  private
+  def init_channels
+    self.channels ||= []
+  end
+
 end
