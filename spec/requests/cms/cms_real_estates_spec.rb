@@ -2,17 +2,18 @@
 require 'spec_helper'
 
 describe "Cms::RealEstates" do
-	login_cms_user
-  before :all do
-    parent_category = Fabricate(:category, 
-      :name => 'parent_category', 
+  login_cms_user
+  
+  before do
+    parent_category = Fabricate(:category,
+      :name => 'parent_category',
       :label => 'Parent Category'
     )
 
-    Fabricate(:category, 
-      :name => 'child_category_1', 
-      :label => 'Child Category 1', 
-      :parent =>  parent_category        
+    Fabricate(:category,
+      :name => 'child_category_1',
+      :label => 'Child Category 1',
+      :parent =>  parent_category
     )
 
     Fabricate(:category,
@@ -21,7 +22,36 @@ describe "Cms::RealEstates" do
       :parent => parent_category
     )
   end
+  
+  
+  describe "Visit cms_real_estates path" do
+    before do
+      @category = Fabricate :category, :name=>'single_house', :label=>'Einfamilienhaus'
+      @reference = Reference.new
+      @real_estate = Fabricate :real_estate, :category=>@category, :reference=>@reference
+      visit cms_real_estates_path
+    end
 
+    it "shows the list of real estates" do
+      page.should have_selector('table tr', :count => RealEstate.count+1)
+    end
+
+    it "shows the expected real estate attributes"
+
+    it "takes me to the edit page of a certain real estate" do
+      within("#real_estate_#{@real_estate.id}") do
+        page.click_link I18n.t('cms.real_estates.index.edit')
+      end
+      current_path.should == edit_cms_real_estate_path(@real_estate)
+    end
+
+    it "takes me to the page for creating a new real estate" do
+      page.click_link I18n.t('cms.real_estates.index.new')
+      current_path.should == new_cms_real_estate_path
+    end
+  end
+
+  
   describe '#new' do
     before :each do
       visit new_cms_real_estate_path
@@ -89,6 +119,7 @@ describe "Cms::RealEstates" do
   	end
   end
 
+  
   describe '#edit' do
     before :each do
       @fabricated_real_estate = Fabricate(:real_estate, :reference => Reference.new)
@@ -146,4 +177,5 @@ describe "Cms::RealEstates" do
       end
     end
   end
+  
 end
