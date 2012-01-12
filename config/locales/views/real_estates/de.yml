@@ -12,3 +12,10 @@ de:
           website: 'Website'
           homegate: 'Homegate'
           print: 'Mini Doku'
+      index:
+        new: Neue Immobilie erfassen
+        edit: Editieren
+        for_rent: Mieten
+        for_sale: Kaufen
+        private: Privat
+        commercial: Gewerblich
