@@ -1,11 +1,10 @@
-source 'http://rubygems.org'
+source "http://rubygems.org"
 
 gem 'rails', '~> 3.1.0'
 gem 'json'
 gem 'haml-rails'
 gem 'html5-rails', :git => 'git://github.com/sporkd/html5-rails.git'
 gem 'jquery-rails'
-gem 'simple_form', :git => 'git://github.com/plataformatec/simple_form.git' # for tw-bootstrap integration
 gem 'mongoid', '~> 2.4'
 gem 'bson_ext', '~> 1.5'
 gem 'settingslogic'
@@ -15,6 +14,7 @@ gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootst
 gem 'blazing'
 gem 'blazing-rails'
 gem 'devise', '1.5.3'
+gem 'responders'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,4 +31,8 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'fabrication'
+end
+
+group :test do
+  gem "launchy", "~> 2.0.5"
 end

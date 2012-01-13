@@ -1,0 +1,20 @@
+de:
+  mongoid:
+    models:
+      real_estate: 'Immobilie'
+    attributes:
+      real_estate:
+        category_id: 'Kategorie'
+        reference: 'Referenz'
+        contact: 'Kontaktperson'
+        utilization: 'Gebäudenutzung'
+        offer: 'Angebotstyp'
+        channels: 'Ausgabekanäle'
+        title: 'Titel'
+        property_name: 'Liegenschaftsname'
+        description: 'Beschreibung'
+        short_description: 'Kurzbeschreibung'
+        keywords: 'Schlüsselwörter'
+        is_first_marketing: 'Erstvermarktung'
+        building_type: 'Haustyp'
+        utilization_description: 'Nutzungsarten'

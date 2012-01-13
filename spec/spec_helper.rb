@@ -27,8 +27,9 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.include Devise::TestHelpers, :type => :controller
   config.extend ControllerMacros, :type => :controller
+  config.extend RequestMacros, :type => :request
 
-  config.after(:each) do 
+  config.after(:each) do
     Mongoid.database.collections.each do |collection|
       collection.remove unless collection.name =~ /^system\./
     end

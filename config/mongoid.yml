@@ -6,6 +6,13 @@ test:
   host: localhost
   database: alfred_mueller_test
 
+staging:
+  host: ds029277.mongolab.com
+  port: 29277
+  database: alfred_mueller_staging
+  username: screenconcept
+  password: bambus
+
 # set these environment variables on your prod server
 production:
   host: <%= ENV['MONGOID_HOST'] %>

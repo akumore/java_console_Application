@@ -1,0 +1,22 @@
+de:
+  cms:
+    real_estates:
+      form:
+        private: 'Privat'
+        commercial: 'Gewerblich'
+        for_rent: 'Mieten'
+        for_sale: 'Kaufen'
+        corner_house: 'Eckhaus'
+        middle_house: 'Mittelhaus'
+        channels:
+          website: 'Website'
+          homegate: 'Homegate'
+          print: 'Mini Doku'
+      index:
+        new: Neue Immobilie erfassen
+        edit: Editieren
+        for_rent: Mieten
+        for_sale: Kaufen
+        private: Privat
+        commercial: Gewerblich
+        editing: In Bearbeitung

@@ -1,0 +1,113 @@
+= form_for [:cms, @real_estate] do |f|
+  -if @real_estate.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@real_estate.errors.count, "error")} prohibited this cms_real_estate from being saved:"
+      %ul
+        - @real_estate.errors.full_messages.each do |msg|
+          %li= msg
+    
+  %fieldset
+    .clearfix
+      = f.label :category_id
+      .input
+        = f.grouped_collection_select :category_id, Category.top_level, :categories, :label, :id, :label
+    - if @real_estate.row_house?
+      .clearfix
+        = f.label :building_type
+        .input
+          %ul.inputs-list
+            %li
+              %label 
+                = f.radio_button :building_type, RealEstate::BUILDING_CORNER_HOUSE
+                %span= t(".#{RealEstate::BUILDING_CORNER_HOUSE}")
+            %li
+              %label
+                = f.radio_button :building_type, RealEstate::BUILDING_MIDDLE_HOUSE
+                %span= t(".#{RealEstate::BUILDING_MIDDLE_HOUSE}")      
+    .clearfix
+      = f.label :utilization
+      .input
+        %ul.inputs-list
+          %li
+            %label 
+              = f.radio_button :utilization, RealEstate::UTILIZATION_PRIVATE
+              %span= t(".#{RealEstate::UTILIZATION_PRIVATE}")
+          %li
+            %label
+              = f.radio_button :utilization, RealEstate::UTILIZATION_COMMERICAL
+              %span= t(".#{RealEstate::UTILIZATION_COMMERICAL}")
+    .clearfix
+      = f.label :offer
+      .input
+        %ul.inputs-list
+          %li
+            %label 
+              = f.radio_button :offer, RealEstate::OFFER_FOR_RENT
+              %span= t(".#{RealEstate::OFFER_FOR_RENT}")
+          %li
+            %label
+              = f.radio_button :offer, RealEstate::OFFER_FOR_SALE
+              %span= t(".#{RealEstate::OFFER_FOR_SALE}")
+    .clearfix
+      = f.label :is_first_marketing
+      .input
+        %ul.inputs-list
+          %li
+            %label
+              = f.check_box :is_first_marketing, :class => 'span8'
+    .clearfix
+      = f.label :channels
+      .input
+        %ul.inputs-list
+          - RealEstate::CHANNELS.each do |channel|
+            %li
+              %label
+                = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel)
+                %span= t(".channels.#{channel}")
+  .clearfix
+    = f.label :contact
+    .input
+      = f.select :contact, [], :prompt => 'Kontaktperson auswählen', :class => 'span8'
+  %fieldset
+    %legend Titel und Beschreibungen
+    .clearfix
+      = f.label :title
+      .input
+        = f.text_field :title, :class => 'span8'
+    .clearfix
+      = f.label :property_name
+      .input
+        = f.text_field :property_name, :class => 'span8'
+    .clearfix
+      = f.label :description
+      .input
+        = f.text_area :description, :class => 'span8'
+    .clearfix
+      = f.label :short_description
+      .input
+        = f.text_area :short_description, :class => 'span8 short'
+    .clearfix
+      = f.label :keywords
+      .input
+        = f.text_area :keywords, :class => 'span8 short'
+    .clearfix
+      = f.label :utilization_description
+      .input
+        = f.text_area :utilization_description, :class => 'span8 short'
+  %fieldset
+    %legend= Reference.model_name.human
+    = f.fields_for @real_estate.reference do |rf|
+      .clearfix
+        = rf.label :property_key
+        .input
+          = rf.text_field :property_key, :class => 'span8'
+      .clearfix
+        = rf.label :building_key
+        .input
+          = rf.text_field :building_key, :class => 'span8'
+      .clearfix
+        = rf.label :unit_key
+        .input
+          = rf.text_field :unit_key, :class => 'span8'
+  .actions
+    = f.submit nil, :class => 'btn primary'

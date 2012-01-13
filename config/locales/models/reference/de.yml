@@ -1,0 +1,9 @@
+de:
+  mongoid:
+    models:
+      reference: 'Referenznummern'
+    attributes:
+      reference:
+        property_key: 'Liegenschaftsreferenz'
+        building_key: 'Gebäudereferenz'
+        unit_key: 'Objektreferenz'

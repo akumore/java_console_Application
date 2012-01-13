@@ -5,8 +5,7 @@
     -# To render a different stylesheet partial inside the head (i.e. for admin layout)
     -# just copy _stylesheets.html.haml, and point to that partial instead.
     = render "layouts/head", :stylesheet_partial => "layouts/stylesheets"
-    = javascript_include_tag 'polyfill'
-  
+
   %body{ :class => "#{controller.controller_name}" }
     #container
       %header#header

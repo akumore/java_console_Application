@@ -1,0 +1,23 @@
+%h1 Erfasste Immobilen
+
+%table.zebra-striped.bordered-table{:id=>'real_estate'}
+  %tr
+    %th Stadt
+    %th= RealEstate.human_attribute_name :titel
+    %th= RealEstate.human_attribute_name :offer
+    %th= RealEstate.human_attribute_name :utilization
+    %th Status
+    %th
+
+  - @real_estates.each do |real_estate|
+    %tr{:id => "real_estate_#{real_estate.id}"}
+      %td TODO Stadt
+      %td= real_estate.title
+      %td= t ".#{real_estate.offer}"
+      %td= t ".#{real_estate.utilization}"
+      %td= t ".#{real_estate.state}"
+      %td= link_to  t('cms.real_estates.index.edit'), edit_cms_real_estate_path(real_estate)
+
+%br
+
+= link_to t('cms.real_estates.index.new'), new_cms_real_estate_path
