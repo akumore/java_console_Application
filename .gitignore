@@ -4,4 +4,6 @@ log/*.log
 tmp/
 .sass-cache/
 .DS_Store
+.DS_Store1
 .idea
+
