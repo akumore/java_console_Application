@@ -14,6 +14,7 @@ gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootst
 gem 'blazing'
 gem 'blazing-rails'
 gem 'devise', '1.5.3'
+gem 'responders'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -17,7 +17,9 @@ class RealEstate
 
   belongs_to :category
   belongs_to :contact
+
   embeds_one :reference
+  embeds_one :address
 
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE

@@ -6,7 +6,7 @@ class Cms::RealEstatesController < Cms::SecuredController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @real_estates }
+      format.json { render :json => @real_estates }
     end
   end
 
@@ -17,7 +17,7 @@ class Cms::RealEstatesController < Cms::SecuredController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @real_estate }
+      format.json { render :json => @real_estate }
     end
   end
 
@@ -28,7 +28,7 @@ class Cms::RealEstatesController < Cms::SecuredController
   
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @real_estate }
+      format.json { render :json => @real_estate }
     end
   end
 
@@ -44,11 +44,11 @@ class Cms::RealEstatesController < Cms::SecuredController
 
     respond_to do |format|
       if @real_estate.save
-        format.html { redirect_to edit_cms_real_estate_path(@real_estate), notice: 'Real estate was successfully created.' }
-        format.json { render json: @real_estate, status: :created, location: @real_estate }
+        format.html { redirect_to edit_cms_real_estate_path(@real_estate) }
+        format.json { render :json => @real_estate, :status => :created, :location => @real_estate }
       else
-        format.html { render action: "new" }
-        format.json { render json: @real_estate.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.json { render :json => @real_estate.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -60,11 +60,11 @@ class Cms::RealEstatesController < Cms::SecuredController
 
     respond_to do |format|
       if @real_estate.update_attributes(params[:real_estate])
-        format.html { redirect_to edit_cms_real_estate_path(@real_estate), notice: 'Real estate was successfully updated.' }
+        format.html { redirect_to edit_cms_real_estate_path(@real_estate) }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @real_estate.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.json { render :json => @real_estate.errors, :status => :unprocessable_entity }
       end
     end
   end

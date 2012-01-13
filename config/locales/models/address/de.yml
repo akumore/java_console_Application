@@ -1,0 +1,11 @@
+de:
+  mongoid:
+    models:
+      address: 'Adresse'
+    attributes:
+      address:
+        street: 'Strasse'
+        street_number: 'Hausnummer'
+        zip: 'Postleitzahl'
+        canton: 'Kanton'
+        link_url: 'Link'
