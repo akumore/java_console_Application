@@ -50,7 +50,7 @@ module AlfredMueller
     config.assets.enabled = true
 
     # Use SASS over SCSS
-    config.sass.preferred_syntax = :sass
+    #config.sass.preferred_syntax = :sass
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
