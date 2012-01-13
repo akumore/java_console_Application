@@ -11,7 +11,7 @@
     %title
       = "#{ controller.controller_name.titleize } - #{ controller.action_name.titleize }"
   
-  .body{ :style => 'padding-top:60px', :class => "#{controller.controller_name}" }
+  .body{ :class => "#{controller.controller_name}" }
     .topbar
       .topbar-inner
         .container
@@ -22,6 +22,8 @@
           
     .container
       .content
+        .page-header
+          %h1= yield :title
         .row
           .span11
             = render "layouts/flashes"
