@@ -1,10 +1,19 @@
-guard 'rspec', :cli => '--format d' do
-  watch('spec/spec_helper.rb')                        { "spec" }
-  watch('config/routes.rb')                           { "spec/routing" }
-  watch('app/controllers/application_controller.rb')  { "spec/controllers" }
+
+
+# NOTE: When using watch with a block, you must return all files that should be reloaded.
+guard :rspectacle, :cli => '--format d' do
+  watch('spec/spec_helper.rb')                        { %w(spec/spec_helper spec) }
+  watch('config/routes.rb')                           { %w(config/routes.rb spec/routing) }
+  watch('app/controllers/application_controller.rb')  { 'spec/controllers' }
+
   watch(%r{^spec/.+_spec\.rb$})
-  watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
-  watch(%r{^app/(.*)(\.erb|\.haml)$})                 { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
-  watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}_spec.rb" }
-  watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb", "spec/acceptance/#{m[1]}_spec.rb"] }
+
+  watch(%r{^app/(.+)\.rb$})                           { |m| ["app/#{m[1]}.rb", "spec/#{m[1]}_spec.rb"] }
+  watch(%r{^lib/(.+)\.rb$})                           { |m| ["lib/#{m[1]}.rb", "spec/lib/#{m[1]}_spec.rb"] }
+  watch(%r{^app/controllers/(.+)_controller\.rb$})    { |m| [
+    "app/controllers/#{m[1]}_controller.rb",
+    "spec/controllers/#{m[1]}_spec.rb",
+    "spec/routing/#{m[1]}_routing_spec.rb",
+    "spec/acceptance/#{m[1]}_spec.rb"
+  ]}
 end

@@ -32,7 +32,7 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'fabrication'
   gem 'guard'
-  gem 'guard-rspec'
+  gem 'guard-rspectacle'
 end
 
 group :test do

@@ -9,4 +9,4 @@ rvm :rvmrc
 rvm_scripts '/opt/rvm/scripts/rvm'
 
 recipe :precompile_assets
-# rake 'post_deploy RAILS_ENV=staging'
+rake 'post_deploy RAILS_ENV=staging'
