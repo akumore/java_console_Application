@@ -1,0 +1,18 @@
+de:
+  mongoid:
+    models:
+      pricing: 'Preise'
+    attributes:
+      pricing:
+        for_rent_netto: 'Netto Miete'
+        for_rent_extra: 'Mietnebenkosten'
+        for_sale: 'Kaufpreis'
+        price_unit: 'Preiseinheit'
+        inside_parking: 'Permanent'
+        outside_parking: 'Permanent'
+        inside_parking_temporary: 'Temporär'
+        outside_parking_temporary: 'Temporär'
+        storage: 'Lagerpreis'
+        extra_storage: 'Lager Nebenkosten'
+        estimate: 'Ungefährer Preis'
+        opted: 'Optiert'

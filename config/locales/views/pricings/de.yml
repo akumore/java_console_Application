@@ -1,0 +1,8 @@
+de:
+  cms:
+    pricings:
+      form:
+        month: 'monatlich'
+        year: 'jährlich'
+        week: 'wöchentlich'
+        once: 'einmalig'

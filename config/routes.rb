@@ -6,6 +6,7 @@ AlfredMueller::Application.routes.draw do
     resource :dashboards
     resources :real_estates do
       resource :address
+      resource :pricing
     end
   end
 
