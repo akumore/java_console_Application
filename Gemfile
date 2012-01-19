@@ -31,6 +31,8 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'fabrication'
+  gem 'guard'
+  gem 'guard-rspec'
 end
 
 group :test do
