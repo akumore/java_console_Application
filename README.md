@@ -9,6 +9,8 @@
 
 # Deployment
 
+Make sure your public key is available on the staging server in `/home/usr/alfred_mueller/.ssh/authorized_keys2`
+
 * `mmode enable alfred_mueller`: enable the maintenance mode on the server, so nine does not get bugged
 * `git push <staging|production> <git ref>` push the code
 * `mmode disable alfred_mueller`: disable the maintenance mode on the server
