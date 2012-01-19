@@ -15,6 +15,7 @@ gem 'blazing'
 gem 'blazing-rails'
 gem 'devise', '1.5.3'
 gem 'responders'
+gem 'thin'
 
 # Gems used only for assets and not required
 # in production environments by default.
