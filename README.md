@@ -26,9 +26,9 @@ If not, start it by calling `mongod` in your terminal.
 
 The app runs on the screenconcept2 server:
 
-Home: `/home/usr/alfred_mueller/public_html`
-
-Web: [alfred_mueller.scrcpt2.nine.ch](http://alfred_mueller.scrcpt2.nine.ch/)
+* Home: `/home/usr/alfred_mueller/public_html`
+* Web: [alfred_mueller.scrcpt2.nine.ch](http://alfred_mueller.scrcpt2.nine.ch/)
+* CMS test admin account: admin@screenconcept.ch / bambus
 
 ## Production
 Not yet set.
