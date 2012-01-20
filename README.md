@@ -17,6 +17,11 @@ Make sure your public key is available on the staging server in `/home/usr/alfre
 
 # Environments
 
+## Development
+
+Make sure you have a running instance of MongoDB before starting the rails server. 
+If not, start it by calling `mongod` in your terminal.
+
 ## Staging
 
 The app runs on the screenconcept2 server:
