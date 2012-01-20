@@ -7,6 +7,7 @@ AlfredMueller::Application.routes.draw do
     resources :real_estates do
       resource :address
       resource :pricing
+      resource :figure
     end
   end
 

@@ -21,6 +21,7 @@ class RealEstate
   embeds_one :reference
   embeds_one :address
   embeds_one :pricing
+  embeds_one :figure
 
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE
