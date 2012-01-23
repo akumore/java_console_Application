@@ -1,0 +1,66 @@
+= render_navigation :context => :real_estate
+
+= form_for @figure, :url => cms_real_estate_figure_path(@real_estate) do |f|
+  -if @figure.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@figure.errors.count, "error")} prohibited this cms_real_estate from being saved:"
+      %ul
+        - @figure.errors.full_messages.each do |msg|
+          %li= msg
+    
+  %fieldset
+    .clearfix
+      = f.label :floor
+      .input
+        = f.text_field :floor, :class => 'span4'
+    .clearfix
+      = f.label :floor_estimate
+      .input
+        = f.text_field :floor_estimate, :class => 'span8'
+    .clearfix
+      = f.label :rooms
+      .input
+        = f.text_field :rooms, :class => 'span4'
+    .clearfix
+      = f.label :rooms_estimate
+      .input
+        = f.text_field :rooms_estimate, :class => 'span8'
+    .clearfix
+      = f.label :living_surface
+      .input
+        = f.text_field :living_surface, :class => 'span4'
+    .clearfix
+      = f.label :living_surface_estimate
+      .input
+        = f.text_field :living_surface_estimate, :class => 'span8'
+    .clearfix
+      = f.label :property_surface
+      .input
+        = f.text_field :property_surface, :class => 'span4'
+    .clearfix
+      = f.label :usable_surface
+      .input
+        = f.text_field :usable_surface, :class => 'span4'
+    - if @real_estate.commercial_utilization?
+      .clearfix
+        = f.label :storage_surface
+        .input
+          = f.text_field :storage_surface, :class => 'span4'
+    .clearfix
+      = f.label :ceiling_height
+      .input
+        = f.text_field :ceiling_height, :class => 'span4'
+    .clearfix
+      = f.label :floors
+      .input
+        = f.text_field :floors, :class => 'span4'
+    .clearfix
+      = f.label :renovated_on
+      .input
+        = f.text_field :renovated_on, :class => 'span2'
+    .clearfix
+      = f.label :built_on
+      .input
+        = f.text_field :built_on, :class => 'span2'
+  .actions
+    = f.submit nil, :class => 'btn primary'
