@@ -34,6 +34,9 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :infrastructure, 'Infrastruktur', new_cms_real_estate_infrastructure_path(@real_estate), :unless => lambda { @real_estate.infrastructure.present? }
     primary.item :infrastructure, 'Infrastruktur', edit_cms_real_estate_infrastructure_path(@real_estate), :if => lambda { @real_estate.infrastructure.present? }
 
+    primary.item :descriptions, 'Beschreibungen', new_cms_real_estate_description_path(@real_estate), :unless => lambda { @real_estate.descriptions.present? }
+    primary.item :descriptions, 'Beschreibungen', edit_cms_real_estate_description_path(@real_estate), :if => lambda { @real_estate.descriptions.present? }
+
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu
     # primary.dom_id = 'menu-id'

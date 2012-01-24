@@ -9,6 +9,7 @@ AlfredMueller::Application.routes.draw do
       resource :pricing
       resource :figure
       resource :infrastructure
+      resource :description
     end
   end
 
