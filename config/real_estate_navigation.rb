@@ -21,12 +21,18 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
 
     primary.item :real_estate, 'Stammdaten', edit_cms_real_estate_path(@real_estate)
+
     primary.item :address, 'Adresse', new_cms_real_estate_address_path(@real_estate), :unless => lambda { @real_estate.address.present? }
     primary.item :address, 'Adresse', edit_cms_real_estate_address_path(@real_estate), :if => lambda { @real_estate.address.present? }
+
     primary.item :pricing, 'Preise', new_cms_real_estate_pricing_path(@real_estate), :unless => lambda { @real_estate.pricing.present? }
     primary.item :pricing, 'Preise', edit_cms_real_estate_pricing_path(@real_estate), :if => lambda { @real_estate.pricing.present? }
+
     primary.item :figure, 'Zahlen und Fakten', new_cms_real_estate_figure_path(@real_estate), :unless => lambda { @real_estate.figure.present? }
     primary.item :figure, 'Zahlen und Fakten', edit_cms_real_estate_figure_path(@real_estate), :if => lambda { @real_estate.figure.present? }
+
+    primary.item :infrastructure, 'Infrastruktur', new_cms_real_estate_infrastructure_path(@real_estate), :unless => lambda { @real_estate.infrastructure.present? }
+    primary.item :infrastructure, 'Infrastruktur', edit_cms_real_estate_infrastructure_path(@real_estate), :if => lambda { @real_estate.infrastructure.present? }
 
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu
