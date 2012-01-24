@@ -15,6 +15,8 @@ gem 'blazing'
 gem 'blazing-rails'
 gem 'devise', '1.5.3'
 gem 'responders'
+gem 'thin'
+gem 'airbrake'
 
 gem 'thin'
 
@@ -33,6 +35,8 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'fabrication'
+  gem 'guard'
+  gem 'guard-rspectacle'
 end
 
 group :test do

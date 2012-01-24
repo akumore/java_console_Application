@@ -1,0 +1,57 @@
+de:
+  errors:
+    messages:
+      expired: "ist abgelaufen, bitte fordern Sie ein neues an."
+      not_found: "nicht gefunden"
+      already_confirmed: "wurde bereits bestätigt"
+      not_locked: "ist nicht gesperrt"
+      not_saved:
+        one: "1 Fehler verhindert, dass dieser %{resource} gespeichert wurde:"
+        other: "%{count} Fehler verhindern, dass dieser %{resource} gespeichert wurde:"
+
+  devise:
+    failure:
+      already_authenticated: 'Sie sind bereits angemeldet.'
+      unauthenticated: 'Sie müssen sich anmelden oder registrieren, bevor Sie weiterfahren können.'
+      unconfirmed: 'Sie müssen Ihren Account bestätigen, bevor Sie weiterfahren können.'
+      locked: 'Ihr Account ist gesperrt.'
+      invalid: 'Ungültige Anmeldedaten.'
+      invalid_token: 'Ungültiger Anmeldeschlüssel.'
+      timeout: 'Ihre Sitzung ist abgelaufen, bitte melden Sie sich erneut an.'
+      inactive: 'Ihr Account ist nicht aktiv.'
+    sessions:
+      signed_in: 'Erfolgreich angemeldet.'
+      signed_out: 'Erfolgreich abgemeldet.'
+    passwords:
+      send_instructions: 'Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie ihr Passwort zurücksetzten können.'
+      updated: 'Ihr Passwort wurde geändert. Sie sind angemeldet.'
+      updated_not_active: 'Ihr Passwort wurde geändert.'
+      send_paranoid_instructions: "Wenn Ihre E-Mail Adresse gefunden wurde, erhalten Sie per E-Mail  einen Link um Ihr Passwort zurückzusetzen."
+    confirmations:
+      send_instructions: 'Sie erhalten in wenigen Minuten eine Anleitung per E-Mail um das Passwort zurücksetzten zu können.'
+      send_paranoid_instructions: 'Wenn Ihre E-Mail Adresse gefunden wurde, erhalten Sie in kurzer Zeit eine E-Mail mit einer Anleitung, wie Sie ihren Account bestätigen können.'
+      confirmed: 'Ihr Account wurde bestätigt. Sie sind nun angemeldet.'
+    registrations:
+      signed_up: 'Sie haben sich erfolgreich registriert. Es kann sein, dass Sie eine Aktivierungs-E-Mail erhalten.'
+      inactive_signed_up: 'Sie haben sich erfolgreich anegemeldet, aber ihr Account ist %{reason}.'
+      updated: 'Die Angaben wurden erfolgreich geändert.'
+      update_needs_confirmation: "Sie haben ihren Account erfolgreich geändert, aber wir müssen zuerst ihre E-Mail Adresse überprüfen. Bitte bestätigen Sie ihren Account mit dem Link, den wir Ihnen per E-Mail gesendet haben."
+      destroyed: 'Ihr Account wurde erfolgreich gelöscht.'
+      reasons:
+        inactive: 'inaktiv'
+        unconfirmed: 'nicht bestätigt'
+        locked: 'gesperrt'
+    unlocks:
+      send_instructions: 'Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihren Account entsperren können.'
+      unlocked: 'Ihr Account wurde entsperrt. Sie sind angemeldet.'
+      send_paranoid_instructions: 'Wenn dieser Account existiert, erhalten Sie in wenigen Minuten eine Anleitung per E-Mail um den Account freizuschalten.'
+    omniauth_callbacks:
+      success: 'Erfolgreich mit dem %{kind}-Account angemeldet.'
+      failure: 'Sie konnten nicht mit dem %{kind}-Account angemeldet werden, weil "%{reason}".'
+    mailer:
+      confirmation_instructions:
+        subject: 'Anleitung zur Bestätigung Ihres Accounts'
+      reset_password_instructions:
+        subject: 'Anleitung um das Passwort zurückzusetzten'
+      unlock_instructions:
+        subject: 'Anleitung um Ihren Account freizuschalten'

@@ -3,26 +3,7 @@ require 'spec_helper'
 
 describe "Cms::RealEstates" do
   login_cms_user
-
-  before do
-    parent_category = Fabricate(:category,
-                                :name => 'parent_category',
-                                :label => 'Parent Category'
-    )
-
-    Fabricate(:category,
-              :name => 'child_category_1',
-              :label => 'Child Category 1',
-              :parent => parent_category
-    )
-
-    Fabricate(:category,
-              :name => 'child_category_2',
-              :label => 'Child Category 2',
-              :parent => parent_category
-    )
-  end
-
+  create_category_tree
 
   describe "Visit cms_real_estates path" do
     before do

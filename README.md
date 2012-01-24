@@ -9,19 +9,26 @@
 
 # Deployment
 
+Make sure your public key is available on the staging server in `/home/usr/alfred_mueller/.ssh/authorized_keys2`
+
 * `mmode enable alfred_mueller`: enable the maintenance mode on the server, so nine does not get bugged
 * `git push <staging|production> <git ref>` push the code
 * `mmode disable alfred_mueller`: disable the maintenance mode on the server
 
 # Environments
 
+## Development
+
+Make sure you have a running instance of MongoDB before starting the rails server. 
+If not, start it by calling `mongod` in your terminal.
+
 ## Staging
 
 The app runs on the screenconcept2 server:
 
-Home: `/home/usr/alfred_mueller/public_html`
-
-Web: [alfred_mueller.scrcpt2.nine.ch](http://alfred_mueller.scrcpt2.nine.ch/)
+* Home: `/home/usr/alfred_mueller/public_html`
+* Web: [alfred_mueller.scrcpt2.nine.ch](http://alfred_mueller.scrcpt2.nine.ch/)
+* CMS test admin account: admin@screenconcept.ch / bambus
 
 ## Production
 Not yet set.

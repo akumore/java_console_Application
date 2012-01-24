@@ -20,6 +20,8 @@ class RealEstate
 
   embeds_one :reference
   embeds_one :address
+  embeds_one :pricing
+  embeds_one :figure
 
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE
@@ -40,6 +42,17 @@ class RealEstate
     category.present? && category.name == 'row_house'
   end
   
+  def for_sale?
+    self.offer == RealEstate::OFFER_FOR_SALE
+  end
+
+  def for_rent?
+    self.offer == RealEstate::OFFER_FOR_RENT
+  end
+
+  def commercial_utilization?
+    self.utilization == RealEstate::UTILIZATION_COMMERICAL
+  end
   
   private
   def init_channels

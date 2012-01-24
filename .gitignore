@@ -4,7 +4,5 @@ log/*.log
 tmp/
 .sass-cache/
 .DS_Store
-.DS_Store1
-.DS_Store2
 .idea
-
+public/assets

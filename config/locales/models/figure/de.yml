@@ -1,0 +1,19 @@
+de:
+  mongoid:
+    models:
+      figure: 'Zahlen und Fakten'
+    attributes:
+      figure:
+        floor: 'Stockwerk'
+        floor_estimate: 'Stockwerk ungefähr'
+        rooms: 'Anzahl Zimmer'
+        rooms_estimate: 'Anzahl Zimmer ungefähr'
+        living_surface: 'Wohnfläche'
+        living_surface_estimate: 'Wohnfläche ungefähr'
+        property_surface: 'Grundstückfläche'
+        usable_surface: 'Nutzfläche'
+        storage_surface: 'Lagerfläche'
+        ceiling_height: 'Raumhöhe'
+        floors: 'Anzahl Stockwerke'
+        renovated_on: 'Renovationsjahr'
+        built_on: 'Baujahr'
