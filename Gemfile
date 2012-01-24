@@ -1,6 +1,7 @@
 source "http://rubygems.org"
 
 gem 'rails', '~> 3.1.0'
+gem 'rails-i18n'
 gem 'json'
 gem 'haml-rails'
 gem 'html5-rails', :git => 'git://github.com/sporkd/html5-rails.git'
