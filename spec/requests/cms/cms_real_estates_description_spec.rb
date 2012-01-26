@@ -29,6 +29,7 @@ describe "Cms::Descriptions" do
           fill_in 'Infrastruktur', :with => 'An bester Einkaufslage'
           fill_in 'Nutzungsart', :with => 'Zum schönen Wohnen'
           fill_in 'Bezugstermin', :with => 'ca. Herbst 2010 für Mieter'
+          fill_in 'Ausrichtung Nordpfeil', :with => '45'
         end
       end
 
@@ -53,6 +54,7 @@ describe "Cms::Descriptions" do
           @description.infrastructure.should == 'An bester Einkaufslage'
           @description.usage.should == 'Zum schönen Wohnen'
           @description.reference_date.should == 'ca. Herbst 2010 für Mieter'
+          @description.orientation_degrees.should == 45
         end
       end
     end
