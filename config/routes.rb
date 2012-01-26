@@ -8,6 +8,7 @@ AlfredMueller::Application.routes.draw do
       resource :address
       resource :pricing
       resource :figure
+      resource :information
       resource :infrastructure
       resource :description
       resources :media_assets
