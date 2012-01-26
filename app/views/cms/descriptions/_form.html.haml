@@ -1,0 +1,46 @@
+= render_navigation :context => :real_estate
+
+= form_for @description, :url => cms_real_estate_description_path(@real_estate) do |f|
+  -if @description.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@description.errors.count, "error")} prohibited this cms_real_estate from being saved:"
+      %ul
+        - @description.errors.full_messages.each do |msg|
+          %li= msg
+    
+  %fieldset
+    .clearfix
+      = f.label :generic
+      .input
+        = f.text_area :generic, :class => 'span8'
+    .clearfix
+      = f.label :location
+      .input
+        = f.text_area :location, :class => 'span8'
+    .clearfix
+      = f.label :interior
+      .input
+        = f.text_area :interior, :class => 'span8'
+    .clearfix
+      = f.label :offer
+      .input
+        = f.text_area :offer, :class => 'span8'
+    .clearfix
+      = f.label :infrastructure
+      .input
+        = f.text_area :infrastructure, :class => 'span8'
+    .clearfix
+      = f.label :usage
+      .input
+        = f.text_area :usage, :class => 'span8'
+    .clearfix
+      = f.label :reference_date
+      .input
+        = f.text_field :reference_date, :class => 'span8'
+    .clearfix
+      = f.label :orientation_degrees
+      .input
+        = f.text_field :orientation_degrees, :class => 'span3'
+    
+  .actions
+    = f.submit nil, :class => 'btn primary'

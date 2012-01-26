@@ -8,6 +8,8 @@ AlfredMueller::Application.routes.draw do
       resource :address
       resource :pricing
       resource :figure
+      resource :infrastructure
+      resource :description
     end
   end
 
