@@ -22,6 +22,7 @@ class RealEstate
   embeds_one :address
   embeds_one :pricing
   embeds_one :figure
+  embeds_one :information
   embeds_one :infrastructure
   embeds_one :descriptions, :class_name => 'Description'
   embeds_many :media_assets
