@@ -9,6 +9,7 @@
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
 Cms::User.create(email: 'admin@screenconcept.ch', password: 'bambus', password_confirmation: 'bambus')
+Cms::User.create(email: 'staging@alfred-mueller.ch', password: 'am2012', password_confirmation: 'am2012')
 
 module InitialCategories
 
