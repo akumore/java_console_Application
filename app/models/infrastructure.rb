@@ -6,7 +6,9 @@ class Infrastructure
   embedded_in :real_estate
   embeds_many :points_of_interest, :class_name => 'PointOfInterest'
 
-  accepts_nested_attributes_for :points_of_interest, :reject_if => :empty_point_of_interest
+  before_save :clear_empty_poi
+
+  accepts_nested_attributes_for :points_of_interest
 
   field :has_parking_spot, :type => Boolean
   field :has_roofed_parking_spot, :type => Boolean
@@ -24,7 +26,7 @@ class Infrastructure
 
   private
 
-  def empty_point_of_interest poi
-    poi[:distance].blank?
+  def clear_empty_poi
+    self.points_of_interest = points_of_interest.select { |poi| poi.present? }
   end
 end

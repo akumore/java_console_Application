@@ -6,6 +6,9 @@ class PointOfInterest
 
   embedded_in :infrastructure
 
+  delegate :present?, :to => :distance
+
   field :name, :type => String
   field :distance, :type => String
+
 end
