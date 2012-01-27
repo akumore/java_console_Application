@@ -38,7 +38,7 @@
       .input
         %ul.inputs-list
           %li
-            %label= f.check_box :has_elevator
+            %label= f.check_box :has_isdn
     .clearfix
       = f.label :is_wheelchair_accessible
       .input
@@ -100,7 +100,7 @@
     .clearfix
       = f.label :freight_elevator_carrying_capacity
       .input
-        = f.text_field :maximal_floor_loading, :class=>'span1'
+        = f.text_field :freight_elevator_carrying_capacity, :class=>'span1'
     .clearfix
       = f.label :has_ramp
       .input
@@ -130,7 +130,7 @@
           %li
             %label= f.check_box :has_water_supply
     .clearfix
-      = f.label :has_sewage_supplu
+      = f.label :has_sewage_supply
       .input
         %ul.inputs-list
           %li
