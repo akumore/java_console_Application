@@ -30,6 +30,9 @@
           .well
             - if @media_asset.image?
               = image_tag @media_asset.file.cms_preview.url
+            - if @media_asset.video?
+              %video.sublime{ :width => 640, :height => 360, :preload => 'none' }
+                %source{ :src => @media_asset.file.url }
             - if @media_asset.document?
               = link_to "\"#{@media_asset.title}\" in neuem Fenster öffnen", @media_asset.file.url, :target => '_new'
             

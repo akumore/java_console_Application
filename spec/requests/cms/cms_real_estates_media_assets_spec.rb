@@ -108,7 +108,7 @@ describe "Cms::MediaAssets" do
       end
 
       it 'displays a preview of the video' do
-        pending 'add video preview with sublime video player?'
+        page.should have_css('video.sublime', :count => 1)
       end
 
       it 'saves the provided attributes' do
