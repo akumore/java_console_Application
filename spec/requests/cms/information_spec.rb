@@ -24,12 +24,11 @@ describe "Cms Information" do
       fill_in "Anzahl WC's", :with=>@template_information.number_of_restrooms
       check 'ISDN-Anschluss'
       click_on 'Immobilieninfos erstellen'
-      @real_estate.reload
 
+      @real_estate.reload
       [:available_from, :display_estimated_available_from, :has_isdn, :number_of_restrooms].each do |method|
         @real_estate.information.send(method).should == @template_information.send(method)
       end
-
     end
 
     it 'fails to create invalid information object'
