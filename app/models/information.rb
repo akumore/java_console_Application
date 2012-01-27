@@ -31,6 +31,6 @@ class Information
   field :is_developed, :type=>Boolean
   field :is_under_building_laws, :type=>Boolean
 
-  #validates_size_of :maximal_floor_loading, :freight_elevator_carrying_capacity, :number_of_restrooms, :minimum=>0, :allow_blank=>true
+  validates_size_of :maximal_floor_loading, :freight_elevator_carrying_capacity, :number_of_restrooms, :minimum=>0, :allow_blank=>true
 
 end
