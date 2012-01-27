@@ -24,6 +24,7 @@ class RealEstate
   embeds_one :figure
   embeds_one :infrastructure
   embeds_one :descriptions, :class_name => 'Description'
+  embeds_many :media_assets
 
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE

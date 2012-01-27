@@ -25,13 +25,9 @@
         .page-header
           %h1= yield :title
         .row
-          .span11
+          .span16
             = render "layouts/flashes"
             = yield
-          .span1
-            &nbsp;
-          .span4
-            = yield :sidebar
 
     = javascript_include_tag 'cms/application'
     = yield :javascripts

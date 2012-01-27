@@ -1,0 +1,24 @@
+- content_for :title do
+  %h1 Bilder, Videos und Dokumente
+
+.pills.pull-right
+  %li
+    = link_to t('.new_image'), new_cms_real_estate_image_path
+  %li
+    = link_to t('.new_video'), new_cms_real_estate_video_path
+  %li
+    = link_to t('.new_document'), new_cms_real_estate_document_path
+
+%table.zebra-striped.bordered-table
+  %tr
+    %th{ :width => '70%' } Titel
+    %th Typ
+    %th
+    %th
+
+  - @media_assets.each do |media_asset|
+    %tr
+      %td= media_asset.title 
+      %td= t(".types.#{media_asset.media_type}")
+      %td= link_to  t('.destroy'), cms_real_estate_media_asset_path(@real_estate, media_asset), :method => :delete, :confirm => t('.confirm_delete', :title => media_asset.title)
+      %td= link_to  t('.edit'), edit_cms_real_estate_media_asset_path(@real_estate, media_asset)

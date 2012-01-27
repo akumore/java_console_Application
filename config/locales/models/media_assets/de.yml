@@ -1,0 +1,10 @@
+de:
+  mongoid:
+    models:
+      media_asset: 'Bilder, Videos und Dokumente'
+    attributes:
+      media_asset:
+        title: 'Titel'
+        media_type: 'Typ'
+        is_primary: 'Hauptbild'
+        file: 'Datei'
