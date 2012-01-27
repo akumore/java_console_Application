@@ -14,7 +14,7 @@ class Cms::InformationController < Cms::SecuredController
 
   def create
     @real_estate = RealEstate.find params[:real_estate_id]
-    @information = Information.create! params[:information].merge(:real_estate=>@real_estate)
+    @information = Information.create params[:information].merge(:real_estate=>@real_estate)
 
     respond_with @information, :location=> edit_cms_real_estate_information_path(@real_estate)
   end
