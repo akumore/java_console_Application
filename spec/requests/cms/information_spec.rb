@@ -31,7 +31,25 @@ describe "Cms Information" do
       end
     end
 
-    it 'fails to create invalid information object'
+    ["Anzahl WC's", "Max Gewicht Warenlift", "Maximale Bodenbelastung"].each do |target_field|
+
+      it "fails to create because of invalid '#{target_field}' entered" do
+        fill_in target_field, :with=>-9
+        lambda {
+          click_on 'Immobilieninfos erstellen'
+          @real_estate.reload
+        }.should_not change(@real_estate, :information)
+      end
+
+      it "doesn't fail to create on empty numerical field '#{target_field}'" do
+        fill_in target_field, :with=>''
+        lambda {
+          click_on 'Immobilieninfos erstellen'
+          @real_estate.reload
+        }.should change(@real_estate, :information)
+      end
+
+    end
   end
 
 end
