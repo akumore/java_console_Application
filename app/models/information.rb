@@ -5,7 +5,7 @@ class Information
   embedded_in :real_estate
 
   field :available_from, :type => Date
-  field :display_estimated_available_from #Verfügbar ab schätzen (ca. Herbst 2012)
+  field :display_estimated_available_from, :type=>String
   field :has_outlook, :type=>Boolean
   field :has_fireplace, :type=>Boolean #Cheminée
   field :has_elevator, :type=>Boolean #Lift
