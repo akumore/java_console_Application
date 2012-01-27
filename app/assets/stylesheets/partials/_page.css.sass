@@ -1,4 +1,6 @@
 @import compass/css3
+@import compass/utilities
+@import semantic-grid
 
 //-----------------------------------------------
 // The following html5-boilerplate styles should
@@ -13,12 +15,30 @@ body, select, input, textarea
 // Add your own custom styles below
 //-----------------------------------
 
-body
+.clear
+  clear: both
+
+#header
+  margin-top: 1em
 
 #container
+  width: 1080px
+  margin: 0px auto
 
-header
+.main-logo
+  background: image-url('main-logo.png') no-repeat left bottom
+  height: 60px
+  +hide-text
+  +column(3)
 
-#main
+.navigations
+  +column(9)
 
-footer
+.main-navigation
+  +horizontal-list(0.85em)
+  +float_right
+  margin-top: 25px
+
+.meta-navigation
+  +horizontal-list(10px)
+  +float_right

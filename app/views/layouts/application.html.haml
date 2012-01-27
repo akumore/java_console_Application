@@ -1,20 +1,25 @@
 !!! 5
 -# http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
--ie_html :class => 'no-js oldie', :lang => 'en' do
+-ie_html :class => 'no-js oldie', :lang => I18n.locale do
   %head
     -# To render a different stylesheet partial inside the head (i.e. for admin layout)
     -# just copy _stylesheets.html.haml, and point to that partial instead.
-    = render "layouts/head", :stylesheet_partial => "layouts/stylesheets"
+    = render 'layouts/head', :stylesheet_partial => 'layouts/stylesheets'
 
-  %body{ :class => "#{controller.controller_name}" }
+  %body
     #container
-      %header#header
+      %header#header.clearfix
+        = link_to 'Alfred-Müller.ch', root_path, :class => 'main-logo'
+        .navigations
+          = render_navigation :context => :meta
+          .clear
+          = render_navigation :context => :main
         
       #main{ :role => 'main' }
-        = render "layouts/flashes"
+        = render 'layouts/flashes'
         = yield
         
       %footer#footer
         
     -# Javascript at the bottom for fast page loading
-    = render "layouts/javascripts", :javascripts_partial => "layouts/javascripts"
+    = render 'layouts/javascripts', :javascripts_partial => 'layouts/javascripts'

@@ -1,4 +1,28 @@
+@import compass/utilities
 // font-face fonts
 // see http://compass-style.org/docs/reference/compass/css3/font_face/
 
 //@import "compass/css3/font-face"
+
+a:link, a:visited
+  text-decoration: none
+
+.text-font
+  font-family: "proxima-nova", sans-serif
+
+.title-font
+  font-family: "kulturista-web", serif
+
+.main-navigation
+  font-size: 1.05em
+  @extend .title-font
+
+  .selected
+    font-weight: bold
+
+.meta-navigation
+  font-size: 0.9em
+  @extend .text-font
+
+  a
+    +link-colors($secondary-link-color, $link-color, $secondary-link-color, $secondary-link-color, $secondary-link-color)
