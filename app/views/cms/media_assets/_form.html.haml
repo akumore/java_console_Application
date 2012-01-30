@@ -13,13 +13,14 @@
       = f.label :title
       .input
         = f.text_field :title, :class => 'span8'
-    .clearfix
-      = f.label :is_primary
-      .input
-        %ul.inputs-list
-          %li
-            %label
-              = f.check_box :is_primary
+    - unless @media_asset.document?
+      .clearfix
+        = f.label :is_primary
+        .input
+          %ul.inputs-list
+            %li
+              %label
+                = f.check_box :is_primary
     .clearfix
       = f.label :file
       .input

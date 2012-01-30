@@ -66,6 +66,10 @@ describe "Cms::MediaAssets" do
         current_path.should == edit_cms_real_estate_media_asset_path(@real_estate, @real_estate.media_assets.last)
       end
 
+      it 'can be checked as primary visual' do
+        page.should have_css('#media_asset_is_primary[type=checkbox]')
+      end
+
       it 'displays a preview of the image' do
         page.should have_css('.well img', :count => 1)
       end
@@ -107,6 +111,10 @@ describe "Cms::MediaAssets" do
         current_path.should == edit_cms_real_estate_media_asset_path(@real_estate, @real_estate.media_assets.last)
       end
 
+      it 'can be checked as primary visual' do
+        page.should have_css('#media_asset_is_primary[type=checkbox]')
+      end
+
       it 'displays a preview of the video' do
         page.should have_css('video.sublime', :count => 1)
       end
@@ -146,6 +154,10 @@ describe "Cms::MediaAssets" do
       it 'renders the edit form' do
         @real_estate.reload
         current_path.should == edit_cms_real_estate_media_asset_path(@real_estate, @real_estate.media_assets.last)
+      end
+
+      it 'cannot be checked as primary visual' do
+        page.should_not have_css('#media_asset_is_primary[type=checkbox]')
       end
 
       it 'displays a link to the document' do
