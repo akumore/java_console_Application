@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  #protect_from_forgery
+  protect_from_forgery
 
 protected
   def stored_location_for(resource_or_scope)
