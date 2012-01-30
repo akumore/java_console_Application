@@ -18,3 +18,7 @@ de:
         save_image: 'Bild speichern'
         save_video: 'Video speichern'
         save_document: 'Dokument speichern'
+        add_image: 'Neues Bild'
+        add_video: 'Neues Video'
+        add_document: 'Neues Dokument'
+        to_overview: 'Zurück zur Übersicht'
