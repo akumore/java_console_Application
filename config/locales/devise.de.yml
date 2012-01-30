@@ -33,14 +33,12 @@ de:
       confirmed: 'Ihr Account wurde bestätigt. Sie sind nun angemeldet.'
     registrations:
       signed_up: 'Sie haben sich erfolgreich registriert. Es kann sein, dass Sie eine Aktivierungs-E-Mail erhalten.'
-      inactive_signed_up: 'Sie haben sich erfolgreich anegemeldet, aber ihr Account ist %{reason}.'
       updated: 'Die Angaben wurden erfolgreich geändert.'
       update_needs_confirmation: "Sie haben ihren Account erfolgreich geändert, aber wir müssen zuerst ihre E-Mail Adresse überprüfen. Bitte bestätigen Sie ihren Account mit dem Link, den wir Ihnen per E-Mail gesendet haben."
       destroyed: 'Ihr Account wurde erfolgreich gelöscht.'
-      reasons:
-        inactive: 'inaktiv'
-        unconfirmed: 'nicht bestätigt'
-        locked: 'gesperrt'
+      signed_up_but_unconfirmed: 'Eine E-Mail mit einem Bestätigungslink wurde an Sie versendet. Bitte öffnen Sie diesen Link, um Ihren Account zu bestätigen.'
+      signed_up_but_inactive: 'Sie haben sich erfolgreich angemeldet. Wir konnten Sie aber nicht einlogen, da Ihr Account noch nicht aktiviert wurde.'
+      signed_up_but_locked: 'Sie haben sich erfolgreich angemeldet. Allerdings konnten wir Sie nicht einloggen, da Ihr Account noch gesperrt ist.'
     unlocks:
       send_instructions: 'Sie erhalten in wenigen Minuten eine E-Mail mit der Anleitung, wie Sie Ihren Account entsperren können.'
       unlocked: 'Ihr Account wurde entsperrt. Sie sind angemeldet.'

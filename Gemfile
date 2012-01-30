@@ -13,7 +13,7 @@ gem 'simple-navigation'
 gem 'twitter-bootstrap-rails', :git => "git://github.com/seyhunak/twitter-bootstrap-rails.git" #, :branch => "static" # we don't want the LESS version
 gem 'blazing'
 gem 'blazing-rails'
-gem 'devise', '1.5.3'
+gem 'devise', '2.0.0'
 gem 'responders'
 gem 'thin'
 gem 'airbrake'
