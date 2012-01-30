@@ -121,7 +121,7 @@ describe "Cms Information" do
       fill_in 'Etwa verfügbar ab', :with=>'Ebenfalls ab Ende April verfügbar'
 
       lambda {
-        click_on 'Immobilieninfos aktualisieren'
+        click_on 'Immobilieninfos speichern'
         @information.reload
       }.should change(@information, :display_estimated_available_from)
     end
@@ -131,7 +131,7 @@ describe "Cms Information" do
       fill_in "Anzahl WC's", :with=>-9
 
       lambda {
-        click_on 'Immobilieninfos aktualisieren'
+        click_on 'Immobilieninfos speichern'
         @information.reload
       }.should_not change(@information, :number_of_restrooms)
     end
