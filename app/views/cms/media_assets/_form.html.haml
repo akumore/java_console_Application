@@ -1,0 +1,48 @@
+= render_navigation :context => :real_estate
+
+= form_for [:cms, @real_estate, @media_asset], :html => { :multipart => true } do |f|
+  -if @media_asset.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@media_asset.errors.count, "error")} prohibited this cms_real_estate from being saved:"
+      %ul
+        - @media_asset.errors.full_messages.each do |msg|
+          %li= msg
+    
+  %fieldset
+    .clearfix
+      = f.label :title
+      .input
+        = f.text_field :title, :class => 'span8'
+    - unless @media_asset.document?
+      .clearfix
+        = f.label :is_primary
+        .input
+          %ul.inputs-list
+            %li
+              %label
+                = f.check_box :is_primary
+    .clearfix
+      = f.label :file
+      .input
+        = f.file_field :file
+        = f.hidden_field :file_cache
+
+        - if @media_asset.file.present?
+          .well
+            - if @media_asset.image?
+              = image_tag @media_asset.file.cms_preview.url
+            - if @media_asset.video?
+              %video.sublime{ :width => 640, :height => 360, :preload => 'none' }
+                %source{ :src => @media_asset.file.url }
+            - if @media_asset.document?
+              = link_to "\"#{@media_asset.title}\" in neuem Fenster öffnen", @media_asset.file.url, :target => '_new'
+            
+    
+  .actions
+    = f.hidden_field :media_type
+    = f.submit t(".save_#{@media_asset.media_type}"), :class => 'btn primary'
+    .pull-right
+      = link_to t('.add_image'), new_cms_real_estate_image_path, :class => 'btn small'
+      = link_to t('.add_video'), new_cms_real_estate_video_path, :class => 'btn small'
+      = link_to t('.add_document'), new_cms_real_estate_document_path, :class => 'btn small'
+      = link_to t('.to_overview'), cms_real_estate_media_assets_path, :class => 'btn info small'

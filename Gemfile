@@ -17,6 +17,8 @@ gem 'devise', '1.5.3'
 gem 'responders'
 gem 'thin'
 gem 'airbrake'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'rmagick'
 
 gem 'thin'
 
@@ -37,6 +39,7 @@ group :development, :test do
   gem 'fabrication'
   gem 'guard'
   gem 'guard-rspectacle'
+  gem 'ruby-debug19'
 end
 
 group :test do

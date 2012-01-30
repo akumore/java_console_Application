@@ -9,7 +9,8 @@ describe "Cms::RealEstates" do
     before do
       @category = Fabricate :category, :name=>'single_house', :label=>'Einfamilienhaus'
       @reference = Reference.new
-      @real_estate = Fabricate :real_estate, :category=>@category, :reference=>@reference
+      @address = Address.new
+      @real_estate = Fabricate :real_estate, :category=>@category, :reference=>@reference, :address => @address
       visit cms_real_estates_path
     end
 
@@ -19,7 +20,7 @@ describe "Cms::RealEstates" do
 
     it "shows the expected real estate attributes" do
       within("#real_estate_#{@real_estate.id}") do
-        #TODO double-check for city
+        page.should have_content @real_estate.address.city
         page.should have_content @real_estate.title
         page.should have_content I18n.t("cms.real_estates.index.#{@real_estate.offer}")
         page.should have_content I18n.t("cms.real_estates.index.#{@real_estate.utilization}")

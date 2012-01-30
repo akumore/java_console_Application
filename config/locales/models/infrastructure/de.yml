@@ -1,0 +1,13 @@
+de:
+  mongoid:
+    models:
+      infrastructure: 'Infrastruktur'
+    attributes:
+      infrastructure:
+        has_parking_spot: 'Hat Parkplatz'
+        has_roofed_parking_spot: 'Hat überdachten Parkplatz'
+        has_garage: 'Hat Garage'
+        inside_parking_spots: 'Anzahl Parkplätze in Autoeinstellhalle'
+        outside_parking_spots: 'Anzahl Parkplätze im Freien'
+        inside_parking_spots_temporary: 'Anzahl temporäre Parkplätze in Autoeinstellhalle'
+        outside_parking_spots_temporary: 'Anzahl temporäre Parkplätze im Freien'

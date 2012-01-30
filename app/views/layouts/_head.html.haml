@@ -10,6 +10,10 @@
 -# Mobile viewport optimized: j.mp/bplateviewport
 %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
 
+-# load typekit fonts first
+= javascript_include_tag 'http://use.typekit.com/ind7bpo.js'
+%script{ :type => 'text/javascript' } try{Typekit.load();}catch(e){}
+
 -# Pass in a stylesheet_partial to render inside your head
 - if local_assigns[:stylesheet_partial]
   = render :partial => local_assigns[:stylesheet_partial]

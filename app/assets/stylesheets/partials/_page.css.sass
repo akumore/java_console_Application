@@ -1,11 +1,13 @@
 @import compass/css3
+@import compass/utilities
+@import semantic-grid
 
 //-----------------------------------------------
 // The following html5-boilerplate styles should
 // probably be customized for each site
 //-----------------------------------------------
 body, select, input, textarea
-  color: $font-color
+  color: $text-color
   // Set your base font here, to apply evenly
   // font-family: Georgia, serif;
 
@@ -13,12 +15,30 @@ body, select, input, textarea
 // Add your own custom styles below
 //-----------------------------------
 
-body
+.clear
+  clear: both
+
+#header
+  margin-top: 1em
 
 #container
+  width: 960px
+  margin: 0px auto
 
-header
+.main-logo
+  background: image-url('main-logo.png') no-repeat left bottom
+  height: 60px
+  +hide-text
+  +column(4)
 
-#main
+.navigations
+  +column(8)
 
-footer
+.main-navigation
+  +horizontal-list(0.55em)
+  +float_right
+  margin-top: 23px
+
+.meta-navigation
+  +horizontal-list(10px)
+  +float_right

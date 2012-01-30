@@ -6,6 +6,7 @@ de:
       address:
         street: 'Strasse'
         street_number: 'Hausnummer'
+        city: 'Stadt'
         zip: 'Postleitzahl'
         canton: 'Kanton'
         link_url: 'Link'

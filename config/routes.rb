@@ -8,6 +8,12 @@ AlfredMueller::Application.routes.draw do
       resource :address
       resource :pricing
       resource :figure
+      resource :infrastructure
+      resource :description
+      resources :media_assets
+      resources :images, :controller => :media_assets, :media_type => :image, :only => :new
+      resources :videos, :controller => :media_assets, :media_type => :video, :only => :new
+      resources :documents, :controller => :media_assets, :media_type => :document, :only => :new
     end
   end
 

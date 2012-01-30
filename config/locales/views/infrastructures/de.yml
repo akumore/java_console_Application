@@ -1,0 +1,13 @@
+de:
+  cms:
+    infrastructures:
+      form:
+        parking: 'Parkplätze'
+        points_of_interest:
+          types:
+            public_transport: 'Öffentlicher Verkehr'
+            shopping: 'Einkaufen'
+            kindergarden: 'Kindergarten'
+            elementary_school: 'Grundschule'
+            high_school: 'Oberstufe'
+            highway_access: 'Autobahnanschluss'

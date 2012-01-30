@@ -1,0 +1,14 @@
+de:
+  mongoid:
+    models:
+      description: 'Beschreibungen'
+    attributes:
+      description:
+        generic: 'Immobilie'
+        location: 'Standort'
+        interior: 'Ausbaustandard'
+        offer: 'Angebot'
+        infrastructure: 'Infrastruktur'
+        usage: 'Nutzungsart'
+        reference_date: 'Bezugstermin'
+        orientation_degrees: 'Ausrichtung Nordpfeil'

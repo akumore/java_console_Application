@@ -7,6 +7,7 @@ class Address
   embedded_in :real_estate
   embeds_one :geo_location
 
+  field :city, :type => String
   field :street, :type => String
   field :street_number, :type => String
   field :zip, :type => String

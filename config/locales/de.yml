@@ -2,6 +2,16 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 de:
+  navigation:
+    main:
+      real_estate: 'Angebot'
+      jobs: 'Jobs'
+      company: 'Unternehmen'
+      services: 'Leistungen'
+      news: 'Aktuell'
+      knowledge: 'Wissenswertes'
+    meta:
+      contact: 'Kontakt'
   helpers:
     submit:
       create: "%{model} erstellen"
