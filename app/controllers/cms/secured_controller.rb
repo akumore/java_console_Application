@@ -5,6 +5,6 @@ class Cms::SecuredController < ApplicationController
   respond_to :html
 
   def print_request_format
-    puts request.formats.inspect.to_s
+    logger.warn request.formats.inspect.to_s if logger
   end
 end
