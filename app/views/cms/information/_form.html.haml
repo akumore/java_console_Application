@@ -135,14 +135,14 @@
         %ul.inputs-list
           %li
             %label= f.check_box :has_sewage_supply
-    - if @real_estate.top_level_category.name == 'properties'
+    - if @real_estate.property?
       .clearfix
         = f.label :is_developed
         .input
           %ul.inputs-list
             %li
               %label= f.check_box :is_developed
-    - if  %w(apartment house).include? @real_estate.top_level_category.name
+    - if @real_estate.apartment? || @real_estate.house?
       .clearfix
         = f.label :is_under_building_laws
         .input
