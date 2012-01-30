@@ -41,7 +41,9 @@ class RealEstate
   field :utilization_description, :type => String
 
   after_initialize :init_channels
-  
+
+  delegate :apartment?, :house?, :property?, :to=>:top_level_category, :allow_nil=>true
+
   def row_house?
     category.present? && category.name == 'row_house'
   end
@@ -57,7 +59,12 @@ class RealEstate
   def commercial_utilization?
     self.utilization == RealEstate::UTILIZATION_COMMERICAL
   end
-  
+
+  def top_level_category
+    category.parent
+  end
+
+
   private
   def init_channels
     self.channels ||= []
