@@ -13,12 +13,17 @@ a:link, a:visited
 .title-font
   font-family: "kulturista-web", serif
 
+.title-font-bold
+  font-family: "kulturista-web-n7", "kulturista-web", serif
+  font-weight: 700
+
 .main-navigation
   font-size: 1.05em
   @extend .title-font
 
   .selected
-    font-weight: bold
+    text-decoration: underline
+    @extend .title-font-bold
 
 .meta-navigation
   font-size: 0.9em
