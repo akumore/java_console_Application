@@ -1,0 +1,31 @@
+de:
+  mongoid:
+    models:
+      information: Immobilieninfos
+    attributes:
+      information:
+        available_from: Verfügbar ab
+        display_estimated_available_from: Etwa verfügbar ab
+        has_outlook:  Aussicht
+        has_fireplace: Cheminée
+        has_elevator: Lift
+        has_isdn: ISDN-Anschluss
+        is_wheelchair_accessible: Rollstuhltauglich
+        is_child_friendly: Kinderfreundlich
+        has_balcony: Balkon
+        has_raised_ground_floor: Hochpaterre
+        is_new_building: Neubau
+        is_old_building: Altbau
+        has_swimming_pool: Swimmingpool
+        is_minergie_style: Minergie Bauweise
+        is_minergie_certified: Minergie zertifiziert
+        maximal_floor_loading: Maximale Bodenbelastung
+        freight_elevator_carrying_capacity: Max Gewicht Warenlift
+        has_ramp: Anfahrrampe
+        has_lifting_platform: Hebebühne
+        has_railway_terminal: Bahnanschluss
+        number_of_restrooms: Anzahl WC's
+        has_water_supply: Wasseranschluss
+        has_sewage_supply: Abwasseranschluss
+        is_developed: Bauland erschlossen
+        is_under_building_laws: im Baurecht

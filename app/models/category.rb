@@ -12,4 +12,17 @@ class Category
   field :label, :type => String
 
   validates :name, :uniqueness => true
+
+  def apartment?
+    name == 'apartment'
+  end
+
+  def house?
+    name == 'house'
+  end
+
+  def property?
+    name == 'properties'
+  end
+
 end

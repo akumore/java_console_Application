@@ -22,5 +22,20 @@ describe RealEstate do
   			expect { real_estate.row_house? }.to_not raise_error
   		end
   	end
-	end
+  end
+
+  describe 'top_level_category' do
+    before do
+      @toplevel_category = Fabricate.build :category
+      @second_level_category = Fabricate.build :category, :parent=>@toplevel_category
+      @real_estate = Fabricate.build :real_estate
+    end
+
+    it "returns the parent category of it's category" do
+      @real_estate.category = @second_level_category
+      @real_estate.top_level_category.should == @toplevel_category
+    end
+  end
+
+
 end
