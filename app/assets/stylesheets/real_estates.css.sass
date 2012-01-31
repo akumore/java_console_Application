@@ -1,0 +1,16 @@
+@import partials/base
+@import semantic-grid
+
+.search-results
+  +column(8)
+  margin: 0
+
+tr
+  margin-top: 5px
+  &:hover
+    background-color: $selected-background-color
+
+td
+  padding: 15px
+  &:first-child
+    padding-left: 0
