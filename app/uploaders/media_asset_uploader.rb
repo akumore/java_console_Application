@@ -21,9 +21,13 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
+  def default_url
+     "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  end
+
+  version :thumb, :if => :is_image? do
+    process :resize_to_fill => [75,50]
+  end
 
   version :cms_preview, :if => :is_image? do
     process :resize_to_fit => [600, 340]
