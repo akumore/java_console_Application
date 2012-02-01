@@ -30,7 +30,7 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
   process :resize_to_fill=>[920,560], :if=>:is_image?
 
   version :thumb, :if => :is_image? do
-    process :resize_to_fill => [145,83]
+    process :resize_to_fill => [145,88]
   end
 
   version :cms_preview, :if => :is_image? do
