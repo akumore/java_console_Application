@@ -279,9 +279,11 @@ module InitialCategories
         )
         r.category = Category.where(:name=>'flat').first
         r.pricing = Pricing.new(:price_unit=>Pricing::PRICE_UNITS.first, :for_rent_netto=>2380, :for_rent_extra=>380)
-        r.figure = Figure.new(:floor=>3)
+        r.figure = Figure.new(:floor=>3, :living_surface=>186)
+        r.information = Information.new(:available_from=>Date.parse('2012-01-21'))
         r.infrastructure = Infrastructure.new(:has_parking_spot=>true)
-        r.description = Description.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
+        r.description = "Beschreibung 1!!!"
+        r.descriptions = Description.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
         r.media_assets = gartenstadt_images.map { |img_path|
           MediaAsset.new(
               :media_type=>MediaAsset::IMAGE,
@@ -304,11 +306,13 @@ module InitialCategories
           r.address = Address.new(:canton=>'AG',
                                   :city=>'Fahrwangen', :street=>'Bahnhofstrasse', :street_number=>'18'
           )
+          r.information = Information.new(:available_from=>Date.parse('2012-01-01'))
           r.category = Category.where(:name=>'flat').first
           r.pricing = Pricing.new(:price_unit=>Pricing::PRICE_UNITS.first, :for_rent_netto=>2380, :for_rent_extra=>380)
-          r.figure = Figure.new(:floor=>3)
+          r.figure = Figure.new(:floor=>3, :living_surface=>186)
           r.infrastructure = Infrastructure.new(:has_parking_spot=>true)
-          r.description = Description.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
+          r.description = "Beschreibung 1"
+          r.descriptions = Description.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
           r.save!
         end
 
