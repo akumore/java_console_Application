@@ -12,6 +12,9 @@
             %td
               = image_tag real_estate.media_assets.primary_image.file.thumb.url
             %td
+              %b
+                = real_estate.category.label
+              %br
               = real_estate.address.city
               = real_estate.address.canton.upcase
               %br
@@ -22,14 +25,15 @@
               Zimmer
               %br
               = real_estate.figure.floor
-              Etage
+              Stockwerk
               %br
               = real_estate.figure.living_surface
-              m^2
-            %td
-              = real_estate.category.label
+              m
+              %sup
+                2
               %br
-              = number_to_currency(real_estate.pricing.for_sale || real_estate.pricing.for_rent_netto)
+                %b
+                  = number_to_currency(real_estate.pricing.for_sale || real_estate.pricing.for_rent_netto)
 
   .map
     Map goes here
