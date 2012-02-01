@@ -27,9 +27,8 @@
               = t 'mongoid.attributes.figure.floor'
               %br
               = real_estate.figure.living_surface
-              m
-              %sup
-                2
+              = succeed content_tag(:sup,2) do
+                m
               %br
                 %b
                   = number_to_currency(real_estate.pricing.for_sale || real_estate.pricing.for_rent_netto)
