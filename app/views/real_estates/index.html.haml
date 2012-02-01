@@ -1,30 +1,35 @@
-%h2
-  = @real_estates.size
-  Treffer
+.search-container.clearfix
 
-.search-results
-  %table
-    %tbody
-      - @real_estates.each do |real_estate|
-        %tr
-          %td
-            = image_tag real_estate.media_assets.primary_image.file.thumb.url
-          %td
-            = real_estate.address.city
-            = real_estate.address.canton.upcase
-            %br
-            = real_estate.address.street
-            = real_estate.address.street_number
-          %td
-            = real_estate.figure.rooms
-            Zimmer
-            %br
-            = real_estate.figure.floor
-            Etage
-            %br
-            = real_estate.figure.living_surface
-            m^2
-          %td
-            = real_estate.category.label
-            %br
-            = number_to_currency(real_estate.pricing.for_sale || real_estate.pricing.for_rent_netto)
+  %h2
+    = @real_estates.size
+    Treffer
+
+  .search-results
+    %table
+      %tbody
+        - @real_estates.each do |real_estate|
+          %tr
+            %td
+              = image_tag real_estate.media_assets.primary_image.file.thumb.url
+            %td
+              = real_estate.address.city
+              = real_estate.address.canton.upcase
+              %br
+              = real_estate.address.street
+              = real_estate.address.street_number
+            %td
+              = real_estate.figure.rooms
+              Zimmer
+              %br
+              = real_estate.figure.floor
+              Etage
+              %br
+              = real_estate.figure.living_surface
+              m^2
+            %td
+              = real_estate.category.label
+              %br
+              = number_to_currency(real_estate.pricing.for_sale || real_estate.pricing.for_rent_netto)
+
+  .map
+    Map goes here
