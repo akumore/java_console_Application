@@ -2,7 +2,7 @@
 @import semantic-grid
 
 .search-container
-  background: #d3d3d3
+  background: $search-background-color
 
 .search-results
   +column(6)
@@ -14,11 +14,13 @@ table
   width: 100%
 
 tr
-  margin-top: 5px
+  background-color: $search-item-color
   &:hover
-    background-color: $selected-background-color
-
+    background-color: $search-hover-color
 td
-  padding: 15px
+  padding: 14px 0
+  line-height: 15px
+  border-bottom: solid
+  border-color: $search-background-color
   &:first-child
-    padding-left: 0
+    padding: 0
