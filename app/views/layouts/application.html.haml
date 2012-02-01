@@ -15,7 +15,7 @@
           .clear
           = render_navigation :context => :main
         
-      #main{ :role => 'main' }
+      #main{ :role => 'main', :class => "#{controller_name} #{action_name}" }
         = render 'layouts/flashes'
         = yield
         
