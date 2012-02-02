@@ -25,7 +25,11 @@ class RealEstate
   embeds_one :information
   embeds_one :infrastructure
   embeds_one :descriptions, :class_name => 'Description'
-  embeds_many :media_assets
+  embeds_many :media_assets  do
+    def primary_image
+      images.primary.first || MediaAsset.new(:media_type => MediaAsset::IMAGE)
+    end
+  end
 
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE

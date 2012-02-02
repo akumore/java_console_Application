@@ -6,6 +6,8 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   include CarrierWave::MimeTypes
 
+  process :set_content_type
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -21,12 +23,18 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
+  def default_url
+     "/images/fallback/" + [version_name, "default.png"].compact.join('_')
+  end
+
+  process :resize_to_fill=>[920,560], :if=>:is_image?
+
+  version :thumb, :if => :is_image? do
+    process :resize_to_fill => [145,88]
+  end
 
   version :cms_preview, :if => :is_image? do
-    process :resize_to_fit => [600, 340]
+    process :resize_to_fill => [600, 340]
   end
 
   def is_image? image

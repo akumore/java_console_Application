@@ -1,0 +1,39 @@
+.search-container.clearfix
+
+  %h2
+    = t 'views.real_estates.index.hits', :count=>@real_estates.size
+
+  .search-results
+    %table
+      %tbody
+        - @real_estates.each do |real_estate|
+          %tr
+            %td
+              = image_tag real_estate.media_assets.primary_image.file.thumb.url
+            %td
+              %b
+                = real_estate.category.label
+              %br
+              = real_estate.address.city
+              = real_estate.address.canton.upcase
+              %br
+              = real_estate.address.street
+              = real_estate.address.street_number
+            %td
+              = t 'views.real_estates.index.number_of_rooms', :count=>real_estate.figure.rooms
+              %br
+              = succeed "." do
+                = real_estate.figure.floor
+              = t 'mongoid.attributes.figure.floor'
+              %br
+              = real_estate.figure.living_surface
+              = succeed content_tag(:sup,2) do
+                m
+              %br
+                %b
+                  - if real_estate.for_sale?
+                    = number_to_currency real_estate.pricing.for_sale, :locale=>'de-CH'
+                  - else
+                    = number_to_currency real_estate.pricing.for_rent_netto, :locale=>'de-CH'
+  .map
+    Map goes here

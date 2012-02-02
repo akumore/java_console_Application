@@ -13,6 +13,7 @@ class MediaAsset
   scope :images, where(:media_type => MediaAsset::IMAGE)
   scope :videos, where(:media_type => MediaAsset::VIDEO)
   scope :documents, where(:media_type => MediaAsset::DOCUMENT)
+  scope :primary, where(:is_primary=>true)
 
   mount_uploader :file, MediaAssetUploader
 
@@ -35,4 +36,5 @@ class MediaAsset
   def document?
     media_type == MediaAsset::DOCUMENT
   end
+
 end

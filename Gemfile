@@ -38,7 +38,7 @@ group :development, :test do
   gem 'fabrication'
   gem 'guard'
   gem 'guard-rspectacle'
-  gem 'ruby-debug19'
+  #gem 'ruby-debug19'
 end
 
 group :test do

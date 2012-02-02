@@ -1,0 +1,29 @@
+@import partials/base
+@import semantic-grid
+
+.search-container
+  background: $search-background-color
+  h2
+    margin-left: 10px
+
+.search-results
+  +column(6)
+
+.map
+  +column(6)
+
+table
+  width: 100%
+
+tr
+  background-color: $search-item-color
+  &:hover
+    background: url(gradient-search-list-hover.png) repeat-x
+    background-color: $search-hover-color
+td
+  padding: 14px 0
+  line-height: 15px
+  border-bottom: solid
+  border-color: $search-background-color
+  &:first-child
+    padding: 0

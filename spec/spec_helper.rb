@@ -28,6 +28,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
   config.extend ControllerMacros, :type => :controller
   config.extend RequestMacros, :type => :request
+  config.include ActionView::Helpers::NumberHelper, :type => :request
 
   config.after(:each) do
     Mongoid.database.collections.each do |collection|

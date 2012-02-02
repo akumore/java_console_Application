@@ -20,3 +20,8 @@ de:
         private: Privat
         commercial: Gewerblich
         editing: In Bearbeitung
+  views:
+    real_estates:
+      index:
+        number_of_rooms: "%{count} Zimmer"
+        hits: "%{count} Treffer"
