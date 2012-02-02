@@ -31,7 +31,9 @@
                 m
               %br
                 %b
-                  = number_to_currency(real_estate.pricing.for_sale || real_estate.pricing.for_rent_netto)
-
+                  - if real_estate.for_sale?
+                    = number_to_currency real_estate.pricing.for_sale, :locale=>'de-CH'
+                  - else
+                    = number_to_currency real_estate.pricing.for_rent_netto, :locale=>'de-CH'
   .map
     Map goes here
