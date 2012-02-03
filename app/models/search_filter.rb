@@ -4,14 +4,16 @@ class SearchFilter < OpenStruct
 
   #attr_accessor :offer, :utilization, :canton, :city
 
-  SALE = 'for_sale'
-  RENT = 'for_rent'
+  SALE = RealEstate::OFFER_FOR_SALE
+  RENT = RealEstate::OFFER_FOR_RENT
 
-  NON_COMMERCIAL = 'private'
-  COMMERCIAL = 'commercial'
+  NON_COMMERCIAL =  RealEstate::UTILIZATION_PRIVATE
+  COMMERCIAL = RealEstate::UTILIZATION_COMMERICAL
 
   def initialize(params={})
-    super params.reverse_merge(:offer=>RENT, :utilization=>NON_COMMERCIAL)
+    params[:offer] ||= RENT
+    params[:utilization] ||= NON_COMMERCIAL
+    super
   end
 
   def persisted?
