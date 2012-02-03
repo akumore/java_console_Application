@@ -79,4 +79,77 @@ describe "RealEstates" do
 
   end
 
+
+  describe "Search-Filtering of real estates" do
+    before do
+      @non_commercial_for_sale = Fabricate :real_estate,
+                                           :utilization=>RealEstate::UTILIZATION_PRIVATE,
+                                           :offer=>RealEstate::OFFER_FOR_SALE,
+                                           :category=>Fabricate(:category),
+                                           :address=>Fabricate.build(:address),
+                                           :figure=>Fabricate.build(:figure),
+                                           :pricing=>Fabricate.build(:pricing)
+      @commercial_for_sale = Fabricate :real_estate,
+                                       :utilization=>RealEstate::UTILIZATION_COMMERICAL,
+                                       :offer=>RealEstate::OFFER_FOR_SALE,
+                                       :category=>Fabricate(:category),
+                                       :address=>Fabricate.build(:address),
+                                       :figure=>Fabricate.build(:figure),
+                                       :pricing=>Fabricate.build(:pricing)
+      @non_commercial_for_rent = Fabricate :real_estate,
+                                           :utilization=>RealEstate::UTILIZATION_PRIVATE,
+                                           :offer=>RealEstate::OFFER_FOR_RENT,
+                                           :category=>Fabricate(:category),
+                                           :address=>Fabricate.build(:address),
+                                           :figure=>Fabricate.build(:figure),
+                                           :pricing=>Fabricate.build(:pricing)
+      @commercial_for_rent = Fabricate :real_estate,
+                                       :utilization=>RealEstate::UTILIZATION_COMMERICAL,
+                                       :offer=>RealEstate::OFFER_FOR_RENT,
+                                       :category=>Fabricate(:category),
+                                       :address=>Fabricate.build(:address),
+                                       :figure=>Fabricate.build(:figure),
+                                       :pricing=>Fabricate.build(:pricing)
+    end
+
+    it "renders the search filter" do
+      visit real_estates_path
+      page.should have_css ".search-filter-container"
+      within ".search-filter-container" do
+        page.should have_css ".offer-tabs"
+        page.should have_css ".utilization-tabs"
+      end
+    end
+
+    it "shows non-commercial offers for sale" do
+      visit real_estates_path(:utilization=>RealEstate::UTILIZATION_PRIVATE, :offer=>RealEstate::OFFER_FOR_SALE)
+      page.should have_selector('table tr', :count => 1)
+      page.should have_css("tr[id=real-estate-#{@non_commercial_for_sale.id}]")
+    end
+
+    it "shows non-commercial offers for rent" do
+      visit real_estates_path(:utilization=>RealEstate::UTILIZATION_PRIVATE, :offer=>RealEstate::OFFER_FOR_RENT)
+      page.should have_selector('table tr', :count => 1)
+      page.should have_css("tr[id=real-estate-#{@non_commercial_for_rent.id}]")
+    end
+
+    it "shows commercial offers for sale" do
+      visit real_estates_path(:utilization=>RealEstate::UTILIZATION_COMMERICAL, :offer=>RealEstate::OFFER_FOR_SALE)
+      page.should have_selector('table tr', :count => 1)
+      page.should have_css("tr[id=real-estate-#{@commercial_for_sale.id}]")
+    end
+
+    it "shows commercial offers for rent" do
+      visit real_estates_path(:utilization=>RealEstate::UTILIZATION_COMMERICAL, :offer=>RealEstate::OFFER_FOR_RENT)
+      page.should have_selector('table tr', :count => 1)
+      page.should have_css("tr[id=real-estate-#{@commercial_for_rent.id}]")
+    end
+
+    it "filters out all real estates because there is no match" do
+      @commercial_for_rent.destroy
+      visit real_estates_path(:utilization=>RealEstate::UTILIZATION_COMMERICAL, :offer=>RealEstate::OFFER_FOR_RENT)
+      page.should_not have_selector('table tr')
+    end
+  end
+
 end
