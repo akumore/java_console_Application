@@ -25,3 +25,10 @@ de:
       index:
         number_of_rooms: "%{count} Zimmer"
         hits: "%{count} Treffer"
+  real_estates:
+    search_filter:
+      private: Wohnen
+      commercial: Arbeiten
+      for_sale: Kaufen
+      for_rent: Mieten
+
