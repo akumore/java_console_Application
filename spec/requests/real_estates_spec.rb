@@ -5,6 +5,8 @@ describe "RealEstates" do
   describe "Visit real estate index path" do
     let :real_estate do
       Fabricate :real_estate,
+                :utilization=>RealEstate::UTILIZATION_PRIVATE,
+                :offer=>RealEstate::OFFER_FOR_RENT,
                 :category=>Fabricate(:category, :label=>'Wohnung'),
                 :address=>Fabricate.build(:address),
                 :figure=>Fabricate.build(:figure, :rooms=>10.5, :floor=>99),
@@ -66,7 +68,7 @@ describe "RealEstates" do
 
       it "shows the localized price for sale" do
         real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
-        visit real_estates_path
+        visit real_estates_path(:offer=>RealEstate::OFFER_FOR_SALE)
         page.should have_content number_to_currency(real_estate.pricing.for_sale, :locale=>'de-CH')
       end
 
