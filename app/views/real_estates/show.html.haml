@@ -1,0 +1,38 @@
+- content_for :meta do
+  %meta{ :name => :keywords, :content => @real_estate.keywords }
+  %meta{ :name => :description, :content => @real_estate.short_description }
+
+.detail
+  .detail-header
+    = link_to t('.overview'), :back
+    = link_to t('.next'), '#'
+    %h1= @real_estate.title
+
+  .gallery
+    = image_tag @real_estate.media_assets.primary_image.file.url
+
+  .short-infos
+
+    .address
+      = @real_estate.full_address
+    .numbers
+      = @real_estate.quick_infos
+    .pricing
+      = @real_estate.quick_price_infos
+    .clear
+
+  .description
+    = @real_estate.description
+
+    %ul.accordion
+      %li= t('.data_and_figures')
+      %li= t('.real_estate_infos')
+      %li= t('.pricing')
+      %li= t('.facts_and_figures')
+      %li= t('.infrastructure')
+    
+  .sidebar
+
+    %ul
+      %li= @real_estate.mini_doku_link
+      %li= link_to t('.floorplan'), '#', :class => :floorplan

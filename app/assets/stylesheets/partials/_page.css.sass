@@ -20,19 +20,26 @@ body, select, input, textarea
 
 #header
   margin-top: 1em
+  +row
+
+#main
+  +row
+
+#footer
+  +row
 
 #container
-  width: 960px
   margin: 0px auto
+  max-width: 1000px
 
 .main-logo
   background: image-url('main-logo.png') no-repeat left bottom
   height: 60px
   +hide-text
-  +column(4)
+  +column(3)
 
 .navigations
-  +column(8)
+  +column(7)
 
 .main-navigation
   +horizontal-list(0.55em)

@@ -1,3 +1,4 @@
+@import base
 @import compass/utilities
 // font-face fonts
 // see http://compass-style.org/docs/reference/compass/css3/font_face/
@@ -36,3 +37,10 @@ a:link, a:visited
 
 #main
   @extend .text-font
+
+h1
+  @extend .title-font
+  font-weight: normal
+
+.address, .numbers, .pricing
+  +bold-font

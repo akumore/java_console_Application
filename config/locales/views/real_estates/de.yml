@@ -20,8 +20,23 @@ de:
         private: Privat
         commercial: Gewerblich
         editing: In Bearbeitung
-  views:
-    real_estates:
-      index:
-        number_of_rooms: "%{count} Zimmer"
-        hits: "%{count} Treffer"
+  real_estates:
+    index:
+      number_of_rooms: "%{count} Zimmer"
+      hits: "%{count} Treffer"
+    show:
+      overview: 'Übersicht'
+      next: 'Nächstes Projekt'
+      floorplan: 'Grundriss anzeigen'
+      description_download: 'Objektbeschrieb'
+      number_of_rooms: '%{count} Zimmer'
+      floor: '%{floor}. Stockwerk'
+      living_surface_html: '%{size}m<sup>2</sup>'
+      data_and_figures: 'Daten und Fakten'
+      real_estate_infos: 'Immobilieninfos'
+      pricing: 'Preise'
+      facts_and_figures: 'Zahlen und Fakten'
+      infrastructure: 'Infrastruktur'
+      for_rent: 'Miete'
+      for_rent_extra: 'Nebenkosten'
+      for_sale: 'Kaufpreis'

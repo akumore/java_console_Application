@@ -3,9 +3,9 @@
 /////////////////
 
 // Defaults which you can freely override
-$column-width: 60px;
-$gutter-width: 20px;
-$columns: 12;
+$columns: 10;
+$column-width: 80;
+$gutter-width: 20;
 
 // Utility function — you should never need to modify this
 @function gridsystem-width($columns:$columns) {
@@ -13,11 +13,12 @@ $columns: 12;
 }
 
 // Set $total-width to 100% for a fluid layout
-$total-width: gridsystem-width($columns);
+// $total-width: gridsystem-width($columns);
+$total-width: 100%;
 
 // Uncomment these two lines and the star-hack width/margin lines below to enable sub-pixel fix for IE6 & 7. See http://tylertate.com/blog/2012/01/05/subpixel-rounding.html
-// $min-width: 999999;
-// $correction: 0.5 / $min-width * 100;
+$min-width: 999999;
+$correction: 0.5 / $min-width * 100;
 
 // The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/
 @mixin clearfix() {
@@ -56,8 +57,8 @@ body {
 	float: left;
 	width: $total-width*(((($gutter-width+$column-width)*$x)-$gutter-width) / gridsystem-width($columns));
 	margin: 0 $total-width*(($gutter-width*.5)/gridsystem-width($columns));
-	// *width: $total-width*(((($gutter-width+$column-width)*$x)-$gutter-width) / gridsystem-width($columns))-$correction;
-	// *margin: 0 $total-width*(($gutter-width*.5)/gridsystem-width($columns))-$correction;
+	*width: $total-width*(((($gutter-width+$column-width)*$x)-$gutter-width) / gridsystem-width($columns))-$correction;
+	*margin: 0 $total-width*(($gutter-width*.5)/gridsystem-width($columns))-$correction;
 }
 @mixin push($offset:1) {
 	margin-left: $total-width*((($gutter-width+$column-width)*$offset) / gridsystem-width($columns)) + $total-width*(($gutter-width*.5)/gridsystem-width($columns));

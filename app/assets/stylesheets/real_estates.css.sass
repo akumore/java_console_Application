@@ -1,16 +1,18 @@
 @import partials/base
 @import semantic-grid
+@import compass/utilities
 
 .search-container
   background: $search-background-color
+  +column(10)
   h2
     margin-left: 10px
 
 .search-results
-  +column(6)
+  +column(5, 10)
 
 .map
-  +column(6)
+  +column(5, 10)
 
 table
   width: 100%
@@ -27,3 +29,57 @@ td
   border-color: $search-background-color
   &:first-child
     padding: 0
+
+.detail
+  background: $search-background-color
+  +clearfix
+
+.detail-header
+  +column(10, 10)
+  margin:
+    top: 0.5em
+    bottom: 0.5em
+
+  h1
+    +push(1)
+
+.gallery
+  background: grey
+  +column(10, 10)
+  margin-bottom: 1em
+
+  img
+    width: 100%
+
+.address
+  +column(2, 10)
+  +push(1)
+  
+.numbers, .pricing
+  +column(2)
+
+.address, .numbers, .pricing
+  margin:
+    top: 1.5em
+    bottom: 1.5em
+
+.description
+  +column(6, 10)
+  +push(1)
+
+.sidebar
+  +column(3, 10)
+
+  ul
+    +no-bullets
+
+.accordion
+  padding: 0
+  border-bottom: 1px solid $dark-border-color
+  margin: 2em 0
+
+  > li
+    border-top: 1px solid $dark-border-color
+    padding: 0.5em 0
+    font-weight: 700
+    +no-bullet
