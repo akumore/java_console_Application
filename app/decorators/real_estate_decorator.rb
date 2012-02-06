@@ -73,7 +73,7 @@ class RealEstateDecorator < ApplicationDecorator
     link_to(
       t('real_estates.show.description_download'), 
       real_estate_path(model, :format => :pdf),
-      :class => :description_download
+      :class => 'icon-description'
     )
   end
 
