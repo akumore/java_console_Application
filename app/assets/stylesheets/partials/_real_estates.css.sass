@@ -30,18 +30,6 @@ td
   background: $search-background-color
   +clearfix
 
-.detail-header
-  +column(9, 10)
-  margin:
-    top: 0.5em
-    bottom: 0.5em
-
-  h1
-    margin-bottom: 0px
-
-  ul
-    +horizontal-list(1.25em)
-
 .gallery
   background: grey
   +column(10, 10)
@@ -50,28 +38,38 @@ td
   img
     width: 100%
 
-.address
-  +column(2, 10)
-  +push(1)
+.short-infos
+  .info:first-child
+    +push(1)
+
+  .info
+    +column(2)
+
+  .nav
+    +column(3)
+    ul
+      +horizontal-list(1.25em)
+      +no-bullets
+
+  .info, .nav
+    @extend .text-font-bold
+    margin:
+      top: 1.5em
+      bottom: 1.5em
   
-.numbers, .pricing
-  +column(2)
-
-.address, .numbers, .pricing
-  margin:
-    top: 1.5em
-    bottom: 1.5em
-
 .description
   +column(6, 10)
   +push(1)
 
+  h1
+    @extend .title-font-bold
+
 .sidebar
   +column(3, 10)
+  @extend .text-font-bold
 
   ul
     +no-bullets
 
     li
       line-height: 2em
-      +bold-font

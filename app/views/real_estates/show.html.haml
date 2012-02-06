@@ -3,28 +3,25 @@
   %meta{ :name => :description, :content => @real_estate.short_description }
 
 .detail
-  .detail-header
-    .container
-      %ul
-        %li= link_to t('.overview'), :back, :class => 'arrow-small-blue-left heavy'
-        %li= link_to t('.next'), '#', :class => 'arrow-small-blue-right heavy'
-      %h1= @real_estate.title
-
   .gallery
     .container
       = image_tag @real_estate.media_assets.primary_image.file.url
 
   .short-infos
-
-    .address
+    .info
       = @real_estate.full_address
-    .numbers
+    .info
       = @real_estate.quick_infos
-    .pricing
+    .info
       = @real_estate.quick_price_infos
+    .nav
+      %ul
+        %li= link_to t('.overview'), :back, :class => 'arrow-small-blue-left heavy'
+        %li= link_to t('.next'), '#', :class => 'arrow-small-blue-right heavy'
     .clear
 
   .description
+    %h1= @real_estate.title
     = @real_estate.description
 
     %ul.accordion.bordered
