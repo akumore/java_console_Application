@@ -24,6 +24,15 @@ a:link, a:visited
   font-family: "proxima-nova-i6", "proxima-nova", sans-serif
   font-weight: 600
 
+.classic 
+  @extend .title-font-bold
+
+a.classic:link, a.classic:visited, a.classic:active
+  color: $classic
+
+a.classic:hover
+  color: darken($classic, 10%)
+
 .main-navigation
   font-size: 1.05em
   @extend .title-font

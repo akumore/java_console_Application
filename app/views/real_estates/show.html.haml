@@ -9,6 +9,10 @@
 .detail
   .gallery
     .container
+      .map-slider
+        .map-slide
+          .map-handle
+          .map
       .flex-container
         .flexslider
           %ul.slides
@@ -31,8 +35,9 @@
       = @real_estate.quick_price_infos
     .nav
       %ul
-        %li= link_to t('.overview'), :back, :class => 'arrow-small-blue-left heavy'
-        %li= link_to t('.next'), '#', :class => 'arrow-small-blue-right heavy'
+        %li= link_to t('.prev'), '#', :class => 'arrow-small-blue-left image-link'
+        %li= link_to t('.overview'), :back, :class => 'classic'
+        %li= link_to t('.next'), '#', :class => 'arrow-small-blue-right image-link'
     .clear
 
   .description
@@ -43,25 +48,35 @@
       %li.title
         = link_to t('.data_and_figures'), '#data_and_figures'
         .content
-          %h3 hi this is stuff
-          %p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          // 
       %li.title
         = link_to t('.real_estate_infos'), '#real_estate_infos'
         .content
       %li.title
         = link_to t('.pricing'), '#pricing'
         .content
+          %ul
+            - @real_estate.price_info_basic.each do |line|
+              %li= line
+          %ul
+            - @real_estate.price_info_parking.each do |line|
+              %li= line
       %li.title
         = link_to t('.facts_and_figures'), '#facts_and_figures'
         .content
+          %ul
+            - @real_estate.facts_and_figures.each do |line|
+              %li= line
       %li.title
         = link_to t('.infrastructure'), '#infrastructure'
         .content
+          %ul
+            - @real_estate.infrastructure_parking.each do |line|
+              %li= line
+          
+          %ul
+            - @real_estate.infrastructure_distances.each do |line|
+              %li= line
     
   .sidebar
     %ul

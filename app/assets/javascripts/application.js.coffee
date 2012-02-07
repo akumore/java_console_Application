@@ -25,11 +25,3 @@ window.AlfredMueller =
 
 $ ->
   new AlfredMueller.Routers.Application()
-
-$(window).load ->
-  $(".flexslider").flexslider(
-    directionNav: true,
-    controlNav: false,
-    slideshow: false,
-    animation: "slide"
-  )
