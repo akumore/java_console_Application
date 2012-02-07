@@ -5,6 +5,7 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require jquery.flexslider
 #= require underscore
 #= require backbone
 #= require backbone_rails_sync
@@ -24,3 +25,11 @@ window.AlfredMueller =
 
 $ ->
   new AlfredMueller.Routers.Application()
+
+$(window).load ->
+  $(".flexslider").flexslider(
+    directionNav: true,
+    controlNav: false,
+    slideshow: false,
+    animation: "slide"
+  )

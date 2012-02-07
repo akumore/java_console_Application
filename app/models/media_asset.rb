@@ -14,6 +14,10 @@ class MediaAsset
   scope :videos, where(:media_type => MediaAsset::VIDEO)
   scope :documents, where(:media_type => MediaAsset::DOCUMENT)
   scope :primary, where(:is_primary=>true)
+  scope :displayable, any_of(
+    { :media_type => MediaAsset::IMAGE }, 
+    { :media_type => MediaAsset::VIDEO }
+  )
 
   mount_uploader :file, MediaAssetUploader
 
