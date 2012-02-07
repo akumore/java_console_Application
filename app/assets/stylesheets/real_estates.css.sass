@@ -1,5 +1,7 @@
 @import partials/base
 @import semantic-grid
+@import "compass/utilities/lists/horizontal-list"
+@import "compass/typography/links/link-colors"
 
 .search-container
   background: $search-background-color
@@ -27,3 +29,45 @@ td
   border-color: $search-background-color
   &:first-child
     padding: 0
+
+.search-filter-container
+  position: relative
+  li
+    padding: 10px 20px
+  a:link, a:visited
+    text-decoration: none
+  a
+    @extend .title-font
+    +link-colors($link-color, $link-hover-color, $link-color, $link-color, $link-color)
+
+  .selected
+    //@extend .title-font-bold TODO reuse this
+    font-family: "kulturista-web-n7", "kulturista-web", serif
+    font-weight: 700
+
+.search-filter-form
+  background: lightgrey
+  padding: 20px
+  label
+    margin-right: 15px
+  select
+    margin-right: 20px
+
+.offer-tabs
+  ul
+    +horizontal-list(false, right)
+    li
+      background: lightgrey
+    .selected
+      background: grey
+
+.utilization-tabs
+  background: grey
+  ul
+    +horizontal-list(false)
+    li
+      background: grey
+    .selected
+      background: lightgrey
+
+

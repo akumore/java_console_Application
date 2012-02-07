@@ -1,3 +1,5 @@
+= render 'search_filter'
+
 .search-container.clearfix
 
   %h2
@@ -7,7 +9,7 @@
     %table
       %tbody
         - @real_estates.each do |real_estate|
-          %tr
+          %tr{:id=>"real-estate-#{real_estate.id}"}
             %td
               = image_tag real_estate.media_assets.primary_image.file.thumb.url
             %td

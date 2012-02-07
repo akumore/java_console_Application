@@ -1,0 +1,10 @@
+de:
+  activemodel:
+    models:
+      search_filter: Suchfilter
+    attributes:
+      search_filter:
+        canton: Kanton
+        city: Stadt
+        offer: Angebotstyp
+        utilization: Nutzung

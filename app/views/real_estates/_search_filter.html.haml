@@ -1,0 +1,24 @@
+.search-filter-container
+
+  .offer-tabs
+    %ul
+      %li.for-rent-tab{:class=>@search_filter.for_rent? ? "selected" : ""}
+        = link_to t("real_estates.search_filter.for_rent"), real_estates_path(:offer=>SearchFilter::RENT, :utilization=>@search_filter.utilization)
+      %li.for_sale-tab{:class=>@search_filter.for_sale? ? "selected" : ""}
+        = link_to t("real_estates.search_filter.for_sale"), real_estates_path(:offer=>SearchFilter::SALE, :utilization=>@search_filter.utilization)
+
+  .utilization-tabs
+    %ul
+      %li.non-commercial{:class=>!@search_filter.commercial? ? "selected" : ""}
+        = link_to t("real_estates.search_filter.private"), real_estates_path({:offer=>@search_filter.offer, :utilization=>SearchFilter::NON_COMMERCIAL})
+      %li.commercial{:class=>@search_filter.commercial? ? "selected" : ""}
+        = link_to t("real_estates.search_filter.commercial"), real_estates_path({:offer=>@search_filter.offer, :utilization=>SearchFilter::COMMERCIAL})
+
+  .search-filter-form
+    = form_for @search_filter, :url=>real_estates_path, :method=>'GET' do |f|
+      = f.hidden_field :offer
+      = f.hidden_field :utilization
+      = f.label :canton
+      = f.collection_select :canton, [ %w(ZG Zug ), %w(SZ Schwyz ), %w(ZH Zürich) ], :first, :last, :prompt=>t("helpers.select.prompt")
+      = f.label :city
+      = f.select :city, %w(Arth Zug Zürich),:prompt=>t("helpers.select.prompt")
