@@ -1,6 +1,7 @@
 .search-container
   background: $search-background-color
   +column(10)
+  border-top: 1px solid $search-container-border-top
   h2
     margin-left: 10px
 
@@ -40,27 +41,10 @@ td
     width: 100%
 
 .short-infos
-  .info:first-child
-    +push(1)
-
   .info
-    +column(2)
-
-  .nav
-    +column(3)
-    margin:
-      top: 1.5em
-      bottom: 1.5em
-
-    ul
-      +horizontal-list(0.5em)
-      +no-bullets
-      margin-left: 30px
-
-  .info
+    +column(2, 6)
     @extend .text-font-bold
     margin:
-      top: 1.5em
       bottom: 1.5em
   
 .description
@@ -76,17 +60,32 @@ td
 
   ul
     +no-bullets
+    margin-left: 40px
 
     li
       line-height: 2em
+  
+  .nav
+    margin:
+      top: 1.5em
+      bottom: 1.5em
+
+    ul
+      +horizontal-list(0.25em)
+      +no-bullets
+      margin-left: 30px
 
 .search-filter-container
   position: relative
+  border-bottom: 1px solid $search-filter-border-dark
+  margin-top: 1em
+
   li
     padding: 10px 20px
+    line-height: 1.5em
 
 .search-filter-form
-  background: lightgrey
+  background: $clay
   padding: 20px
 
   label
@@ -100,18 +99,18 @@ td
     +horizontal-list(false, right)
 
     li
-      background: lightgrey
+      background: $search-background-color
 
     .selected
-      background: grey
+      background: $browny
 
 .utilization-tabs
-  background: grey
+  background: $browny
   ul
     +horizontal-list(false)
 
     li
-      background: grey
+      background: $browny
 
     .selected
-      background: lightgrey
+      background: $clay

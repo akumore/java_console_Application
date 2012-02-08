@@ -1,5 +1,6 @@
-a:link, a:visited
+a, a:link, a:visited, a:active
   text-decoration: none
+  font-weight: 300
 
 .text-font
   font-family: "proxima-nova", sans-serif
@@ -47,8 +48,13 @@ a.classic:hover
 #main
   @extend .text-font
 
+  a
+    +link-colors($dark-title-color, $title-color, $dark-title-color, $dark-title-color)
+    @extend .title-font
+
 h1
   @extend .title-font
+  font-size: 2em
   font-weight: normal
 
 h2

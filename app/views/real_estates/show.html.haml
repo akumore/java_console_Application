@@ -27,22 +27,18 @@
                   %video.sublime{ :preload => 'preload' }
                     %source{ :src => asset.file.url }
 
-  .short-infos
-    .info
-      = @real_estate.full_address
-    .info
-      = @real_estate.quick_infos
-    .info
-      = @real_estate.quick_price_infos
-    .nav
-      %ul
-        %li= link_to t('.prev'), '#', :class => 'arrow-tailed-small-left image-link'
-        %li= link_to t('.overview'), :back, :class => 'classic'
-        %li= link_to t('.next'), '#', :class => 'arrow-tailed-small-right image-link'
-    .clear
-
   .description
     %h1= @real_estate.title
+
+    .short-infos
+      .info
+        = @real_estate.full_address
+      .info
+        = @real_estate.quick_infos
+      .info
+        = @real_estate.quick_price_infos
+      .clear
+    
     = @real_estate.description
 
     %ul.accordion.bordered
@@ -80,6 +76,12 @@
               %li= line
     
   .sidebar
+    .nav
+      %ul
+        %li= link_to t('.prev'), '#', :class => 'arrow-tailed-small-left image-link'
+        %li= link_to t('.overview'), :back, :class => 'classic'
+        %li= link_to t('.next'), '#', :class => 'arrow-tailed-small-right image-link'
+
     %ul
       %li= @real_estate.mini_doku_link
       %li= link_to t('.floorplan'), '#', :class => 'icon-groundplan'
