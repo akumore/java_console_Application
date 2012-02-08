@@ -12,6 +12,8 @@ de:
           website: 'Website'
           homegate: 'Homegate'
           print: 'Mini Doku'
+      actions:
+        overview: 'Zurück zur Übersicht'
       index:
         new: Neue Immobilie erfassen
         edit: Editieren
