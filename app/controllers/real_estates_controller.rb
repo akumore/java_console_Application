@@ -8,6 +8,9 @@ class RealEstatesController < ApplicationController
     @real_estates = get_filtered_real_estates(@search_filter)
   end
 
+  def show
+    @real_estate = RealEstateDecorator.find(params[:id])
+  end
 
   private
   def set_search_filter
@@ -17,9 +20,4 @@ class RealEstatesController < ApplicationController
   def get_filtered_real_estates(search_filter)
     RealEstate.where(search_filter.to_h).all
   end
-
-  def show
-    @real_estate = RealEstateDecorator.find(params[:id])
-  end
-
 end
