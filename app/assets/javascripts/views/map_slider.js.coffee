@@ -5,8 +5,14 @@ class window.AlfredMueller.Views.MapSlider extends Backbone.View
 
   initialize: ->
     @isOpen = false
+    @slider = @el.find(".map-slide")
+    @map    = @el.find(".map iframe")
 
   open: (elem) ->
+    @map.css(
+      width: @slider.width() + "px",
+      height: @slider.height() + "px"
+    )
     @el.addClass("open")
     @isOpen = true
     return false
