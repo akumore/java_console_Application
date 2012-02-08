@@ -1,0 +1,85 @@
+- content_for :meta do
+  %meta{ :name => :keywords, :content => @real_estate.keywords }
+  %meta{ :name => :description, :content => @real_estate.short_description }
+
+- if @real_estate.media_assets.videos.size > 0
+  - content_for :javascript do
+    %script{ :type => "text/javascript", :src => "http://cdn.sublimevideo.net/js/go4z5g30.js" }
+
+.detail
+  .gallery
+    .container
+      .map-slider
+        .map-slide
+          .map-handle
+          .map
+            <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Steinhausen,+Switzerland&amp;aq=0&amp;oq=Steinhausen,+&amp;ie=UTF8&amp;hq=&amp;hnear=Steinhausen,+Canton+of+Zug,+Switzerland&amp;t=m&amp;ll=47.203243,8.485479&amp;spn=0.02041,0.036478&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+      .flex-container
+        .flexslider
+          %ul.slides
+            - @real_estate.media_assets.displayable.each do |asset|
+              %li
+                - if asset.image?
+                  = image_tag asset.file.url
+                  .flex-caption
+                    %span= asset.title
+                - if asset.video?
+                  %video.sublime{ :preload => 'preload' }
+                    %source{ :src => asset.file.url }
+
+  .short-infos
+    .info
+      = @real_estate.full_address
+    .info
+      = @real_estate.quick_infos
+    .info
+      = @real_estate.quick_price_infos
+    .nav
+      %ul
+        %li= link_to t('.prev'), '#', :class => 'arrow-tailed-small-left image-link'
+        %li= link_to t('.overview'), :back, :class => 'classic'
+        %li= link_to t('.next'), '#', :class => 'arrow-tailed-small-right image-link'
+    .clear
+
+  .description
+    %h1= @real_estate.title
+    = @real_estate.description
+
+    %ul.accordion.bordered
+      %li.title
+        = link_to t('.data_and_figures'), '#data_and_figures'
+        .content
+          // 
+      %li.title
+        = link_to t('.real_estate_infos'), '#real_estate_infos'
+        .content
+      %li.title
+        = link_to t('.pricing'), '#pricing'
+        .content
+          %ul
+            - @real_estate.price_info_basic.each do |line|
+              %li= line
+          %ul
+            - @real_estate.price_info_parking.each do |line|
+              %li= line
+      %li.title
+        = link_to t('.facts_and_figures'), '#facts_and_figures'
+        .content
+          %ul
+            - @real_estate.facts_and_figures.each do |line|
+              %li= line
+      %li.title
+        = link_to t('.infrastructure'), '#infrastructure'
+        .content
+          %ul
+            - @real_estate.infrastructure_parking.each do |line|
+              %li= line
+          
+          %ul
+            - @real_estate.infrastructure_distances.each do |line|
+              %li= line
+    
+  .sidebar
+    %ul
+      %li= @real_estate.mini_doku_link
+      %li= link_to t('.floorplan'), '#', :class => 'icon-groundplan'

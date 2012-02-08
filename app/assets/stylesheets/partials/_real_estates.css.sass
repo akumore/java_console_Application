@@ -1,18 +1,14 @@
-@import partials/base
-@import semantic-grid
-@import "compass/utilities/lists/horizontal-list"
-@import "compass/typography/links/link-colors"
-
 .search-container
   background: $search-background-color
+  +column(10)
   h2
     margin-left: 10px
 
 .search-results
-  +column(6)
+  +column(5, 10)
 
 .map
-  +column(6)
+  +column(5, 10)
 
 table
   width: 100%
@@ -30,34 +26,80 @@ td
   &:first-child
     padding: 0
 
+.detail
+  background: $search-background-color
+  +clearfix
+
+.gallery
+  +column(10, 10)
+  margin-bottom: 1em
+
+  img
+    width: 100%
+
+.short-infos
+  .info:first-child
+    +push(1)
+
+  .info
+    +column(2)
+
+  .nav
+    +column(3)
+    margin:
+      top: 1.5em
+      bottom: 1.5em
+
+    ul
+      +horizontal-list(0.5em)
+      +no-bullets
+      margin-left: 30px
+
+  .info
+    @extend .text-font-bold
+    margin:
+      top: 1.5em
+      bottom: 1.5em
+  
+.description
+  +column(6, 10)
+  +push(1)
+
+  h1
+    @extend .title-font-bold
+
+.sidebar
+  +column(3, 10)
+  @extend .text-font-bold
+
+  ul
+    +no-bullets
+
+    li
+      line-height: 2em
+
 .search-filter-container
   position: relative
   li
     padding: 10px 20px
-  a:link, a:visited
-    text-decoration: none
-  a
-    @extend .title-font
-    +link-colors($link-color, $link-hover-color, $link-color, $link-color, $link-color)
-
-  .selected
-    //@extend .title-font-bold TODO reuse this
-    font-family: "kulturista-web-n7", "kulturista-web", serif
-    font-weight: 700
 
 .search-filter-form
   background: lightgrey
   padding: 20px
+
   label
     margin-right: 15px
+
   select
     margin-right: 20px
 
 .offer-tabs
   ul
     +horizontal-list(false, right)
+
     li
       background: lightgrey
+
     .selected
       background: grey
 
@@ -65,9 +107,9 @@ td
   background: grey
   ul
     +horizontal-list(false)
+
     li
       background: grey
+
     .selected
       background: lightgrey
-
-

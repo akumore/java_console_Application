@@ -1,7 +1,3 @@
-@import compass/css3
-@import compass/utilities
-@import semantic-grid
-
 //-----------------------------------------------
 // The following html5-boilerplate styles should
 // probably be customized for each site
@@ -20,19 +16,26 @@ body, select, input, textarea
 
 #header
   margin-top: 1em
+  +row
+
+#main
+  +row
+
+#footer
+  +row
 
 #container
-  width: 960px
   margin: 0px auto
+  max-width: 1000px
 
 .main-logo
   background: image-url('main-logo.png') no-repeat left bottom
   height: 60px
   +hide-text
-  +column(4)
+  +column(3)
 
 .navigations
-  +column(8)
+  +column(7)
 
 .main-navigation
   +horizontal-list(0.55em)
@@ -45,6 +48,8 @@ body, select, input, textarea
 
 h2
   margin: 17px 0 17px 10px
-  font-size: 21px
-  font-weight: 700
-  color: $link-hover-color
+
+.container
+  margin: 1em
+  position: relative
+  overflow: hidden

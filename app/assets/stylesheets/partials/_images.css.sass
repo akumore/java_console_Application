@@ -1,0 +1,66 @@
+.abstract-arrow
+  display: inline-block
+  background-repeat: no-repeat
+
+.arrow-small-blue-right
+  @extend .abstract-arrow
+  background-image: image-url('arrows/arrow-small-blue-right.png')
+  background-position: right center
+  padding-right: 13px
+
+.arrow-small-blue-left
+  @extend .abstract-arrow
+  background-image: image-url('arrows/arrow-small-blue-left.png')
+  background-position: left center
+  padding-left: 13px
+
+.arrow-middle-right
+  @extend .abstract-arrow
+  background-image: image-url('arrows/arrow-middle-right.png')
+  background-position: left center
+  padding-left: 20px
+
+.arrow-blue-left
+  @extend .abstract-arrow
+  background-image: image-url('arrows/arrow-blue-left.png')
+
+.arrow-blue-right
+  @extend .abstract-arrow
+  background-image: image-url('arrows/arrow-blue-right.png')
+
+.arrow-tailed-small-left
+  @extend .abstract-arrow
+  background: image-url('arrows/arrow-tailed-small-left.png') no-repeat left center
+  padding-left: 20px
+
+.arrow-tailed-small-right
+  @extend .abstract-arrow
+  background: image-url('arrows/arrow-tailed-small-right.png') no-repeat left center
+  padding-left: 20px
+
+.abstract-icon
+  @extend .abstract-arrow
+  background-position: left center
+  
+.icon-description
+  @extend .abstract-icon
+  background-image: image-url('icons/icon-description.png')
+  padding-left: 23px
+
+.icon-favorit
+  @extend .abstract-icon
+  background-image: image-url('icons/icon-favorit.png')
+  padding-left: 23px
+  
+.icon-groundplan
+  @extend .abstract-icon
+  background-image: image-url('icons/icon-groundplan.png')
+  padding-left: 23px
+
+.icon-printer
+  @extend .abstract-icon
+  background-image: image-url('icons/icon-printer.png')
+  padding-left: 23px
+
+.image-link
+  +hide-text

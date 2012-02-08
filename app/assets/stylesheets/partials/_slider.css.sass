@@ -1,0 +1,66 @@
+.flex-direction-nav
+  li
+    a
+      width: 50px
+      height: 50px
+      display: block
+      position: absolute
+      top: 50%
+      margin-top: -25px
+      cursor: pointer
+      +hide-text
+
+    .next
+      right: 0px
+      @extend .arrow-blue-right
+      background-position: center center
+
+    .prev
+      left: 0px
+      @extend .arrow-blue-left
+      background-position: center center
+
+    .disabled
+      +opacity(0.3)
+      cursor: default
+
+.flex-caption
+  position: absolute
+  bottom: 0px
+  left: 0px
+  width: 100%
+  height: 85px
+  background: image-url('image-caption-bottom.png') no-repeat -80px 15px
+
+  span
+    position: absolute
+    padding: 5px 20px
+    left: 0px
+    bottom: 0px
+
+.map-slider
+  position: absolute
+  top: 0
+  left: 100%
+  width: 100%
+  height: 100%
+  z-index: 2
+  +single-transition('left')
+
+  .map-slide
+    border-left: 5px solid $dark-title-color
+    margin-left: -5px
+    height: 100%
+    background: white
+   
+  .map-handle
+    margin-left: -45px
+    width: 45px
+    height: 55px
+    margin-top: 25px
+    +float_left
+    cursor: pointer
+    background: $dark-title-color image-url('icons/map-handle.png') no-repeat center center
+
+  &.open
+    left: 5%

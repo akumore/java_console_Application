@@ -1,9 +1,3 @@
-@import compass/utilities
-// font-face fonts
-// see http://compass-style.org/docs/reference/compass/css3/font_face/
-
-//@import "compass/css3/font-face"
-
 a:link, a:visited
   text-decoration: none
 
@@ -18,6 +12,19 @@ a:link, a:visited
 .title-font-bold
   font-family: "kulturista-web-n7", "kulturista-web", serif
   font-weight: 700
+
+.text-font-bold
+  font-family: "proxima-nova-i6", "proxima-nova", sans-serif
+  font-weight: 600
+
+.classic 
+  @extend .title-font-bold
+
+a.classic:link, a.classic:visited, a.classic:active
+  color: $classic
+
+a.classic:hover
+  color: darken($classic, 10%)
 
 .main-navigation
   font-size: 1.05em
@@ -39,3 +46,30 @@ a:link, a:visited
 
 #main
   @extend .text-font
+
+h1
+  @extend .title-font
+  font-weight: normal
+
+h2
+  @extend text-font-bold
+  font-size: 1.5em
+  color: $link-hover-color
+
+.accordion
+  .title
+    a
+      font-size: 1.5em
+      @extend .title-font
+
+.flex-caption
+  span
+    @extend .text-font-bold
+
+.search-filter-container
+  a
+    @extend .title-font
+    +link-colors($link-color, $link-hover-color, $link-color, $link-color, $link-color)
+
+  .selected
+    @extend .title-font-bold

@@ -1,0 +1,33 @@
+.accordion
+  padding: 0
+  margin: 2em 0
+
+  .title
+    max-height: 30px
+    overflow: hidden
+    +single-transition('max-height')
+
+    a
+      @extend .arrow-middle-right
+    
+    .content
+      display: none
+
+  .title.open
+    // fake max-height because height: auto is not supported in animations
+    max-height: 1000px 
+
+    .content
+      display: block
+
+.accordion.bordered
+  border-bottom: 1px solid $dark-border-color
+  
+  .title
+    border-top: 1px solid $dark-border-color
+    padding: 0.5em 0
+    +no-bullet
+
+    a
+      background: transparent
+      padding: 0

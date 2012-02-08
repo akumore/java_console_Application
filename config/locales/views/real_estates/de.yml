@@ -20,14 +20,60 @@ de:
         private: Privat
         commercial: Gewerblich
         editing: In Bearbeitung
-  views:
-    real_estates:
-      index:
-        number_of_rooms: "%{count} Zimmer"
-        hits: "%{count} Treffer"
   real_estates:
     search_filter:
       private: Wohnen
       commercial: Arbeiten
       for_sale: Kaufen
       for_rent: Mieten
+    index:
+      number_of_rooms: "%{count} Zimmer"
+      hits: "%{count} Treffer"
+    show:
+      overview: 'Übersicht'
+      next: 'Nächstes Projekt'
+      floorplan: 'Grundriss anzeigen'
+      description_download: 'Objektbeschrieb'
+      number_of_rooms: '%{count} Zimmer'
+      floor: '%{floor}. Stockwerk'
+      living_surface_html: '%{size}m<sup>2</sup>'
+      data_and_figures: 'Daten und Fakten'
+      real_estate_infos: 'Immobilieninfos'
+      pricing: 'Preise'
+      facts_and_figures: 'Zahlen und Fakten'
+      infrastructure: 'Infrastruktur'
+      for_rent: 'Miete'
+      for_rent_long: 'Miete: %{price}'
+      for_rent_extra: 'Nebenkosten'
+      for_rent_extra_long: 'Nebenkosten: %{price}'
+      for_sale: 'Kaufpreis'
+      inside_parking: 'Parkplatz in Autoeinstellhalle: %{price}'
+      outside_parking: 'Parkplatz im Freien: %{price}'
+      inside_parking_temporary: 'Parkplatz in Autoeinstellhalle (temporär): %{price}'
+      outside_parking_temporary: 'Parkplatz im Freien (temporär): %{price}'
+      floor: 'Stockwerk: %{number}'
+      floor_estimate: 'Stockwerke: %{number}'
+      rooms: 'Zimmer: %{number}'
+      rooms_estimate: 'ca. %{number} Zimmer'
+      living_surface: 'Wohnfläche: %{number}'
+      living_surface_estimate: 'ca. %{number} Wohnfläche'
+      property_surface: 'Grundstückfläche: %{number}'
+      usable_surface: 'Nutzfläche: %{number}'
+      storage_surface: 'Lagerfläche: %{number}'
+      ceiling_height: 'Raumhöhe: %{number}'
+      floors: 'Stockwerke: %{number}'
+      renovated_on: 'Renovationsjahr: %{number}'
+      built_on: 'Baujahr: %{number}'
+      has_parking_spot: 'Mit Parkplatz'
+      has_roofed_parking_spot: 'Mit überdachtem Parkplatz'
+      has_garage: 'Mit Garage'
+      inside_parking_spots: 'Parkplätze drinnen: %{number}'
+      outside_parking_spots: 'Parkplätze draussen: %{number}'
+      inside_parking_spots_temporary: 'Parkplätze drinnen (temporär): %{number}'
+      outside_parking_spots_temporary: 'Parkplätze draussen (temporär): %{number}'
+      public_transport: 'Öffentlicher Verkehr: %{number}'
+      shopping: 'Einkaufen: %{number}'
+      kindergarden: 'Kindergarten: %{number}'
+      elementary_school: 'Primarschule: %{number}'
+      high_school: 'Oberstufe: %{number}'
+      highway_access: 'Autobahn Anschluss: %{number}'

@@ -1,4 +1,6 @@
 class RealEstatesController < ApplicationController
+  
+  respond_to :html
 
   before_filter :set_search_filter
 
@@ -14,6 +16,10 @@ class RealEstatesController < ApplicationController
 
   def get_filtered_real_estates(search_filter)
     RealEstate.where(search_filter.to_h).all
+  end
+
+  def show
+    @real_estate = RealEstateDecorator.find(params[:id])
   end
 
 end
