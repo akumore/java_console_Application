@@ -8,6 +8,10 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     # initialize map sliders
     $(".map-slider").each ->
       new AlfredMueller.Views.MapSlider(el: $(this))
+
+    # initialize clickable table rows
+    $("table").each ->
+      new AlfredMueller.Views.ClickableTable(el: $(this))
     
     # initialize slideshows
     $(window).load ->
