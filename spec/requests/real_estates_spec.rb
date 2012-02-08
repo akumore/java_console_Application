@@ -8,7 +8,8 @@ describe "RealEstates" do
               :category=>Fabricate(:category, :label=>'Wohnung'),
               :address=>Fabricate.build(:address),
               :figure=>Fabricate.build(:figure, :rooms=>10.5, :floor=>99),
-              :pricing=>Fabricate.build(:pricing)
+              :pricing=>Fabricate.build(:pricing),
+              :infrastructure => Fabricate.build(:infrastructure)
   end
 
   describe "Visit real estate index path" do

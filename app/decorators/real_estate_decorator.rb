@@ -113,7 +113,7 @@ class RealEstateDecorator < ApplicationDecorator
     if model.figure.try(:floor_estimate).present?
       buffer << t('real_estates.show.floor_estimate', :number => model.figure.floor_estimate)
     elsif model.figure.try(:floor).present?
-      buffer << t('real_estates.show.floor', :number => model.figure.floor)
+      buffer << t('real_estates.show.floor_long', :number => model.figure.floor)
     end
 
     if model.figure.try(:floors).present?

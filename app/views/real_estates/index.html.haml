@@ -10,7 +10,7 @@
       %table
         %tbody
           - @real_estates.each do |real_estate|
-            %tr
+            %tr{ :id => "real-estate-#{real_estate.id}" }
               %td
                 = link_to image_tag(real_estate.media_assets.primary_image.file.thumb.url), real_estate
               %td
