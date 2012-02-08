@@ -1,12 +1,7 @@
 = render_navigation :context => :real_estate
 
 = form_for @infrastructure, :url => cms_real_estate_infrastructure_path(@real_estate) do |f|
-  -if @infrastructure.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@infrastructure.errors.count, "error")} prohibited this cms_real_estate from being saved:"
-      %ul
-        - @infrastructure.errors.full_messages.each do |msg|
-          %li= msg
+  = render 'cms/real_estates/errors', :model => @infrastructure
     
   %fieldset
     %legend= t('.parking')

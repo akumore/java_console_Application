@@ -1,12 +1,7 @@
 = render_navigation :context => :real_estate
 
 = form_for @address, :url => cms_real_estate_address_path(@real_estate) do |f|
-  -if @address.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@address.errors.count, "error")} prohibited this cms_real_estate from being saved:"
-      %ul
-        - @address.errors.full_messages.each do |msg|
-          %li= msg
+  = render 'cms/real_estates/errors', :model => @address
     
   %fieldset
     .clearfix

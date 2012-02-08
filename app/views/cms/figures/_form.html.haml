@@ -1,12 +1,7 @@
 = render_navigation :context => :real_estate
 
 = form_for @figure, :url => cms_real_estate_figure_path(@real_estate) do |f|
-  -if @figure.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@figure.errors.count, "error")} prohibited this cms_real_estate from being saved:"
-      %ul
-        - @figure.errors.full_messages.each do |msg|
-          %li= msg
+  = render 'cms/real_estates/errors', :model => @figure
     
   %fieldset
     .clearfix
