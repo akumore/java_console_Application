@@ -17,26 +17,26 @@
                 %b
                   = real_estate.category.label
                 %br
-                = real_estate.address.city
-                = real_estate.address.canton.upcase
+                = real_estate.address.try(:city)
+                = real_estate.address.try(:canton).try(:upcase)
                 %br
-                = real_estate.address.street
-                = real_estate.address.street_number
+                = real_estate.address.try(:street)
+                = real_estate.address.try(:street_number)
               %td
-                = t '.number_of_rooms', :count=>real_estate.figure.rooms
+                = t '.number_of_rooms', :count=> real_estate.figure.try(:rooms)
                 %br
                 = succeed "." do
-                  = real_estate.figure.floor
+                  = real_estate.figure.try(:floor)
                 = t 'mongoid.attributes.figure.floor'
                 %br
-                = real_estate.figure.living_surface
+                = real_estate.figure.try(:living_surface)
                 = succeed content_tag(:sup,2) do
                   m
                 %br
                   %b
                     - if real_estate.for_sale?
-                      = number_to_currency real_estate.pricing.for_sale, :locale=>'de-CH'
+                      = number_to_currency real_estate.pricing.try(:for_sale), :locale=>'de-CH'
                     - else
-                      = number_to_currency real_estate.pricing.for_rent_netto, :locale=>'de-CH'
+                      = number_to_currency real_estate.pricing.try(:for_rent_netto)0, :locale=>'de-CH'
     .map
       Map goes here
