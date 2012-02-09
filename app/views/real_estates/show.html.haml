@@ -78,9 +78,9 @@
   .sidebar
     .nav
       %ul
-        %li= link_to t('.prev'), '#', :class => 'arrow-tailed-small-left image-link'
-        %li= link_to t('.overview'), :back, :class => 'classic'
-        %li= link_to t('.next'), '#', :class => 'arrow-tailed-small-right image-link'
+        %li= link_to t('.prev'), real_estate_path(@prev_real_estate), :class => 'arrow-tailed-small-left image-link'
+        %li= link_to t('.overview'), real_estates_path(@search_filter), :class => 'classic'
+        %li= link_to t('.next'), real_estate_path(@next_real_estate), :class => 'arrow-tailed-small-right image-link'
 
     %ul
       %li= @real_estate.mini_doku_link
