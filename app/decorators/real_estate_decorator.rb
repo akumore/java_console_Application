@@ -20,15 +20,15 @@ class RealEstateDecorator < ApplicationDecorator
   def quick_infos
     buffer = []
 
-    if figure.rooms.present?
+    if figure.try(:rooms).present?
       buffer << t('real_estates.show.number_of_rooms', :count => figure.rooms)
     end
 
-    if figure.floor.present?
+    if figure.try(:floor).present?
       buffer << t('real_estates.show.floor', :number => figure.floor)
     end
 
-    if figure.living_surface.present?
+    if figure.try(:living_surface).present?
       buffer << t('real_estates.show.living_surface_html', :size => figure.living_surface)
     end
 
@@ -270,9 +270,11 @@ class RealEstateDecorator < ApplicationDecorator
   def infrastructure_distances
     buffer = []
 
-    model.infrastructure.points_of_interest.each do |poi|
-      if poi.distance.present?
-        buffer << t("real_estates.show.#{poi.name}", :number => poi.distance)
+    if model.infrastructure.present?
+      model.infrastructure.points_of_interest.each do |poi|
+        if poi.distance.present?
+          buffer << t("real_estates.show.#{poi.name}", :number => poi.distance)
+        end
       end
     end
 
