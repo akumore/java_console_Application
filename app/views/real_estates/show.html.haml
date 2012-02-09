@@ -45,10 +45,15 @@
       %li.title
         = link_to t('.data_and_figures'), '#data_and_figures'
         .content
-          //
       %li.title
         = link_to t('.real_estate_infos'), '#real_estate_infos'
         .content
+          %ul
+            - @real_estate.information_shared.each do |line|
+              %li= line
+          %ul
+            - @real_estate.information_basic.each do |line|
+              %li= line
       %li.title
         = link_to t('.pricing'), '#pricing'
         .content

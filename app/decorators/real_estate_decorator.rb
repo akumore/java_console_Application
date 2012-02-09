@@ -43,7 +43,7 @@ class RealEstateDecorator < ApplicationDecorator
 
   def mini_doku_link
     link_to(
-      t('real_estates.show.description_download'), 
+      t('real_estates.show.description_download'),
       real_estate_path(model, :format => :pdf),
       :class => 'icon-description'
     )
@@ -63,11 +63,85 @@ class RealEstateDecorator < ApplicationDecorator
     buffer.join(tag('br')).html_safe
   end
 
+  def information_shared
+    buffer = []
+
+    if information.try(:display_estimated_available_from).present?
+      buffer << information.display_estimated_available_from
+    elsif information.try(:available_from).present?
+      buffer << t('real_estates.show.available_from', :date => l(information.available_from))
+    end
+
+    if information.try(:is_new_building) == true
+      buffer << t('real_estates.show.is_new_building')
+    elsif information.try(:is_old_building) == true
+      buffer << t('real_estates.show.is_old_building')
+    end
+
+    if information.try(:is_minergie_style) == true
+      buffer << t('real_estates.show.is_minergie_style')
+    end
+
+    if information.try(:is_minergie_certified) == true
+      buffer << t('real_estates.show.is_minergie_certified')
+    end
+
+    buffer
+  end
+
+  def information_basic
+    buffer = []
+
+    [
+      :has_outlook,
+      :has_fireplace,
+      :has_elevator,
+      :has_isdn,
+      :is_wheelchair_accessible,
+      :is_child_friendly,
+      :has_balcony,
+      :has_raised_ground_floor,
+      :has_swimming_pool
+    ].each do |key|
+      if information.try(key) == true
+        buffer << t("real_estates.show.#{key}")
+      end
+    end
+
+    [
+      :has_ramp,
+      :has_lifting_platform,
+      :has_railway_terminal,
+      :has_water_supply,
+      :has_sewage_supply,
+      :is_developed,
+      :is_under_building_laws
+    ].each do |key|
+      if information.try(key) == true
+        buffer << t("real_estates.show.#{key}")
+      end
+    end
+
+    if information.try(:maximal_floor_loading).present?
+      buffer << t('real_estates.show.maximal_floor_loading', :number => information.maximal_floor_loading)
+    end
+
+    if information.try(:freight_elevator_carrying_capacity).present?
+      buffer << t('real_estates.show.freight_elevator_carrying_capacity', :number => information.freight_elevator_carrying_capacity)
+    end
+
+    if information.try(:number_of_restrooms).present?
+      buffer << t('real_estates.show.number_of_restrooms', :number => information.number_of_restrooms)
+    end
+
+    buffer
+  end
+
   def price_info_basic
     buffer = []
-    
+
     if model.for_rent?
-      
+
       if model.pricing.try(:estimate).present?
         buffer << t('real_estates.show.for_rent_long', :price => model.pricing.estimate)
       elsif model.pricing.try(:for_rent_netto).present?
@@ -87,7 +161,7 @@ class RealEstateDecorator < ApplicationDecorator
 
   def price_info_parking
     buffer = []
-    
+
     if model.pricing.try(:inside_parking).present?
       buffer << t('real_estates.show.inside_parking', :price => number_to_currency(model.pricing.inside_parking, :locale=>'de-CH'))
     end
