@@ -38,7 +38,7 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
   end
 
   def is_image? image
-    %w(image/jpeg image/jpg image/png).include? image.content_type
+    %w(image/jpeg image/jpg image/png image/pjpeg).include? image.content_type
   end
 
   def is_video? video
