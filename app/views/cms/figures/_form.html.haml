@@ -2,61 +2,61 @@
 
 = form_for @figure, :url => cms_real_estate_figure_path(@real_estate) do |f|
   = render 'cms/real_estates/errors', :model => @figure
-    
+
   %fieldset
-    .clearfix
+    .control-group
       = f.label :floor
-      .input
+      .controls
         = f.text_field :floor, :class => 'span4'
-    .clearfix
+    .control-group
       = f.label :floor_estimate
-      .input
+      .controls
         = f.text_field :floor_estimate, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :rooms
-      .input
+      .controls
         = f.text_field :rooms, :class => 'span4'
-    .clearfix
+    .control-group
       = f.label :rooms_estimate
-      .input
+      .controls
         = f.text_field :rooms_estimate, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :living_surface
-      .input
+      .controls
         = f.text_field :living_surface, :class => 'span4'
-    .clearfix
+    .control-group
       = f.label :living_surface_estimate
-      .input
+      .controls
         = f.text_field :living_surface_estimate, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :property_surface
-      .input
+      .controls
         = f.text_field :property_surface, :class => 'span4'
-    .clearfix
+    .control-group
       = f.label :usable_surface
-      .input
+      .controls
         = f.text_field :usable_surface, :class => 'span4'
     - if @real_estate.commercial_utilization?
-      .clearfix
+      .control-group
         = f.label :storage_surface
-        .input
+        .controls
           = f.text_field :storage_surface, :class => 'span4'
-    .clearfix
+    .control-group
       = f.label :ceiling_height
-      .input
+      .controls
         = f.text_field :ceiling_height, :class => 'span4'
-    .clearfix
+    .control-group
       = f.label :floors
-      .input
+      .controls
         = f.text_field :floors, :class => 'span4'
-    .clearfix
+    .control-group
       = f.label :renovated_on
-      .input
+      .controls
         = f.text_field :renovated_on, :class => 'span2'
-    .clearfix
+    .control-group
       = f.label :built_on
-      .input
+      .controls
         = f.text_field :built_on, :class => 'span2'
-  .actions
-    = f.submit nil, :class => 'btn primary'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

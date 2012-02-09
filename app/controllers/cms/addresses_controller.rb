@@ -13,6 +13,7 @@ class Cms::AddressesController < Cms::SecuredController
 
   def edit
     @address = @real_estate.address
+    @address.build_geo_location unless @address.geo_location
   end
 
   def create
@@ -45,8 +46,8 @@ class Cms::AddressesController < Cms::SecuredController
   end
 
 protected
-  
+
   def load_real_estate
-    @real_estate = RealEstate.find(params[:real_estate_id])    
+    @real_estate = RealEstate.find(params[:real_estate_id])
   end
 end

@@ -2,41 +2,41 @@
 
 = form_for @description, :url => cms_real_estate_description_path(@real_estate) do |f|
   = render 'cms/real_estates/errors', :model => @description
-    
+
   %fieldset
-    .clearfix
+    .control-group
       = f.label :generic
-      .input
+      .controls
         = f.text_area :generic, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :location
-      .input
+      .controls
         = f.text_area :location, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :interior
-      .input
+      .controls
         = f.text_area :interior, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :offer
-      .input
+      .controls
         = f.text_area :offer, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :infrastructure
-      .input
+      .controls
         = f.text_area :infrastructure, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :usage
-      .input
+      .controls
         = f.text_area :usage, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :reference_date
-      .input
+      .controls
         = f.text_field :reference_date, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :orientation_degrees
-      .input
+      .controls
         = f.text_field :orientation_degrees, :class => 'span3'
-    
-  .actions
-    = f.submit nil, :class => 'btn primary'
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

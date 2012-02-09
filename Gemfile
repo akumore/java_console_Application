@@ -11,7 +11,7 @@ gem 'bson_ext', '~> 1.5'
 gem 'settingslogic'
 gem 'rails-backbone'
 gem 'simple-navigation'
-gem 'twitter-bootstrap-rails', '1.4.3'
+gem 'twitter-bootstrap-rails'
 gem 'blazing'
 gem 'blazing-rails'
 gem 'devise', '2.0.0'
@@ -41,6 +41,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspectacle'
   #gem 'ruby-debug19'
+  gem 'pry'
 end
 
 group :test do

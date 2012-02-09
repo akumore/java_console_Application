@@ -51,7 +51,7 @@ class RealEstate
   def row_house?
     category.present? && category.name == 'row_house'
   end
-  
+
   def for_sale?
     self.offer == RealEstate::OFFER_FOR_SALE
   end
@@ -62,6 +62,10 @@ class RealEstate
 
   def commercial_utilization?
     self.utilization == RealEstate::UTILIZATION_COMMERICAL
+  end
+
+  def private_utilization?
+    self.utilization == RealEstate::UTILIZATION_PRIVATE
   end
 
   def top_level_category
