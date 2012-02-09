@@ -32,6 +32,7 @@ de:
       number_of_rooms: "%{count} Zimmer"
       hits: "%{count} Treffer"
     show:
+      to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Übersicht'
       next: 'Nächstes Projekt'
       floorplan: 'Grundriss anzeigen'

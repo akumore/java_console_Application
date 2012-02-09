@@ -38,14 +38,14 @@
       .info
         = @real_estate.quick_price_infos
       .clear
-    
+
     = @real_estate.description
 
     %ul.accordion.bordered
       %li.title
         = link_to t('.data_and_figures'), '#data_and_figures'
         .content
-          // 
+          //
       %li.title
         = link_to t('.real_estate_infos'), '#real_estate_infos'
         .content
@@ -70,11 +70,11 @@
           %ul
             - @real_estate.infrastructure_parking.each do |line|
               %li= line
-          
+
           %ul
             - @real_estate.infrastructure_distances.each do |line|
               %li= line
-    
+
   .sidebar
     .nav
       %ul
@@ -85,3 +85,4 @@
     %ul
       %li= @real_estate.mini_doku_link
       %li= link_to t('.floorplan'), '#', :class => 'icon-groundplan'
+      %li= link_to t('.to_favorites'), '#', :class => 'icon-favorit'
