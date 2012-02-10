@@ -6,17 +6,18 @@
 # e.g. ENV['GOOGLE_API_KEY'] || yml[:google_api_key]
 #
 defaults: &defaults
-  :google_account_id: ''
-  :google_api_key: ''
+  google_account_id: ''
+  google_api_key: ''
+  google_maps_api_key: 'AIzaSyCNWg9D3wR2T69wlEu6ARAtNdPSgAN-N9w'
 
-:development:
+development:
   <<: *defaults
 
-:test:
+test:
   <<: *defaults
 
-:staging:
+staging:
   <<: *defaults
 
-:production:
+production:
   <<: *defaults

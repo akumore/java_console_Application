@@ -2,6 +2,16 @@ class RealEstateDecorator < ApplicationDecorator
   include Draper::LazyHelpers
   decorates :real_estate
 
+  def google_maps_address
+    [
+      address.try(:street).presence, address.try(:street_number).presence,
+      address.try(:street).presence, address.try(:street_number).presence,
+      address.try(:zip).presence,
+      address.try(:city).presence,
+      address.try(:canton).try(:upcase).presence
+    ].join(' ')
+  end
+
   def full_address
     [
       category.try(:label).presence,
