@@ -42,11 +42,13 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def mini_doku_link
-    link_to(
-      t('real_estates.show.description_download'),
-      real_estate_path(model, :format => :pdf),
-      :class => 'icon-description'
-    )
+    if model.persisted?
+      link_to(
+        t('real_estates.show.description_download'),
+        real_estate_path(model, :format => :pdf),
+        :class => 'icon-description'
+      )
+    end
   end
 
   def quick_price_infos
