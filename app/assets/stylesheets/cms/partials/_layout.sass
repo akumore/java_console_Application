@@ -28,3 +28,19 @@ body
 .table-striped
   th
     background-color: lighten(#dcdad0, 5%) !important
+
+.form-horizontal
+  .control-group > .field_with_errors
+    +float_left
+    width: 140px
+    padding-top: 5px
+    text-align: right
+
+.field_with_errors
+  label
+    color: #B94A48
+    font-weight: bold
+
+  input, select, textarea
+    text: #B94A48
+    border: 1px solid #B94A48
