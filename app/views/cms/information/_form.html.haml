@@ -1,149 +1,125 @@
+= render_navigation :context => :real_estate
+
 = form_for [:cms, @real_estate, @information], :url=>cms_real_estate_information_path(@real_estate) do |f|
   = render 'cms/real_estates/errors', :model => @information
 
   %fieldset
-    .clearfix
+    .control-group
       = f.label :available_from
-      .input
+      .controls
         = f.date_select :available_from#, :start_year=>Date.today.year, :end_year=>5.years.from_now.year
-    .clearfix
+    .control-group
       = f.label :display_estimated_available_from
-      .input
+      .controls
         = f.text_field :display_estimated_available_from
-    .clearfix
-      = f.label :has_outlook
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :has_outlook
-    .clearfix
-      = f.label :has_fireplace
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :has_fireplace
-    .clearfix
-      = f.label :has_elevator
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :has_elevator
-    .clearfix
-      = f.label :has_isdn
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :has_isdn
-    .clearfix
-      = f.label :is_wheelchair_accessible
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :is_wheelchair_accessible
-    .clearfix
-      = f.label :is_child_friendly
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :is_child_friendly
-    .clearfix
-      = f.label :has_balcony
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :has_balcony
-    .clearfix
-      = f.label :has_raised_ground_floor
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :has_raised_ground_floor
-    .clearfix
-      = f.label :is_new_building
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :is_new_building
-    .clearfix
-      = f.label :is_old_building
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :is_old_building
-    .clearfix
-      = f.label :has_swimming_pool
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :has_swimming_pool
-    .clearfix
-      = f.label :is_minergie_style
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :is_minergie_style
-    .clearfix
-      = f.label :is_minergie_certified
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :is_minergie_certified
-    .clearfix
-      = f.label :maximal_floor_loading
-      .input
-        = f.text_field :maximal_floor_loading, :class=>'span1'
-    .clearfix
-      = f.label :freight_elevator_carrying_capacity
-      .input
-        = f.text_field :freight_elevator_carrying_capacity, :class=>'span1'
-    .clearfix
-      = f.label :has_ramp
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :has_ramp
-    .clearfix
-      = f.label :has_lifting_platform
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :has_lifting_platform
-    .clearfix
-      = f.label :has_railway_terminal
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :has_railway_terminal
-    .clearfix
-      = f.label :number_of_restrooms
-      .input
-        =f.text_field :number_of_restrooms, :class=>'span1'
-    .clearfix
-      = f.label :has_water_supply
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :has_water_supply
-    .clearfix
-      = f.label :has_sewage_supply
-      .input
-        %ul.inputs-list
-          %li
-            %label= f.check_box :has_sewage_supply
-    - if @real_estate.property?
-      .clearfix
-        = f.label :is_developed
-        .input
-          %ul.inputs-list
-            %li
-              %label= f.check_box :is_developed
-    - if @real_estate.apartment? || @real_estate.house?
-      .clearfix
-        = f.label :is_under_building_laws
-        .input
-          %ul.inputs-list
-            %li
-              %label= f.check_box :is_under_building_laws
-  .actions
-    = f.submit nil, :class => 'btn primary'
+    .row
+      .span4
+        .control-group
+          = f.label :is_new_building
+          .controls
+            %label.checkbox= f.check_box :is_new_building
+        .control-group
+          = f.label :is_old_building
+          .controls
+            %label.checkbox= f.check_box :is_old_building
+      .span4
+        .control-group
+          = f.label :is_minergie_style
+          .controls
+            %label.checkbox= f.check_box :is_minergie_style
+        .control-group
+          = f.label :is_minergie_certified
+          .controls
+            %label.checkbox= f.check_box :is_minergie_certified
+      .span4
+        - if @real_estate.property?
+          .control-group
+            = f.label :is_developed
+            .controls
+              %label.checkbox= f.check_box :is_developed
+        - if @real_estate.apartment? || @real_estate.house?
+          .control-group
+            = f.label :is_under_building_laws
+            .controls
+              %label.checkbox= f.check_box :is_under_building_laws
+    - if @real_estate.private_utilization?
+      .row
+        .span4
+          .control-group
+            = f.label :has_outlook
+            .controls
+              %label.checkbox= f.check_box :has_outlook
+          .control-group
+            = f.label :has_fireplace
+            .controls
+              %label.checkbox= f.check_box :has_fireplace
+          .control-group
+            = f.label :has_elevator
+            .controls
+              %label.checkbox= f.check_box :has_elevator
+          .control-group
+            = f.label :has_isdn
+            .controls
+              %label.checkbox= f.check_box :has_isdn
+        .span4
+          .control-group
+            = f.label :is_wheelchair_accessible
+            .controls
+              %label.checkbox= f.check_box :is_wheelchair_accessible
+          .control-group
+            = f.label :is_child_friendly
+            .controls
+              %label.checkbox= f.check_box :is_child_friendly
+          .control-group
+            = f.label :has_balcony
+            .controls
+              %label.checkbox= f.check_box :has_balcony
+          .control-group
+            = f.label :has_raised_ground_floor
+            .controls
+              %label.checkbox= f.check_box :has_raised_ground_floor
+        .span4
+          .control-group
+            = f.label :has_swimming_pool
+            .controls
+              %label.checkbox= f.check_box :has_swimming_pool
+    - if @real_estate.commercial_utilization?
+      .row
+        .span4
+          .control-group
+            = f.label :maximal_floor_loading
+            .controls
+              = f.text_field :maximal_floor_loading, :class=>'span1'
+          .control-group
+            = f.label :freight_elevator_carrying_capacity
+            .controls
+              = f.text_field :freight_elevator_carrying_capacity, :class=>'span1'
+          .control-group
+            = f.label :number_of_restrooms
+            .controls
+              =f.text_field :number_of_restrooms, :class=>'span1'
+        .span4
+          .control-group
+            = f.label :has_lifting_platform
+            .controls
+              %label.checkbox= f.check_box :has_lifting_platform
+          .control-group
+            = f.label :has_ramp
+            .controls
+              %label.checkbox= f.check_box :has_ramp
+          .control-group
+            = f.label :has_railway_terminal
+            .controls
+              %label.checkbox= f.check_box :has_railway_terminal
+        .span4
+          .control-group
+            = f.label :has_water_supply
+            .controls
+              %label.checkbox= f.check_box :has_water_supply
+          .control-group
+            = f.label :has_sewage_supply
+            .controls
+              %label.checkbox= f.check_box :has_sewage_supply
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

@@ -1,11 +1,12 @@
 - content_for :title do
   Erfasste Immobilen
 
-.pills.pull-right
-  %li
-    = link_to t('cms.real_estates.index.new'), new_cms_real_estate_path
+.pull-right.padded
+  = link_to(new_cms_real_estate_path, :class => 'btn') do
+    %i.icon-plus-sign
+    = t('cms.real_estates.index.new')
 
-%table.zebra-striped.bordered-table{:id=>'real_estate'}
+%table.table.table-bordered.table-striped{ :id=>'real_estate' }
   %tr
     %th= Address.human_attribute_name :city
     %th= RealEstate.human_attribute_name :titel

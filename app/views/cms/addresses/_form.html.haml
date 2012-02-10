@@ -2,43 +2,43 @@
 
 = form_for @address, :url => cms_real_estate_address_path(@real_estate) do |f|
   = render 'cms/real_estates/errors', :model => @address
-    
+
   %fieldset
-    .clearfix
+    .control-group
       = f.label :street
-      .input
+      .controls
         = f.text_field :street, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :street_number
-      .input
+      .controls
         = f.text_field :street_number, :class => 'span3'
-    .clearfix
+    .control-group
       = f.label :city
-      .input
+      .controls
         = f.text_field :city, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :zip
-      .input
+      .controls
         = f.text_field :zip, :class => 'span3'
-    .clearfix
+    .control-group
       = f.label :canton
-      .input
+      .controls
         = f.select :canton, Address::CANTONS.map { |c| [t("cantons.#{c}"), c] }, :prompt => 'Kanton auswählen', :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :link_url
-      .input
+      .controls
         = f.text_field :link_url, :class => 'span8'
   %fieldset
     %legend= GeoLocation.model_name.human
     = f.fields_for @address.geo_location do |rf|
-      .clearfix
+      .control-group
         = rf.label :lat
-        .input
+        .controls
           = rf.text_field :lat, :class => 'span8'
-      .clearfix
+      .control-group
         = rf.label :lng
-        .input
+        .controls
           = rf.text_field :lng, :class => 'span8'
-  .actions
-    = f.submit nil, :class => 'btn primary'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

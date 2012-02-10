@@ -47,7 +47,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #           :method - Specifies the http-method for the generated link - default is :get.
     #           :highlights_on - if autohighlighting is turned off and/or you want to explicitly specify
     #                            when the item should be highlighted, you can set a regexp which is matched
-    #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>. 
+    #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>.
     #
     primary.item :dashboard, 'Dashboard', cms_dashboards_path
     primary.item :real_estates, 'Immobilien', cms_real_estates_path
@@ -70,7 +70,9 @@ SimpleNavigation::Configuration.run do |navigation|
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu
     # primary.dom_id = 'menu-id'
-    # primary.dom_class = 'menu-class'
+    #
+
+    primary.dom_class = 'nav'
 
     # You can turn off auto highlighting for a specific level
     # primary.auto_highlight = false

@@ -24,10 +24,10 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :address, 'Adresse', new_cms_real_estate_address_path(@real_estate), :unless => lambda { @real_estate.address.present? }
     primary.item :address, 'Adresse', edit_cms_real_estate_address_path(@real_estate), :if => lambda { @real_estate.address.present? }
-    
+
     primary.item :information, 'Infos', new_cms_real_estate_information_path(@real_estate), :unless => lambda { @real_estate.information.present? }
     primary.item :information, 'Infos', edit_cms_real_estate_information_path(@real_estate), :if => lambda { @real_estate.information.present? }
-    
+
     primary.item :pricing, 'Preise', new_cms_real_estate_pricing_path(@real_estate), :unless => lambda { @real_estate.pricing.present? }
     primary.item :pricing, 'Preise', edit_cms_real_estate_pricing_path(@real_estate), :if => lambda { @real_estate.pricing.present? }
 
@@ -45,7 +45,7 @@ SimpleNavigation::Configuration.run do |navigation|
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu
     # primary.dom_id = 'menu-id'
-    primary.dom_class = 'tabs'
+    primary.dom_class = 'nav nav-tabs'
 
   end
 

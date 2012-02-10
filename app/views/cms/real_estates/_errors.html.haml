@@ -1,7 +1,6 @@
 -if model.errors.any?
-  .alert-message.block-message.error
-    %p
-      %strong= "Beim Speichern #{model.errors.count > 1 ? 'sind' : 'ist' } #{model.errors.count} Fehler aufgetreten"
+  .alert.alert-error.alert-block
+    %h4= "Beim Speichern #{model.errors.count > 1 ? 'sind' : 'ist' } #{model.errors.count} Fehler aufgetreten"
     %p
       %ul
         - model.errors.full_messages.each do |msg|

@@ -1,109 +1,96 @@
 = form_for [:cms, @real_estate] do |f|
   = render 'cms/real_estates/errors', :model => @real_estate
-    
+
   %fieldset
-    .clearfix
+    .control-group
       = f.label :category_id
-      .input
+      .controls
         = f.grouped_collection_select :category_id, Category.top_level, :categories, :label, :id, :label
     - if @real_estate.row_house?
-      .clearfix
+      .control-group
         = f.label :building_type
-        .input
-          %ul.inputs-list
-            %li
-              %label 
-                = f.radio_button :building_type, RealEstate::BUILDING_CORNER_HOUSE
-                %span= t(".#{RealEstate::BUILDING_CORNER_HOUSE}")
-            %li
-              %label
-                = f.radio_button :building_type, RealEstate::BUILDING_MIDDLE_HOUSE
-                %span= t(".#{RealEstate::BUILDING_MIDDLE_HOUSE}")      
-    .clearfix
+        .controls
+          %label.radio
+            = f.radio_button :building_type, RealEstate::BUILDING_CORNER_HOUSE
+            %span= t(".#{RealEstate::BUILDING_CORNER_HOUSE}")
+          %label.radio
+            = f.radio_button :building_type, RealEstate::BUILDING_MIDDLE_HOUSE
+            %span= t(".#{RealEstate::BUILDING_MIDDLE_HOUSE}")
+    .control-group
       = f.label :utilization
-      .input
-        %ul.inputs-list
-          %li
-            %label 
-              = f.radio_button :utilization, RealEstate::UTILIZATION_PRIVATE
-              %span= t(".#{RealEstate::UTILIZATION_PRIVATE}")
-          %li
-            %label
-              = f.radio_button :utilization, RealEstate::UTILIZATION_COMMERICAL
-              %span= t(".#{RealEstate::UTILIZATION_COMMERICAL}")
-    .clearfix
+      .controls
+        %label.radio
+          = f.radio_button :utilization, RealEstate::UTILIZATION_PRIVATE
+          %span= t(".#{RealEstate::UTILIZATION_PRIVATE}")
+        %label.radio
+          = f.radio_button :utilization, RealEstate::UTILIZATION_COMMERICAL
+          %span= t(".#{RealEstate::UTILIZATION_COMMERICAL}")
+    .control-group
       = f.label :offer
-      .input
-        %ul.inputs-list
-          %li
-            %label 
-              = f.radio_button :offer, RealEstate::OFFER_FOR_RENT
-              %span= t(".#{RealEstate::OFFER_FOR_RENT}")
-          %li
-            %label
-              = f.radio_button :offer, RealEstate::OFFER_FOR_SALE
-              %span= t(".#{RealEstate::OFFER_FOR_SALE}")
-    .clearfix
+      .controls
+        %label.radio
+          = f.radio_button :offer, RealEstate::OFFER_FOR_RENT
+          %span= t(".#{RealEstate::OFFER_FOR_RENT}")
+        %label.radio
+          = f.radio_button :offer, RealEstate::OFFER_FOR_SALE
+          %span= t(".#{RealEstate::OFFER_FOR_SALE}")
+    .control-group
       = f.label :is_first_marketing
-      .input
-        %ul.inputs-list
-          %li
-            %label
-              = f.check_box :is_first_marketing, :class => 'span8'
-    .clearfix
+      .controls
+        %label.checkbox
+          = f.check_box :is_first_marketing
+    .control-group
       = f.label :channels
-      .input
-        %ul.inputs-list
-          - RealEstate::CHANNELS.each do |channel|
-            %li
-              %label
-                = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel)
-                %span= t(".channels.#{channel}")
-  .clearfix
+      .controls
+        - RealEstate::CHANNELS.each do |channel|
+          %label.checkbox
+            = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel)
+            %span= t(".channels.#{channel}")
+  .control-group
     = f.label :contact
-    .input
+    .controls
       = f.select :contact, [], :prompt => 'Kontaktperson auswählen', :class => 'span8'
   %fieldset
     %legend Titel und Beschreibungen
-    .clearfix
+    .control-group
       = f.label :title
-      .input
+      .controls
         = f.text_field :title, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :property_name
-      .input
+      .controls
         = f.text_field :property_name, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :description
-      .input
+      .controls
         = f.text_area :description, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :short_description
-      .input
+      .controls
         = f.text_area :short_description, :class => 'span8 short'
-    .clearfix
+    .control-group
       = f.label :keywords
-      .input
+      .controls
         = f.text_area :keywords, :class => 'span8 short'
-    .clearfix
+    .control-group
       = f.label :utilization_description
-      .input
+      .controls
         = f.text_area :utilization_description, :class => 'span8 short'
   %fieldset
     %legend= Reference.model_name.human
     = f.fields_for @real_estate.reference do |rf|
-      .clearfix
+      .control-group
         = rf.label :property_key
-        .input
+        .controls
           = rf.text_field :property_key, :class => 'span8'
-      .clearfix
+      .control-group
         = rf.label :building_key
-        .input
+        .controls
           = rf.text_field :building_key, :class => 'span8'
-      .clearfix
+      .control-group
         = rf.label :unit_key
-        .input
+        .controls
           = rf.text_field :unit_key, :class => 'span8'
-  .actions
-    = f.submit nil, :class => 'btn primary'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

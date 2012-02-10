@@ -10,24 +10,25 @@
 
     %title
       = "#{ controller.controller_name.titleize } - #{ controller.action_name.titleize }"
-  
+
   .body{ :class => "#{controller.controller_name}" }
-    .topbar
-      .topbar-inner
+    .navbar.navbar-fixed-top
+      .navbar-inner
         .container
-          %h3= link_to 'Alfred Müller', '/'
+          .brand= link_to 'Alfred Müller', '/'
           = render_navigation :context => :cms
-          %p.pull-right
-            = link_to 'Logout', destroy_user_session_path, :method => :delete
-          
+          %ul.nav.pull-right
+            %li= link_to 'Logout', destroy_user_session_path, :method => :delete
+
     .container
       .content
         .page-header
           %h1= yield :title
         .row
-          .span16
+          .span12
             = render "layouts/flashes"
-            = yield
+            .form-horizontal
+              = yield
 
     = javascript_include_tag 'cms/application'
     = yield :javascripts

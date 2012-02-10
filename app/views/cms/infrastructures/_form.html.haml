@@ -2,56 +2,50 @@
 
 = form_for @infrastructure, :url => cms_real_estate_infrastructure_path(@real_estate) do |f|
   = render 'cms/real_estates/errors', :model => @infrastructure
-    
+
   %fieldset
     %legend= t('.parking')
-    .clearfix
+    .control-group
       = f.label :has_parking_spot
-      .input
-        %ul.inputs-list
-          %li
-            %label
-              = f.check_box :has_parking_spot
-    .clearfix
+      .controls
+        %label.checkbox
+          = f.check_box :has_parking_spot
+    .control-group
       = f.label :has_roofed_parking_spot
-      .input
-        %ul.inputs-list
-          %li
-            %label
-              = f.check_box :has_roofed_parking_spot
-    .clearfix
+      .controls
+        %label.checkbox
+          = f.check_box :has_roofed_parking_spot
+    .control-group
       = f.label :has_garage
-      .input
-        %ul.inputs-list
-          %li
-            %label
-              = f.check_box :has_garage
-    .clearfix 
+      .controls
+        %label.checkbox
+          = f.check_box :has_garage
+    .control-group
       = f.label :inside_parking_spots
-      .input
+      .controls
         = f.text_field :inside_parking_spots, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :outside_parking_spots
-      .input
+      .controls
         = f.text_field :outside_parking_spots, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :inside_parking_spots_temporary
-      .input
+      .controls
         = f.text_field :inside_parking_spots_temporary, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :outside_parking_spots_temporary
-      .input
+      .controls
         = f.text_field :outside_parking_spots_temporary, :class => 'span8'
-    
+
   %fieldset
     %legend Distanzen
     - @infrastructure.points_of_interest.each do |poi|
-      .clearfix
+      .control-group
         = f.fields_for :points_of_interest, poi do |poi_f|
           = poi_f.label :distance, t(".points_of_interest.types.#{poi.name}")
-          .input
+          .controls
             = poi_f.text_field :distance
             = poi_f.hidden_field :name
-  .actions
-    = f.submit nil, :class => 'btn primary'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

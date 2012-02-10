@@ -2,66 +2,64 @@
 
 = form_for @pricing, :url => cms_real_estate_pricing_path(@real_estate) do |f|
   = render 'cms/real_estates/errors', :model => @pricing
-  
+
   %fieldset
-    .clearfix
+    .control-group
       = f.label :price_unit
-      .input
+      .controls
         = f.select :price_unit, Pricing::PRICE_UNITS.map { |c| [t(".#{c}"), c] }, :prompt => 'Preiseinheit auswählen', :class => 'span8'
     - if @real_estate.for_rent?
-      .clearfix
+      .control-group
         = f.label :for_rent_netto
-        .input
+        .controls
           = f.text_field :for_rent_netto, :class => 'span8'
-      .clearfix
+      .control-group
         = f.label :for_rent_extra
-        .input
+        .controls
           = f.text_field :for_rent_extra, :class => 'span8'
     - if @real_estate.for_sale?
-      .clearfix
+      .control-group
         = f.label :for_sale
-        .input
+        .controls
           = f.text_field :for_sale, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :estimate
-      .input
+      .controls
         = f.text_field :estimate, :class => 'span8'
-    .clearfix
+    .control-group
       = f.label :opted
-      .input
-        %ul.inputs-list
-          %li
-            %label
-              = f.check_box :opted, :class => 'span8'
+      .controls
+        %label.checkbox
+          = f.check_box :opted
     - if @real_estate.commercial_utilization?
-      .clearfix
+      .control-group
         = f.label :storage
-        .input
+        .controls
           = f.text_field :storage, :class => 'span8'
-      .clearfix
+      .control-group
         = f.label :extra_storage
-        .input
+        .controls
           = f.text_field :extra_storage, :class => 'span8'
     %fieldset.inside-parking
       %legend Parkplatzpreise in Auto-Einstellhalle
-      .clearfix
+      .control-group
         = f.label :inside_parking
-        .input
+        .controls
           = f.text_field :inside_parking, :class => 'span8'
-      .clearfix
+      .control-group
         = f.label :inside_parking_temporary
-        .input
+        .controls
           = f.text_field :inside_parking_temporary, :class => 'span8'
     %fieldset.outside-parking
       %legend Parkplatzpreise draussen
-      .clearfix
+      .control-group
         = f.label :outside_parking
-        .input
+        .controls
           = f.text_field :outside_parking, :class => 'span8'
-      .clearfix
+      .control-group
         = f.label :outside_parking_temporary
-        .input
+        .controls
           = f.text_field :outside_parking_temporary, :class => 'span8'
-  .actions
-    = f.submit nil, :class => 'btn primary'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

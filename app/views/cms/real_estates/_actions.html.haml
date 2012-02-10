@@ -1,2 +1,4 @@
 .pull-right
-  = link_to t('.overview'), cms_real_estates_path, :class => 'btn small'
+  = link_to(cms_real_estates_path, :class => 'btn small') do
+    %i.icon-list
+    = t('.overview')
