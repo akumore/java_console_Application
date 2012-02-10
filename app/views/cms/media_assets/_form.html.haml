@@ -35,7 +35,8 @@
     = f.hidden_field :media_type
     = f.submit t(".save_#{@media_asset.media_type}"), :class => 'btn btn-primary'
     .pull-right
-      = link_to t('.add_image'), new_cms_real_estate_image_path, :class => 'btn btn-small'
-      = link_to t('.add_video'), new_cms_real_estate_video_path, :class => 'btn btn-small'
-      = link_to t('.add_document'), new_cms_real_estate_document_path, :class => 'btn btn-small'
-      = link_to t('.to_overview'), cms_real_estate_media_assets_path, :class => 'btn btn-info btn-small'
+      .btn-group
+        = link_to t('.add_image'), new_cms_real_estate_image_path, :class => 'btn btn-small'
+        = link_to t('.add_video'), new_cms_real_estate_video_path, :class => 'btn btn-small'
+        = link_to t('.add_document'), new_cms_real_estate_document_path, :class => 'btn btn-small'
+        = link_to t('.to_overview'), cms_real_estate_media_assets_path, :class => 'btn btn-info btn-small'

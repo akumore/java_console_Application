@@ -1,9 +1,8 @@
 - content_for :title do
   Erfasste Immobilen
 
-%ul.nav.nav-pills.pull-right
-  %li
-    = link_to t('cms.real_estates.index.new'), new_cms_real_estate_path
+.pull-right.padded
+  = link_to t('cms.real_estates.index.new'), new_cms_real_estate_path, :class => 'btn'
 
 %table.table.table-bordered.table-striped{ :id=>'real_estate' }
   %tr
