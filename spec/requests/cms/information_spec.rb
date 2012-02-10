@@ -45,7 +45,7 @@ describe "Cms Information" do
       fill_in 'Etwa verfügbar ab', :with=>@template_information.display_estimated_available_from
 
       ['Aussicht', 'Cheminée', 'Lift', 'ISDN-Anschluss', 'Rollstuhltauglich', 'Kinderfreundlich', 'Balkon',
-       'Hochpaterre', 'Neubau', 'Altbau', 'Swimmingpool', 'Minergie Bauweise', 'Minergie zertifiziert', 'Anfahrrampe',
+       'Hochparterre', 'Neubau', 'Altbau', 'Swimmingpool', 'Minergie Bauweise', 'Minergie zertifiziert', 'Anfahrrampe',
        'Hebebühne', 'Bahnanschluss', 'Wasseranschluss', 'Abwasseranschluss'].each do |checkbox|
         check checkbox
       end
@@ -55,7 +55,7 @@ describe "Cms Information" do
       @real_estate.reload
 
       information = @real_estate.information
-      
+
       information.has_outlook.should == @template_information.has_outlook
       information.has_fireplace.should == @template_information.has_fireplace
       information.has_elevator.should == @template_information.has_elevator
