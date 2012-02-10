@@ -36,7 +36,15 @@
     = f.submit t(".save_#{@media_asset.media_type}"), :class => 'btn btn-primary'
     .pull-right
       .btn-group
-        = link_to t('.add_image'), new_cms_real_estate_image_path, :class => 'btn btn-small'
-        = link_to t('.add_video'), new_cms_real_estate_video_path, :class => 'btn btn-small'
-        = link_to t('.add_document'), new_cms_real_estate_document_path, :class => 'btn btn-small'
-        = link_to t('.to_overview'), cms_real_estate_media_assets_path, :class => 'btn btn-info btn-small'
+        = link_to(new_cms_real_estate_image_path, :class => 'btn') do
+          %i.icon-picture
+          = t('.add_image')
+        = link_to(new_cms_real_estate_video_path, :class => 'btn') do
+          %i.icon-film
+          = t('.add_video')
+        = link_to(new_cms_real_estate_document_path, :class => 'btn') do
+          %i.icon-file
+          = t('.add_document')
+        = link_to(cms_real_estate_media_assets_path, :class => 'btn btn-info') do
+          %i.icon-list
+          = t('.to_overview')

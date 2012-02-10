@@ -4,9 +4,15 @@
 .pull-right
   .padded
     .btn-group
-      = link_to t('.new_image'), new_cms_real_estate_image_path, :class => 'btn'
-      = link_to t('.new_video'), new_cms_real_estate_video_path, :class => 'btn'
-      = link_to t('.new_document'), new_cms_real_estate_document_path, :class => 'btn'
+      = link_to(new_cms_real_estate_image_path, :class => 'btn') do
+        %i.icon-picture
+        = t('.new_image')
+      = link_to(new_cms_real_estate_video_path, :class => 'btn') do
+        %i.icon-film
+        = t('.new_video')
+      = link_to(new_cms_real_estate_document_path, :class => 'btn') do
+        %i.icon-file
+        = t('.new_document')
 
 %table.table.table-bordered.table-striped
   %tr
