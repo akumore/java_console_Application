@@ -5,7 +5,7 @@
   %li
     = link_to t('cms.real_estates.index.new'), new_cms_real_estate_path
 
-%table.table.table-striped{ :id=>'real_estate' }
+%table.table.table-bordered.table-striped{ :id=>'real_estate' }
   %tr
     %th= Address.human_attribute_name :city
     %th= RealEstate.human_attribute_name :titel
