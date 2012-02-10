@@ -1,7 +1,8 @@
+@import compass/utilities
 @import compass/css3
 
 body
-  background: #efefef
+  background: #efefef image-url('cms/body.png')
   padding-top: 40px
 
 .content
@@ -13,3 +14,11 @@ body
 
 .padded
   margin: 10px 0px
+
+.navbar-inner
+  +linear-gradient(color-stops(lighten(#0A1930, 10%), darken(#0A1930, 10%)))
+
+.brand
+  +hide-text
+  background: image-url('cms/logo-white.png') no-repeat
+  width: 120px
