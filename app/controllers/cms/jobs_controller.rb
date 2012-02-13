@@ -2,6 +2,11 @@ class Cms::JobsController < Cms::SecuredController
 
   respond_to :html
 
+  def index
+    @jobs = Job.all.order([:updated_at, :desc])
+    respond_with @jobs
+  end
+
   def new
     @job = Job.new
     respond_with @job

@@ -1,0 +1,8 @@
+de:
+  cms:
+    jobs:
+      index:
+        confirm_delete: 'Den Job "%{title}" sicher löschen?'
+        new: 'Neuen Job erstellen'
+        edit: 'Editieren'
+        destroy: 'Löschen'

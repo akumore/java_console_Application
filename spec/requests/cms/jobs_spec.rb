@@ -4,6 +4,30 @@ require 'spec_helper'
 describe "Cms::Jobs" do
   login_cms_user
 
+  describe '#index' do
+    before do
+      3.times { Fabricate(:job) }
+      @job = Job.first
+      visit cms_jobs_path
+    end
+
+    it "shows the list of jobs" do
+      page.should have_selector('table tr', :count => Job.count+1)
+    end
+
+    it "takes me to the edit page of a job" do
+      within("#job_#{@job.id}") do
+        page.click_link 'Editieren'
+      end
+      current_path.should == edit_cms_job_path(@job)
+    end
+
+    it "takes me to the page for creating a new real estate" do
+      page.click_link 'Neuen Job erstellen'
+      current_path.should == new_cms_job_path
+    end
+  end
+
   describe '#new' do
     before :each do
       visit new_cms_job_path
