@@ -5,4 +5,6 @@ de:
         confirm_delete: 'Den Job "%{title}" sicher löschen?'
         new: 'Neuen Job erstellen'
         edit: 'Editieren'
+        is_published_false: 'Nein'
+        is_published_true: 'Ja'
         destroy: 'Löschen'
