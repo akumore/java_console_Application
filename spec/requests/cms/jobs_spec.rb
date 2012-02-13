@@ -100,4 +100,19 @@ describe "Cms::Jobs" do
     end
   end
 
+  describe '#destroy' do
+    before :each do
+      @job = Fabricate(:job)
+      visit cms_jobs_path
+    end
+
+    it 'deletes the job' do
+      lambda {
+        within("#job_#{@job.id}") do
+          click_link 'Löschen'
+        end
+      }.should change(Job, :count).by(-1)
+    end
+  end
+
 end

@@ -36,4 +36,10 @@ class Cms::JobsController < Cms::SecuredController
       render 'edit'
     end
   end
+
+  def destroy
+    job = Job.find(params[:id])
+    job.destroy
+    redirect_to cms_jobs_path
+  end
 end
