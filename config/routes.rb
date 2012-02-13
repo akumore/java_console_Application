@@ -20,6 +20,7 @@ AlfredMueller::Application.routes.draw do
     end
 
     resources :jobs
+    resources :pages
   end
 
   # The priority is based upon order of creation:

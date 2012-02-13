@@ -1,0 +1,8 @@
+de:
+  cms:
+    pages:
+      index:
+        confirm_delete: 'Die Seite "%{title}" sicher löschen?'
+        new: 'Neue Seite erstellen'
+        edit: 'Editieren'
+        destroy: 'Löschen'

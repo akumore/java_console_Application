@@ -1,0 +1,16 @@
+= form_for [:cms, @page] do |f|
+  = render 'cms/real_estates/errors', :model => @page
+
+  %fieldset
+    .control-group
+      = f.label :title
+      .controls
+        = f.text_field :title, :class => 'span8'
+    - unless @page.persisted?
+      .control-group
+        = f.label :name
+        .controls
+          = f.text_field :name, :class => 'span8'
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
