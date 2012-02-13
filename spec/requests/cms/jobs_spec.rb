@@ -38,7 +38,7 @@ describe "Cms::Jobs" do
         it 'has saved the provided attributes' do
           @job.title.should == 'Ein Job als Baumeister'
           @job.text.should == '## Markdown Text'
-          @job.offer.should == true
+          @job.is_published.should == true
           @job.job_profile_file.should be_present
         end
       end
@@ -67,9 +67,10 @@ describe "Cms::Jobs" do
       end
 
       it 'has updated the edited attributes' do
+        @job.reload
         @job.title.should == 'Geänderter Titel'
         @job.text.should == 'Geänderter Text'
-        @job.offer.should_not be_true
+        @job.is_published.should_not be_true
         @job.job_profile_file.should be_present
       end
     end

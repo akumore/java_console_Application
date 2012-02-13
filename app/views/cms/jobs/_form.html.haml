@@ -21,9 +21,9 @@
         = f.file_field :job_profile_file
         = f.hidden_field :job_profile_file_cache
 
-        //- if @job.job_profile_file.present?
-        //  .well
-        //    = link_to 'Stellenprofil anzeigen', @job.job_profile_file.url, :target => '_new'
+        - if @job.job_profile_file.present?
+          .well
+            = link_to 'Stellenprofil anzeigen', @job.job_profile_file.url, :target => '_new'
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

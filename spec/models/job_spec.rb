@@ -26,7 +26,6 @@ describe Job do
     end
 
     it 'has an attached job_profile' do
-      pending 'figure out why this doesnt work'
       @job.job_profile_file.url.should be_present
     end
   end
