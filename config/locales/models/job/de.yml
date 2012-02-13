@@ -1,0 +1,13 @@
+de:
+  mongoid:
+    models:
+      job: 'Job'
+    attributes:
+      job:
+        title: 'Titel'
+        text: 'Text'
+        is_published: 'Veröffentlichen?'
+        job_profile_file: 'Stellenprofil'
+  errors:
+    messages:
+      extension_white_list_error: 'muss ein PDF sein'

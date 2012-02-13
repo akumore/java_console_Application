@@ -18,6 +18,8 @@ AlfredMueller::Application.routes.draw do
       resources :videos, :controller => :media_assets, :media_type => :video, :only => :new
       resources :documents, :controller => :media_assets, :media_type => :document, :only => :new
     end
+
+    resources :jobs
   end
 
   # The priority is based upon order of creation:

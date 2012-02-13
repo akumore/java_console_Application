@@ -1,10 +1,14 @@
 # encoding: utf-8
+require 'carrierwave/processing/mime_types'
 
 class JobProfileUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
+  include CarrierWave::MimeTypes
+
+  process :set_content_type
 
   # Choose what kind of storage to use for this uploader:
   storage :file

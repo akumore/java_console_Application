@@ -24,6 +24,11 @@ describe Job do
     it 'passes validations' do
       @job.should be_valid
     end
+
+    it 'has an attached job_profile' do
+      pending 'figure out why this doesnt work'
+      @job.job_profile_file.url.should be_present
+    end
   end
 
   describe 'initialize with invalid job profile file' do
