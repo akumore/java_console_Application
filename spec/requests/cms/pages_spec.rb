@@ -37,6 +37,14 @@ describe "Cms::Pages" do
       current_path.should == new_cms_page_path
     end
 
+    it 'displays the input for the unique name' do
+      page.should have_css('input#page_name')
+    end
+
+    it 'does not display the dropdown to add new bricks' do
+      page.should_not have_link('Baustein hinzufügen')
+    end
+
     context 'a valid Page' do
       before :each do
         within(".new_page") do
@@ -78,6 +86,10 @@ describe "Cms::Pages" do
 
     it 'does not display the input for the unique name' do
       page.should_not have_content('Eindeutiger Name')
+    end
+
+    it 'displays the dropdown to add new bricks' do
+      page.should have_link('Baustein hinzufügen')
     end
 
     context '#update' do

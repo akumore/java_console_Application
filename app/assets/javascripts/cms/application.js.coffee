@@ -14,11 +14,17 @@
 #= require_tree ./models
 #= require_tree ./views
 #= require_tree ./routers
+#= require twitter/bootstrap
+#= require_self
 
-window.AlfredMueller = 
+
+window.AlfredMueller =
   Cms: {
     Models: {}
     Collections: {}
     Routers: {}
-    Views: {} 
+    Views: {}
   }
+
+$(document).ready ->
+  $('.dropdown-toggle').dropdown()
