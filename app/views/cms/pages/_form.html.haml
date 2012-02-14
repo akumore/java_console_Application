@@ -11,6 +11,7 @@
         = f.label :name
         .controls
           = f.text_field :name, :class => 'span8'
+
   - if @page.persisted?
     .row
       .span2
@@ -22,7 +23,7 @@
             %th
             %th
           - @page.bricks.each do |brick|
-            %tr
+            %tr{ :class => brick.type }
               %td= render "cms/bricks/#{brick.type}_show", :brick => brick
               %td= link_to t('.destroy'), send("cms_page_#{brick.type}_brick_path", @page, brick), :method => :delete, :confirm => t('.confirm_delete')
               %td= link_to t('.edit'), send("edit_cms_page_#{brick.type}_brick_path", @page, brick)
