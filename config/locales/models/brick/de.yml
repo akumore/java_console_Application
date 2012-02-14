@@ -1,0 +1,15 @@
+de:
+  mongoid:
+    models:
+      brick/title: 'Titel Baustein'
+      brick/text: 'Text Baustein'
+      brick/accordion: 'Akkordeon Baustein'
+    attributes:
+      brick/title:
+        title: 'Titel'
+      brick/text:
+        text: 'Text'
+        more_text: 'Mehr lesen Text'
+      brick/accordion:
+        title: 'Titel'
+        text: 'Text'

@@ -92,12 +92,26 @@ describe "Cms::Pages" do
       page.should_not have_content('Eindeutiger Name')
     end
 
-    it 'displays the dropdown to add new bricks' do
-      page.should have_link('Baustein hinzufügen')
-    end
+    describe 'bricks' do
+      it 'displays the dropdown to add new bricks' do
+        page.should have_link('Baustein hinzufügen')
+      end
 
-    it 'displays the list of bricks' do
-      page.should have_css('.bricks-table')
+      it 'has a link to create a new title brick' do
+        page.should have_link('Titel Baustein')
+      end
+
+      it 'has a link to create a new text brick' do
+        page.should have_link('Text Baustein')
+      end
+
+      it 'has a link to create a new accordion brick' do
+        page.should have_link('Akkordeon Baustein')
+      end
+
+      it 'displays the list of bricks' do
+        page.should have_css('.bricks-table')
+      end
     end
 
     context '#update' do
