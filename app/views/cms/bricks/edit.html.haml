@@ -1,0 +1,4 @@
+- content_for :title do
+  = "#{@brick.class.model_name.human} bearbeiten"
+
+= render "#{params[:type]}_form", :url => send("cms_page_#{params[:type]}_brick_path", @page, @brick)

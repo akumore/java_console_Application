@@ -45,6 +45,10 @@ describe "Cms::Pages" do
       page.should_not have_link('Baustein hinzufügen')
     end
 
+    it 'does not display the list of bricks' do
+      page.should_not have_css('.bricks-table')
+    end
+
     context 'a valid Page' do
       before :each do
         within(".new_page") do
@@ -90,6 +94,10 @@ describe "Cms::Pages" do
 
     it 'displays the dropdown to add new bricks' do
       page.should have_link('Baustein hinzufügen')
+    end
+
+    it 'displays the list of bricks' do
+      page.should have_css('.bricks-table')
     end
 
     context '#update' do

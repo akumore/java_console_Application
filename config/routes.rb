@@ -20,7 +20,11 @@ AlfredMueller::Application.routes.draw do
     end
 
     resources :jobs
-    resources :pages
+    resources :pages do
+      Brick::Base::TYPES.each do |type|
+        resources "#{type}_bricks", :controller => :bricks, :type => type, :except => :index
+      end
+    end
   end
 
   # The priority is based upon order of creation:

@@ -6,3 +6,7 @@ de:
         new: 'Neue Seite erstellen'
         edit: 'Editieren'
         destroy: 'Löschen'
+      form:
+        edit: 'Editieren'
+        destroy: 'Löschen'
+        confirm_delete: 'Diesen Baustein wirklich löschen?'

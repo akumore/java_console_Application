@@ -1,0 +1,15 @@
+= form_for @brick, :url => url do |f|
+  = render 'cms/real_estates/errors', :model => @brick
+
+  %fieldset
+    .control-group
+      = f.label :title
+      .controls
+        = f.text_field :title, :class => 'span8'
+    .control-group
+      = f.label :text
+      .controls
+        = f.text_area :text, :class => 'span8'
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
