@@ -34,7 +34,7 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
 
     primary.item :real_estate, t('navigation.main.real_estate'), real_estates_path
-    primary.item :jobs, t('navigation.main.jobs'), root_path
+    primary.item :jobs, t('navigation.main.jobs'), t('jobs_url'), :highlights_on => /jobs/
     primary.item :company, t('navigation.main.company'), root_path
     primary.item :services, t('navigation.main.services'), root_path
     primary.item :news, t('navigation.main.news'), root_path

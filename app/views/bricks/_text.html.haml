@@ -1,0 +1,5 @@
+.text
+  = markdown(brick.text)
+  - if brick.more_text.present?
+    .more_text
+      = markdown(brick.more_text)

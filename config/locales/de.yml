@@ -52,4 +52,6 @@ de:
         notice: "%{resource_name} wurde erfolgreich bearbeitet."
       destroy:
         notice: "%{resource_name} wurde erfolgreich gelöscht."
-        alert: "%{resource_name} konnte nicht gelöscht werden."    
+        alert: "%{resource_name} konnte nicht gelöscht werden."
+  jobs_url: '/de/jobs'
+
