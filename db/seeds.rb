@@ -320,5 +320,31 @@ module InitialCategories
     end
   end
 
+module InitialPages
+
+  # Jobs Page
+
+  jobs_page = Page.create(:title => 'Jobs', :name => 'jobs')
+  jobs_page.bricks << Brick::Title.new(:title => 'Der Mensch steht bei uns im Mittelpunkt')
+  jobs_page.bricks << Brick::Text.new(:text => 'Den grössten Teil unseres Lebens verbringen wir in Immobilien – sei es zuhause oder am Arbeitsplatz. Deshalb haben wir es uns zur Aufgabe gemacht, hochwertige Wohn- und Geschäftshäuser zu entwickeln, in denen sich die Menschen wohl fühlen. Wollen Sie uns bei dieser herausfordernden und spannenden Aufgabe unterstützen? Wir suchen Mitarbeitende, die mit Leidenschaft und Kompetenz an die Arbeit gehen, damit perfekte Immobilienlösungen entstehen.', :more_text => 'Als führendes Schweizer Immobilienunternehmen bieten wir eine Vielzahl von interessanten und hoch qualifizierten Berufen an. Wir übertragen unseren Mitarbeitenden Verantwortung, unterstützen sie in ihrer Laufbahnentwicklung und helfen ihnen, ihre beruflichen Fähigkeiten stetig zu erweitern. Seit über 40 Jahren bilden herausragende Mitarbeitende die Basis für unseren anhaltenden Firmenerfolg.')
+  jobs_page.bricks << Brick::Accordion.new(:title => 'Der Mensch steht bei uns im Mittelpunkt', :text => 'Wir sind ein Familienunternehmen, das den Menschen mit Wertschätzung begegnet. Mitarbeitende, Kunden und Partner stehen im Zentrum unserer Tätigkeit. Unseren Mitarbeitenden bieten wir ein kollegiales und förderndes Arbeitsklima. Dazu gehört, dass wir ihnen verantwortungsvolle und herausfordernde Aufgaben übertragen und das nötige Vertrauen schenken, damit sie ihre Aufgaben unternehmerisch erfüllen können.')
+  jobs_page.bricks << Brick::Accordion.new(:title => 'Weitebildung und Karriereentwicklung', :text => 'Wir möchten, dass sich unsere Mitarbeitenden laufend weiter entwickeln. Deshalb beteiligt sich die Alfred Müller AG mit 50 bis 100 Prozent an Aus- und Weiterbildungskosten, ohne dass die Mitarbeitenden eine Rückzahlungspflicht oder andere arbeitsvertragliche Verpflichtungen eingehen müssen.
+
+Neben externen Angeboten bietet die Alfred Müller AG jedes Jahr auch zahlreiche freiwillige Seminare an. Jedem Mitarbeitenden stehen jährlich vier bezahlte Seminartage für Aus- und Weiterbildung zur Verfügung.
+
+Bei der Alfred Müller AG gibt es keine vorgezeichneten Karrierewege. Eigenverantwortung steht im Zentrum: Mitarbeitende, die kundenorientierte Höchstleistungen erbringen, entwickeln sich bei uns schnell weiter.')
+  jobs_page.bricks << Brick::Accordion.new(:title => 'Attraktive Arbeitsbedingungen', :text => 'Neben herausfordernden Aufgaben bieten wir unseren Mitarbeitenden einen leistungs- und marktorientierten Lohn sowie attraktive Personalnebenleistungen. Dazu einige Beispiele:
+
+* Die Mitarbeitenden können bei Unfall ohne Kostenfolge weltweit die Privatabteilung beanspruchen. Die Prämien für die Betriebs- und Nichtbetriebsunfallversicherung, für die Zusatzversicherung bei Unfall sowie die Krankentaggeldversicherung werden vollumfänglich von der Firma bezahlt.
+* Bei Absenzen infolge Unfall oder Krankheit bezahlt die Alfred Müller AG während sechs Monaten das volle Salär.
+* Die Alfred Müller AG legt grossen Wert auf überdurchschnittliche Pensionskassenleistungen, damit die Mitarbeitenden nach der Pensionierung ihren gewohnten Lebensstandard beibehalten können.
+* Die Mitarbeitenden können Beträge von bis zu zwei Jahresgehältern in den Erwerb von Global-Obligationen mit einer Verzinsung von 8 Prozent investieren.
+* Nach der Geburt eines Kindes erhält der Vater einen bezahlten Vaterschaftsurlaub von fünf Tagen.
+* Kindern von Mitarbeitenden bezahlt die Alfred Müller AG Entschädigungen für die Ausbildungskosten an Hochschulen oder höheren Lehranstalten.
+* Mitarbeitende erhalten beim Kauf eines Eigenheims der Alfred Müller AG einen einmaligen Rabatt von maximal 30 000 Franken. Die Alfred Müller AG gewährt ihnen ausserdem eine einmalige Hypothek von maximal 100 000 Franken, wobei der Zinssatz generell um 1,5 Prozent tiefer liegt als der Zinssatz für erstrangige Wohnbauhypotheken der Zuger Kantonalbank.
+* Die Tage zwischen Weihnachten und Neujahr sowie am Freitag nach Auffahrt sind arbeitsfrei ohne Ferienabzug.
+* Die Alfred Müller AG stellt allen Mitarbeitenden einen Parkplatz zur Verfügung. Wer keinen Parkplatz beansprucht, erhält monatlich eine Entschädigung von 50 Franken.')
+jobs_page.bricks << Brick::Accordion.new(:title => 'Familiäre Atmosphäre', :text => ' Obwohl die Alfred Müller AG bereits über 170 Mitarbeitende beschäftigt, ist die Arbeitsatmosphäre innerhalb des Unternehmens immer noch sehr familiär. In der firmeneigenen Cafeteria treffen sich die Mitarbeitenden über alle Abteilungen und Bereiche hinweg. Unsere Mitarbeitenden schätzen auch die schönen Anlässe, zu denen wir sie einladen. So finden jedes Jahr ein Geschäftsessen, ein Geschäftsausflug sowie alle fünf Jahre eine mehrtägige Jubiläumsreise statt. Neben sportlichen Aktivitäten (z.B. Bike to work, Skiweekend) können die Mitarbeitenden dreimal jährlich an gemütlichen Höcks teilnehmen. Auch die Pensionierten laden wir einmal im Jahr zu einem Tagesausflug ein.')
 end
 
+end
