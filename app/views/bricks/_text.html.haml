@@ -1,5 +1,8 @@
-.text
+.expandable
   = markdown(brick.text)
   - if brick.more_text.present?
-    .more_text
+    = link_to t('pages.show.more'), '#', :class => 'more'
+    .expandable-content.hidden
       = markdown(brick.more_text)
+      %div
+        = link_to t('pages.show.less'), '#', :class => 'less'

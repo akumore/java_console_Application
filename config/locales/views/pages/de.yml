@@ -10,3 +10,7 @@ de:
         edit: 'Editieren'
         destroy: 'Löschen'
         confirm_delete: 'Diesen Baustein wirklich löschen?'
+  pages:
+    show:
+      more: 'Mehr anzeigen'
+      less: 'Weniger anzeigen'

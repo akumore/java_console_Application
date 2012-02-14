@@ -12,7 +12,11 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     # initialize clickable table rows
     $("table").each ->
       new AlfredMueller.Views.ClickableTable(el: $(this))
-    
+
+    # initialize expandable content
+    $(".expandable").each ->
+      new AlfredMueller.Views.ExpandableContent(el: $(this))
+
     # initialize slideshows
     $(window).load ->
       $(".flexslider").flexslider(
@@ -20,4 +24,4 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
         controlNav: false,
         slideshow: false,
         animation: "slide"
-      ) 
+      )
