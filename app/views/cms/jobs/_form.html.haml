@@ -1,0 +1,29 @@
+= form_for [:cms, @job], :html => { :multipart => true } do |f|
+  = render 'cms/real_estates/errors', :model => @job
+
+  %fieldset
+    .control-group
+      = f.label :title
+      .controls
+        = f.text_field :title, :class => 'span8'
+    .control-group
+      = f.label :text
+      .controls
+        = f.text_area :text, :class => 'span8'
+    .control-group
+      = f.label :is_published
+      .controls
+        %label.checkbox
+          = f.check_box :is_published
+    .control-group
+      = f.label :job_profile_file
+      .controls
+        = f.file_field :job_profile_file
+        = f.hidden_field :job_profile_file_cache
+
+        - if @job.job_profile_file.present?
+          .well
+            = link_to 'Stellenprofil anzeigen', @job.job_profile_file.url, :target => '_new'
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'

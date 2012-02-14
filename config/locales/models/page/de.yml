@@ -1,0 +1,8 @@
+de:
+  mongoid:
+    models:
+      page: 'Seite'
+    attributes:
+      page:
+        title: 'Titel'
+        name: 'Eindeutiger Name'

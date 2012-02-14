@@ -18,6 +18,13 @@ AlfredMueller::Application.routes.draw do
       resources :videos, :controller => :media_assets, :media_type => :video, :only => :new
       resources :documents, :controller => :media_assets, :media_type => :document, :only => :new
     end
+
+    resources :jobs
+    resources :pages do
+      Brick::Base::TYPES.each do |type|
+        resources "#{type}_bricks", :controller => :bricks, :type => type, :except => :index
+      end
+    end
   end
 
   # The priority is based upon order of creation:

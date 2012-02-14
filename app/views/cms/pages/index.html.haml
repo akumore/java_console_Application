@@ -1,0 +1,21 @@
+- content_for :title do
+  Erfasste Seiten
+
+.pull-right.padded
+  = link_to(new_cms_page_path, :class => 'btn') do
+    %i.icon-plus-sign
+    = t('.new')
+
+%table.table.table-bordered.table-striped
+  %tr
+    %th{ :width => '50%' }= Page.human_attribute_name :title
+    %th{ :width => '30%'}= Page.human_attribute_name :name
+    %th
+    %th
+
+  - @pages.each do |page|
+    %tr{ :id => "page_#{page.id}"}
+      %td= page.title
+      %td= page.name
+      %td= link_to  t('.destroy'), cms_page_path(page), :method => :delete, :confirm => t('.confirm_delete', :title => page.title)
+      %td= link_to t('.edit'), edit_cms_page_path(page)

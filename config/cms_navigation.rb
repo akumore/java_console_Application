@@ -52,8 +52,8 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :dashboard, 'Dashboard', cms_dashboards_path
     primary.item :real_estates, 'Immobilien', cms_real_estates_path
     primary.item :addresses, 'Adressen', ''
-    primary.item :jobs, 'Jobs', ''
-    primary.item :pages, 'Seiten', ''
+    primary.item :jobs, 'Jobs', cms_jobs_path
+    primary.item :pages, 'Seiten', cms_pages_path
 
     # Add an item which has a sub navigation (same params, but with block)
     # primary.item :key_2, 'name', url, options do |sub_nav|

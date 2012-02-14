@@ -1,0 +1,21 @@
+- content_for :title do
+  Erfasste Jobs
+
+.pull-right.padded
+  = link_to(new_cms_job_path, :class => 'btn') do
+    %i.icon-plus-sign
+    = t('.new')
+
+%table.table.table-bordered.table-striped
+  %tr
+    %th{ :width => '80%' }= Job.human_attribute_name :title
+    %th Veröffentlicht
+    %th
+    %th
+
+  - @jobs.each do |job|
+    %tr{ :id => "job_#{job.id}"}
+      %td= job.title
+      %td= t(".is_published_#{job.is_published}")
+      %td= link_to  t('.destroy'), cms_job_path(job), :method => :delete, :confirm => t('.confirm_delete', :title => job.title)
+      %td= link_to t('.edit'), edit_cms_job_path(job)

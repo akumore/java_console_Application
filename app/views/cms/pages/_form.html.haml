@@ -1,0 +1,42 @@
+= form_for [:cms, @page] do |f|
+  = render 'cms/real_estates/errors', :model => @page
+
+  %fieldset
+    .control-group
+      = f.label :title
+      .controls
+        = f.text_field :title, :class => 'span8'
+    - unless @page.persisted?
+      .control-group
+        = f.label :name
+        .controls
+          = f.text_field :name, :class => 'span8'
+
+  - if @page.persisted?
+    .row
+      .span2
+        %br
+      .span8
+        %table.table.table-bordered.bricks-table
+          %tr
+            %th{ :width => '70%' } Baustein
+            %th
+            %th
+          - @page.bricks.each do |brick|
+            %tr{ :class => brick.type }
+              %td= render "cms/bricks/#{brick.type}_show", :brick => brick
+              %td= link_to t('.destroy'), send("cms_page_#{brick.type}_brick_path", @page, brick), :method => :delete, :confirm => t('.confirm_delete')
+              %td= link_to t('.edit'), send("edit_cms_page_#{brick.type}_brick_path", @page, brick)
+        - if @page.persisted?
+          .pull-right
+            .btn-group
+              = link_to 'Baustein hinzufügen', '#', :class => 'btn'
+              = link_to '#', :class => 'btn dropdown-toggle', 'data-toggle' => 'dropdown' do
+                %span.caret
+              %ul.dropdown-menu
+                - Brick::Base::TYPES.each do |type|
+                  %li= link_to "brick/#{type}".classify.constantize.model_name.human, send("new_cms_page_#{type}_brick_path", @page)
+
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
