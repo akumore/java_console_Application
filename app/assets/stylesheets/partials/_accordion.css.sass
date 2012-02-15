@@ -6,20 +6,37 @@
     .content
       max-height: 0px
       overflow: hidden
-      +single-transition('max-height')
+      +single-transition(max-height)
 
     &.open
       .content
         // fake max-height because height: auto is not supported in animations
-        max-height: 1000px
+        max-height: 2000px
+
+.accordion-classical
+  .title
+    padding: 0 1.25em
+    margin: 0.3em 0
+    @extend .arrow-middle-right
+
+    &:hover
+      @extend .arrow-middle-gold-right
+      color: $classic
+
+  .open
+    .title
+      @extend .arrow-middle-gold-down
+      color: $classic
+
+      &:hover
+        @extend .arrow-middle-gold-down
+
+  .content
+    margin-left: 2em
 
 .accordion-bordered
   .title
     border-top: 1px solid $dark-border-color
-    padding: 0.5em 1em
-    margin: 0
-    @extend .arrow-middle-right
-    display: block
 
   .accordion-item:last-child
     .title
