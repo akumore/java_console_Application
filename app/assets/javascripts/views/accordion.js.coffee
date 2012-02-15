@@ -1,28 +1,41 @@
+# Easy handling of accordion elements
+# The structure should be as follows:
+#
+# <div class='accordion'>
+#   <div class='accordion-item'>
+#     <div class='title'>Title</div>
+#     <div class='content'> ... your content ... </div>
+#   </div>
+#
+#   // repeat accordion-items ...
+# </div>
+#
+# NOTE: Ideally, the less href points to the id of the .expandable div, so that
+# when collapsing the expandable container the browser jumps back up.
+
 class window.AlfredMueller.Views.Accordion extends Backbone.View
 
   events:
-    "click li.title a" : "handleClick"
+    "click .title" : "handleClick"
 
   initialize: ->
-    @openElem = @el.find("li.open")
+    @items = @el.find(".accordion-item")
+    @open  = null
 
-  open: (elem) ->
-    if @openElem
-      @close(@openElem)
+  openItem: (elem) ->
+    @closeItem(@open) if @open
+    @open = elem.addClass("open")
 
-    @openElem = elem
-    $(@openElem).addClass("open")
+  closeItem: (elem) ->
+    elem.removeClass("open")
+    @open = null
 
-  close: (elem) ->
-    @openElem = null
-    $(elem).removeClass("open")
-
-  toggle: (elem) ->
-    if @openElem == elem
-      @close(elem)
+  toggleItem: (elem) ->
+    if elem.hasClass("open")
+      @closeItem(elem)
     else
-      @open(elem)
+      @openItem(elem)
 
-  handleClick: (e) =>
-    # work with the pure DOM node to ensure object identity
-    @toggle($(e.currentTarget).parent().get(0))
+  handleClick: (event) =>
+    item = $(event.currentTarget).parent()
+    @toggleItem(item)

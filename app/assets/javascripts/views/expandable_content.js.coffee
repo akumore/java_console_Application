@@ -10,18 +10,18 @@
 #   </div>
 # </div>
 #
-# NOTE: Ideally, the less href points to the id of the .expandable div, so that when collapsing
-#       the expandable container the browser jumps back up.
+# NOTE: Ideally, the less href points to the id of the .expandable div, so that
+# when collapsing the expandable container the browser jumps back up.
 
 class AlfredMueller.Views.ExpandableContent extends Backbone.View
 
   events:
-    "click a.more" : "handleOpen"
-    "click a.less" : "handleClose"
+    "click .more" : "handleOpen"
+    "click .less" : "handleClose"
 
   initialize: ->
     @content = @el.find(".expandable-content")
-    @more    = @el.find("a.more")
+    @more    = @el.find(".more")
 
   handleOpen: (event) =>
     @content.removeClass("hidden")

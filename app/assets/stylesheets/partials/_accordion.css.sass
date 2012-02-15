@@ -1,33 +1,33 @@
-.accordion
-  padding: 0
-  margin: 2em 0
-
-  .title
-    max-height: 30px
-    overflow: hidden
-    +single-transition('max-height')
-
-    a
-      @extend .arrow-middle-right
-    
-    .content
-      display: none
-
-  .title.open
-    // fake max-height because height: auto is not supported in animations
-    max-height: 1000px 
+.js
+  .accordion-item
+    .title
+      cursor: pointer
 
     .content
-      display: block
+      max-height: 0px
+      overflow: hidden
+      +single-transition('max-height')
 
-.accordion.bordered
-  border-bottom: 1px solid $dark-border-color
-  
+    &.open
+      .content
+        // fake max-height because height: auto is not supported in animations
+        max-height: 1000px
+
+.accordion-bordered
   .title
     border-top: 1px solid $dark-border-color
-    padding: 0.5em 0
-    +no-bullet
+    padding: 0.5em 1em
+    margin: 0
+    @extend .arrow-middle-right
+    display: block
 
-    a
-      background: transparent
-      padding: 0
+  .accordion-item:last-child
+    .title
+      border-bottom: 1px solid $dark-border-color
+
+    &.open
+      .title
+        border-bottom-width: 0px
+
+      .content
+        border-bottom: 1px solid $dark-border-color

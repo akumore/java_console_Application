@@ -45,9 +45,9 @@
 
     = @real_estate.description
 
-    %ul.accordion.bordered
-      %li.title
-        = link_to t('.real_estate_infos'), '#real_estate_infos'
+    .accordion.bordered
+      .accordion-item
+        .title= link_to t('.real_estate_infos'), '#real_estate_infos'
         .content
           %ul
             - @real_estate.information_shared.each do |line|
@@ -55,8 +55,8 @@
           %ul
             - @real_estate.information_basic.each do |line|
               %li= line
-      %li.title
-        = link_to t('.pricing'), '#pricing'
+      .accordion-item
+        .title= link_to t('.pricing'), '#pricing'
         .content
           %ul
             - @real_estate.price_info_basic.each do |line|
@@ -64,19 +64,18 @@
           %ul
             - @real_estate.price_info_parking.each do |line|
               %li= line
-      %li.title
-        = link_to t('.facts_and_figures'), '#facts_and_figures'
+      .accordion-item
+        .title= link_to t('.facts_and_figures'), '#facts_and_figures'
         .content
           %ul
             - @real_estate.facts_and_figures.each do |line|
               %li= line
-      %li.title
-        = link_to t('.infrastructure'), '#infrastructure'
+      .accordion-item
+        .title= link_to t('.infrastructure'), '#infrastructure'
         .content
           %ul
             - @real_estate.infrastructure_parking.each do |line|
               %li= line
-
           %ul
             - @real_estate.infrastructure_distances.each do |line|
               %li= line
