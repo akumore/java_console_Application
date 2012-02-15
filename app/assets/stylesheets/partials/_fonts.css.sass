@@ -1,10 +1,11 @@
 .text-font
   font-family: "proxima-nova", sans-serif
-  font-size: 14px
+  font-size: 15px
+  font-weight: 300
 
 .title-font
   font-family: "kulturista-web", serif
-  //color: $title-color
+  font-weight: 300
 
 .title-font-bold
   font-family: "kulturista-web-n6", "kulturista-web", serif
@@ -17,40 +18,21 @@
 .classic
   @extend .title-font-bold
 
+a
+  +link-colors($normal, $dark)
+
 a, a:link, a:visited, a:active
   text-decoration: none
-  font-weight: 300
-
-a.classic:link, a.classic:visited, a.classic:active
-  color: $classic
-
-a.classic:hover
-  color: darken($classic, 10%)
-
-.main-navigation
-  font-size: 1.05em
   @extend .title-font
 
-  .selected
-    text-decoration: underline
-    @extend .title-font-bold
+a.classic:link, a.classic:visited, a.classic:active
+  color: $inverted
 
-  a
-    +link-colors($link-color, $link-hover-color, $link-color, $link-color, $link-color)
+a.classic:hover
+  color: $normal
 
-.meta-navigation
-  font-size: 0.9em
+body
   @extend .text-font
-
-  a
-    +link-colors($secondary-link-color, $link-color, $secondary-link-color, $secondary-link-color, $secondary-link-color)
-
-#main
-  @extend .text-font
-
-  a
-    //+link-colors($dark-title-color, $title-color, $dark-title-color, $dark-title-color)
-    @extend .title-font
 
 h1
   @extend .title-font-bold
@@ -63,6 +45,25 @@ h2
   @extend text-font-bold
   font-size: 1.5em
   color: $link-hover-color
+
+.main-navigation
+  font-size: 1.2em
+
+  .selected
+    text-decoration: underline
+    @extend .title-font-bold
+
+  a
+    +link-colors($link-color, $link-hover-color, $link-color, $link-color, $link-color)
+
+.meta-navigation
+  font-size: 0.9em
+
+  a
+    +link-colors($secondary-link-color, $link-color, $secondary-link-color, $secondary-link-color, $secondary-link-color)
+
+  a, a:link, a:visited, a:active
+    @extend .text-font
 
 .more, .less
   +link-colors($classic)
@@ -81,11 +82,3 @@ h2
   .title
     font-size: 1.5em
     @extend .title-font
-
-.search-filter-container
-  a
-    @extend .title-font
-    +link-colors($link-color, $link-hover-color, $link-color, $link-color, $link-color)
-
-  .selected
-    @extend .title-font-bold
