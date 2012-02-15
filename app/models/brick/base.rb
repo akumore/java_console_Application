@@ -2,7 +2,7 @@ class Brick::Base
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  TYPES = %w(title text accordion)
+  TYPES = %w(title text accordion placeholder)
 
   embedded_in :page
 

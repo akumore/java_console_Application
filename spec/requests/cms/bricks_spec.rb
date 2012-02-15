@@ -8,12 +8,14 @@ describe "Cms::Bricks" do
     @page = Fabricate(:page)
     @page.bricks << Fabricate.build(:title_brick)
     @page.bricks << Fabricate.build(:text_brick)
+    @page.bricks << Fabricate.build(:placeholder_brick)
     @page.bricks << Fabricate.build(:accordion_brick)
     @page.reload
 
-    @title_brick = @page.bricks.first
-    @text_brick = @page.bricks.second
-    @accordion_brick = @page.bricks.last
+    @title_brick = @page.bricks[0]
+    @text_brick = @page.bricks[1]
+    @placeholder_brick = @page.bricks[2]
+    @accordion_brick = @page.bricks[3]
 
     visit edit_cms_page_path(@page)
   end
@@ -42,6 +44,13 @@ describe "Cms::Bricks" do
         page.click_link 'Editieren'
       end
       current_path.should == edit_cms_page_accordion_brick_path(@page, @accordion_brick)
+    end
+
+    it "takes me to the edit page of a placeholder brick" do
+      within("tr.placeholder") do
+        page.click_link 'Editieren'
+      end
+      current_path.should == edit_cms_page_placeholder_brick_path(@page, @placeholder_brick)
     end
   end
 
@@ -185,6 +194,50 @@ describe "Cms::Bricks" do
     end
   end
 
+  context 'placeholder brick' do
+    describe '#new' do
+      before :each do
+        visit new_cms_page_placeholder_brick_path(@page)
+      end
+
+      context 'creating' do
+        before :each do
+          within('.new_brick_placeholder') do
+            select 'Jobs: Erfolgreich bewerben', :from => 'Platzhalter'
+          end
+        end
+
+        it 'has saved the provided attributes' do
+          click_on 'Platzhalter Baustein erstellen'
+          @page.reload
+          @brick = @page.bricks.last
+          @brick.placeholder.should == 'jobs_apply_with_success'
+        end
+      end
+    end
+
+    describe '#edit' do
+      before :each do
+        visit edit_cms_page_placeholder_brick_path(@page, @placeholder_brick)
+      end
+
+      context 'updating ' do
+        before :each do
+          within('.edit_brick_placeholder') do
+            select 'Jobs: Offene Stellen', :from => 'Platzhalter'
+          end
+        end
+
+        it 'has updated the edited attributes' do
+          click_on 'Platzhalter Baustein speichern'
+          @page.reload
+          @brick = @page.bricks.find(@placeholder_brick.id)
+          @brick.placeholder.should == 'jobs_openings'
+        end
+      end
+    end
+  end
+
   describe '#destroy' do
     it "destroys the title brick" do
       pending 'figure out why this does not work'
@@ -210,6 +263,16 @@ describe "Cms::Bricks" do
       pending 'figure out why this does not work'
       lambda {
         within("tr.accordion") do
+          page.click_link 'Löschen'
+        end
+        @page.reload
+      }.should change(@page.bricks, :count).by(-1)
+    end
+
+    it "destroys the placeholder brick" do
+      pending 'figure out why this does not work'
+      lambda {
+        within("tr.placeholder") do
           page.click_link 'Löschen'
         end
         @page.reload

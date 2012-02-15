@@ -4,6 +4,7 @@ de:
       brick/title: 'Titel Baustein'
       brick/text: 'Text Baustein'
       brick/accordion: 'Akkordeon Baustein'
+      brick/placeholder: 'Platzhalter Baustein'
     attributes:
       brick/title:
         title: 'Titel'
@@ -13,3 +14,5 @@ de:
       brick/accordion:
         title: 'Titel'
         text: 'Text'
+      brick/placeholder:
+        placeholder: 'Platzhalter'

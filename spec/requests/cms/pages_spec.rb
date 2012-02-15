@@ -109,6 +109,10 @@ describe "Cms::Pages" do
         page.should have_link('Akkordeon Baustein')
       end
 
+      it 'has a link to create a new placeholder brick' do
+        page.should have_link('Platzhalter Baustein')
+      end
+
       it 'displays the list of bricks' do
         page.should have_css('.bricks-table')
       end
