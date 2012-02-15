@@ -54,4 +54,5 @@ de:
         notice: "%{resource_name} wurde erfolgreich gelöscht."
         alert: "%{resource_name} konnte nicht gelöscht werden."
   jobs_url: '/de/jobs'
+  company_url: '/de/company'
 
