@@ -11,7 +11,8 @@ describe "Pages" do
 
     it 'renders the jobs page' do
       visit I18n.t('jobs_url')
-      page.should have_css('li.selected:contains(Jobs)')
+      save_and_open_page
+      page.should have_css('a.selected:contains(Jobs)')
     end
   end
 
