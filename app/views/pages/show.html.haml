@@ -6,6 +6,9 @@
       .brick
         .accordion.accordion-classical
           = yield brick.group_id
+  - elsif brick.type == 'placeholder'
+    .brick
+      = render "bricks/placeholder/#{brick.placeholder}", :brick => brick
   - else
     .brick
       = render "bricks/#{brick.type}", :brick => brick
