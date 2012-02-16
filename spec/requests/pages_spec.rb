@@ -14,10 +14,6 @@ describe "Pages" do
       visit I18n.t('jobs_url')
     end
 
-    it 'renders the jobs page' do
-      page.should have_css('a.selected:contains(Jobs)')
-    end
-
     it 'has an accordion with 3 jobs' do
       page.should have_css('.jobs .accordion-item', :count => 3)
     end
