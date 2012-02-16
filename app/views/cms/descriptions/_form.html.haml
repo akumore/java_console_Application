@@ -1,7 +1,7 @@
 = render_navigation :context => :real_estate
 
 = form_for @description, :url => cms_real_estate_description_path(@real_estate) do |f|
-  = render 'cms/real_estates/errors', :model => @description
+  = render 'cms/shared/errors', :model => @description
 
   %fieldset
     .control-group

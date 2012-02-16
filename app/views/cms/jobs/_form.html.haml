@@ -1,5 +1,5 @@
 = form_for [:cms, @job], :html => { :multipart => true } do |f|
-  = render 'cms/real_estates/errors', :model => @job
+  = render 'cms/shared/errors', :model => @job
 
   %fieldset
     .control-group

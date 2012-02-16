@@ -1,7 +1,7 @@
 = render_navigation :context => :real_estate
 
 = form_for @pricing, :url => cms_real_estate_pricing_path(@real_estate) do |f|
-  = render 'cms/real_estates/errors', :model => @pricing
+  = render 'cms/shared/errors', :model => @pricing
 
   %fieldset
     .control-group

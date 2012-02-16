@@ -4,23 +4,23 @@ require 'spec_helper'
 describe "Cms::Bricks" do
   login_cms_user
 
-  before do
-    @page = Fabricate(:page)
-    @page.bricks << Fabricate.build(:title_brick)
-    @page.bricks << Fabricate.build(:text_brick)
-    @page.bricks << Fabricate.build(:placeholder_brick)
-    @page.bricks << Fabricate.build(:accordion_brick)
-    @page.reload
-
-    @title_brick = @page.bricks[0]
-    @text_brick = @page.bricks[1]
-    @placeholder_brick = @page.bricks[2]
-    @accordion_brick = @page.bricks[3]
-
-    visit edit_cms_page_path(@page)
-  end
-
   describe '#index' do
+    before do
+      @page = Fabricate(:page)
+      @page.bricks << Fabricate.build(:title_brick)
+      @page.bricks << Fabricate.build(:text_brick)
+      @page.bricks << Fabricate.build(:placeholder_brick)
+      @page.bricks << Fabricate.build(:accordion_brick)
+      @page.reload
+
+      @title_brick = @page.bricks[0]
+      @text_brick = @page.bricks[1]
+      @placeholder_brick = @page.bricks[2]
+      @accordion_brick = @page.bricks[3]
+
+      visit edit_cms_page_path(@page)
+    end
+
     it "shows the list of bricks" do
       page.should have_selector('.bricks-table tr', :count => @page.bricks.count+1)
     end
@@ -57,6 +57,7 @@ describe "Cms::Bricks" do
   context 'title brick' do
     describe '#new' do
       before :each do
+        @page = Fabricate(:page)
         visit new_cms_page_title_brick_path(@page)
       end
 
@@ -78,6 +79,9 @@ describe "Cms::Bricks" do
 
     describe '#edit' do
       before :each do
+        @page = Fabricate(:page)
+        @page.bricks << Fabricate.build(:title_brick)
+        @title_brick = @page.bricks.last
         visit edit_cms_page_title_brick_path(@page, @title_brick)
       end
 
@@ -101,6 +105,7 @@ describe "Cms::Bricks" do
   context 'text brick' do
     describe '#new' do
       before :each do
+        @page = Fabricate(:page)
         visit new_cms_page_text_brick_path(@page)
       end
 
@@ -124,6 +129,9 @@ describe "Cms::Bricks" do
 
     describe '#edit' do
       before :each do
+        @page = Fabricate(:page)
+        @page.bricks << Fabricate.build(:text_brick)
+        @text_brick = @page.bricks.last
         visit edit_cms_page_text_brick_path(@page, @text_brick)
       end
 
@@ -149,6 +157,7 @@ describe "Cms::Bricks" do
   context 'accordion brick' do
     describe '#new' do
       before :each do
+        @page = Fabricate(:page)
         visit new_cms_page_accordion_brick_path(@page)
       end
 
@@ -172,6 +181,9 @@ describe "Cms::Bricks" do
 
     describe '#edit' do
       before :each do
+        @page = Fabricate(:page)
+        @page.bricks << Fabricate.build(:accordion_brick)
+        @accordion_brick = @page.bricks.last
         visit edit_cms_page_accordion_brick_path(@page, @accordion_brick)
       end
 
@@ -197,6 +209,7 @@ describe "Cms::Bricks" do
   context 'placeholder brick' do
     describe '#new' do
       before :each do
+        @page = Fabricate(:page)
         visit new_cms_page_placeholder_brick_path(@page)
       end
 
@@ -218,6 +231,9 @@ describe "Cms::Bricks" do
 
     describe '#edit' do
       before :each do
+        @page = Fabricate(:page)
+        @page.bricks << Fabricate.build(:placeholder_brick)
+        @placeholder_brick = @page.bricks.last
         visit edit_cms_page_placeholder_brick_path(@page, @placeholder_brick)
       end
 

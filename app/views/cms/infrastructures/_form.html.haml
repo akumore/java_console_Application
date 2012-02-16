@@ -1,7 +1,7 @@
 = render_navigation :context => :real_estate
 
 = form_for @infrastructure, :url => cms_real_estate_infrastructure_path(@real_estate) do |f|
-  = render 'cms/real_estates/errors', :model => @infrastructure
+  = render 'cms/shared/errors', :model => @infrastructure
 
   %fieldset
     %legend= t('.parking')

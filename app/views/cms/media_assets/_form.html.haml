@@ -1,7 +1,7 @@
 = render_navigation :context => :real_estate
 
 = form_for [:cms, @real_estate, @media_asset], :html => { :multipart => true } do |f|
-  = render 'cms/real_estates/errors', :model => @media_asset
+  = render 'cms/shared/errors', :model => @media_asset
 
   %fieldset
     .control-group
