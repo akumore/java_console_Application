@@ -34,5 +34,4 @@ $(document).ready ->
     handle: ".drag-handle"
     update: (event, ui) ->
       $("table.sortable .draggable-row").each (idx, elem) ->
-        console.log($(this).find("input[type=hidden]"))
         $(this).find("input[type=hidden]").val(idx+1)
