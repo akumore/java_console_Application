@@ -4,14 +4,16 @@
       cursor: pointer
 
     .content
-      max-height: 0px
-      overflow: hidden
-      +single-transition(max-height)
+      //max-height: 0px
+      //overflow: hidden
+      //+single-transition(max-height)
+      display: none
 
     &.open
       .content
         // fake max-height because height: auto is not supported in animations
-        max-height: 2000px
+        //max-height: 2000px
+        display: block
 
 .accordion-classical
   .title
@@ -33,3 +35,29 @@
 
   .content
     margin-left: 2em
+
+.accordion-square
+  .title
+    @extend .arrow-block-right
+    background-color: $dark_clay
+    padding: 20px 45px
+    border-bottom: 1px solid lighten($dark_clay, 20%)
+    font-size: 1.75em
+    line-height: 1em
+    display: block
+
+  .open
+    .title
+      @extend .arrow-block-down
+      background-color: $dark_clay
+      display: block
+      border-bottom-width: 0px
+
+    .content
+      background: $dark_clay
+      padding: 15px 45px
+      border-bottom: 1px solid lighten($dark_clay, 20%)
+      color: lighten($clay, 6%)
+
+  h3
+    color: #fff

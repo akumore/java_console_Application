@@ -2,6 +2,14 @@
   .accordion.accordion-square
     - Job.published.each do |job|
       .accordion-item
-        .title= job.title
+        .title{ :id => "job_#{job.id}" }= job.title
         .content
           = markdown(job.text)
+          %ul.icon-list
+            - if job.job_profile_file.present?
+              %li
+                = link_to t('.download_pdf'), job.job_profile_file.url, :target => '_new', :class => 'icon-pdf'
+            %li
+              = link_to t('.recommend_job'), "mailto:?subject=#{t('.recommend_job_title')}&body=#{URI.encode(request.url)}#job_#{job.id}", :class => 'icon-mail'
+            %li
+              = link_to t('.apply_for_job'), '#apply', :class => 'icon-pencil'
