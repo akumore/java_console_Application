@@ -17,16 +17,26 @@
       .span2
         %br
       .span8
-        %table.table.table-bordered.bricks-table
-          %tr
-            %th{ :width => '70%' } Baustein
-            %th
-            %th
-          - @page.bricks.each do |brick|
-            %tr{ :class => brick.type }
-              %td= render "cms/bricks/#{brick.type}_show", :brick => brick
-              %td= link_to t('.destroy'), send("cms_page_#{brick.type}_brick_path", @page, brick), :method => :delete, :confirm => t('.confirm_delete')
-              %td= link_to t('.edit'), send("edit_cms_page_#{brick.type}_brick_path", @page, brick)
+        %table.table.table-bordered.bricks-table.sortable
+          %thead
+            %tr
+              %th
+              %th{ :width => '70%' } Baustein
+              %th
+              %th
+          %tbody
+            - @page.bricks.each do |brick|
+              = f.fields_for :bricks, brick do |brick_form|
+                %tr.draggable-row{ :class => brick.type }
+                  %td.drag-handle
+                    %i.icon-align-justify
+                    = brick_form.hidden_field :position, :value => brick.position
+                  %td{ :width => '70%' }= render "cms/bricks/#{brick.type}_show", :brick => brick
+
+                  %td= link_to t('.destroy'), send("cms_page_#{brick.type}_brick_path", @page, brick), :method => :delete, :confirm => t('.confirm_delete')
+
+                  %td= link_to t('.edit'), send("edit_cms_page_#{brick.type}_brick_path", @page, brick)
+
         - if @page.persisted?
           .pull-right
             .btn-group

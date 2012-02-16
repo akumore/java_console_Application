@@ -5,6 +5,7 @@ class Brick::Base
   TYPES = %w(title text accordion placeholder)
 
   embedded_in :page
+  default_scope asc(:position)
 
   field :position, :type => Integer
 
