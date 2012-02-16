@@ -21,6 +21,12 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
   initialize: ->
     @items = @el.find(".accordion-item")
     @open  = null
+    @initiallyOpenItem()
+
+  initiallyOpenItem: ->
+    if window.location.hash
+      elem = $(window.location.hash)
+      @openItem(elem.parent()) if elem.hasClass("title")
 
   openItem: (elem) ->
     @closeItem(@open) if @open
