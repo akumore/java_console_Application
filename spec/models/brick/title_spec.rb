@@ -25,4 +25,22 @@ describe Brick::Title do
       @brick.should be_valid
     end
   end
+
+  describe '#is_primary?' do
+    before :each do
+      @page = Fabricate(:page, :name => 'title_test_page')
+      @page.bricks << Fabricate.build(:text_brick)
+      @page.bricks << Fabricate.build(:title_brick)
+      @page.bricks << Fabricate.build(:text_brick)
+      @page.bricks << Fabricate.build(:title_brick)
+    end
+
+    it 'returns true for the first title brick in the collection' do
+      @page.bricks[1].is_primary?.should be_true
+    end
+
+    it 'returns false for any other title brick in the collection' do
+      @page.bricks.last.is_primary?.should be_false
+    end
+  end
 end

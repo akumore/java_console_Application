@@ -3,12 +3,12 @@
     - content_for brick.group_id do
       = render "bricks/#{brick.type}", :brick => brick
     - if brick.next.blank? || brick.next.type != 'accordion'
-      .brick
+      .brick.accordion-brick
         .accordion.accordion-classical
           = yield brick.group_id
   - elsif brick.type == 'placeholder'
-    .brick
+    .brick.placeholder-brick
       = render "bricks/placeholder/#{brick.placeholder}", :brick => brick
   - else
-    .brick
+    .brick{ :class => "#{brick.type}-brick"}
       = render "bricks/#{brick.type}", :brick => brick

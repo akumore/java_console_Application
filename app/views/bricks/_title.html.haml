@@ -1,1 +1,4 @@
-%h1= brick.title
+- if brick.is_primary?
+  %h1= brick.title
+- else
+  %h2= brick.title

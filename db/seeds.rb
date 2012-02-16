@@ -345,6 +345,14 @@ Bei der Alfred Müller AG gibt es keine vorgezeichneten Karrierewege. Eigenveran
 * Die Tage zwischen Weihnachten und Neujahr sowie am Freitag nach Auffahrt sind arbeitsfrei ohne Ferienabzug.
 * Die Alfred Müller AG stellt allen Mitarbeitenden einen Parkplatz zur Verfügung. Wer keinen Parkplatz beansprucht, erhält monatlich eine Entschädigung von 50 Franken.')
 jobs_page.bricks << Brick::Accordion.new(:title => 'Familiäre Atmosphäre', :text => ' Obwohl die Alfred Müller AG bereits über 170 Mitarbeitende beschäftigt, ist die Arbeitsatmosphäre innerhalb des Unternehmens immer noch sehr familiär. In der firmeneigenen Cafeteria treffen sich die Mitarbeitenden über alle Abteilungen und Bereiche hinweg. Unsere Mitarbeitenden schätzen auch die schönen Anlässe, zu denen wir sie einladen. So finden jedes Jahr ein Geschäftsessen, ein Geschäftsausflug sowie alle fünf Jahre eine mehrtägige Jubiläumsreise statt. Neben sportlichen Aktivitäten (z.B. Bike to work, Skiweekend) können die Mitarbeitenden dreimal jährlich an gemütlichen Höcks teilnehmen. Auch die Pensionierten laden wir einmal im Jahr zu einem Tagesausflug ein.')
+
+jobs_page.bricks << Brick::Title.new(:title => 'Offene Stellen')
+jobs_page.bricks << Brick::Placeholder.new(:placeholder => 'jobs_openings')
+
+jobs_page.bricks << Brick::Title.new(:title => 'Erfolgreich bewerben')
+jobs_page.bricks << Brick::Text.new(:text => 'Möchten Sie bei uns arbeiten? Dann freuen wir uns auf Ihre Bewerbungsunterlagen. Bitte beachten Sie, dass eine umfassende, vollständige und sorgfältige Bewerbung die Grundlage für eine professionelle Auswahlentscheidung bildet. Deshalb benötigen wir von Ihnen Unterlagen, mit denen wir uns ein genaues Bild von Ihren Qualifikationen, Fähigkeiten und Ihrer Persönlichkeit machen können. ', :more_text => 'Bitte haben Sie Verständnis, dass wir Zeit brauchen, um die eingehenden Bewerbungsunterlagen sorgfältig zu prüfen. Ein erstes Feedback erhalten Sie von uns aber schon wenige Tage nach dem Eingang Ihres Dossiers.
+Wenn Sie bereit sind, engagiert zu arbeiten, unternehmerisch zu denken und im Team nach optimalen Lösungen zu suchen, dann verfügen Sie bereits über die wichtigsten Voraussetzungen für eine Karriere bei der Alfred Müller AG. Je nach Stelle sind zusätzliche Anforderungen notwendig, welche Sie den einzelnen Stellenausschreibungen entnehmen können.')
+jobs_page.bricks << Brick::Placeholder.new(:placeholder => 'jobs_apply_with_success')
 end
 
 end

@@ -38,7 +38,8 @@
 
 .accordion-square
   .title
-    @extend .arrow-block-right
+    @extend .arrow-middle-white-right
+    background-position: 20px 25px
     background-color: $dark_clay
     padding: 20px 45px
     border-bottom: 1px solid lighten($dark_clay, 20%)
@@ -46,12 +47,23 @@
     line-height: 1em
     display: block
 
+    &:hover
+      @extend .arrow-middle-beige-down
+      background-position: 20px 30px
+      background-color: $dark_clay
+      color: $clay
+      display: block
+
   .open
     .title
-      @extend .arrow-block-down
+      @extend .arrow-middle-beige-down
+      background-position: 20px 30px
       background-color: $dark_clay
       display: block
       border-bottom-width: 0px
+
+      &:hover
+        color: #fff
 
     .content
       background: $dark_clay
