@@ -44,6 +44,10 @@
     = f.label :email
     .controls
       = f.text_field :email
+  .control-group
+    = f.label :attachment
+    .controls
+      = f.file_field :attachment
   .form-actions
     .controls
       = f.submit t('.send')

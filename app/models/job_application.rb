@@ -5,6 +5,8 @@ class JobApplication
 
   belongs_to :job
 
+  mount_uploader :attachment, JobApplicationUploader
+
   field :firstname, :type => String
   field :lastname, :type => String
   field :birthdate, :type => String
@@ -14,6 +16,7 @@ class JobApplication
   field :phone, :type => String
   field :mobile, :type => String
   field :email, :type => String
+  field :attachment, :type => String
 
   validates :firstname, :presence => true
   validates :lastname, :presence => true
