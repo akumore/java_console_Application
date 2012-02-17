@@ -1,0 +1,49 @@
+-if @job_application.errors.any?
+  .alert
+    %h3= t('.errors')
+    %p
+      %ul
+        - @job_application.errors.full_messages.each do |msg|
+          %li= msg
+
+
+= form_for @job_application, :url => job_application_path(@job_application), :remote => true do |f|
+  .control-group
+    = f.label :job
+    .controls
+      = f.select :job, Job.all.map { |job| [job.title, job.id] }, :prompt => t('.speculative_application')
+  .control-group
+    = f.label :firstname
+    .controls
+      = f.text_field :firstname
+  .control-group
+    = f.label :lastname
+    .controls
+      = f.text_field :lastname
+  .control-group
+    = f.label :birthdate
+    .controls
+      = f.text_field :birthdate
+  .control-group
+    = f.label :street, JobApplication.human_attribute_name(:address)
+    .controls
+      = f.text_field :street, :placeholder => JobApplication.human_attribute_name(:street)
+  .control-group
+    .controls
+      = f.text_field :city, :placeholder => JobApplication.human_attribute_name(:city)
+      = f.text_field :zipcode, :class => :short, :placeholder => JobApplication.human_attribute_name(:zipcode)
+  .control-group
+    = f.label :phone
+    .controls
+      = f.text_field :phone
+  .control-group
+    = f.label :mobile
+    .controls
+      = f.text_field :mobile
+  .control-group
+    = f.label :email
+    .controls
+      = f.text_field :email
+  .form-actions
+    .controls
+      = f.submit t('.send')

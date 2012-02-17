@@ -1,0 +1,19 @@
+de:
+  mongoid:
+    models:
+      job_application: 'Bewerbung'
+    attributes:
+      job_application:
+        firstname: 'Vorname'
+        lastname: 'Name'
+        birthdate: 'Geboren am'
+        address: 'Adresse'
+        street: 'Strasse'
+        city: 'Stadt'
+        zipcode: 'PLZ'
+        phone: 'Telefon'
+        mobil: 'Mobil'
+        email: 'e-Mail Adresse'
+  errors:
+    messages:
+      extension_white_list_error: 'muss ein PDF sein'

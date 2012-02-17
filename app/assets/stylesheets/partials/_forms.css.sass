@@ -1,0 +1,62 @@
+.control-group
+  @extend .clearfix
+
+  label
+    +float_left
+    margin-top: 7px
+
+.controls
+  margin-left: 160px
+  margin-bottom: 0.5em
+  color: #6d6d65
+  font-size: 1em
+
+  select
+    background: #edeae5
+    border-width: 0
+
+  input[type=submit]
+    background: #edeae5 image-url('button-bg.png') repeat-x
+    border: 1px solid #848273
+    padding: 0.5em 1em
+    display: inline-block
+    cursor: pointer
+
+    &:hover
+      border: 1px solid lighten(#848273, 50%)
+      +single-text-shadow($clay, 0px, 1px, 0px)
+      +single-box-shadow(darken(#848273, 10%), 0px, 2px, 1px)
+
+  input, textarea
+    border-width: 0
+    background: #cfcdc1
+    outline-color: $clay
+
+  select
+    max-width: 200px
+
+  input[type=text]
+    width: 200px
+    padding: 5px
+
+  input[type=text].short
+    width: 50px
+    margin-left: 0.5em
+
+.field_with_errors
+  +float_left
+  margin-bottom: 0.5em
+
+  label
+    color: #ba2c2c
+    font-weight: bold
+
+  input, select, textarea
+    background: #ffc9ba
+
+.alert
+  margin: 2em 0
+
+  ul
+    list-style: disc
+    margin-left: 1.5em

@@ -1,0 +1,33 @@
+.confirmation
+  .message
+    = t('.confirmation', :firstname => @job_application.firstname, :lastname => @job_application.lastname)
+
+  %h2= t('.your_application')
+  %dl
+    %dt= JobApplication.human_attribute_name :firstname
+    %dd= @job_application.firstname
+
+    %dt= JobApplication.human_attribute_name :lastname
+    %dd= @job_application.lastname
+
+    %dt= JobApplication.human_attribute_name :birthdate
+    %dd= @job_application.birthdate
+
+    %dt= JobApplication.human_attribute_name :firstname
+    %dd= @job_application.firstname
+
+    %dt= JobApplication.human_attribute_name :address
+    %dd
+      = @job_application.street
+      %br
+      = @job_application.zipcode
+      = @job_application.city
+
+    %dt= JobApplication.human_attribute_name :phone
+    %dd= @job_application.phone
+
+    %dt= JobApplication.human_attribute_name :mobile
+    %dd= @job_application.mobile
+
+    %dt= JobApplication.human_attribute_name :email
+    %dd= @job_application.email

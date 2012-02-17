@@ -3,6 +3,7 @@ AlfredMueller::Application.routes.draw do
   devise_for :users, :class_name => 'Cms::User'
 
   resources :real_estates, :only=> [:index, :show]
+  resource :job_application, :except => [:edit, :destroy]
 
   namespace :cms do
     resource :dashboards
