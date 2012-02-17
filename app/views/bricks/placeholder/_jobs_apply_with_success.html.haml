@@ -10,5 +10,6 @@
     .clear
   .accordion.accordion-square
     .accordion-item
-      .title Direkt bewerben
+      = link_to t('.apply'), new_job_application_path, :remote => true, :class => :title
       .content
+        #job-application

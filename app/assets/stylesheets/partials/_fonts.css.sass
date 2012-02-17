@@ -105,10 +105,34 @@ input, select, textarea
     font-size: 1.5em
     @extend .title-font
 
+    &:hover
+      color: $classic
+
+    .open
+      .title
+        &:hover
+          color: $classic
+
 .accordion-square
   .title
     font-size: 1.5em
     color: #fff
+    line-height: 1em
+    @extend .text-font
+
+    &:hover
+      color: $clay
 
   .content
+    color: #fff
+
+  .open
+    .title
+      &:hover
+        color: #fff
+
+    .content
+      color: lighten($clay, 6%)
+
+  h3
     color: #fff

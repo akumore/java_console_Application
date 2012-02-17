@@ -37,6 +37,7 @@ describe "JobApplications" do
 
       it 'displays the given job application information' do
         click_on 'Bewerbung senden'
+        page.should have_content('Bauleiter')
         page.should have_content('Hans')
         page.should have_content('Muster')
         page.should have_content('20.05.1986')

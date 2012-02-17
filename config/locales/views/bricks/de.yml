@@ -14,6 +14,7 @@ de:
         recommend_job_title: 'Interessante Stellenanzeige bei Alfred Müller'
         apply_for_job: 'Online bewerben'
       jobs_apply_with_success:
+        apply: 'Direkt bewerben'
         title_html: 'Ihre Ansprechperson:'
         person_html: 'Heidi Rohner<br>+41 (0)41 767 02 02<br><a href="mailto:heidi.rohner@alfred-mueller.ch">heidi.rohner@alfred-mueller.ch</a>'
         address_html: 'Neuhofstrasse 10<br>6340 Baar'
