@@ -26,4 +26,5 @@ class JobApplication
   validates :zipcode, :presence => true
   validates :firstname, :presence => true
   validates :email, :presence => true
+  validates :attachment, :presence => true
 end
