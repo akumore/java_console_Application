@@ -54,6 +54,8 @@ describe "JobApplications" do
           click_on 'Bewerbung senden'
         }.should change(JobApplication, :count).by(1)
       end
+
+      it 'attaches an upload to the application', :js => true
     end
   end
 end
