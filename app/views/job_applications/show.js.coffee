@@ -1,1 +1,1 @@
-$("#job-application").html('<%=j render 'confirmation' %>')
+$("#job-application").html("<%=j render 'confirmation' %>")

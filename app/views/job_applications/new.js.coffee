@@ -1,1 +1,1 @@
-$("#job-application").html('<%=j render 'form' %>')
+$("#job-application").html("<%=j render 'form' %>")
