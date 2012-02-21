@@ -16,6 +16,7 @@ describe "JobApplications" do
 
     describe '#create' do
       before :each do
+        @attachment = "#{Rails.root}/spec/support/test_files/document.pdf"
         within(".new_job_application") do
           select('Bauleiter', :from => 'Job')
           fill_in 'Vorname', :with => 'Hans'
@@ -27,6 +28,7 @@ describe "JobApplications" do
           fill_in 'Telefon', :with => '052 255 65 68'
           fill_in 'Mobil', :with => '079 123 12 13'
           fill_in 'e-Mail Adresse', :with => 'hans.muster@domain.com'
+          attach_file 'Attachment', @attachment
         end
       end
 
@@ -55,7 +57,20 @@ describe "JobApplications" do
         }.should change(JobApplication, :count).by(1)
       end
 
-      it 'attaches an upload to the application', :js => true
+      it 'attaches the upload to the application' do
+        JobApplication.count.should == 0
+        click_on 'Bewerbung senden'
+        application = JobApplication.first
+        application.attachment.should be_a(JobApplicationUploader)
+        upload = File.basename(application.attachment.path)
+        upload.should == File.basename(@attachment)
+      end
+
+      it 'attaches the upload to the application using ajax' do
+        #, :js => true
+        pending "Don't know how to spec ajax uploads"
+      end
+
     end
   end
 end
