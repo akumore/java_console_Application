@@ -29,4 +29,13 @@ AlfredMueller::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+      :address => "217.192.188.229",
+      :port => 25,
+      :authentication => :login,
+      :user_name => "scba",
+      :password => "scba167"
+  }
 end
