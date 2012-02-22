@@ -17,6 +17,7 @@ class JobApplication
   field :mobile, :type => String
   field :email, :type => String
   field :attachment, :type => String
+  field :comment, :type=>String
 
   validates :firstname, :presence => true
   validates :lastname, :presence => true
@@ -26,6 +27,7 @@ class JobApplication
   validates :zipcode, :presence => true
   validates :firstname, :presence => true
   validates :email, :presence => true
+  validates :comment, :presence => true
   validates :attachment, :presence => true
 
   def unsolicited?
