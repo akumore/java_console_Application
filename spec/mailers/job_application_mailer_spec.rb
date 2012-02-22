@@ -13,7 +13,7 @@ describe JobApplicationMailer do
     Fabricate :job
   end
   let :application_with_attachment do
-    Fabricate :job_application, :attachment=>File.open("#{Rails.root}/spec/support/test_files/document.pdf")
+    Fabricate :job_application, :attachment => File.open("#{Rails.root}/spec/support/test_files/document.pdf")
   end
 
   [:unsolicited_application, :dedicated_application, :application_with_attachment].each do |current_application|
@@ -50,69 +50,63 @@ describe JobApplicationMailer do
     end
 
     it 'contains the job the application is for' do
-      text_part = text_part_of(dedicated_application_mail)
-      text_part.body.should match job.title
+      mail = dedicated_application_mail
+      mail.body.should match job.title
     end
 
     it 'highlights itself as unsolicited application if no job given' do
-      text_part = text_part_of(unsolicited_application_mail)
-      text_part.body.should match "Initiativbewerbung"
+      mail = unsolicited_application_mail
+      mail.body.should match "Initiativbewerbung"
     end
 
     it 'contains the date the application was entered' do
-      text_part = text_part_of(unsolicited_application_mail)
-      text_part.body.should match I18n.l(unsolicited_application.created_at)
+      mail = unsolicited_application_mail
+      mail.body.should match I18n.l(unsolicited_application.created_at)
     end
 
     [:firstname, :lastname].each do |name|
       it "contains the #{name} of the applicant" do
-        text_part = text_part_of(unsolicited_application_mail)
-        text_part.body.should match unsolicited_application.send(name)
+        mail = unsolicited_application_mail
+        mail.body.should match unsolicited_application.send(name)
       end
     end
 
     it 'contains the date of birth of the applicant' do
-      text_part = text_part_of(unsolicited_application_mail)
-      text_part.body.should match unsolicited_application.birthdate
+      mail = unsolicited_application_mail
+      mail.body.should match unsolicited_application.birthdate
     end
 
     it 'contains the address of the applicant' do
-      text_part = text_part_of(unsolicited_application_mail)
+      mail = unsolicited_application_mail
       [:street, :zipcode, :city].each do |val|
-        text_part.body.should match unsolicited_application.send(val)
+        mail.body.should match unsolicited_application.send(val)
       end
     end
 
     it 'contains the phone numbers of the applicant if given' do
-      text_part = text_part_of(unsolicited_application_mail)
-      [:phone,:mobile].each do |meth|
-        text_part.body.should match unsolicited_application.send(meth)
+      mail = unsolicited_application_mail
+      [:phone, :mobile].each do |meth|
+        mail.body.should match unsolicited_application.send(meth)
       end
 
-      [:phone,:mobile].each { |meth| dedicated_application.send("#{meth}=", nil) }
+      [:phone, :mobile].each { |meth| dedicated_application.send("#{meth}=", nil) }
       lambda { dedicated_application_mail }.should_not raise_exception
     end
 
     it 'contains the email address of the applicant' do
-      text_part = text_part_of(unsolicited_application_mail)
-      text_part.body.should match unsolicited_application.email
+      mail = unsolicited_application_mail
+      mail.body.should match unsolicited_application.email
     end
 
     it 'contains the message the applicant has entered' do
-      text_part = text_part_of(unsolicited_application_mail)
-      text_part.body.should match unsolicited_application.comment
+      mail = unsolicited_application_mail
+      mail.body.should match unsolicited_application.comment
     end
 
     it 'has the application document attached' do
       mail = JobApplicationMailer.application_notification(application_with_attachment).deliver
       attachment = mail.parts.last
       attachment.content_type.should match "filename=#{unsolicited_application.attachment.filename}"
-    end
-
-
-    private
-    def text_part_of(mail)
-      mail.parts.empty? ? mail : mail.parts.first
     end
   end
 
