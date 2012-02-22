@@ -4,6 +4,10 @@ Eine Initiativbewerbung ist am <%= l @application.created_at %> über die Webanw
 Eine Bewerbung für den Job <%= @job.title -%> ist am <%= l @application.created_at %> über die Webanwendung eingegangen.
 <% end -%>
 
+Nachricht des Bewerbers:
+
+<%= @application.comment %>
+
 
 Bewerberdetails:
 Vorname: <%= @application.firstname %>
@@ -21,4 +25,6 @@ Mobile: <%= number_to_phone @application.mobile %>
 Email: <%= @application.email %>
 
 
+<% if @application.attachment? %>
 Das von dem Bewerber hochgeladenen Bewerbungsdokument befindet sich im Anhang dieser Mail.
+<% end %>

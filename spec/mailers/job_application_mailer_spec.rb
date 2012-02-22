@@ -12,8 +12,11 @@ describe JobApplicationMailer do
   let :job do
     Fabricate :job
   end
+  let :application_with_attachment do
+    Fabricate :job_application, :attachment=>File.open("#{Rails.root}/spec/support/test_files/document.pdf")
+  end
 
-  [:unsolicited_application, :dedicated_application].each do |current_application|
+  [:unsolicited_application, :dedicated_application, :application_with_attachment].each do |current_application|
     it "sends the #{current_application} notification" do
       lambda {
         JobApplicationMailer.application_notification(send current_application).deliver
@@ -95,15 +98,21 @@ describe JobApplicationMailer do
       text_part.body.should match unsolicited_application.email
     end
 
+    it 'contains the message the applicant has entered' do
+      text_part = text_part_of(unsolicited_application_mail)
+      text_part.body.should match unsolicited_application.comment
+    end
+
     it 'has the application document attached' do
-      attachment = unsolicited_application_mail.parts.last
+      mail = JobApplicationMailer.application_notification(application_with_attachment).deliver
+      attachment = mail.parts.last
       attachment.content_type.should match "filename=#{unsolicited_application.attachment.filename}"
     end
 
 
     private
     def text_part_of(mail)
-      mail.parts.first
+      mail.parts.empty? ? mail : mail.parts.first
     end
   end
 
