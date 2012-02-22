@@ -7,7 +7,7 @@ class JobApplicationsController < ApplicationController
   def create
     @job_application = JobApplication.new(params[:job_application])
     if @job_application.save
-      # TODO: send email to heidi rohner
+      JobApplicationMailer.application_notification(@job_application).deliver
       render 'show'
     else
       render 'new'

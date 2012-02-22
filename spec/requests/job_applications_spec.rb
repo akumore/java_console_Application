@@ -71,6 +71,12 @@ describe "JobApplications" do
         pending "Don't know how to spec ajax uploads"
       end
 
+      it "triggers the application notification mailing" do
+        lambda {
+          click_on 'Bewerbung senden'
+        }.should change(ActionMailer::Base.deliveries, :size).by(1)
+      end
+
     end
   end
 end
