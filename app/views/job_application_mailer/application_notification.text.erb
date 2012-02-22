@@ -1,0 +1,24 @@
+<% if @application.unsolicited? %>
+Eine Initiativbewerbung ist am <%= l @application.created_at %> über die Webanwendung eingegangen.
+<% else %>
+Eine Bewerbung für den Job <%= @job.title -%> ist am <%= l @application.created_at %> über die Webanwendung eingegangen.
+<% end -%>
+
+
+Bewerberdetails:
+Vorname: <%= @application.firstname %>
+Nachname: <%= @application.lastname %>
+Geburtsdatum: <%= @application.birthdate %>
+
+Adressdetails
+Strasse: <%= @application.street %>
+Ort: <%= @application.city %>
+PLZ: <%= @application.zipcode %>
+
+Kontaktdetails
+Telefon: <%= number_to_phone @application.phone %>
+Mobile: <%= number_to_phone @application.mobile %>
+Email: <%= @application.email %>
+
+
+Das von dem Bewerber hochgeladenen Bewerbungsdokument befindet sich im Anhang dieser Mail.
