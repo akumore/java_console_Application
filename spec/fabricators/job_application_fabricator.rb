@@ -9,4 +9,5 @@ Fabricator(:job_application) do
   mobile '050 234 33 33'
   email 'hh@montagnola.ch'
   attachment File.open("#{Rails.root}/spec/support/test_files/document.pdf")
+  comment 'The applicants message to Alfred Mueller'
 end
