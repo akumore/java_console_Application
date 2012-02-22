@@ -27,4 +27,9 @@ class JobApplication
   validates :firstname, :presence => true
   validates :email, :presence => true
   validates :attachment, :presence => true
+
+  def unsolicited?
+    job.nil?
+  end
+
 end
