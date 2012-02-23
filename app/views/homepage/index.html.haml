@@ -4,13 +4,27 @@
       %h3 Mieten
     - unless @projects_for_rent.empty?
       = render 'slider', :projects => @projects_for_rent
+    .link-box
+      = link_to "Wohnen", real_estates_path(:offer=>'for_rent', :utilization=>'private')
+      %br
+      = link_to "Arbeiten", real_estates_path(:offer=>'for_rent', :utilization=>'commercial')
+
   .sale-slide
     .sale-handle.handle
       %h3 Kaufen
     - unless @projects_for_sale.empty?
       = render 'slider', :projects => @projects_for_sale
+    .link-box
+      = link_to "Wohnen", real_estates_path(:offer=>'for_sale', :utilization=>'private')
+      %br
+      = link_to "Arbeiten", real_estates_path(:offer=>'for_sale', :utilization=>'commercial')
+
   .build-slide
     .build-handle.handle
       %h3 Bauen
     - unless @projects_for_build.empty?
       = render 'slider', :projects => @projects_for_build
+    .link-box
+      = link_to "Bauausführung", ""
+      %br
+      = link_to "Umbau und Renovation", ""

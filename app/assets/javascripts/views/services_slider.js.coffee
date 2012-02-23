@@ -11,14 +11,22 @@ class window.AlfredMueller.Views.SliderWithFlexControl extends AlfredMueller.Vie
 
   initialize: ->
     @flexNav = @el.find(".flex-direction-nav")
+    @linkBox = @el.find(".link-box")
     @hideFlexSliderControls(0) unless @isOpen()
+    @hideLinkBox(0) unless @isOpen()
 
   open: (options={}) ->
-    if options["noFlexControls"] then @hideFlexSliderControls() else @showFlexSliderControls()
+    if options["noFlexControls"]
+      @hideFlexSliderControls()
+      @hideLinkBox()
+    else
+      @showFlexSliderControls()
+      @showLinkBox()
     super
 
   close: ->
     @hideFlexSliderControls()
+    @hideLinkBox()
     super
 
   showFlexSliderControls: (animationDuration = 1000) ->
@@ -26,6 +34,12 @@ class window.AlfredMueller.Views.SliderWithFlexControl extends AlfredMueller.Vie
 
   hideFlexSliderControls: (animationDuration = 750) ->
     @flexNav.hide(animationDuration)
+
+  showLinkBox: (animationDuration = 1000) ->
+    @linkBox.show(animationDuration)
+
+  hideLinkBox: (animationDuration = 750) ->
+    @linkBox.hide(animationDuration)
 
   isOpen: ->
     @el.hasClass("open")
