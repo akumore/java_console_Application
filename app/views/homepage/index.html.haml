@@ -2,12 +2,15 @@
   .rent-slide.open
     .rent-handle.handle
       %h3 Mieten
-    = render 'slider', :projects => @projects_for_rent
+    - unless @projects_for_rent.empty?
+      = render 'slider', :projects => @projects_for_rent
   .sale-slide
     .sale-handle.handle
       %h3 Kaufen
-    = render 'slider', :projects => @projects_for_sale
+    - unless @projects_for_sale.empty?
+      = render 'slider', :projects => @projects_for_sale
   .build-slide
     .build-handle.handle
       %h3 Bauen
-    = render 'slider', :projects => @projects_for_build
+    - unless @projects_for_build.empty?
+      = render 'slider', :projects => @projects_for_build
