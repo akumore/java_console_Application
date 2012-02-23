@@ -1,0 +1,13 @@
+.flex-container
+  .flexslider
+    %ul.slides
+      - projects.each do |real_estate|
+        %li
+          = image_tag real_estate.media_assets.primary_image.url
+          - if real_estate.address.link_url.present?
+            = link_to real_estate.address.link_url, :class=>'caption' do
+              %h3= real_estate.title
+              %h4= real_estate.address.link_url
+          - else
+            .caption
+            %h3= real_estate.title

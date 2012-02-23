@@ -1,29 +1,13 @@
 .services-slides-container
-  .rent-slide
+  .rent-slide.open
     .rent-handle.handle
       %h3 Mieten
-    .flex-container
-      .flexslider
-        %ul.slides
-          - 3.times do
-            %li
-              = image_tag "jobs-contact.jpg"
+    = render 'slider', :projects => @projects_for_rent
   .sale-slide
     .sale-handle.handle
       %h3 Kaufen
-    .flex-container
-      .flexslider
-        %ul.slides
-          - 3.times do
-            %li
-              = image_tag "jobs-contact.jpg"
+    = render 'slider', :projects => @projects_for_sale
   .build-slide
     .build-handle.handle
       %h3 Bauen
-    .flex-container
-      .flexslider
-        %ul.slides
-          - 3.times do
-            %li
-              = image_tag "jobs-contact.jpg"
-
+    = render 'slider', :projects => @projects_for_build
