@@ -37,5 +37,12 @@ describe RealEstate do
     end
   end
 
+  it "returns real estates published as reference project only" do
+    Fabricate :real_estate, :channels => [RealEstate::WEBSITE_CHANNEL]
+    reference_project = Fabricate :real_estate, :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL, RealEstate::WEBSITE_CHANNEL]
+
+    RealEstate.reference_projects.all.should == [reference_project]
+  end
+
 
 end

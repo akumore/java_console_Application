@@ -13,7 +13,9 @@ class RealEstate
 
   STATE_EDITING = 'editing'
 
-  CHANNELS = %w(website homegate print)
+  REFERENCE_PROJECT_CHANNEL = "reference_projects"
+  WEBSITE_CHANNEL = "website"
+  CHANNELS = %W(#{WEBSITE_CHANNEL} homegate print #{REFERENCE_PROJECT_CHANNEL})
 
   belongs_to :category
   belongs_to :contact
@@ -34,7 +36,7 @@ class RealEstate
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE
   field :offer, :type => String, :default => RealEstate::OFFER_FOR_RENT
-  field :channels, :type => Array, :default => [RealEstate::CHANNELS.first]
+  field :channels, :type => Array, :default => [RealEstate::WEBSITE_CHANNEL]
   field :title, :type => String
   field :property_name, :type => String
   field :description, :type => String
@@ -47,6 +49,8 @@ class RealEstate
   after_initialize :init_channels
 
   delegate :apartment?, :house?, :property?, :to=>:top_level_category, :allow_nil=>true
+
+  scope :reference_projects, :where => { :channels=>REFERENCE_PROJECT_CHANNEL }
 
   def row_house?
     category.present? && category.name == 'row_house'
