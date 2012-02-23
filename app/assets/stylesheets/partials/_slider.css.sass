@@ -64,3 +64,47 @@
 
   &.open
     left: 5%
+
+.services-slides-container
+  position: relative
+  overflow: hidden
+  height: 300px
+  .handle
+    margin: 0
+    padding: 0
+    height: 40px
+    width: 10%*1.25
+    cursor: pointer
+    text-align: center
+    vertical-align: middle
+    background-color: #EEEEEE
+    h3
+      padding-top: 10px
+      text-transform: none
+
+.rent-slide
+  position: absolute
+  height: 100%
+  width: 80%
+  +float-left
+
+.sale-slide
+  position: absolute
+  height: 100%
+  width: 80%
+  left: 80%
+  +float-left
+  +single-transition('left')
+  border-left: solid white
+  &.open
+    left: 10%
+
+.build-slide
+  position: absolute
+  height: 100%
+  width: 80%
+  left: 90%
+  +single-transition('left')
+  border-left: solid white
+  &.open
+    left: 20%
