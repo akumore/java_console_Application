@@ -25,3 +25,9 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
         slideshow: false,
         animation: "slide"
       )
+
+    # initialize services slider always AFTER flexslider is initialized.
+    # It is using flexsliders controls (hiding and showing) internally
+    $(window).load ->
+      $(".services-slides-container").each ->
+        new AlfredMueller.Views.ServicesSlider(el: $(this))
