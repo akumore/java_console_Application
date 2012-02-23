@@ -28,7 +28,9 @@ class MediaAsset
 
   validates :title, :presence => true
   validates :media_type, :presence => true
-  
+
+  delegate :url, :to=>:file
+
   def image?
     media_type == MediaAsset::IMAGE
   end
