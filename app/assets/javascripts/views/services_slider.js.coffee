@@ -19,14 +19,17 @@ class window.AlfredMueller.Views.SliderWithFlexControl extends AlfredMueller.Vie
     if options["noFlexControls"]
       @hideFlexSliderControls()
       @hideLinkBox()
+      @el.removeClass('active')
     else
       @showFlexSliderControls()
       @showLinkBox()
+      @el.addClass('active')
     super
 
   close: ->
     @hideFlexSliderControls()
     @hideLinkBox()
+    @el.removeClass('active')
     super
 
   showFlexSliderControls: (animationDuration = 1000) ->
