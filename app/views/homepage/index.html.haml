@@ -5,9 +5,9 @@
     - unless @projects_for_rent.empty?
       = render 'slider', :projects => @projects_for_rent
     .link-box
-      = link_to t(".living"), real_estates_path(:offer=>'for_rent', :utilization=>'private')
-      %br
-      = link_to t(".working"), real_estates_path(:offer=>'for_rent', :utilization=>'commercial')
+      %ul
+        %li= link_to t(".living"), real_estates_path(:offer=>'for_rent', :utilization=>'private')
+        %li= link_to t(".working"), real_estates_path(:offer=>'for_rent', :utilization=>'commercial')
 
   .sale-slide
     .sale-handle.handle
@@ -15,9 +15,9 @@
     - unless @projects_for_sale.empty?
       = render 'slider', :projects => @projects_for_sale
     .link-box
-      = link_to t(".living"), real_estates_path(:offer=>'for_sale', :utilization=>'private')
-      %br
-      = link_to t(".working"), real_estates_path(:offer=>'for_sale', :utilization=>'commercial')
+      %ul
+        %li= link_to t(".living"), real_estates_path(:offer=>'for_sale', :utilization=>'private')
+        %li= link_to t(".working"), real_estates_path(:offer=>'for_sale', :utilization=>'commercial')
 
   .build-slide
     .build-handle.handle
@@ -25,6 +25,6 @@
     - unless @projects_for_build.empty?
       = render 'slider', :projects => @projects_for_build
     .link-box
-      = link_to "Bauausführung", ""
-      %br
-      = link_to "Umbau und Renovation", ""
+      %ul
+        %li= link_to "Bauausführung", ""
+        %li= link_to "Umbau und Renovation", ""
