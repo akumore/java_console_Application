@@ -14,6 +14,8 @@ class window.AlfredMueller.Views.SliderWithFlexControl extends AlfredMueller.Vie
     @linkBox = @el.find(".link-box")
     @hideFlexSliderControls(0) unless @isOpen()
     @hideLinkBox(0) unless @isOpen()
+    @clickHandle = @el.find(".handle")
+    @clickHandle.addClass("foreground-me")
 
   open: (options={}) ->
     if options["noFlexControls"]
@@ -51,9 +53,9 @@ class window.AlfredMueller.Views.SliderWithFlexControl extends AlfredMueller.Vie
 class window.AlfredMueller.Views.ServicesSlider extends Backbone.View
 
   events:
-    "click .rent-handle": "handleRentClick"
-    "click .sale-handle": "handleSaleClick"
-    "click .build-handle": "handleBuildClick"
+    "click .rent-slide": "handleRentClick"
+    "click .sale-slide": "handleSaleClick"
+    "click .build-slide": "handleBuildClick"
 
   initialize: ->
     @rentSlider = new AlfredMueller.Views.SliderWithFlexControl(el: @el.find(".rent-slide"))
