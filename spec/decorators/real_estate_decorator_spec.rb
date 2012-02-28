@@ -34,7 +34,7 @@ describe RealEstateDecorator do
         :reference => Reference.new,
         :address => Fabricate.build(:address),
         :information => Information.new,
-        :pricing => Pricing.new,
+        :pricing => Fabricate.build(:pricing),
         :figure => Figure.new,
         :infrastructure => Infrastructure.new,
         :description => Description.new

@@ -103,6 +103,10 @@ describe "Cms::Pricings" do
           current_path.should == new_cms_real_estate_pricing_path(@real_estate)
         end
 
+        it 'does not show the price unit' do
+          page.should_not have_css('input[name=price_unit]')
+        end
+
         it 'does not show the rent price input' do
           page.should_not have_css('textarea[name=for_rent]')
         end
@@ -123,8 +127,7 @@ describe "Cms::Pricings" do
           before :each do
             within(".new_pricing") do
               fill_in 'Kaufpreis', :with => '100000'
-              select 'einmalig', :from => 'Preiseinheit'
-
+              
               within('.inside-parking') do
                 fill_in 'Permanent', :with => '50000'
                 fill_in 'Temporär', :with => '1000'
@@ -155,7 +158,7 @@ describe "Cms::Pricings" do
 
             it 'has saved the provided attributes' do
               @pricing.for_sale.should == 100000
-              @pricing.price_unit.should ==  'once'
+              @pricing.price_unit.should be_blank
               @pricing.inside_parking.should == 50000
               @pricing.outside_parking.should == 10000
               @pricing.inside_parking_temporary.should == 1000
@@ -264,6 +267,10 @@ describe "Cms::Pricings" do
           current_path.should == new_cms_real_estate_pricing_path(@real_estate)
         end
 
+        it 'does not show the price unit' do
+          page.should_not have_css('input[name=price_unit]')
+        end
+
         it 'does not show the rent price input' do
           page.should_not have_css('textarea[name=for_rent]')
         end
@@ -276,8 +283,7 @@ describe "Cms::Pricings" do
           before :each do
             within(".new_pricing") do
               fill_in 'Kaufpreis', :with => '200000'
-              select 'einmalig', :from => 'Preiseinheit'
-
+              
               within('.inside-parking') do
                 fill_in 'Permanent', :with => '40000'
                 fill_in 'Temporär', :with => '2000'
@@ -311,7 +317,7 @@ describe "Cms::Pricings" do
 
             it 'has saved the provided attributes' do
               @pricing.for_sale.should == 200000
-              @pricing.price_unit.should ==  'once'
+              @pricing.price_unit.should be_blank
               @pricing.inside_parking.should == 40000
               @pricing.outside_parking.should == 15000
               @pricing.inside_parking_temporary.should == 2000

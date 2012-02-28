@@ -18,4 +18,11 @@ class Pricing
   field :extra_storage, :type => Integer # Nebenkosten Lager
   field :estimate, :type => String # Geschätz, z.B. 200-500.-
   field :opted, :type => Boolean # Optiert, entscheidet ob MwST angezeigt wird
+
+  validates :for_rent_netto, :presence => true, :if => :for_rent?
+  validates :for_rent_extra, :presence => true, :if => :for_rent?
+  validates :for_sale, :presence => true, :if => :for_sale?
+  validates :price_unit, :presence => true, :if => :for_rent?
+
+  delegate :for_sale?, :for_rent?, :to => :_parent
 end
