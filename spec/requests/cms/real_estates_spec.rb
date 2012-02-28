@@ -112,7 +112,7 @@ describe "Cms::RealEstates" do
 
   describe '#edit' do
     before :each do
-      @fabricated_real_estate = Fabricate(:real_estate, :reference => Reference.new)
+      @fabricated_real_estate = Fabricate(:real_estate, :reference => Reference.new, :category => Fabricate(:category))
       visit edit_cms_real_estate_path(@fabricated_real_estate)
     end
 

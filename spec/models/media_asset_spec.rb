@@ -4,7 +4,7 @@ describe MediaAsset do
 
   before :each do
     @real_estate = Fabricate(:real_estate,
-      :category => Category.last,
+      :category => Fabricate(:category),
       :reference => Reference.new
     )
   end

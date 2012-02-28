@@ -60,7 +60,8 @@ describe "Cms::Addresses" do
   describe '#edit' do
     before :each do
       @real_estate = Fabricate(:real_estate, 
-        :reference => Reference.new, 
+        :reference => Reference.new,
+        :category => Fabricate(:category),
         :address => Address.new(
           :geo_location => GeoLocation.new
       ))
