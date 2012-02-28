@@ -4,10 +4,11 @@
   = render 'cms/shared/errors', :model => @pricing
 
   %fieldset
-    .control-group
-      = f.label :price_unit
-      .controls
-        = f.select :price_unit, Pricing::PRICE_UNITS.map { |c| [t(".#{c}"), c] }, :prompt => 'Preiseinheit auswählen', :class => 'span8'
+    - if @real_estate.for_rent?
+      .control-group
+        = f.label :price_unit
+        .controls
+          = f.select :price_unit, Pricing::PRICE_UNITS.map { |c| [t(".#{c}"), c] }, :prompt => 'Preiseinheit auswählen', :class => 'span8'
     - if @real_estate.for_rent?
       .control-group
         = f.label :for_rent_netto

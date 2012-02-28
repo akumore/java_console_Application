@@ -24,15 +24,15 @@ describe "Cms::Pricings" do
         end
 
         it 'does not show the sale price input' do
-          page.should_not have_css('textarea[name=for_sale]')
+          page.should_not have_css('#pricing_for_sale')
         end
 
         it 'does not show the storage price input' do
-          page.should_not have_css('input[name=storage]')
+          page.should_not have_css('#pricing_storage')
         end
 
         it 'does not show the extra_storage price input' do
-          page.should_not have_css('input[name=extra_storage]')
+          page.should_not have_css('#pricing_extra_storage')
         end
 
         context 'a valid Pricing' do
@@ -104,23 +104,23 @@ describe "Cms::Pricings" do
         end
 
         it 'does not show the price unit' do
-          page.should_not have_css('input[name=price_unit]')
+          page.should_not have_css('#pricing_price_unit')
         end
 
         it 'does not show the rent price input' do
-          page.should_not have_css('textarea[name=for_rent]')
+          page.should_not have_css('#pricing_for_rent')
         end
 
         it 'does not show the rent extra price input' do
-          page.should_not have_css('textarea[name=for_rent_extra]')
+          page.should_not have_css('#pricing_for_rent_extra')
         end
 
         it 'does not show the storage price input' do
-          page.should_not have_css('input[name=storage]')
+          page.should_not have_css('#pricing_storage')
         end
 
         it 'does not show the extra_storage price input' do
-          page.should_not have_css('input[name=extra_storage]')
+          page.should_not have_css('#pricing_extra_storage')
         end
 
         context 'a valid Pricing' do
@@ -191,7 +191,7 @@ describe "Cms::Pricings" do
         end
 
         it 'does not show the sale price input' do
-          page.should_not have_css('textarea[name=for_sale]')
+          page.should_not have_css('#pricing_for_sale')
         end
 
         context 'a valid Pricing' do
@@ -268,15 +268,15 @@ describe "Cms::Pricings" do
         end
 
         it 'does not show the price unit' do
-          page.should_not have_css('input[name=price_unit]')
+          page.should_not have_css('#pricing_price_unit')
         end
 
         it 'does not show the rent price input' do
-          page.should_not have_css('textarea[name=for_rent]')
+          page.should_not have_css('#pricing_for_rent')
         end
 
         it 'does not show the rent extra price input' do
-          page.should_not have_css('textarea[name=for_rent_extra]')
+          page.should_not have_css('#pricing_for_rent_extra')
         end
 
         context 'a valid Pricing' do
