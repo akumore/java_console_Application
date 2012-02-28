@@ -4,7 +4,7 @@
   = render 'cms/shared/errors', :model => @media_asset
 
   %fieldset
-    .control-group
+    .control-group.mandatory
       = f.label :title
       .controls
         = f.text_field :title, :class => 'span8'
@@ -14,7 +14,7 @@
         .controls
           %label.checkbox
             = f.check_box :is_primary
-    .control-group
+    .control-group.mandatory
       = f.label :file
       .controls
         = f.file_field :file

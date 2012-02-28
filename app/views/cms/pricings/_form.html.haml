@@ -5,21 +5,21 @@
 
   %fieldset
     - if @real_estate.for_rent?
-      .control-group
+      .control-group.mandatory
         = f.label :price_unit
         .controls
           = f.select :price_unit, Pricing::PRICE_UNITS.map { |c| [t(".#{c}"), c] }, :prompt => 'Preiseinheit auswählen', :class => 'span8'
     - if @real_estate.for_rent?
-      .control-group
+      .control-group.mandatory
         = f.label :for_rent_netto
         .controls
           = f.text_field :for_rent_netto, :class => 'span8'
-      .control-group
+      .control-group.mandatory
         = f.label :for_rent_extra
         .controls
           = f.text_field :for_rent_extra, :class => 'span8'
     - if @real_estate.for_sale?
-      .control-group
+      .control-group.mandatory
         = f.label :for_sale
         .controls
           = f.text_field :for_sale, :class => 'span8'
