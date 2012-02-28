@@ -62,7 +62,7 @@ describe "Cms::Addresses" do
       @real_estate = Fabricate(:real_estate, 
         :reference => Reference.new,
         :category => Fabricate(:category),
-        :address => Address.new(
+        :address => Fabricate.build(:address,
           :geo_location => GeoLocation.new
       ))
       visit edit_cms_real_estate_path(@real_estate)

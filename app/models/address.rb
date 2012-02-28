@@ -13,4 +13,9 @@ class Address
   field :zip, :type => String
   field :canton, :type => String
   field :link_url, :type => String
+
+  validates :city, :presence => true
+  validates :street, :presence => true
+  validates :zip, :presence => true
+  validates :canton, :presence => true, :inclusion => Address::CANTONS
 end

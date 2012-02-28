@@ -32,7 +32,7 @@ describe RealEstateDecorator do
       real_estate = Fabricate(:real_estate,
         :category => Fabricate(:category, :name=>'single_house', :label=>'Einfamilienhaus'),
         :reference => Reference.new,
-        :address => Address.new,
+        :address => Fabricate.build(:address),
         :information => Information.new,
         :pricing => Pricing.new,
         :figure => Figure.new,
