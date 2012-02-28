@@ -19,9 +19,9 @@ class Figure
   field :built_on, :type => Integer # Baujahr
 
   validates :floor, :rooms, :living_surface, :property_surface, :usable_surface,
-            :ceiling_height, :floors, :renovated_on, :built_on, :numericality => true
+            :ceiling_height, :floors, :renovated_on, :built_on, :numericality => true, :allow_blank => true
 
-  validates :storage_surface, :numericality => true, :if => :commercial_utilization?
+  validates :storage_surface, :numericality => true, :if => :commercial_utilization?, :allow_blank => true
 
   delegate :commercial_utilization?, :to => :_parent
 end
