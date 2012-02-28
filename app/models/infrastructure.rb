@@ -18,6 +18,9 @@ class Infrastructure
   field :inside_parking_spots_temporary, :type => Integer
   field :outside_parking_spots_temporary, :type => Integer
 
+  validates :inside_parking_spots, :outside_parking_spots, :inside_parking_spots_temporary, 
+            :outside_parking_spots_temporary, :numericality => true, :allow_blank => true
+
   def build_all_points_of_interest
     PointOfInterest::TYPES.each do |name|
       self.points_of_interest.find_or_initialize_by :name => name

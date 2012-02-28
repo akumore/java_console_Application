@@ -11,4 +11,6 @@ class PointOfInterest
   field :name, :type => String
   field :distance, :type => String
 
+  validates :distance, :numericality => true, :allow_blank => true
+
 end

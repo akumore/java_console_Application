@@ -36,7 +36,7 @@ describe RealEstateDecorator do
         :information => Information.new,
         :pricing => Fabricate.build(:pricing),
         :figure => Fabricate.build(:figure),
-        :infrastructure => Infrastructure.new,
+        :infrastructure => Fabricate.build(:infrastructure),
         :description => Description.new
       )
       @decorator = RealEstateDecorator.new(real_estate)
