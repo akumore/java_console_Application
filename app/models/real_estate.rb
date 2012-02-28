@@ -51,6 +51,7 @@ class RealEstate
   validates :utilization, :presence => true
   validates :offer, :presence => true
   validates :title, :presence => true
+  validates :description, :presence => true
 
   after_initialize :init_channels
 
