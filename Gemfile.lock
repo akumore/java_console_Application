@@ -101,6 +101,7 @@ GEM
     fabrication (1.2.0)
     ffi (1.0.11)
     fssm (0.2.8.1)
+    geocoder (1.1.1)
     grit (2.4.1)
       diff-lcs (~> 1.1)
       mime-types (~> 1.15)
@@ -274,6 +275,7 @@ DEPENDENCIES
   devise (= 2.0.0)
   draper
   fabrication
+  geocoder
   guard
   guard-rspectacle
   haml-rails
