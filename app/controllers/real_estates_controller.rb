@@ -6,6 +6,7 @@ class RealEstatesController < ApplicationController
 
   def index
     @real_estates = get_filtered_real_estates(@search_filter)
+    @reference_projects = get_filtered_reference_projects(@search_filter)
   end
 
   def show
@@ -18,10 +19,15 @@ class RealEstatesController < ApplicationController
   private
 
   def set_search_filter
-    @search_filter = SearchFilter.new :offer=>params[:offer], :utilization=>params[:utilization]
+    @search_filter = SearchFilter.new :offer => params[:offer], :utilization => params[:utilization]
   end
 
   def get_filtered_real_estates(search_filter)
     RealEstate.where(search_filter.to_h)
+  end
+
+  def get_filtered_reference_projects search_filter
+    offer = search_filter.for_sale? ? RealEstate::OFFER_FOR_SALE : RealEstate::OFFER_FOR_RENT
+    RealEstateDecorator.decorate RealEstate.reference_projects.where(:offer => offer)
   end
 end

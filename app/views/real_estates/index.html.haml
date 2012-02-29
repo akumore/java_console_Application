@@ -40,3 +40,7 @@
                       = number_to_currency real_estate.pricing.try(:for_rent_netto), :locale=>'de-CH'
     .map
       Map goes here
+
+  - unless @reference_projects.empty?
+    .container.reference-projects-slider
+      = render 'shared/slider', :projects => @reference_projects

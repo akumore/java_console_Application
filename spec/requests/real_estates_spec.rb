@@ -79,6 +79,53 @@ describe "RealEstates" do
       end
     end
 
+    describe "shows a reference projects slider" do
+      context "with projects for rent" do
+        before :each do
+          3.times do
+            Fabricate(:real_estate,
+              :offer => RealEstate::OFFER_FOR_RENT,
+              :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
+              :category => Fabricate(:category),
+              :address => Fabricate.build(:address),
+              :media_assets => [Fabricate.build(:media_asset_image, :is_primary => :true)]
+            )
+          end
+          visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT)
+        end
+
+        it "shows the slider container" do
+          page.should have_css(".reference-projects-slider")
+        end
+
+        it "has 3 slides" do
+          page.should have_css("ul.slides li", :count => 3)
+        end
+      end
+
+      context "with projects for sale" do
+        before :each do
+          2.times do
+            Fabricate(:real_estate,
+              :offer => RealEstate::OFFER_FOR_SALE,
+              :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
+              :category => Fabricate(:category),
+              :address => Fabricate.build(:address),
+              :media_assets => [Fabricate.build(:media_asset_image, :is_primary => :true)]
+            )
+          end
+          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
+        end
+
+        it "shows the slider container" do
+          page.should have_css(".reference-projects-slider")
+        end
+
+        it "has 2 slides" do
+          page.should have_css("ul.slides li", :count => 2)
+        end
+      end
+    end
   end
 
   describe "Search-Filtering of real estates" do

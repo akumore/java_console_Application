@@ -69,7 +69,7 @@ describe "Homepage" do
     end
 
 
-    describe "The slide for renting real estates" do
+    describe "The slide for buying real estates" do
       before do
         @real_estate = Fabricate :real_estate,
                                  :title => "Home Sweet Home for sale",
