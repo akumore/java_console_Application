@@ -17,7 +17,7 @@ describe Address do
       Fabricate(:real_estate, :address => @address)
     end
 
-    [:street, :zip, :city, :canton, :country].each do |attr|
+    [:street, :street_number, :zip, :city, :canton, :country].each do |attr|
       it "detects changed attribute #{attr}" do
         @address.send("#{attr}=", "this value has changed")
         @address.address_changed?.should be_true

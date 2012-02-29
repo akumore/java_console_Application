@@ -24,7 +24,7 @@ class Address
   attr_protected :location
 
   def address
-    [[street,street_number].compact.join(' '), zip, city, canton, country].compact.join(', ')
+    [[street, street_number].compact.join(' '), zip, city, canton, country].compact.join(', ')
   end
 
   def address_changed?
