@@ -11,3 +11,8 @@ de:
         edit: 'Editieren'
         confirm_delete: 'Den Mitarbeiter %{title} wirklich löschen?'
         destroy: 'Löschen'
+  employees:
+    contact:
+      phone: 'T: %{number}'
+      fax: 'F: %{number}'
+      mobile: 'M: %{number}'

@@ -1,6 +1,8 @@
 class RealEstateDecorator < ApplicationDecorator
   include Draper::LazyHelpers
+  
   decorates :real_estate
+  decorates_association :contact
 
   def google_maps_address
     [

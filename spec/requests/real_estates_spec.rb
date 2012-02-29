@@ -9,7 +9,8 @@ describe "RealEstates" do
               :address=>Fabricate.build(:address),
               :figure=>Fabricate.build(:figure, :rooms=>10.5, :floor=>99),
               :pricing=>Fabricate.build(:pricing),
-              :infrastructure => Fabricate.build(:infrastructure)
+              :infrastructure => Fabricate.build(:infrastructure),
+              :contact => Fabricate(:employee)
   end
 
   describe "Visit real estate index path" do
@@ -272,6 +273,16 @@ describe "RealEstates" do
       page.should have_link('Grundriss anzeigen')
     end
 
+    it 'displays the full name of the responsible person' do
+      within(".contact-info") do
+        page.should have_content(real_estate.contact.fullname)
+        page.should have_content(real_estate.contact.phone)
+        page.should have_content(real_estate.contact.fax)
+        page.should have_content(real_estate.contact.mobile)
+        page.should have_content(real_estate.contact.email)
+      end
+    end
+    
     context 'clicking the floorplan link' do
       it 'opens the floorplan in an overlay' do
         pending 'tbd'

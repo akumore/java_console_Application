@@ -55,30 +55,44 @@
           %ul
             - @real_estate.information_basic.each do |line|
               %li= line
-      .accordion-item
-        .title= t('.pricing')
-        .content
-          %ul
-            - @real_estate.price_info_basic.each do |line|
-              %li= line
-          %ul
-            - @real_estate.price_info_parking.each do |line|
-              %li= line
-      .accordion-item
-        .title= t('.facts_and_figures')
-        .content
-          %ul
-            - @real_estate.facts_and_figures.each do |line|
-              %li= line
-      .accordion-item
-        .title= t('.infrastructure')
-        .content
-          %ul
-            - @real_estate.infrastructure_parking.each do |line|
-              %li= line
-          %ul
-            - @real_estate.infrastructure_distances.each do |line|
-              %li= line
+      - unless @real_estate.price_info_basic.empty? && @real_estate.price_info_parking.empty?
+        .accordion-item
+          .title= t('.pricing')
+          .content
+            %ul
+              - @real_estate.price_info_basic.each do |line|
+                %li= line
+            %ul
+              - @real_estate.price_info_parking.each do |line|
+                %li= line
+                
+      - unless @real_estate.facts_and_figures
+        .accordion-item
+          .title= t('.facts_and_figures')
+          .content
+            %ul
+              - @real_estate.facts_and_figures.each do |line|
+                %li= line
+
+      - unless @real_estate.infrastructure_parking.empty? && @real_estate.infrastructure_distances.empty?
+        .accordion-item
+          .title= t('.infrastructure')
+          .content
+            %ul
+              - @real_estate.infrastructure_parking.each do |line|
+                %li= line
+            %ul
+              - @real_estate.infrastructure_distances.each do |line|
+                %li= line
+
+      - if @real_estate.contact.present?
+        .accordion-item
+          .title= t('.contact_person')
+          .content
+            .contact-with-image{ :style => "background-image: url(#{@real_estate.contact.image})"}
+              .contact-info
+                = @real_estate.contact.contact_info
+              .clear
 
   .sidebar
     .nav

@@ -38,8 +38,11 @@
     height: 273px
     margin-bottom: 1px
 
-  .contact-info
-    +float_right
-    width: 300px
-    @extend .text-font-bold
-    margin: 1em 0
+.contact-info
+  +float_right
+  width: 300px
+  z-index: 2
+  @extend .text-font-bold
+  padding: 1em 0 0 45px
+  background: image-url('image-caption-top.png') no-repeat left top
+  min-height: 230px
