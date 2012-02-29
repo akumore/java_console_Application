@@ -4,7 +4,7 @@
   = render 'cms/shared/errors', :model => @address
 
   %fieldset
-    .control-group
+    .control-group.mandatory
       = f.label :street
       .controls
         = f.text_field :street, :class => 'span8'
@@ -12,15 +12,15 @@
       = f.label :street_number
       .controls
         = f.text_field :street_number, :class => 'span3'
-    .control-group
+    .control-group.mandatory
       = f.label :city
       .controls
         = f.text_field :city, :class => 'span8'
-    .control-group
+    .control-group.mandatory
       = f.label :zip
       .controls
         = f.text_field :zip, :class => 'span3'
-    .control-group
+    .control-group.mandatory
       = f.label :canton
       .controls
         = f.select :canton, Address::CANTONS.map { |c| [t("cantons.#{c}"), c] }, :prompt => 'Kanton auswählen', :class => 'span8'

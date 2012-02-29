@@ -60,8 +60,9 @@ describe "Cms::Addresses" do
   describe '#edit' do
     before :each do
       @real_estate = Fabricate(:real_estate, 
-        :reference => Reference.new, 
-        :address => Address.new(
+        :reference => Reference.new,
+        :category => Fabricate(:category),
+        :address => Fabricate.build(:address,
           :geo_location => GeoLocation.new
       ))
       visit edit_cms_real_estate_path(@real_estate)

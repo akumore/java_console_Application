@@ -46,6 +46,13 @@ class RealEstate
   field :building_type, :type => String
   field :utilization_description, :type => String
 
+  validates :category_id, :presence => true
+  validates :state, :presence => true
+  validates :utilization, :presence => true
+  validates :offer, :presence => true
+  validates :title, :presence => true
+  validates :description, :presence => true
+
   after_initialize :init_channels
 
   delegate :apartment?, :house?, :property?, :to=>:top_level_category, :allow_nil=>true

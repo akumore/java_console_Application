@@ -27,7 +27,7 @@ describe "Cms::Infrastructures" do
           check 'Hat Garage'
 
           fill_in 'Anzahl Parkplätze im Freien', :with => '2'
-          fill_in 'zahl Parkplätze in Autoeinstellhalle', :with => '1'
+          fill_in 'Anzahl Parkplätze in Autoeinstellhalle', :with => '1'
 
           fill_in 'Anzahl temporäre Parkplätze im Freien', :with => '1'
           fill_in 'Anzahl temporäre Parkplätze in Autoeinstellhalle', :with => '1'

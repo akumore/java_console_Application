@@ -9,7 +9,7 @@ describe "Cms::RealEstates" do
     before do
       @category = Fabricate :category, :name=>'single_house', :label=>'Einfamilienhaus'
       @reference = Reference.new
-      @address = Address.new
+      @address = Fabricate.build(:address)
       @real_estate = Fabricate :real_estate, :category=>@category, :reference=>@reference, :address => @address
       visit cms_real_estates_path
     end
@@ -112,7 +112,7 @@ describe "Cms::RealEstates" do
 
   describe '#edit' do
     before :each do
-      @fabricated_real_estate = Fabricate(:real_estate, :reference => Reference.new)
+      @fabricated_real_estate = Fabricate(:real_estate, :reference => Reference.new, :category => Fabricate(:category))
       visit edit_cms_real_estate_path(@fabricated_real_estate)
     end
 

@@ -39,7 +39,8 @@ describe "Homepage" do
                                  :title => "Home Sweet Home for rent",
                                  :offer => RealEstate::OFFER_FOR_RENT,
                                  :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
-                                 :address => Fabricate.build(:address)
+                                 :address => Fabricate.build(:address),
+                                 :category => Fabricate(:category)
         @image = Fabricate.build :media_asset_image, :is_primary => true
         @real_estate.media_assets << @image
       end
@@ -74,7 +75,8 @@ describe "Homepage" do
                                  :title => "Home Sweet Home for sale",
                                  :offer => RealEstate::OFFER_FOR_SALE,
                                  :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
-                                 :address => Fabricate.build(:address)
+                                 :address => Fabricate.build(:address),
+                                 :category => Fabricate(:category)
         @image = Fabricate.build :media_asset_image, :is_primary => true
         @real_estate.media_assets << @image
       end
