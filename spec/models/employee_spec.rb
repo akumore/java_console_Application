@@ -37,9 +37,16 @@ describe Employee do
   end
 
   describe '#fullname' do
-    it 'builds it from the first and lastname' do
+    it 'builds it from the firstname and lastname' do
       employee = Fabricate.build(:employee)
       employee.fullname.should == "#{employee.firstname} #{employee.lastname}"
+    end
+  end
+
+  describe '#fullname_reversed' do
+    it 'builds it from lastname and firstname' do
+      employee = Fabricate.build(:employee)
+      employee.fullname_reversed.should == "#{employee.lastname}, #{employee.firstname}"
     end
   end
 end

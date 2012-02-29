@@ -44,6 +44,7 @@ describe "Cms::RealEstates" do
 
   describe '#new' do
     before :each do
+      Fabricate(:employee, :firstname => 'Hans', :lastname => 'Muster')
       visit new_cms_real_estate_path
     end
 
@@ -60,6 +61,7 @@ describe "Cms::RealEstates" do
           check 'Erstvermarktung'
           check 'Website'
           check 'Homegate'
+          select 'Muster, Hans', :from => 'Kontaktperson'
 
           fill_in 'Titel', :with => 'My Real Estate'
           fill_in 'Liegenschaftsname', :with => 'Gartenstadt'
@@ -91,6 +93,7 @@ describe "Cms::RealEstates" do
           @real_estate.offer.should == RealEstate::OFFER_FOR_SALE
           @real_estate.is_first_marketing.should == true
           @real_estate.channels.should == %w(website homegate)
+          @real_estate.contact.fullname == 'Hans Muster'
           @real_estate.title.should == 'My Real Estate'
           @real_estate.property_name.should == 'Gartenstadt'
           @real_estate.description.should == 'Some description...'
@@ -113,6 +116,7 @@ describe "Cms::RealEstates" do
   describe '#edit' do
     before :each do
       @fabricated_real_estate = Fabricate(:real_estate, :reference => Reference.new, :category => Fabricate(:category))
+      Fabricate(:employee, :firstname => 'Hanna', :lastname => 'Henker')
       visit edit_cms_real_estate_path(@fabricated_real_estate)
     end
 
@@ -129,6 +133,7 @@ describe "Cms::RealEstates" do
           uncheck 'Erstvermarktung'
           uncheck 'Website'
           check 'Mini Doku'
+          select 'Henker, Hanna', :from => 'Kontaktperson'
 
           fill_in 'Titel', :with => 'My edited Real Estate'
           fill_in 'Liegenschaftsname', :with => 'Gartenstadt 2012'
@@ -152,6 +157,7 @@ describe "Cms::RealEstates" do
         @real_estate.is_first_marketing.should == false
         @real_estate.channels.should == %w(print)
         @real_estate.title.should == 'My edited Real Estate'
+        @real_estate.contact.fullname.should == 'Hanna Henker'
         @real_estate.property_name.should == 'Gartenstadt 2012'
         @real_estate.description.should == 'Some edited description...'
         @real_estate.short_description.should == 'Some edited short description...'

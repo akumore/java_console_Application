@@ -23,4 +23,8 @@ class Employee
   def fullname
     [firstname, lastname].join ' '
   end
+
+  def fullname_reversed
+    [lastname, firstname].join ', '
+  end
 end

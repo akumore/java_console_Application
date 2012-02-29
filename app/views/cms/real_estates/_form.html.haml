@@ -49,7 +49,7 @@
   .control-group
     = f.label :contact
     .controls
-      = f.select :contact, [], :prompt => 'Kontaktperson auswählen', :class => 'span8'
+      = f.select :contact, Employee.all.order([:lastname, :asc]).map { |e| [e.fullname_reversed, e.id]}, :prompt => 'Kontaktperson auswählen', :class => 'span8'
   %fieldset
     %legend Titel und Beschreibungen
     .control-group.mandatory

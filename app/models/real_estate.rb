@@ -18,7 +18,7 @@ class RealEstate
   CHANNELS = %W(#{WEBSITE_CHANNEL} homegate print #{REFERENCE_PROJECT_CHANNEL})
 
   belongs_to :category
-  belongs_to :contact
+  belongs_to :contact, :class_name => 'Employee'
 
   embeds_one :reference
   embeds_one :address
