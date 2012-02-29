@@ -3,7 +3,7 @@ class Cms::AddressesController < Cms::SecuredController
   before_filter :load_real_estate
 
   def new
-    @address = Address.new(:geo_location => GeoLocation.new)
+    @address = Address.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -13,7 +13,6 @@ class Cms::AddressesController < Cms::SecuredController
 
   def edit
     @address = @real_estate.address
-    @address.build_geo_location unless @address.geo_location
   end
 
   def create

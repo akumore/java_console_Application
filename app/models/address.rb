@@ -8,7 +8,6 @@ class Address
   CANTONS = %w(ag ar ai bl bs be fr ge gl gr ju lu ne nw ow sh sz so sg ti tg ur vd vs zg zh)
 
   embedded_in :real_estate
-  embeds_one :geo_location
 
   field :city, :type => String
   field :street, :type => String
@@ -22,14 +21,14 @@ class Address
 
 
   after_validation :geocode, :if=>:address_changed?
-
+  attr_protected :location
 
   def address
-    [street, zip, city, canton, country].compact.join(', ')
+    [[street,street_number].compact.join(' '), zip, city, canton, country].compact.join(', ')
   end
 
   def address_changed?
-    [:street, :zip, :city, :canton, :country].inject(false) do |res, attr|
+    [:street, :street_number, :zip, :city, :canton, :country].inject(false) do |res, attr|
       res || changed.include?(attr.to_s)
     end
   end

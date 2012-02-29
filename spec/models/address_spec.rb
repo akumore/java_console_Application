@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe Address do
   before do
-    @address = Fabricate.build(:address, :zip => nil, :city => 'Herrnhut', :street => 'Christian-David-Straße 12', :canton => nil, :country => 'Deutschland')
+    @address = Fabricate.build(:address, :zip => nil, :city => 'Herrnhut', :street => 'Christian-David-Straße', :street_number=>12, :canton => nil, :country => 'Deutschland')
   end
 
   it "collects address fields" do

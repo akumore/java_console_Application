@@ -25,8 +25,6 @@ describe "Cms::Addresses" do
           fill_in 'Stadt', :with => 'Adliswil'
           select 'Zürich', :from => 'Kanton'
           fill_in 'Link', :with => 'http://www.google.ch'
-          fill_in 'Breitengrad', :with => '8.123'
-          fill_in 'Längengrad', :with => '38.333'
         end
       end
 
@@ -50,8 +48,6 @@ describe "Cms::Addresses" do
           @address.zip.should == '8123'
           @address.canton.should == 'zh'
           @address.link_url.should == 'http://www.google.ch'
-          @address.geo_location.lat.should == '8.123'
-          @address.geo_location.lng.should == '38.333'
         end
       end
     end
@@ -61,9 +57,7 @@ describe "Cms::Addresses" do
     before :each do
       @real_estate = Fabricate(:real_estate, 
         :reference => Reference.new, 
-        :address => Address.new(
-          :geo_location => GeoLocation.new
-      ))
+        :address => Address.new)
       visit edit_cms_real_estate_path(@real_estate)
       click_on 'Adresse'
     end
@@ -81,8 +75,6 @@ describe "Cms::Addresses" do
           fill_in 'Postleitzahl', :with => '8135'
           select 'Schaffhausen', :from => 'Kanton'
           fill_in 'Link', :with => 'http://www.google.com'
-          fill_in 'Breitengrad', :with => '9.123'
-          fill_in 'Längengrad', :with => '39.333'
         end
 
         click_on 'Adresse speichern'
@@ -97,8 +89,6 @@ describe "Cms::Addresses" do
         @address.zip.should == '8135'
         @address.canton.should == 'sh'
         @address.link_url.should == 'http://www.google.com'
-        @address.geo_location.lat.should == '9.123'
-        @address.geo_location.lng.should == '39.333'
       end
     end
   end
