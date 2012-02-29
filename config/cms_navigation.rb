@@ -51,7 +51,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #
     primary.item :dashboard, 'Dashboard', cms_dashboards_path
     primary.item :real_estates, 'Immobilien', cms_real_estates_path
-    primary.item :addresses, 'Adressen', ''
+    primary.item :addresses, 'Mitarbeiter', cms_employees_path
     primary.item :jobs, 'Jobs', cms_jobs_path
     primary.item :pages, 'Seiten', cms_pages_path
 

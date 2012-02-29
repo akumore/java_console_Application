@@ -34,5 +34,12 @@ describe Employee do
       @employee.valid?
       @employee.errors.should have(5).items
     end
-  end  
+  end
+
+  describe '#fullname' do
+    it 'builds it from the first and lastname' do
+      employee = Fabricate.build(:employee)
+      employee.fullname.should == "#{employee.firstname} #{employee.lastname}"
+    end
+  end
 end

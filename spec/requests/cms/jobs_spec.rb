@@ -22,7 +22,7 @@ describe "Cms::Jobs" do
       current_path.should == edit_cms_job_path(@job)
     end
 
-    it "takes me to the page for creating a new real estate" do
+    it "takes me to the page for creating a new job" do
       page.click_link 'Neuen Job erstellen'
       current_path.should == new_cms_job_path
     end

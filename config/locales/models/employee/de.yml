@@ -1,0 +1,16 @@
+de:
+  mongoid:
+    models:
+      employee: Mitarbeiter
+    attributes:
+      employee:
+        fullname: 'Name'
+        firstname: 'Vorname'
+        lastname: 'Nachname'
+        phone: 'Telefon'
+        mobile: 'Mobiltelefon'
+        fax: 'Fax'
+        image: 'Bild'
+        email: 'E-Mail Adresse'
+        job_function: 'Funktion'
+        department: 'Abteilung'

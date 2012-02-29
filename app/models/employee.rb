@@ -6,6 +6,8 @@ class Employee
   REAL_ESTATE_MANAGEMENT_DEPARTMENT = "real_estate_management"
   DEPARTMENTS = [MARKETING_DEPARTMENT, REAL_ESTATE_MANAGEMENT_DEPARTMENT]
 
+  mount_uploader :image, EmployeeImageUploader
+
   field :firstname, :type => String
   field :lastname, :type => String
   field :phone, :type => String
@@ -17,5 +19,8 @@ class Employee
   field :department, :type => String
 
   validates :firstname, :lastname, :phone, :email, :department, :presence => true
-  validates :phone, :mobile, :fax, :numericality => true, :allow_blank => true
+
+  def fullname
+    [firstname, lastname].join ' '
+  end
 end

@@ -26,6 +26,8 @@ AlfredMueller::Application.routes.draw do
         resources "#{type}_bricks", :controller => :bricks, :type => type, :except => :index
       end
     end
+
+    resources :employees
   end
 
   scope '/:locale' do

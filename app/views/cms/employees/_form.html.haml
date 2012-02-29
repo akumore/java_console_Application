@@ -1,0 +1,52 @@
+= form_for [:cms, @employee] do |f|
+  = render 'cms/shared/errors', :model => @employee
+
+  %fieldset
+    .control-group.mandatory
+      = f.label :firstname
+      .controls
+        = f.text_field :firstname, :class => 'span8'
+    .control-group.mandatory
+      = f.label :lastname
+      .controls
+        = f.text_field :lastname, :class => 'span3'
+    .control-group.mandatory
+      = f.label :email
+      .controls
+        = f.text_field :email, :class => 'span8'
+    .control-group.mandatory
+      = f.label :phone
+      .controls
+        = f.text_field :phone, :class => 'span3'
+    .control-group.mandatory
+      = f.label :department
+      .controls
+        = f.select :department, Employee::DEPARTMENTS.map { |c| [t(".departments.#{c}"), c] }, :prompt => 'Abteilung auswählen', :class => 'span8'
+    .control-group
+      = f.label :job_function
+      .controls
+        = f.text_field :job_function, :class => 'span8'
+    .control-group
+      = f.label :mobile
+      .controls
+        = f.text_field :mobile, :class => 'span8'
+    .control-group
+      = f.label :fax
+      .controls
+        = f.text_field :fax, :class => 'span8'
+    .control-group
+      = f.label :image
+      .controls
+        = f.file_field :image
+        = f.hidden_field :image_cache
+        - if @employee.image.present?
+          .well
+            = image_tag @employee.image.cms_preview.url
+
+    .form-actions
+      = f.submit nil, :class => 'btn btn-primary'
+      .pull-right
+        = link_to(cms_employees_path, :class => 'btn small') do
+          %i.icon-list
+          = t('.overview')
+

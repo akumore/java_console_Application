@@ -1,0 +1,25 @@
+- content_for :title do
+  Erfasste Mitarbeiter
+
+.pull-right.padded
+  = link_to(new_cms_employee_path, :class => 'btn') do
+    %i.icon-plus-sign
+    = t('.new')
+
+%table.table.table-bordered.table-striped{ :id=>'employee' }
+  %tr
+    %th= Employee.human_attribute_name :fullname
+    %th= Employee.human_attribute_name :phone
+    %th= Employee.human_attribute_name :email
+    %th= Employee.human_attribute_name :department
+    %th
+    %th
+
+  - @employees.each do |employee|
+    %tr{:id => "employee_#{employee.id}"}
+      %td= employee.fullname
+      %td= employee.phone
+      %td= employee.email
+      %td= t("departments.#{employee.department}")
+      %td= link_to  t('.destroy'), cms_employee_path(employee), :method => :delete, :confirm => t('.confirm_delete', :title => employee.fullname)
+      %td= link_to  t('.edit'), edit_cms_employee_path(employee)
