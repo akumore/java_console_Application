@@ -69,6 +69,7 @@
   position: relative
   overflow: hidden
   height: 560px
+
   .handle
     margin: 0
     padding: 0
@@ -78,30 +79,38 @@
     text-align: center
     vertical-align: middle
     background-color: #EEEEEE
+
     h3
       padding-top: 10px
       text-transform: none
+
+  img
+    opacity: 0.3
+
+  .active
+    img
+      opacity: 1
+
+.reference-projects-slider
   .caption
     position: absolute
     top: 5%
     left: 40%
     text-align: center
+
   .link-box
     position: absolute
     top: 59px
     left: 0
     width: 12.5%
+
     ul
       margin: 0
+
     li
       height: 30px
       padding: 10px 0px 0px 15px
       background: image-url('button-bg.png') repeat-x
-  img
-    opacity: 0.3
-  .active
-    img
-      opacity: 1
 
 .rent-slide
   position: absolute
@@ -117,6 +126,7 @@
   +single-transition('left')
   border-left: solid white
   background: white
+
   &.open
     left: 10%
 
