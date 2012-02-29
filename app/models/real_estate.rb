@@ -55,13 +55,10 @@ class RealEstate
 
   after_initialize :init_channels
 
-  delegate :apartment?, :house?, :property?, :to=>:top_level_category, :allow_nil=>true
+  delegate :apartment?, :house?, :property?, :to => :top_level_category, :allow_nil => true
+  delegate :row_house?, :to => :category, :allow_nil => true
 
   scope :reference_projects, :where => { :channels=>REFERENCE_PROJECT_CHANNEL }
-
-  def row_house?
-    category.present? && category.name == 'row_house'
-  end
 
   def for_sale?
     self.offer == RealEstate::OFFER_FOR_SALE

@@ -25,4 +25,7 @@ class Category
     name == 'properties'
   end
 
+  def row_house?
+    name == 'row_house'
+  end
 end
