@@ -1,1 +1,1 @@
-$(".appointment .form").html("<%=j render 'form' %>")
+$(".appointment .contact-form").html("<%=j render 'form' %>")
