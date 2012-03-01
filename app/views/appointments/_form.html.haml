@@ -1,25 +1,24 @@
-.contact-form
-  -if @appointment.errors.any?
-    .alert
-      %h3= t('.errors')
-      %p
-        %ul
-          - @appointment.errors.full_messages.each do |msg|
-            %li= msg
+-if @appointment.errors.any?
+  .alert
+    %h3= t('.errors')
+    %p
+      %ul
+        - @appointment.errors.full_messages.each do |msg|
+          %li= msg
 
-  = form_for [@real_estate, @appointment], :remote=>true do |f|
-    .control-group
-      .controls
-        = f.text_field :firstname, :placeholder=>"Firstname"
-    .control-group
-      .controls
-        = f.text_field :lastname, :placeholder=>"Lastname"
-    .control-group
-      .controls
-        = f.text_field :email, :placeholder=>"Email Adresse"
-    .control-group
-      .controls
-        = f.text_field :phone, :placeholder=>"Telefonnummer"
-    .form-actions
-      .controls
-        = f.submit "Kontaktieren Sie mich"
+= form_for [@real_estate, @appointment], :remote=>true do |f|
+  .control-group
+    .controls
+      = f.text_field :firstname, :placeholder=>"Firstname"
+  .control-group
+    .controls
+      = f.text_field :lastname, :placeholder=>"Lastname"
+  .control-group
+    .controls
+      = f.text_field :email, :placeholder=>"Email Adresse"
+  .control-group
+    .controls
+      = f.text_field :phone, :placeholder=>"Telefonnummer"
+  .form-actions
+    .controls
+      = f.submit "Kontaktieren Sie mich"

@@ -2,6 +2,8 @@
   .headline
     %h2 Vereinbaren Sie einen Termin mit uns
 
-  = render "appointments/form"
+  .contact-form
+    = render "appointments/form"
 
-  = render "appointments/contact_information", :contact=>@real_estate.contact
+  .appointment-contact-details
+    = render "appointments/contact_information", :contact=>@real_estate.contact
