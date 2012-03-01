@@ -9,21 +9,17 @@
 
   = form_for [@real_estate, @appointment] do |f|
     .control-group
-      = f.label :firstname
       .controls
-        = f.text_field :firstname
+        = f.text_field :firstname, :placeholder=>"Firstname"
     .control-group
-      = f.label :lastname
       .controls
-        = f.text_field :lastname
+        = f.text_field :lastname, :placeholder=>"Lastname"
     .control-group
-      = f.label :email
       .controls
-        = f.text_field :email
+        = f.text_field :email, :placeholder=>"Email Adresse"
     .control-group
-      = f.label :phone
       .controls
-        = f.text_field :phone
+        = f.text_field :phone, :placeholder=>"Telefonnummer"
     .form-actions
       .controls
         = f.submit "Kontaktieren Sie mich"
