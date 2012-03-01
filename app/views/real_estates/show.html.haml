@@ -29,6 +29,9 @@
                 - if asset.video?
                   %video.sublime{ :preload => 'preload' }
                     %source{ :src => asset.file.url }
+            - if @real_estate.contact.present?
+              %li
+                = render :template=>'appointments/new'
 
   .description
     %h1= @real_estate.title

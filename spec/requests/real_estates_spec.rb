@@ -301,5 +301,19 @@ describe "RealEstates" do
         pending 'tbd'
       end
     end
+
+    context 'Making an appointment' do
+      it 'integrates appointment slide into slide show' do
+        visit real_estate_path(real_estate)
+        page.should have_css ".appointment"
+      end
+
+      it "renders no appointment slide if contact isn't assigned to real estate" do
+        real_estate.contact.destroy
+        visit real_estate_path(real_estate)
+        page.should_not have_css ".appointment"
+      end
+    end
+
   end
 end

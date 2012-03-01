@@ -14,6 +14,7 @@ class RealEstatesController < ApplicationController
     real_estates = get_filtered_real_estates(@search_filter).map(&:id)
     @prev_real_estate = real_estates[real_estates.index(@real_estate.id) - 1] rescue real_estates.last
     @next_real_estate = real_estates[real_estates.index(@real_estate.id) + 1] rescue real_estates.first
+    @appointment = @real_estate.appointments.build
   end
 
   private
