@@ -8,6 +8,8 @@ class Employee
 
   mount_uploader :image, EmployeeImageUploader
 
+  has_many :real_estates, :as=>:contact
+
   field :firstname, :type => String
   field :lastname, :type => String
   field :phone, :type => String
