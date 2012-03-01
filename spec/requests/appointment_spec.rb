@@ -48,7 +48,7 @@ describe "Appointment" do
       fill_in "appointment_#{field}", :with => @contact.send(field)
     end
 
-    lambda { click_on 'Kontaktieren Sie mich' }.should change(Appointment, :count).by(1)
+    lambda { click_on 'Kontaktieren Sie mich' }.should change(@real_estate.appointments, :count).by(1)
     page.should have_content "Vielen Dank für Ihre Kontaktanfrage"
   end
 
