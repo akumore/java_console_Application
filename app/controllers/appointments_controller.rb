@@ -9,7 +9,7 @@ class AppointmentsController < ApplicationController
     @real_estate = RealEstate.find params[:real_estate_id]
     @appointment = @real_estate.appointments.build params[:appointment]
     if @appointment.save
-      render 'confirmation'
+      render 'show'
     else
       render 'new'
     end
