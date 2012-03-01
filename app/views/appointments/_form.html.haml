@@ -1,0 +1,29 @@
+.contact-form
+  -if @appointment.errors.any?
+    .alert
+      %h3= t('.errors')
+      %p
+        %ul
+          - @appointment.errors.full_messages.each do |msg|
+            %li= msg
+
+  = form_for [@real_estate, @appointment] do |f|
+    .control-group
+      = f.label :firstname
+      .controls
+        = f.text_field :firstname
+    .control-group
+      = f.label :lastname
+      .controls
+        = f.text_field :lastname
+    .control-group
+      = f.label :email
+      .controls
+        = f.text_field :email
+    .control-group
+      = f.label :phone
+      .controls
+        = f.text_field :phone
+    .form-actions
+      .controls
+        = f.submit "Kontaktieren Sie mich"
