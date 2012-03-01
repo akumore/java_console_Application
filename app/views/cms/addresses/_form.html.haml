@@ -29,16 +29,16 @@
       .controls
         = f.text_field :link_url, :class => 'span8'
   %fieldset
-    %legend= GeoLocation.model_name.human
-    = f.fields_for @address.geo_location do |rf|
+    %legend= t "mongoid.attributes.address.location"
+    = f.fields_for :location, @address.to_coordinates do |rf|
       .control-group
-        = rf.label :lat
+        = f.label :first, t("mongoid.attributes.address.lat")
         .controls
-          = rf.text_field :lat, :class => 'span8'
+          = rf.text_field :first, :class => 'span8', :readonly=>true
       .control-group
-        = rf.label :lng
+        = f.label :last, t("mongoid.attributes.address.lng")
         .controls
-          = rf.text_field :lng, :class => 'span8'
+          = rf.text_field :last, :class => 'span8', :readonly=>true
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

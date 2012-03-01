@@ -1,8 +1,0 @@
-de:
-  mongoid:
-    models:
-      geo_location: 'Geo Koordinaten'
-    attributes:
-      geo_location:
-        lat: 'Breitengrad'
-        lng: 'Längengrad'

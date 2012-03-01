@@ -29,6 +29,7 @@ RSpec.configure do |config|
   config.extend ControllerMacros, :type => :controller
   config.extend RequestMacros, :type => :request
   config.include ActionView::Helpers::NumberHelper, :type => :request
+  config.include(MockGeocoder)
 
   config.after(:each) do
     Mongoid.database.collections.each do |collection|
