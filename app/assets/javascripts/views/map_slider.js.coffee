@@ -6,9 +6,13 @@ class window.AlfredMueller.Views.MapSlider extends Backbone.View
   initialize: ->
     @isOpen = false
     @slider = @el.find(".map-slide")
+    @real_estates = new AlfredMueller.Collections.RealEstates([@el.find(".map").data("real_estate")])
 
   open: (elem) ->
-    @map ||= new AlfredMueller.Views.Map(el: @el.find(".map"))
+    @map ||= new AlfredMueller.Views.Map(
+      el: @el.find(".map"),
+      real_estates: @real_estates
+    )
     @map.setDimensions(@slider.width(), @slider.height())
     @el.addClass("open")
     @isOpen = true

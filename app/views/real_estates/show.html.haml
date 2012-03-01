@@ -4,15 +4,6 @@
 
 = render 'shared/google_maps'
 
-- content_for :javascripts do
-  :javascript
-    $(function(){
-      new AlfredMueller.Views.Map({
-        el: $(".map"),
-        real_estates: new AlfredMueller.Collections.RealEstates(#{@real_estates.to_json(:only => :_id, :methods => :coordinates)})
-      })
-    })
-
 - if @real_estate.media_assets.videos.size > 0
   - content_for :javascript do
     %script{ :type => "text/javascript", :src => "http://cdn.sublimevideo.net/js/go4z5g30.js" }
@@ -25,7 +16,7 @@
       .map-slider
         .map-slide
           .map-handle
-          .map{ 'data-address' => @real_estate.google_maps_address }
+          .map{ 'data' => { :real_estate => @real_estate.model.to_json(:only => :_id, :methods => :coordinates) } }
       .flex-container
         .flexslider
           %ul.slides
