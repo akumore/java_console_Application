@@ -18,7 +18,7 @@ describe "Appointment" do
       visit new_real_estate_appointment_path(@real_estate)
     end
 
-    [:firstname, :lastname, :email, :phone].each do |contact_attr|
+    %w(firstname lastname email phone).each do |contact_attr|
       it "shows the #{contact_attr} field" do
         within(".appointment .appointment-contact-details") do
           page.should have_content @contact.send(contact_attr)
@@ -30,15 +30,15 @@ describe "Appointment" do
 
   it "can't save because of missing information" do
     visit new_real_estate_appointment_path(@real_estate)
-    lambda { click_on 'Kontaktieren Sie mich' }.should_not change(Appointment, :count)
+    lambda { click_button I18n.t("appointments.form.submit") }.should_not change(Appointment, :count)
   end
 
   it "shows validation errors" do
     visit new_real_estate_appointment_path(@real_estate)
-    click_on 'Kontaktieren Sie mich'
+    click_button I18n.t("appointments.form.submit")
 
-    %w(Firstname Lastname Email Phone).each do |field|
-      within(".alert") { page.should have_content "#{field} muss ausgefüllt werden" }
+    %w(firstname lastname email phone).each do |field|
+      within(".alert") { page.should have_content %(#{I18n.t("mongoid.attributes.appointment.#{field}")} muss ausgefüllt werden) }
     end
   end
 
@@ -48,10 +48,10 @@ describe "Appointment" do
       fill_in "appointment_#{field}", :with => @contact.send(field)
     end
 
-    lambda { click_on 'Kontaktieren Sie mich' }.should change(@real_estate.appointments, :count).by(1)
-    page.should have_content "Vielen Dank für Ihre Kontaktanfrage"
+    lambda { click_button I18n.t("appointments.form.submit") }.should change(@real_estate.appointments, :count).by(1)
+    page.should have_content I18n.t("appointments.confirmation.thanks")
   end
 
-  pending "ajax dingsbums"
+  pending "spec creation of appointments, the AJAX way..."
 
 end
