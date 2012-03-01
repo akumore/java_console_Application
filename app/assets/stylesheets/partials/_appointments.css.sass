@@ -1,15 +1,20 @@
 .appointment
   +column(10)
-  background: yellow
+
+  .placeholders
+    +appointments-placeholder
+
+  input[type=text], textarea
+    @extend .placeholders
+
   .headline
     +column(9)
     +push(1)
-    background: #8a2be2
+
   .contact-form
     +column(4)
     +push(1)
-    background: green
+
   .appointment-contact-information
     +reset-box-model
     +column(5)
-    background: red
