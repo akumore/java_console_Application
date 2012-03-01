@@ -59,7 +59,7 @@ describe "Cms::Addresses" do
         :reference => Reference.new,
         :category => Fabricate(:category),
         :reference => Reference.new, 
-        :address => Address.new)
+        :address => Fabricate.build(:address))
 
       visit edit_cms_real_estate_path(@real_estate)
       click_on 'Adresse'
