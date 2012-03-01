@@ -1,1 +1,0 @@
-$(".appointment .form").html("<%=j render 'confirmation' %>")
