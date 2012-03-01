@@ -7,7 +7,7 @@
           - @appointment.errors.full_messages.each do |msg|
             %li= msg
 
-  = form_for [@real_estate, @appointment] do |f|
+  = form_for [@real_estate, @appointment], :remote=>true do |f|
     .control-group
       .controls
         = f.text_field :firstname, :placeholder=>"Firstname"
