@@ -39,6 +39,11 @@ describe "RealEstates" do
         page.should have_css(%(img[src="#{primary_image.file.thumb.url}"]))
       end
 
+      it "has the json representation for the map coordinates" do
+        visit real_estates_path
+        page.should have_content(real_estate.to_json(:only => :_id, :methods => :coordinates))
+      end
+
       it "shows the placeholder thumbnail if no primary image is set" do
         visit real_estates_path
         page.should have_css('img[src="/images/fallback/thumb_default.png"]')
@@ -282,7 +287,15 @@ describe "RealEstates" do
         page.should have_content(real_estate.contact.email)
       end
     end
+
+    it "has a map of the real estate location" do
+      page.should have_css(".map", :count => 1)
+    end
     
+    it "has the json representation of the location" do
+      find(".map[data-real_estate]")['data-real_estate'].should == real_estate.to_json(:only => :_id, :methods => :coordinates)      
+    end
+
     context 'clicking the floorplan link' do
       it 'opens the floorplan in an overlay' do
         pending 'tbd'
