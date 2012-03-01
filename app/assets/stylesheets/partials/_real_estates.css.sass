@@ -10,13 +10,14 @@
 
 .map
   +column(5, 10)
+  height: 500px
 
 table
   width: 100%
 
 tr
   background-color: $search-item-color
-  &:hover
+  &.active
     background: url(gradient-search-list-hover.png) repeat-x
     background-color: $search-hover-color
     cursor: pointer

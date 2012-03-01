@@ -25,9 +25,10 @@ class Address
   field :location, :type => Array #Keep in mind coordinates are stored in long, lat order internally!! Use to_coordinates always.
   #index [[ :location, Mongo::GEO2D ]] TODO Do we need this?
 
-
   after_validation :geocode, :if => :address_changed?
   attr_protected :location
+
+  alias :coordinates :to_coordinates
 
   def address
     [[street, street_number].compact.join(' '), zip, city, canton, country].compact.join(', ')

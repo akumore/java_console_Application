@@ -57,6 +57,7 @@ class RealEstate
 
   delegate :apartment?, :house?, :property?, :to => :top_level_category, :allow_nil => true
   delegate :row_house?, :to => :category, :allow_nil => true
+  delegate :coordinates, :to => :address, :allow_nil => true
 
   scope :reference_projects, :where => { :channels=>REFERENCE_PROJECT_CHANNEL }
 

@@ -9,9 +9,9 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     $(".map-slider").each ->
       new AlfredMueller.Views.MapSlider(el: $(this))
 
-    # initialize clickable table rows
+    # initialize clickable/hoverable table rows
     $("table").each ->
-      new AlfredMueller.Views.ClickableTable(el: $(this))
+      new AlfredMueller.Views.InteractiveTable(el: $(this))
 
     # initialize expandable content
     $(".expandable").each ->

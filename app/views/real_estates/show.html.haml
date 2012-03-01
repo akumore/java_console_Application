@@ -2,8 +2,16 @@
   %meta{ :name => :keywords, :content => @real_estate.keywords }
   %meta{ :name => :description, :content => @real_estate.short_description }
 
+= render 'shared/google_maps'
+
 - content_for :javascripts do
-  %script{ :type => 'text/javascript', :src => "http://maps.googleapis.com/maps/api/js?key=#{Settings.google_maps_api_key}&sensor=false" }
+  :javascript
+    $(function(){
+      new AlfredMueller.Views.Map({
+        el: $(".map"),
+        real_estates: new AlfredMueller.Collections.RealEstates(#{@real_estates.to_json(:only => :_id, :methods => :coordinates)})
+      })
+    })
 
 - if @real_estate.media_assets.videos.size > 0
   - content_for :javascript do
