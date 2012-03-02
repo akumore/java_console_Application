@@ -9,8 +9,7 @@ describe "RealEstates" do
   end
 
   let :real_estate do
-    Fabricate :real_estate,
-              :state => 'published',
+    Fabricate :published_real_estate,
               :category => category,
               :address => Fabricate.build(:address),
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
@@ -46,14 +45,14 @@ describe "RealEstates" do
 
     it "shows published real estates only" do
       visit real_estates_path
-      page.should_not have_content unpublished_real_estate.figure.rooms
+      page.should_not have_css "#real-estate-#{unpublished_real_estate.id}"
+      page.should have_css "#real-estate-#{real_estate.id}"
     end
 
     it "shows published real estates enabled for web channel only" do
-      real_estate.channels = [RealEstate::REFERENCE_PROJECT_CHANNEL]
-      real_estate.publish!
-      visit real_estates_path
-      page.should_not have_content unpublished_real_estate.figure.rooms
+      #real_estate.update_attribute :channels, [RealEstate::REFERENCE_PROJECT_CHANNEL]
+      #visit real_estates_path
+      #page.should_not have_css "#real-estate-#{real_estate.id}"
     end
 
 
@@ -118,7 +117,7 @@ describe "RealEstates" do
       context "with projects for rent" do
         before :each do
           3.times do
-            Fabricate(:real_estate,
+            Fabricate(:published_real_estate,
               :offer => RealEstate::OFFER_FOR_RENT,
               :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
               :category => Fabricate(:category),
@@ -141,7 +140,7 @@ describe "RealEstates" do
       context "with projects for sale" do
         before :each do
           2.times do
-            Fabricate(:real_estate,
+            Fabricate(:published_real_estate,
               :offer => RealEstate::OFFER_FOR_SALE,
               :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
               :category => Fabricate(:category),
@@ -165,28 +164,28 @@ describe "RealEstates" do
 
   describe "Search-Filtering of real estates" do
     before do
-      @non_commercial_for_sale = Fabricate :real_estate,
+      @non_commercial_for_sale = Fabricate :published_real_estate,
                                            :utilization=>RealEstate::UTILIZATION_PRIVATE,
                                            :offer=>RealEstate::OFFER_FOR_SALE,
                                            :category=>Fabricate(:category),
                                            :address=>Fabricate.build(:address),
                                            :figure=>Fabricate.build(:figure),
                                            :pricing=>Fabricate.build(:pricing)
-      @commercial_for_sale = Fabricate :real_estate,
+      @commercial_for_sale = Fabricate :published_real_estate,
                                        :utilization=>RealEstate::UTILIZATION_COMMERICAL,
                                        :offer=>RealEstate::OFFER_FOR_SALE,
                                        :category=>Fabricate(:category),
                                        :address=>Fabricate.build(:address),
                                        :figure=>Fabricate.build(:figure),
                                        :pricing=>Fabricate.build(:pricing)
-      @non_commercial_for_rent = Fabricate :real_estate,
+      @non_commercial_for_rent = Fabricate :published_real_estate,
                                            :utilization=>RealEstate::UTILIZATION_PRIVATE,
                                            :offer=>RealEstate::OFFER_FOR_RENT,
                                            :category=>Fabricate(:category),
                                            :address=>Fabricate.build(:address),
                                            :figure=>Fabricate.build(:figure),
                                            :pricing=>Fabricate.build(:pricing)
-      @commercial_for_rent = Fabricate :real_estate,
+      @commercial_for_rent = Fabricate :published_real_estate,
                                        :utilization=>RealEstate::UTILIZATION_COMMERICAL,
                                        :offer=>RealEstate::OFFER_FOR_RENT,
                                        :category=>Fabricate(:category),
