@@ -101,7 +101,7 @@ describe "RealEstates" do
         end
 
         it "shows the slider container" do
-          page.should have_css(".reference-projects-slider")
+          page.should have_css(".flex-container .flexslider")
         end
 
         it "has 3 slides" do
@@ -124,7 +124,7 @@ describe "RealEstates" do
         end
 
         it "shows the slider container" do
-          page.should have_css(".reference-projects-slider")
+          page.should have_css(".flex-container .flexslider")
         end
 
         it "has 2 slides" do
