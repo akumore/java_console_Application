@@ -243,12 +243,20 @@ describe "RealEstates" do
 
   end
 
+  context "Visiting web channel disabled real estate" do
+
+    it 'redirects to real estate index page' do
+      real_estate.update_attribute :channels, []
+      visit real_estate_path(real_estate)
+      current_path.should == real_estates_path
+    end
+
+  end
+
   describe 'Visit real estate show path' do
     before :each do
       visit real_estate_path(real_estate)
     end
-
-    it 'shows web channel enabled real estates only'
 
     it 'shows the title' do
       page.should have_content(real_estate.title)
