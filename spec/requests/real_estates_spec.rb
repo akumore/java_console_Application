@@ -50,9 +50,9 @@ describe "RealEstates" do
     end
 
     it "shows published real estates enabled for web channel only" do
-      #real_estate.update_attribute :channels, [RealEstate::REFERENCE_PROJECT_CHANNEL]
-      #visit real_estates_path
-      #page.should_not have_css "#real-estate-#{real_estate.id}"
+      real_estate.update_attribute :channels, [RealEstate::REFERENCE_PROJECT_CHANNEL]
+      visit real_estates_path
+      page.should_not have_css "#real-estate-#{real_estate.id}"
     end
 
 
