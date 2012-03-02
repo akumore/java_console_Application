@@ -18,3 +18,7 @@ de:
         is_first_marketing: 'Erstvermarktung'
         building_type: 'Haustyp'
         utilization_description: 'Nutzungsarten'
+        states:
+          published: Veröffentlichen
+          editing: Editieren
+          in_review: Verifizieren lassen
