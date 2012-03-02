@@ -25,6 +25,7 @@ gem 'draper'
 gem 'remotipart'
 gem 'geocoder'
 gem 'coffee-filter'
+gem 'state_machine'
 
 # Gems used only for assets and not required
 # in production environments by default.
