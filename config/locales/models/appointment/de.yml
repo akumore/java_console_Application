@@ -1,0 +1,10 @@
+de:
+  mongoid:
+    models:
+      appointment: Termin
+    attributes:
+      appointment:
+        firstname: Vorname
+        lastname: Nachname
+        email:  Emailadresse
+        phone: Telefonnummer

@@ -1,0 +1,29 @@
+.appointment
+  +column(10)
+  background: $classic
+  height: 590px
+
+  .placeholders
+    +appointments-placeholder
+
+  input[type=text], textarea
+    //@extend .placeholders
+
+  input[type=submit]
+    margin: 30px 0 50px
+    width: 210px
+
+  .headline
+    +column(9)
+    +push(1)
+    margin-bottom: 30px
+
+  .contact-form
+    +column(3)
+    +push(1)
+    .controls
+      margin-left: 0
+
+  .appointment-contact-details
+    +column(5)
+    padding-left: 5%

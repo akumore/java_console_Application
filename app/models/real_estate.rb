@@ -19,6 +19,7 @@ class RealEstate
 
   belongs_to :category
   belongs_to :contact, :class_name => 'Employee'
+  has_many :appointments
 
   embeds_one :reference
   embeds_one :address

@@ -1,0 +1,9 @@
+.appointment
+  .headline
+    %h2= t ".headline"
+
+  .contact-form
+    = render "appointments/form"
+
+  .appointment-contact-details
+    = render "appointments/contact_information", :contact=>@real_estate.contact
