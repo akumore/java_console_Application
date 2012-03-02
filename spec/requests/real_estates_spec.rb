@@ -3,30 +3,59 @@
 require "spec_helper"
 
 describe "RealEstates" do
+
+  let :category do
+    Fabricate(:category, :label => 'Wohnung')
+  end
+
   let :real_estate do
     Fabricate :real_estate,
-              :category=>Fabricate(:category, :label=>'Wohnung'),
-              :address=>Fabricate.build(:address),
-              :figure=>Fabricate.build(:figure, :rooms=>10.5, :floor=>99),
-              :pricing=>Fabricate.build(:pricing),
+              :category => category,
+              :address => Fabricate.build(:address),
+              :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
+              :pricing => Fabricate.build(:pricing),
+              :infrastructure => Fabricate.build(:infrastructure),
+              :contact => Fabricate(:employee)
+  end
+
+  let :published_real_estate do
+    Fabricate :real_estate,
+              :state => 'published',
+              :category => category,
+              :address => Fabricate.build(:address),
+              :figure => Fabricate.build(:figure, :rooms => 20, :floor => 1),
+              :pricing => Fabricate.build(:pricing),
               :infrastructure => Fabricate.build(:infrastructure),
               :contact => Fabricate(:employee)
   end
 
   describe "Visit real estate index path" do
     before do
-      @real_estates = [real_estate]
+      @real_estates = [real_estate, published_real_estate]
     end
 
     it "shows the number of search result" do
       visit real_estates_path
-      page.should have_content "#{@real_estates.size} Treffer"
+      page.should have_content "1 Treffer"
     end
 
     it "renders the search results within a table" do
       visit real_estates_path
-      page.should have_selector('table tr', :count => @real_estates.size)
+      page.should have_selector('table tr', :count => 1)
     end
+
+    it "shows published real estates only" do
+      visit real_estates_path
+      page.should_not have_content real_estate.figure.rooms
+    end
+
+    it "shows published real estates enabled for web channel only" do
+      real_estate.channels = [RealEstate::REFERENCE_PROJECT_CHANNEL]
+      real_estate.publish!
+      visit real_estates_path
+      page.should_not have_content real_estate.figure.rooms
+    end
+
 
     describe "Shown information about a search results" do
       let :primary_image do

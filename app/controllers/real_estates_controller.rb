@@ -24,7 +24,7 @@ class RealEstatesController < ApplicationController
   end
 
   def get_filtered_real_estates(search_filter)
-    RealEstate.where(search_filter.to_h)
+    RealEstate.published.web_channel.where(search_filter.to_h)
   end
 
   def get_filtered_reference_projects search_filter
