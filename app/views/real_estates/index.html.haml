@@ -38,20 +38,23 @@
                       = number_to_currency real_estate.pricing.try(:for_sale), :locale=>'de-CH'
                     - else
                       = number_to_currency real_estate.pricing.try(:for_rent_netto), :locale=>'de-CH'
-    .map
-      Map goes here
+
+    - if @real_estates.any?
+      .map
+        Map goes here
 
   - unless @reference_projects.empty?
     .container.reference-projects-slider
       = render 'shared/slider', :projects => @reference_projects
 
-= render 'shared/google_maps'
+- if @real_estates.any?
+  = render 'shared/google_maps'
 
-- content_for :javascripts do
-  :javascript
-    $(function(){
-      new AlfredMueller.Views.Map({
-        el: $(".map"),
-        real_estates: new AlfredMueller.Collections.RealEstates(#{@real_estates.to_json(:only => :_id, :methods => :coordinates)})
+  - content_for :javascripts do
+    :javascript
+      $(function(){
+        new AlfredMueller.Views.Map({
+          el: $(".map"),
+          real_estates: new AlfredMueller.Collections.RealEstates(#{@real_estates.to_json(:only => :_id, :methods => :coordinates)})
+        })
       })
-    })
