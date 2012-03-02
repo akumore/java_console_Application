@@ -48,7 +48,6 @@ class RealEstate
   field :utilization_description, :type => String
 
   validates :category_id, :presence => true
-  validates :state, :presence => true
   validates :utilization, :presence => true
   validates :offer, :presence => true
   validates :title, :presence => true
@@ -61,6 +60,26 @@ class RealEstate
   delegate :coordinates, :to => :address, :allow_nil => true
 
   scope :reference_projects, :where => { :channels=>REFERENCE_PROJECT_CHANNEL }
+  scope :published, :where => {:state => 'published' }
+  scope :web_channel, :where => { :channels=>WEBSITE_CHANNEL }
+
+  state_machine :state, :initial => :editing do
+
+    state :editing, :in_review, :published
+
+    event :publish do
+      transition [:editing, :in_review] => :published, :if => :is_admin?
+    end
+
+    event :edit do
+      transition [:in_review, :published] => :editing
+    end
+
+    event :review do
+      transition :editing => :in_review
+    end
+
+  end
 
   def for_sale?
     self.offer == RealEstate::OFFER_FOR_SALE
@@ -82,6 +101,10 @@ class RealEstate
     category.parent
   end
 
+  def is_admin?
+    #TODO implementation of roles required!
+    true
+  end
 
   private
   def init_channels
