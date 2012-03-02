@@ -12,6 +12,7 @@ class RealEstate
   OFFER_FOR_SALE = 'for_sale'
 
   STATE_EDITING = 'editing'
+  STATE_PUBLISHED = 'published'
 
   REFERENCE_PROJECT_CHANNEL = "reference_projects"
   WEBSITE_CHANNEL = "website"
@@ -59,9 +60,9 @@ class RealEstate
   delegate :row_house?, :to => :category, :allow_nil => true
   delegate :coordinates, :to => :address, :allow_nil => true
 
-  scope :reference_projects, :where => { :channels=>REFERENCE_PROJECT_CHANNEL }
-  scope :published, :where => {:state => 'published' }
-  scope :web_channel, :where => { :channels=>WEBSITE_CHANNEL }
+  scope :reference_projects, :where => {:channels => REFERENCE_PROJECT_CHANNEL}
+  scope :published, :where => {:state => STATE_PUBLISHED}
+  scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
 
   state_machine :state, :initial => :editing do
 
