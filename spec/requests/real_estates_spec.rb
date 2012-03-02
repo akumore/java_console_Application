@@ -10,6 +10,7 @@ describe "RealEstates" do
 
   let :real_estate do
     Fabricate :real_estate,
+              :state => 'published',
               :category => category,
               :address => Fabricate.build(:address),
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
@@ -18,9 +19,8 @@ describe "RealEstates" do
               :contact => Fabricate(:employee)
   end
 
-  let :published_real_estate do
+  let :unpublished_real_estate do
     Fabricate :real_estate,
-              :state => 'published',
               :category => category,
               :address => Fabricate.build(:address),
               :figure => Fabricate.build(:figure, :rooms => 20, :floor => 1),
@@ -31,7 +31,7 @@ describe "RealEstates" do
 
   describe "Visit real estate index path" do
     before do
-      @real_estates = [real_estate, published_real_estate]
+      @real_estates = [real_estate, unpublished_real_estate]
     end
 
     it "shows the number of search result" do
@@ -46,14 +46,14 @@ describe "RealEstates" do
 
     it "shows published real estates only" do
       visit real_estates_path
-      page.should_not have_content real_estate.figure.rooms
+      page.should_not have_content unpublished_real_estate.figure.rooms
     end
 
     it "shows published real estates enabled for web channel only" do
       real_estate.channels = [RealEstate::REFERENCE_PROJECT_CHANNEL]
       real_estate.publish!
       visit real_estates_path
-      page.should_not have_content real_estate.figure.rooms
+      page.should_not have_content unpublished_real_estate.figure.rooms
     end
 
 
@@ -235,10 +235,21 @@ describe "RealEstates" do
     end
   end
 
+  describe "Visiting unpublished real estate" do
+
+    it "redirects to real estate index page" do
+      visit real_estate_path(unpublished_real_estate)
+      current_path.should == real_estates_path
+    end
+
+  end
+
   describe 'Visit real estate show path' do
     before :each do
       visit real_estate_path(real_estate)
     end
+
+    it 'shows web channel enabled real estates only'
 
     it 'shows the title' do
       page.should have_content(real_estate.title)
