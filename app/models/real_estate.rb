@@ -69,7 +69,7 @@ class RealEstate
     state :editing, :in_review, :published
 
     event :publish do
-      transition [:editing, :in_review] => :published, :if => :is_admin?
+      transition [:editing, :in_review] => :published
     end
 
     event :edit do
@@ -100,11 +100,6 @@ class RealEstate
 
   def top_level_category
     category.parent
-  end
-
-  def is_admin?
-    #TODO implementation of roles required!
-    true
   end
 
   private
