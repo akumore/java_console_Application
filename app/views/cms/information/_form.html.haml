@@ -1,3 +1,5 @@
+= render 'wizard_header'
+
 = render_navigation :context => :real_estate
 
 = form_for [:cms, @real_estate, @information], :url=>cms_real_estate_information_path(@real_estate) do |f|
