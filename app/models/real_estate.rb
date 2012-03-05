@@ -69,18 +69,21 @@ class RealEstate
 
     state :editing, :in_review, :published
 
-    event :publish do
-      transition [:editing, :in_review] => :published
+    event :review_it do
+      transition :editing => :in_review, :if => :valid_for_publishing?
     end
 
-    event :edit do
-      transition [:in_review, :published] => :editing
+    event :revoke_it do
+      transition :in_review => :editing
     end
 
-    event :review do
-      transition :editing => :in_review
+    event :publish_it do
+      transition [:editing, :in_review] => :published, :if => :valid_for_publishing?
     end
 
+    event :unpublish_it do
+      transition :published => :editing
+    end
   end
 
   def for_sale?
@@ -104,7 +107,7 @@ class RealEstate
   end
 
   def valid_for_publishing?
-    valid? && %w(pricing figure information infrastructure).inject(true) do |result, embedded|
+    %w(pricing figure information infrastructure).inject(true) do |result, embedded|
       result && send(embedded).present? && send(embedded).valid?
     end
   end
