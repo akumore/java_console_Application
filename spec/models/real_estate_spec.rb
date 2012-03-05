@@ -56,6 +56,26 @@ describe RealEstate do
   	end
   end
 
+  describe '#valid_for_publishing?' do
+    it 'should return true' do
+      Fabricate.build(:real_estate,
+        :category => Fabricate(:category),
+        :contact => Fabricate(:employee),
+        :reference => Fabricate.build(:reference),
+        :address => Fabricate.build(:address),
+        :pricing => Fabricate.build(:pricing),
+        :figure => Fabricate.build(:figure),
+        :information => Fabricate.build(:information),
+        :infrastructure => Fabricate.build(:infrastructure),
+        :descriptions => Fabricate.build(:description)
+      ).valid_for_publishing?.should be_true
+    end
+
+    it 'should return false' do
+      Fabricate.build(:real_estate).valid_for_publishing?.should be_false
+    end
+  end
+
   describe 'top_level_category' do
     before do
       @toplevel_category = Fabricate.build :category
@@ -72,7 +92,6 @@ describe RealEstate do
   it "returns real estates published as reference project only" do
     Fabricate :real_estate, :channels => [RealEstate::WEBSITE_CHANNEL], :category => Fabricate(:category)
     reference_project = Fabricate :real_estate, :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL, RealEstate::WEBSITE_CHANNEL], :category => Fabricate(:category)
-
     RealEstate.reference_projects.all.should == [reference_project]
   end
 

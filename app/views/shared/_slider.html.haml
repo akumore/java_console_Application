@@ -1,8 +1,7 @@
-.reference-projects-slider
-  .flex-container
-    .flexslider
-      %ul.slides
-        - projects.each do |real_estate|
-          %li
-            = image_tag real_estate.media_assets.primary_image.url
-            = real_estate.reference_project_caption
+.flex-container
+  .flexslider
+    %ul.slides
+      - projects.each do |real_estate|
+        %li
+          = image_tag real_estate.media_assets.primary_image.url
+          = real_estate.reference_project_caption

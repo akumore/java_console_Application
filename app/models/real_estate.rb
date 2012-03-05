@@ -24,10 +24,10 @@ class RealEstate
 
   embeds_one :reference
   embeds_one :address
-  embeds_one :pricing
-  embeds_one :figure
-  embeds_one :information
-  embeds_one :infrastructure
+  embeds_one :pricing, :validate => false
+  embeds_one :figure, :validate => false
+  embeds_one :information, :validate => false
+  embeds_one :infrastructure, :validate => false
   embeds_one :descriptions, :class_name => 'Description'
   embeds_many :media_assets  do
     def primary_image
@@ -49,6 +49,7 @@ class RealEstate
   field :utilization_description, :type => String
 
   validates :category_id, :presence => true
+  validates :state, :presence => true
   validates :utilization, :presence => true
   validates :offer, :presence => true
   validates :title, :presence => true
@@ -100,6 +101,12 @@ class RealEstate
 
   def top_level_category
     category.parent
+  end
+
+  def valid_for_publishing?
+    valid? && %w(pricing figure information infrastructure).inject(true) do |result, embedded|
+      result && send(embedded).present? && send(embedded).valid?
+    end
   end
 
   private
