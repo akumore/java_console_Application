@@ -57,11 +57,9 @@ class Cms::RealEstatesController < Cms::SecuredController
   # PUT /cms/real_estates/1.json
   def update
     @real_estate = RealEstate.find(params[:id])
-    new_state = params[:real_estate].delete(:next_state)
 
     respond_to do |format|
       if @real_estate.update_attributes(params[:real_estate])
-        switch_state!(new_state) if new_state
         format.html { redirect_to edit_cms_real_estate_path(@real_estate) }
         format.json { head :ok }
       else
@@ -81,13 +79,6 @@ class Cms::RealEstatesController < Cms::SecuredController
       format.html { redirect_to cms_real_estates_url }
       format.json { head :ok }
     end
-  end
-
-
-  private
-  def switch_state!(new_state)
-    event = {:editing => :edit!, :in_review => :review!, :published => :publish!}[new_state.to_sym]
-    @real_estate.send(event) if new_state.to_sym == next_state(@real_estate)
   end
 
 end

@@ -1,8 +1,12 @@
 - content_for :title do
   = @real_estate.title
   bearbeiten
+  (Status:
+  = t "mongoid.attributes.real_estate.states.#{@real_estate.state_name}"
+  )
 
-  .pull-right
-    = form_for [:cms, @real_estate],  :html=>{ :class=>nil, :id=>nil } do |f|
-      = f.hidden_field :next_state, :value=>next_state(@real_estate)
-      = f.submit t("mongoid.attributes.real_estate.states.#{next_state(@real_estate)}"), :disabled => next_state(@real_estate) == @real_estate.state_name, :class=>'btn btn-success'
+  - fireable_events(@real_estate).each do |event|
+    .pull-right
+      = form_for [:cms, @real_estate],  :html=>{ :class=>nil, :id=>nil } do |f|
+        = f.hidden_field :state_event, :value=>event.name
+        = f.submit t("mongoid.attributes.real_estate.events.#{event.name}"), :class=>event == fireable_events(@real_estate).last ? "btn btn-success" : "btn btn-danger"
