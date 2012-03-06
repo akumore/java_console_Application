@@ -1,0 +1,12 @@
+de:
+  mongoid:
+    models:
+      cms/user: 'Benutzer'
+    attributes:
+      cms/user:
+        email: 'E-Mail'
+        role: 'Rolle'
+        role_admin: 'Admin'
+        role_editor: 'Editor'
+        password: 'Passwort'
+        password_confirmation: 'Passwort Bestätigung'

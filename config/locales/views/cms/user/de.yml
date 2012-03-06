@@ -1,0 +1,12 @@
+de:
+  cms:
+    users:
+      index:
+        new: 'Neuen Benutzer erfassen'
+        edit: 'Editieren'
+        confirm_delete: 'Den Benutzer %{title} wirklich löschen?'
+        destroy: 'Löschen'
+        roles:
+          admin: 'Admin'
+          editor: 'Redaktor'
+        overview: 'Zurück zur Übersicht'
