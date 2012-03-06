@@ -73,7 +73,7 @@ class RealEstate
       transition :editing => :in_review, :if => :valid_for_publishing?
     end
 
-    event :revoke_it do
+    event :reject_it do
       transition :in_review => :editing
     end
 

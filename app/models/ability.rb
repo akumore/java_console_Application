@@ -25,7 +25,7 @@ class Ability
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
     if user.admin?
-      can :revoke_it, RealEstate
+      can :reject_it, RealEstate
       can :publish_it, RealEstate
       can :unpublish_it, RealEstate
     end
