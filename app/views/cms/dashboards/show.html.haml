@@ -1,0 +1,26 @@
+- unless @to_be_reviewed_real_estates.blank?
+  %h2= t('.in_review')
+  %table.in_review_state.table.table-bordered.table-striped
+    %tr
+      %th{ :width => '70%' }= RealEstate.human_attribute_name :title
+      %th= t('.last_edited')
+      %th
+    = render :partial => 'real_estate', :collection => @to_be_reviewed_real_estates
+
+- unless @last_edited_real_estates.blank?
+  %h2= t('.editing')
+  %table.editing_state.table.table-bordered.table-striped
+    %tr
+      %th{ :width => '70%' }= RealEstate.human_attribute_name :title
+      %th= t('.last_edited')
+      %th
+    = render :partial => 'real_estate', :collection => @last_edited_real_estates
+
+- unless @last_published_real_estates.blank?
+  %h2= t('.published')
+  %table.published_state.table.table-bordered.table-striped
+    %tr
+      %th{ :width => '70%' }= RealEstate.human_attribute_name :title
+      %th= t('.last_edited')
+      %th
+    = render :partial => 'real_estate', :collection => @last_published_real_estates

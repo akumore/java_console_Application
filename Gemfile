@@ -27,6 +27,7 @@ gem 'geocoder'
 gem 'coffee-filter'
 gem 'state_machine'
 gem 'cancan'
+gem 'delorean'
 
 # Gems used only for assets and not required
 # in production environments by default.
