@@ -31,7 +31,6 @@ class Ability
     end
     if user.editor?
       can :review_it, RealEstate
-      can :unpublish_it, RealEstate
     end
 
   end

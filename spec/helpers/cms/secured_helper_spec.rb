@@ -25,11 +25,6 @@ describe Cms::SecuredHelper do
         helper.fireable_events(@real_estate).should == @all_events.select { |e| e.name == :review_it }
       end
 
-      it "returns event for unpublishing published real estate" do
-        @real_estate.stub!(:state).and_return('published')
-        helper.fireable_events(@real_estate).should == @all_events.select { |e| e.name == :unpublish_it }
-      end
-
       it "returns no event if real estate not ready for reviewing" do
         @real_estate.stub!(:valid_for_publishing?).and_return(false)
         helper.fireable_events(@real_estate).should == []
