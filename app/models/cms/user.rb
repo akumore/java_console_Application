@@ -23,10 +23,10 @@ class Cms::User
   validates :role, :presence => true, :inclusion => ROLES
 
   def editor?
-    role == 'editor'
+    role.to_sym == :editor
   end
 
   def admin?
-    role == 'admin'
+    role.to_sym == :admin
   end
 end
