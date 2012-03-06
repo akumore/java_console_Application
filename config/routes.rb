@@ -30,6 +30,7 @@ AlfredMueller::Application.routes.draw do
     end
 
     resources :employees
+    resources :users, :class_name => 'Cms::User'
   end
 
   scope '/:locale' do

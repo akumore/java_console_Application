@@ -54,6 +54,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :addresses, 'Mitarbeiter', cms_employees_path
     primary.item :jobs, 'Jobs', cms_jobs_path
     primary.item :pages, 'Seiten', cms_pages_path
+    primary.item :users, 'Benutzer', cms_users_path
 
     # Add an item which has a sub navigation (same params, but with block)
     # primary.item :key_2, 'name', url, options do |sub_nav|
