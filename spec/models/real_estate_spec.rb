@@ -106,45 +106,41 @@ describe RealEstate do
       real_estate.editing?.should be_true
     end
 
-    context "As an editor" do
+    it "transitions from 'editing' to 'review'" do
+      real_estate = Fabricate(:real_estate, :category => category)
+      real_estate.stub!(:valid_for_publishing?).and_return(true)
+      real_estate.review_it!
 
-      it "transitions from 'editing' to 'review'" do
-        real_estate = Fabricate(:real_estate, :category=>category)
-        real_estate.review!
-        real_estate.in_review?.should be_true
-      end
-
+      real_estate.in_review?.should be_true
     end
 
-    context "As an admin" do
+    it "transitions from 'review' to 'published'" do
+      real_estate = Fabricate(:real_estate, :state => 'in_review', :category => category)
+      real_estate.stub!(:valid_for_publishing?).and_return(true)
+      real_estate.publish_it!
 
-      it "transitions from 'review' to 'published'" do
-        real_estate = Fabricate(:real_estate, :state => 'in_review', :category => category)
-        real_estate.publish!
-        real_estate.published?.should be_true
-      end
-
-      it "transitions from 'review' to 'editing'" do
-        real_estate = Fabricate(:real_estate, :state => 'in_review', :category => category)
-        real_estate.edit!
-        real_estate.editing?.should be_true
-      end
-
-      it "transitions from 'editing' to 'published'" do
-        real_estate = Fabricate(:real_estate, :state => 'editing', :category => category)
-        real_estate.publish!
-        real_estate.published?.should be_true
-      end
-
-      it "transitions from 'published' to 'editing'" do
-        real_estate = Fabricate(:real_estate, :state => 'published', :category => category)
-        real_estate.edit!
-        real_estate.editing?.should be_true
-      end
-
+      real_estate.published?.should be_true
     end
 
+    it "transitions from 'review' to 'editing'" do
+      real_estate = Fabricate(:real_estate, :state => 'in_review', :category => category)
+      real_estate.reject_it!
+      real_estate.editing?.should be_true
+    end
+
+    it "transitions from 'editing' to 'published'" do
+      real_estate = Fabricate(:real_estate, :state => 'editing', :category => category)
+      real_estate.stub!(:valid_for_publishing?).and_return(true)
+      real_estate.publish_it!
+
+      real_estate.published?.should be_true
+    end
+
+    it "transitions from 'published' to 'editing'" do
+      real_estate = Fabricate(:real_estate, :state => 'published', :category => category)
+      real_estate.unpublish_it!
+      real_estate.editing?.should be_true
+    end
   end
-
 
 end
