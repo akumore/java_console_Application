@@ -30,6 +30,7 @@ AlfredMueller::Application.routes.draw do
     end
 
     resources :employees
+    resources :users
   end
 
   scope '/:locale' do

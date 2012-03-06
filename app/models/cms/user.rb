@@ -1,5 +1,8 @@
 class Cms::User
   include Mongoid::Document
+
+  ROLES = %w(admin editor)
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :validatable
@@ -15,21 +18,15 @@ class Cms::User
   ## Rememberable
   field :remember_created_at, :type => Time
 
-  #def is_admin?
-  #  #TODO implementation of roles required!
-  #  %w(admin@screenconcept.ch staging@alfred-mueller.ch).include? email
-  #end
-
-  def role
-    :admin
-  end
+  # Role management
+  field :role, :type => :String
+  validates :role, :presence => true, :inclusion => ROLES
 
   def editor?
-    role == :editor
+    role == 'editor'
   end
 
   def admin?
-    role == :admin
+    role == 'admin'
   end
-
 end

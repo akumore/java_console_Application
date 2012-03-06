@@ -1,0 +1,23 @@
+= form_for @user do |f|
+  = render 'cms/shared/errors', :model => @user
+
+  %fieldset
+    .control-group.mandatory
+      = f.label :email
+      .controls
+        = f.text_field :email, :class => 'span8'
+    .control-group.mandatory
+      = f.label :role
+      .controls
+        = f.select :role, Cms::User::ROLES.map { |c| [Cms::User.human_attribute_name("role_#{c}"), c] }, :prompt => 'Rolle auswählen', :class => 'span8'
+    .control-group
+      = f.label :password
+      .controls
+        = f.text_field :password, :class => 'span8'
+    .control-group
+      = f.label :password_confirmation
+      .controls
+        = f.text_field :password_confirmation, :class => 'span8'
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
