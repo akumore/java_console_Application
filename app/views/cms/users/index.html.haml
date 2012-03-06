@@ -1,0 +1,23 @@
+- content_for :title do
+  %h1 Benutzer verwalten
+
+.pull-right
+  .padded
+    .btn-group
+      = link_to(new_cms_user_path, :class => 'btn') do
+        %i.icon-plus-sign
+        = t('.new')
+      
+%table.table.table-bordered.table-striped
+  %tr
+    %th= Cms::User.human_attribute_name :email
+    %th= Cms::User.human_attribute_name :role
+    %th
+    %th
+
+  - @users.each do |user|
+    %tr{ :id => "user-#{user.id}" }
+      %td= user.email
+      %td= Cms::User.human_attribute_name("role_#{user.role}")
+      %td= link_to  t('.destroy'), cms_user_path(user), :method => :delete, :confirm => t('.confirm_delete', :title => user.email)
+      %td= link_to t('.edit'), edit_cms_user_path(user)
