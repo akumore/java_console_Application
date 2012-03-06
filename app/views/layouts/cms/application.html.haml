@@ -22,8 +22,13 @@
 
     .container
       .content
-        .page-header
-          %h1= yield :title
+        .row
+          .span10
+            .custom-page-header
+              %h1= yield :title
+          .span2
+            .custom-page-header
+              = yield :real_estate_events
         .row
           .span12
             = render "layouts/flashes"
