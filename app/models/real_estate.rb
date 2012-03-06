@@ -49,7 +49,6 @@ class RealEstate
   field :utilization_description, :type => String
 
   validates :category_id, :presence => true
-  validates :state, :presence => true
   validates :utilization, :presence => true
   validates :offer, :presence => true
   validates :title, :presence => true
