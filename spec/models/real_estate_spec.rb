@@ -95,4 +95,52 @@ describe RealEstate do
     RealEstate.reference_projects.all.should == [reference_project]
   end
 
+  describe "State machine" do
+
+    let :category do
+      Fabricate :category
+    end
+
+    it "has default state 'editing'" do
+      real_estate = RealEstate.new
+      real_estate.editing?.should be_true
+    end
+
+    it "transitions from 'editing' to 'review'" do
+      real_estate = Fabricate(:real_estate, :category => category)
+      real_estate.stub!(:valid_for_publishing?).and_return(true)
+      real_estate.review_it!
+
+      real_estate.in_review?.should be_true
+    end
+
+    it "transitions from 'review' to 'published'" do
+      real_estate = Fabricate(:real_estate, :state => 'in_review', :category => category)
+      real_estate.stub!(:valid_for_publishing?).and_return(true)
+      real_estate.publish_it!
+
+      real_estate.published?.should be_true
+    end
+
+    it "transitions from 'review' to 'editing'" do
+      real_estate = Fabricate(:real_estate, :state => 'in_review', :category => category)
+      real_estate.reject_it!
+      real_estate.editing?.should be_true
+    end
+
+    it "transitions from 'editing' to 'published'" do
+      real_estate = Fabricate(:real_estate, :state => 'editing', :category => category)
+      real_estate.stub!(:valid_for_publishing?).and_return(true)
+      real_estate.publish_it!
+
+      real_estate.published?.should be_true
+    end
+
+    it "transitions from 'published' to 'editing'" do
+      real_estate = Fabricate(:real_estate, :state => 'published', :category => category)
+      real_estate.unpublish_it!
+      real_estate.editing?.should be_true
+    end
+  end
+
 end

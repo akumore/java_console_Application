@@ -18,3 +18,12 @@ de:
         is_first_marketing: 'Erstvermarktung'
         building_type: 'Haustyp'
         utilization_description: 'Nutzungsarten'
+        states:
+          published: Veröffentlicht
+          editing: In Bearbeitung
+          in_review: Verifizieren lassen
+        events:
+          publish_it: Publizieren
+          review_it: Verifizieren lassen
+          unpublish_it: Offline schalten
+          reject_it: Zurückweisen

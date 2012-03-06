@@ -14,4 +14,22 @@ class Cms::User
 
   ## Rememberable
   field :remember_created_at, :type => Time
+
+  #def is_admin?
+  #  #TODO implementation of roles required!
+  #  %w(admin@screenconcept.ch staging@alfred-mueller.ch).include? email
+  #end
+
+  def role
+    :admin
+  end
+
+  def editor?
+    role == :editor
+  end
+
+  def admin?
+    role == :admin
+  end
+
 end

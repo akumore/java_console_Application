@@ -1,0 +1,15 @@
+- content_for :title do
+  = @real_estate.title
+  bearbeiten
+  %small
+    (
+    = t "mongoid.attributes.real_estate.states.#{@real_estate.state_name}"
+    )
+
+
+- content_for :real_estate_events do
+  .events
+    - fireable_events(@real_estate).reverse_each do |event|
+      = form_for [:cms, @real_estate],  :html=>{ :class=>'form-inline', :id=>nil } do |f|
+        = f.hidden_field :state_event, :value=>event.name
+        = f.submit t("mongoid.attributes.real_estate.events.#{event.name}"), :class=>event_button_css(event)

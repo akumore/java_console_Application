@@ -3,30 +3,58 @@
 require "spec_helper"
 
 describe "RealEstates" do
+
+  let :category do
+    Fabricate(:category, :label => 'Wohnung')
+  end
+
   let :real_estate do
+    Fabricate :published_real_estate,
+              :category => category,
+              :address => Fabricate.build(:address),
+              :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
+              :pricing => Fabricate.build(:pricing),
+              :infrastructure => Fabricate.build(:infrastructure),
+              :contact => Fabricate(:employee)
+  end
+
+  let :unpublished_real_estate do
     Fabricate :real_estate,
-              :category=>Fabricate(:category, :label=>'Wohnung'),
-              :address=>Fabricate.build(:address),
-              :figure=>Fabricate.build(:figure, :rooms=>10.5, :floor=>99),
-              :pricing=>Fabricate.build(:pricing),
+              :category => category,
+              :address => Fabricate.build(:address),
+              :figure => Fabricate.build(:figure, :rooms => 20, :floor => 1),
+              :pricing => Fabricate.build(:pricing),
               :infrastructure => Fabricate.build(:infrastructure),
               :contact => Fabricate(:employee)
   end
 
   describe "Visit real estate index path" do
     before do
-      @real_estates = [real_estate]
+      @real_estates = [real_estate, unpublished_real_estate]
     end
 
     it "shows the number of search result" do
       visit real_estates_path
-      page.should have_content "#{@real_estates.size} Treffer"
+      page.should have_content "1 Treffer"
     end
 
     it "renders the search results within a table" do
       visit real_estates_path
-      page.should have_selector('table tr', :count => @real_estates.size)
+      page.should have_selector('table tr', :count => 1)
     end
+
+    it "shows published real estates only" do
+      visit real_estates_path
+      page.should_not have_css "#real-estate-#{unpublished_real_estate.id}"
+      page.should have_css "#real-estate-#{real_estate.id}"
+    end
+
+    it "shows published real estates enabled for web channel only" do
+      real_estate.update_attribute :channels, [RealEstate::REFERENCE_PROJECT_CHANNEL]
+      visit real_estates_path
+      page.should_not have_css "#real-estate-#{real_estate.id}"
+    end
+
 
     describe "Shown information about a search results" do
       let :primary_image do
@@ -89,7 +117,7 @@ describe "RealEstates" do
       context "with projects for rent" do
         before :each do
           3.times do
-            Fabricate(:real_estate,
+            Fabricate(:published_real_estate,
               :offer => RealEstate::OFFER_FOR_RENT,
               :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
               :category => Fabricate(:category),
@@ -112,7 +140,7 @@ describe "RealEstates" do
       context "with projects for sale" do
         before :each do
           2.times do
-            Fabricate(:real_estate,
+            Fabricate(:published_real_estate,
               :offer => RealEstate::OFFER_FOR_SALE,
               :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
               :category => Fabricate(:category),
@@ -136,28 +164,28 @@ describe "RealEstates" do
 
   describe "Search-Filtering of real estates" do
     before do
-      @non_commercial_for_sale = Fabricate :real_estate,
+      @non_commercial_for_sale = Fabricate :published_real_estate,
                                            :utilization=>RealEstate::UTILIZATION_PRIVATE,
                                            :offer=>RealEstate::OFFER_FOR_SALE,
                                            :category=>Fabricate(:category),
                                            :address=>Fabricate.build(:address),
                                            :figure=>Fabricate.build(:figure),
                                            :pricing=>Fabricate.build(:pricing)
-      @commercial_for_sale = Fabricate :real_estate,
+      @commercial_for_sale = Fabricate :published_real_estate,
                                        :utilization=>RealEstate::UTILIZATION_COMMERICAL,
                                        :offer=>RealEstate::OFFER_FOR_SALE,
                                        :category=>Fabricate(:category),
                                        :address=>Fabricate.build(:address),
                                        :figure=>Fabricate.build(:figure),
                                        :pricing=>Fabricate.build(:pricing)
-      @non_commercial_for_rent = Fabricate :real_estate,
+      @non_commercial_for_rent = Fabricate :published_real_estate,
                                            :utilization=>RealEstate::UTILIZATION_PRIVATE,
                                            :offer=>RealEstate::OFFER_FOR_RENT,
                                            :category=>Fabricate(:category),
                                            :address=>Fabricate.build(:address),
                                            :figure=>Fabricate.build(:figure),
                                            :pricing=>Fabricate.build(:pricing)
-      @commercial_for_rent = Fabricate :real_estate,
+      @commercial_for_rent = Fabricate :published_real_estate,
                                        :utilization=>RealEstate::UTILIZATION_COMMERICAL,
                                        :offer=>RealEstate::OFFER_FOR_RENT,
                                        :category=>Fabricate(:category),
@@ -204,6 +232,25 @@ describe "RealEstates" do
       visit real_estates_path(:utilization=>RealEstate::UTILIZATION_COMMERICAL, :offer=>RealEstate::OFFER_FOR_RENT)
       page.should_not have_selector('table tr')
     end
+  end
+
+  describe "Visiting unpublished real estate" do
+
+    it "redirects to real estate index page" do
+      visit real_estate_path(unpublished_real_estate)
+      current_path.should == real_estates_path
+    end
+
+  end
+
+  context "Visiting web channel disabled real estate" do
+
+    it 'redirects to real estate index page' do
+      real_estate.update_attribute :channels, []
+      visit real_estate_path(real_estate)
+      current_path.should == real_estates_path
+    end
+
   end
 
   describe 'Visit real estate show path' do

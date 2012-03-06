@@ -80,4 +80,5 @@ class Cms::RealEstatesController < Cms::SecuredController
       format.json { head :ok }
     end
   end
+
 end

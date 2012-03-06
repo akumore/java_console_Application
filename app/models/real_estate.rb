@@ -12,6 +12,7 @@ class RealEstate
   OFFER_FOR_SALE = 'for_sale'
 
   STATE_EDITING = 'editing'
+  STATE_PUBLISHED = 'published'
 
   REFERENCE_PROJECT_CHANNEL = "reference_projects"
   WEBSITE_CHANNEL = "website"
@@ -48,7 +49,6 @@ class RealEstate
   field :utilization_description, :type => String
 
   validates :category_id, :presence => true
-  validates :state, :presence => true
   validates :utilization, :presence => true
   validates :offer, :presence => true
   validates :title, :presence => true
@@ -60,7 +60,30 @@ class RealEstate
   delegate :row_house?, :to => :category, :allow_nil => true
   delegate :coordinates, :to => :address, :allow_nil => true
 
-  scope :reference_projects, :where => { :channels=>REFERENCE_PROJECT_CHANNEL }
+  scope :reference_projects, :where => {:channels => REFERENCE_PROJECT_CHANNEL}
+  scope :published, :where => {:state => STATE_PUBLISHED}
+  scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
+
+  state_machine :state, :initial => :editing do
+
+    state :editing, :in_review, :published
+
+    event :review_it do
+      transition :editing => :in_review, :if => :valid_for_publishing?
+    end
+
+    event :reject_it do
+      transition :in_review => :editing
+    end
+
+    event :publish_it do
+      transition [:editing, :in_review] => :published, :if => :valid_for_publishing?
+    end
+
+    event :unpublish_it do
+      transition :published => :editing
+    end
+  end
 
   def for_sale?
     self.offer == RealEstate::OFFER_FOR_SALE
@@ -83,7 +106,7 @@ class RealEstate
   end
 
   def valid_for_publishing?
-    valid? && %w(pricing figure information infrastructure).inject(true) do |result, embedded|
+    %w(pricing figure information infrastructure).inject(true) do |result, embedded|
       result && send(embedded).present? && send(embedded).valid?
     end
   end
