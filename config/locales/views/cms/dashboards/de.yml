@@ -1,0 +1,6 @@
+de:
+  cms:
+    dashboards:
+      real_estates_for_review: 
+        one: '1 Immobilie wartet darauf, überprüft zu werden.'
+        other: '2 Immobilien warten darauf, überprüft zu werden.'

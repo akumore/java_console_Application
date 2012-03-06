@@ -1,7 +1,21 @@
 module RequestMacros
   def login_cms_user
     before(:each) do
-      @cms_user = Fabricate(:cms_user)
+      @cms_user = Fabricate(:cms_admin)
+      visit new_user_session_path
+      within "#user_new" do
+        fill_in "E-Mail", :with => @cms_user.email
+        fill_in "Passwort", :with => '123456'
+        click_on "Sign in"
+      end
+    end
+  end
+
+  alias :login_cms_admin :login_cms_user
+
+  def login_cms_editor
+    before(:each) do
+      @cms_user = Fabricate(:cms_editor)
       visit new_user_session_path
       within "#user_new" do
         fill_in "E-Mail", :with => @cms_user.email

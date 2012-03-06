@@ -13,6 +13,7 @@ class RealEstate
 
   STATE_EDITING = 'editing'
   STATE_PUBLISHED = 'published'
+  STATE_IN_REVIEW = 'in_review'
 
   REFERENCE_PROJECT_CHANNEL = "reference_projects"
   WEBSITE_CHANNEL = "website"
@@ -62,7 +63,9 @@ class RealEstate
 
   scope :reference_projects, :where => {:channels => REFERENCE_PROJECT_CHANNEL}
   scope :published, :where => {:state => STATE_PUBLISHED}
+  scope :in_review, :where => { :state => STATE_IN_REVIEW }
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
+  scope :recently_updated, lambda { where( :updated_at.gte => 12.hours.ago ) }
 
   state_machine :state, :initial => :editing do
 
