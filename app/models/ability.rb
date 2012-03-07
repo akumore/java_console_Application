@@ -37,6 +37,10 @@ class Ability
       can :update, RealEstate, :state => 'in_review'
       can :update, RealEstate, :state => 'published'
       cannot :edit, RealEstate, :state => 'published'
+
+      can :update, Address, :real_estate=>{:state => 'editing'}
+      can :update, Address, :real_estate=>{:state => 'in_review'}
+      cannot :update, Address, :real_estate=>{:state => 'published'}
     end
     
     if user.editor?
@@ -45,6 +49,8 @@ class Ability
 
       #controller action abilities
       can :update, RealEstate, :state => 'editing'
+
+      can :update, Address, :real_estate=>{:state => 'editing'}
     end
 
   end
