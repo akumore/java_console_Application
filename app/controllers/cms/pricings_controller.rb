@@ -1,6 +1,10 @@
 class Cms::PricingsController < Cms::SecuredController
   include EmbeddedInRealEstate
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to cms_real_estate_pricing_path(@real_estate), :alert => exception.message
+  end
+
   def new
     @pricing = Pricing.new
     respond_with @pricing
@@ -8,6 +12,7 @@ class Cms::PricingsController < Cms::SecuredController
 
   def edit
     @pricing = @real_estate.pricing
+    authorize! :update,  @real_estate
   end
 
   def create
@@ -23,6 +28,7 @@ class Cms::PricingsController < Cms::SecuredController
 
   def update
     @pricing = @real_estate.pricing
+    authorize! :update,  @real_estate
 
     if @pricing.update_attributes(params[:pricing])
       redirect_to_step('figure')
@@ -30,4 +36,9 @@ class Cms::PricingsController < Cms::SecuredController
       render 'edit'
     end
   end
+  
+  def show
+    @pricing = @real_estate.pricing
+  end
+  
 end
