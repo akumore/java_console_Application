@@ -22,7 +22,7 @@ class Cms::RealEstatesController < Cms::SecuredController
     @real_estate = RealEstate.new(params[:real_estate])
 
     if @real_estate.save
-      redirect_to edit_cms_real_estate_path(@real_estate)
+      redirect_to new_cms_real_estate_address_path(@real_estate)
     else
       render 'new'
     end
@@ -32,7 +32,11 @@ class Cms::RealEstatesController < Cms::SecuredController
     @real_estate = RealEstate.find(params[:id])
 
     if @real_estate.update_attributes(params[:real_estate])
-      redirect_to edit_cms_real_estate_path(@real_estate)
+      if @real_estate.address.present?
+        redirect_to edit_cms_real_estate_address_path(@real_estate)
+      else
+        redirect_to new_cms_real_estate_address_path(@real_estate)
+      end
     else
       render 'edit'
     end
