@@ -1,10 +1,7 @@
 - content_for :title do
   = @real_estate.title
-  bearbeiten
-  %small
-    (
-    = t "mongoid.attributes.real_estate.states.#{@real_estate.state_name}"
-    )
+  = t "mongoid.attributes.real_estate.states.#{@real_estate.state_name}"
+
 
 
 - content_for :real_estate_events do
