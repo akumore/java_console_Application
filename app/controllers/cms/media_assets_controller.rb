@@ -1,6 +1,5 @@
 class Cms::MediaAssetsController < Cms::SecuredController
-
-  before_filter :load_real_estate
+  include EmbeddedInRealEstate
   
   # GET /cms/media_assets
   # GET /cms/media_assets.json
@@ -71,11 +70,5 @@ class Cms::MediaAssetsController < Cms::SecuredController
       format.html { redirect_to cms_real_estate_media_assets_url }
       format.json { head :ok }
     end
-  end
-
-  private
-
-  def load_real_estate
-    @real_estate = RealEstate.find(params[:real_estate_id]) 
   end
 end

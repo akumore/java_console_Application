@@ -1,6 +1,5 @@
 class Cms::FiguresController < Cms::SecuredController
-
-  before_filter :load_real_estate
+  include EmbeddedInRealEstate
 
   def new
     @figure = Figure.new
@@ -42,11 +41,5 @@ class Cms::FiguresController < Cms::SecuredController
         format.json { render :json => @figure.errors, :status => :unprocessable_entity }
       end
     end
-  end
-
-protected
-  
-  def load_real_estate
-    @real_estate = RealEstate.find(params[:real_estate_id])    
   end
 end

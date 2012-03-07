@@ -1,6 +1,5 @@
 class Cms::InfrastructuresController < Cms::SecuredController
-
-  before_filter :load_real_estate
+  include EmbeddedInRealEstate
 
   def new
     @infrastructure = Infrastructure.new
@@ -44,11 +43,5 @@ class Cms::InfrastructuresController < Cms::SecuredController
         format.json { render :json => @infrastructure.errors, :status => :unprocessable_entity }
       end
     end
-  end
-
-protected
-  
-  def load_real_estate
-    @real_estate = RealEstate.find(params[:real_estate_id])    
   end
 end
