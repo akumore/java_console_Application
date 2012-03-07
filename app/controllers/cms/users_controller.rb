@@ -1,4 +1,8 @@
 class Cms::UsersController < Cms::SecuredController
+  
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to cms_dashboards_path, :alert => exception.message
+  end
 
   def index
     @users = Cms::User.all.order([:email, :asc])
@@ -7,11 +11,13 @@ class Cms::UsersController < Cms::SecuredController
 
   def new
     @user = Cms::User.new
+    authorize! :new, @user
     respond_with @user
   end
 
   def create
     @user = Cms::User.new(params[:cms_user])
+    authorize! :create, @user
     if @user.save
       redirect_to edit_cms_user_path(@user)
     else
@@ -21,11 +27,13 @@ class Cms::UsersController < Cms::SecuredController
 
   def edit
     @user = Cms::User.find(params[:id])
+    authorize! :edit, @user
     respond_with @user
   end
 
   def update
     @user = Cms::User.find(params[:id])
+    authorize! :update, @user
 
     # update differently depending if a new password was provided
     any_passwords = %w(password password_confirmation).any? do |field|
@@ -46,6 +54,7 @@ class Cms::UsersController < Cms::SecuredController
 
   def destroy
     user = Cms::User.find(params[:id])
+    authorize! :destroy, user
     user.destroy
     redirect_to cms_users_path
   end
