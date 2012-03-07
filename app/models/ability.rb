@@ -25,14 +25,26 @@ class Ability
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
     if user.admin?
+      can :manage, Cms::User
+      
+      # state machine abilities
       can :reject_it, RealEstate
       can :publish_it, RealEstate
       can :unpublish_it, RealEstate
-      can :manage, Cms::User
+
+      #controller action abilities
+      can :update, RealEstate, :state => 'editing'
+      can :update, RealEstate, :state => 'in_review'
+      can :update, RealEstate, :state => 'published'
+      cannot :edit, RealEstate, :state => 'published'
     end
     
     if user.editor?
+      # state machine abilities
       can :review_it, RealEstate
+
+      #controller action abilities
+      can :update, RealEstate, :state => 'editing'
     end
 
   end
