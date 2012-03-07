@@ -1,0 +1,146 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+%dl
+  %dt.span2= t "mongoid.attributes.information.available_from"
+  %dd
+    = @information.available_from
+    &nbsp;
+
+  %dt.span2= t "mongoid.attributes.information.display_estimated_available_from"
+  %dd
+    = @information.display_estimated_available_from
+    &nbsp;
+
+.row
+  .span4
+    .control-group
+      %dl
+        %dt.span2= t "mongoid.attributes.information.is_new_building"
+        %dd= @information.is_new_building?
+
+        %dt.span2= t "mongoid.attributes.information.is_old_building"
+        %dd= @information.is_old_building?
+
+  .span4
+    .control-group
+      %dl
+        %dt.span2= t "mongoid.attributes.information.is_minergie_style"
+        %dd= @information.is_minergie_style?
+
+        %dt.span2= t "mongoid.attributes.information.is_minergie_certified"
+        %dd= @information.is_minergie_certified?
+
+  .span4
+    - if @real_estate.property?
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.is_developed"
+          %dd= @information.is_developed?
+
+    - if @real_estate.apartment? || @real_estate.house?
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.is_under_building_laws"
+          %dd= @information.is_under_building_laws?
+
+- if @real_estate.private_utilization?
+  .row
+    .span4
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.has_outlook"
+          %dd= @information.has_outlook?
+
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.has_fireplace"
+          %dd= @information.has_fireplace?
+
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.has_elevator"
+          %dd= @information.has_elevator?
+
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.has_isdn"
+          %dd= @information.has_isdn?
+
+    .span4
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.is_wheelchair_accessible"
+          %dd= @information.is_wheelchair_accessible?
+
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.is_child_friendly"
+          %dd= @information.is_child_friendly?
+
+
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.has_balcony"
+          %dd= @information.has_balcony?
+
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.has_raised_ground_floor"
+          %dd= @information.has_raised_ground_floor?
+
+    .span4
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.has_swimming_pool"
+          %dd= @information.has_swimming_pool?
+
+- if @real_estate.commercial_utilization?
+  .row
+    .span4
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.maximal_floor_loading"
+          %dd
+            = @information.maximal_floor_loading
+            &nbsp;
+
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.freight_elevator_carrying_capacity"
+          %dd
+            = @information.freight_elevator_carrying_capacity
+            &nbsp;
+
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.number_of_restrooms"
+          %dd
+            = @information.number_of_restrooms
+            &nbsp;
+
+    .span4
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.has_lifting_platform"
+          %dd= @information.has_lifting_platform?
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.has_ramp"
+          %dd= @information.has_ramp?
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.has_railway_terminal"
+          %dd= @information.has_railway_terminal?
+          = f.label :has_railway_terminal
+
+    .span4
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.has_water_supply"
+          %dd= @information.has_water_supply?
+      .control-group
+        %dl
+          %dt.span2= t "mongoid.attributes.information.has_sewage_supply"
+          %dd= @information.has_sewage_supply?
