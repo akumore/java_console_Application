@@ -28,7 +28,9 @@ class Ability
       can :reject_it, RealEstate
       can :publish_it, RealEstate
       can :unpublish_it, RealEstate
+      can :manage, Cms::User
     end
+    
     if user.editor?
       can :review_it, RealEstate
     end
