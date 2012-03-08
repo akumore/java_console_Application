@@ -1,7 +1,7 @@
 class Cms::DescriptionsController < Cms::SecuredController
   include EmbeddedInRealEstate
 
-  authorize_resource :real_estate, :only => [:edit, :update]
+  authorize_resource :only => [:edit, :update], :through=>:real_estate
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to cms_real_estate_description_path(@real_estate), :alert => exception.message
