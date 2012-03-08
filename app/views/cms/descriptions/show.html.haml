@@ -1,0 +1,47 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+
+%dl
+  %dt.span3= t "mongoid.attributes.description.generic"
+  %dd
+    = @description.generic
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.description.location"
+  %dd
+    = @description.location
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.description.interior"
+  %dd
+    = @description.interior
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.description.offer"
+  %dd
+    = @description.offer
+    &nbsp;
+
+
+  %dt.span3= t "mongoid.attributes.description.infrastructure"
+  %dd
+    = @description.infrastructure
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.description.usage"
+  %dd
+    = @description.usage
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.description.reference_date"
+  %dd
+    = @description.reference_date
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.description.orientation_degrees"
+  %dd
+    = @description.orientation_degrees
+    &nbsp;
+
