@@ -15,11 +15,7 @@ class Cms::AddressesController < Cms::SecuredController
     @address.real_estate = @real_estate
 
     if @address.save
-      if @real_estate.information.present?
-        redirect_to edit_cms_real_estate_information_path(@real_estate)
-      else
-        redirect_to new_cms_real_estate_information_path(@real_estate)
-      end
+      redirect_to_step('information')
     else
       render 'new'
     end
@@ -29,11 +25,7 @@ class Cms::AddressesController < Cms::SecuredController
     @address = @real_estate.address
 
     if @address.update_attributes(params[:address])
-      if @real_estate.information.present?
-        redirect_to edit_cms_real_estate_information_path(@real_estate)
-      else
-        redirect_to new_cms_real_estate_information_path(@real_estate)
-      end
+      redirect_to_step('information')
     else
       render 'edit'
     end    

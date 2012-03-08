@@ -3,12 +3,13 @@ require 'spec_helper'
 
 describe 'Real Estate Wizard' do
   login_cms_user
+  disable_sweep!
 
   let :real_estate do
     mock_model(RealEstate, :save => true, :update_attributes => true)
   end
 
-    describe Cms::AddressesController do
+  describe Cms::AddressesController do
     describe '#create' do
       it 'redirects to the new information tab without an existing information' do
         mock = real_estate
@@ -19,6 +20,7 @@ describe 'Real Estate Wizard' do
 
         post :create, :real_estate_id => mock.id
         response.should redirect_to(new_cms_real_estate_information_path(mock))
+        flash.now[:success].should_not be_nil
       end
 
       it 'redirects to the edit information tab with an existing information' do
@@ -30,6 +32,7 @@ describe 'Real Estate Wizard' do
 
         post :create, :real_estate_id => mock.id
         response.should redirect_to(edit_cms_real_estate_information_path(mock))
+        flash.now[:success].should_not be_nil
       end
     end
 
@@ -43,6 +46,7 @@ describe 'Real Estate Wizard' do
 
         post :update, :real_estate_id => mock.id
         response.should redirect_to(new_cms_real_estate_information_path(mock))
+        flash.now[:success].should_not be_nil
       end
 
       it 'redirects to the edit information tab with an existing information' do
@@ -55,6 +59,7 @@ describe 'Real Estate Wizard' do
 
         post :update, :real_estate_id => mock.id
         response.should redirect_to(edit_cms_real_estate_information_path(mock))
+        flash.now[:success].should_not be_nil
       end
     end
   end
