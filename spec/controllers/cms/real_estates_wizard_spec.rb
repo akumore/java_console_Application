@@ -108,6 +108,7 @@ describe 'Real Estate Wizard' do
       it 'redirects to the edit pricing tab with an existing pricing' do
         mock = real_estate
         mock.stub!(:pricing).and_return(mock_model(Pricing))
+        Information.stub!(:new).and_return(mock_model(Information, :save => true, :real_estate= => nil))
 
         RealEstate.stub!(:find).and_return(mock)
 

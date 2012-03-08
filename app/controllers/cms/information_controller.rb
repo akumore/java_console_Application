@@ -3,6 +3,7 @@ class Cms::InformationController < Cms::SecuredController
 
   def new
     @information = Information.new
+    @information.real_estate = @real_estate
   end
 
   def edit
@@ -10,13 +11,31 @@ class Cms::InformationController < Cms::SecuredController
   end
 
   def create
-    @information = Information.create params[:information].merge(:real_estate=>@real_estate)
-    respond_with @information, :location=> edit_cms_real_estate_information_path(@real_estate)
+    @information = Information.new(params[:information])
+    @information.real_estate = @real_estate
+
+    if @information.save
+      if @real_estate.pricing.present?
+        redirect_to edit_cms_real_estate_pricing_path(@real_estate)
+      else
+        redirect_to new_cms_real_estate_pricing_path(@real_estate)
+      end
+    else
+      render 'new'
+    end
   end
 
   def update
     @information = @real_estate.information
-    @information.update_attributes params[:information]
-    respond_with @information, :location=> edit_cms_real_estate_information_path(@real_estate)
+
+    if @information.update_attributes(params[:information])
+      if @real_estate.pricing.present?
+        redirect_to edit_cms_real_estate_pricing_path(@real_estate)
+      else
+        redirect_to new_cms_real_estate_pricing_path(@real_estate)
+      end
+    else
+      render 'edit'
+    end    
   end
 end
