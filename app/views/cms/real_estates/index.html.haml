@@ -22,4 +22,8 @@
       %td= t ".#{real_estate.offer}"
       %td= t ".#{real_estate.utilization}"
       %td= t ".#{real_estate.state}"
-      %td= link_to  t('cms.real_estates.index.edit'), edit_cms_real_estate_path(real_estate)
+      %td
+        - if can? :update, real_estate
+          = link_to  t('cms.real_estates.index.edit'), edit_cms_real_estate_path(real_estate)
+        - else
+          = link_to  t('cms.real_estates.index.show'), cms_real_estate_path(real_estate)
