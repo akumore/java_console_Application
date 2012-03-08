@@ -20,25 +20,69 @@ SimpleNavigation::Configuration.run do |navigation|
   # Define the primary navigation
   navigation.items do |primary|
 
+    invalid_submodels = @real_estate.invalid_submodels
+    
     primary.item :real_estate, 'Stammdaten', edit_cms_real_estate_path(@real_estate)
 
-    primary.item :address, 'Adresse', new_cms_real_estate_address_path(@real_estate), :unless => lambda { @real_estate.address.present? }, :highlights_on => /address/
-    primary.item :address, 'Adresse', edit_cms_real_estate_address_path(@real_estate), :if => lambda { @real_estate.address.present? }, :highlights_on => /address/
+    primary.item :address, 'Adresse', new_cms_real_estate_address_path(@real_estate), 
+      :unless => lambda { @real_estate.address.present? }, 
+      :highlights_on => /address/, 
+      :class => (invalid_submodels.include?('address') ? 'invalid' : nil)
 
-    primary.item :information, 'Infos', new_cms_real_estate_information_path(@real_estate), :unless => lambda { @real_estate.information.present? }, :highlights_on => /information/
-    primary.item :information, 'Infos', edit_cms_real_estate_information_path(@real_estate), :if => lambda { @real_estate.information.present? }, :highlights_on => /information/
+    primary.item :address, 'Adresse', edit_cms_real_estate_address_path(@real_estate), 
+      :if => lambda { @real_estate.address.present? }, 
+      :highlights_on => /address/, 
+      :class => (invalid_submodels.include?('address') ? 'invalid' : nil)
 
-    primary.item :pricing, 'Preise', new_cms_real_estate_pricing_path(@real_estate), :unless => lambda { @real_estate.pricing.present? }, :highlights_on => /pricing/
-    primary.item :pricing, 'Preise', edit_cms_real_estate_pricing_path(@real_estate), :if => lambda { @real_estate.pricing.present? }, :highlights_on => /pricing/
+    primary.item :information, 'Infos', new_cms_real_estate_information_path(@real_estate), 
+      :unless => lambda { @real_estate.information.present? }, 
+      :highlights_on => /information/,
+      :class => (invalid_submodels.include?('information') ? 'invalid' : nil)
 
-    primary.item :figure, 'Zahlen und Fakten', new_cms_real_estate_figure_path(@real_estate), :unless => lambda { @real_estate.figure.present? }, :highlights_on => /figure/
-    primary.item :figure, 'Zahlen und Fakten', edit_cms_real_estate_figure_path(@real_estate), :if => lambda { @real_estate.figure.present? }, :highlights_on => /figure/
+    primary.item :information, 'Infos', edit_cms_real_estate_information_path(@real_estate), 
+      :if => lambda { @real_estate.information.present? }, 
+      :highlights_on => /information/,
+      :class => (invalid_submodels.include?('information') ? 'invalid' : nil)
 
-    primary.item :infrastructure, 'Infrastruktur', new_cms_real_estate_infrastructure_path(@real_estate), :unless => lambda { @real_estate.infrastructure.present? }, :highlights_on => /infrastructure/
-    primary.item :infrastructure, 'Infrastruktur', edit_cms_real_estate_infrastructure_path(@real_estate), :if => lambda { @real_estate.infrastructure.present? }, :highlights_on => /infrastructure/
+    primary.item :pricing, 'Preise', new_cms_real_estate_pricing_path(@real_estate), 
+      :unless => lambda { @real_estate.pricing.present? },
+      :highlights_on => /pricing/,
+      :class => (invalid_submodels.include?('pricing') ? 'invalid' : nil)
 
-    primary.item :descriptions, 'Beschreibungen', new_cms_real_estate_description_path(@real_estate), :unless => lambda { @real_estate.descriptions.present? }, :highlights_on => /description/
-    primary.item :descriptions, 'Beschreibungen', edit_cms_real_estate_description_path(@real_estate), :if => lambda { @real_estate.descriptions.present? }, :highlights_on => /description/
+    primary.item :pricing, 'Preise', edit_cms_real_estate_pricing_path(@real_estate), 
+      :if => lambda { @real_estate.pricing.present? }, 
+      :highlights_on => /pricing/,
+      :class => (invalid_submodels.include?('pricing') ? 'invalid' : nil)
+
+    primary.item :figure, 'Zahlen und Fakten', new_cms_real_estate_figure_path(@real_estate), 
+      :unless => lambda { @real_estate.figure.present? }, 
+      :highlights_on => /figure/,
+      :class => (invalid_submodels.include?('figure') ? 'invalid' : nil)
+
+    primary.item :figure, 'Zahlen und Fakten', edit_cms_real_estate_figure_path(@real_estate), 
+      :if => lambda { @real_estate.figure.present? }, 
+      :highlights_on => /figure/,
+      :class => (invalid_submodels.include?('figure') ? 'invalid' : nil)
+
+    primary.item :infrastructure, 'Infrastruktur', new_cms_real_estate_infrastructure_path(@real_estate), 
+      :unless => lambda { @real_estate.infrastructure.present? }, 
+      :highlights_on => /infrastructure/,
+      :class => (invalid_submodels.include?('infrastructure') ? 'invalid' : nil)
+
+    primary.item :infrastructure, 'Infrastruktur', edit_cms_real_estate_infrastructure_path(@real_estate), 
+      :if => lambda { @real_estate.infrastructure.present? }, 
+      :highlights_on => /infrastructure/,
+      :class => (invalid_submodels.include?('infrastructure') ? 'invalid' : nil)
+
+    primary.item :descriptions, 'Beschreibungen', new_cms_real_estate_description_path(@real_estate), 
+      :unless => lambda { @real_estate.descriptions.present? }, 
+      :highlights_on => /description/,
+      :class => (invalid_submodels.include?('descriptions') ? 'invalid' : nil)
+
+    primary.item :descriptions, 'Beschreibungen', edit_cms_real_estate_description_path(@real_estate), 
+      :if => lambda { @real_estate.descriptions.present? }, 
+      :highlights_on => /description/,
+      :class => (invalid_submodels.include?('descriptions') ? 'invalid' : nil)
 
     primary.item :media_assets, 'Bilder & Dokumente', cms_real_estate_media_assets_path(@real_estate), :highlights_on => /media_assets|image|video|document/
 
