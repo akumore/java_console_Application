@@ -55,14 +55,4 @@ SimpleNavigation::Configuration.run do |navigation|
 
   end
 
-  #  primary.item :media_assets, t('navigation.cms.real_estates_navigation.media_assets'), cms_real_estate_media_assets_path(@real_estate), :highlights_on => /media_assets|image|video|document/
-  #
-  #  # you can also specify a css id or class to attach to this particular level
-  #  # works for all levels of the menu
-  #  # primary.dom_id = 'menu-id'
-  #  primary.dom_class = 'nav nav-tabs'
-  #
-  #end
-  
-
 end
