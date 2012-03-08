@@ -2,18 +2,20 @@
 
 = render_navigation :context => :real_estate
 
-.pull-right
-  .padded
-    .btn-group
-      = link_to(new_cms_real_estate_image_path, :class => 'btn') do
-        %i.icon-picture
-        = t('.new_image')
-      = link_to(new_cms_real_estate_video_path, :class => 'btn') do
-        %i.icon-film
-        = t('.new_video')
-      = link_to(new_cms_real_estate_document_path, :class => 'btn') do
-        %i.icon-file
-        = t('.new_document')
+
+- if can? :update, @real_estate
+  .pull-right
+    .padded
+      .btn-group
+        = link_to(new_cms_real_estate_image_path, :class => 'btn') do
+          %i.icon-picture
+          = t('.new_image')
+        = link_to(new_cms_real_estate_video_path, :class => 'btn') do
+          %i.icon-film
+          = t('.new_video')
+        = link_to(new_cms_real_estate_document_path, :class => 'btn') do
+          %i.icon-file
+          = t('.new_document')
 
 %table.table.table-bordered.table-striped
   %tr
@@ -26,5 +28,9 @@
     %tr
       %td= media_asset.title
       %td= t(".types.#{media_asset.media_type}")
-      %td= link_to  t('.destroy'), cms_real_estate_media_asset_path(@real_estate, media_asset), :method => :delete, :confirm => t('.confirm_delete', :title => media_asset.title)
-      %td= link_to  t('.edit'), edit_cms_real_estate_media_asset_path(@real_estate, media_asset)
+      %td
+        - if can? :update, @real_estate
+          = link_to  t('.destroy'), cms_real_estate_media_asset_path(@real_estate, media_asset), :method => :delete, :confirm => t('.confirm_delete', :title => media_asset.title)
+      %td
+        - if can? :update, @real_estate
+          = link_to  t('.edit'), edit_cms_real_estate_media_asset_path(@real_estate, media_asset)

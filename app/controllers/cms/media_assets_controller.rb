@@ -1,6 +1,11 @@
 class Cms::MediaAssetsController < Cms::SecuredController
   include EmbeddedInRealEstate
   
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to cms_real_estate_media_assets_path(@real_estate), :alert => exception.message
+  end
+  
+  
   def index
     @media_assets = @real_estate.media_assets
     respond_with @media_assets
@@ -12,6 +17,7 @@ class Cms::MediaAssetsController < Cms::SecuredController
   end
 
   def edit
+    authorize! :update,  @real_estate
     @media_asset = @real_estate.media_assets.find(params[:id])
   end
 
@@ -26,6 +32,7 @@ class Cms::MediaAssetsController < Cms::SecuredController
   end
 
   def update
+    authorize! :update,  @real_estate
     @media_asset = @real_estate.media_assets.find(params[:id])
 
     if @media_asset.update_attributes(params[:media_asset])
