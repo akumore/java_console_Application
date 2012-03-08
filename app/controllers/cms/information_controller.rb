@@ -15,11 +15,7 @@ class Cms::InformationController < Cms::SecuredController
     @information.real_estate = @real_estate
 
     if @information.save
-      if @real_estate.pricing.present?
-        redirect_to edit_cms_real_estate_pricing_path(@real_estate)
-      else
-        redirect_to new_cms_real_estate_pricing_path(@real_estate)
-      end
+      redirect_to_step('pricing')
     else
       render 'new'
     end
@@ -29,11 +25,7 @@ class Cms::InformationController < Cms::SecuredController
     @information = @real_estate.information
 
     if @information.update_attributes(params[:information])
-      if @real_estate.pricing.present?
-        redirect_to edit_cms_real_estate_pricing_path(@real_estate)
-      else
-        redirect_to new_cms_real_estate_pricing_path(@real_estate)
-      end
+      redirect_to_step('pricing')
     else
       render 'edit'
     end    

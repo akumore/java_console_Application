@@ -15,11 +15,7 @@ class Cms::PricingsController < Cms::SecuredController
     @pricing.real_estate = @real_estate
 
     if @pricing.save
-      if @real_estate.figure.present?
-        redirect_to edit_cms_real_estate_figure_path(@real_estate)
-      else
-        redirect_to new_cms_real_estate_figure_path(@real_estate)
-      end
+      redirect_to_step('figure')
     else
       render 'new'
     end
@@ -29,11 +25,7 @@ class Cms::PricingsController < Cms::SecuredController
     @pricing = @real_estate.pricing
 
     if @pricing.update_attributes(params[:pricing])
-      if @real_estate.figure.present?
-        redirect_to edit_cms_real_estate_figure_path(@real_estate)
-      else
-        redirect_to new_cms_real_estate_figure_path(@real_estate)
-      end
+      redirect_to_step('figure')
     else
       render 'edit'
     end

@@ -16,6 +16,7 @@ class Cms::DescriptionsController < Cms::SecuredController
     @description.real_estate = @real_estate
 
     if @description.save
+      flash.now[:success] = success_message_for(controller_name)
       redirect_to cms_real_estate_media_assets_path(@real_estate)
     else
       render 'new'
@@ -26,6 +27,7 @@ class Cms::DescriptionsController < Cms::SecuredController
     @description = @real_estate.descriptions
 
     if @description.update_attributes(params[:description])
+      flash.now[:success] = success_message_for(controller_name)
       redirect_to cms_real_estate_media_assets_path(@real_estate)
     else
       render 'edit'
