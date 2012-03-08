@@ -17,7 +17,11 @@ class Cms::InfrastructuresController < Cms::SecuredController
     @infrastructure.real_estate = @real_estate
 
     if @infrastructure.save
-      redirect_to edit_cms_real_estate_infrastructure_path(@real_estate)
+      if @real_estate.descriptions.present?
+        redirect_to edit_cms_real_estate_description_path(@real_estate)
+      else
+        redirect_to new_cms_real_estate_description_path(@real_estate)
+      end
     else
       render 'new'
     end
@@ -27,7 +31,11 @@ class Cms::InfrastructuresController < Cms::SecuredController
     @infrastructure = @real_estate.infrastructure
 
     if @infrastructure.update_attributes(params[:infrastructure])
-      redirect_to edit_cms_real_estate_infrastructure_path(@real_estate)
+      if @real_estate.descriptions.present?
+        redirect_to edit_cms_real_estate_description_path(@real_estate)
+      else
+        redirect_to new_cms_real_estate_description_path(@real_estate)
+      end
     else
       render 'edit'
     end
