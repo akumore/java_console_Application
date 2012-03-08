@@ -1,8 +1,6 @@
 class Cms::InformationController < Cms::SecuredController
   include EmbeddedInRealEstate
 
-  respond_to :html, :json
-
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to cms_real_estate_information_path(@real_estate), :alert => exception.message
   end

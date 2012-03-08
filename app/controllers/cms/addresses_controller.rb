@@ -1,8 +1,6 @@
 class Cms::AddressesController < Cms::SecuredController
   include EmbeddedInRealEstate
 
-  before_filter :load_real_estate
-
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to cms_real_estate_address_path(@real_estate), :alert => exception.message
   end
