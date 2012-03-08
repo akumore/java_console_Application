@@ -19,21 +19,41 @@ SimpleNavigation::Configuration.run do |navigation|
 
   # Define the primary navigation
   navigation.items do |primary|
+    if can?(:update, @real_estate)
 
-    submodels = %w(address information pricing figure infrastructure descriptions)
-    invalid_submodels = @real_estate.invalid_submodels
-    
-    primary.item :real_estate, t('navigation.cms.real_estates_navigation.real_estate'), edit_cms_real_estate_path(@real_estate)
+      primary.item :real_estate, 'Stammdaten', edit_cms_real_estate_path(@real_estate)
 
-    submodels.each do |submodel|
-      action = @real_estate.send(submodel).present? ? :edit : :new
-      path = "#{action}_cms_real_estate_#{submodel.singularize}_path"
-      primary.item submodel, t("navigation.cms.real_estates_navigation.#{submodel}"), send(path, @real_estate), 
-        :class => (invalid_submodels.include?(submodel) ? 'invalid' : nil),
-        :highlights_on => Regexp.new(submodel.singularize)
+      primary.item :address, 'Adresse', new_cms_real_estate_address_path(@real_estate), :unless => lambda { @real_estate.address.present? }
+      primary.item :address, 'Adresse', edit_cms_real_estate_address_path(@real_estate), :if => lambda { @real_estate.address.present? }
+
+      primary.item :information, 'Infos', new_cms_real_estate_information_path(@real_estate), :unless => lambda { @real_estate.information.present? }
+      primary.item :information, 'Infos', edit_cms_real_estate_information_path(@real_estate), :if => lambda { @real_estate.information.present? }
+
+      primary.item :pricing, 'Preise', new_cms_real_estate_pricing_path(@real_estate), :unless => lambda { @real_estate.pricing.present? }
+      primary.item :pricing, 'Preise', edit_cms_real_estate_pricing_path(@real_estate), :if => lambda { @real_estate.pricing.present? }
+
+      primary.item :figure, 'Zahlen und Fakten', new_cms_real_estate_figure_path(@real_estate), :unless => lambda { @real_estate.figure.present? }
+      primary.item :figure, 'Zahlen und Fakten', edit_cms_real_estate_figure_path(@real_estate), :if => lambda { @real_estate.figure.present? }
+
+      primary.item :infrastructure, 'Infrastruktur', new_cms_real_estate_infrastructure_path(@real_estate), :unless => lambda { @real_estate.infrastructure.present? }
+      primary.item :infrastructure, 'Infrastruktur', edit_cms_real_estate_infrastructure_path(@real_estate), :if => lambda { @real_estate.infrastructure.present? }
+
+      primary.item :descriptions, 'Beschreibungen', new_cms_real_estate_description_path(@real_estate), :unless => lambda { @real_estate.descriptions.present? }
+      primary.item :descriptions, 'Beschreibungen', edit_cms_real_estate_description_path(@real_estate), :if => lambda { @real_estate.descriptions.present? }
+
+    else
+
+      primary.item :real_estate, 'Stammdaten', cms_real_estate_path(@real_estate)
+      primary.item :address, 'Adresse', cms_real_estate_address_path(@real_estate)
+      primary.item :information, 'Infos', cms_real_estate_information_path(@real_estate)
+      primary.item :pricing, 'Preise', cms_real_estate_pricing_path(@real_estate)
+      primary.item :figure, 'Zahlen und Fakten', cms_real_estate_figure_path(@real_estate)
+      primary.item :infrastructure, 'Infrastruktur', cms_real_estate_infrastructure_path(@real_estate)
+      primary.item :descriptions, 'Beschreibungen', cms_real_estate_description_path(@real_estate)
+
     end
 
-    primary.item :media_assets, t('navigation.cms.real_estates_navigation.media_assets'), cms_real_estate_media_assets_path(@real_estate), :highlights_on => /media_assets|image|video|document/
+    primary.item :media_assets, 'Bilder & Dokumente', cms_real_estate_media_assets_path(@real_estate), :highlights_on => /media_assets|image|video|document/
 
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu
@@ -41,5 +61,31 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.dom_class = 'nav nav-tabs'
 
   end
+  
+  #TODO Merge conflict
+  #navigation.items do |primary|
+  #
+  #  submodels = %w(address information pricing figure infrastructure descriptions)
+  #  invalid_submodels = @real_estate.invalid_submodels
+  #  
+  #  primary.item :real_estate, t('navigation.cms.real_estates_navigation.real_estate'), edit_cms_real_estate_path(@real_estate)
+  #
+  #  submodels.each do |submodel|
+  #    action = @real_estate.send(submodel).present? ? :edit : :new
+  #    path = "#{action}_cms_real_estate_#{submodel.singularize}_path"
+  #    primary.item submodel, t("navigation.cms.real_estates_navigation.#{submodel}"), send(path, @real_estate), 
+  #      :class => (invalid_submodels.include?(submodel) ? 'invalid' : nil),
+  #      :highlights_on => Regexp.new(submodel.singularize)
+  #  end
+  #
+  #  primary.item :media_assets, t('navigation.cms.real_estates_navigation.media_assets'), cms_real_estate_media_assets_path(@real_estate), :highlights_on => /media_assets|image|video|document/
+  #
+  #  # you can also specify a css id or class to attach to this particular level
+  #  # works for all levels of the menu
+  #  # primary.dom_id = 'menu-id'
+  #  primary.dom_class = 'nav nav-tabs'
+  #
+  #end
+  
 
 end
