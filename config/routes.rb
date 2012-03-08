@@ -12,7 +12,7 @@ AlfredMueller::Application.routes.draw do
     resources :real_estates do
       resource :address
       resource :pricing, :except=>:destroy
-      resource :figure
+      resource :figure, :except=>:destroy
       resource :information
       resource :infrastructure
       resource :description
