@@ -15,7 +15,11 @@ class Cms::FiguresController < Cms::SecuredController
     @figure.real_estate = @real_estate
 
     if @figure.save
-      redirect_to edit_cms_real_estate_figure_path(@real_estate)
+      if @real_estate.infrastructure.present?
+        redirect_to edit_cms_real_estate_infrastructure_path(@real_estate)
+      else
+        redirect_to new_cms_real_estate_infrastructure_path(@real_estate)
+      end
     else
       render 'new'
     end
@@ -25,7 +29,11 @@ class Cms::FiguresController < Cms::SecuredController
     @figure = @real_estate.figure
 
     if @figure.update_attributes(params[:figure])
-      redirect_to edit_cms_real_estate_figure_path(@real_estate)
+      if @real_estate.infrastructure.present?
+        redirect_to edit_cms_real_estate_infrastructure_path(@real_estate)
+      else
+        redirect_to new_cms_real_estate_infrastructure_path(@real_estate)
+      end
     else
       render 'edit'
     end
