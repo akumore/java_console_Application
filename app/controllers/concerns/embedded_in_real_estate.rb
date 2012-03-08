@@ -14,7 +14,7 @@ module EmbeddedInRealEstate
   end
 
   def redirect_to_step name
-    flash.now[:success] = success_message_for(controller_name)
+    flash[:success] = success_message_for(controller_name)
     if @real_estate.send(name).present?
       redirect_to send("edit_cms_real_estate_#{name.singularize}_path", @real_estate)
     else

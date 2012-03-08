@@ -19,7 +19,7 @@ describe 'Real Estate Wizard' do
 
         post :create, :real_estate_id => mock.id
         response.should redirect_to(cms_real_estate_media_assets_path(mock))
-        flash.now[:success].should_not be_nil
+        flash[:success].should_not be_nil
       end
     end
 
@@ -32,7 +32,7 @@ describe 'Real Estate Wizard' do
 
         post :update, :real_estate_id => mock.id
         response.should redirect_to(cms_real_estate_media_assets_path(mock))
-        flash.now[:success].should_not be_nil
+        flash[:success].should_not be_nil
       end
     end
   end

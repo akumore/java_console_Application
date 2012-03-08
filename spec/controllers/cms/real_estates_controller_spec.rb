@@ -3,8 +3,7 @@ require 'spec_helper'
 
 describe 'Real Estate Wizard' do
   login_cms_user
-  disable_sweep!
-
+  
   let :real_estate do
     mock_model(RealEstate, :save => true, :update_attributes => true)
   end

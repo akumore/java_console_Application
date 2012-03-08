@@ -20,7 +20,7 @@ describe 'Real Estate Wizard' do
 
         post :create, :real_estate_id => mock.id
         response.should redirect_to(new_cms_real_estate_pricing_path(mock))
-        flash.now[:success].should_not be_nil
+        flash[:success].should_not be_nil
       end
 
       it 'redirects to the edit pricing tab with an existing pricing' do
@@ -32,7 +32,7 @@ describe 'Real Estate Wizard' do
 
         post :create, :real_estate_id => mock.id
         response.should redirect_to(edit_cms_real_estate_pricing_path(mock))
-        flash.now[:success].should_not be_nil
+        flash[:success].should_not be_nil
       end
     end
 
@@ -46,7 +46,7 @@ describe 'Real Estate Wizard' do
 
         post :update, :real_estate_id => mock.id
         response.should redirect_to(new_cms_real_estate_pricing_path(mock))
-        flash.now[:success].should_not be_nil
+        flash[:success].should_not be_nil
       end
 
       it 'redirects to the new information tab with an existing information' do
@@ -58,7 +58,7 @@ describe 'Real Estate Wizard' do
 
         post :update, :real_estate_id => mock.id
         response.should redirect_to(edit_cms_real_estate_pricing_path(mock))
-        flash.now[:success].should_not be_nil
+        flash[:success].should_not be_nil
       end
     end
   end
