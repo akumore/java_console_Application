@@ -1,0 +1,66 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+
+%dl
+  %dt.span3= t "mongoid.attributes.figure.floor"
+  %dd
+    = @figure.floor
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.figure.floor_estimate"
+  %dd
+    = @figure.floor_estimate
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.figure.rooms"
+  %dd
+    = @figure.rooms
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.figure.rooms_estimate"
+  %dd
+    = @figure.rooms_estimate
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.figure.living_surface"
+  %dd
+    = @figure.living_surface
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.figure.living_surface_estimate"
+  %dd
+    = @figure.living_surface_estimate
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.figure.property_surface"
+  %dd
+    = @figure.property_surface
+    &nbsp;
+
+  - if @real_estate.commercial_utilization?
+    %dt.span3= t "mongoid.attributes.figure.storage_surface"
+    %dd
+      = @figure.property_surfstorage_surfaceace
+      &nbsp;
+
+  %dt.span3= t "mongoid.attributes.figure.ceiling_height"
+  %dd
+    = @figure.ceiling_height
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.figure.floors"
+  %dd
+    = @figure.floors
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.figure.renovated_on"
+  %dd
+    = @figure.renovated_on
+    &nbsp;
+
+  %dt.span3= t "mongoid.attributes.figure.built_on"
+  %dd
+    = @figure.built_on
+    &nbsp;
