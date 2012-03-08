@@ -115,6 +115,10 @@ class RealEstate
     end
   end
 
+  def invalid_submodels
+    %w(address information pricing figure infrastructure descriptions).reject { |sm| send(sm).present? ? send(sm).valid? : true }
+  end
+
   private
   def init_channels
     self.channels ||= []

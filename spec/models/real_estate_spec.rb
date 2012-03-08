@@ -143,4 +143,16 @@ describe RealEstate do
     end
   end
 
+  describe '#invalid_submodels' do
+    it 'returns the names of invalid submodels' do
+      real_estate = Fabricate.build(:real_estate, 
+        :state => 'editing',
+        :category => Fabricate(:category),
+        :address => Address.new,
+        :pricing => Pricing.new
+      )
+
+      real_estate.invalid_submodels.should == %w(address pricing)
+    end
+  end
 end
