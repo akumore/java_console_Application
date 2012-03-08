@@ -16,7 +16,7 @@ class Cms::DescriptionsController < Cms::SecuredController
     @description.real_estate = @real_estate
 
     if @description.save
-      redirect_to edit_cms_real_estate_description_path(@real_estate)
+      redirect_to cms_real_estate_media_assets_path(@real_estate)
     else
       render 'new'
     end
@@ -26,7 +26,7 @@ class Cms::DescriptionsController < Cms::SecuredController
     @description = @real_estate.descriptions
 
     if @description.update_attributes(params[:description])
-      redirect_to edit_cms_real_estate_description_path(@real_estate)
+      redirect_to cms_real_estate_media_assets_path(@real_estate)
     else
       render 'edit'
     end
