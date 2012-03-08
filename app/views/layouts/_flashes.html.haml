@@ -1,4 +1,4 @@
 #flash
   - flash.each do |key, value|
-    .alert-message{ :class => key }
+    .alert{ :class => "#{key} alert-#{key}" }
       %p= value

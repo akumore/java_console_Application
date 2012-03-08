@@ -11,6 +11,16 @@ de:
       knowledge: 'Wissenswertes'
     meta:
       contact: 'Kontakt'
+    cms:
+      real_estates_navigation:
+        real_estate: 'Stammdaten'
+        address: 'Adresse'
+        information: 'Infos'
+        pricing: 'Preise'
+        figure: 'Zahlen und Fakten'
+        infrastructure: 'Infrastruktur'
+        descriptions: 'Beschreibungen'
+        media_assets: 'Bilder & Dokumente'
   helpers:
     submit:
       create: "%{model} erstellen"

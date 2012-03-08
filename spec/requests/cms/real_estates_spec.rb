@@ -41,7 +41,6 @@ describe "Cms::RealEstates" do
     end
   end
 
-
   describe '#new' do
     before :each do
       Fabricate(:employee, :firstname => 'Hans', :lastname => 'Muster')
@@ -169,9 +168,30 @@ describe "Cms::RealEstates" do
       end
 
       it 'has the Child Category 2 selected' do
+        visit edit_cms_real_estate_path(@fabricated_real_estate)
         find(:css, '#real_estate_category_id option[selected]').text.should == 'Child Category 2'
       end
     end
   end
 
+  describe 'invalid tab' do
+    it 'is marked if the submodel is invalid' do
+      real_estate = Fabricate(:real_estate,
+        :category => Fabricate(:category),
+        :reference => Fabricate.build(:reference),
+        :pricing => Pricing.new(
+          :price_unit => Pricing::PRICE_UNITS.first,
+          :for_rent_netto => 1200,
+          :for_rent_extra => 230
+        )
+      )
+
+      visit edit_cms_real_estate_path(real_estate)
+
+      choose('Kaufen')
+      click_on('Immobilie speichern')
+
+      page.should have_css("li.invalid:contains(Preise)")
+    end
+  end
 end
