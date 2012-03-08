@@ -1,6 +1,8 @@
 class Cms::InfrastructuresController < Cms::SecuredController
   include EmbeddedInRealEstate
 
+  authorize_resource :real_estate, :only => [:edit, :update]
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to cms_real_estate_infrastructure_path(@real_estate), :alert => exception.message
   end
@@ -14,7 +16,6 @@ class Cms::InfrastructuresController < Cms::SecuredController
 
   def edit
     @infrastructure = @real_estate.infrastructure
-    authorize! :update, @real_estate
     @infrastructure.build_all_points_of_interest
   end
 
@@ -31,7 +32,6 @@ class Cms::InfrastructuresController < Cms::SecuredController
 
   def update
     @infrastructure = @real_estate.infrastructure
-    authorize! :update, @real_estate
 
     if @infrastructure.update_attributes(params[:infrastructure])
       redirect_to_step('descriptions')
