@@ -19,7 +19,8 @@ class Cms::UsersController < Cms::SecuredController
     @user = Cms::User.new(params[:cms_user])
     authorize! :create, @user
     if @user.save
-      redirect_to edit_cms_user_path(@user)
+      flash[:success] = "Der Benutzer #{@user.email} wurde erfolgreich gespeichert"
+      redirect_to cms_users_path
     else
       render 'new'
     end
@@ -46,7 +47,8 @@ class Cms::UsersController < Cms::SecuredController
     end
 
     if @user.update_attributes(params[:cms_user])
-      redirect_to edit_cms_user_path(@user)
+      flash[:success] = "Der Benutzer #{@user.email} wurde erfolgreich gespeichert"
+      redirect_to cms_users_path
     else
       render 'edit'
     end

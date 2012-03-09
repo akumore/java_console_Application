@@ -58,6 +58,18 @@ describe "Cms::Users" do
           }.should change(Cms::User, :count).by(1)
         end
 
+        it 'redirects to the user list' do
+          click_on 'Benutzer erstellen'
+          current_path.should == cms_users_path
+        end
+
+        it 'shows a success message' do
+          click_on 'Benutzer erstellen'
+          within('#flash') do
+            page.should have_content 'Der Benutzer benutzername@test.ch wurde erfolgreich gespeichert'
+          end
+        end
+
         describe 'allows the user to sign in to the cms' do
           before :each do
             click_on 'Benutzer erstellen'
@@ -103,6 +115,16 @@ describe "Cms::Users" do
           @user.reload
           @user.email.should == 'hans@test.ch'
           @user.role.should == 'editor'
+        end
+
+        it 'redirects to the user list' do
+          current_path.should == cms_users_path
+        end
+
+        it 'shows a success message' do
+          within('#flash') do
+            page.should have_content 'Der Benutzer hans@test.ch wurde erfolgreich gespeichert'
+          end
         end
 
         describe 'allows the user to sign in to the cms' do
