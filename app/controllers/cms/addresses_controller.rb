@@ -15,7 +15,6 @@ class Cms::AddressesController < Cms::SecuredController
   end
 
   def create
-    @address = Address.new(params[:address])
     @address.real_estate = @real_estate
 
     if @address.save
@@ -34,7 +33,6 @@ class Cms::AddressesController < Cms::SecuredController
   end
   
   def show
-    @address = @real_estate.address
   end
   
 end
