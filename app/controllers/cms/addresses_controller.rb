@@ -1,8 +1,6 @@
 class Cms::AddressesController < Cms::SecuredController
   include EmbeddedInRealEstate
 
-  authorize_resource :only => [:edit, :update], :through=>:real_estate
-
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to cms_real_estate_address_path(@real_estate), :alert => exception.message
   end
@@ -14,7 +12,6 @@ class Cms::AddressesController < Cms::SecuredController
   end
 
   def edit
-    @address = @real_estate.address
   end
 
   def create
@@ -29,8 +26,6 @@ class Cms::AddressesController < Cms::SecuredController
   end
 
   def update
-    @address = @real_estate.address
-
     if @address.update_attributes(params[:address])
       redirect_to_step('information')
     else
