@@ -42,14 +42,14 @@ describe 'Real Estate Wizard' do
       end
 
       it 'redirects to the new figures tab without an existing figure' do
-        put :update, :real_estate_id => @real_estate.id, :figure=>Fabricate.attributes_for(:figure)
+        put :update, :real_estate_id => @real_estate.id, :pricing=>Fabricate.attributes_for(:pricing)
         response.should redirect_to(new_cms_real_estate_figure_path(@real_estate))
         flash[:success].should_not be_nil
       end
 
       it 'redirects to the new figures tab with an existing figure' do
         @real_estate.figure = Fabricate.build(:figure)
-        put :update, :real_estate_id => @real_estate.id, :figure=>Fabricate.attributes_for(:figure)
+        put :update, :real_estate_id => @real_estate.id, :pricing=>Fabricate.attributes_for(:pricing)
         response.should redirect_to(edit_cms_real_estate_figure_path(@real_estate))
         flash[:success].should_not be_nil
       end
@@ -70,7 +70,7 @@ describe 'Real Estate Wizard' do
         end
 
         it 'prevents from accessing #update' do
-          post :update, :real_estate_id => @real_estate.id
+          put :update, :real_estate_id => @real_estate.id, :pricing=>Fabricate.attributes_for(:pricing)
           response.should redirect_to [:cms, @real_estate, :pricing]
           flash[:alert].should == @access_denied
         end
