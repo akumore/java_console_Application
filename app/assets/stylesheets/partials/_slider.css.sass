@@ -140,3 +140,25 @@
   background: white
   &.open
     left: 20%
+
+.vision-slider
+  position: relative
+
+  .toggle
+    position: absolute
+    left: 5%
+    bottom: 0%
+    padding: 20px
+    background: white
+    z-index: 30
+
+.cssanimations
+  .vision-slider
+    +single-transition('margin-top', 1s)
+    margin-top: -500px
+    &.open
+      margin-top: 0px
+
+
+.vision-frame
+  
