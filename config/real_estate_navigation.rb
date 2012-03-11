@@ -21,7 +21,7 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     if can?(:update, @real_estate)
 
-      submodels = %w(address information pricing figure infrastructure descriptions)
+      submodels = %w(address information pricing figure infrastructure additional_description)
       invalid_submodels = @real_estate.invalid_submodels
 
       primary.item :real_estate, 'Stammdaten', edit_cms_real_estate_path(@real_estate)
@@ -42,7 +42,7 @@ SimpleNavigation::Configuration.run do |navigation|
       primary.item :pricing, 'Preise', cms_real_estate_pricing_path(@real_estate)
       primary.item :figure, 'Zahlen und Fakten', cms_real_estate_figure_path(@real_estate)
       primary.item :infrastructure, 'Infrastruktur', cms_real_estate_infrastructure_path(@real_estate)
-      primary.item :descriptions, 'Beschreibungen', cms_real_estate_description_path(@real_estate)
+      primary.item :additional_description, 'Beschreibungen', cms_real_estate_additional_description_path(@real_estate)
 
     end
 

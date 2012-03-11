@@ -15,7 +15,7 @@ AlfredMueller::Application.routes.draw do
       resource :figure, :except=>:destroy
       resource :information
       resource :infrastructure, :except=>:destroy
-      resource :description, :except=>:destroy
+      resource :additional_description, :except=>:destroy
       resources :media_assets
       resources :images, :controller => :media_assets, :media_type => :image, :only => :new
       resources :videos, :controller => :media_assets, :media_type => :video, :only => :new

@@ -19,7 +19,7 @@ de:
         pricing: 'Preise'
         figure: 'Zahlen und Fakten'
         infrastructure: 'Infrastruktur'
-        descriptions: 'Beschreibungen'
+        additional_description: 'Beschreibungen'
         media_assets: 'Bilder & Dokumente'
   helpers:
     submit:

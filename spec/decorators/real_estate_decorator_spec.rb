@@ -10,7 +10,7 @@ describe RealEstateDecorator do
     [
       :full_address,
       :quick_infos,
-      :description,
+      :additional_description,
       :mini_doku_link,
       :quick_price_infos,
       :information_shared,
@@ -37,7 +37,7 @@ describe RealEstateDecorator do
         :pricing => Fabricate.build(:pricing),
         :figure => Fabricate.build(:figure),
         :infrastructure => Fabricate.build(:infrastructure),
-        :description => Description.new
+        :additional_description => AdditionalDescription.new
       )
       @decorator = RealEstateDecorator.new(real_estate)
     end
