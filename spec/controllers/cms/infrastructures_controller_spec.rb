@@ -13,25 +13,25 @@ describe 'Real Estate Wizard' do
     describe '#create' do
       it 'redirects to the new descriptions tab without an existing description' do
         mock = real_estate
-        mock.stub!(:descriptions).and_return(nil)
+        mock.stub!(:additional_description).and_return(nil)
 
         RealEstate.stub!(:find).and_return(mock)
         Infrastructure.stub!(:new).and_return(mock_model(Infrastructure, :save => true, :real_estate= => nil))
 
         post :create, :real_estate_id => mock.id
-        response.should redirect_to(new_cms_real_estate_description_path(mock))
+        response.should redirect_to(new_cms_real_estate_additional_description_path(mock))
         flash[:success].should_not be_nil
       end
 
       it 'redirects to the edit descriptions tab with an existing description' do
         mock = real_estate
-        mock.stub!(:descriptions).and_return(mock_model(Description))
+        mock.stub!(:additional_description).and_return(mock_model(AdditionalDescription))
         
         RealEstate.stub!(:find).and_return(mock)        
         Infrastructure.stub!(:new).and_return(mock_model(Infrastructure, :save => true, :real_estate= => nil))
 
         post :create, :real_estate_id => mock.id
-        response.should redirect_to(edit_cms_real_estate_description_path(mock))
+        response.should redirect_to(edit_cms_real_estate_additional_description_path(mock))
         flash[:success].should_not be_nil
       end
     end
@@ -43,14 +43,14 @@ describe 'Real Estate Wizard' do
 
       it 'redirects to the new descriptions tab without an existing description' do
         put :update, :real_estate_id => @real_estate.id, :infrastructure=>Fabricate.attributes_for(:infrastructure)
-        response.should redirect_to(new_cms_real_estate_description_path(@real_estate))
+        response.should redirect_to(new_cms_real_estate_additional_description_path(@real_estate))
         flash[:success].should_not be_nil
       end
 
       it 'redirects to the descriptions tab with an existing description' do
-        @real_estate.descriptions = Fabricate.build(:description)
+        @real_estate.additional_description = Fabricate.build(:additional_description)
         put :update, :real_estate_id => @real_estate.id, :infrastructure=>Fabricate.attributes_for(:infrastructure)
-        response.should redirect_to(edit_cms_real_estate_description_path(@real_estate))
+        response.should redirect_to(edit_cms_real_estate_additional_description_path(@real_estate))
         flash[:success].should_not be_nil
       end
     end

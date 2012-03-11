@@ -16,7 +16,7 @@ describe "Cms::Descriptions" do
     end
 
     it 'opens the create form' do
-      current_path.should == new_cms_real_estate_description_path(@real_estate)
+      current_path.should == new_cms_real_estate_additional_description_path(@real_estate)
     end
 
     context 'a valid Description' do
@@ -36,25 +36,25 @@ describe "Cms::Descriptions" do
       it 'saves a new Description' do
         click_on 'Beschreibungen erstellen'
         @real_estate.reload
-        @real_estate.descriptions.should be_a(Description)
+        @real_estate.descriptions.should be_a(AdditionalDescription)
       end
 
       context '#create' do
         before :each do
           click_on 'Beschreibungen erstellen'
           @real_estate.reload
-          @description = @real_estate.descriptions
+          @additional_description = @real_estate.descriptions
         end
 
         it 'has saved the provided attributes' do
-          @description.generic.should == 'Modernes Wohnen in schöner Landschaft'
-          @description.location.should == 'In laufweite zum Flughafen'
-          @description.interior.should == 'Top moderne Küche'
-          @description.offer.should == 'Schöne Aussicht'
-          @description.infrastructure.should == 'An bester Einkaufslage'
-          @description.usage.should == 'Zum schönen Wohnen'
-          @description.reference_date.should == 'ca. Herbst 2010 für Mieter'
-          @description.orientation_degrees.should == 45
+          @additional_description.generic.should == 'Modernes Wohnen in schöner Landschaft'
+          @additional_description.location.should == 'In laufweite zum Flughafen'
+          @additional_description.interior.should == 'Top moderne Küche'
+          @additional_description.offer.should == 'Schöne Aussicht'
+          @additional_description.infrastructure.should == 'An bester Einkaufslage'
+          @additional_description.usage.should == 'Zum schönen Wohnen'
+          @additional_description.reference_date.should == 'ca. Herbst 2010 für Mieter'
+          @additional_description.orientation_degrees.should == 45
         end
       end
     end

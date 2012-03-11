@@ -31,7 +31,7 @@ describe RealEstate do
     end
 
     it 'requires a description' do
-      @real_estate.should have(1).error_on(:description)
+      @real_estate.should have(1).error_on(:additional_description)
     end
 
     it 'has 6 errors' do
@@ -67,7 +67,7 @@ describe RealEstate do
         :figure => Fabricate.build(:figure),
         :information => Fabricate.build(:information),
         :infrastructure => Fabricate.build(:infrastructure),
-        :descriptions => Fabricate.build(:description)
+        :additional_description => Fabricate.build(:additional_description)
       ).valid_for_publishing?.should be_true
     end
 

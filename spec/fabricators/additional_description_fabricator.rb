@@ -1,4 +1,4 @@
-Fabricator(:description) do
+Fabricator(:additional_description) do
   generic "MyText"
   location "MyText"
   interior "MyText"

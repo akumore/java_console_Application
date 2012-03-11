@@ -18,7 +18,7 @@ class Cms::InfrastructuresController < Cms::SecuredController
 
   def create
     if @infrastructure.save
-      redirect_to_step('descriptions')
+      redirect_to_step('description')
     else
       render 'new'
     end
@@ -26,7 +26,7 @@ class Cms::InfrastructuresController < Cms::SecuredController
 
   def update
     if @infrastructure.update_attributes(params[:infrastructure])
-      redirect_to_step('descriptions')
+      redirect_to_step('description')
     else
       render 'edit'
     end

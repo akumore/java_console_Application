@@ -29,7 +29,7 @@ class RealEstate
   embeds_one :figure, :validate => false
   embeds_one :information, :validate => false
   embeds_one :infrastructure, :validate => false
-  embeds_one :descriptions, :class_name => 'Description'
+  embeds_one :additional_description, :class_name => 'Description'
   embeds_many :media_assets  do
     def primary_image
       images.primary.first || MediaAsset.new(:media_type => MediaAsset::IMAGE)
@@ -116,7 +116,7 @@ class RealEstate
   end
 
   def invalid_submodels
-    %w(address information pricing figure infrastructure descriptions).reject { |sm| send(sm).present? ? send(sm).valid? : true }
+    %w(address information pricing figure infrastructure additional_description).reject { |sm| send(sm).present? ? send(sm).valid? : true }
   end
 
   private
