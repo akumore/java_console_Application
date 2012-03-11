@@ -1,6 +1,9 @@
 class Cms::InfrastructuresController < Cms::SecuredController
   include EmbeddedInRealEstate
 
+  load_resource :through => :real_estate, :singleton => true
+      authorize_resource :through => :real_estate, :singleton => true, :only => [:edit, :update]
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to cms_real_estate_infrastructure_path(@real_estate), :alert => exception.message
   end
@@ -18,7 +21,7 @@ class Cms::InfrastructuresController < Cms::SecuredController
 
   def create
     if @infrastructure.save
-      redirect_to_step('description')
+      redirect_to_step('additional_description')
     else
       render 'new'
     end
@@ -26,7 +29,7 @@ class Cms::InfrastructuresController < Cms::SecuredController
 
   def update
     if @infrastructure.update_attributes(params[:infrastructure])
-      redirect_to_step('description')
+      redirect_to_step('additional_description')
     else
       render 'edit'
     end
