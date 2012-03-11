@@ -71,7 +71,7 @@ describe 'Real Estate Wizard' do
         end
 
         it 'prevents from accessing #update' do
-          post :update, :real_estate_id => @real_estate.id, :figure=>Fabricate.attributes_for(:figure)
+          put :update, :real_estate_id => @real_estate.id, :figure=>Fabricate.attributes_for(:figure)
           response.should redirect_to [:cms, @real_estate, :figure]
           flash[:alert].should == @access_denied
         end
