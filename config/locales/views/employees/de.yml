@@ -2,6 +2,7 @@ de:
   cms:
     employees:
       form:
+        image_help: 'Bildgrösse in der Kontaktansicht: 570x260 Pixel'
         departments:
           marketing: 'Vermarktung'
           real_estate_management: 'Bewirtschaftung'
