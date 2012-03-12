@@ -12,6 +12,7 @@ de:
           website: 'Website'
           homegate: 'Homegate'
           print: 'Mini Doku'
+          reference_projects: 'Referenzprojekt'
       actions:
         overview: 'Zurück zur Übersicht'
       index:
