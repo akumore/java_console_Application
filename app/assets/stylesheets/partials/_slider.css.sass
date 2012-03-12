@@ -143,6 +143,8 @@
 
 .vision-slider
   position: relative
+  height: 520px
+  margin-bottom: 20px
 
   .toggle
     position: absolute
@@ -152,13 +154,24 @@
     background: white
     z-index: 30
 
+  .flexslider
+    position: relative
+    height: 100%
+
+  .flex-direction-nav
+    z-index: 20
+    position: relative
+    top: -35%
+
 .cssanimations
   .vision-slider
     +single-transition('margin-top', 1s)
-    margin-top: -500px
+    margin-top: -380px
     &.open
       margin-top: 0px
 
-
 .vision-frame
-  
+  position: absolute
+  left: 0
+  top: 0
+  z-index: 10
