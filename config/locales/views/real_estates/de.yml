@@ -24,6 +24,8 @@ de:
         commercial: Gewerblich
         editing: In Bearbeitung
   real_estates:
+    reference_projects:
+      link_title: 'Zum Projekt'
     search_filter:
       private: Wohnen
       commercial: Arbeiten

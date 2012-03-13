@@ -62,7 +62,7 @@ describe "Homepage" do
 
       it "shows the title of the real estate" do
         visit root_path
-        within(".rent-slide .caption") do
+        within(".rent-slide .image-caption-text") do
           page.should have_content @real_estate.title
         end
       end
@@ -98,7 +98,7 @@ describe "Homepage" do
 
       it "shows the title of the real estate" do
         visit root_path
-        within(".sale-slide .caption") do
+        within(".sale-slide .image-caption-text") do
           page.should have_content @real_estate.title
         end
       end

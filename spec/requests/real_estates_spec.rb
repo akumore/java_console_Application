@@ -326,7 +326,7 @@ describe "RealEstates" do
     end
 
     it 'displays the full name of the responsible person' do
-      within(".contact-info") do
+      within(".image-caption-text") do
         page.should have_content(real_estate.contact.fullname)
         page.should have_content(real_estate.contact.phone)
         page.should have_content(real_estate.contact.fax)

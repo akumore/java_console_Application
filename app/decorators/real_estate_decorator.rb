@@ -31,14 +31,12 @@ class RealEstateDecorator < ApplicationDecorator
 
   def reference_project_caption
     if address && address.link_url.present?
-      link_to real_estate.address.link_url, :class => 'caption' do
-        raw [
-                h.content_tag(:h3, real_estate.title),
-                h.content_tag(:h4, real_estate.address.link_url)
-            ].join
-      end
+      raw [
+            h.content_tag(:h3, real_estate.title),
+            h.content_tag(:h4, link_to(t('real_estates.reference_projects.link_title'), real_estate.address.link_url))
+        ].join
     else
-      h.content_tag :div, content_tag(:h3, real_estate.title), :class => 'caption'
+      content_tag(:h3, real_estate.title)
     end
   end
 
