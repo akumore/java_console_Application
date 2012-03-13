@@ -18,6 +18,7 @@ describe 'Real Estate Wizard' do
       end
     end
 
+
     describe '#update' do
       before do
         @real_estate = Fabricate :real_estate, :category => Fabricate(:category), :additional_description => Fabricate.build(:additional_description)
@@ -29,5 +30,28 @@ describe 'Real Estate Wizard' do
         flash[:success].should_not be_nil
       end
     end
+
+
+    describe '#authentication' do
+      context "Real estate isn't editable" do
+        before do
+          @real_estate = Fabricate :published_real_estate, :category => Fabricate(:category), :additional_description => Fabricate.build(:additional_description)
+          @access_denied = "Sie haben keine Berechtigungen für diese Aktion"
+        end
+
+        it 'prevents from accessing #edit' do
+          get :edit, :real_estate_id => @real_estate.id
+          response.should redirect_to [:cms, @real_estate, :additional_description]
+          flash[:alert].should == @access_denied
+        end
+
+        it 'prevents from accessing #update' do
+          put :update, :real_estate_id => @real_estate.id
+          response.should redirect_to [:cms, @real_estate, :additional_description]
+          flash[:alert].should == @access_denied
+        end
+      end
+    end
+
   end
 end
