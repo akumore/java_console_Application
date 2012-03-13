@@ -91,8 +91,9 @@
         .accordion-item
           .title= t('.contact_person')
           .content
-            .contact-with-image{ :style => "background-image: url(#{@real_estate.contact.image})"}
-              .contact-info
+            = image_tag @real_estate.contact.image
+            .image-caption
+              .image-caption-text
                 = @real_estate.contact.contact_info
               .clear
 
