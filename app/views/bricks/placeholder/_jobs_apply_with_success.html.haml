@@ -1,13 +1,14 @@
 .jobs-apply-with-success
   .image
-    .contact-info#apply
-      %p
-        = t('.title_html')
-      %p
-        = t('.person_html')
-      %p
-        = t('.address_html')
-    .clear
+    .image-caption
+      .image-caption-text#apply
+        %p
+          = t('.title_html')
+        %p
+          = t('.person_html')
+        %p
+          = t('.address_html')
+      .clear
   .accordion.accordion-square
     .accordion-item
       = link_to t('.apply'), new_job_application_path, :remote => true, :class => :title
