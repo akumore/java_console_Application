@@ -2,10 +2,10 @@
 
   .offer-tabs
     %ul
-      %li.for-rent-tab{:class=>@search_filter.for_rent? ? "selected" : ""}
-        = link_to t("real_estates.search_filter.for_rent"), real_estates_path(:offer=>SearchFilter::RENT, :utilization=>@search_filter.utilization)
       %li.for_sale-tab{:class=>@search_filter.for_sale? ? "selected" : ""}
         = link_to t("real_estates.search_filter.for_sale"), real_estates_path(:offer=>SearchFilter::SALE, :utilization=>@search_filter.utilization)
+      %li.for-rent-tab{:class=>@search_filter.for_rent? ? "selected" : ""}
+        = link_to t("real_estates.search_filter.for_rent"), real_estates_path(:offer=>SearchFilter::RENT, :utilization=>@search_filter.utilization)
 
   .utilization-tabs
     %ul
