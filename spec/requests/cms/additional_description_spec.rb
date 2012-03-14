@@ -21,7 +21,7 @@ describe "Cms::Descriptions" do
 
     context 'a valid Description' do
       before :each do
-        within(".new_description") do
+        within(".new_additional_description") do
           fill_in 'Immobilie', :with => 'Modernes Wohnen in schöner Landschaft'
           fill_in 'Standort', :with => 'In laufweite zum Flughafen'
           fill_in 'Ausbaustandard', :with => 'Top moderne Küche'
@@ -36,14 +36,14 @@ describe "Cms::Descriptions" do
       it 'saves a new Description' do
         click_on 'Beschreibungen erstellen'
         @real_estate.reload
-        @real_estate.descriptions.should be_a(AdditionalDescription)
+        @real_estate.additional_description.should be_a(AdditionalDescription)
       end
 
       context '#create' do
         before :each do
           click_on 'Beschreibungen erstellen'
           @real_estate.reload
-          @additional_description = @real_estate.descriptions
+          @additional_description = @real_estate.additional_description
         end
 
         it 'has saved the provided attributes' do
@@ -59,4 +59,28 @@ describe "Cms::Descriptions" do
       end
     end
   end
+
+  describe '#show' do
+    let :real_estate_with_desc do
+      Fabricate :real_estate, :category => Fabricate(:category), :additional_description => Fabricate.build(:additional_description)
+    end
+
+    let :real_estate_without_desc do
+      Fabricate :real_estate, :category => Fabricate(:category)
+    end
+
+    it 'shows the additional description within the cms' do
+      visit cms_real_estate_additional_description_path real_estate_with_desc
+      [:generic,:location, :interior, :offer, :infrastructure, :usage, :reference_date].each do |attr|
+        page.should have_content real_estate_with_desc.additional_description.send(attr)
+      end
+    end
+
+    it 'shows a message if no description exist' do
+      visit cms_real_estate_additional_description_path real_estate_without_desc
+      page.should have_content "Für diese Immobilie wurden keine Beschreibungen hinterlegt."
+    end
+
+  end
+
 end
