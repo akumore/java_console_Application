@@ -145,6 +145,7 @@
   position: relative
   height: 520px
   margin-bottom: 20px
+  margin-top: -380px
 
   .toggle
     position: absolute
@@ -154,6 +155,12 @@
     background: white
     z-index: 30
 
+  .toggle-close
+    display: none
+
+  .toggle-open
+    display: block
+
   .flexslider
     position: relative
     height: 100%
@@ -161,14 +168,21 @@
   .flex-direction-nav
     z-index: 20
     position: relative
-    top: -35%
+    top: -40%
+
+.vision-header-open
+  .vision-slider
+    margin-top: 0px
+
+    .toggle-open
+      display: none
+
+    .toggle-close
+      display: block
 
 .cssanimations
   .vision-slider
-    +single-transition('margin-top', 1s)
-    margin-top: -380px
-    &.open
-      margin-top: 0px
+    +single-transition("margin-top")
 
 .vision-frame
   position: absolute
