@@ -35,8 +35,6 @@ class Cms::RealEstatesController < Cms::SecuredController
   end
 
   def update
-    @real_estate = RealEstate.find(params[:id])
-
     if @real_estate.update_attributes(params[:real_estate])
       if @real_estate.published? || @real_estate.in_review? && cannot?(:publish_it, @real_estate)
         redirect_to [:cms, @real_estate]
