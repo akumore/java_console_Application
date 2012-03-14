@@ -4,25 +4,25 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
     "click .toggle" : "handleToggle"
 
   @getState: ->
-    monster.get("vision_header_state") || "open"
+    monster.get("vision_slider_state") || "open"
 
   @setState: (state)->
-    monster.set("vision_header_state", state)
+    monster.set("vision_slider_state", state)
 
   @initialize:
     if @getState() == "open"
-      $("html").addClass("vision-header-open")
+      $("html").addClass("vision-slider-open")
     else
-      $("html").removeClass("vision-header-open")
+      $("html").removeClass("vision-slider-open")
 
   open: ->
     @animate("open")
-    $("html").addClass("vision-header-open")
+    $("html").addClass("vision-slider-open")
     AlfredMueller.Views.VisionSlider.setState("open")
 
   close: -> 
     @animate("closed")
-    $("html").removeClass("vision-header-open")
+    $("html").removeClass("vision-slider-open")
     AlfredMueller.Views.VisionSlider.setState("closed")
 
   animate: (state)->

@@ -15,6 +15,55 @@ describe "Homepage" do
     end
   end
 
+  describe 'Vision header' do
+    before :each do
+      visit root_path
+    end
+
+    it 'has a slider' do
+      within('.vision-slider') do
+        page.should have_css('.flexslider', :count => 1)
+      end
+    end
+
+    it 'is open by default', :js => true do
+      page.should have_css('.vision-slider-open .vision-slider', :count => 1)
+    end
+
+    it 'can be toggled', :js => true do
+      within('.vision-slider') do
+        page.find('.toggle').click
+      end
+      
+      page.should_not have_css('.vision-slider-open .vision-slider', :count => 1)
+
+      within('.vision-slider') do
+        page.find('.toggle').click
+      end
+
+      page.should have_css('.vision-slider-open .vision-slider', :count => 1)
+    end
+
+    context 'persisting the toggled state between pages', :js => true do
+      it 'is stays closed' do
+        # check that it's open by default
+        page.should have_css('.vision-slider-open .vision-slider', :count => 1)
+
+        within('.vision-slider') do
+          page.find('.toggle').click
+        end
+
+        # now it should be closed …
+        page.should_not have_css('.vision-slider-open .vision-slider', :count => 1)
+
+        visit root_path
+
+        # … and it should still be after revisiting
+        page.should_not have_css('.vision-slider-open .vision-slider', :count => 1)
+
+      end
+    end
+  end
 
   describe "Services Slider App" do
     it "contains a slide for renting real estates" do
