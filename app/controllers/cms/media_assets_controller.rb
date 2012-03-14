@@ -2,7 +2,7 @@ class Cms::MediaAssetsController < Cms::SecuredController
   include EmbeddedInRealEstate
 
   load_resource :through => :real_estate
-  authorize_resource :through => :real_estate, :only => [:edit, :update, :destroy, :create]
+  authorize_resource :through => :real_estate, :except => [:show, :index]
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to cms_real_estate_media_assets_path(@real_estate), :alert => exception.message
