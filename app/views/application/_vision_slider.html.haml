@@ -12,6 +12,11 @@
         = image_tag 'vision/slide-1.jpg'
         .image-caption
           .image-caption-text
-            %h3 Hallo
+            %h3= t('.vision.title')
+            = link_to t('.vision.link_title'), root_path, :class => :go
       %li
         = image_tag 'vision/slide-1.jpg'
+        .image-caption
+          .image-caption-text
+            %h3= t('.vision.title')
+            = link_to t('.vision.link_title'), root_path, :class => :go

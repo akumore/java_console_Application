@@ -35,3 +35,6 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     $(window).load ->
       $(".services-slides-container").each ->
         new AlfredMueller.Views.ServicesSlider(el: $(this))
+
+      # add animation-start class to kick of any matching css transitions
+      $("html").addClass("animation-start")

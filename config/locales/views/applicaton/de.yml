@@ -3,3 +3,6 @@ de:
     vision_slider:
       open: 'aufklappen'
       close: 'zuklappen'
+      vision:
+        title: 'Wir schaffen hochwertige Wohn- und Arbeitsräume, in denen Menschen sich wohl fühlen.'
+        link_title: 'Unsere Vision'

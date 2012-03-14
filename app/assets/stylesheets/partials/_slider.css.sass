@@ -140,13 +140,28 @@
   margin-bottom: 20px
   margin-top: -385px
 
+  .image-caption
+    background: transparent
+
+  .image-caption-text
+    width: 50%
+    padding: 2em 140px 2em 2em
+    background: rgba(255,255,255,0.3)
+    height: 100%
+
+    h3
+      margin: 0.5em 0
+
+    a, a:link
+      padding-right: 30px
+      background: image-url('arrows/arrow-tailed-small-right.png') no-repeat right center
+
   .toggle
     position: absolute
     left: 5%
     bottom: 10%
     z-index: 30
     cursor: pointer
-    @extend .text-font-bold
 
   .toggle-close, .toggle-open
     padding-left: 35px
@@ -189,7 +204,7 @@
     .toggle-close
       display: block
 
-.cssanimations
+.cssanimations.animation-start
   .vision-slider
     +single-transition("margin-top")
 
