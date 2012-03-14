@@ -37,31 +37,46 @@ describe 'Real Estate Wizard' do
     end
 
 
-    describe '#authentication' do
-      context "Real estate isn't editable" do
-        before do
-          @real_estate = Fabricate :published_real_estate, :category => Fabricate(:category)
-          @access_denied = "Sie haben keine Berechtigungen für diese Aktion"
-        end
+    describe '#authorization as an admin' do
+      before do
+        @real_estate = Fabricate :published_real_estate, :category => Fabricate(:category)
+        @access_denied = "Sie haben keine Berechtigungen für diese Aktion"
+      end
 
-        it 'prevents from accessing #edit' do
-          get :edit, :id => @real_estate.id
-          response.should redirect_to [:cms, @real_estate]
-          flash[:alert].should == @access_denied
-        end
+      it 'prevents from accessing #edit' do
+        get :edit, :id => @real_estate.id
+        response.should redirect_to [:cms, @real_estate]
+        flash[:alert].should == @access_denied
+      end
 
-        it "doesn't prevents admins from accessing #update because of changing state requests" do
-          put :update, :id => @real_estate.id
-          response.should redirect_to [:cms, @real_estate]
-          flash[:alert].should_not == @access_denied
-        end
+      it "doesn't prevents admins from accessing #update because of changing state requests" do
+        put :update, :id => @real_estate.id
+        response.should redirect_to [:cms, @real_estate]
+        flash[:alert].should_not == @access_denied
+      end
+    end
 
-        it "prevents editors from accessing #update" do
-          controller.current_user.stub!(:role).and_return('editor')
-          put :update, :id => @real_estate.id
-          response.should redirect_to [:cms, @real_estate]
-          flash[:alert].should == @access_denied
-        end
+
+    describe '#authorization as an editor' do
+      before do
+        controller.current_user.stub!(:role).and_return('editor')
+        @access_denied = "Sie haben keine Berechtigungen für diese Aktion"
+      end
+
+      it "prevents editors from updating real estate 'published'" do
+        real_estate = Fabricate :published_real_estate, :category => Fabricate(:category)
+
+        put :update, :id => real_estate.id
+        response.should redirect_to [:cms, real_estate]
+        flash[:alert].should == @access_denied
+      end
+
+      it "prevents from updating real estate 'in_review'" do
+        real_estate = Fabricate :real_estate, :state => 'in_review', :category => Fabricate(:category)
+
+        put :update, :id => real_estate.id
+        response.should redirect_to [:cms, real_estate]
+        flash[:alert].should == @access_denied
       end
     end
 
