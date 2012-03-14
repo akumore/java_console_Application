@@ -2,7 +2,7 @@
   %meta{ :name => :keywords, :content => @real_estate.keywords }
   %meta{ :name => :description, :content => @real_estate.short_description }
 
-= render 'shared/google_maps'
+= render 'google_maps'
 
 - if @real_estate.media_assets.videos.size > 0
   - content_for :javascript do

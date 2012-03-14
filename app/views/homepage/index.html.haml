@@ -3,7 +3,7 @@
     .rent-handle.handle
       %h3= t ".rent"
     - unless @projects_for_rent.empty?
-      = render 'shared/slider', :projects => @projects_for_rent
+      = render 'slider', :projects => @projects_for_rent
     .link-box
       %ul
         %li= link_to t(".living"), real_estates_path(:offer=>'for_rent', :utilization=>'private')
@@ -13,7 +13,7 @@
     .sale-handle.handle
       %h3= t ".sale"
     - unless @projects_for_sale.empty?
-      = render 'shared/slider', :projects => @projects_for_sale
+      = render 'slider', :projects => @projects_for_sale
     .link-box
       %ul
         %li= link_to t(".living"), real_estates_path(:offer=>'for_sale', :utilization=>'private')

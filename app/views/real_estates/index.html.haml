@@ -45,10 +45,10 @@
 
   - unless @reference_projects.empty?
     .container
-      = render 'shared/slider', :projects => @reference_projects
+      = render 'slider', :projects => @reference_projects
 
 - if @real_estates.any?
-  = render 'shared/google_maps'
+  = render 'google_maps'
 
   - content_for :javascripts do
     :javascript
