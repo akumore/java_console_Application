@@ -1,6 +1,10 @@
 module Cms
   module SecuredHelper
 
+    def can_be_edited?(real_estate)
+      can?(:update, real_estate) && !real_estate.published?
+    end
+
     def fireable_events(real_estate)
       events = RealEstate.state_machine.events
       events.valid_for(real_estate).select {|event| can?(event.name, real_estate)}
