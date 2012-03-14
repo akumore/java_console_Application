@@ -5,6 +5,7 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require monster
 #= require jquery.remotipart
 #= require jquery.flexslider
 #= require underscore

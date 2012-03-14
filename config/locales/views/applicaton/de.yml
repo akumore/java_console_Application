@@ -1,0 +1,5 @@
+de:
+  application:
+    vision_slider:
+      open: 'aufklappen'
+      close: 'zuklappen'

@@ -5,6 +5,10 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     $(".accordion").each ->
       new AlfredMueller.Views.Accordion(el: $(this))
 
+    # initialize vision slider at the top of each page
+    $(".vision-slider").each ->
+      new AlfredMueller.Views.VisionSlider(el: $(this))
+
     # initialize map sliders
     $(".map-slider").each ->
       new AlfredMueller.Views.MapSlider(el: $(this))
