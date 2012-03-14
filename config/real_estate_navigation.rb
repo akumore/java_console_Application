@@ -19,7 +19,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
   # Define the primary navigation
   navigation.items do |primary|
-    if can?(:update, @real_estate)
+    if can_be_edited?(@real_estate)
 
       submodels = %w(address information pricing figure infrastructure additional_description)
       invalid_submodels = @real_estate.invalid_submodels
