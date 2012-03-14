@@ -24,33 +24,33 @@ class Ability
     #   can :update, Article, :published => true
     #
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
+
     if user.admin?
       can :manage, Cms::User
       
-      # state machine abilities
+      #controller action abilities
+      can :manage, RealEstate
+      cannot :edit, RealEstate, :state => 'published'
+      can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset]
+      cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'published'}
+
+
+      #real estate state machine abilities, order matters, do not put before controller action abilities
       can :reject_it, RealEstate
       can :publish_it, RealEstate
       can :unpublish_it, RealEstate
-
-      #controller action abilities
-      can :update, RealEstate, :state => 'editing'
-      can :update, RealEstate, :state => 'in_review'
-      can :update, RealEstate, :state => 'published'
-      cannot :edit, RealEstate, :state => 'published'
-
-      can :update, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'editing'}
-      can :update, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'in_review'}
-      cannot :update, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'published'}
+      cannot :review_it, RealEstate
     end
     
     if user.editor?
       # state machine abilities
       can :review_it, RealEstate
 
-      #controller action abilities
-      can :update, RealEstate, :state => 'editing'
 
-      can :update, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'editing'}
+      #controller action abilities
+      can :update, RealEstate, :state => 'editing' #do not use :manage, this will break state machine cans
+      can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'editing'}
+      cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => ['in_review', 'published']}
     end
 
   end
