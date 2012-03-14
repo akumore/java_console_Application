@@ -129,11 +129,11 @@ describe "RealEstates" do
         end
 
         it "shows the slider container" do
-          page.should have_css(".flex-container .flexslider")
+          page.should have_css(".real_estates .flex-container .flexslider")
         end
 
         it "has 3 slides" do
-          page.should have_css("ul.slides li", :count => 3)
+          page.should have_css(".real_estates ul.slides li", :count => 3)
         end
       end
 
@@ -152,11 +152,11 @@ describe "RealEstates" do
         end
 
         it "shows the slider container" do
-          page.should have_css(".flex-container .flexslider")
+          page.should have_css(".real_estates .flex-container .flexslider")
         end
 
         it "has 2 slides" do
-          page.should have_css("ul.slides li", :count => 2)
+          page.should have_css(".real_estates ul.slides li", :count => 2)
         end
       end
     end
@@ -326,7 +326,7 @@ describe "RealEstates" do
     end
 
     it 'displays the full name of the responsible person' do
-      within(".image-caption-text") do
+      within(".accordion-item .image-caption-text") do
         page.should have_content(real_estate.contact.fullname)
         page.should have_content(real_estate.contact.phone)
         page.should have_content(real_estate.contact.fax)
