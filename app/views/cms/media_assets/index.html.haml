@@ -3,7 +3,7 @@
 = render_navigation :context => :real_estate
 
 
-- if can? :update, MediaAsset
+- if can?(:update, @real_estate) && !@real_estate.published? #the latter keeps the admin away
   .pull-right
     .padded
       .btn-group
