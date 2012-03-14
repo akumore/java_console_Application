@@ -31,7 +31,7 @@ describe RealEstate do
     end
 
     it 'requires a description' do
-      @real_estate.should have(1).error_on(:additional_description)
+      @real_estate.should have(1).error_on(:description)
     end
 
     it 'has 6 errors' do
