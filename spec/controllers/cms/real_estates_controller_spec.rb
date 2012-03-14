@@ -3,41 +3,38 @@ require 'spec_helper'
 
 describe 'Real Estate Wizard' do
   login_cms_user
-  
-  let :real_estate do
-    mock_model(RealEstate, :save => true, :update_attributes => true)
-  end
 
   describe Cms::RealEstatesController do
+    let :category do
+      Fabricate :category
+    end
+
+
     describe '#create' do
       it 'redirects to the new address tab' do
-        RealEstate.stub!(:new).and_return(real_estate)
-
-        post :create
-        response.should redirect_to(new_cms_real_estate_address_path(real_estate))
+        post :create, :real_estate => Fabricate.attributes_for(:real_estate, :category_id => category.id)
+        response.should redirect_to new_cms_real_estate_address_path(RealEstate.first)
       end
     end
 
+
     describe '#update' do
+      before do
+        @real_estate = Fabricate :real_estate, :category => category
+      end
+
       it 'redirects to the new address tab without an existing address' do
-        mock = real_estate
-        mock.stub!(:address).and_return(nil)
-
-        RealEstate.stub!(:find).and_return(mock)
-
-        post :update, :id => mock.id
-        response.should redirect_to(new_cms_real_estate_address_path(mock))
+        put :update, :id => @real_estate.id
+        response.should redirect_to new_cms_real_estate_address_path(@real_estate)
       end
 
       it 'redirects to the edit address tab with an existing address' do
-        mock = real_estate
-        mock.stub!(:address).and_return(mock_model(Address))
+        @real_estate.address = Fabricate.build(:address)
 
-        RealEstate.stub!(:find).and_return(mock)
-
-        post :update, :id => mock.id
-        response.should redirect_to(edit_cms_real_estate_address_path(mock))
+        put :update, :id => @real_estate.id
+        response.should redirect_to edit_cms_real_estate_address_path(@real_estate)
       end
     end
-  end 
+
+  end
 end
