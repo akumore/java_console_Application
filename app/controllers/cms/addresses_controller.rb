@@ -1,6 +1,9 @@
 class Cms::AddressesController < Cms::SecuredController
   include EmbeddedInRealEstate
 
+  load_resource :through => :real_estate, :singleton => true
+  authorize_resource :through => :real_estate, :singleton => true, :only => [:edit, :update]
+
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to cms_real_estate_address_path(@real_estate), :alert => exception.message
   end

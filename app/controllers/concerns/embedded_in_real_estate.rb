@@ -4,8 +4,6 @@ module EmbeddedInRealEstate
   included do
     # Use CanCan loader
     load_resource :real_estate
-    load_resource :through => :real_estate, :singleton => true
-    authorize_resource :through => :real_estate, :singleton => true, :only => [:edit, :update]
   end
 
   def success_message_for name
