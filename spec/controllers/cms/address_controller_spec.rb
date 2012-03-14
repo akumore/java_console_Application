@@ -48,7 +48,7 @@ describe 'Real Estate Wizard' do
     end
 
 
-    describe '#authentication' do
+    describe '#authorization' do
       context "Real estate isn't editable" do
         before do
           @real_estate = Fabricate :published_real_estate, :category=>category, :address=>Fabricate.build(:address)
