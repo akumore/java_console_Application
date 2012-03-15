@@ -7,9 +7,6 @@ module Export
         @images = []
         @movies = []
         @documents = []
-        
-        package_assets
-        write        
       end
 
       def package_assets
@@ -25,7 +22,7 @@ module Export
       end
 
       def asset_paths
-        :images => @images, :documents => @documents, :movies => @movies
+        { :images => @images, :documents => @documents, :movies => @movies }
       end
 
       def add_image(path)
@@ -38,6 +35,12 @@ module Export
 
       def add_document(path)
         @documents << path
+      end
+
+      def save
+        package_assets
+        write
+        true
       end
 
       private
