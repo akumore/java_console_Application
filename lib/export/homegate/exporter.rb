@@ -4,7 +4,7 @@ module Export
 
       def initialize(dispatcher)
         @packager = Homegate::Packager.new
-        @uploader = Homegate::Uploader.new(@packager.path, Settings.homegate.export_path)
+        @uploader = Homegate::Uploader.new(@packager.path, Settings.homegate.ftp)
 
         super(dispatcher)
       end
