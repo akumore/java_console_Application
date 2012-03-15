@@ -8,7 +8,7 @@ describe 'Real Estate Wizard' do
   describe Cms::InfrastructuresController do
 
     let :infrastructure_attributes do
-      @infrastructure_attributes = Fabricate.attributes_for(:infrastructure)
+      Fabricate.attributes_for(:infrastructure)
     end
 
     describe '#create' do
