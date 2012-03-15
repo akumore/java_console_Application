@@ -1,3 +1,4 @@
+# encoding: utf-8
 require "spec_helper"
 
 describe Cms::SecuredHelper do
@@ -25,10 +26,6 @@ describe Cms::SecuredHelper do
         helper.fireable_events(@real_estate).should == @all_events.select { |e| e.name == :review_it }
       end
 
-      it "returns no event if real estate not ready for reviewing" do
-        @real_estate.stub!(:valid_for_publishing?).and_return(false)
-        helper.fireable_events(@real_estate).should == []
-      end
     end
 
     context "As an admin" do
@@ -49,13 +46,13 @@ describe Cms::SecuredHelper do
         @real_estate.stub!(:state).and_return('in_review')
         helper.fireable_events(@real_estate).should == @all_events.select { |e| [:reject_it, :publish_it].include? e.name }
       end
-
-      it "returns events for rejecting invalid real estate 'in_review'" do
-        @real_estate.stub!(:state).and_return('in_review')
-        @real_estate.stub!(:valid_for_publishing?).and_return(false)
-        helper.fireable_events(@real_estate).should == @all_events.select { |e| e.name == :reject_it }
-      end
     end
+
+    it "can not leave editing state to in_review or published state if mandatory embedded model missing"
+
+    it "can not leave editing or in_review state if mandatory embedded models invalid because of abhängigkeiten"
+
+    it "cancan ability fuer ungespeicherte objekte"
 
   end
 
