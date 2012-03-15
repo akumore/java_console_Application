@@ -3,71 +3,71 @@
 = render_navigation :context => :real_estate
 
 
-%dl
+%dl.dl-horizontal
   - if @real_estate.for_rent?
-    %dt.span2= t "mongoid.attributes.information.price_unit"
+    %dt= t "mongoid.attributes.pricing.price_unit"
     %dd
       = t(".#{@pricing.price_unit}")
       &nbsp;
 
   - if @real_estate.for_rent?
-    %dt.span2= t "mongoid.attributes.information.for_rent_netto"
+    %dt= t "mongoid.attributes.pricing.for_rent_netto"
     %dd
       = number_to_currency @pricing.for_rent_netto
       &nbsp;
 
-    %dt.span2= t "mongoid.attributes.information.for_rent_extra"
+    %dt= t "mongoid.attributes.pricing.for_rent_extra"
     %dd
       = number_to_currency @pricing.for_rent_extra
       &nbsp;
 
   - if @real_estate.for_sale?
-    %dt.span2= t "mongoid.attributes.information.for_sale"
+    %dt= t "mongoid.attributes.pricing.for_sale"
     %dd
       = number_to_currency @pricing.for_sale
       &nbsp;
 
-    %dt.span2= t "mongoid.attributes.information.estimate"
+    %dt= t "mongoid.attributes.pricing.estimate"
     %dd
       = @pricing.estimate
       &nbsp;
 
-    %dt.span2= t "mongoid.attributes.information.opted"
+    %dt= t "mongoid.attributes.pricing.opted"
     %dd= @pricing.opted
 
   - if @real_estate.commercial_utilization?
-    %dt.span2= t "mongoid.attributes.information.storage"
+    %dt= t "mongoid.attributes.pricing.storage"
     %dd
       = number_to_currency @pricing.storage
       &nbsp;
 
-    %dt.span2= t "mongoid.attributes.information.extra_storage"
+    %dt= t "mongoid.attributes.pricing.extra_storage"
     %dd
       = number_to_currency @pricing.extra_storage
       &nbsp;
 
 
 %legend Parkplatzpreise in Auto-Einstellhalle
-%dl
-  %dt.span3= t "mongoid.attributes.information.inside_parking"
+
+%dl.dl-horizontal
+  %dt= t "mongoid.attributes.pricing.inside_parking"
   %dd
     = number_to_currency @pricing.inside_parking
     &nbsp;
 
-  %dt.span3= t "mongoid.attributes.information.inside_parking_temporary"
+  %dt= t "mongoid.attributes.pricing.inside_parking_temporary"
   %dd
     = number_to_currency @pricing.inside_parking_temporary
     &nbsp;
 
 
 %legend Parkplatzpreise draussen
-%dl
-  %dt.span3= t "mongoid.attributes.information.outside_parking"
+
+%dl.dl-horizontal
+  %dt= t "mongoid.attributes.pricing.outside_parking"
   %dd
     = number_to_currency @pricing.outside_parking
     &nbsp;
 
-  %dt.span3= t "mongoid.attributes.information.outside_parking_temporary"
-  %dd
-    = number_to_currency @pricing.outside_parking_temporary
-    &nbsp;
+  %dt= t "mongoid.attributes.pricing.outside_parking_temporary"
+  %dd= number_to_currency @pricing.outside_parking_temporary
