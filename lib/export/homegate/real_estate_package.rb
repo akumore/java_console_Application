@@ -10,15 +10,22 @@ module Export
       end
 
       def package_assets
-        #@real_estate.media_assets.images.primary_first_sort.each do |image|
-        #  add_image(image)
-        #end
+        @real_estate.media_assets.images.each do |image|
+          add_image(image.path)
+        end
 
-        # ... documents, videos
+        @real_estate.media_assets.videos.each do |video|
+          add_video(video.path)
+        end
+
+        @real_estate.media_assets.documents.each do |document|
+          add_document(document.path)
+        end
       end
 
       def write
         #Homegate::Decorator.new(@real_estate, assets)
+        true
       end
 
       def asset_paths
@@ -37,16 +44,18 @@ module Export
         @documents << path
       end
 
+      def sanitize_path(path)
+        path
+      end
+
+      def convert_image(path)
+        path = sanitize_path(path)
+        path
+      end
+
       def save
         package_assets
         write
-        true
-      end
-
-      private
-
-      def convert_image(path)
-        path
       end
 
     end
