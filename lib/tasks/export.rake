@@ -8,5 +8,5 @@ task :export => :environment do
   # .. register any other custom exporter here
 
   # ^_^
-  dispatcher.run!
+  dispatcher.run
 end
