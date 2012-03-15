@@ -4,41 +4,43 @@
 
 
 %legend= t('.parking')
-%dl
-  %dt.span3= t "mongoid.attributes.infrastructure.has_parking_spot"
+
+%dl.dl-horizontal.extra-wide
+  %dt= t "mongoid.attributes.infrastructure.has_parking_spot"
   %dd= @infrastructure.has_parking_spot?
 
-  %dt.span3= t "mongoid.attributes.infrastructure.has_roofed_parking_spot"
+  %dt= t "mongoid.attributes.infrastructure.has_roofed_parking_spot"
   %dd= @infrastructure.has_roofed_parking_spot?
 
-  %dt.span3= t "mongoid.attributes.infrastructure.has_garage"
+  %dt= t "mongoid.attributes.infrastructure.has_garage"
   %dd= @infrastructure.has_garage?
 
-  %dt.span3= t "mongoid.attributes.infrastructure.inside_parking_spots"
+  %dt= t "mongoid.attributes.infrastructure.inside_parking_spots"
   %dd
     = @infrastructure.inside_parking_spots
     &nbsp;
 
-  %dt.span3= t "mongoid.attributes.infrastructure.outside_parking_spots"
+  %dt= t "mongoid.attributes.infrastructure.outside_parking_spots"
   %dd
     = @infrastructure.outside_parking_spots
     &nbsp;
 
-  %dt.span3= t "mongoid.attributes.infrastructure.inside_parking_spots_temporary"
+  %dt= t "mongoid.attributes.infrastructure.inside_parking_spots_temporary"
   %dd
     = @infrastructure.inside_parking_spots_temporary
     &nbsp;
 
-  %dt.span3= t "mongoid.attributes.infrastructure.outside_parking_spots_temporary"
+  %dt= t "mongoid.attributes.infrastructure.outside_parking_spots_temporary"
   %dd
     = @infrastructure.outside_parking_spots_temporary
     &nbsp;
 
-
+%br
 %legend Distanzen
-%dl
+
+%dl.dl-horizontal.extra-wide
   - @infrastructure.points_of_interest.each do |poi|
-    %dt.span3= t ".points_of_interest.types.#{poi.name}"
+    %dt= t ".points_of_interest.types.#{poi.name}"
     %dd
       = @infrastructure.distance
       &nbsp;
