@@ -19,21 +19,34 @@ SimpleNavigation::Configuration.run do |navigation|
 
   # Define the primary navigation
   navigation.items do |primary|
+    if can_be_edited?(@real_estate)
 
-    submodels = %w(address information pricing figure infrastructure descriptions)
-    invalid_submodels = @real_estate.invalid_submodels
-    
-    primary.item :real_estate, t('navigation.cms.real_estates_navigation.real_estate'), edit_cms_real_estate_path(@real_estate)
+      submodels = %w(address information pricing figure infrastructure additional_description)
+      invalid_submodels = @real_estate.invalid_submodels
 
-    submodels.each do |submodel|
-      action = @real_estate.send(submodel).present? ? :edit : :new
-      path = "#{action}_cms_real_estate_#{submodel.singularize}_path"
-      primary.item submodel, t("navigation.cms.real_estates_navigation.#{submodel}"), send(path, @real_estate), 
-        :class => (invalid_submodels.include?(submodel) ? 'invalid' : nil),
-        :highlights_on => Regexp.new(submodel.singularize)
+      primary.item :real_estate, 'Stammdaten', edit_cms_real_estate_path(@real_estate)
+
+      submodels.each do |submodel|
+        action = @real_estate.send(submodel).present? ? :edit : :new
+        path = "#{action}_cms_real_estate_#{submodel.singularize}_path"
+        primary.item submodel, t("navigation.cms.real_estates_navigation.#{submodel}"), send(path, @real_estate),
+          :class => (invalid_submodels.include?(submodel) ? 'invalid' : nil),
+          :highlights_on => Regexp.new(submodel.singularize)
+      end
+
+    else
+
+      primary.item :real_estate, 'Stammdaten', cms_real_estate_path(@real_estate)
+      primary.item :address, 'Adresse', cms_real_estate_address_path(@real_estate)
+      primary.item :information, 'Infos', cms_real_estate_information_path(@real_estate)
+      primary.item :pricing, 'Preise', cms_real_estate_pricing_path(@real_estate)
+      primary.item :figure, 'Zahlen und Fakten', cms_real_estate_figure_path(@real_estate)
+      primary.item :infrastructure, 'Infrastruktur', cms_real_estate_infrastructure_path(@real_estate)
+      primary.item :additional_description, 'Beschreibungen', cms_real_estate_additional_description_path(@real_estate)
+
     end
 
-    primary.item :media_assets, t('navigation.cms.real_estates_navigation.media_assets'), cms_real_estate_media_assets_path(@real_estate), :highlights_on => /media_assets|image|video|document/
+    primary.item :media_assets, 'Bilder & Dokumente', cms_real_estate_media_assets_path(@real_estate), :highlights_on => /media_assets|image|video|document/
 
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu

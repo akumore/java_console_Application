@@ -1,0 +1,47 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+-if @additional_description.nil?
+  Für diese Immobilie wurden keine Beschreibungen hinterlegt.
+-else
+  %dl.dl-horizontal
+    %dt= t "mongoid.attributes.additional_description.generic"
+    %dd
+      = @additional_description.generic
+      &nbsp;
+
+    %dt= t "mongoid.attributes.additional_description.location"
+    %dd
+      = @additional_description.location
+      &nbsp;
+
+    %dt= t "mongoid.attributes.additional_description.interior"
+    %dd
+      = @additional_description.interior
+      &nbsp;
+
+    %dt= t "mongoid.attributes.additional_description.offer"
+    %dd
+      = @additional_description.offer
+      &nbsp;
+
+    %dt= t "mongoid.attributes.additional_description.infrastructure"
+    %dd
+      = @additional_description.infrastructure
+      &nbsp;
+
+    %dt= t "mongoid.attributes.additional_description.usage"
+    %dd
+      = @additional_description.usage
+      &nbsp;
+
+    %dt= t "mongoid.attributes.additional_description.reference_date"
+    %dd
+      = @additional_description.reference_date
+      &nbsp;
+
+    %dt= t "mongoid.attributes.additional_description.orientation_degrees"
+    %dd
+      = @additional_description.orientation_degrees
+      &nbsp;

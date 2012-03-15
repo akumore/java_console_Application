@@ -1,9 +1,9 @@
 de:
   mongoid:
     models:
-      description: 'Beschreibungen'
+      additional_description: 'Beschreibungen'
     attributes:
-      description:
+      additional_description:
         generic: 'Immobilie'
         location: 'Standort'
         interior: 'Ausbaustandard'

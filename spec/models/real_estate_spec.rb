@@ -67,7 +67,7 @@ describe RealEstate do
         :figure => Fabricate.build(:figure),
         :information => Fabricate.build(:information),
         :infrastructure => Fabricate.build(:infrastructure),
-        :descriptions => Fabricate.build(:description)
+        :additional_description => Fabricate.build(:additional_description)
       ).valid_for_publishing?.should be_true
     end
 

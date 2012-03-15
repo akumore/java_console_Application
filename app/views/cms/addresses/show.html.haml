@@ -1,0 +1,39 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+%dl.dl-horizontal
+  %dt= t "mongoid.attributes.address.street"
+  %dd= @address.street
+
+  %dt= t "mongoid.attributes.address.street_number"
+  %dd
+    = @address.street_number
+    &nbsp;
+
+  %dt= t "mongoid.attributes.address.city"
+  %dd= @address.city
+
+  %dt= t "mongoid.attributes.address.zip"
+  %dd= @address.zip
+
+  %dt= t "mongoid.attributes.address.canton"
+  %dd= @address.canton.upcase
+
+  %dt= t "mongoid.attributes.address.link_url"
+  %dd
+    = @address.link_url
+    &nbsp;
+
+%legend= t "mongoid.attributes.address.location"
+
+%dl.dl-horizontal
+  %dt= t "mongoid.attributes.address.lat"
+  %dd
+    = @address.to_coordinates.first
+    &nbsp;
+
+  %dt= t "mongoid.attributes.address.lng"
+  %dd
+    = @address.to_coordinates.last
+    &nbsp;

@@ -1,4 +1,11 @@
 class Cms::RealEstatesController < Cms::SecuredController
+  load_and_authorize_resource :except => [:index, :show]
+
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to [:cms, @real_estate], :alert => exception.message
+  end
+  
+  
   def index
     @real_estates = RealEstate.all
     respond_with @real_estates
@@ -15,7 +22,6 @@ class Cms::RealEstatesController < Cms::SecuredController
   end
 
   def edit
-    @real_estate = RealEstate.find(params[:id])
   end
 
   def create
@@ -29,13 +35,15 @@ class Cms::RealEstatesController < Cms::SecuredController
   end
 
   def update
-    @real_estate = RealEstate.find(params[:id])
-
     if @real_estate.update_attributes(params[:real_estate])
-      if @real_estate.address.present?
-        redirect_to edit_cms_real_estate_address_path(@real_estate)
+      if @real_estate.published? || @real_estate.in_review? && cannot?(:publish_it, @real_estate)
+        redirect_to [:cms, @real_estate]
       else
-        redirect_to new_cms_real_estate_address_path(@real_estate)
+        if @real_estate.address.present?
+          redirect_to edit_cms_real_estate_address_path(@real_estate)
+        else
+          redirect_to new_cms_real_estate_address_path(@real_estate)
+        end
       end
     else
       render 'edit'

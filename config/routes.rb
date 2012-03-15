@@ -11,11 +11,11 @@ AlfredMueller::Application.routes.draw do
     resource :dashboards
     resources :real_estates do
       resource :address
-      resource :pricing
-      resource :figure
+      resource :pricing, :except=>:destroy
+      resource :figure, :except=>:destroy
       resource :information
-      resource :infrastructure
-      resource :description
+      resource :infrastructure, :except=>:destroy
+      resource :additional_description, :except=>:destroy
       resources :media_assets
       resources :images, :controller => :media_assets, :media_type => :image, :only => :new
       resources :videos, :controller => :media_assets, :media_type => :video, :only => :new

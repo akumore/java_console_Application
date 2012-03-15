@@ -1,0 +1,22 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+%dl.dl-horizontal
+  %dt= t "mongoid.attributes.media_asset.title"
+  %dd= @media_asset.title
+
+  - unless @media_asset.document?
+    %dt= t "mongoid.attributes.media_asset.is_primary"
+    %dd= @media_asset.is_primary
+
+  - if @media_asset.file.present?
+    %dt Vorschau
+    %dd.well
+      - if @media_asset.image?
+        = image_tag @media_asset.file.cms_preview.url
+      - if @media_asset.video?
+        %video.sublime{ :width => 640, :height => 360, :preload => 'none' }
+        %source{ :src => @media_asset.file.url }
+      - if @media_asset.document?
+        = link_to "\"#{@media_asset.title}\" in neuem Fenster öffnen", @media_asset.file.url, :target => '_new'
