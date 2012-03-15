@@ -8,7 +8,7 @@ module Export
         notify_observers(:add, real_estate)
       end
 
-      Rails.logger.info 'Export has finished at ' + Time.now
+      Rails.logger.info 'Export has finished at ' + I18n.l(Time.now)
     end
 
     private

@@ -14,7 +14,7 @@ module Export
       end
 
       def add(job)
-        @packager.package(job) if job.channels.includes?(RealEstate::HOMEGATE_CHANNEL)
+        @packager.package(job) if job.channels.include?(RealEstate::HOMEGATE_CHANNEL)
       end
 
       def finish
