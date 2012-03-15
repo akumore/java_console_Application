@@ -56,8 +56,18 @@ body
   form
     margin-bottom: 2px
       
-dt:after
-  content: ":"      
+.dl-horizontal
+  dt, dd
+    line-height: 1.5
+  dt
+    float: left
+    clear: left
+    width: 150px
+    text-align: right
+    &:after
+      content: ":"
+  dd
+    margin-left: 190px
 
 .nav-tabs
   li.invalid
