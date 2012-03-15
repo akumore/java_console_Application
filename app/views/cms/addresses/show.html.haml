@@ -2,38 +2,38 @@
 
 = render_navigation :context => :real_estate
 
-%dl
-  %dt.span3= t "mongoid.attributes.address.street"
+%dl.dl-horizontal
+  %dt= t "mongoid.attributes.address.street"
   %dd= @address.street
 
-  %dt.span3= t "mongoid.attributes.address.street_number"
+  %dt= t "mongoid.attributes.address.street_number"
   %dd
     = @address.street_number
     &nbsp;
 
-  %dt.span3= t "mongoid.attributes.address.city"
+  %dt= t "mongoid.attributes.address.city"
   %dd= @address.city
 
-  %dt.span3= t "mongoid.attributes.address.zip"
+  %dt= t "mongoid.attributes.address.zip"
   %dd= @address.zip
 
-  %dt.span3= t "mongoid.attributes.address.canton"
+  %dt= t "mongoid.attributes.address.canton"
   %dd= @address.canton.upcase
 
-  %dt.span3= t "mongoid.attributes.address.link_url"
+  %dt= t "mongoid.attributes.address.link_url"
   %dd
     = @address.link_url
     &nbsp;
 
 %legend= t "mongoid.attributes.address.location"
 
-%dl
-  %dt.span3= t "mongoid.attributes.address.lat"
+%dl.dl-horizontal
+  %dt= t "mongoid.attributes.address.lat"
   %dd
     = @address.to_coordinates.first
     &nbsp;
 
-  %dt.span3= t "mongoid.attributes.address.lng"
+  %dt= t "mongoid.attributes.address.lng"
   %dd
     = @address.to_coordinates.last
     &nbsp;
