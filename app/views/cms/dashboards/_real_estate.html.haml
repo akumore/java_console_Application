@@ -2,4 +2,7 @@
   %td= real_estate.title
   %td= time_ago_in_words(real_estate.updated_at)
   %td
-    = link_to t('cms.real_estates.index.edit'), edit_cms_real_estate_path(real_estate)
+    - if can_be_edited?(real_estate)
+      = link_to t('cms.real_estates.index.edit'), edit_cms_real_estate_path(real_estate)
+    - else
+      = link_to t('cms.real_estates.index.show'), cms_real_estate_path(real_estate)

@@ -18,6 +18,7 @@ de:
       index:
         new: Neue Immobilie erfassen
         edit: Editieren
+        show: Anzeigen
         for_rent: Mieten
         for_sale: Kaufen
         private: Privat
