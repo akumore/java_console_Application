@@ -8,7 +8,7 @@ module Export
       end
 
       def package(real_estate)
-        Homegate::RealEstatePackage.new(real_estate).save
+        Homegate::RealEstatePackage.new(real_estate, self).save
       end
 
       def path

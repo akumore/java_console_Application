@@ -1,56 +1,70 @@
 module Export
   module Homegate
     class RealEstatePackage
+      
+      attr_accessor :packager
 
-      def initialize(real_estate)
+      def initialize(real_estate, packager)
+        @packager = packager
         @real_estate = real_estate
         @images = []
-        @movies = []
+        @videos = []
         @documents = []
       end
 
       def package_assets
         @real_estate.media_assets.images.each do |image|
-          add_image(image.path)
+          add_image(image.file)
         end
 
         @real_estate.media_assets.videos.each do |video|
-          add_video(video.path)
+          add_video(video.file)
         end
 
-        @real_estate.media_assets.documents.each do |document|
-          add_document(document.path)
+        @real_estate.media_assets.docs.each do |document|
+          add_document(document.file)
         end
       end
 
       def write
         #Homegate::Decorator.new(@real_estate, assets)
+        File.open(File.join(@packager.path, 'data', 'unload.txt'), 'w') {|f| f.write("") }
         true
       end
 
       def asset_paths
-        { :images => @images, :documents => @documents, :movies => @movies }
+        { :images => @images, :documents => @documents, :videos => @videos }
       end
 
-      def add_image(path)
-        @images << convert_image(path)
+      def add_image(file)
+        ext   = File.extname(file.path)
+        path  = file.path
+        
+        unless ['.jpeg', '.jpg'].include? ext
+          path  = file.jpeg_format.path
+          ext   = File.extname(path)
+        end
+
+        filename = "i_#{@real_estate.id}_#{asset_paths[:images].length + 1}#{ext}"
+        target_path = File.join(@packager.path, 'images', filename)
+        FileUtils.cp(path, target_path)
+        @images << filename
       end
 
-      def add_movie(path)
-        @movies << path
+      def add_video(file)
+        ext = File.extname(file.path)
+        filename = "v_#{@real_estate.id}_#{asset_paths[:videos].length + 1}#{ext}"
+        target_path = File.join(@packager.path, 'movies', filename)
+        FileUtils.cp(file.path, target_path)
+        @videos << filename
       end
 
-      def add_document(path)
-        @documents << path
-      end
-
-      def sanitize_path(path)
-        path
-      end
-
-      def convert_image(path)
-        path = sanitize_path(path)
-        path
+      def add_document(file)
+        ext = File.extname(file.path)
+        filename = "d_#{@real_estate.id}_#{asset_paths[:documents].length + 1}#{ext}"
+        target_path = File.join(@packager.path, 'documents', filename)
+        FileUtils.cp(file.path, target_path)
+        @documents << filename
       end
 
       def save
