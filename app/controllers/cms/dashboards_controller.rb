@@ -5,7 +5,7 @@ class Cms::DashboardsController < Cms::SecuredController
   def show
     review_count = RealEstate.in_review.recently_updated.count
 
-    if review_count > 0 and current_user.admin?
+    if review_count > 0 && current_user.admin?
       flash.now[:notice] = t('cms.dashboards.real_estates_for_review', :count => review_count)
     end
 
