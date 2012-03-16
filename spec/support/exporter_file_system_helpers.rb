@@ -5,7 +5,7 @@ module ExporterFileSystemHelpers
     FileUtils.mkdir_p File.join(@tmp_path, 'data')
     FileUtils.mkdir_p File.join(@tmp_path, 'images')
     FileUtils.mkdir_p File.join(@tmp_path, 'movies')
-    FileUtils.mkdir_p File.join(@tmp_path, 'documents')
+    FileUtils.mkdir_p File.join(@tmp_path, 'docs')
   end
 
   def remove_tmp_export_dir!
