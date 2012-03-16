@@ -371,7 +371,6 @@ module Homegate
     def object_description
       #  str(4000) biggest varchar2(4000) in oracle - split description into two parts if required. 
       # The following HTML-Tags can be used: <LI>,</LI>,<BR>, <B>,</B>. All other Tags will be removed.
-      # TODO: remove markdown tags, filter for allowed html tags
       html = RDiscount.new(model.description.presence.to_s).to_html
       Sanitize.clean(html, :elements => ['b', 'li', 'br'])
     end
@@ -589,7 +588,6 @@ module Homegate
 
     def agency_name
       # str(200)  
-      # TODO: needs this info
       'Alfred Müller AG'
     end
 
