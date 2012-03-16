@@ -2,8 +2,17 @@ require 'spec_helper'
 
 describe Export::Homegate::Packager do
   describe '#package' do
+    before do
+      create_tmp_export_dir!
+    end
+
+    after do
+      remove_tmp_export_dir!
+    end
+
     it 'returns if packaging a real estate was successful' do
       packager = Export::Homegate::Packager.new
+      packager.stub!(:path).and_return(File.join(Rails.root, 'tmp', 'specs'))
       real_estate = Fabricate.build(:published_real_estate)
       packager.package(real_estate).should be_true
     end

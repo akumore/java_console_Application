@@ -2,16 +2,11 @@ require 'spec_helper'
 
 describe Export::Homegate::RealEstatePackage do
   before :each do
-    @tmp_path = File.join Rails.root, 'tmp', 'specs'
-    FileUtils.mkdir_p @tmp_path
-    FileUtils.mkdir_p File.join(@tmp_path, 'data')
-    FileUtils.mkdir_p File.join(@tmp_path, 'images')
-    FileUtils.mkdir_p File.join(@tmp_path, 'movies')
-    FileUtils.mkdir_p File.join(@tmp_path, 'documents')
+    create_tmp_export_dir!
   end
 
   after :each do
-    FileUtils.rm_rf(@tmp_path)
+    remove_tmp_export_dir!
   end
 
   let :real_estate do

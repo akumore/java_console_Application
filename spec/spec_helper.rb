@@ -33,6 +33,7 @@ RSpec.configure do |config|
   config.include ActionView::Helpers::NumberHelper, :type => :request
   config.include MockGeocoder
   config.include Delorean
+  config.include ExporterFileSystemHelpers
 
   config.after(:each) do
     Mongoid.database.collections.each do |collection|
