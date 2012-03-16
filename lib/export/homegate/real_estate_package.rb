@@ -27,8 +27,7 @@ module Export
       end
 
       def write
-        #Homegate::Decorator.new(@real_estate, assets)
-        writer.write %w(HERE GOES THE FIELDS. TEST#TEST TEST###TEST)
+        writer.write Homegate::RealEstateDecorator.new(@real_estate, asset_paths).to_a
         true
       end
 
