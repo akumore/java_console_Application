@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 module Homegate
   class RealEstateDecorator < ApplicationDecorator
     decorates :real_estate
@@ -185,6 +187,11 @@ module Homegate
             :sparefield_3,
             :sparefield_4
 
+    def initialize(real_estate, asset_paths)
+      @asset_paths = asset_paths
+      super(real_estate)
+    end
+
     def version
       #str(50) IDX3.01
       'IDX3.01'
@@ -197,10 +204,101 @@ module Homegate
     
     def object_category
       # str(25) APPT','HOUSE','INDUS','PROP','GASTRO','AGRI','PARK','GARDEN','SECONDARY' (see list on tab "ObjectCategory")
+      {
+        'apartment' => 'APPT',
+        'gastronomy' => 'GASTRO',
+        'house' => 'HOUSE',
+        'industrial' => 'INDUS',
+        'parking' => 'PARK',
+        'properties' => 'PROP',
+        'secondary' => 'SECONDARY'
+      }[model.category.parent.name]
     end
     
     def object_type
       # int(3)  see list on tab "ObjectCategory"
+      cat = model.category.parent.name
+      subcategories = {}
+
+      if cat == 'apartment'
+        subcategories = {
+          'flat'            => 1,
+          'duplex'          => 2,
+          'attic_flat'      => 3,
+          'roof_flat'       => 4,
+          'studio'          => 5,
+          'single_room'     => 6,
+          'furnished_flat'  => 7,
+          'terrace_flat'    => 8,
+          # Einlieger Wohnung not used
+          'loft'            => 10
+        }
+      elsif cat == 'gastronomy'
+        subcategories = {
+          'hotel'       => 1,
+          'restaurant'  => 2,
+          'coffeehouse' => 3
+          # more, but not used
+        }
+      elsif cat == 'house'
+        subcategories = {
+           'single_house'       => 1,
+           'row_house'          => 2,
+           'bifamilar_house'    => 3,
+           'terrace_house'      => 4,
+           'villa'              => 5,
+           'farm_house'         => 6,
+           'multiple_dwelling'  => 7
+           # more, but not used
+        }
+      elsif cat == 'industrial'
+        subcategories = {
+          'office'                      => 1,
+          'shop'                        => 2,
+          'advertising_area'            => 3,
+          'commercial'                  => 4,
+          'depot'                       => 5,
+          'practice'                    => 6,
+          'kiosk'                       => 7,
+          'garage'                      => 10,
+          'bakery'                      => 13,
+          'hairdresser'                 => 14,
+          'factory'                     => 16,
+          'industrial_object'           => 17,
+          'aterlier'                    => 19,
+          'living_commercial_building'  => 20,
+          'workshop'                    => 28,
+          'department_store'            => 34,
+          'display_window'              => 36,
+          'parking_garage'              => 37,
+          'parking_surface'             => 38
+          # numbers are not linear!
+        }
+      elsif cat == 'parking'
+        {
+          'open_slot'                   => 1,
+          'covered_slot'                => 2,
+          'single_garage'               => 3,
+          'double_garage'               => 4,
+          'underground_slot'            => 5,
+          'covered_parking_place_bike'  => 9,
+          'outdoor_parking_place_bike'  => 10
+          # more here, but unsused
+        }
+      elsif cat == 'properties'
+        subcategories = {
+          'building_land'     => 1,
+          'agricultural_land' => 2,
+          'commercial_land'   => 3,
+          'industrial_land'   => 4
+        }
+      elsif cat == 'secondary'
+        subcategories = {
+          'hobby_room' => 0
+        }
+      end
+
+      subcategories[model.category.name]
     end
     
     def offer_type
@@ -255,6 +353,7 @@ module Homegate
 
     def object_situation
       #  str(50) remarkable situation within the city or town. eg: 'centre ville'
+      # AM: obsolete
     end
 
     def available_from
@@ -270,8 +369,11 @@ module Homegate
     end
 
     def object_description
-      #  str(4000) biggest varchar2(4000) in oracle - split description into two parts if required. The following HTML-Tags can be used: <LI>,</LI>,<BR>, <B>,</B>. All other Tags will be removed.
-      # TODO: throw 'object_description needs to be implemented'
+      #  str(4000) biggest varchar2(4000) in oracle - split description into two parts if required. 
+      # The following HTML-Tags can be used: <LI>,</LI>,<BR>, <B>,</B>. All other Tags will be removed.
+      # TODO: remove markdown tags, filter for allowed html tags
+      html = RDiscount.new(model.description.presence.to_s).to_html
+      Sanitize.clean(html, :elements => ['b', 'li', 'br'])
     end
 
     def selling_price
@@ -301,9 +403,20 @@ module Homegate
       if model.for_sale?
         'SELL'
       else
-        # stuff
+        if model.pricing.present?
+          if model.pricing.price_unit == 'month'
+            'MONTHLY'
+          elsif model.pricing.price_unit == 'year'
+            'YEARLY'
+          elsif model.pricing.price_unit == 'week'
+            'WEEKLY'
+          elsif model.pricing.price_unit == 'once'
+            'SELL'
+          end
+        else
+          'MONTHLY'
+        end
       end
-      # TODO: throw 'price_unit needs to be implemented'
     end
 
     def currency
@@ -358,12 +471,12 @@ module Homegate
 
     def prop_view
       # str(1)  object has view, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      model.try(:information).try(:has_outlook).present? ? 'Y' : 'N'
+      model.try(:information).try(:has_outlook) ? 'Y' : 'N'
     end
 
     def prop_fireplace
       #  str(1)  object has fireplace, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      model.try(:information).try(:has_fireplace).present? ? 'Y' : 'N'
+      model.try(:information).try(:has_fireplace) ? 'Y' : 'N'
     end
 
     def prop_cabletv
@@ -373,28 +486,28 @@ module Homegate
 
     def prop_elevator
       # str(1)  object has elevator, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      model.try(:information).try(:has_elevator).present? ? 'Y' : 'N'
+      model.try(:information).try(:has_elevator) ? 'Y' : 'N'
     end
 
     def prop_child_friendly
       # actual key: prop_child-friendly (with dash)
       # str(1)  object is locarted child friendly, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      model.try(:information).try(:is_child_friendly).present? ? 'Y' : 'N'
+      model.try(:information).try(:is_child_friendly) ? 'Y' : 'N'
     end
 
     def prop_parking
       #  str(1)  object has parking lot, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      model.try(:infrastructure).try(:has_parking_spot).present? ? 'Y' : 'N'
+      model.try(:infrastructure).try(:has_parking_spot) ? 'Y' : 'N'
     end
 
     def prop_garage
       # str(1)  object has garage place, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      model.try(:infrastructure).try(:has_garage).present? ? 'Y' : 'N'
+      model.try(:infrastructure).try(:has_garage) ? 'Y' : 'N'
     end
 
     def prop_balcony
       #  str(1)  object has balcony, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      model.try(:information).try(:has_balcony).present? ? 'Y' : 'N'
+      model.try(:information).try(:has_balcony) ? 'Y' : 'N'
     end
 
     def prop_roof_floor
@@ -436,29 +549,194 @@ module Homegate
       end
     end
 
+    def movie_filename
+      #  str(200)  filename without path, eg: 'movie.avi' - valid movie types = mov, avi, rpm, mpeg, mpg, wmv, mp4, flv (movies must be transfered in directory "movies")
+      @asset_paths[:videos].first
+    end
+
+    def movie_title
+      # str(200)  title of movie
+      model.media_assets.videos.first.try(:title).presence
+    end
+
+    def movie_description
+      # str(1800) not used
+    end
+
+    def document_filename
+      # str(200)  filename w/o path, eg: 'doc.pdf' - valid document types = pdf/rtf/doc (docs must be transfered in directory "docs")
+      @asset_paths[:documents].first
+    end
+
+    def document_title
+      #  str(200)  title of document
+      model.media_assets.docs.first.try(:title).presence
+    end
+
+    def document_description
+      #  str(1800) not used
+    end
+
+    def url
+      # str(200)  only displayed if different to agency URL and if object contains more than 4 pictures - Product ImmoViewer = URL must start with "http://www.immoviewer.ch/"
+      model.try(:address).try(:link_url).presence
+    end
+
+    def agency_id
+      # str(10) given by homegate (Info: agency_id + ref_property + ref_object + ref_house forms the unique object key)
+      'alm'
+    end
+
+    def agency_name
+      # str(200)  
+      # TODO: needs this info
+      'Alfred Müller AG'
+    end
+
+    def agency_name_2
+      # str(255)  
+    end
+
+    def agency_reference
+      #  str(200)  (real estate contact person)
+      model.try(:contact).try(:fullname).presence
+    end
+
+    def agency_street
+      # str(200)
+      'Neuhofstrasse 10'
+    end
+
+    def agency_zip
+      #  str(200)  blank allowed for pool agencies
+      '6340'
+    end
+
+    def agency_city
+      # str(200)  
+      'Baar'
+    end
+
+    def agency_country
+      #  str(2)  A2 ISO codes <http://www.iso.ch/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html> - if blank then default to 'CH'
+      'CH'
+    end
+
+    def agency_phone
+      #  str(200)  
+      model.try(:contact).try(:phone).presence || '+41 41 767 02 02'
+    end
+
+    def agency_mobile
+      # str(200)  not used
+      model.try(:contact).try(:mobile).presence
+    end
+
+    def agency_fax
+      #  str(200)  
+      model.try(:contact).try(:fax).presence || '+41 41 767 02 00'
+    end
+
+    def agency_email
+      #  str(200)  if empty=default e-mailadress of agency will be used - if filled=e-mail will be used for this record only
+      model.try(:contact).try(:email)
+    end
+
+    def agency_logo
+      # str(200)  not used - default of agency will be used or http://www.homegate.ch/neutral/img/logos/l_xxx.gif
+    end
+
+    def visit_name
+      #  str(200)  Contact person to visit the object
+      # AM: obsolete
+    end
+
+    def visit_phone
+      # str(200)  Contact person phone number (mobile number or fix number)
+      # AM: obsolete
+    end
+
+    def visit_email
+      # str(200)  not used
+      # AM: obsolete
+    end
+
+    def visit_remark
+      #  str(200)  Contact Person comment e.g. object can be visited on Monday from 5-7p.m.
+      # AM: obsolete
+    end
+
+    def publish_until
+      # date  not used
+    end
+
+    def destination
+      # str(200)  not used
+    end
+
     def picture_1_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      # TODO: implement
+      @asset_paths[:images][0] rescue nil
     end
 
     def picture_2_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      # TODO: implement
+      @asset_paths[:images][1] rescue nil
     end
 
     def picture_3_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      # TODO: implement
+      @asset_paths[:images][2] rescue nil
     end
 
     def picture_4_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      # TODO: implement
+      @asset_paths[:images][3] rescue nil
     end
 
     def picture_5_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      # TODO: implement
+      @asset_paths[:images][4] rescue nil
+    end
+
+    def picture_6_filename
+      #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      @asset_paths[:images][5] rescue nil
+    end
+
+    def picture_7_filename
+      #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      @asset_paths[:images][6] rescue nil
+    end
+
+    def picture_8_filename
+      #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      @asset_paths[:images][7] rescue nil
+    end
+
+    def picture_9_filename
+      #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      @asset_paths[:images][8] rescue nil
+    end
+
+    def picture_10_filename
+      # str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      @asset_paths[:images][9] rescue nil
+    end
+
+    def picture_11_filename
+      # str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      @asset_paths[:images][10] rescue nil
+    end
+
+    def picture_12_filename
+      # str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      @asset_paths[:images][11] rescue nil
+    end
+
+    def picture_13_filename
+      # str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      @asset_paths[:images][12] rescue nil
     end
 
     def picture_1_title
@@ -486,6 +764,46 @@ module Homegate
       model.media_assets.images.to_a[4].title rescue nil
     end
 
+    def picture_6_title
+      # str(200)  title of picture
+      model.media_assets.images.to_a[5].title rescue nil
+    end
+
+    def picture_7_title
+      # str(200)  title of picture
+      model.media_assets.images.to_a[6].title rescue nil
+    end
+
+    def picture_8_title
+      # str(200)  title of picture
+      model.media_assets.images.to_a[7].title rescue nil
+    end
+
+    def picture_9_title
+      # str(200)  title of picture
+      model.media_assets.images.to_a[8].title rescue nil
+    end
+
+    def picture_10_title
+      #  str(200)  title of picture
+      model.media_assets.images.to_a[9].title rescue nil
+    end
+
+    def picture_11_title
+      #  str(200)  title of picture
+      model.media_assets.images.to_a[10].title rescue nil
+    end
+
+    def picture_12_title
+      #  str(200)  title of picture
+      model.media_assets.images.to_a[11].title rescue nil
+    end
+
+    def picture_13_title
+      #  str(200)  title of picture
+      model.media_assets.images.to_a[12].title rescue nil
+    end
+
     def picture_1_description
       # str(1800) description of picture
     end
@@ -506,143 +824,6 @@ module Homegate
       # str(1800) description of picture
     end
 
-    def movie_filename
-      #  str(200)  filename without path, eg: 'movie.avi' - valid movie types = mov, avi, rpm, mpeg, mpg, wmv, mp4, flv (movies must be transfered in directory "movies")
-      # TODO: implement
-    end
-
-    def movie_title
-      # str(200)  title of movie
-    end
-
-    def movie_description
-      # str(1800) not used
-    end
-
-    def document_filename
-      # str(200)  filename w/o path, eg: 'doc.pdf' - valid document types = pdf/rtf/doc (docs must be transfered in directory "docs")
-    end
-
-    def document_title
-      #  str(200)  title of document
-    end
-
-    def document_description
-      #  str(1800) not used
-    end
-
-    def url
-      # str(200)  only displayed if different to agency URL and if object contains more than 4 pictures - Product ImmoViewer = URL must start with "http://www.immoviewer.ch/"
-    end
-
-    def agency_id
-      # str(10) given by homegate (Info: agency_id + ref_property + ref_object + ref_house forms the unique object key)
-    end
-
-    def agency_name
-      # str(200)  
-    end
-
-    def agency_name_2
-      # str(255)  
-    end
-
-    def agency_reference
-      #  str(200)  (real estate contact person)
-    end
-
-    def agency_street
-      # str(200)  
-    end
-
-    def agency_zip
-      #  str(200)  blank allowed for pool agencies
-    end
-
-    def agency_city
-      # str(200)  
-    end
-
-    def agency_country
-      #  str(2)  A2 ISO codes <http://www.iso.ch/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html> - if blank then default to 'CH'
-    end
-
-    def agency_phone
-      #  str(200)  
-    end
-
-    def agency_mobile
-      # str(200)  not used
-    end
-
-    def agency_fax
-      #  str(200)  
-    end
-
-    def agency_email
-      #  str(200)  if empty=default e-mailadress of agency will be used - if filled=e-mail will be used for this record only
-    end
-
-    def agency_logo
-      # str(200)  not used - default of agency will be used or http://www.homegate.ch/neutral/img/logos/l_xxx.gif
-    end
-
-    def visit_name
-      #  str(200)  Contact person to visit the object
-    end
-
-    def visit_phone
-      # str(200)  Contact person phone number (mobile number or fix number)
-    end
-
-    def visit_email
-      # str(200)  not used
-    end
-
-    def visit_remark
-      #  str(200)  Contact Person comment e.g. object can be visited on Monday from 5-7p.m.
-    end
-
-    def publish_until
-      # date  not used
-    end
-
-    def destination
-      # str(200)  not used
-    end
-
-    def picture_6_filename
-      #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-    end
-
-    def picture_7_filename
-      #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-    end
-
-    def picture_8_filename
-      #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-    end
-
-    def picture_9_filename
-      #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-    end
-
-    def picture_6_title
-      # str(200)  title of picture
-    end
-
-    def picture_7_title
-      # str(200)  title of picture
-    end
-
-    def picture_8_title
-      # str(200)  title of picture
-    end
-
-    def picture_9_title
-      # str(200)  title of picture
-    end
-
     def picture_6_description
       # str(1800) description of picture
     end
@@ -657,6 +838,22 @@ module Homegate
 
     def picture_9_description
       # str(1800) description of picture
+    end
+
+    def picture_10_description
+      #  str(1800) description of picture
+    end
+
+    def picture_11_description
+      #  str(1800) description of picture
+    end
+
+    def picture_12_description
+      #  str(1800) description of picture
+    end
+
+    def picture_13_description
+      #  str(1800) description of picture
     end
 
     def picture_1_url
@@ -695,20 +892,42 @@ module Homegate
       # str(200)  homegate.ch export only: URL to picture format large
     end
 
+    def picture_10_url
+      #  str(200)  homegate.ch export only: URL to picture format large
+    end
+
+    def picture_11_url
+      #  str(200)  homegate.ch export only: URL to picture format large
+    end
+
+    def picture_12_url
+      #  str(200)  homegate.ch export only: URL to picture format large
+    end
+
+    def picture_13_url
+      #  str(200)  homegate.ch export only: URL to picture format large
+    end
+
     def distance_motorway
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
+      if model.infrastructure.present?
+        model.infrastructure.points_of_interest.where(:name => 'highway_access').first.distance.to_i
+      end
     end
 
     def ceiling_height
       #  int(10,2) height of room in meters
+      model.try(:figure).try(:ceiling_height)
     end
 
     def hall_height
       # int(10,2) height of hall in meters
+      model.try(:figure).try(:ceiling_height)
     end
 
     def maximal_floor_loading
       # int(10,1) kg/m2
+      model.try(:information).try(:maximal_floor_loading).presence
     end
 
     def carrying_capacity_crane
@@ -717,50 +936,62 @@ module Homegate
 
     def carrying_capacity_elevator
       #  int(10,1) kg
+      model.try(:information).try(:freight_elevator_carrying_capacity).presence
     end
 
     def isdn
       #  str(1)  object has isdn access, ''N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:has_isdn) ? 'Y' : 'N'
     end
 
     def wheelchair_accessible
       # str(1)  object has wheelchair access, (definition found under www.procap.ch), ''N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:is_wheelchair_accessible) ? 'Y' : 'N'
     end
 
     def animal_allowed
       #  str(1)  animal allowed in object, ''N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      # AM: obsolete
     end
 
     def ramp
       #  str(1)  object has ramp, ''N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:has_ramp) ? 'Y' : 'N'
     end
 
     def lifting_platform
       #  str(1)  object has lifting platform, ''N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:has_lifting_platform) ? 'Y' : 'N'
     end
 
     def railway_terminal
       #  str(1)  object has railway terminal, ''N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:has_railway_terminal) ? 'Y' : 'N'
     end
 
     def restrooms
       # str(1)  object has restrooms, (not neccessary for HOUSE/APPT), ''N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:number_of_restrooms).presence.to_i > 0 ? 'Y' : 'N'
     end
 
     def water_supply
       #  str(1)  object has water supply, (not neccessary for HOUSE/APPT), ''N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:has_water_supply) ? 'Y' : 'N'
     end
 
     def sewage_supply
       # str(1)  object has water sewage supply, (not neccessary for HOUSE/APPT), ''N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:has_sewage_supply) ? 'Y' : 'N'
     end
 
     def power_supply
       #  str(1)  object has power supply, (not neccessary for HOUSE/APPT), ''N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      # AM: obsolete
     end
 
     def gas_supply
       #  str(1)  object has gas supply, (not neccessary for HOUSE/APPT), ''N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      # AM: obsolete
     end
 
     def municipal_info
@@ -831,70 +1062,6 @@ module Homegate
       # int(10) Code for selecting delivery of advertisement
     end
 
-    def picture_10_filename
-      # str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-    end
-
-    def picture_11_filename
-      # str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-    end
-
-    def picture_12_filename
-      # str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-    end
-
-    def picture_13_filename
-      # str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-    end
-
-    def picture_10_title
-      #  str(200)  title of picture
-    end
-
-    def picture_11_title
-      #  str(200)  title of picture
-    end
-
-    def picture_12_title
-      #  str(200)  title of picture
-    end
-
-    def picture_13_title
-      #  str(200)  title of picture
-    end
-
-    def picture_10_description
-      #  str(1800) description of picture
-    end
-
-    def picture_11_description
-      #  str(1800) description of picture
-    end
-
-    def picture_12_description
-      #  str(1800) description of picture
-    end
-
-    def picture_13_description
-      #  str(1800) description of picture
-    end
-
-    def picture_10_url
-      #  str(200)  homegate.ch export only: URL to picture format large
-    end
-
-    def picture_11_url
-      #  str(200)  homegate.ch export only: URL to picture format large
-    end
-
-    def picture_12_url
-      #  str(200)  homegate.ch export only: URL to picture format large
-    end
-
-    def picture_13_url
-      #  str(200)  homegate.ch export only: URL to picture format large
-    end
-
     def commission_sharing
       #  int(1)  not used
     end
@@ -913,10 +1080,12 @@ module Homegate
 
     def number_of_floors
       #  int(2)  number of floors in object itself
+      model.try(:figure).try(:floors).presence
     end
 
     def year_renovated
       #  int(4)  year of last renovation job on object
+      model.try(:figure).try(:renovated_on).presence
     end
 
     def flat_sharing_community
@@ -925,14 +1094,17 @@ module Homegate
 
     def corner_house
       #  str(1)  house is the last one in a row of multiple houses, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:building_type).presence == RealEstate::BUILDING_CORNER_HOUSE ? 'Y' : 'N'
     end
 
     def middle_house
       #  str(1)  house is the middle one in a row of multiple houses, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:building_type).presence == RealEstate::BUILDING_MIDDLE_HOUSE ? 'Y' : 'N'
     end
 
     def building_land_connected
       # str(1)  parcel included, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:is_developed) ? 'Y' : 'N'
     end
 
     def gardenhouse
@@ -941,38 +1113,47 @@ module Homegate
 
     def raised_ground_floor
       # str(1)  1st level is not pavement even, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:has_raised_ground_floor) ? 'Y' : 'N'
     end
 
     def new_building
       #  str(1)  object has been built in this year,  'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:is_new_building) ? 'Y' : 'N'
     end
 
     def old_building
       #  str(1)  object has at least 50 years,  'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:is_old_building) ? 'Y' : 'N'
     end
 
     def under_building_laws
       # str(1)  land area is not included in offer_type, has to be rented separately,  'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:is_under_building_laws) ? 'Y' : 'N'
     end
 
     def under_roof
       #  str(1)  object is under a roof,  'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:infrastructure).try(:has_roofed_parking_spot) ? 'Y' : 'N'
     end
 
     def swimmingpool
       #  str(1)  a swimmingpool is included with this object,  'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:has_swimming_pool) ? 'Y' : 'N'
     end
 
     def minergie_general
       #  str(1)  object has been built along minergie standards,  'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:is_minergie_style) ? 'Y' : 'N'
     end
 
     def minergie_certified
       #  str(1)  object has been certified by minergie,  'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:is_minergie_certified) ? 'Y' : 'N'
     end
 
     def last_modified
       # datetime  date of last modification of this record - format: DD.MM.YYYY HH24:mm:ss (24h time format) ex: 04.07.2007 13:42:37
+      model.updated_at.strftime("%d.%m.%Y %H:%M:%S") if model.updated_at.present?
     end
 
     def advertisement_id
