@@ -28,7 +28,7 @@ module Export
 
       def write
         #Homegate::Decorator.new(@real_estate, assets)
-        File.open(File.join(@packager.path, 'data', 'unload.txt'), 'w') {|f| f.write("") }
+        writer.write %w(HERE GOES THE FIELDS. TEST#TEST TEST###TEST)
         true
       end
 
@@ -70,6 +70,12 @@ module Export
       def save
         package_assets
         write
+      end
+
+
+      private
+      def writer
+        @writer ||= CsvWriter.new(File.join(@packager.path, 'data', 'unload.txt'), 'ab')
       end
 
     end
