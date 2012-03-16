@@ -25,8 +25,8 @@ module Export
 
       private
       def filtered(content)
-        #TODO Double-check with home gate whether we really need this!
-        content.map { |val| val.gsub(@options[:col_sep], "") }
+        filtered = content.map {|val| val.respond_to?(:force_encoding) ? val.force_encoding(options[:encoding]) : val}
+        filtered.map {|val| val.respond_to?(:gsub) ? val.gsub(@options[:col_sep], "") : val }
       end
 
     end
