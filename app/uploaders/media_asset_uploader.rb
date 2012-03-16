@@ -27,7 +27,7 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
      "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   end
 
-  process :resize_to_fill=>[1000,560], :if=>:is_image?
+  process :resize_to_fill=>[1000,560], :if=> :is_image?
 
   version :thumb, :if => :is_image? do
     process :resize_to_fill => [145,88]
@@ -37,8 +37,16 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
     process :resize_to_fill => [600, 340]
   end
 
+  version :jpeg_format, :if => :image_needs_conversion? do
+    process :convert => 'jpeg'
+  end
+
   def is_image? image
     %w(image/jpeg image/jpg image/png image/pjpeg).include? image.content_type
+  end
+
+  def image_needs_conversion? image
+    %w(image/png).include? image.content_type
   end
 
   def is_video? video
