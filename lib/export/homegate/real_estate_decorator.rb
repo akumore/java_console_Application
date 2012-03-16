@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-module Homegate
+module Export::Homegate
   class RealEstateDecorator < ApplicationDecorator
     decorates :real_estate
     allows  :version,
@@ -516,35 +516,35 @@ module Homegate
     def distance_public_transport
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
       if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'public_transport').first.distance.to_i
+        model.infrastructure.points_of_interest.where(:name => 'public_transport').first.try(:distance).to_i
       end
     end
 
     def distance_shop
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
       if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'shopping').first.distance.to_i
+        model.infrastructure.points_of_interest.where(:name => 'shopping').first.try(:distance).to_i
       end
     end
 
     def distance_kindergarten
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
       if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'kindergarden').first.distance.to_i
+        model.infrastructure.points_of_interest.where(:name => 'kindergarden').first.try(:distance).to_i
       end
     end
 
     def distance_school1
       #  int(5)  in meter - remove any non digits (1min. walk = 50m)
       if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'elementary_school').first.distance.to_i
+        model.infrastructure.points_of_interest.where(:name => 'elementary_school').first.try(:distance).to_i
       end
     end
 
     def distance_school2
       #  int(5)  in meter - remove any non digits (1min. walk = 50m)
       if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'high_school').first.distance.to_i
+        model.infrastructure.points_of_interest.where(:name => 'high_school').first.try(:distance).to_i
       end
     end
 
@@ -909,7 +909,7 @@ module Homegate
     def distance_motorway
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
       if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'highway_access').first.distance.to_i
+        model.infrastructure.points_of_interest.where(:name => 'highway_access').first.try(:distance).to_i
       end
     end
 
@@ -1172,6 +1172,10 @@ module Homegate
 
     def sparefield_4
       #  - for future use
+    end
+
+    def to_a
+      allowed.map { |key| send key }
     end
 
   end
