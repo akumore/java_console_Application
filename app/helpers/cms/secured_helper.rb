@@ -10,6 +10,14 @@ module Cms
       events.valid_for(real_estate).select {|event| can?(event.name, real_estate)}
     end
 
+    def highlight_invalid_tab(tab)
+      'invalid' if @real_estate.errors.include?(tab)
+    end
+
+    def mark_mandatory_tab(tab)
+      "mandatory" if RealEstate.mandatory_for_publishing.include?(tab.to_s)
+    end
+
     def event_button_css(event)
       case event.name
         when :reject_it, :unpublish_it

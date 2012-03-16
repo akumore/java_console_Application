@@ -47,13 +47,42 @@ describe Cms::SecuredHelper do
         helper.fireable_events(@real_estate).should == @all_events.select { |e| [:reject_it, :publish_it].include? e.name }
       end
     end
-
-    it "can not leave editing state to in_review or published state if mandatory embedded model missing"
-
-    it "can not leave editing or in_review state if mandatory embedded models invalid because of abhängigkeiten"
-
-    it "cancan ability fuer ungespeicherte objekte"
-
   end
 
+
+  describe "Marking wizard tabs" do
+    let :not_publishable do
+      Fabricate :real_estate, :category => Fabricate(:category)
+    end
+
+    [:address, :pricing].each do |tab|
+      it "marks the #{tab} tab 'mandatory'" do
+        helper.mark_mandatory_tab(tab).should == 'mandatory'
+      end
+    end
+
+    [:information, :figure, :infrastructure, :additional_description].each do |tab|
+      it "doesn't mark #{tab} tab 'mandatory'" do
+        helper.mark_mandatory_tab(tab).should be_nil
+      end
+    end
+
+    [:address, :pricing].each do |tab|
+      it "highlights the #{tab} tab 'invalid' because of validation errors within it" do
+        not_publishable.publish_it.should be_false
+        assign :real_estate, not_publishable
+
+        helper.highlight_invalid_tab(tab).should == 'invalid'
+      end
+    end
+
+    [:information, :figure, :infrastructure, :additional_description].each do |tab|
+      it "doesn't highlight valid #{tab} tabs" do
+        not_publishable.publish_it.should be_false
+        assign :real_estate, not_publishable
+
+        helper.highlight_invalid_tab(tab).should be_nil
+      end
+    end
+  end
 end

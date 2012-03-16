@@ -21,17 +21,16 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     if can_be_edited?(@real_estate)
 
-      submodels = %w(address information pricing figure infrastructure additional_description)
-      invalid_submodels = @real_estate.invalid_submodels
+      primary.item :real_estate, 'Stammdaten', edit_cms_real_estate_path(@real_estate),
+                   :highlights_on=> lambda { controller_name=='real_estates' && ['edit', 'update'].include?(action_name)},
+          :class=>'mandatory'
 
-      primary.item :real_estate, 'Stammdaten', edit_cms_real_estate_path(@real_estate)
-
-      submodels.each do |submodel|
+      [:address, :information, :pricing, :figure, :infrastructure, :additional_description].each do |submodel|
         action = @real_estate.send(submodel).present? ? :edit : :new
-        path = "#{action}_cms_real_estate_#{submodel.singularize}_path"
+        path = "#{action}_cms_real_estate_#{submodel}_path"
         primary.item submodel, t("navigation.cms.real_estates_navigation.#{submodel}"), send(path, @real_estate),
-          :class => (invalid_submodels.include?(submodel) ? 'invalid' : nil),
-          :highlights_on => Regexp.new(submodel.singularize)
+                     :class => "#{highlight_invalid_tab(submodel)} #{mark_mandatory_tab(submodel)}",
+                     :highlights_on => Regexp.new("#{submodel}")
       end
 
     else
