@@ -1,5 +1,5 @@
 class Cms::RealEstatesController < Cms::SecuredController
-  load_and_authorize_resource :except => [:index, :show]
+  load_and_authorize_resource :except => [:index, :show, :new, :create]
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to [:cms, @real_estate], :alert => exception.message

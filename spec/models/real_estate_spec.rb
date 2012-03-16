@@ -56,25 +56,6 @@ describe RealEstate do
   	end
   end
 
-  describe '#valid_for_publishing?' do
-    it 'should return true' do
-      Fabricate.build(:real_estate,
-        :category => Fabricate(:category),
-        :contact => Fabricate(:employee),
-        :reference => Fabricate.build(:reference),
-        :address => Fabricate.build(:address),
-        :pricing => Fabricate.build(:pricing),
-        :figure => Fabricate.build(:figure),
-        :information => Fabricate.build(:information),
-        :infrastructure => Fabricate.build(:infrastructure),
-        :additional_description => Fabricate.build(:additional_description)
-      ).valid_for_publishing?.should be_true
-    end
-
-    it 'should return false' do
-      Fabricate.build(:real_estate).valid_for_publishing?.should be_false
-    end
-  end
 
   describe 'top_level_category' do
     before do
@@ -95,6 +76,10 @@ describe RealEstate do
     RealEstate.reference_projects.all.should == [reference_project]
   end
 
+  it 'detects embedded models having a presence validation defined' do
+    RealEstate.mandatory_for_publishing.should == ["address", "pricing"]
+  end
+
   describe "State machine" do
 
     let :category do
@@ -107,16 +92,14 @@ describe RealEstate do
     end
 
     it "transitions from 'editing' to 'review'" do
-      real_estate = Fabricate(:real_estate, :category => category)
-      real_estate.stub!(:valid_for_publishing?).and_return(true)
+      real_estate = Fabricate :real_estate, :category => category, :address=>Fabricate.build(:address), :pricing=>Fabricate.build(:pricing)
       real_estate.review_it!
 
       real_estate.in_review?.should be_true
     end
 
     it "transitions from 'review' to 'published'" do
-      real_estate = Fabricate(:real_estate, :state => 'in_review', :category => category)
-      real_estate.stub!(:valid_for_publishing?).and_return(true)
+      real_estate = Fabricate :real_estate, :state => 'in_review', :category => category, :address=>Fabricate.build(:address), :pricing=>Fabricate.build(:pricing)
       real_estate.publish_it!
 
       real_estate.published?.should be_true
@@ -129,8 +112,7 @@ describe RealEstate do
     end
 
     it "transitions from 'editing' to 'published'" do
-      real_estate = Fabricate(:real_estate, :state => 'editing', :category => category)
-      real_estate.stub!(:valid_for_publishing?).and_return(true)
+      real_estate = Fabricate :real_estate, :state => 'editing', :category => category, :address=>Fabricate.build(:address), :pricing=>Fabricate.build(:pricing)
       real_estate.publish_it!
 
       real_estate.published?.should be_true
@@ -141,18 +123,68 @@ describe RealEstate do
       real_estate.unpublish_it!
       real_estate.editing?.should be_true
     end
-  end
 
-  describe '#invalid_submodels' do
-    it 'returns the names of invalid submodels' do
-      real_estate = Fabricate.build(:real_estate, 
-        :state => 'editing',
-        :category => Fabricate(:category),
-        :address => Address.new,
-        :pricing => Pricing.new
-      )
+    context "Mandatory sub-model is missing" do
+      before do
+        @real_estate = Fabricate(:real_estate, :category=>Fabricate(:category))
+        @mandatory_embedded_models = [:address, :pricing]
+      end
 
-      real_estate.invalid_submodels.should == %w(address pricing)
+      it "doesn't change over from 'editing' to 'in_review'" do
+        @real_estate.review_it.should be_false
+        @mandatory_embedded_models.each { |model| @real_estate.errors.should include model }
+      end
+
+      it "doesn't change over from 'editing' to 'published'" do
+        @real_estate.publish_it.should be_false
+        @mandatory_embedded_models.each { |model| @real_estate.errors.should include model }
+      end
+
+      it "can be saved in state 'in_review' anyway" do
+        r = Fabricate(:real_estate, :category=>Fabricate(:category))
+        r.update_attribute :state, 'in_review'
+        r.update_attributes(:title => "Something is changed").should be_true
+      end
+
+      it "can't be saved in state 'published' anyway" do
+        r = Fabricate(:published_real_estate, :category=>Fabricate(:category))
+        r.update_attributes(:title => "Something is changed").should be_false
+      end
+
+      it "can change over from 'in_review' to 'editing'" do
+        r = Fabricate(:real_estate, :state=>'in_review', :category=>Fabricate(:category))
+        r.reject_it.should be_true
+      end
+    end
+
+    context "Sub-model becomes invalid because of real estate changed" do #e.g. changing the offer type will cause an invalid pricing model
+      # e.g. changing the offer type will cause an invalid pricing model
+      before do
+        @real_estate = Fabricate :real_estate, :offer=>RealEstate::OFFER_FOR_RENT, :category=>Fabricate(:category),
+                                 :address=>Fabricate.build(:address), :pricing=>Fabricate.build(:pricing, :for_sale=>nil)
+      end
+
+      it "doesn't change over from 'editing' to 'in_review'" do
+        @real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
+
+        @real_estate.review_it.should be_false
+        @real_estate.errors.should include :pricing
+      end
+
+      it "doesn't change over from 'editing' to 'published'" do
+        @real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
+
+        @real_estate.publish_it.should be_false
+        @real_estate.errors.should include :pricing
+      end
+
+      it "doesn't change over from 'in_review' to 'published'" do
+        @real_estate.review_it.should be_true
+        @real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
+
+        @real_estate.publish_it.should be_false
+      end
     end
   end
+
 end

@@ -68,12 +68,38 @@ class RealEstate
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
   scope :recently_updated, lambda { where( :updated_at.gte => 12.hours.ago ) }
 
+  class << self
+    extend ActiveSupport::Memoizable
+
+    def mandatory_for_publishing
+      metadata = RealEstate.relations.values.select { |r| r.relation == Mongoid::Relations::Embedded::One }
+      mandatory_relations = metadata.select { |relation| relation.class_name.constantize.validators.map(&:class).include?(Mongoid::Validations::PresenceValidator) }
+      mandatory_relations.map(&:key)
+    end
+
+    memoize :mandatory_for_publishing
+  end
+
   state_machine :state, :initial => :editing do
 
-    state :editing, :in_review, :published
+    state :editing
+
+    state :in_review do
+      validates *RealEstate.mandatory_for_publishing, :presence=>true,
+                :if=>:state_changed?, # Allows admin to save real estate in_review state
+                :unless=>:new_record? # ...otherwise the fabricator can't create real estates 'in_review', any idea?
+      validates_associated *RealEstate.mandatory_for_publishing,
+                           :if=>:state_changed? # Allows admin to save real estate in_review state
+    end
+
+    state :published do
+      validates *RealEstate.mandatory_for_publishing, :presence=>true,
+                :unless=>:new_record? # ...otherwise the fabricator can't create real estates in 'published' state, any idea?
+      validates_associated *RealEstate.mandatory_for_publishing
+    end
 
     event :review_it do
-      transition :editing => :in_review, :if => :valid_for_publishing?
+      transition :editing => :in_review
     end
 
     event :reject_it do
@@ -81,7 +107,7 @@ class RealEstate
     end
 
     event :publish_it do
-      transition [:editing, :in_review] => :published, :if => :valid_for_publishing?
+      transition [:editing, :in_review] => :published
     end
 
     event :unpublish_it do
@@ -109,15 +135,6 @@ class RealEstate
     category.parent
   end
 
-  def valid_for_publishing?
-    %w(pricing figure information infrastructure).inject(true) do |result, embedded|
-      result && send(embedded).present? && send(embedded).valid?
-    end
-  end
-
-  def invalid_submodels
-    %w(address information pricing figure infrastructure additional_description).reject { |sm| send(sm).present? ? send(sm).valid? : true }
-  end
 
   private
   def init_channels
