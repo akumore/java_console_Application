@@ -68,10 +68,16 @@ class RealEstate
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
   scope :recently_updated, lambda { where( :updated_at.gte => 12.hours.ago ) }
 
-  def self.mandatory_for_publishing
-    metadata = RealEstate.relations.values.select { |r| r.relation == Mongoid::Relations::Embedded::One }
-    mandatory_relations = metadata.select { |relation| relation.class_name.constantize.validators.map(&:class).include?(Mongoid::Validations::PresenceValidator) }
-    mandatory_relations.map(&:key)
+  class << self
+    extend ActiveSupport::Memoizable
+
+    def mandatory_for_publishing
+      metadata = RealEstate.relations.values.select { |r| r.relation == Mongoid::Relations::Embedded::One }
+      mandatory_relations = metadata.select { |relation| relation.class_name.constantize.validators.map(&:class).include?(Mongoid::Validations::PresenceValidator) }
+      mandatory_relations.map(&:key)
+    end
+
+    memoize :mandatory_for_publishing
   end
 
   state_machine :state, :initial => :editing do
