@@ -1,12 +1,198 @@
-modudef le Homegate
-  class RealEstateDecorator
+module Homegate
+  class RealEstateDecorator < ApplicationDecorator
+    decorates :real_estate
+    allows  :version,
+            :sender_id,
+            :object_category,
+            :object_type,
+            :offer_type,
+            :ref_property,
+            :ref_house,
+            :ref_object,
+            :object_street,
+            :object_zip,
+            :object_city,
+            :object_state,
+            :object_country,
+            :region,
+            :object_situation,
+            :available_from,
+            :object_title,
+            :object_description,
+            :selling_price,
+            :rent_net,
+            :rent_extra,
+            :price_unit,
+            :currency,
+            :gross_premium,
+            :floor,
+            :number_of_rooms,
+            :number_of_apartments,
+            :surface_living,
+            :surface_property,
+            :surface_usable,
+            :volume,
+            :year_built,
+            :prop_view,
+            :prop_fireplace,
+            :prop_cabletv,
+            :prop_elevator,
+            :prop_child_friendly,
+            :prop_parking,
+            :prop_garage,
+            :prop_balcony,
+            :prop_roof_floor,
+            :distance_public_transport,
+            :distance_shop,
+            :distance_kindergarten,
+            :distance_school1,
+            :distance_school2,
+            :picture_1_filename,
+            :picture_2_filename,
+            :picture_3_filename,
+            :picture_4_filename,
+            :picture_5_filename,
+            :picture_1_title,
+            :picture_2_title,
+            :picture_3_title,
+            :picture_4_title,
+            :picture_5_title,
+            :picture_1_description,
+            :picture_2_description,
+            :picture_3_description,
+            :picture_4_description,
+            :picture_5_description,
+            :movie_filename,
+            :movie_title,
+            :movie_description,
+            :document_filename,
+            :document_title,
+            :document_description,
+            :url,
+            :agency_id,
+            :agency_name,
+            :agency_name_2,
+            :agency_reference,
+            :agency_street,
+            :agency_zip,
+            :agency_city,
+            :agency_country,
+            :agency_phone,
+            :agency_mobile,
+            :agency_fax,
+            :agency_email,
+            :agency_logo,
+            :visit_name,
+            :visit_phone,
+            :visit_email,
+            :visit_remark,
+            :publish_until,
+            :destination,
+            :picture_6_filename,
+            :picture_7_filename,
+            :picture_8_filename,
+            :picture_9_filename,
+            :picture_6_title,
+            :picture_7_title,
+            :picture_8_title,
+            :picture_9_title,
+            :picture_6_description,
+            :picture_7_description,
+            :picture_8_description,
+            :picture_9_description,
+            :picture_1_url,
+            :picture_2_url,
+            :picture_3_url,
+            :picture_4_url,
+            :picture_5_url,
+            :picture_6_url,
+            :picture_7_url,
+            :picture_8_url,
+            :picture_9_url,
+            :distance_motorway,
+            :ceiling_height,
+            :hall_height,
+            :maximal_floor_loading,
+            :carrying_capacity_crane,
+            :carrying_capacity_elevator,
+            :isdn,
+            :wheelchair_accessible,
+            :animal_allowed,
+            :ramp,
+            :lifting_platform,
+            :railway_terminal,
+            :restrooms,
+            :water_supply,
+            :sewage_supply,
+            :power_supply,
+            :gas_supply,
+            :municipal_info,
+            :own_object_url,
+            :billing_anrede,
+            :billing_first_name,
+            :billing_name,
+            :billing_company,
+            :billing_street,
+            :billing_post_box,
+            :billing_zip,
+            :billing_place_name,
+            :billing_land,
+            :billing_phone_1,
+            :billing_phone_2,
+            :billing_mobile,
+            :billing_language,
+            :publishing_id,
+            :delivery_id,
+            :picture_10_filename,
+            :picture_11_filename,
+            :picture_12_filename,
+            :picture_13_filename,
+            :picture_10_title,
+            :picture_11_title,
+            :picture_12_title,
+            :picture_13_title,
+            :picture_10_description,
+            :picture_11_description,
+            :picture_12_description,
+            :picture_13_description,
+            :picture_10_url,
+            :picture_11_url,
+            :picture_12_url,
+            :picture_13_url,
+            :commission_sharing,
+            :commission_own,
+            :commission_partner,
+            :agency_logo_2,
+            :number_of_floors,
+            :year_renovated,
+            :flat_sharing_community,
+            :corner_house,
+            :middle_house,
+            :building_land_connected,
+            :gardenhouse,
+            :raised_ground_floor,
+            :new_building,
+            :old_building,
+            :under_building_laws,
+            :under_roof,
+            :swimmingpool,
+            :minergie_general,
+            :minergie_certified,
+            :last_modified,
+            :advertisement_id,
+            :sparefield_1,
+            :sparefield_2,
+            :sparefield_3,
+            :sparefield_4
 
     def version
       #str(50) IDX3.01
+      'IDX3.01'
     end
 
     def sender_id
       # str(50) Name of the used tool and export versionnumber (eg. Sigmasoft_v2.11, excelsior 21.23, immotools v1.99 ...)
+      'AlfredMuellerWebsite_HomegateExporter'
     end
     
     def object_category
@@ -19,38 +205,48 @@ modudef le Homegate
     
     def offer_type
       #  str(200)  RENT','SALE'
+      'RENT' if model.for_rent?
+      'SALE' if model.for_sale?
     end
     
     def ref_property
       #  str(80) at least one of the refs must be non blank (the word null as a value in ref_object cannot be used)
+      model.try(:reference).try(:property_key).presence
     end
     
     def ref_house
       # str(80) the word null as a value in ref_house cannot be used
+      model.try(:reference).try(:building_key).presence
     end
     
     def ref_object
       #  str(80) the word null as a value in ref_object cannot be used
+      model.try(:reference).try(:unit_key).presence
     end
     
     def object_street
       # str(200)  must field (exact match of street and number) for the geographical search on map.homegate.ch
+      [model.try(:address).try(:street).presence, model.try(:address).try(:street_number).presence].compact.join ' '
     end
 
     def object_zip
       # str(10) If country CH must be a valid 4 digit code (http://www.post.ch). If blank zip code and not in country CH then allow zip code with constant 'nozip'
+      model.try(:address).try(:zip).presence
     end
 
     def object_city
       # str(200)  
+      model.try(:address).try(:city).presence
     end
 
     def object_state
       #  str(2)  ZH, AG etc.
+      model.try(:address).try(:canton)
     end
 
     def object_country
       #  str(2)  A2 ISO codes <http://www.iso.ch/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html>
+      'CH'
     end
 
     def region
@@ -63,103 +259,142 @@ modudef le Homegate
 
     def available_from
       #  date  if empty="on request" / Date (DD.MM.YYYY)=Date / Date in past or current date=immediately
+      if model.try(:information).try(:available_from).present?
+        model.information.available_from.strftime("%d.%m.%Y")
+      end
     end
 
     def object_title
       #  str(70) eyecatcher, title of advertisement
+      model.title.presence
     end
 
     def object_description
       #  str(4000) biggest varchar2(4000) in oracle - split description into two parts if required. The following HTML-Tags can be used: <LI>,</LI>,<BR>, <B>,</B>. All other Tags will be removed.
+      # TODO: throw 'object_description needs to be implemented'
     end
 
     def selling_price
       # int(10) round up / selling_price OR rent_net  is mandatory / empty="by request" - if offer_type = RENT: total rent price - if offer_type = SALE: total sellingprice
+
+      if model.for_rent?
+        model.try(:pricing).try(:for_rent_netto).presence.to_i + model.try(:pricing).try(:for_rent_extra).presence.to_i
+      end
+
+      if model.for_sale?
+        model.try(:pricing).try(:for_sale)
+      end
     end
 
     def rent_net
       #  int(10) round up / selling_price OR rent_net  is mandatory / empty="by request"
+      model.try(:pricing).try(:for_rent_netto).presence
     end
 
     def rent_extra
       #  int(10) round up
+      model.try(:pricing).try(:for_rent_extra).presence
     end
 
     def price_unit
       #  str(10) SELL','SELLM2','YEARLY','M2YEARLY','MONTHLY','WEEKLY','DAILY' (related to field offer_type)
+      if model.for_sale?
+        'SELL'
+      else
+        # stuff
+      end
+      # TODO: throw 'price_unit needs to be implemented'
     end
 
     def currency
       #  str(3)  (alpha ISO codes <http://www.xe.com/iso4217.htm>)
+      'CHF'
     end
 
     def gross_premium
       # str(19) 2-3','3-4','4-5','5-6','6-7','7-8','8+' (in %) (offer_type=SALE & Category=HOUSE & Type=7 only)
+      # TODO: throw 'gross_premium needs to be implemented'
     end
 
     def floor
       # int(6)  floor filter see on tab "Floor filter"
+      model.try(:figure).try(:floor).presence
     end
 
     def number_of_rooms
       # int(5,1)  number of rooms in object itself
+      model.try(:figure).try(:rooms)
     end
 
     def number_of_apartments
       #  int(5,1)  number of appartments in object itself
+      # AM: obsoleted
     end
 
     def surface_living
       #  int(10) remove any non-digits
+      model.try(:figure).try(:living_surface).presence.to_i
     end
 
     def surface_property
       #  int(10) remove any non-digits
+      model.try(:figure).try(:property_surface).presence.to_i
     end
 
     def surface_usable
       #  int(10) remove any non-digits
+      model.try(:figure).try(:usable_surface).presence.to_i
     end
 
     def volume
       #  int(10) remove any non-digits
+      # AM: obsoleted
     end
 
     def year_built
       #  int(4)  year object has been built, a.e. 1975
+      model.try(:figure).try(:built_on).presence.to_i
     end
 
     def prop_view
       # str(1)  object has view, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:has_outlook).present? ? 'Y' : 'N'
     end
 
     def prop_fireplace
       #  str(1)  object has fireplace, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:has_fireplace).present? ? 'Y' : 'N'
     end
 
     def prop_cabletv
       #  str(1)  object has cable tv connection, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      # AM: obsolete    
     end
 
     def prop_elevator
       # str(1)  object has elevator, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:has_elevator).present? ? 'Y' : 'N'
     end
 
     def prop_child_friendly
       # actual key: prop_child-friendly (with dash)
       # str(1)  object is locarted child friendly, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:is_child_friendly).present? ? 'Y' : 'N'
     end
 
     def prop_parking
       #  str(1)  object has parking lot, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:infrastructure).try(:has_parking_spot).present? ? 'Y' : 'N'
     end
 
     def prop_garage
       # str(1)  object has garage place, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:infrastructure).try(:has_garage).present? ? 'Y' : 'N'
     end
 
     def prop_balcony
       #  str(1)  object has balcony, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
+      model.try(:information).try(:has_balcony).present? ? 'Y' : 'N'
     end
 
     def prop_roof_floor
@@ -168,62 +403,87 @@ modudef le Homegate
 
     def distance_public_transport
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
+      if model.infrastructure.present?
+        model.infrastructure.points_of_interest.where(:name => 'public_transport').first.distance.to_i
+      end
     end
 
     def distance_shop
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
+      if model.infrastructure.present?
+        model.infrastructure.points_of_interest.where(:name => 'shopping').first.distance.to_i
+      end
     end
 
     def distance_kindergarten
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
+      if model.infrastructure.present?
+        model.infrastructure.points_of_interest.where(:name => 'kindergarden').first.distance.to_i
+      end
     end
 
     def distance_school1
       #  int(5)  in meter - remove any non digits (1min. walk = 50m)
+      if model.infrastructure.present?
+        model.infrastructure.points_of_interest.where(:name => 'elementary_school').first.distance.to_i
+      end
     end
 
     def distance_school2
       #  int(5)  in meter - remove any non digits (1min. walk = 50m)
+      if model.infrastructure.present?
+        model.infrastructure.points_of_interest.where(:name => 'high_school').first.distance.to_i
+      end
     end
 
     def picture_1_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      # TODO: implement
     end
 
     def picture_2_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      # TODO: implement
     end
 
     def picture_3_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      # TODO: implement
     end
 
     def picture_4_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      # TODO: implement
     end
 
     def picture_5_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
+      # TODO: implement
     end
 
     def picture_1_title
       # str(200)  title of picture
+      model.media_assets.images.to_a[0].title rescue nil
     end
 
     def picture_2_title
       # str(200)  title of picture
+      model.media_assets.images.to_a[1].title rescue nil
     end
 
     def picture_3_title
       # str(200)  title of picture
+      model.media_assets.images.to_a[2].title rescue nil
     end
 
     def picture_4_title
       # str(200)  title of picture
+      model.media_assets.images.to_a[3].title rescue nil
     end
 
     def picture_5_title
       # str(200)  title of picture
+      model.media_assets.images.to_a[4].title rescue nil
     end
 
     def picture_1_description
@@ -248,6 +508,7 @@ modudef le Homegate
 
     def movie_filename
       #  str(200)  filename without path, eg: 'movie.avi' - valid movie types = mov, avi, rpm, mpeg, mpg, wmv, mp4, flv (movies must be transfered in directory "movies")
+      # TODO: implement
     end
 
     def movie_title
@@ -733,6 +994,6 @@ modudef le Homegate
     def sparefield_4
       #  - for future use
     end
-    
+
   end
 end
