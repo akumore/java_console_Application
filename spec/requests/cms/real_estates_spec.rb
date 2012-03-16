@@ -175,22 +175,15 @@ describe "Cms::RealEstates" do
   end
 
   describe 'invalid tab' do
+    before do
+      @real_estate = Fabricate :real_estate,:category => Fabricate(:category), :reference => Fabricate.build(:reference)
+    end
+
     it 'is marked if the submodel is invalid' do
-      real_estate = Fabricate(:real_estate,
-        :category => Fabricate(:category),
-        :reference => Fabricate.build(:reference),
-        :pricing => Pricing.new(
-          :price_unit => Pricing::PRICE_UNITS.first,
-          :for_rent_netto => 1200,
-          :for_rent_extra => 230
-        )
-      )
+      visit edit_cms_real_estate_path(@real_estate)
 
-      visit edit_cms_real_estate_path(real_estate)
-
-      choose('Kaufen')
-      click_on('Immobilie speichern')
-
+      click_on('Publizieren')
+      page.should have_css("li.invalid:contains(Adresse)")
       page.should have_css("li.invalid:contains(Preise)")
     end
   end
