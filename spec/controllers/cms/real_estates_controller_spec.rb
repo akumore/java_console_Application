@@ -39,7 +39,7 @@ describe 'Real Estate Wizard' do
 
     describe '#authorization as an admin' do
       before do
-        @real_estate = Fabricate :published_real_estate, :category => Fabricate(:category)
+        @real_estate = Fabricate :published_real_estate, :category => Fabricate(:category), :address => Fabricate.build(:address), :pricing => Fabricate.build(:pricing)
         @access_denied = "Sie haben keine Berechtigungen für diese Aktion"
       end
 
