@@ -15,9 +15,10 @@ class RealEstate
   STATE_PUBLISHED = 'published'
   STATE_IN_REVIEW = 'in_review'
 
-  REFERENCE_PROJECT_CHANNEL = "reference_projects"
-  WEBSITE_CHANNEL = "website"
-  CHANNELS = %W(#{WEBSITE_CHANNEL} homegate print #{REFERENCE_PROJECT_CHANNEL})
+  REFERENCE_PROJECT_CHANNEL = 'reference_projects'
+  WEBSITE_CHANNEL = 'website'
+  HOMEGATE_CHANNEL = 'homegate'
+  CHANNELS = %W(#{WEBSITE_CHANNEL} #{HOMEGATE_CHANNEL} print #{REFERENCE_PROJECT_CHANNEL})
 
   belongs_to :category
   belongs_to :contact, :class_name => 'Employee'

@@ -141,6 +141,10 @@ module InitialCategories
        :name => 'commercial'
    },
    {
+        :label => 'Lager',
+        :name => 'depot'
+    },
+   {
        :label => 'Praxis',
        :name => 'practice'
    },

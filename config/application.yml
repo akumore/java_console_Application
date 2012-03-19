@@ -9,6 +9,8 @@ defaults: &defaults
   google_account_id: ''
   google_api_key: ''
   google_maps_api_key: 'AIzaSyCNWg9D3wR2T69wlEu6ARAtNdPSgAN-N9w'
+  homegate:
+    ftp: ''
 
 development:
   <<: *defaults
