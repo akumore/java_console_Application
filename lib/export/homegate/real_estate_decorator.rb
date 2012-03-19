@@ -212,12 +212,12 @@ module Export::Homegate
         'parking' => 'PARK',
         'properties' => 'PROP',
         'secondary' => 'SECONDARY'
-      }[model.category.parent.name]
+      }[top_level_category_name || category_name]
     end
     
     def object_type
       # int(3)  see list on tab "ObjectCategory"
-      cat = model.category.parent.name
+      cat = top_level_category_name || category_name
       subcategories = {}
 
       if cat == 'apartment'
@@ -1176,6 +1176,16 @@ module Export::Homegate
 
     def to_a
       allowed.map { |key| send key }
+    end
+
+
+    private
+    def top_level_category_name
+      model.top_level_category.try(:name)
+    end
+
+    def category_name
+      model.category.name
     end
 
   end

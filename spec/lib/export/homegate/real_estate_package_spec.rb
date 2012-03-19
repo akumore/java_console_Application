@@ -128,10 +128,10 @@ describe Export::Homegate::RealEstatePackage do
       package.asset_paths[:documents].first.should == "d_#{real_estate.id}_1.pdf"
     end
 
-    it 'copies the documet into /documents with a unique filename' do
+    it 'copies the documet into /docs with a unique filename' do
       package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
       package.add_document(real_estate.media_assets.docs.first.file)
-      File.exists?(File.join(@tmp_path, 'documents', "d_#{real_estate.id}_1.pdf")).should be_true
+      File.exists?(File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf")).should be_true
     end
   end
 end

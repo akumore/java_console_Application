@@ -13,7 +13,7 @@ describe Export::Homegate::Packager do
     it 'returns if packaging a real estate was successful' do
       packager = Export::Homegate::Packager.new
       packager.stub!(:path).and_return(File.join(Rails.root, 'tmp', 'specs'))
-      real_estate = Fabricate.build(:published_real_estate)
+      real_estate = Fabricate.build :published_real_estate, :category=>Fabricate(:category)
       packager.package(real_estate).should be_true
     end
   end

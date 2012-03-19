@@ -61,7 +61,7 @@ module Export
       def add_document(file)
         ext = File.extname(file.path)
         filename = "d_#{@real_estate.id}_#{asset_paths[:documents].length + 1}#{ext}"
-        target_path = File.join(@packager.path, 'documents', filename)
+        target_path = File.join(@packager.path, 'doc', filename)
         FileUtils.cp(file.path, target_path)
         @documents << filename
       end

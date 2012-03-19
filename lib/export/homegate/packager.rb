@@ -27,7 +27,7 @@ module Export
         FileUtils.mkdir_p File.join(path, 'data')
         FileUtils.mkdir_p File.join(path, 'images')
         FileUtils.mkdir_p File.join(path, 'movies')
-        FileUtils.mkdir_p File.join(path, 'docs')
+        FileUtils.mkdir_p File.join(path, 'doc')
       end
 
     end
