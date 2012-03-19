@@ -1,4 +1,9 @@
 .pull-right
-  = link_to(cms_real_estates_path, :class => 'btn small') do
+  - if @real_estate.persisted?
+    = link_to cms_real_estate_path(@real_estate), :method => :delete, :confirm => t('.confirm_delete', :title => @real_estate.title), :class => 'btn btn-danger' do
+      %i.icon-trash.icon-white
+      = t('.destroy')
+  
+  = link_to(cms_real_estates_path, :class => 'btn') do
     %i.icon-list
     = t('.overview')
