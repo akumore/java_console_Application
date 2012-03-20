@@ -343,9 +343,30 @@ describe "RealEstates" do
       find(".map[data-real_estate]")['data-real_estate'].should == real_estate.to_json(:only => :_id, :methods => :coordinates)      
     end
 
-    context 'clicking the floorplan link' do
-      it 'opens the floorplan in an overlay' do
-        pending 'tbd'
+    context 'having a floorplan', :fp => true do
+      before :each do
+        @real_estate_with_floorplan = real_estate
+        @real_estate_with_floorplan.media_assets << Fabricate.build(:media_asset_floorplan)
+        visit real_estate_path(@real_estate_with_floorplan)
+      end
+
+      it 'shows the floorplan link' do
+        page.should have_link('Grundriss anzeigen')
+      end
+
+      it 'shows the floorplan slide with a zoom button' do
+        page.should have_css('.flexslider .slides li .zoom-floorplan')
+      end
+
+      it 'zooms the floorplan in an overlay', :js => true do
+        find('.flexslider .slides li .zoom-floorplan').click
+        page.should have_css(".fancybox-opened img[src='#{@real_estate_with_floorplan.media_assets.images.where(:is_floorplan => true).first.url}']")
+      end
+    end
+
+    context 'not having a floorplan', :fp => true do
+      it 'does not show the floorplan link' do
+        page.should_not have_link('Grundriss anzeigen')
       end
     end
 
