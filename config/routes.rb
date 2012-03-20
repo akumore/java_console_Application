@@ -2,13 +2,6 @@ AlfredMueller::Application.routes.draw do
 
   devise_for :users, :class_name => 'Cms::User'
 
-  scope ':locale' do
-    resources :real_estates, :only => [:index, :show] do
-      resources :appointments, :only => [:new, :create]
-    end
-    resource :job_application, :only => [:new, :create]
-  end
-
   namespace :cms do
     resource :dashboards
     resources :real_estates do
@@ -35,7 +28,14 @@ AlfredMueller::Application.routes.draw do
     resources :users
   end
 
-  scope '/:locale' do
+  scope ':locale' do
+    resources :real_estates, :only => [:index, :show] do
+      resources :appointments, :only => [:new, :create]
+    end
+    resource :job_application, :only => [:new, :create]
+  end
+
+  scope ':locale' do
     match '/:name' => 'pages#show'
   end
 
@@ -97,4 +97,5 @@ AlfredMueller::Application.routes.draw do
   # match ':controller(/:action(/:id(.:format)))'
 
   root :to => 'homepage#index'
+
 end
