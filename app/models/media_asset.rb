@@ -23,6 +23,7 @@ class MediaAsset
 
   field :media_type, :type => String
   field :is_primary, :type => Boolean
+  field :is_floorplan, :type => Boolean
   field :title, :type => String
   field :file, :type => String
 
