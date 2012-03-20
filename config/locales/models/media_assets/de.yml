@@ -7,4 +7,5 @@ de:
         title: 'Titel'
         media_type: 'Typ'
         is_primary: 'Hauptbild'
+        is_floorplan: 'Grundriss'
         file: 'Datei'
