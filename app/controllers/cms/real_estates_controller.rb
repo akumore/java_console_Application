@@ -51,9 +51,8 @@ class Cms::RealEstatesController < Cms::SecuredController
   end
 
   def destroy
-    @real_estate = RealEstate.find(params[:id])
     @real_estate.destroy
-    redirect_to cms_real_estates_url
+    redirect_to(cms_real_estates_url, :notice => t('cms.real_estates.index.destroyed', :title => @real_estate.title))
   end
 
 end

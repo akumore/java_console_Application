@@ -54,6 +54,25 @@ describe 'Real Estate Wizard' do
         response.should redirect_to [:cms, @real_estate]
         flash[:alert].should_not == @access_denied
       end
+
+      it "doesn't allow to destroy real_estate in state 'published'" do
+        real_estate = Fabricate :published_real_estate, :category => Fabricate(:category)
+
+        delete :destroy, :id => real_estate.id
+        response.should redirect_to [:cms, real_estate]
+        flash[:alert].should == @access_denied
+
+      end
+
+      %w(editing in_review).each do |state|
+        it "allows to destroy real estate in state '#{state}'" do
+          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category)
+
+          delete :destroy, :id => real_estate.id
+          response.should redirect_to cms_real_estates_url
+          flash[:notice].should == I18n.t('cms.real_estates.index.destroyed', :title => real_estate.title)
+        end
+      end
     end
 
 
@@ -78,6 +97,25 @@ describe 'Real Estate Wizard' do
         response.should redirect_to [:cms, real_estate]
         flash[:alert].should == @access_denied
       end
+
+      it "allows to destroy real_estate in 'editing'" do
+        real_estate = Fabricate :real_estate, :state => 'editing', :category => Fabricate(:category)
+
+        delete :destroy, :id=>real_estate.id
+        response.should redirect_to cms_real_estates_url
+        flash[:notice].should == I18n.t('cms.real_estates.index.destroyed', :title => real_estate.title)
+      end
+
+      %w(in_review published).each do |state|
+        it "doesn't allow to destroy real estate in state '#{state}'" do
+          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category)
+
+          delete :destroy, :id => real_estate.id
+          response.should redirect_to [:cms, real_estate]
+          flash[:alert].should == @access_denied
+        end
+      end
+
     end
 
   end

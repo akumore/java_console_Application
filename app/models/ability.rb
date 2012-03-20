@@ -31,6 +31,7 @@ class Ability
       #controller action abilities
       can :manage, RealEstate
       cannot :edit, RealEstate, :state => 'published'
+      cannot :destroy, RealEstate, :state => 'published'
       can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset]
       cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'published'}
 
@@ -46,9 +47,9 @@ class Ability
       # state machine abilities
       can :review_it, RealEstate
 
-
       #controller action abilities
       can :update, RealEstate, :state => 'editing' #do not use :manage, this will break state machine cans
+      can :destroy, RealEstate, :state => 'editing'
       can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'editing'}
       cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => ['in_review', 'published']}
     end
