@@ -321,10 +321,6 @@ describe "RealEstates" do
       page.should have_link('Objektbeschrieb')
     end
 
-    it 'has a link to the floorplan' do
-      page.should have_link('Grundriss anzeigen')
-    end
-
     it 'displays the full name of the responsible person' do
       within(".accordion-item .image-caption-text") do
         page.should have_content(real_estate.contact.fullname)
