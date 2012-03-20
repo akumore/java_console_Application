@@ -7,7 +7,7 @@
           %li= msg
 
 
-= form_for @job_application, :url => job_application_path(@job_application), :remote => true do |f|
+= form_for @job_application, :url => job_application_path, :remote => true do |f|
   .control-group
     = f.label :job
     .controls

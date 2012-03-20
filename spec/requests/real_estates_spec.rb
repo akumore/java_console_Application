@@ -3,6 +3,7 @@
 require "spec_helper"
 
 describe "RealEstates" do
+  monkey_patch_default_url_options
 
   let :category do
     Fabricate(:category, :label => 'Wohnung')
