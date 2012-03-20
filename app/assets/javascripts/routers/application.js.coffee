@@ -40,4 +40,10 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
       $("html").addClass("animation-start")
 
     # initialize fancybox overlays
-    $(".zoom-overlay").fancybox()
+    $(".zoom-overlay").fancybox(
+      closeBtn: true
+      helpers:
+        overlay:
+          css:
+            backgroundColor: '#0A1930'
+    )
