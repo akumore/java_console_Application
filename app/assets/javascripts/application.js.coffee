@@ -8,6 +8,7 @@
 #= require monster
 #= require jquery.remotipart
 #= require jquery.flexslider
+#= require jquery.fancybox
 #= require underscore
 #= require backbone
 #= require backbone_rails_sync
