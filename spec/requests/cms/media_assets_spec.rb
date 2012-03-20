@@ -55,9 +55,6 @@ describe "Cms::MediaAssets" do
           check 'Hauptbild'
           attach_file 'Datei', "#{Rails.root}/spec/support/test_files/image.jpg"
         end
-      end
-
-      before :each do
         click_on 'Bild speichern'
       end
 
@@ -68,6 +65,10 @@ describe "Cms::MediaAssets" do
 
       it 'can be checked as primary visual' do
         page.should have_css('#media_asset_is_primary[type=checkbox]')
+      end
+
+      it 'can be checked as floorplan' do
+        page.should have_css('#media_asset_is_floorplan[type=checkbox]')
       end
 
       it 'displays a preview of the image' do
@@ -100,9 +101,6 @@ describe "Cms::MediaAssets" do
           fill_in 'Titel', :with => 'Das neue Video'
           attach_file 'Datei', "#{Rails.root}/spec/support/test_files/video.mp4"
         end
-      end
-
-      before :each do
         click_on 'Video speichern'
       end
 
@@ -113,6 +111,10 @@ describe "Cms::MediaAssets" do
 
       it 'can be checked as primary visual' do
         page.should have_css('#media_asset_is_primary[type=checkbox]')
+      end
+
+      it 'cannot be checked as floorplan' do
+        page.should_not have_css('#media_asset_is_floorplan[type=checkbox]')
       end
 
       it 'displays a preview of the video' do
@@ -145,9 +147,6 @@ describe "Cms::MediaAssets" do
           fill_in 'Titel', :with => 'Das neue Dokument'
           attach_file 'Datei', "#{Rails.root}/spec/support/test_files/document.pdf"
         end
-      end
-
-      before :each do
         click_on 'Dokument speichern'
       end
 
@@ -158,6 +157,10 @@ describe "Cms::MediaAssets" do
 
       it 'cannot be checked as primary visual' do
         page.should_not have_css('#media_asset_is_primary[type=checkbox]')
+      end
+
+      it 'cannot be checked as floorplan' do
+        page.should_not have_css('#media_asset_is_floorplan[type=checkbox]')
       end
 
       it 'displays a link to the document' do
