@@ -2,6 +2,7 @@
 require "spec_helper"
 
 describe "Appointment" do
+  monkey_patch_default_url_options
 
   before do
     @contact = Fabricate(:employee)

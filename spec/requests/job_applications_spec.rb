@@ -2,6 +2,7 @@
 require "spec_helper"
 
 describe "JobApplications" do
+  monkey_patch_default_url_options
 
   describe '#new' do
     before :each do

@@ -41,3 +41,17 @@ RSpec.configure do |config|
     end
   end
 end
+
+
+# prepare monkey patch to set default locale for ALL spec but not within the Cms
+class ActionView::TestCase::TestController
+  def default_url_options_with_locale(options={})
+    default_url_options_without_locale.merge(:locale => I18n.default_locale)
+  end
+end
+
+class ActionDispatch::Routing::RouteSet
+  def default_url_options_with_locale(options={})
+    default_url_options_without_locale.merge(:locale => I18n.default_locale)
+  end
+end

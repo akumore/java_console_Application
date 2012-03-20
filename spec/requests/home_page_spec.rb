@@ -2,6 +2,7 @@
 require "spec_helper"
 
 describe "Homepage" do
+  monkey_patch_default_url_options
 
   context "Visiting the home page" do
     it 'shows the logo of Alfred Mueller' do
