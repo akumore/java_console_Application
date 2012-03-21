@@ -2,10 +2,11 @@
 require 'spec_helper'
 
 describe "Cms::RealEstates" do
-  login_cms_user
   create_category_tree
 
   describe "Visit cms_real_estates path" do
+    login_cms_user
+
     before do
       @category = Fabricate :category, :name=>'single_house', :label=>'Einfamilienhaus'
       @reference = Reference.new
@@ -42,6 +43,8 @@ describe "Cms::RealEstates" do
   end
 
   describe '#new' do
+    login_cms_user
+
     before :each do
       Fabricate(:employee, :firstname => 'Hans', :lastname => 'Muster')
       visit new_cms_real_estate_path
@@ -113,6 +116,8 @@ describe "Cms::RealEstates" do
 
 
   describe '#edit' do
+    login_cms_user
+
     before :each do
       @fabricated_real_estate = Fabricate(:real_estate, :reference => Reference.new, :category => Fabricate(:category))
       Fabricate(:employee, :firstname => 'Hanna', :lastname => 'Henker')
@@ -175,6 +180,8 @@ describe "Cms::RealEstates" do
   end
 
   describe 'invalid tab' do
+    login_cms_user
+
     before do
       @real_estate = Fabricate :real_estate,:category => Fabricate(:category), :reference => Fabricate.build(:reference)
     end
@@ -185,6 +192,97 @@ describe "Cms::RealEstates" do
       click_on('Publizieren')
       page.should have_css("li.invalid:contains(Adresse)")
       page.should have_css("li.invalid:contains(Preise)")
+    end
+  end
+
+  describe '#destroy' do
+    context 'as an admin' do
+      login_cms_admin
+
+      context 'a published real estate' do
+        before :each do
+          @published_real_estate = Fabricate(:published_real_estate, 
+            :category => Fabricate(:category), 
+            :reference => Fabricate.build(:reference)
+          )
+          visit edit_cms_real_estate_path(@published_real_estate)
+        end
+
+        it 'does not have a button to delete the real estate' do
+          page.should_not have_link("Immobilie löschen")
+        end
+      end
+
+      context 'an editable real estate' do
+        before :each do
+          @editable_real_estate = Fabricate(:real_estate, 
+            :category => Fabricate(:category), 
+            :reference => Fabricate.build(:reference)
+          )
+          visit edit_cms_real_estate_path(@editable_real_estate)
+        end
+
+        it 'has a button to delete the real estate' do
+          page.should have_link("Immobilie löschen")
+        end
+
+        it 'deletes the real estate' do
+          lambda {
+            click_on "Immobilie löschen"
+          }.should change(RealEstate, :count).by(-1)
+        end
+
+        it 'redirects to the real estate overview with a notification' do
+          click_on 'Immobilie löschen'
+          current_path.should == cms_real_estates_path
+          within('#flash') do
+            page.should have_content("Die Immobilie \"#{@editable_real_estate.title}\" wurde erfolgreich gelöscht.")
+          end
+        end
+      end
+    end
+
+    context 'as an editor' do
+      login_cms_editor
+
+      context 'a published real estate' do
+        it 'does not have a button to delete the real estate' do
+          @published_real_estate = Fabricate(:published_real_estate, 
+          :category => Fabricate(:category), 
+          :reference => Fabricate.build(:reference)
+        )
+        visit edit_cms_real_estate_path(@published_real_estate)
+          page.should_not have_link("Immobilie löschen")
+        end
+      end
+
+      context 'an editable real estate' do
+        before :each do
+          @editable_real_estate = Fabricate(:real_estate, 
+            :category => Fabricate(:category), 
+            :reference => Fabricate.build(:reference)
+          )
+          visit edit_cms_real_estate_path(@editable_real_estate)
+        end
+
+        it 'has a button to delete the real estate' do
+          page.should have_link("Immobilie löschen")
+        end
+
+        it 'deletes the real estate' do
+          lambda {
+            click_on "Immobilie löschen"
+          }.should change(RealEstate, :count).by(-1)
+        end
+
+        it 'redirects to the real estate overview with a notification' do
+          click_on 'Immobilie löschen'
+          current_path.should == cms_real_estates_path
+          within('#flash') do
+            page.should have_content("Die Immobilie \"#{@editable_real_estate.title}\" wurde erfolgreich gelöscht.")
+          end
+        end
+      end
     end
   end
 end
