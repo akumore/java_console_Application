@@ -18,6 +18,7 @@ class MediaAsset
     { :media_type => MediaAsset::IMAGE }, 
     { :media_type => MediaAsset::VIDEO }
   )
+  scope :floorplans, where(:media_type => MediaAsset::IMAGE, :is_floorplan => true)
 
   mount_uploader :file, MediaAssetUploader
 
@@ -44,4 +45,7 @@ class MediaAsset
     media_type == MediaAsset::DOCUMENT
   end
 
+  def is_floorplan?
+    image? && is_floorplan
+  end
 end
