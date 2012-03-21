@@ -16,6 +16,12 @@
         .controls
           %label.checkbox
             = f.check_box :is_primary
+    - if @media_asset.image?
+      .control-group
+        = f.label :is_floorplan
+        .controls
+          %label.checkbox
+            = f.check_box :is_floorplan
     .control-group.mandatory
       = f.label :file
       .controls

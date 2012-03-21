@@ -12,6 +12,10 @@ Fabricator(:media_asset_image_png, :class_name => 'MediaAsset') do
   title "Image title"
 end
 
+Fabricator(:media_asset_floorplan, :from => :media_asset_image) do
+  is_floorplan true
+end
+
 Fabricator(:media_asset_video, :class_name => 'MediaAsset') do
   media_type "video"
   is_primary false

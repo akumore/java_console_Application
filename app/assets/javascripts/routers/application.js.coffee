@@ -23,11 +23,24 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
 
     # initialize slideshows
     $(window).load ->
+      $(".gallery .flexslider").flexslider(
+        directionNav: true,
+        controlNav: false,
+        slideshow: false,
+        animation: "slide",
+        start: (slider) ->
+          new AlfredMueller.Views.SliderDeeplink(
+            el: $(".icon-groundplan"),
+            target: $(".gallery .flexslider li[data-is_floorplan=true]:not(.clone)"),
+            slider: slider
+          )
+      )
+
       $(".flexslider").flexslider(
         directionNav: true,
         controlNav: false,
         slideshow: false,
-        animation: "slide"
+        animation: "slide",
       )
 
     # initialize services slider always AFTER flexslider is initialized.
@@ -38,3 +51,12 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
 
       # add animation-start class to kick of any matching css transitions
       $("html").addClass("animation-start")
+
+    # initialize fancybox overlays
+    $(".zoom-overlay").fancybox(
+      closeBtn: true
+      helpers:
+        overlay:
+          css:
+            backgroundColor: '#0A1930'
+    )

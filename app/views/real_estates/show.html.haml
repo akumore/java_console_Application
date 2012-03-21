@@ -21,11 +21,14 @@
         .flexslider
           %ul.slides
             - @real_estate.media_assets.displayable.each do |asset|
-              %li
+              %li{ 'data-is_floorplan' => asset.is_floorplan.to_s }
                 - if asset.image?
                   = image_tag asset.file.url
                   .flex-caption
                     %span= asset.title
+                - if asset.is_floorplan?
+                  = link_to t('.floorplan'), asset.url, :class => 'zoom-floorplan zoom-overlay'
+
                 - if asset.video?
                   %video.sublime{ :preload => 'preload' }
                     %source{ :src => asset.file.url }
@@ -106,5 +109,4 @@
 
     %ul
       %li= @real_estate.mini_doku_link
-      %li= link_to t('.floorplan'), '#', :class => 'icon-groundplan'
-      %li= link_to t('.to_favorites'), '#', :class => 'icon-favorit'
+      %li= @real_estate.floorplan_link
