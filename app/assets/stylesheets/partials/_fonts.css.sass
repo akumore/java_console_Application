@@ -59,6 +59,17 @@ h3
   margin-top: 2em
   text-transform: uppercase
 
+h4
+  @extend .title-font-bold
+  font-size: 1.25em
+  color: $dark
+
+h5
+  @extend .text-font
+  font-size: 1.25em
+  color: $footer-title
+  margin-top: 1em 0
+
 strong
   font-weight: 600
 
@@ -153,3 +164,9 @@ input, select, textarea
     a, a:link, a:visited, a:active
       @extend .title-font-bold
       color: $dark
+
+#footer
+  a
+    @extend .title-font-bold
+  a
+    +link-colors($dark)
