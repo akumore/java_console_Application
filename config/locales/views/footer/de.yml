@@ -1,0 +1,9 @@
+de:
+  layouts:
+    footer:
+      title: 'Räume voller Leben'
+      contact:
+        title: 'Kontakt'
+        address_html: 'Alfred Müller AG<br>Neuhofstrasse 10<br>CH-6340 Baar'
+        phone_html: 'T: +41 41 767 02 02<br>F: +41 41 767 02 00'
+        directions: 'Anfahrtsplan'
