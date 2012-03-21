@@ -6,6 +6,7 @@
 * Install mmode to handle scrcpt2 maintenance mode: `gem install mmode`
 * Add the remote repo on scrcpt2 to deploy: `bundle exec blazing update staging`
 * Run `bundle install`
+* Copy `config/mongoid.yml.example` to `config/mongoid.yml` and customize it
 
 # Deployment
 
