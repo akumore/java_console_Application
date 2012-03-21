@@ -26,9 +26,6 @@ html
 #main
   +row
 
-#footer
-  +row
-
 #container
   margin: 0px auto
   max-width: 1000px
@@ -69,3 +66,22 @@ h1, h2, h3, h4, p, ul, ol
   .pages &
     margin: 2em 0
     +no-bullets
+
+#footer
+  +row
+  margin-top: 2em
+  margin-bottom: 2em
+
+  h4
+    border-bottom: 2px solid $dark
+    padding: 0.5em 0
+    margin-bottom: 2em
+
+.footer-news
+  +column(3)
+
+.footer-teasers
+  +column(4)
+
+.footer-contact
+  +column(3)
