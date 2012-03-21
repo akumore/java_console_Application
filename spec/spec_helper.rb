@@ -29,6 +29,7 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
   config.include Devise::TestHelpers, :type => :controller
   config.extend ControllerMacros, :type => :controller
+  config.extend DefaultUrlOptionsHelper
   config.extend RequestMacros, :type => :request
   config.include ActionView::Helpers::NumberHelper, :type => :request
   config.include MockGeocoder
