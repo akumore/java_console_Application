@@ -9,7 +9,7 @@ class AppointmentsController < ApplicationController
     @real_estate = RealEstate.find params[:real_estate_id]
     @appointment = @real_estate.appointments.build params[:appointment]
     if @appointment.save
-      #TODO Send email or do what ever you want with this!
+      AppointmentMailer.appointment_notification(@appointment).deliver
       render 'show'
     else
       render 'new'
