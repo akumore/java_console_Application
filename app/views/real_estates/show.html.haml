@@ -26,8 +26,9 @@
                   = image_tag asset.file.url
                   .flex-caption
                     %span= asset.title
-                - if asset.is_floorplan? && asset.image?
+                - if asset.is_floorplan?
                   = link_to t('.floorplan'), asset.url, :class => 'zoom-floorplan zoom-overlay'
+
                 - if asset.video?
                   %video.sublime{ :preload => 'preload' }
                     %source{ :src => asset.file.url }
