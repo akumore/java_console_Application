@@ -367,7 +367,7 @@ describe "RealEstates" do
       end
     end
 
-    context 'Making an appointment' do
+    context 'Making an appointment', :appointment => true do
       it 'integrates appointment slide into slide show' do
         visit real_estate_path(real_estate)
         page.should have_css ".appointment"
@@ -377,6 +377,20 @@ describe "RealEstates" do
         real_estate.contact.destroy
         visit real_estate_path(real_estate)
         page.should_not have_css ".appointment"
+      end
+
+      it "sends an appointment mail upon submitting the form" do
+        visit real_estate_path(real_estate)
+        within(".appointment") do
+          fill_in 'appointment_firstname', :with => 'Hans'
+          fill_in 'appointment_lastname', :with => 'Muster'
+          fill_in 'appointment_email', :with => 'hans.muster@test.ch'
+          fill_in 'appointment_phone', :with => '123 456 66 44'
+        end
+
+        lambda {
+          click_on 'Kontaktieren Sie mich'
+        }.should change(ActionMailer::Base.deliveries, :size).by(1)
       end
     end
 
