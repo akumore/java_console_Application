@@ -63,3 +63,7 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
 
     #initialize chosen selects
     $(".chzn-select").chosen()
+
+    #initialize updater of filter-cities dropdown
+    $('.search-filter-form').each ->
+      new AlfredMueller.Views.SearchFilterOptionsUpdater(el: $(this))
