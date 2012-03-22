@@ -53,3 +53,15 @@ $search-container-border-top: lighten($search-background-color, 10%)
 =appointments-placeholder
   +placeholder
   color: $classic
+
+//form submit button mixin
+=form-submit
+  background: #edeae5 image-url('button-bg.png') repeat-x
+  border: 1px solid #848273
+  padding: 0.5em 1em
+  display: inline-block
+  cursor: pointer
+  &:hover
+    border: 1px solid lighten(#848273, 50%)
+    +single-text-shadow($clay, 0px, 1px, 0px)
+    +single-box-shadow(darken(#848273, 10%), 0px, 2px, 1px)
