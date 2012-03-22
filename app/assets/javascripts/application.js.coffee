@@ -19,6 +19,7 @@
 #= require_tree ./models
 #= require_tree ./views
 #= require_tree ./routers
+#= require chosen-jquery
 
 window.AlfredMueller =
   Models: {}

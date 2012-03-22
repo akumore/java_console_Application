@@ -60,3 +60,6 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
           css:
             backgroundColor: '#0A1930'
     )
+
+    #initialize chosen selects
+    $(".chzn-select").chosen()
