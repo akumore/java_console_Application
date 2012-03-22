@@ -19,7 +19,7 @@
       = f.hidden_field :offer
       = f.hidden_field :utilization
       = f.label :cantons
-      = f.collection_select :cantons, cantons_for_collection_select(@search_filter.available_cantons) , :first, :last, {}, :multiple=>true, :prompt=>t("helpers.select.prompt"), :class=>'chzn-select'
+      = f.collection_select :cantons, cantons_for_collection_select(@search_filter.available_cantons.sort) , :first, :last, {}, :multiple=>true, :prompt=>t("helpers.select.prompt"), :class=>'chzn-select'
       = f.label :cities
-      = f.select :cities, @search_filter.available_cities,{}, :multiple=>true, :prompt=>t("helpers.select.prompt"), :class=>'chzn-select'
+      = f.select :cities, @search_filter.available_cities.sort,{}, :multiple=>true, :prompt=>t("helpers.select.prompt"), :class=>'chzn-select', :data=>{'cantons-cities-map'=>@search_filter.cantons_cities_map}
       = f.submit 'Search'
