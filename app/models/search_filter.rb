@@ -6,9 +6,6 @@ class SearchFilter < OpenStruct
     alias_method :available_cities, :values
     alias_method :available_cantons, :keys
   end
-  class Canton < Struct.new(:code)
-    alias_method :id, :code
-  end
 
   #attr_accessor :offer, :utilization, :cantons, :cities
   attr_reader :cantons_cities_map
