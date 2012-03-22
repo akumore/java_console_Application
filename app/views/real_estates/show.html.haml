@@ -103,9 +103,9 @@
   .sidebar
     .nav
       %ul
-        %li= link_to t('.prev'), real_estate_path(@prev_real_estate, @search_filter.to_h), :class => 'arrow-tailed-small-left image-link'
+        %li= link_to t('.prev'), real_estate_path(@prev_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-left image-link'
         %li= link_to t('.overview'), real_estates_path(@search_filter.to_h), :class => 'classic'
-        %li= link_to t('.next'), real_estate_path(@next_real_estate, @search_filter.to_h), :class => 'arrow-tailed-small-right image-link'
+        %li= link_to t('.next'), real_estate_path(@next_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-right image-link'
 
     %ul
       %li= @real_estate.mini_doku_link
