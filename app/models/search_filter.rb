@@ -3,8 +3,12 @@ class SearchFilter < OpenStruct
   extend ActiveModel::Translation
 
   class CantonsCitiesMap < Hash
-    alias_method :available_cities, :values
+
     alias_method :available_cantons, :keys
+
+    def available_cities
+      values.flatten
+    end
   end
 
   #attr_accessor :offer, :utilization, :cantons, :cities
@@ -57,7 +61,7 @@ class SearchFilter < OpenStruct
 
   private
   def init_cantons_cities_map
-    addresses = RealEstate.where(:offer=>offer, :utilization=>utilization).map(&:address).compact
+    addresses = RealEstate.published.web_channel.where(:offer=>offer, :utilization=>utilization).map(&:address).compact
     addresses.inject(CantonsCitiesMap.new) do |map, address|
       canton = address.canton.downcase
       map[canton] ||= []
