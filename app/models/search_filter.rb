@@ -59,9 +59,10 @@ class SearchFilter < OpenStruct
   def init_cantons_cities_map
     addresses = RealEstate.where(:offer=>offer, :utilization=>utilization).map(&:address).compact
     addresses.inject(CantonsCitiesMap.new) do |map, address|
-      map[address.canton] ||= []
-      map[address.canton] << address.city
-      map[address.canton].uniq!
+      canton = address.canton.downcase
+      map[canton] ||= []
+      map[canton] << address.city
+      map[canton].uniq!
       map
     end
   end
