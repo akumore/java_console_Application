@@ -24,11 +24,13 @@ class RealEstatesController < ApplicationController
   private
 
   def set_search_filter
-    @search_filter = SearchFilter.new :offer => params[:offer], :utilization => params[:utilization]
+    filter_params = (params[:search_filter] || {}).reverse_merge(:offer => params[:offer], :utilization => params[:utilization],
+                                                                 :cantons => params[:cantons], :cities => params[:cities])
+    @search_filter = SearchFilter.new(filter_params)
   end
 
   def get_filtered_real_estates(search_filter)
-    RealEstate.published.web_channel.where(search_filter.to_h)
+    RealEstate.published.web_channel.where(search_filter.to_query_hash).all
   end
 
   def get_filtered_reference_projects search_filter

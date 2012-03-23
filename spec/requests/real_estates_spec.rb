@@ -163,7 +163,8 @@ describe "RealEstates" do
     end
   end
 
-  describe "Search-Filtering of real estates" do
+
+  describe "Search-Filtering of real estates by offer and utilization" do
     before do
       @non_commercial_for_sale = Fabricate :published_real_estate,
                                            :utilization=>RealEstate::UTILIZATION_PRIVATE,
@@ -234,6 +235,59 @@ describe "RealEstates" do
       page.should_not have_selector('table tr')
     end
   end
+
+
+  describe 'Search-Filtering of real estates by canton and city' do
+    before do
+      @arth = Fabricate :published_real_estate,
+                        :utilization => RealEstate::UTILIZATION_PRIVATE,
+                        :offer => RealEstate::OFFER_FOR_RENT,
+                        :category => Fabricate(:category),
+                        :address => Fabricate.build(:address, :canton => 'sz', :city => 'Arth'),
+                        :figure => Fabricate.build(:figure),
+                        :pricing => Fabricate.build(:pricing)
+
+      @goldau = Fabricate :published_real_estate,
+                          :utilization => RealEstate::UTILIZATION_PRIVATE,
+                          :offer => RealEstate::OFFER_FOR_RENT,
+                          :category => Fabricate(:category),
+                          :address => Fabricate.build(:address, :canton => 'sz', :city => 'Goldau'),
+                          :figure => Fabricate.build(:figure),
+                          :pricing => Fabricate.build(:pricing)
+      @adliswil = Fabricate :published_real_estate,
+                            :utilization => RealEstate::UTILIZATION_PRIVATE,
+                            :offer => RealEstate::OFFER_FOR_RENT,
+                            :category => Fabricate(:category),
+                            :address => Fabricate.build(:address, :canton => 'zh', :city => 'Adliswil'),
+                            :figure => Fabricate.build(:figure),
+                            :pricing => Fabricate.build(:pricing)
+
+      visit real_estates_path(:utilization => RealEstate::UTILIZATION_PRIVATE, :offer => RealEstate::OFFER_FOR_RENT)
+
+      page.should have_css("tr[id=real-estate-#{@arth.id}]")
+      page.should have_css("tr[id=real-estate-#{@goldau.id}]")
+      page.should have_css("tr[id=real-estate-#{@adliswil.id}]")
+    end
+
+    it "filters by canton" do
+      select 'Schwyz'
+      click_button 'Suchen'
+
+      page.should have_css("tr[id=real-estate-#{@arth.id}]")
+      page.should have_css("tr[id=real-estate-#{@goldau.id}]")
+      page.should_not have_css("tr[id=real-estate-#{@adliswil.id}]")
+    end
+
+    it 'filters by city' do
+      select 'Arth'
+      click_button 'Suchen'
+
+      page.should have_css("tr[id=real-estate-#{@arth.id}]")
+      page.should_not have_css("tr[id=real-estate-#{@goldau.id}]")
+      page.should_not have_css("tr[id=real-estate-#{@adliswil.id}]")
+    end
+  end
+
 
   describe "Visiting unpublished real estate" do
 
