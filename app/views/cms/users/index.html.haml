@@ -2,8 +2,8 @@
   %h1 Benutzer verwalten
 
 - if can? :manage, Cms::User
-  .pull-right
-    .padded
+  .row
+    .pull-right.padded
       .btn-group
         = link_to(new_cms_user_path, :class => 'btn') do
           %i.icon-plus-sign
