@@ -7,7 +7,7 @@ SimpleNavigation::Configuration.run do |navigation|
   # navigation.renderer = Your::Custom::Renderer
 
   # Specify the class that will be applied to active navigation items. Defaults to 'selected'
-  # navigation.selected_class = 'your_selected_class'
+  navigation.selected_class = 'active'
 
   # Specify the class that will be applied to the current leaf of
   # active navigation items. Defaults to 'simple-navigation-active-leaf'
@@ -50,11 +50,11 @@ SimpleNavigation::Configuration.run do |navigation|
     #                            against the current URI.  You may also use a proc, or the symbol <tt>:subpath</tt>.
     #
     primary.item :dashboard, 'Dashboard', cms_dashboards_path
-    primary.item :real_estates, 'Immobilien', cms_real_estates_path
-    primary.item :addresses, 'Mitarbeiter', cms_employees_path
-    primary.item :jobs, 'Jobs', cms_jobs_path
-    primary.item :pages, 'Seiten', cms_pages_path
-    primary.item :users, 'Benutzer', cms_users_path
+    primary.item :real_estates, 'Immobilien', cms_real_estates_path, :highlights_on=>:subpath
+    primary.item :employees, 'Mitarbeiter', cms_employees_path, :highlights_on=>:subpath
+    primary.item :jobs, 'Jobs', cms_jobs_path, :highlights_on=>:subpath
+    primary.item :pages, 'Seiten', cms_pages_path, :highlights_on=>:subpath
+    primary.item :users, 'Benutzer', cms_users_path, :highlights_on=>:subpath
 
     # Add an item which has a sub navigation (same params, but with block)
     # primary.item :key_2, 'name', url, options do |sub_nav|
