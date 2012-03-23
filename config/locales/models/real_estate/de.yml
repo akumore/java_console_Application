@@ -18,6 +18,9 @@ de:
         is_first_marketing: 'Erstvermarktung'
         building_type: 'Haustyp'
         utilization_description: 'Nutzungsarten'
+        address: 'Adresse'
+        pricing: 'Preise'
+        information: 'Infos'
         states:
           published: veröffentlicht
           editing: bearbeiten
