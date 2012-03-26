@@ -3,7 +3,7 @@
 = render_navigation :context => :real_estate
 
 -if @additional_description.nil?
-  Für diese Immobilie wurden keine Beschreibungen hinterlegt.
+  Für diese Immobilie wurden keine #{t "navigation.cms.real_estates_navigation.additional_description"} hinterlegt.
 -else
   %dl.dl-horizontal
     %dt= t "mongoid.attributes.additional_description.generic"

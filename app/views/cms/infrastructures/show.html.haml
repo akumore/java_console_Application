@@ -3,7 +3,7 @@
 = render_navigation :context => :real_estate
 
 - if @infrastructure.nil?
-  Für diese Immobilie wurde keine Infrastruktur hinterlegt.
+  Für diese Immobilie wurde keine #{t "navigation.cms.real_estates_navigation.infrastructure"} hinterlegt.
 - else
   %legend= t('.parking')
 
