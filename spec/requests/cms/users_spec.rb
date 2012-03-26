@@ -81,7 +81,7 @@ describe "Cms::Users" do
               fill_in 'Passwort', :with => '123456'
             end
             
-            click_on 'Sign in'
+            click_on 'Einloggen'
           end
 
           it 'redirects to the dashboard' do
@@ -137,7 +137,7 @@ describe "Cms::Users" do
               fill_in 'Passwort', :with => 'abcdefg'
             end
 
-            click_on 'Sign in'
+            click_on 'Einloggen'
           end
 
           it 'redirects to the dashboard' do
