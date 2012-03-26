@@ -2,65 +2,67 @@
 
 = render_navigation :context => :real_estate
 
-
-%dl.dl-horizontal
-  %dt= t "mongoid.attributes.figure.floor"
-  %dd
-    = @figure.floor
-    &nbsp;
-
-  %dt= t "mongoid.attributes.figure.floor_estimate"
-  %dd
-    = @figure.floor_estimate
-    &nbsp;
-
-  %dt= t "mongoid.attributes.figure.rooms"
-  %dd
-    = @figure.rooms
-    &nbsp;
-
-  %dt= t "mongoid.attributes.figure.rooms_estimate"
-  %dd
-    = @figure.rooms_estimate
-    &nbsp;
-
-  %dt= t "mongoid.attributes.figure.living_surface"
-  %dd
-    = @figure.living_surface
-    &nbsp;
-
-  %dt= t "mongoid.attributes.figure.living_surface_estimate"
-  %dd
-    = @figure.living_surface_estimate
-    &nbsp;
-
-  %dt= t "mongoid.attributes.figure.property_surface"
-  %dd
-    = @figure.property_surface
-    &nbsp;
-
-  - if @real_estate.commercial_utilization?
-    %dt= t "mongoid.attributes.figure.storage_surface"
+- if @figure.nil?
+  Für diese Immobilie wurden keine #{t "navigation.cms.real_estates_navigation.figure"} hinterlegt.
+- else
+  %dl.dl-horizontal
+    %dt= t "mongoid.attributes.figure.floor"
     %dd
-      = @figure.property_surfstorage_surfaceace
+      = @figure.floor
       &nbsp;
 
-  %dt= t "mongoid.attributes.figure.ceiling_height"
-  %dd
-    = @figure.ceiling_height
-    &nbsp;
+    %dt= t "mongoid.attributes.figure.floor_estimate"
+    %dd
+      = @figure.floor_estimate
+      &nbsp;
 
-  %dt= t "mongoid.attributes.figure.floors"
-  %dd
-    = @figure.floors
-    &nbsp;
+    %dt= t "mongoid.attributes.figure.rooms"
+    %dd
+      = @figure.rooms
+      &nbsp;
 
-  %dt= t "mongoid.attributes.figure.renovated_on"
-  %dd
-    = @figure.renovated_on
-    &nbsp;
+    %dt= t "mongoid.attributes.figure.rooms_estimate"
+    %dd
+      = @figure.rooms_estimate
+      &nbsp;
 
-  %dt= t "mongoid.attributes.figure.built_on"
-  %dd
-    = @figure.built_on
-    &nbsp;
+    %dt= t "mongoid.attributes.figure.living_surface"
+    %dd
+      = @figure.living_surface
+      &nbsp;
+
+    %dt= t "mongoid.attributes.figure.living_surface_estimate"
+    %dd
+      = @figure.living_surface_estimate
+      &nbsp;
+
+    %dt= t "mongoid.attributes.figure.property_surface"
+    %dd
+      = @figure.property_surface
+      &nbsp;
+
+    - if @real_estate.commercial_utilization?
+      %dt= t "mongoid.attributes.figure.storage_surface"
+      %dd
+        = @figure.property_surfstorage_surfaceace
+        &nbsp;
+
+    %dt= t "mongoid.attributes.figure.ceiling_height"
+    %dd
+      = @figure.ceiling_height
+      &nbsp;
+
+    %dt= t "mongoid.attributes.figure.floors"
+    %dd
+      = @figure.floors
+      &nbsp;
+
+    %dt= t "mongoid.attributes.figure.renovated_on"
+    %dd
+      = @figure.renovated_on
+      &nbsp;
+
+    %dt= t "mongoid.attributes.figure.built_on"
+    %dd
+      = @figure.built_on
+      &nbsp;

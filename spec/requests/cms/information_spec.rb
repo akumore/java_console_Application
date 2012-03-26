@@ -213,4 +213,28 @@ describe "Cms Information" do
     end
   end
 
+
+  describe '#show' do
+     let :real_estate do
+       Fabricate :real_estate, :category => Fabricate(:category), :information => Fabricate.build(:information)
+     end
+
+     let :real_estate_without_information do
+       Fabricate :real_estate, :category => Fabricate(:category)
+     end
+
+     it 'shows the information within the cms' do
+       visit cms_real_estate_information_path real_estate
+       [:available_from, :display_estimated_available_from].each do |attr|
+         page.should have_content real_estate.information.send(attr)
+       end
+     end
+
+     it 'shows a message if no information exist' do
+       visit cms_real_estate_information_path real_estate_without_information
+       page.should have_content "Für diese Immobilie wurden keine Infos hinterlegt."
+     end
+
+  end
+
 end
