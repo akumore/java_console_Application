@@ -23,15 +23,18 @@
                 = real_estate.address.try(:street)
                 = real_estate.address.try(:street_number)
               %td
-                = t '.number_of_rooms', :count=> real_estate.figure.try(:rooms)
-                %br
-                = succeed "." do
-                  = real_estate.figure.try(:floor)
-                = t 'mongoid.attributes.figure.floor'
-                %br
-                = real_estate.figure.try(:living_surface)
-                = succeed content_tag(:sup,2) do
-                  m
+                - if rooms = real_estate.figure.try(:rooms)
+                  = t('.number_of_rooms', :count=>rooms)
+                - if floor = real_estate.figure.try(:floor)
+                  %br
+                  = succeed "." do
+                    = floor
+                  = t 'mongoid.attributes.figure.floor'
+                -if living_surface = real_estate.figure.try(:living_surface)
+                  %br
+                  = living_surface
+                  = succeed content_tag(:sup,2) do
+                    m
                 %br
                   %b
                     - if real_estate.for_sale?
