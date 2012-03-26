@@ -12,7 +12,7 @@ describe "Authenticate Cms::User" do
       within("#user_new") do
         fill_in 'user_email', :with => @user.email
         fill_in 'user_password', :with => '123456'
-        click_button 'Sign in'
+        click_button 'Einloggen'
       end
     end
     
@@ -40,7 +40,7 @@ describe "Authenticate Cms::User" do
     end
 
     it 'renders login page' do
-      click_button 'Sign in'
+      click_button 'Einloggen'
       current_path.should == new_user_session_path
     end
   end

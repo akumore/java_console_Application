@@ -6,7 +6,7 @@ module RequestMacros
       within "#user_new" do
         fill_in "E-Mail", :with => @cms_user.email
         fill_in "Passwort", :with => '123456'
-        click_on "Sign in"
+        click_on "Einloggen"
       end
     end
   end
@@ -20,7 +20,7 @@ module RequestMacros
       within "#user_new" do
         fill_in "E-Mail", :with => @cms_user.email
         fill_in "Passwort", :with => '123456'
-        click_on "Sign in"
+        click_on "Einloggen"
       end
     end
   end
