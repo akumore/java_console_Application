@@ -1,0 +1,32 @@
+-if @contact.errors.any?
+  .alert
+    %h3= t('.errors')
+    %p
+      %ul
+        - @contact.errors.full_messages.each do |msg|
+          %li= msg
+
+= form_for @contact, :url => contact_path, :remote => true do |f|
+  .control-group
+    = f.label :name
+    .controls
+      = f.text_field :name
+  .control-group
+    = f.label :street, Contact.human_attribute_name(:address)
+    .controls
+      = f.text_field :street, :placeholder => Contact.human_attribute_name(:street)
+  .control-group
+    .controls
+      = f.text_field :city, :placeholder => Contact.human_attribute_name(:city)
+      = f.text_field :zip, :class => :short, :placeholder => Contact.human_attribute_name(:zip)
+  .control-group
+    = f.label :email
+    .controls
+      = f.text_field :email
+  .control-group
+    = f.label :message
+    .controls
+      = f.text_area :message
+  .form-actions
+    .controls
+      = f.submit t('.send')
