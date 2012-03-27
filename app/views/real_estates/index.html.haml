@@ -25,22 +25,21 @@
               %td
                 - if rooms = real_estate.figure.try(:rooms)
                   = t('.number_of_rooms', :count=>rooms)
-                - if floor = real_estate.figure.try(:floor)
                   %br
+                - if floor = real_estate.figure.try(:floor)
                   = succeed "." do
                     = floor
-                  = t 'mongoid.attributes.figure.floor'
-                -if living_surface = real_estate.figure.try(:living_surface)
+                    = t 'mongoid.attributes.figure.floor'
                   %br
+                -if living_surface = real_estate.figure.try(:living_surface)
                   = living_surface
-                  = succeed content_tag(:sup,2) do
-                    m
-                %br
-                  %b
-                    - if real_estate.for_sale?
-                      = number_to_currency real_estate.pricing.try(:for_sale), :locale=>'de-CH'
-                    - else
-                      = number_to_currency real_estate.pricing.try(:for_rent_netto), :locale=>'de-CH'
+                  m²
+                  %br
+                %b
+                  - if real_estate.for_sale?
+                    = number_to_currency real_estate.pricing.try(:for_sale), :locale=>'de-CH'
+                  - else
+                    = number_to_currency real_estate.pricing.try(:for_rent_netto), :locale=>'de-CH'
 
     - if @real_estates.any?
       .map
