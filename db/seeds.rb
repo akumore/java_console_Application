@@ -287,7 +287,7 @@ module InitialCategories
         r.information = Information.new(:available_from=>Date.parse('2012-01-21'))
         r.infrastructure = Infrastructure.new(:has_parking_spot=>true)
         r.description = "Beschreibung 1!!!"
-        r.descriptions = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
+        r.additional_description = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
         r.media_assets = gartenstadt_images.map { |img_path|
           MediaAsset.new(
               :media_type=>MediaAsset::IMAGE,
@@ -316,7 +316,7 @@ module InitialCategories
           r.figure = Figure.new(:floor=>3, :living_surface=>186)
           r.infrastructure = Infrastructure.new(:has_parking_spot=>true)
           r.description = "Beschreibung 1"
-          r.descriptions = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
+          r.additional_description = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
           r.save!
         end
 
