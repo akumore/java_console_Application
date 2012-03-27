@@ -8,8 +8,8 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
-Cms::User.create(email: 'admin@screenconcept.ch', password: 'bambus', password_confirmation: 'bambus')
-Cms::User.create(email: 'staging@alfred-mueller.ch', password: 'am2012', password_confirmation: 'am2012')
+Cms::User.create(email: 'admin@screenconcept.ch', password: 'bambus', password_confirmation: 'bambus', :role => 'admin')
+Cms::User.create(email: 'staging@alfred-mueller.ch', password: 'am2012', password_confirmation: 'am2012', :role => 'admin')
 
 module InitialCategories
 
@@ -287,7 +287,7 @@ module InitialCategories
         r.information = Information.new(:available_from=>Date.parse('2012-01-21'))
         r.infrastructure = Infrastructure.new(:has_parking_spot=>true)
         r.description = "Beschreibung 1!!!"
-        r.descriptions = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
+        r.additional_description = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
         r.media_assets = gartenstadt_images.map { |img_path|
           MediaAsset.new(
               :media_type=>MediaAsset::IMAGE,
@@ -316,7 +316,7 @@ module InitialCategories
           r.figure = Figure.new(:floor=>3, :living_surface=>186)
           r.infrastructure = Infrastructure.new(:has_parking_spot=>true)
           r.description = "Beschreibung 1"
-          r.descriptions = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
+          r.additional_description = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
           r.save!
         end
 
@@ -327,7 +327,7 @@ end
 
 module InitialPages
   module JobsPage
-    jobs_page = Page.create(:title => 'Jobs', :name => 'jobs')
+    jobs_page = Page.create(:title => 'Jobs', :name => 'jobs', :locale => :de)
     jobs_page.bricks << Brick::Title.new(:title => 'Der Mensch steht bei uns im Mittelpunkt')
     jobs_page.bricks << Brick::Text.new(
       :text => 'Den grössten Teil unseres Lebens verbringen wir in Immobilien – sei es zuhause oder am Arbeitsplatz. Deshalb haben wir es uns zur Aufgabe gemacht, hochwertige Wohn- und Geschäftshäuser zu entwickeln, in denen sich die Menschen wohl fühlen. Wollen Sie uns bei dieser herausfordernden und spannenden Aufgabe unterstützen? Wir suchen Mitarbeitende, die mit Leidenschaft und Kompetenz an die Arbeit gehen, damit perfekte Immobilienlösungen entstehen.', 
@@ -380,7 +380,7 @@ module InitialPages
   end
 
   module CompanyPage
-    jobs_page = Page.create(:title => 'Unternehmen', :name => 'company')
+    jobs_page = Page.create(:title => 'Unternehmen', :name => 'company', :locale => :de)
     jobs_page.bricks << Brick::Title.new(:title => 'Sie engagieren uns, damit ihr Bauprojekt gelingt')
     jobs_page.bricks << Brick::Text.new(
       :text => 'Die Alfred Müller AG gehört zu den führenden Schweizer Immobilenunternehmungen. Im Auftrag ihrer Kunden oder für ihr eigenes Portfolio entwickelt, realisiert und vermarktet sie qualitativ hochwertige Wohn- und Geschäftshäuser. Seit seiner Gründung hat das Familienunternehmen mehr als 5800 Wohnungen und 1,7 Millionen Quadratmeter Geschäftsfläche erstellt.',

@@ -21,6 +21,11 @@ de:
         infrastructure: 'Infrastruktur'
         additional_description: 'Beschreibungen'
         media_assets: 'Bilder & Dokumente'
+  languages:
+    de: 'Deutsch'
+    fr: 'Französisch'
+    it: 'Italienisch'
+    en: 'Englisch'
   helpers:
     submit:
       create: "%{model} erstellen"

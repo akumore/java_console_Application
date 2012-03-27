@@ -2,6 +2,7 @@
   = render 'cms/shared/errors', :model => @page
 
   %fieldset
+    = f.hidden_field :locale
     .control-group
       = f.label :title
       .controls
