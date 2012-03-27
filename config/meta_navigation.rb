@@ -37,7 +37,7 @@ SimpleNavigation::Configuration.run do |navigation|
       primary.item "language-switch-#{locale}", locale, url_for(:locale=>locale), :class=>'language-switch'
     end
 
-    primary.item :contact, t('navigation.meta.contact'), root_path
+    primary.item :contact, t('navigation.meta.contact'), t('contact_url')
     primary.item :cms, 'CMS Login', new_user_session_path
 
     # you can also specify a css id or class to attach to this particular level
