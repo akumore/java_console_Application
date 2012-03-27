@@ -15,7 +15,7 @@ describe "Cms::Pages" do
     describe 'language tabs' do
       it 'shows a tab for every content language' do
         I18n.available_locales.each do |locale|
-          page.should have_link(locale.to_s.upcase)
+          page.should have_link(I18n.t("languages.#{locale}"))
         end
       end
 
@@ -53,6 +53,10 @@ describe "Cms::Pages" do
 
     it 'opens the create form' do
       current_path.should == new_cms_page_path
+    end
+
+    it 'informs of the current content locale in the title' do
+      page.should have_content('Neue Seite in Französisch anlegen')
     end
 
     it 'prefills the selected language' do
