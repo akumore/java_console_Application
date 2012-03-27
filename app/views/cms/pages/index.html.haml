@@ -9,7 +9,7 @@
 
 .row
   .pull-right.padded
-    = link_to(new_cms_page_path, :class => 'btn') do
+    = link_to(new_cms_page_path(:content_locale => content_locale), :class => 'btn') do
       %i.icon-plus-sign
       = t('.new')
 

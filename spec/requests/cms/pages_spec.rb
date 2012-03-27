@@ -48,11 +48,15 @@ describe "Cms::Pages" do
 
   describe '#new' do
     before :each do
-      visit new_cms_page_path
+      visit new_cms_page_path(:content_locale => :fr)
     end
 
     it 'opens the create form' do
       current_path.should == new_cms_page_path
+    end
+
+    it 'prefills the selected language' do
+      page.should have_css('input#page_locale[value=fr]')
     end
 
     it 'displays the input for the unique name' do
@@ -90,6 +94,7 @@ describe "Cms::Pages" do
         it 'has saved the provided attributes' do
           @page.title.should == 'Seiten Titel'
           @page.name.should == 'seiten-titel'
+          @page.locale.should == 'fr'
         end
       end
     end
