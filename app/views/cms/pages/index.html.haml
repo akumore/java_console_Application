@@ -1,6 +1,12 @@
 - content_for :title do
   Erfasste Seiten
 
+
+%ul.nav-tabs.nav.language-tabs
+  - I18n.available_locales.each do |locale|
+    %li{ :class => (content_locale.to_s == locale.to_s ? 'active' : nil) }
+      = link_to locale.to_s.upcase, cms_pages_path(:content_locale => locale)
+
 .row
   .pull-right.padded
     = link_to(new_cms_page_path, :class => 'btn') do
