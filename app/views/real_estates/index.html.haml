@@ -29,7 +29,7 @@
                 - if floor = real_estate.figure.try(:floor)
                   = succeed "." do
                     = floor
-                    = t 'mongoid.attributes.figure.floor'
+                  = t 'mongoid.attributes.figure.floor'
                   %br
                 -if living_surface = real_estate.figure.try(:living_surface)
                   = living_surface
