@@ -1,0 +1,16 @@
+.contact-box
+  .image.image-for-contact-form
+    .image-caption
+      .image-caption-text
+        %p
+          = t('.title_html')
+        %p
+          = t('.person_html')
+        %p
+          = t('.address_html')
+      .clear
+  .accordion.accordion-square
+    .accordion-item
+      = link_to t('.title'), new_contact_path, :remote => true, :class => :title
+      .content
+        #contact
