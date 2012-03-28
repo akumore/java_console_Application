@@ -7,7 +7,7 @@ class ContactsController < ApplicationController
   def create
     @contact = Contact.new(params[:contact])
     if @contact.save
-      #TODO: send contact mail to mail@alfred-mueller.ch
+      ContactMailer.contact_notification(@contact).deliver
       render 'show'
     else
       render 'new'

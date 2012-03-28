@@ -47,7 +47,6 @@ describe "Contacts" do
       end
 
       it "triggers the contact notification mailing" do
-        pending 'needs to be implemented'
         lambda {
           click_on 'Kontaktanfrage senden'
         }.should change(ActionMailer::Base.deliveries, :size).by(1)
