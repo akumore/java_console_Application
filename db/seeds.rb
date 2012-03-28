@@ -550,4 +550,35 @@ module InitialPages
       :more_text => ''
     )
   end
+
+
+  module ContactPage
+    contact_page = Page.create(:title => 'Kontakt', :name => 'contact', :locale => :de)
+    contact_page.bricks << Brick::Title.new(:title => 'Kontaktieren Sie uns')
+    contact_page.bricks << Brick::Placeholder.new(:placeholder => 'contact_form')
+    contact_page.bricks << Brick::Title.new(:title => 'Standorte')
+    contact_page.bricks << Brick::Accordion.new(
+      :title => 'Baar',
+      :text => [
+        'Alfred Müller AG<br>Neuhofstrasse 10<br>CH-6340 Baar<br>[mail@alfred-mueller.ch](mailto:mail@alfred-mueller.ch)',
+        'Tel. +41 41 767 02 02<br>Fax +41 41 767 02 00',
+        '<a href="http://g.co/maps/rnwvh">![Anfahrtsplan](http://maps.google.com/maps/api/staticmap?center=47.189495,8.513978&zoom=13&markers=47.189495,8.513978&size=680x400&sensor=true)</a>'
+      ].join("\n\n")
+    )
+    contact_page.bricks << Brick::Accordion.new(
+      :title => 'Marin',
+      :text => [
+        'Alfred Müller SA<br>Av. des Champs-Montants 10a<br>CH-2074 Marin<br>[mail@alfred-mueller.ch](mailto:mail@alfred-mueller.ch)',
+        '<a href="http://g.co/maps/qqxvt">![Anfahrtsplan](http://maps.google.com/maps/api/staticmap?center=47.012960,6.999962&zoom=13&markers=47.189495,8.513978|47.012960,6.999962&size=680x400&sensor=true)</a>'
+      ].join("\n\n")
+    )
+    contact_page.bricks << Brick::Accordion.new(
+      :title => 'Baar',
+      :text => [
+        'Alfred Müller SA<br>Centro Monda 3<br>CH-6568 Camorino<br>[mail@alfred-mueller.ch](mailto:mail@alfred-mueller.ch)',
+        'Tel. +41 91 858 25 94<br>Fax +41 91 858 25 54',
+        '<a href="http://g.co/maps/wej9x">![Anfahrtsplan](http://maps.google.com/maps/api/staticmap?center=46.163587,9.005283&zoom=13&markers=47.189495,8.513978|47.012960,6.999962|46.163587,9.005283&size=680x400&sensor=true)</a>'
+      ].join("\n\n")
+    )
+  end
 end

@@ -33,6 +33,7 @@ AlfredMueller::Application.routes.draw do
       resources :appointments, :only => [:new, :create]
     end
     resource :job_application, :only => [:new, :create]
+    resource :contact, :only => [:new, :create]
   end
 
   scope ':locale' do

@@ -69,4 +69,5 @@ de:
         alert: "%{resource_name} konnte nicht gelöscht werden."
   jobs_url: '/de/jobs'
   company_url: '/de/company'
+  contact_url: '/de/contact'
 
