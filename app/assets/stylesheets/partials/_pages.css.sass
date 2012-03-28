@@ -32,20 +32,29 @@
     @extend .arrow-up-blue
     color: $title-color
 
-.contact-box, .jobs-apply-with-success
+.contact-box
+  background: $dark_clay
+  color: $clay
+
   .image
     height: 273px
     margin-bottom: 1px
     position: relative
 
-.jobs-apply-with-success
-  .image
-    margin-bottom: 1px
-    position: relative
+  .label
+    +float_left
+
+  .field
+    margin-left: 150px
+
+  .row
+    extend .clearfix
+    margin-bottom: 0.5em
 
 .image-caption-text
   +float_right
   width: 300px
+  color: $dark
   padding: 1em 0 0 45px
 
 .image-caption
