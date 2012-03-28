@@ -1,0 +1,10 @@
+de:
+  mongoid:
+    models:
+      news_item: News
+    attributes:
+      news_item:
+        title: Titel
+        teaser: Inhalt für Footer
+        content: Inhalt
+        date: Angezeigtes Datum
