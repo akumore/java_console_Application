@@ -1,0 +1,29 @@
+= form_for [:cms, @news_item] do |f|
+  = render 'cms/shared/errors', :model => @news_item
+
+  %fieldset
+    = f.hidden_field :locale
+    .control-group.mandatory
+      = f.label :title
+      .controls
+        = f.text_field :title, :class => 'span8'
+    .control-group.mandatory
+      = f.label :teaser
+      .controls
+        = f.text_field :teaser, :class => 'span8'
+    .control-group.mandatory
+      = f.label :content
+      .controls
+        = f.text_area :content, :class => 'span8'
+    .control-group.mandatory
+      = f.label :date
+      .controls
+        = f.date_select :date, {:start_year => -1.year.from_now.year, :end_year => 2.year.from_now.year},:class => 'span1'
+
+    .form-actions
+      = f.submit nil, :class => 'btn btn-primary'
+      .pull-right
+        = link_to(cms_employees_path, :class => 'btn small') do
+          %i.icon-list
+          = t('.overview')
+

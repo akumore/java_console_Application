@@ -4,6 +4,7 @@ AlfredMueller::Application.routes.draw do
 
   namespace :cms do
     resource :dashboards
+    resources :news_items, :except => :show
     resources :real_estates do
       resource :address
       resource :pricing, :except=>:destroy
