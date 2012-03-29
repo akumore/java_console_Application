@@ -4,6 +4,7 @@ de:
       placeholder_form: &placeholder_form
         jobs_openings: 'Jobs: Offene Stellen'
         jobs_apply_with_success: 'Jobs: Erfolgreich bewerben'
+        contact_form: 'Kontakt: Kontaktformular'
       placeholder_show:
         <<: *placeholder_form
   bricks:
