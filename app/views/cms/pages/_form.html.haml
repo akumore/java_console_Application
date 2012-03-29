@@ -41,8 +41,8 @@
         - if @page.persisted?
           .pull-right
             .btn-group
-              = link_to 'Baustein hinzufügen', '#', :class => 'btn'
               = link_to '#', :class => 'btn dropdown-toggle', 'data-toggle' => 'dropdown' do
+                Baustein hinzufügen
                 %span.caret
               %ul.dropdown-menu
                 - Brick::Base::TYPES.each do |type|
