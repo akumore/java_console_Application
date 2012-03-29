@@ -119,18 +119,51 @@ describe "Cms News Items Administration" do
       current_path.should == cms_news_items_path
     end
 
-    it "doesn't switch the news items language"
+    it 'adds images to the news item' do
+      visit edit_cms_news_item_path(@news_item)
+      within ".images-table" do
+        attach_file 'news_item_images_attributes_0_file', "#{Rails.root}/spec/support/test_files/image.jpg"
+      end
+      click_button 'News speichern'
 
-    it 'adds images to the news item'
-    it 'removes images from the news item'
-    it 'adds documents to the news item'
-    it 'removes documents from the news item'
-  end
+      page.should have_css "#image-#{@news_item.reload.images.first.id}"
+    end
 
+    it 'removes images from the news item' do
+      image = Fabricate.build(:news_item_image)
+      @news_item.images << image
+      visit edit_cms_news_item_path(@news_item)
 
-  describe "order attached images and documents" do
-    it 'updates the order position of the image'
-    it 'updates the order position of the document'
+      page.should have_css "#image-#{image.id}"
+
+      check "news_item_images_attributes_0__destroy"
+      click_button 'News speichern'
+
+      page.should_not have_css "#image-#{image.id}"
+    end
+
+    it 'adds documents to the news item' do
+      visit edit_cms_news_item_path(@news_item)
+      within ".documents-table" do
+        attach_file 'news_item_documents_attributes_0_file', "#{Rails.root}/spec/support/test_files/document.pdf"
+      end
+      click_button 'News speichern'
+
+      page.should have_css "#document-#{@news_item.reload.documents.first.id}"
+    end
+
+    it 'removes documents from the news item' do
+      doc = Fabricate.build(:news_item_document)
+      @news_item.documents << doc
+      visit edit_cms_news_item_path(@news_item)
+
+      page.should have_css "#document-#{doc.id}"
+
+      check "news_item_documents_attributes_0__destroy"
+      click_button 'News speichern'
+
+      page.should_not have_css "#document-#{doc.id}"
+    end
   end
 
 end
