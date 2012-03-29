@@ -1,0 +1,6 @@
+.accordion-item
+  .title{ :id => "news_item_#{news_item.id}" }
+    %span.date= l(news_item.date)
+    = news_item.title
+  .content
+    = markdown(news_item.content)
