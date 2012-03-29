@@ -4,6 +4,48 @@ require 'spec_helper'
 describe "Cms News Items Administration" do
   login_cms_user
 
+  describe '#index' do
+    before do
+      3.times { Fabricate(:news_item) }
+      3.times { Fabricate(:news_item, :locale => :fr) }
+      @news_item = NewsItem.first
+      visit cms_news_items_path
+    end
+
+    describe 'language tabs' do
+      it 'shows a tab for every content language' do
+        I18n.available_locales.each do |locale|
+          page.should have_link(I18n.t("languages.#{locale}"))
+        end
+      end
+
+      it 'has the DE tab activated by default' do
+        page.should have_css('li.active:contains(DE)')
+      end
+
+      it 'selects the tab according to the content langauge' do
+        visit cms_news_items_path(:content_language => :fr)
+        page.should have_css('li.active:contains(FR)')
+      end
+    end
+
+    it "shows the list of news items for the current content locale" do
+      page.should have_selector('table tr', :count => NewsItem.where(:locale => :de).count + 1)
+    end
+
+    it "takes me to the edit page of a news_item" do
+      within("#news_item_#{@news_item.id}") do
+        page.click_link 'Editieren'
+      end
+      current_path.should == edit_cms_news_item_path(@news_item)
+    end
+
+    it "takes me to the page for creating a new news item" do
+      page.click_link 'Neue News erstellen'
+      current_path.should == new_cms_news_item_path
+    end
+  end
+
   describe "#new" do
     it "creates a news item" do
       visit new_cms_news_item_path
