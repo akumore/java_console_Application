@@ -3,6 +3,8 @@ class NewsItem
   include Mongoid::Timestamps
   include Mongoid::MultiParameterAttributes
 
+  PER_PAGE = 10
+
   field :title, :type => String
   field :teaser, :type => String
   field :content, :type => String
