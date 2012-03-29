@@ -6,3 +6,6 @@ de:
         new: 'Neue News erstellen'
         edit: 'Editieren'
         destroy: 'Löschen'
+  news_items:
+    index:
+      load_more: 'Ältere News anzeigen'
