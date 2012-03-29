@@ -86,8 +86,29 @@ describe "Cms News Items Administration" do
       NewsItem.where(:title => 'it: Invasion vom Mars').first.locale.should == 'it'
     end
 
-    it 'adds images to the news item'
-    it 'adds documents to the news item'
+    it 'adds images to the news item' do
+      visit new_cms_news_item_path
+
+      fill_in 'news_item_title', :with => 'Hello'
+      fill_in 'news_item_teaser', :with => 'Visit me at the page footer'
+      fill_in 'news_item_content', :with => 'Hello World'
+      attach_file 'news_item_images_attributes_0_file', "#{Rails.root}/spec/support/test_files/image.jpg"
+
+      click_button 'News erstellen'
+      NewsItem.where(:title => 'Hello').first.images.count.should == 1
+    end
+
+    it 'adds documents to the news item' do
+      visit new_cms_news_item_path
+
+      fill_in 'news_item_title', :with => 'Hello'
+      fill_in 'news_item_teaser', :with => 'Visit me at the page footer'
+      fill_in 'news_item_content', :with => 'Hello World'
+      attach_file 'news_item_documents_attributes_0_file', "#{Rails.root}/spec/support/test_files/document.pdf"
+
+      click_button 'News erstellen'
+      NewsItem.where(:title => 'Hello').first.documents.count.should == 1
+    end
   end
 
   describe "#edit" do

@@ -1,4 +1,4 @@
-= form_for [:cms, @news_item] do |f|
+= form_for [:cms, @news_item], :html => {:multipart => true} do |f|
   = render 'cms/shared/errors', :model => @news_item
 
   %fieldset
@@ -21,57 +21,26 @@
         = f.date_select :date, {:start_year => -1.year.from_now.year, :end_year => 2.year.from_now.year},:class => 'span1'
 
     - if @news_item.persisted?
-      .row
-        .span2
-          %br
-        .span8
-          %table.table.table-bordered.images-table.sortable
-            %thead
-              %tr
-                %th{ :width => '5%' }
-                %th{ :width => '85%' } Bilder
-                %th{ :width => '10%' } Löschen
-            %tbody
-              = f.fields_for :images do |image_form|
-                %tr.draggable-row{:id=>"image-#{image_form.object.id}"}
-                  %td.drag-handle
-                    %i.icon-align-justify
-                    = image_form.hidden_field :position
-                  %td
-                    = image_tag image_form.object.file.thumb.url
-                  %td
-                    = image_form.check_box :_destroy
-              = f.fields_for :images, NewsItemImage.new do |image_form|
-                %tr
-                  %td
-                  %td{:colspan=>2}
-                    = image_form.file_field :file
 
-      .row
-        .span2
-          %br
-        .span8
-          %table.table.table-bordered.documents-table.sortable
-            %thead
-              %tr
-                %th{ :width => '5%' }
-                %th{ :width => '85%' } Dokumente
-                %th{ :width => '10%' } Löschen
-            %tbody
-              = f.fields_for :documents do |doc_form|
-                %tr.draggable-row{:id=>"document-#{doc_form.object.id}"}
-                  %td.drag-handle
-                    %i.icon-align-justify
-                    = doc_form.hidden_field :position
-                  %td
-                    = link_to File.basename(doc_form.object.file.path), doc_form.object.file.url, :target=>:blank
-                  %td
-                    = doc_form.check_box :_destroy
-              = f.fields_for :documents, NewsItemDocument.new do |doc_form|
-                %tr
-                  %td
-                  %td{:colspan=>2}
-                    = doc_form.file_field :file
+      = render "edit_images", :f=>f
+      = render "edit_documents", :f=>f
+
+    - else
+
+      %fieldset
+        %legend Bilder
+        = f.fields_for :images do |image_form|
+          .control-group
+            = image_form.label :file
+            .controls
+              = image_form.file_field :file
+      %fieldset
+        %legend Dokumente
+        = f.fields_for :documents do |documents_form|
+          .control-group
+            = documents_form.label :file
+            .controls
+              = documents_form.file_field :file
 
     .form-actions
       = f.submit nil, :class => 'btn btn-primary'
