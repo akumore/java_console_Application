@@ -2,6 +2,7 @@ module Cms
   class NewsItemsController < Cms::SecuredController
 
     def index
+      @news_items = NewsItem.all.where(:locale => content_locale).order([:date, :desc])
     end
 
     def new
