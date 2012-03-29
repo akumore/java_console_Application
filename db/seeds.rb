@@ -573,7 +573,7 @@ module InitialPages
       ].join("\n\n")
     )
     contact_page.bricks << Brick::Accordion.new(
-      :title => 'Baar',
+      :title => 'Camorino',
       :text => [
         'Alfred Müller SA<br>Centro Monda 3<br>CH-6568 Camorino<br>[mail@alfred-mueller.ch](mailto:mail@alfred-mueller.ch)',
         'Tel. +41 91 858 25 94<br>Fax +41 91 858 25 54',
