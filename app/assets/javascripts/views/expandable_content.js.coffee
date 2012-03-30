@@ -28,11 +28,13 @@ class AlfredMueller.Views.ExpandableContent extends Backbone.View
     @more.addClass("hidden")
     # allow anchoring, but prevent the event to bubble
     # up and open the content again in IE
-    event.stopPropagation()
+    #event.stopPropagation()
+    return false
 
   handleClose: (event) =>
     @content.addClass("hidden")
     @more.removeClass("hidden")
     # allow anchoring, but prevent the event to bubble
     # up and open the content again in IE
-    event.stopPropagation()
+    #event.stopPropagation()
+    return false

@@ -7,8 +7,12 @@
       //max-height: 0px
       //overflow: hidden
       //+single-transition(max-height)
-      display: none
+      //display: none
       position: relative
+
+    &.closed
+      .content
+        display: none
 
     &.open
       .content
@@ -94,3 +98,9 @@
 .accordion-spacey, .load-more
   a
     +link-colors($classic)
+
+  .icon-list
+    margin-top: 1em
+
+    a
+      +link-colors($normal)

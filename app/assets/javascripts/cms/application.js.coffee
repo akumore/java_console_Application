@@ -7,6 +7,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery-ui
+#= require jquery.autoresize
 #= require underscore
 #= require backbone
 #= require backbone_rails_sync
@@ -35,3 +36,5 @@ $(document).ready ->
     update: (event, ui) ->
       $("table.sortable .draggable-row").each (idx, elem) ->
         $(this).find("td.drag-handle input[type=hidden]").val(idx+1)
+
+  $("textarea").autoResize()
