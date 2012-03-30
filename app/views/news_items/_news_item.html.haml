@@ -1,6 +1,16 @@
-.accordion-item
-  .title{ :id => "news_item_#{news_item.id}" }
+.accordion-item{ :id => "news_item_#{news_item.id}" }
+  .title
     %span.date= l(news_item.date)
     = news_item.title
   .content
+    - if news_item.images.any?
+      .flexslider
+        %ul.slides
+          - news_item.images.each do |image|
+            %li= image_tag(image.file.gallery.url)
     = markdown(news_item.content)
+
+    - if news_item.documents.any?
+      %ul.icon-list
+        - news_item.documents.each do |document|
+          %li= link_to "#{File.basename(document.file.path)} herunterladen", document.file.url, :class => 'icon-document'
