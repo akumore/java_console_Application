@@ -1,6 +1,13 @@
 %h4= t('.title')
 .footer-news
-  %br
+  - @footer_news_items.each do |news_item|
+    %div{:id=>"footer-news-item-#{news_item.id}"}
+      %h5= l news_item.date
+      %p
+        = news_item.title
+        %br
+        = link_to "Mehr erfahren", news_items_path(:anchor =>"news_item_#{news_item.id}")
+
 .footer-teasers
   %h5 Wir suchen Sie
   %br

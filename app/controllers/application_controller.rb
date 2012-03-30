@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_locale
 
+  append_before_filter :get_news_items_for_footer
 
   protected
   def set_locale
@@ -19,5 +20,9 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     cms_dashboards_path
+  end
+
+  def get_news_items_for_footer
+    @footer_news_items = NewsItem.where(:locale=>I18n.locale).desc(:date).limit(3)
   end
 end
