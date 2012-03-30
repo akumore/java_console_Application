@@ -1,10 +1,6 @@
 class window.AlfredMueller.Routers.Application extends Backbone.Router
 
   initialize: ->
-    # initialize all accordions
-    $(".accordion").each ->
-      new AlfredMueller.Views.Accordion(el: $(this))
-
     # initialize vision slider at the top of each page
     $(".vision-slider").each ->
       new AlfredMueller.Views.VisionSlider(el: $(this))
@@ -22,26 +18,29 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
       new AlfredMueller.Views.ExpandableContent(el: $(this))
 
     # initialize slideshows
-    $(window).load ->
-      $(".gallery .flexslider").flexslider(
-        directionNav: true,
-        controlNav: false,
-        slideshow: false,
-        animation: "slide",
-        start: (slider) ->
-          new AlfredMueller.Views.SliderDeeplink(
-            el: $(".icon-groundplan"),
-            target: $(".gallery .flexslider li[data-is_floorplan=true]:not(.clone)"),
-            slider: slider
-          )
-      )
+    $(".gallery .flexslider").flexslider(
+      directionNav: true,
+      controlNav: false,
+      slideshow: false,
+      animation: "slide",
+      start: (slider) ->
+        new AlfredMueller.Views.SliderDeeplink(
+          el: $(".icon-groundplan"),
+          target: $(".gallery .flexslider li[data-is_floorplan=true]:not(.clone)"),
+          slider: slider
+        )
+    )
 
-      $(".flexslider").flexslider(
-        directionNav: true,
-        controlNav: false,
-        slideshow: false,
-        animation: "slide",
-      )
+    $(".flexslider").flexslider(
+      directionNav: true,
+      controlNav: false,
+      slideshow: false,
+      animation: "slide",
+    )
+
+    # initialize all accordions after the sliders, because they can contain sliders
+    $(".accordion").each ->
+      new AlfredMueller.Views.Accordion(el: $(this))
 
     # initialize services slider always AFTER flexslider is initialized.
     # It is using flexsliders controls (hiding and showing) internally
