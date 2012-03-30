@@ -16,13 +16,13 @@ module InitialCategories
   # Top level categories
 
   {
-    'apartment' => {:label => 'Wohnung'},
-    'gastronomy' => {:label => 'Gastronomie'},
-    'house' => {:label => 'Haus'},
-    'industrial' => {:label => 'Gewerbe/Industrie'},
-    'parking' => {:label => 'Parkplatz'},
-    'properties' => {:label => 'Grundstück'},
-    'secondary' => {:label => 'Wohnnebenräume'}
+      'apartment' => {:label => 'Wohnung'},
+      'gastronomy' => {:label => 'Gastronomie'},
+      'house' => {:label => 'Haus'},
+      'industrial' => {:label => 'Gewerbe/Industrie'},
+      'parking' => {:label => 'Parkplatz'},
+      'properties' => {:label => 'Grundstück'},
+      'secondary' => {:label => 'Wohnnebenräume'}
   }.each do |key, value|
     category = Category.find_or_create_by(:name => key)
     category.update_attributes(value)
@@ -141,9 +141,9 @@ module InitialCategories
        :name => 'commercial'
    },
    {
-        :label => 'Lager',
-        :name => 'depot'
-    },
+       :label => 'Lager',
+       :name => 'depot'
+   },
    {
        :label => 'Praxis',
        :name => 'practice'
@@ -270,53 +270,53 @@ module InitialCategories
         gartenstadt_images = Dir.glob("#{Rails.root}/db/seeds/real_estates/Gartenstadt-Schlieren/*.png")
         #lorenzhof_images = Dir.glob("#{Rails.root}/db/seeds/real_estates/Lorenzhof-Cham/*.png")
 
-        r = RealEstate.find_or_create_by(:title=>'SC Sample Object 1')
+        r = RealEstate.find_or_create_by(:title => 'SC Sample Object 1')
         r.state = RealEstate::STATE_EDITING
         r.utilization = RealEstate::UTILIZATION_PRIVATE
         r.offer = RealEstate::OFFER_FOR_RENT
         r.channels = [RealEstate::CHANNELS.first]
         r.reference = Reference.new(
-            :property_key=>'SC P 1', :building_key=>'SC B 1', :unit_key=>'SC U 1'
+            :property_key => 'SC P 1', :building_key => 'SC B 1', :unit_key => 'SC U 1'
         )
-        r.address = Address.new(:canton=>'ag',
-                                :city=>'Fahrwangen', :street=>'Bahnhofstrasse', :street_number=>'18', :zip => '1234'
+        r.address = Address.new(:canton => 'ag',
+                                :city => 'Fahrwangen', :street => 'Bahnhofstrasse', :street_number => '18', :zip => '1234'
         )
-        r.category = Category.where(:name=>'flat').first
-        r.pricing = Pricing.new(:price_unit=>Pricing::PRICE_UNITS.first, :for_rent_netto=>2380, :for_rent_extra=>380)
-        r.figure = Figure.new(:floor=>3, :living_surface=>186)
-        r.information = Information.new(:available_from=>Date.parse('2012-01-21'))
-        r.infrastructure = Infrastructure.new(:has_parking_spot=>true)
+        r.category = Category.where(:name => 'flat').first
+        r.pricing = Pricing.new(:price_unit => Pricing::PRICE_UNITS.first, :for_rent_netto => 2380, :for_rent_extra => 380)
+        r.figure = Figure.new(:floor => 3, :living_surface => 186)
+        r.information = Information.new(:available_from => Date.parse('2012-01-21'))
+        r.infrastructure = Infrastructure.new(:has_parking_spot => true)
         r.description = "Beschreibung 1!!!"
-        r.additional_description = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
+        r.additional_description = AdditionalDescription.new(:generic => 'Die Wohnung ist mit Keramikbodenplatten belegt und...')
         r.media_assets = gartenstadt_images.map { |img_path|
           MediaAsset.new(
-              :media_type=>MediaAsset::IMAGE,
-              :is_primary=>img_path==gartenstadt_images.first,
-              :file=>File.open(img_path),
-              :title=>"IMG #{File.basename(img_path)}"
+              :media_type => MediaAsset::IMAGE,
+              :is_primary => img_path==gartenstadt_images.first,
+              :file => File.open(img_path),
+              :title => "IMG #{File.basename(img_path)}"
           )
         }
         r.save!
 
         4.times do |t|
-          r = RealEstate.find_or_create_by(:title=>"Sample Object #{t}")
+          r = RealEstate.find_or_create_by(:title => "Sample Object #{t}")
           r.state = RealEstate::STATE_EDITING
           r.utilization = RealEstate::UTILIZATION_PRIVATE
           r.offer = RealEstate::OFFER_FOR_RENT
           r.channels = [RealEstate::CHANNELS.first]
           r.reference = Reference.new(
-              :property_key=>"P #{t}", :building_key=>"B #{t}", :unit_key=>"U #{t}"
+              :property_key => "P #{t}", :building_key => "B #{t}", :unit_key => "U #{t}"
           )
-          r.address = Address.new(:canton=>'ag',
-                                  :city=>'Fahrwangen', :street=>'Bahnhofstrasse', :street_number=>'18', :zip => '1234'
+          r.address = Address.new(:canton => 'ag',
+                                  :city => 'Fahrwangen', :street => 'Bahnhofstrasse', :street_number => '18', :zip => '1234'
           )
-          r.information = Information.new(:available_from=>Date.parse('2012-01-01'))
-          r.category = Category.where(:name=>'flat').first
-          r.pricing = Pricing.new(:price_unit=>Pricing::PRICE_UNITS.first, :for_rent_netto=>2380, :for_rent_extra=>380)
-          r.figure = Figure.new(:floor=>3, :living_surface=>186)
-          r.infrastructure = Infrastructure.new(:has_parking_spot=>true)
+          r.information = Information.new(:available_from => Date.parse('2012-01-01'))
+          r.category = Category.where(:name => 'flat').first
+          r.pricing = Pricing.new(:price_unit => Pricing::PRICE_UNITS.first, :for_rent_netto => 2380, :for_rent_extra => 380)
+          r.figure = Figure.new(:floor => 3, :living_surface => 186)
+          r.infrastructure = Infrastructure.new(:has_parking_spot => true)
           r.description = "Beschreibung 1"
-          r.additional_description = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
+          r.additional_description = AdditionalDescription.new(:generic => 'Die Wohnung ist mit Keramikbodenplatten belegt und...')
           r.save!
         end
 
@@ -378,6 +378,13 @@ module InitialPages
           ].join("\n")
       )
       jobs_page.bricks << Brick::Placeholder.new(:placeholder => 'jobs_apply_with_success')
+    end
+
+
+    #Seed more JobPages above this line
+    I18n.available_locales.each do |locale|
+      #Trying to create an empty Jobs Page for each locale, uniqueness validation rejects us not to overwrite existing pages
+      Page.create(:title => 'Jobs', :name => 'jobs', :locale => locale)
     end
   end
 
@@ -552,6 +559,13 @@ module InitialPages
           :more_text => ''
       )
     end
+
+
+    #Seed more CompanyPages above this line
+    I18n.available_locales.each do |locale|
+      #Trying to create an empty Company Page for each locale, uniqueness validation rejects us not to overwrite existing pages
+      Page.create(:title => 'Company', :name => 'company', :locale => locale)
+    end
   end
 
 
@@ -583,6 +597,13 @@ module InitialPages
               '<a href="http://g.co/maps/wej9x">![Anfahrtsplan](http://maps.google.com/maps/api/staticmap?center=46.163587,9.005283&zoom=13&markers=47.189495,8.513978|47.012960,6.999962|46.163587,9.005283&size=680x400&sensor=true)</a>'
           ].join("\n\n")
       )
+    end
+
+
+    #Seed more ContactPages above this line
+    I18n.available_locales.each do |locale|
+      #Trying to create an empty Contact Page for each locale, uniqueness validation rejects us not to overwrite existing pages
+      Page.create(:title => 'Contact', :name => 'contact', :locale => locale)
     end
   end
 end
