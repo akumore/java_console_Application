@@ -24,16 +24,22 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
     @initiallyOpenItem()
 
   initiallyOpenItem: ->
+    @items.each (idx, elem) =>
+      @closeItem($(elem))
+
     if window.location.hash
       elem = $(window.location.hash)
-      @openItem(elem.parent()) if elem.hasClass("title")
+      @openItem(elem) if elem.find(".title").length > 0
+    else if @el.data('open_first')
+      elem = @el.find(".accordion-item:first-child")
+      @openItem(elem)
 
   openItem: (elem) ->
     @closeItem(@open) if @open
-    @open = elem.addClass("open")
+    @open = elem.addClass("open").removeClass("closed")
 
   closeItem: (elem) ->
-    elem.removeClass("open")
+    elem.removeClass("open").addClass("closed")
     @open = null
 
   toggleItem: (elem) ->
