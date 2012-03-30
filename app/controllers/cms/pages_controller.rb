@@ -1,7 +1,6 @@
 class Cms::PagesController < Cms::SecuredController
 
   respond_to :html
-  helper_method :content_locale
 
   def index
     @pages = Page.all.where(:locale => content_locale).order([:updated, :asc])
@@ -40,11 +39,5 @@ class Cms::PagesController < Cms::SecuredController
     page = Page.find(params[:id])
     page.destroy
     redirect_to cms_pages_path
-  end
-
-  private
-
-  def content_locale
-    params[:content_locale].presence || I18n.default_locale
   end
 end

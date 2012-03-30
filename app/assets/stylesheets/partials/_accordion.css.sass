@@ -7,8 +7,12 @@
       //max-height: 0px
       //overflow: hidden
       //+single-transition(max-height)
-      display: none
+      //display: none
       position: relative
+
+    &.closed
+      .content
+        display: none
 
     &.open
       .content
@@ -62,3 +66,41 @@
       background: $dark_clay
       padding: 15px 45px
       border-bottom: 1px solid lighten($dark_clay, 20%)
+
+.accordion-spacey
+  margin-top: 4em
+
+  a
+    +link-colors($classic)
+
+
+  .title
+    font-size: 2.2em
+    margin-bottom: 0.5em
+    line-height: 1.2em
+
+    span
+      display: block
+      @extend .text-font-bold
+      font-size: 0.5em
+      margin: 0.25em 0
+
+  .title, p
+    max-width: 70%
+
+  .accordion-item
+    border-top: 2px solid $dark
+
+.load-more
+  border-top: 2px solid $dark
+  padding: 0.75em 0
+
+.accordion-spacey, .load-more
+  a
+    +link-colors($classic)
+
+  .icon-list
+    margin-top: 1em
+
+    a
+      +link-colors($normal)

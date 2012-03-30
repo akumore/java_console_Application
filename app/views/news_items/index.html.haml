@@ -1,0 +1,5 @@
+.accordion.accordion-spacey{ 'data-open_first' => '1' }
+  = render @news_items
+
+.load-more
+  = load_more_link(@offset)

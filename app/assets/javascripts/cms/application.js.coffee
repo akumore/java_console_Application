@@ -35,6 +35,6 @@ $(document).ready ->
     handle: ".drag-handle"
     update: (event, ui) ->
       $("table.sortable .draggable-row").each (idx, elem) ->
-        $(this).find("input[type=hidden]").val(idx+1)
+        $(this).find("td.drag-handle input[type=hidden]").val(idx+1)
 
   $("textarea").autoResize()
