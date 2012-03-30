@@ -1,8 +1,8 @@
 .jobs
   .accordion.accordion-square
     - Job.published.each do |job|
-      .accordion-item
-        .title{ :id => "job_#{job.id}" }= job.title
+      .accordion-item{ :id => "job_#{job.id}" }
+        .title= job.title
         .content
           = markdown(job.text)
           %ul.icon-list
