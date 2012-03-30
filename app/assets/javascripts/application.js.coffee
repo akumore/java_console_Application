@@ -8,6 +8,7 @@
 #= require monster
 #= require jquery.remotipart
 #= require jquery.flexslider
+#= require jquery.fancybox
 #= require underscore
 #= require backbone
 #= require backbone_rails_sync
@@ -18,6 +19,7 @@
 #= require_tree ./models
 #= require_tree ./views
 #= require_tree ./routers
+#= require chosen-jquery
 
 window.AlfredMueller =
   Models: {}

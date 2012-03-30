@@ -10,9 +10,9 @@ describe Page do
       @page.should_not be_valid
     end
 
-    it 'has 2 errors' do
+    it 'has 4 errors' do
       @page.valid?
-      @page.errors.should have(2).items
+      @page.errors.should have(4).items
     end
   end
 

@@ -7,12 +7,30 @@ describe "Cms::Pages" do
   describe '#index' do
     before do
       3.times { Fabricate(:page) }
+      3.times { Fabricate(:page, :locale => 'fr') }
       @page = Page.first
       visit cms_pages_path
     end
 
-    it "shows the list of pages" do
-      page.should have_selector('table tr', :count => Page.count+1)
+    describe 'language tabs' do
+      it 'shows a tab for every content language' do
+        I18n.available_locales.each do |locale|
+          page.should have_link(I18n.t("languages.#{locale}"))
+        end
+      end
+
+      it 'has the DE tab activated by default' do
+        page.should have_css('li.active:contains(DE)')
+      end
+
+      it 'selects the tab according to the content langauge' do
+        visit cms_pages_path(:content_language => :fr)
+        page.should have_css('li.active:contains(FR)')
+      end
+    end
+
+    it "shows the list of pages for the current content locale" do
+      page.should have_selector('table tr', :count => Page.where(:locale => :de).count + 1)
     end
 
     it "takes me to the edit page of a page" do
@@ -30,11 +48,19 @@ describe "Cms::Pages" do
 
   describe '#new' do
     before :each do
-      visit new_cms_page_path
+      visit new_cms_page_path(:content_locale => :fr)
     end
 
     it 'opens the create form' do
       current_path.should == new_cms_page_path
+    end
+
+    it 'informs of the current content locale in the title' do
+      page.should have_content('Neue Seite in Französisch anlegen')
+    end
+
+    it 'prefills the selected language' do
+      page.should have_css('input#page_locale[value=fr]')
     end
 
     it 'displays the input for the unique name' do
@@ -72,6 +98,7 @@ describe "Cms::Pages" do
         it 'has saved the provided attributes' do
           @page.title.should == 'Seiten Titel'
           @page.name.should == 'seiten-titel'
+          @page.locale.should == 'fr'
         end
       end
     end

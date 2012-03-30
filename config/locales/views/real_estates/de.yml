@@ -35,6 +35,7 @@ de:
       commercial: Arbeiten
       for_sale: Kaufen
       for_rent: Mieten
+      search: Suchen
     index:
       number_of_rooms: "%{count} Zimmer"
       hits: "%{count} Treffer"

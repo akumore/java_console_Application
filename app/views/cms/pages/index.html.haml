@@ -1,10 +1,17 @@
 - content_for :title do
   Erfasste Seiten
 
-.pull-right.padded
-  = link_to(new_cms_page_path, :class => 'btn') do
-    %i.icon-plus-sign
-    = t('.new')
+
+%ul.nav-tabs.nav.language-tabs
+  - I18n.available_locales.each do |locale|
+    %li{ :class => (content_locale.to_s == locale.to_s ? 'active' : nil) }
+      = link_to t("languages.#{locale}"), cms_pages_path(:content_locale => locale)
+
+.row
+  .pull-right.padded
+    = link_to(new_cms_page_path(:content_locale => content_locale), :class => 'btn') do
+      %i.icon-plus-sign
+      = t('.new')
 
 %table.table.table-bordered.table-striped
   %tr

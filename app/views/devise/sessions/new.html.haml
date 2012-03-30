@@ -1,0 +1,18 @@
+.login-form
+
+  %h2.title
+    Einloggen
+
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+    .control-group
+      = f.label :email
+      .controls
+        = f.email_field :email
+    .control-group
+      = f.label :password
+      .controls
+        = f.password_field :password
+    .form-actions
+      .controls
+        = f.submit "Einloggen"
+

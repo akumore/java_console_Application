@@ -163,7 +163,8 @@ describe "RealEstates" do
     end
   end
 
-  describe "Search-Filtering of real estates" do
+
+  describe "Search-Filtering of real estates by offer and utilization" do
     before do
       @non_commercial_for_sale = Fabricate :published_real_estate,
                                            :utilization=>RealEstate::UTILIZATION_PRIVATE,
@@ -234,6 +235,59 @@ describe "RealEstates" do
       page.should_not have_selector('table tr')
     end
   end
+
+
+  describe 'Search-Filtering of real estates by canton and city' do
+    before do
+      @arth = Fabricate :published_real_estate,
+                        :utilization => RealEstate::UTILIZATION_PRIVATE,
+                        :offer => RealEstate::OFFER_FOR_RENT,
+                        :category => Fabricate(:category),
+                        :address => Fabricate.build(:address, :canton => 'sz', :city => 'Arth'),
+                        :figure => Fabricate.build(:figure),
+                        :pricing => Fabricate.build(:pricing)
+
+      @goldau = Fabricate :published_real_estate,
+                          :utilization => RealEstate::UTILIZATION_PRIVATE,
+                          :offer => RealEstate::OFFER_FOR_RENT,
+                          :category => Fabricate(:category),
+                          :address => Fabricate.build(:address, :canton => 'sz', :city => 'Goldau'),
+                          :figure => Fabricate.build(:figure),
+                          :pricing => Fabricate.build(:pricing)
+      @adliswil = Fabricate :published_real_estate,
+                            :utilization => RealEstate::UTILIZATION_PRIVATE,
+                            :offer => RealEstate::OFFER_FOR_RENT,
+                            :category => Fabricate(:category),
+                            :address => Fabricate.build(:address, :canton => 'zh', :city => 'Adliswil'),
+                            :figure => Fabricate.build(:figure),
+                            :pricing => Fabricate.build(:pricing)
+
+      visit real_estates_path(:utilization => RealEstate::UTILIZATION_PRIVATE, :offer => RealEstate::OFFER_FOR_RENT)
+
+      page.should have_css("tr[id=real-estate-#{@arth.id}]")
+      page.should have_css("tr[id=real-estate-#{@goldau.id}]")
+      page.should have_css("tr[id=real-estate-#{@adliswil.id}]")
+    end
+
+    it "filters by canton" do
+      select 'Schwyz'
+      click_button 'Suchen'
+
+      page.should have_css("tr[id=real-estate-#{@arth.id}]")
+      page.should have_css("tr[id=real-estate-#{@goldau.id}]")
+      page.should_not have_css("tr[id=real-estate-#{@adliswil.id}]")
+    end
+
+    it 'filters by city' do
+      select 'Arth'
+      click_button 'Suchen'
+
+      page.should have_css("tr[id=real-estate-#{@arth.id}]")
+      page.should_not have_css("tr[id=real-estate-#{@goldau.id}]")
+      page.should_not have_css("tr[id=real-estate-#{@adliswil.id}]")
+    end
+  end
+
 
   describe "Visiting unpublished real estate" do
 
@@ -322,10 +376,6 @@ describe "RealEstates" do
       page.should have_link('Objektbeschrieb')
     end
 
-    it 'has a link to the floorplan' do
-      page.should have_link('Grundriss anzeigen')
-    end
-
     it 'displays the full name of the responsible person' do
       within(".accordion-item .image-caption-text") do
         page.should have_content(real_estate.contact.fullname)
@@ -344,13 +394,34 @@ describe "RealEstates" do
       find(".map[data-real_estate]")['data-real_estate'].should == real_estate.to_json(:only => :_id, :methods => :coordinates)      
     end
 
-    context 'clicking the floorplan link' do
-      it 'opens the floorplan in an overlay' do
-        pending 'tbd'
+    context 'having a floorplan', :fp => true do
+      before :each do
+        @real_estate_with_floorplan = real_estate
+        @real_estate_with_floorplan.media_assets << Fabricate.build(:media_asset_floorplan)
+        visit real_estate_path(@real_estate_with_floorplan)
+      end
+
+      it 'shows the floorplan link' do
+        page.should have_link('Grundriss anzeigen')
+      end
+
+      it 'shows the floorplan slide with a zoom button' do
+        page.should have_css('.flexslider .slides li .zoom-floorplan')
+      end
+
+      it 'zooms the floorplan in an overlay', :js => true do
+        find('.flexslider .slides li .zoom-floorplan').click
+        page.should have_css(".fancybox-opened img[src='#{@real_estate_with_floorplan.media_assets.images.where(:is_floorplan => true).first.url}']")
       end
     end
 
-    context 'Making an appointment' do
+    context 'not having a floorplan', :fp => true do
+      it 'does not show the floorplan link' do
+        page.should_not have_link('Grundriss anzeigen')
+      end
+    end
+
+    context 'Making an appointment', :appointment => true do
       it 'integrates appointment slide into slide show' do
         visit real_estate_path(real_estate)
         page.should have_css ".appointment"
@@ -360,6 +431,20 @@ describe "RealEstates" do
         real_estate.contact.destroy
         visit real_estate_path(real_estate)
         page.should_not have_css ".appointment"
+      end
+
+      it "sends an appointment mail upon submitting the form" do
+        visit real_estate_path(real_estate)
+        within(".appointment") do
+          fill_in 'appointment_firstname', :with => 'Hans'
+          fill_in 'appointment_lastname', :with => 'Muster'
+          fill_in 'appointment_email', :with => 'hans.muster@test.ch'
+          fill_in 'appointment_phone', :with => '123 456 66 44'
+        end
+
+        lambda {
+          click_on 'Kontaktieren Sie mich'
+        }.should change(ActionMailer::Base.deliveries, :size).by(1)
       end
     end
 

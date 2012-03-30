@@ -74,6 +74,12 @@ class RealEstateDecorator < ApplicationDecorator
     end
   end
 
+  def floorplan_link
+    if model.media_assets.floorplans.exists?
+      link_to t('real_estates.show.floorplan'), '#', :class => 'icon-groundplan'
+    end
+  end
+
   def quick_price_infos
     buffer = []
 

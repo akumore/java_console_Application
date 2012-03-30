@@ -8,8 +8,8 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
-Cms::User.create(email: 'admin@screenconcept.ch', password: 'bambus', password_confirmation: 'bambus')
-Cms::User.create(email: 'staging@alfred-mueller.ch', password: 'am2012', password_confirmation: 'am2012')
+Cms::User.create(email: 'admin@screenconcept.ch', password: 'bambus', password_confirmation: 'bambus', :role => 'admin')
+Cms::User.create(email: 'staging@alfred-mueller.ch', password: 'am2012', password_confirmation: 'am2012', :role => 'admin')
 
 module InitialCategories
 
@@ -287,7 +287,7 @@ module InitialCategories
         r.information = Information.new(:available_from=>Date.parse('2012-01-21'))
         r.infrastructure = Infrastructure.new(:has_parking_spot=>true)
         r.description = "Beschreibung 1!!!"
-        r.descriptions = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
+        r.additional_description = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
         r.media_assets = gartenstadt_images.map { |img_path|
           MediaAsset.new(
               :media_type=>MediaAsset::IMAGE,
@@ -316,7 +316,7 @@ module InitialCategories
           r.figure = Figure.new(:floor=>3, :living_surface=>186)
           r.infrastructure = Infrastructure.new(:has_parking_spot=>true)
           r.description = "Beschreibung 1"
-          r.descriptions = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
+          r.additional_description = AdditionalDescription.new(:generic=>'Die Wohnung ist mit Keramikbodenplatten belegt und...')
           r.save!
         end
 
@@ -327,7 +327,7 @@ end
 
 module InitialPages
   module JobsPage
-    jobs_page = Page.create(:title => 'Jobs', :name => 'jobs')
+    jobs_page = Page.create(:title => 'Jobs', :name => 'jobs', :locale => :de)
     jobs_page.bricks << Brick::Title.new(:title => 'Der Mensch steht bei uns im Mittelpunkt')
     jobs_page.bricks << Brick::Text.new(
       :text => 'Den grössten Teil unseres Lebens verbringen wir in Immobilien – sei es zuhause oder am Arbeitsplatz. Deshalb haben wir es uns zur Aufgabe gemacht, hochwertige Wohn- und Geschäftshäuser zu entwickeln, in denen sich die Menschen wohl fühlen. Wollen Sie uns bei dieser herausfordernden und spannenden Aufgabe unterstützen? Wir suchen Mitarbeitende, die mit Leidenschaft und Kompetenz an die Arbeit gehen, damit perfekte Immobilienlösungen entstehen.', 
@@ -380,7 +380,7 @@ module InitialPages
   end
 
   module CompanyPage
-    jobs_page = Page.create(:title => 'Unternehmen', :name => 'company')
+    jobs_page = Page.create(:title => 'Unternehmen', :name => 'company', :locale => :de)
     jobs_page.bricks << Brick::Title.new(:title => 'Sie engagieren uns, damit ihr Bauprojekt gelingt')
     jobs_page.bricks << Brick::Text.new(
       :text => 'Die Alfred Müller AG gehört zu den führenden Schweizer Immobilenunternehmungen. Im Auftrag ihrer Kunden oder für ihr eigenes Portfolio entwickelt, realisiert und vermarktet sie qualitativ hochwertige Wohn- und Geschäftshäuser. Seit seiner Gründung hat das Familienunternehmen mehr als 5800 Wohnungen und 1,7 Millionen Quadratmeter Geschäftsfläche erstellt.',
@@ -548,6 +548,37 @@ module InitialPages
         'Von der «Schweizerischen Vereinigung für Qualitäts- und Management-Systeme» (SQS) wurde die gesamte Firmen-Gruppe nach ISO 9001 zertifiziert. Die Alfred Müller AG verfügt zudem über das VSGU-Label des Verbandes Schweizerischer Generalunternehmer. Dieses bezieht sich wie auch das ISO-Zertifikat auf sämtliche Bereiche der Firma.'
       ].join("\n\n"),
       :more_text => ''
+    )
+  end
+
+
+  module ContactPage
+    contact_page = Page.create(:title => 'Kontakt', :name => 'contact', :locale => :de)
+    contact_page.bricks << Brick::Title.new(:title => 'Kontaktieren Sie uns')
+    contact_page.bricks << Brick::Placeholder.new(:placeholder => 'contact_form')
+    contact_page.bricks << Brick::Title.new(:title => 'Standorte')
+    contact_page.bricks << Brick::Accordion.new(
+      :title => 'Baar',
+      :text => [
+        'Alfred Müller AG<br>Neuhofstrasse 10<br>CH-6340 Baar<br>[mail@alfred-mueller.ch](mailto:mail@alfred-mueller.ch)',
+        'Tel. +41 41 767 02 02<br>Fax +41 41 767 02 00',
+        '<a href="http://g.co/maps/rnwvh">![Anfahrtsplan](http://maps.google.com/maps/api/staticmap?center=47.189495,8.513978&zoom=13&markers=47.189495,8.513978&size=680x400&sensor=true)</a>'
+      ].join("\n\n")
+    )
+    contact_page.bricks << Brick::Accordion.new(
+      :title => 'Marin',
+      :text => [
+        'Alfred Müller SA<br>Av. des Champs-Montants 10a<br>CH-2074 Marin<br>[mail@alfred-mueller.ch](mailto:mail@alfred-mueller.ch)',
+        '<a href="http://g.co/maps/qqxvt">![Anfahrtsplan](http://maps.google.com/maps/api/staticmap?center=47.012960,6.999962&zoom=13&markers=47.189495,8.513978|47.012960,6.999962&size=680x400&sensor=true)</a>'
+      ].join("\n\n")
+    )
+    contact_page.bricks << Brick::Accordion.new(
+      :title => 'Camorino',
+      :text => [
+        'Alfred Müller SA<br>Centro Monda 3<br>CH-6568 Camorino<br>[mail@alfred-mueller.ch](mailto:mail@alfred-mueller.ch)',
+        'Tel. +41 91 858 25 94<br>Fax +41 91 858 25 54',
+        '<a href="http://g.co/maps/wej9x">![Anfahrtsplan](http://maps.google.com/maps/api/staticmap?center=46.163587,9.005283&zoom=13&markers=47.189495,8.513978|47.012960,6.999962|46.163587,9.005283&size=680x400&sensor=true)</a>'
+      ].join("\n\n")
     )
   end
 end

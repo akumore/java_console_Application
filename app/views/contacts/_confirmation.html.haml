@@ -1,0 +1,24 @@
+.confirmation
+  %h3= t('.your_contact')
+  %p.message
+    = t('.confirmation', :name => @contact.name)
+
+  .row
+    .label= Contact.human_attribute_name :name
+    .field= @contact.name
+
+  .row
+    .label= Contact.human_attribute_name :address
+    .field
+      = @contact.street
+      %br
+      = @contact.zip
+      = @contact.city
+
+  .row
+    .label= Contact.human_attribute_name :email
+    .field= @contact.email
+
+  .row
+    .label= Contact.human_attribute_name :message
+    .field= @contact.message

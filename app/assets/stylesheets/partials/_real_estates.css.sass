@@ -96,6 +96,14 @@ td
 
   select
     margin-right: 20px
+    width: 200px
+
+  input[type=submit]
+    +form-submit
+
+  .chzn-container
+    vertical-align: middle
+    margin-right: 20px
 
 .offer-tabs
   ul
@@ -117,3 +125,12 @@ td
 
     .selected
       background: $brown
+
+.zoom-floorplan
+  background: image-url("arrows/arrow-zoom.png") no-repeat
+  width: 36px
+  height: 36px
+  left: 25px
+  top: 25px
+  position: absolute
+  +hide-text

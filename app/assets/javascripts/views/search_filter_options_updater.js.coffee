@@ -1,0 +1,51 @@
+class window.AlfredMueller.Views.SearchFilterOptionsUpdater extends Backbone.View
+
+  events:
+    "change #search_filter_cantons" : "updateCities"
+
+  initialize: ->
+#    console.log 'SearchFilter initializing...'
+    @cantonsSelect = $("#search_filter_cantons")
+    @citiesSelect = $("#search_filter_cities")
+    @initialCities = @citiesSelect.find("option")
+    @map = @citiesSelect.data('cantons-cities-map')
+    @updateCities()
+
+  updateCities: =>
+#    console.log 'updateCities called'
+    @clearCitiesOptions()
+    @addCitiesOptions(@remainingOptions())
+    @notifyCities()
+
+
+  remainingOptions: ->
+    if _.isEmpty(@selectedCantons())
+      @initialCities
+    else
+      @citiesToOptions(@availableCities())
+
+  clearCitiesOptions: ->
+#    console.log 'clearing cities options...'
+    @citiesSelect.empty()
+
+  addCitiesOptions: (options) ->
+#    console.log 'adding cities options: ', options
+    for option in options
+      $(option).appendTo(@citiesSelect)
+
+  citiesToOptions: (cities) ->
+    _.select @initialCities, (city) ->
+      _.include cities, city.label
+
+  availableCities: ->
+    cities = []
+    for canton in @selectedCantons()
+      cities.push @map[canton]
+    _.uniq _.flatten cities
+
+  selectedCantons: ->
+    _.map  @cantonsSelect.find("option:selected"), (option) ->
+      option.value
+
+  notifyCities: ->
+    @citiesSelect.trigger("liszt:updated")

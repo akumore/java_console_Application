@@ -12,7 +12,7 @@
           - @real_estates.each do |real_estate|
             %tr{ :id => "real-estate-#{real_estate.id}" }
               %td
-                = link_to image_tag(real_estate.media_assets.primary_image.file.thumb.url), real_estate_path(real_estate, @search_filter.to_h)
+                = link_to image_tag(real_estate.media_assets.primary_image.file.thumb.url), real_estate_path(real_estate, @search_filter.to_params)
               %td
                 %b
                   = real_estate.category.label
@@ -23,21 +23,23 @@
                 = real_estate.address.try(:street)
                 = real_estate.address.try(:street_number)
               %td
-                = t '.number_of_rooms', :count=> real_estate.figure.try(:rooms)
-                %br
-                = succeed "." do
-                  = real_estate.figure.try(:floor)
-                = t 'mongoid.attributes.figure.floor'
-                %br
-                = real_estate.figure.try(:living_surface)
-                = succeed content_tag(:sup,2) do
-                  m
-                %br
-                  %b
-                    - if real_estate.for_sale?
-                      = number_to_currency real_estate.pricing.try(:for_sale), :locale=>'de-CH'
-                    - else
-                      = number_to_currency real_estate.pricing.try(:for_rent_netto), :locale=>'de-CH'
+                - unless (rooms = real_estate.figure.try :rooms).blank?
+                  = t('.number_of_rooms', :count=>rooms)
+                  %br
+                - unless (floor = real_estate.figure.try :floor).blank?
+                  = succeed "." do
+                    = floor
+                  = Figure.human_attribute_name :floor
+                  %br
+                - unless (living_surface = real_estate.figure.try :living_surface).blank?
+                  = living_surface
+                  m²
+                  %br
+                %b
+                  - if real_estate.for_sale?
+                    = number_to_currency real_estate.pricing.try(:for_sale), :locale=>'de-CH'
+                  - else
+                    = number_to_currency real_estate.pricing.try(:for_rent_netto), :locale=>'de-CH'
 
     - if @real_estates.any?
       .map

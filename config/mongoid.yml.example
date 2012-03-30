@@ -1,29 +1,31 @@
-development:
+defaults: &defaults
   host: localhost
-  database: alfred_mueller_development
   allow_dynamic_fields: false
+
+development:
+  <<: *defaults
+  database: alfred_mueller_development
 
 test:
-  host: localhost
+  <<: *defaults
   database: alfred_mueller_test
-  allow_dynamic_fields: false
 
 staging:
+  <<: *defaults
   host: ds029277.mongolab.com
   port: 29277
   database: alfred_mueller_staging
   username: screenconcept
   password: bambus
-  allow_dynamic_fields: false
 
 # set these environment variables on your prod server
 production:
+  <<: *defaults
   host: <%= ENV['MONGOID_HOST'] %>
   port: <%= ENV['MONGOID_PORT'] %>
   username: <%= ENV['MONGOID_USERNAME'] %>
   password: <%= ENV['MONGOID_PASSWORD'] %>
   database: <%= ENV['MONGOID_DATABASE'] %>
-  allow_dynamic_fields: false
   # slaves:
   #   - host: slave1.local
   #     port: 27018
