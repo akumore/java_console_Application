@@ -581,4 +581,46 @@ module InitialPages
       ].join("\n\n")
     )
   end
+
+
+  module InitialNewsItems
+    my_unique_creation_time = Time.parse('2012-03-30 11:30:00')
+    NewsItem.create(
+        :created_at => my_unique_creation_time,
+        :date => Date.parse('2012-05-14'),
+        :title => %(Messe ImmoMarkt der Zuger Kantonalbank),
+        :teaser => %(Besuchen Sie unseren Stand am ImmoMarkt 2012 der Zuger Kantonalbank.),
+        :content => [
+            %(Besuchen Sie unseren Stand Nr. 1-3 am ImmoMarkt 2012 der Zuger Kantonalbank in der Waldmannhalle in Baar.),
+            %(Öffnungszeiten),
+            %(Montag, 14. Mai 2012, 17 bis 21 Uhr),
+            %(Dienstag,15. Mai 2012, 17 bis 21 Uhr),
+            %(\nWir freuen uns auf Ihren Besuch.)
+        ].join("\n")
+    ) unless NewsItem.exists?(my_unique_creation_time) #Avoids to double-create the item if changed via CMS
+
+    my_unique_creation_time = Time.parse('2012-03-30 11:30:11')
+    NewsItem.create(
+        :created_at => my_unique_creation_time,
+        :date => Date.parse('2012-05-21'),
+        :title => %(Vermarktungsstart «Gartenstadt» Schlieren, Mietwohnungen),
+        :teaser => %(Weitere Details zu unseren 2½ bis 4½-Zimmer-Wohnungen sowie Ateliers finden Sie unter [www.gartenstadt-schlieren.ch](http://www.gartenstadt-schlieren.ch)),
+        :content => %(Weitere Details zu unseren 2½ bis 4½-Zimmer-Wohnungen sowie Ateliers finden Sie unter [www.gartenstadt-schlieren.ch](http://www.gartenstadt-schlieren.ch)),
+        :images => [
+            #TODO
+        ]
+    ) unless NewsItem.exists?(my_unique_creation_time) #Avoids to double-create the item if changed via CMS
+
+    my_unique_creation_time = Time.parse('2012-03-30 11:30:22')
+    NewsItem.create(
+        :created_at => my_unique_creation_time,
+        :date => Date.parse('2012-06-04'),
+        :title => %(Vermarktungsstart «Feldpark» Zug, Eigentumswohnungen),
+        :teaser => %(In der 3. Etappe verkaufen wir 20 Eigentumswohnungen mit 4½ und 5½ Zimmern.),
+        :content => %(In der 3. Etappe verkaufen wir 20 Eigentumswohnungen mit 4½ und 5½ Zimmern.),
+        :images => [
+            #TODO
+        ]
+    ) unless NewsItem.exists?(my_unique_creation_time) #Avoids to double-create the item if changed via CMS
+  end
 end
