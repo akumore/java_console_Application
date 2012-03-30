@@ -4,6 +4,7 @@ AlfredMueller::Application.routes.draw do
 
   namespace :cms do
     resource :dashboards
+    resources :news_items, :except => :show
     resources :real_estates do
       resource :address
       resource :pricing, :except=>:destroy
@@ -34,6 +35,7 @@ AlfredMueller::Application.routes.draw do
     end
     resource :job_application, :only => [:new, :create]
     resource :contact, :only => [:new, :create]
+    resources :news_items, :only => :index
   end
 
   scope ':locale' do

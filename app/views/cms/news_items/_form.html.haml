@@ -1,0 +1,50 @@
+= form_for [:cms, @news_item], :html => {:multipart => true} do |f|
+  = render 'cms/shared/errors', :model => @news_item
+
+  %fieldset
+    = f.hidden_field :locale
+    .control-group.mandatory
+      = f.label :title
+      .controls
+        = f.text_field :title, :class => 'span8'
+    .control-group.mandatory
+      = f.label :teaser
+      .controls
+        = f.text_field :teaser, :class => 'span8'
+    .control-group.mandatory
+      = f.label :content
+      .controls
+        = f.text_area :content, :class => 'span8'
+    .control-group.mandatory
+      = f.label :date
+      .controls
+        = f.date_select :date, {:start_year => -1.year.from_now.year, :end_year => 2.year.from_now.year},:class => 'span1'
+
+    - if @news_item.persisted?
+
+      = render "edit_images", :f=>f
+      = render "edit_documents", :f=>f
+
+    - else
+
+      %fieldset
+        %legend Bilder
+        = f.fields_for :images do |image_form|
+          .control-group
+            = image_form.label :file
+            .controls
+              = image_form.file_field :file
+      %fieldset
+        %legend Dokumente
+        = f.fields_for :documents do |documents_form|
+          .control-group
+            = documents_form.label :file
+            .controls
+              = documents_form.file_field :file
+
+    .form-actions
+      = f.submit nil, :class => 'btn btn-primary'
+      .pull-right
+        = link_to(cms_news_items_path, :class => 'btn small') do
+          %i.icon-list
+          = t('.overview')
