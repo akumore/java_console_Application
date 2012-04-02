@@ -1,6 +1,6 @@
 .jobs
   .accordion.accordion-square
-    - Job.published.each do |job|
+    - Job.published.where(:locale => I18n.locale).each do |job|
       .accordion-item{ :id => "job_#{job.id}" }
         .title= job.title
         .content
