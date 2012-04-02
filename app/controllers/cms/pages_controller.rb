@@ -3,12 +3,12 @@ class Cms::PagesController < Cms::SecuredController
   respond_to :html
 
   def index
-    @pages = Page.all.order([:updated, :asc])
+    @pages = Page.all.where(:locale => content_locale).order([:updated, :asc])
     respond_with @pages
   end
 
   def new
-    @page = Page.new
+    @page = Page.new(:locale => content_locale)
     respond_with @page
   end
 

@@ -1,0 +1,11 @@
+Eine Kontaktanfrage ist am <%= l(@contact.created_at) %> über die Website eingegangen.
+
+Kontaktdaten:
+
+Name: <%= @contact.name %>
+Adresse: <%= @contact.street %>, <%= @contact.zip %>, <%= @contact.city %>
+E-Mail: <%= @contact.email %>
+
+Nachricht:
+
+<%= @contact.message %>

@@ -8,6 +8,7 @@ class Job
   field :text, :type => String
   field :is_published, :type => Boolean
   field :job_profile_file, :type => String
+  field :locale, :type => String, :default => :de
 
   scope :published, where(:is_published => true)
 

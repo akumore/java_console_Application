@@ -155,4 +155,46 @@ describe "Homepage" do
     end
   end
 
+
+  describe "Footer" do
+    describe "News Items" do
+      before do
+        @news_item = Fabricate :news_item
+      end
+
+      it "shows not more than three items" do
+        4.times { Fabricate :news_item }
+        visit root_path
+
+        within ".footer-news" do
+          page.should have_css("div[id*='footer-news-item-']", :count => 3)
+        end
+      end
+
+      it "shows the date" do
+        visit root_path
+
+        within "#footer-news-item-#{@news_item.id}" do
+          page.should have_content I18n.l(@news_item.date)
+        end
+      end
+
+      it "shows the title" do
+        visit root_path
+
+        within "#footer-news-item-#{@news_item.id}" do
+          page.should have_content @news_item.title
+        end
+      end
+
+      it "links to a particular item using anchor" do
+        visit root_path
+
+        within "#footer-news-item-#{@news_item.id}" do
+          page.should have_link("Mehr erfahren", :href => "#{news_items_path}#news_item_#{@news_item.id}")
+        end
+      end
+    end
+  end
+
 end

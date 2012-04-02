@@ -1,0 +1,27 @@
+.row
+  .span2
+    %br
+  .span8
+    %table.table.table-bordered.documents-table.sortable
+      %thead
+        %tr
+          %th{ :width => '5%' }
+          %th{ :width => '85%' } Dokumente
+          %th{ :width => '10%' } Löschen
+      %tbody
+        = f.fields_for :documents do |doc_form|
+          %tr.draggable-row{:id=>"document-#{doc_form.object.id}"}
+            %td.drag-handle{ :width => '5%' }
+              %i.icon-align-justify
+              = doc_form.hidden_field :position
+            %td{ :width => '85%' }
+              = link_to File.basename(doc_form.object.file.path), doc_form.object.file.url, :target=>:blank
+            %td{ :width => '10%' }
+              = doc_form.check_box :_destroy
+
+        %tbody
+          %tr
+            %td
+            %td{:colspan=>2}
+              = f.fields_for :documents, NewsItemDocument.new do |doc_form|
+                = doc_form.file_field :file

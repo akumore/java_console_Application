@@ -8,7 +8,10 @@ class Page
 
   field :title, :type => String
   field :name, :type => String
+  field :locale, :type => String
 
-  validates :title, :presence => true
-  validates :name, :uniqueness => true, :presence => true
+  validates :title, :name, :presence => true
+  validates :locale, :presence => true, :inclusion => I18n.available_locales.map(&:to_s)
+  validates_uniqueness_of :name,  :scope => :locale
+
 end

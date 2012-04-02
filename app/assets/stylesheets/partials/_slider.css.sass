@@ -134,6 +134,9 @@
   &.open
     left: 20%
 
+  img
+    width: 100%
+
 .vision-slider
   position: relative
   height: 535px
@@ -163,6 +166,15 @@
     z-index: 30
     cursor: pointer
 
+    span
+      +opacity(0)
+      +single-transition("opacity", 0.5s)
+
+    &:hover
+      span
+        +opacity(1)
+
+
   .toggle-close, .toggle-open
     padding-left: 35px
     padding-right: 10px
@@ -170,7 +182,7 @@
 
   .toggle-close
     display: none
-    background: image-url('arrows/arch-tall-up.png') no-repeat left center
+    background: image-url('arrows/arch-tall-up.png') no-repeat left center  
 
     &:hover
       background: image-url('arrows/arch-tall-up-rollover.png') no-repeat left center
