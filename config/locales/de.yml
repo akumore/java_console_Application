@@ -70,9 +70,3 @@ de:
   jobs_url: '/de/jobs'
   company_url: '/de/company'
   contact_url: '/de/contact'
-
-de-CH:
-  number:
-    currency:
-      format:
-        unit: 'CHF'
