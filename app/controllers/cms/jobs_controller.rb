@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Cms::JobsController < Cms::SecuredController
 
   respond_to :html
@@ -16,7 +18,8 @@ class Cms::JobsController < Cms::SecuredController
     @job = Job.new(params[:job])
 
     if @job.save
-      redirect_to edit_cms_job_path(@job)
+      flash[:success] = %(Der Job "#{@job.title}" wurde erfolgreich gespeichert.)
+      redirect_to cms_jobs_path
     else
       render 'new'
     end
@@ -31,6 +34,7 @@ class Cms::JobsController < Cms::SecuredController
     @job = Job.find(params[:id])
 
     if @job.update_attributes(params[:job])
+      flash[:success] = %(Der Job "#{@job.title}" wurde erfolgreich gespeichert.)
       redirect_to edit_cms_job_path(@job)
     else
       render 'edit'
@@ -40,6 +44,7 @@ class Cms::JobsController < Cms::SecuredController
   def destroy
     job = Job.find(params[:id])
     job.destroy
+    flash[:alert] = %(Der Job "#{job.title}" wurde erfolgreich gelöscht.)
     redirect_to cms_jobs_path
   end
 end
