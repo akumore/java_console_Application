@@ -1,6 +1,7 @@
 = form_for [:cms, @job], :html => { :multipart => true } do |f|
   = render 'cms/shared/errors', :model => @job
 
+  = f.hidden_field :locale
   %fieldset
     .control-group
       = f.label :title

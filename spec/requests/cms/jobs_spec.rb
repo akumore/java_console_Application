@@ -7,12 +7,30 @@ describe "Cms::Jobs" do
   describe '#index' do
     before do
       3.times { Fabricate(:job) }
+      3.times { Fabricate(:job, :locale => :fr) }
       @job = Job.first
       visit cms_jobs_path
     end
 
-    it "shows the list of jobs" do
-      page.should have_selector('table tr', :count => Job.count+1)
+    describe 'language tabs' do
+      it 'shows a tab for every content language' do
+        I18n.available_locales.each do |locale|
+          page.should have_link(I18n.t("languages.#{locale}"))
+        end
+      end
+
+      it 'has the DE tab activated by default' do
+        page.should have_css('li.active:contains(DE)')
+      end
+
+      it 'selects the tab according to the content langauge' do
+        visit cms_jobs_path(:content_language => :fr)
+        page.should have_css('li.active:contains(FR)')
+      end
+    end
+
+    it "shows the list of jobs for the current content locale" do
+      page.should have_selector('table tr', :count => Job.where(:locale => :de).count+1)
     end
 
     it "takes me to the edit page of a job" do
@@ -30,11 +48,19 @@ describe "Cms::Jobs" do
 
   describe '#new' do
     before :each do
-      visit new_cms_job_path
+      visit new_cms_job_path(:content_locale => :fr)
     end
 
     it 'opens the create form' do
       current_path.should == new_cms_job_path
+    end
+
+    it 'informs of the current content locale in the title' do
+      page.should have_content('Neuen Job in Französisch anlegen')
+    end
+
+    it 'prefills the selected language' do
+      page.should have_css('input#job_locale[value=fr]')
     end
 
     context 'a valid Job' do

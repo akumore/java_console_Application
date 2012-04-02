@@ -11,10 +11,11 @@ describe "Pages" do
 
       Fabricate(:job) # create unpublished job
       3.times { Fabricate(:published_job) }
+      3.times { Fabricate(:published_job, :locale => :fr) }
       visit I18n.t('jobs_url')
     end
 
-    it 'has an accordion with 3 jobs' do
+    it 'has an accordion with 3 jobs in german' do
       page.should have_css('.jobs .accordion-item', :count => 3)
     end
   end
