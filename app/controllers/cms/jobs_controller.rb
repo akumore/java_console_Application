@@ -3,12 +3,12 @@ class Cms::JobsController < Cms::SecuredController
   respond_to :html
 
   def index
-    @jobs = Job.all.order([:updated_at, :desc])
+    @jobs = Job.where(:locale => content_locale).order([:updated_at, :desc])
     respond_with @jobs
   end
 
   def new
-    @job = Job.new
+    @job = Job.new(:locale => content_locale)
     respond_with @job
   end
 
