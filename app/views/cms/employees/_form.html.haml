@@ -43,7 +43,7 @@
         = f.hidden_field :image_cache
         - if @employee.image.present?
           .well
-            = image_tag @employee.image.cms_preview.url
+            = image_tag @employee.image.contact.url
 
     .form-actions
       = f.submit nil, :class => 'btn btn-primary'

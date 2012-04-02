@@ -7,10 +7,6 @@ class EmployeeImageUploader < BaseUploader
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  version :cms_preview do
-    process :resize_to_fill => [300, 240] 
-  end
-
   version :contact do
     process :resize_to_fill => [570, 260] 
   end
