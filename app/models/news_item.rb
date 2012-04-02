@@ -15,7 +15,7 @@ class NewsItem
   field :teaser, :type => String
   field :content, :type => String
   field :date, :type => Date
-  field :locale, :type => String, :defaults => 'de'
+  field :locale, :type => String, :default => 'de'
 
   validates :title, :teaser, :content, :date, :presence => true
 end
