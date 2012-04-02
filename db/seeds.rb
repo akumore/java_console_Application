@@ -643,6 +643,7 @@ module InitialPages
     my_unique_creation_time = Time.parse('2012-03-30 11:30:22')
     NewsItem.create(
         :created_at => my_unique_creation_time,
+        :locale => :de,
         :date => Date.parse('2012-06-04'),
         :title => %(Vermarktungsstart «Feldpark» Zug, Eigentumswohnungen),
         :teaser => %(In der 3. Etappe verkaufen wir 20 Eigentumswohnungen mit 4½ und 5½ Zimmern.),
