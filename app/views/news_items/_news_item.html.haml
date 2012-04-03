@@ -4,10 +4,11 @@
     = news_item.title
   .content
     - if news_item.images.any?
-      .flexslider
-        %ul.slides
-          - news_item.images.each do |image|
-            %li= image_tag(image.file.gallery.url)
+      .flex-container
+        .flexslider
+          %ul.slides
+            - news_item.images.each do |image|
+              %li= image_tag(image.file.gallery.url)
     = markdown(news_item.content)
 
     - if news_item.documents.any?
