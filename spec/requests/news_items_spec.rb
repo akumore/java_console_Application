@@ -12,13 +12,13 @@ describe "News", :js => true do
       visit news_items_path
     end
 
-    it 'has an accordion with 10 news items' do
-      page.should have_css('.accordion-item', :count => 10)
+    it 'has an accordion with 6 news items' do
+      page.should have_css('.accordion-item', :count => 6)
     end
 
-    it 'loads older news and displays 20 news items' do
+    it 'loads older news and displays 12 news items' do
       click_link 'Ältere News anzeigen'
-      page.should have_css('.accordion-item', :count => 20)
+      page.should have_css('.accordion-item', :count => 12)
     end
   end
 
