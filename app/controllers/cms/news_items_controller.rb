@@ -11,7 +11,7 @@ module Cms
     end
 
     def new
-      @news_item = NewsItem.new(:locale => params[:locale] || :de )
+      @news_item = NewsItem.new(:locale => params[:content_locale])
       build_images_and_documents!(@news_item)
     end
 

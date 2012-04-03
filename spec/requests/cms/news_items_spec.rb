@@ -76,7 +76,7 @@ describe "Cms News Items Administration" do
     end
 
     it "creates news item within the chosen language" do
-      visit new_cms_news_item_path :locale => 'it'
+      visit new_cms_news_item_path :content_locale => 'it'
 
       fill_in 'news_item_title', :with => 'it: Invasion vom Mars'
       fill_in 'news_item_teaser', :with => 'it: Visit me at the page footer'
