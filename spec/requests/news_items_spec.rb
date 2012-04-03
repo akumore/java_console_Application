@@ -78,7 +78,7 @@ describe "News", :js => true do
         page.should have_css("#news_item_#{news_item.id} a.icon-document", :count => 3)
 
         news_item.documents.each do |doc|
-          page.should have_link("#{File.basename(doc.file.path)} herunterladen")
+          page.should have_link(File.basename(doc.file.path))
         end
       end
     end
