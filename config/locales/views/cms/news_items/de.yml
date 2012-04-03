@@ -1,0 +1,5 @@
+de:
+  cms:
+    news_items:
+      destroy:
+        success: "Newseintrag erfolgreich gelöscht"
