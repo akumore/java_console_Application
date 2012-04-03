@@ -40,6 +40,14 @@ module Cms
       end
     end
 
+    def destroy
+      @news_item=NewsItem.find params[:id]
+      if @news_item.destroy
+        flash[:info] = t("cms.news_items.destroy.success")
+      end
+      redirect_to cms_news_items_path
+    end
+
 
     private
     def build_images_and_documents!(news_item)
