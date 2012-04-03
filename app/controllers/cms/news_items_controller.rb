@@ -11,7 +11,7 @@ module Cms
     end
 
     def new
-      @news_item = NewsItem.new(:locale => params[:locale] || :de )
+      @news_item = NewsItem.new(:locale => content_locale)
       build_images_and_documents!(@news_item)
     end
 
@@ -22,8 +22,8 @@ module Cms
     def create
       @news_item = NewsItem.new params[:news_item]
       if @news_item.save
-        #TODO flash success
-        redirect_to [:edit, :cms, @news_item]
+        flash[:info] = t("cms.news_items.create.success")
+        redirect_to cms_news_items_path(:content_locale=>@news_item.locale)
       else
         build_images_and_documents!(@news_item)
         render 'new'
@@ -33,8 +33,8 @@ module Cms
     def update
       @news_item=NewsItem.find params[:id]
       if @news_item.update_attributes(params[:news_item])
-        #TODO flash success
-        redirect_to [:edit, :cms, @news_item]
+        flash[:info] = t("cms.news_items.update.success")
+        redirect_to cms_news_items_path(:content_locale=>@news_item.locale)
       else
         render 'edit'
       end
@@ -45,7 +45,7 @@ module Cms
       if @news_item.destroy
         flash[:info] = t("cms.news_items.destroy.success")
       end
-      redirect_to cms_news_items_path
+      redirect_to cms_news_items_path(:content_locale=>@news_item.locale)
     end
 
 

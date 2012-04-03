@@ -55,6 +55,7 @@ describe "Cms News Items Administration" do
       fill_in 'news_item_content', :with => 'Das ist ja kaum zu glauben!'
 
       expect { click_button 'News erstellen' }.should change(NewsItem, :count).by(1)
+      page.should have_content I18n.t("cms.news_items.create.success")
     end
 
     it "doesn't create because of validation errors" do
@@ -76,7 +77,7 @@ describe "Cms News Items Administration" do
     end
 
     it "creates news item within the chosen language" do
-      visit new_cms_news_item_path :locale => 'it'
+      visit new_cms_news_item_path :content_locale => 'it'
 
       fill_in 'news_item_title', :with => 'it: Invasion vom Mars'
       fill_in 'news_item_teaser', :with => 'it: Visit me at the page footer'
@@ -124,6 +125,7 @@ describe "Cms News Items Administration" do
 
         click_button 'News speichern'
         NewsItem.find(@news_item.id).send(attr).should == @content_for_update[attr]
+        page.should have_content I18n.t("cms.news_items.update.success")
       end
 
       it "doesn't update because of validation error caused by #{attr}" do
@@ -147,6 +149,7 @@ describe "Cms News Items Administration" do
       end
       click_button 'News speichern'
 
+      visit edit_cms_news_item_path(@news_item)
       page.should have_css "#image-#{@news_item.reload.images.first.id}"
     end
 
@@ -170,6 +173,7 @@ describe "Cms News Items Administration" do
       end
       click_button 'News speichern'
 
+      visit edit_cms_news_item_path(@news_item)
       page.should have_css "#document-#{@news_item.reload.documents.first.id}"
     end
 
