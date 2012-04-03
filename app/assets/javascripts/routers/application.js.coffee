@@ -31,11 +31,11 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
         )
     )
 
-    $(".flexslider").flexslider(
+    $(".reference-projects-slider .flexslider, .services-slides-container .flexslider").flexslider(
       directionNav: true,
       controlNav: false,
       slideshow: false,
-      animation: "slide",
+      animation: "slide"
     )
 
     # initialize all accordions after the sliders, because they can contain sliders

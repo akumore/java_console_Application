@@ -15,6 +15,14 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
     else
       $("html").removeClass("vision-slider-open")
 
+  initialize: ->
+    $(".flexslider", @el).flexslider(
+      directionNav: true,
+      controlNav: false,
+      slideshow: false,
+      animation: "slide"
+    )
+
   open: ->
     @animate("open")
     $("html").addClass("vision-slider-open")

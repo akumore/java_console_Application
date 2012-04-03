@@ -32,11 +32,13 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
       @openItem(elem) if elem.find(".title").length > 0
     else if @el.data('open_first')
       elem = @el.find(".accordion-item:first-child")
-      @openItem(elem)
+      @openItem(elem, false)
 
-  openItem: (elem) ->
+  openItem: (elem, scroll=true) ->
     @closeItem(@open) if @open
     @open = elem.addClass("open").removeClass("closed")
+    @initSlider(elem)
+    $.scrollTo(elem, 500) if scroll
 
   closeItem: (elem) ->
     elem.removeClass("open").addClass("closed")
@@ -47,6 +49,14 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
       @closeItem(elem)
     else
       @openItem(elem)
+
+  initSlider: (elem)->
+    $(".flexslider", elem).flexslider(
+      directionNav: true,
+      controlNav: false,
+      slideshow: false,
+      animation: "slide",
+    )
 
   handleClick: (event) =>
     item = $(event.currentTarget).parent()
