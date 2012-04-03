@@ -1,32 +1,57 @@
 %h4= t('.title')
+
 .footer-news
+  - if @footer_news_items.empty?
+    %br
   - @footer_news_items.each do |news_item|
     %div{:id=>"footer-news-item-#{news_item.id}"}
-      %h5= l news_item.date
-      %p
-        = news_item.title
-        %br
-        = link_to "Mehr erfahren", news_items_path(:anchor =>"news_item_#{news_item.id}")
+      %h6= l news_item.date
+      %h5= news_item.title
+      = link_to t(".get_more"), news_items_path(:anchor =>"news_item_#{news_item.id}")
 
 .footer-teasers
-  %h5 Wir suchen Sie
-  %br
-  %h5 St. Martin
-  %p
-    Mit unserem Trinkwasserprojekt «Wasser ist Leben» in Kamerun ermöglichen wir den Menschen in den ländlichen Gegenden
-    im Süden des Landes Zugang zu sauberem Trinkwasser. Dank der Stiftung St. Martin, den Eigenleistungen der einheimischen
-    Bevölkerung und zahlreichen Spendern konnten bis heute über 1300 Brunnen erstellt werden.
-  %h5 Allmig
-  %p
-    Die Kompostier- und Biostromanlage «Allmig» ist ein in der Region Zug verankerter Betrieb.  Hier werden pro Jahr
-    25000 Tonnen Grüngut aus den umliegenden Gemeinden verwertet und zu qualitativ ausgezeichneten Erdsubstraten und
-    Kompost für Privat und Landwirtschaft verarbeitet. Zusätzlich können jährlich zirka 3,5 Millionen Kilowattstunden
-    Biostrom gewonnen werden.
+  %div
+    %h5= t ".we_want_you"
+    %dl
+      %dd=t ".discover_alfred_mueller"
+      %dd= link_to t(".take_me_to_the_jobs"), t('jobs_url')
+
+  %div
+    %h5= t ".from_a_hand"
+    %dl
+      %dt= t ".from_a_hand_content"
+      %dd= link_to t(".get_more"), t('company_url')
+
+  %div
+    %h5 St. Martin
+    %dl
+      %dt In Kamerun ermöglichen wir den Menschen Zugang zu sauberem Trinkwasser.
+      %dd=link_to t(".get_more"), t('company_url')
+
+  %div
+    %h5 Allmig
+    %dl
+      %dt Die Kompostier- und Biostromanlage in der Region Zug
+      %dd=link_to t(".get_more"), t('company_url')
 
 .footer-contact
-  %h5= t('.contact.title')
-  %p
-    = t('.contact.address_html')
-  %p
-    = t('.contact.phone_html')
-  = link_to t('.contact.directions'), '#'
+  %div
+    %h5= t('.contact.title')
+    %dl
+      %dd= t('.contact.address_html')
+      %dd= t('.contact.phone_html')
+      %dd= link_to t('.contact.directions'), '#'
+
+  .memberships
+    %h5= t '.memberships'
+    %dl
+      %dt Verband Schweizerischer Generalunternehmer VSGU
+      %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch"
+      %dt Schweizerischer Verband der Immobilienwirtschaft SVIT
+      %dd= link_to "www.svit.ch", "http://www.svit.ch"
+      %dt Schweizerischer Ingenieur- und Architektenverein SIA
+      %dd= link_to "www.sia.ch", "http://www.sia.ch"
+      %dt Bundesamt für Bauten und Logistik
+      %dd= link_to "www.bbl.admin.ch", "http://www.bbl.admin.ch"
+      %dt Hauseigentümerverband HEV
+      %dd= link_to "www.hev-schweiz.ch", "http://www.hev-schweiz.ch"
