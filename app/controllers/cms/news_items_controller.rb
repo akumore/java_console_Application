@@ -45,7 +45,7 @@ module Cms
       if @news_item.destroy
         flash[:info] = t("cms.news_items.destroy.success")
       end
-      redirect_to cms_news_items_path
+      redirect_to cms_news_items_path(:content_locale=>@news_item.locale)
     end
 
 
