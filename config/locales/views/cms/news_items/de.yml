@@ -1,0 +1,10 @@
+de:
+  cms:
+    news_items:
+      index:
+        confirm_delete: 'Die News "%{title}" sicher löschen?'
+        new: 'Neue News erstellen'
+        edit: 'Editieren'
+        destroy: 'Löschen'
+      destroy:
+        success: "Newseintrag erfolgreich gelöscht"

@@ -187,4 +187,14 @@ describe "Cms News Items Administration" do
     end
   end
 
+
+  it 'destroys a certain news item' do
+    news_item = Fabricate :news_item
+    visit cms_news_items_path
+    within "#news_item_#{news_item.id}" do
+      expect { click_link "Löschen" }.should change(NewsItem, :count).by(-1)
+    end
+    page.should have_content I18n.t "cms.news_items.destroy.success"
+  end
+
 end
