@@ -31,6 +31,9 @@ de:
       create: "%{model} erstellen"
       update: "%{model} speichern"
       edit: "%{model} bearbeiten"
+  errors:
+    messages:
+      extension_white_list_error: 'muss vom Typ %{allowed_types} sein'
   cantons:
     ag: 'Aargau'
     ar: 'Appenzell Ausserrhoden'

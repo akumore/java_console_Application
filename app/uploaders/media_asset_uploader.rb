@@ -72,13 +72,15 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    if model.image?
+    allowed_types = if model.image?
       %w(jpg jpeg png)
     elsif model.video?
       %w(mp4 m4v mov)
     elsif model.document?
       %w(pdf)
     end
+
+    ExtensionWhiteList.new allowed_types if allowed_types.present?
   end
 
   # Override the filename of the uploaded files:
