@@ -13,11 +13,11 @@
     .control-group
       = f.label :password
       .controls
-        = f.text_field :password, :class => 'span8'
+        = f.password_field :password, :class => 'span8'
     .control-group
       = f.label :password_confirmation
       .controls
-        = f.text_field :password_confirmation, :class => 'span8'
+        = f.password_field :password_confirmation, :class => 'span8'
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
