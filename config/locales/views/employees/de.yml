@@ -1,6 +1,7 @@
 de:
   employees:
     contact:
-      phone: 'T: %{number}'
-      fax: 'F: %{number}'
-      mobile: 'M: %{number}'
+      phone: 'T %{number}'
+      fax: 'F %{number}'
+      mobile: 'M %{number}'
+      email: 'E-Mail'

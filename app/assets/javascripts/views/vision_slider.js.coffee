@@ -4,7 +4,10 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
     "click .toggle" : "handleToggle"
 
   @getState: ->
-    monster.get("vision_slider_state") || "open"
+    if window.location.pathname == '/'
+      monster.get("vision_slider_state") || "open"
+    else
+      "closed"
 
   @setState: (state)->
     monster.set("vision_slider_state", state)

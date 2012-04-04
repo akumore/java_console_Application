@@ -382,7 +382,8 @@ describe "RealEstates" do
         page.should have_content(real_estate.contact.phone)
         page.should have_content(real_estate.contact.fax)
         page.should have_content(real_estate.contact.mobile)
-        page.should have_content(real_estate.contact.email)
+        page.should have_link('E-Mail')
+
       end
     end
 

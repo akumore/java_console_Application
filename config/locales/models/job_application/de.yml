@@ -15,6 +15,3 @@ de:
         mobil: 'Mobil'
         email: 'e-Mail Adresse'
         comment: Nachricht
-  errors:
-    messages:
-      extension_white_list_error: 'muss ein PDF sein'
