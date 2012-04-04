@@ -164,6 +164,9 @@ describe "Cms::Employees" do
           click_link 'Löschen'
         end
       }.should change(Employee, :count).by(-1)
+
+      current_path.should == cms_employees_path
+      page.should have_content "Mitarbeiter erfolgreich gelöscht"
     end
   end
 

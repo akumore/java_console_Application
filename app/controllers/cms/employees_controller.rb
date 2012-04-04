@@ -38,8 +38,10 @@ class Cms::EmployeesController < Cms::SecuredController
   end
 
   def destroy
-    employee = Employee.find(params[:id])
-    employee.destroy
-    redirect_to cms_employees_path
+    @employee = Employee.find(params[:id])
+    if @employee.destroy
+      flash[:info] = t("cms.employees.destroy.success")
+    end
+    redirect_to [:cms, :employees]
   end
 end

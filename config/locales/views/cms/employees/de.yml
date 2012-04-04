@@ -16,3 +16,5 @@ de:
         success: Mitarbeiter erfolgreich angelegt
       update:
         success: Mitarbeiter erfolgreich aktualisiert
+      destroy:
+        success: "Mitarbeiter erfolgreich gelöscht"
