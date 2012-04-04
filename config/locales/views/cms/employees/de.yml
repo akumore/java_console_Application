@@ -14,3 +14,5 @@ de:
         destroy: 'Löschen'
       create:
         success: Mitarbeiter erfolgreich angelegt
+      update:
+        success: Mitarbeiter erfolgreich aktualisiert

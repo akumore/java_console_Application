@@ -31,10 +31,10 @@ class Cms::EmployeesController < Cms::SecuredController
     @employee = Employee.find(params[:id])
 
     if @employee.update_attributes(params[:employee])
-      redirect_to edit_cms_employee_path(@employee)
-    else
-      render 'edit'
+      flash[:info] = t("cms.employees.update.success")
     end
+
+    respond_with @employee, :location => cms_employees_path
   end
 
   def destroy

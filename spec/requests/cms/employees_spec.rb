@@ -128,6 +128,27 @@ describe "Cms::Employees" do
         @employee.job_function.should == 'Geschäftsleiterin'
         @employee.department.should == 'real_estate_management'
       end
+
+      it 'is flashing success' do
+        current_path.should == cms_employees_path
+        page.should have_content "Mitarbeiter erfolgreich aktualisiert"
+      end
+
+    end
+
+    it "doesn't update an invalid employee" do
+      fill_in 'Vorname', :with => ''
+      fill_in 'Nachname', :with => ''
+      fill_in 'Telefon', :with => ''
+      fill_in 'E-Mail Adresse', :with => ''
+      click_on 'Mitarbeiter speichern'
+
+      within ".alert" do
+        page.should have_content "Vorname muss ausgefüllt werden"
+        page.should have_content "Nachname muss ausgefüllt werden"
+        page.should have_content "Telefon muss ausgefüllt werden"
+        page.should have_content "E-Mail Adresse muss ausgefüllt werden"
+      end
     end
   end
 
