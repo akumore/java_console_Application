@@ -9,6 +9,6 @@ class Appointment
   field :email, :type => String
   field :phone, :type => String
 
-  validates :firstname, :lastname, :email, :phone, :presence=>true
+  validates :firstname, :lastname, :email, :presence=>true
 
 end
