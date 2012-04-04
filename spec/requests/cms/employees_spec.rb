@@ -55,7 +55,10 @@ describe "Cms::Employees" do
       it 'save a new Employee' do
         lambda do
           click_on 'Mitarbeiter erstellen'
-        end.should change(Employee, :count).from(0).to(1)
+        end.should change(Employee, :count).by(1)
+
+        current_path.should == cms_employees_path
+        page.should have_content "Mitarbeiter erfolgreich angelegt"
       end
 
       context '#create' do
@@ -74,6 +77,17 @@ describe "Cms::Employees" do
           @employee.department.should == 'marketing'
           @employee.image.should be_present
         end
+      end
+    end
+
+    it "doesn't save an invalid employee" do
+      click_on 'Mitarbeiter erstellen'
+      within ".alert" do
+        page.should have_content "Vorname muss ausgefüllt werden"
+        page.should have_content "Nachname muss ausgefüllt werden"
+        page.should have_content "Telefon muss ausgefüllt werden"
+        page.should have_content "E-Mail Adresse muss ausgefüllt werden"
+        page.should have_content "Abteilung muss ausgefüllt werden"
       end
     end
   end

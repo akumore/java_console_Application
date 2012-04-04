@@ -12,3 +12,5 @@ de:
         edit: 'Editieren'
         confirm_delete: 'Den Mitarbeiter %{title} wirklich löschen?'
         destroy: 'Löschen'
+      create:
+        success: Mitarbeiter erfolgreich angelegt

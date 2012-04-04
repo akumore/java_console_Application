@@ -16,10 +16,10 @@ class Cms::EmployeesController < Cms::SecuredController
     @employee = Employee.new(params[:employee])
 
     if @employee.save
-      redirect_to edit_cms_employee_path(@employee)
-    else
-      render 'new'
+      flash[:info] = t("cms.employees.create.success")
     end
+
+    respond_with @employee, :location => cms_employees_path
   end
 
   def edit
