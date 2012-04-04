@@ -21,6 +21,9 @@ module AlfredMueller
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.threadsafe! # so pdfkit responds when using webrick
+    config.middleware.use "PDFKit::Middleware"
+
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root}/app/controllers/concerns #{config.root}/lib)
 

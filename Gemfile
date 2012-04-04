@@ -32,6 +32,7 @@ gem 'daemons', '1.1.5'
 gem 'sanitize'
 gem 'chosen-rails'
 gem 'jquery-scrollto-rails'
+gem 'pdfkit'
 
 # Gems used only for assets and not required
 # in production environments by default.
