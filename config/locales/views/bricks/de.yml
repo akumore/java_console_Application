@@ -17,10 +17,10 @@ de:
       jobs_apply_with_success:
         apply: 'Direkt bewerben'
         title_html: 'Ihre Ansprechperson:'
-        person_html: 'Heidi Rohner<br>+41 (0)41 767 02 02<br><a href="mailto:heidi.rohner@alfred-mueller.ch">heidi.rohner@alfred-mueller.ch</a>'
+        person_html: 'Heidi Rohner<br>T +41 41 767 02 02<br><a href="mailto:heidi.rohner@alfred-mueller.ch">heidi.rohner@alfred-mueller.ch</a>'
         address_html: 'Neuhofstrasse 10<br>6340 Baar'
       contact_form:
         title: 'Kontaktformular'
         title_html: 'Ihr Ansprechpartner für Medienfragen'
-        person_html: 'David Spiess<br>+041 41 767 02 50<br><a href="mailto:david.spiess@alfred-mueller.ch">david.spiess@alfred-mueller.ch</a>'
+        person_html: 'David Spiess<br>T +041 41 767 02 50<br><a href="mailto:david.spiess@alfred-mueller.ch">david.spiess@alfred-mueller.ch</a>'
         address_html: 'Neuhofstrasse 10<br>6340 Baar'
