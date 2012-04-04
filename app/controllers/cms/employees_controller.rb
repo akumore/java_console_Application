@@ -19,7 +19,7 @@ class Cms::EmployeesController < Cms::SecuredController
       flash[:info] = t("cms.employees.create.success")
     end
 
-    respond_with @employee, :location => cms_employees_path
+    respond_with @employee, :location => [:cms, :employees]
   end
 
   def edit
@@ -34,7 +34,7 @@ class Cms::EmployeesController < Cms::SecuredController
       flash[:info] = t("cms.employees.update.success")
     end
 
-    respond_with @employee, :location => cms_employees_path
+    respond_with @employee, :location => [:cms, :employees]
   end
 
   def destroy
