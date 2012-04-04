@@ -30,14 +30,17 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def reference_project_caption
+    
     if address && address.link_url.present?
-      raw [
-            h.content_tag(:h3, real_estate.title),
-            h.content_tag(:h4, link_to(t('real_estates.reference_projects.link_title'), real_estate.address.link_url))
-        ].join
-    else
-      content_tag(:h3, real_estate.title)
+      link = real_estate.address.link_url
+    elsif channels.include?(RealEstate::WEBSITE_CHANNEL) && channels.include?(RealEstate::REFERENCE_PROJECT_CHANNEL)
+      link = h.real_estate_path(model)
     end
+
+    buffer = []
+    buffer << h.content_tag(:h3, real_estate.title)
+    buffer << h.content_tag(:h4, link_to(t('real_estates.reference_projects.link_title'), link)) if link.present?
+    buffer.join.html_safe
   end
 
   def quick_infos
