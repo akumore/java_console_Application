@@ -139,9 +139,24 @@
 
 .vision-slider
   position: relative
-  height: 535px
   margin-bottom: 20px
   margin-top: -385px
+
+  .flexslider
+    .slides
+      position: relative
+      z-index: 9
+
+  .vision-click-area
+    width: 70%
+    height: 100%
+    display: block
+    position: absolute
+    left: 50%
+    margin-left: -35%
+
+    &.disabled
+      cursor: none
 
   .image-caption
     background: transparent
@@ -196,15 +211,10 @@
       background: image-url('arrows/arch-tall-down-rollover.png') no-repeat left center
       color: $dark
 
-
-  .flexslider
-    position: relative
-    height: 100%
-
   .flex-direction-nav
     z-index: 20
     position: relative
-    top: -40%
+    margin-top: -25%
 
 .vision-slider-open
   .vision-slider
@@ -221,7 +231,9 @@
     +single-transition("margin-top")
 
 .vision-frame
-  position: absolute
-  left: 0
-  top: 0
+  position: relative
   z-index: 10
+  float: left
+
+  img
+    width: 100%
