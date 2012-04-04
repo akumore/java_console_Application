@@ -111,8 +111,8 @@ describe "Cms News Items Administration" do
       expect {
         click_button 'News erstellen'
       }.should_not change(NewsItem, :count)
-      save_and_open_page
-      page.should have_content "Das ist ken Bild!!!"
+
+      page.should have_content "Bild ist nicht gültig"
     end
 
     it 'adds documents to the news item' do
@@ -138,7 +138,8 @@ describe "Cms News Items Administration" do
       expect {
         click_button 'News erstellen'
       }.should_not change(NewsItem, :count)
-      page.should have_content "Das ist ken PDFFFFFFFF!!!"
+
+      page.should have_content "Dokument ist nicht gültig"
     end
 
   end
