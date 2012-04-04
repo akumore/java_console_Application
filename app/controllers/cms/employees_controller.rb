@@ -16,7 +16,7 @@ class Cms::EmployeesController < Cms::SecuredController
     @employee = Employee.new(params[:employee])
 
     if @employee.save
-      flash[:info] = t("cms.employees.create.success")
+      flash[:success] = t("cms.employees.create.success")
     end
 
     respond_with @employee, :location => [:cms, :employees]
@@ -31,7 +31,7 @@ class Cms::EmployeesController < Cms::SecuredController
     @employee = Employee.find(params[:id])
 
     if @employee.update_attributes(params[:employee])
-      flash[:info] = t("cms.employees.update.success")
+      flash[:success] = t("cms.employees.update.success")
     end
 
     respond_with @employee, :location => [:cms, :employees]
@@ -40,7 +40,7 @@ class Cms::EmployeesController < Cms::SecuredController
   def destroy
     @employee = Employee.find(params[:id])
     if @employee.destroy
-      flash[:info] = t("cms.employees.destroy.success")
+      flash[:success] = t("cms.employees.destroy.success")
     end
     redirect_to [:cms, :employees]
   end
