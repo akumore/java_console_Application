@@ -19,11 +19,15 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
       $("html").removeClass("vision-slider-open")
 
   initialize: ->
+    @visionClickArea = @el.find(".vision-click-area")
+
     $(".flexslider", @el).flexslider(
       directionNav: true,
       controlNav: false,
       slideshow: false,
-      animation: "slide"
+      animation: "slide",
+      start: @handleSlide,
+      after: @handleSlide
     )
 
   open: ->
@@ -46,3 +50,11 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
     else
       @open()
     false
+
+  handleSlide: (slider) =>
+    link = $("a.go", slider.slides.eq(slider.currentSlide))
+    
+    if link.length > 0
+      @visionClickArea.attr("href", link.attr("href")).removeClass("disabled")
+    else
+      @visionClickArea.attr("href", "#").addClass("disabled")

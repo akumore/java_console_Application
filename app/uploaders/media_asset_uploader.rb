@@ -27,7 +27,7 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
      "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   end
 
-  process :resize_to_fill=>[1000,560], :if=> :is_image?
+  process :resize_to_fill=>[1000,500], :if=> :is_image?
 
   version :thumb, :if => :is_image? do
     process :resize_to_fill => [145,88]
