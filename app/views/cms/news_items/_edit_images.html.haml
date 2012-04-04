@@ -10,6 +10,8 @@
           %th{ :width => '10%' } Löschen
       %tbody
         = f.fields_for :images do |image_form|
+          = render 'attachment_errors', :model => image_form.object
+
           %tr.draggable-row{:id=>"image-#{image_form.object.id}"}
             %td.drag-handle{ :width => '5%' }
               %i.icon-align-justify
