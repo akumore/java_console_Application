@@ -2,8 +2,7 @@
   .image.image-for-contact-form
     .image-caption
       .image-caption-text
-        %p
-          = t('.title_html')
+        %h3= t('.title')
         %p
           = t('.person_html')
         %p
@@ -11,6 +10,6 @@
       .clear
   .accordion.accordion-square
     .accordion-item
-      = link_to t('.title'), new_contact_path, :remote => true, :class => :title
+      = link_to t('.form_title'), new_contact_path, :remote => true, :class => :title
       .content
         #contact

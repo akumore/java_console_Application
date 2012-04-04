@@ -39,7 +39,7 @@ class RealEstateDecorator < ApplicationDecorator
 
     buffer = []
     buffer << h.content_tag(:h3, real_estate.title)
-    buffer << h.content_tag(:h4, link_to(t('real_estates.reference_projects.link_title'), link)) if link.present?
+    buffer << h.content_tag(:p, link_to(t('real_estates.reference_projects.link_title'), link)) if link.present?
     buffer.join.html_safe
   end
 
