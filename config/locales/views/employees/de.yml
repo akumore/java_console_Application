@@ -17,3 +17,4 @@ de:
       phone: 'T %{number}'
       fax: 'F %{number}'
       mobile: 'M %{number}'
+      email: 'E-Mail'

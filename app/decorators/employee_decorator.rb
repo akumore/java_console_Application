@@ -9,7 +9,7 @@ class EmployeeDecorator < ApplicationDecorator
     buffer << t('employees.contact.phone', :number => model.phone)
     buffer << t('employees.contact.mobile', :number => model.mobile) if model.mobile.present?
     buffer << t('employees.contact.fax', :number => model.fax) if model.fax.present?
-    buffer << link_to(model.email, "mailto:#{model.email}")
+    buffer << link_to(t('employees.contact.email'), "mailto:#{model.email}")
     buffer.join(tag('br')).html_safe
   end
 
