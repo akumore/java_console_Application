@@ -1,0 +1,12 @@
+de:
+  handouts:
+    overview:
+      title: 'Objektübersicht'
+      property: 'Liegenschaft'
+      address: 'Adresse'
+      floor: 'Geschoss'
+      lower_floor: '%{floor}. Untergeschoss'
+      ground_floor: 'Erdgeschoss'
+      upper_floor: '%{floor}. Obergeschoss'
+      rooms: 'Anzahl Zimmer'
+      usable_surface: 'Bruttonutzfläche'

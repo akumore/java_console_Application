@@ -1,0 +1,41 @@
+.chapter
+  %h2= t('.title')
+  %ul
+    %li.group
+      .label= t('.property')
+      .content 
+        = [@real_estate.property_name.presence, @real_estate.category.label.presence, @real_estate.try(:reference).try(:unit_key).presence].compact.join ', '
+
+    - if @real_estate.address.present?
+      
+      %li.group
+        .label= t('.address')
+        .content
+          = @real_estate.address.street.presence
+          = @real_estate.address.street_number.presence
+          ,
+          = @real_estate.address.zip.presence
+          = @real_estate.address.city.presence
+
+    - if @real_estate.figure.present?
+
+      - if floor = @real_estate.figure.try(:floor).presence
+        %li.group
+          .label= t('.floor')
+          .content
+            - if floor < 0
+              = t('.lower_floor', :floor => floor)
+            - elsif floor == 0
+              = t('.ground_floor')
+            - else
+              = t('.upper_floor', :floor => floor)
+
+      - if rooms = @real_estate.figure.try(:rooms).presence   
+        %li.group
+          .label= t('.rooms')
+          .content= rooms
+
+      - if usable_surface = @real_estate.figure.try(:usable_surface).presence
+        %li.group
+          .label= t('.usable_surface')
+          .content= usable_surface
