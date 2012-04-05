@@ -26,13 +26,13 @@
     %h5 St. Martin
     %dl
       %dt In Kamerun ermöglichen wir den Menschen Zugang zu sauberem Trinkwasser.
-      %dd=link_to t(".get_more"), t('company_url') + '#StMartin'
+      %dd=link_to t(".get_more"), t('company_url')
 
   %div
     %h5 Allmig
     %dl
       %dt Die Kompostier- und Biostromanlage in der Region Zug
-      %dd=link_to t(".get_more"), t('company_url') + '#Allmig'
+      %dd=link_to t(".get_more"), t('company_url')
 
 .footer-contact
   %div
@@ -40,7 +40,7 @@
     %dl
       %dd= t('.contact.address_html')
       %dd= t('.contact.phone_html')
-      %dd= link_to t('.contact.directions'), '#'
+      %dd= link_to t('.contact.directions'), contact_path(:anchor=>'Baar')
 
   .memberships
     %h5= t '.memberships'
