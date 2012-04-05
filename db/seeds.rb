@@ -572,6 +572,7 @@ module InitialPages
       )
     end
 
+
     #Seed more CompanyPages above this line
     I18n.available_locales.each do |locale|
       #Trying to create an empty Company Page for each locale, uniqueness validation rejects us not to overwrite existing pages
