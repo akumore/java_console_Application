@@ -99,6 +99,22 @@ describe "Cms News Items Administration" do
       NewsItem.where(:title => 'Hello').first.images.count.should == 1
     end
 
+
+    it "doesn't add image because uploaded no image" do
+      visit new_cms_news_item_path
+
+      fill_in 'news_item_title', :with => 'Hello'
+      fill_in 'news_item_teaser', :with => 'Visit me at the page footer'
+      fill_in 'news_item_content', :with => 'Hello World'
+      attach_file 'news_item_images_attributes_0_file', "#{Rails.root}/spec/support/test_files/document.pdf"
+
+      expect {
+        click_button 'News erstellen'
+      }.should_not change(NewsItem, :count)
+
+      page.should have_content "Bild ist nicht gültig"
+    end
+
     it 'adds documents to the news item' do
       visit new_cms_news_item_path
 
@@ -110,6 +126,22 @@ describe "Cms News Items Administration" do
       click_button 'News erstellen'
       NewsItem.where(:title => 'Hello').first.documents.count.should == 1
     end
+
+    it "doesn't add document because uploaded non of the supported types" do
+      visit new_cms_news_item_path
+
+      fill_in 'news_item_title', :with => 'Hello'
+      fill_in 'news_item_teaser', :with => 'Visit me at the page footer'
+      fill_in 'news_item_content', :with => 'Hello World'
+      attach_file 'news_item_documents_attributes_0_file', "#{Rails.root}/spec/support/test_files/image.jpg"
+
+      expect {
+        click_button 'News erstellen'
+      }.should_not change(NewsItem, :count)
+
+      page.should have_content "Dokument ist nicht gültig"
+    end
+
   end
 
   describe "#edit" do

@@ -38,7 +38,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     primary.item :contact, t('navigation.meta.contact'), t('contact_url')
-    primary.item :cms, 'CMS Login', new_user_session_path
+    primary.item :cms, 'CMS Login', new_user_session_path, :unless => lambda { Rails.env.production? }
 
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu

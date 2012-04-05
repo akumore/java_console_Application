@@ -1,0 +1,7 @@
+de:
+  mongoid:
+    models:
+      news_item_document: News Dokument
+    attributes:
+      news_item_document:
+        file: Datei

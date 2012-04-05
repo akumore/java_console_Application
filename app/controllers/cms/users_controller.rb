@@ -19,11 +19,9 @@ class Cms::UsersController < Cms::SecuredController
     @user = Cms::User.new(params[:cms_user])
     authorize! :create, @user
     if @user.save
-      flash[:success] = "Der Benutzer #{@user.email} wurde erfolgreich gespeichert"
-      redirect_to cms_users_path
-    else
-      render 'new'
+      flash[:success] = t("cms.users.create.success", :email=>@user.email)
     end
+    respond_with @user, :location => [:cms, :users]
   end
 
   def edit
@@ -47,17 +45,17 @@ class Cms::UsersController < Cms::SecuredController
     end
 
     if @user.update_attributes(params[:cms_user])
-      flash[:success] = "Der Benutzer #{@user.email} wurde erfolgreich gespeichert"
-      redirect_to cms_users_path
-    else
-      render 'edit'
+      flash[:success] = t("cms.users.update.success", :email=>@user.email)
     end
+    respond_with @user, :location => [:cms, :users]
   end
 
   def destroy
-    user = Cms::User.find(params[:id])
-    authorize! :destroy, user
-    user.destroy
-    redirect_to cms_users_path
+    @user = Cms::User.find(params[:id])
+    authorize! :destroy, @user
+    if @user.destroy
+      flash[:success] = t("cms.users.destroy.success", :email=>@user.email)
+    end
+    redirect_to [:cms, :users]
   end
 end

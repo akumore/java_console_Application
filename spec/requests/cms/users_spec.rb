@@ -147,6 +147,20 @@ describe "Cms::Users" do
 
       end
     end
+
+    it "destroys the cms user" do
+      other_user = Fabricate :cms_admin
+      visit cms_users_path
+
+      within "#user-#{other_user.id}" do
+        expect {
+          click_link 'Löschen'
+        }.should change(Cms::User, :count).by(-1)
+      end
+      current_path.should == cms_users_path
+      page.should have_content "Der Benutzer #{other_user.email} wurde erfolgreich gelöscht"
+    end
+
   end
 
   context 'as an editor' do
@@ -194,5 +208,13 @@ describe "Cms::Users" do
         find('#flash').should have_content 'Sie haben keine Berechtigungen für diese Aktion'
       end
     end
+
+    it "has no link for destroying an cms user" do
+      visit cms_users_path
+      within "#user-#{@cms_user.id}" do
+        page.should_not have_link "Löschen"
+      end
+    end
+
   end
 end

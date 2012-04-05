@@ -10,14 +10,17 @@
           %th{ :width => '10%' } Löschen
       %tbody
         = f.fields_for :images do |image_form|
-          %tr.draggable-row{:id=>"image-#{image_form.object.id}"}
-            %td.drag-handle{ :width => '5%' }
-              %i.icon-align-justify
-              = image_form.hidden_field :position
-            %td{ 'width' => '85%' }
-              = image_tag image_form.object.file.thumb.url
-            %td{ :width => '10%' }
-              = image_form.check_box :_destroy
+          = render 'attachment_errors', :model => image_form.object
+
+          - unless image_form.object.errors.any?
+            %tr.draggable-row{:id=>"image-#{image_form.object.id}"}
+              %td.drag-handle{ :width => '5%' }
+                %i.icon-align-justify
+                = image_form.hidden_field :position
+              %td{ 'width' => '85%' }
+                = image_tag image_form.object.file.thumb.url
+              %td{ :width => '10%' }
+                = image_form.check_box :_destroy
 
       %tbody
         %tr

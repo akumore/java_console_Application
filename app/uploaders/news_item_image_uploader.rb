@@ -14,7 +14,7 @@ class NewsItemImageUploader < BaseUploader
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    %w(jpg jpeg png)
+    ExtensionWhiteList.new %w(jpg jpeg png)
   end
 
 end
