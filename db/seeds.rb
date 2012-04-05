@@ -558,8 +558,21 @@ module InitialPages
           ].join("\n\n"),
           :more_text => ''
       )
+      jobs_page.bricks << Brick::Text.new(
+          :text => [
+              %(<div>\n<a name="StMartin"></a>\n</div>),
+              '## St. Martin',
+              'Mit unserem Trinkwasserprojekt «Wasser ist Leben» in Kamerun ermöglichen wir den Menschen in den ländlichen Gegenden im Süden des Landes Zugang zu sauberem Trinkwasser. Dank der Stiftung St. Martin, den Eigenleistungen der einheimischen Bevölkerung und zahlreichen Spendern konnten bis heute über 1300 Brunnen erstellt werden.'
+          ].join("\n\n")
+      )
+      jobs_page.bricks << Brick::Text.new(
+          :text => [
+              %(<div>\n<a name="Allmig"></a>\n</div>),
+              '## Allmig',
+              'Die Kompostier- und Biostromanlage «Allmig» ist ein in der Region Zug verankerter Betrieb. Hier werden pro Jahr 25000 Tonnen Grüngut aus den umliegenden Gemeinden verwertet und zu qualitativ ausgezeichneten Erdsubstraten und Kompost für Privat und Landwirtschaft verarbeitet. Zusätzlich können jährlich zirka 3,5 Millionen Kilowattstunden Biostrom gewonnen werden.'
+          ].join("\n\n")
+      )
     end
-
 
     #Seed more CompanyPages above this line
     I18n.available_locales.each do |locale|
