@@ -51,7 +51,6 @@ describe "Cms News Items Administration" do
       visit new_cms_news_item_path
 
       fill_in 'news_item_title', :with => 'Invasion vom Mars'
-      fill_in 'news_item_teaser', :with => 'Visit me at the page footer'
       fill_in 'news_item_content', :with => 'Das ist ja kaum zu glauben!'
 
       expect { click_button 'News erstellen' }.should change(NewsItem, :count).by(1)
@@ -71,7 +70,6 @@ describe "Cms News Items Administration" do
 
       within ".alert" do
         page.should have_content 'Titel muss ausgefüllt werden'
-        page.should have_content 'Inhalt für Footer muss ausgefüllt werden'
         page.should have_content 'Inhalt muss ausgefüllt werden'
       end
     end
@@ -80,7 +78,6 @@ describe "Cms News Items Administration" do
       visit new_cms_news_item_path :content_locale => 'it'
 
       fill_in 'news_item_title', :with => 'it: Invasion vom Mars'
-      fill_in 'news_item_teaser', :with => 'it: Visit me at the page footer'
       fill_in 'news_item_content', :with => 'it: Das ist ja kaum zu glauben!'
 
       expect { click_button 'News erstellen' }.should change(NewsItem, :count).by(1)
@@ -91,7 +88,6 @@ describe "Cms News Items Administration" do
       visit new_cms_news_item_path
 
       fill_in 'news_item_title', :with => 'Hello'
-      fill_in 'news_item_teaser', :with => 'Visit me at the page footer'
       fill_in 'news_item_content', :with => 'Hello World'
       attach_file 'news_item_images_attributes_0_file', "#{Rails.root}/spec/support/test_files/image.jpg"
 
@@ -104,7 +100,6 @@ describe "Cms News Items Administration" do
       visit new_cms_news_item_path
 
       fill_in 'news_item_title', :with => 'Hello'
-      fill_in 'news_item_teaser', :with => 'Visit me at the page footer'
       fill_in 'news_item_content', :with => 'Hello World'
       attach_file 'news_item_images_attributes_0_file', "#{Rails.root}/spec/support/test_files/document.pdf"
 
@@ -119,7 +114,6 @@ describe "Cms News Items Administration" do
       visit new_cms_news_item_path
 
       fill_in 'news_item_title', :with => 'Hello'
-      fill_in 'news_item_teaser', :with => 'Visit me at the page footer'
       fill_in 'news_item_content', :with => 'Hello World'
       attach_file 'news_item_documents_attributes_0_file', "#{Rails.root}/spec/support/test_files/document.pdf"
 
@@ -131,7 +125,6 @@ describe "Cms News Items Administration" do
       visit new_cms_news_item_path
 
       fill_in 'news_item_title', :with => 'Hello'
-      fill_in 'news_item_teaser', :with => 'Visit me at the page footer'
       fill_in 'news_item_content', :with => 'Hello World'
       attach_file 'news_item_documents_attributes_0_file', "#{Rails.root}/spec/support/test_files/image.jpg"
 
@@ -150,7 +143,7 @@ describe "Cms News Items Administration" do
       @content_for_update = Fabricate.attributes_for :news_item
     end
 
-    [:title, :teaser, :content].each do |attr|
+    [:title, :content].each do |attr|
       it "updates the news item #{attr}" do
         visit edit_cms_news_item_path(@news_item)
         fill_in "news_item_#{attr}", :with => @content_for_update[attr]

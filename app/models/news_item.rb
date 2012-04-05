@@ -12,10 +12,9 @@ class NewsItem
   PER_PAGE = 6
 
   field :title, :type => String
-  field :teaser, :type => String
   field :content, :type => String
   field :date, :type => Date
   field :locale, :type => String, :default => 'de'
 
-  validates :title, :teaser, :content, :date, :presence => true
+  validates :title, :content, :date, :presence => true
 end
