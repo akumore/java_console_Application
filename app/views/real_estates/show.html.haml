@@ -11,6 +11,18 @@
 = render 'search_filter'
 
 .detail
+  .short-info
+    %h1= @real_estate.title
+    .info
+      = @real_estate.short_info_address
+    .info
+      = @real_estate.short_info_price
+    .info
+      = @real_estate.short_info_figure
+    .info
+      = @real_estate.short_info_size
+    .clear
+
   .gallery
     .container
       .map-slider
@@ -35,19 +47,7 @@
             - if @real_estate.contact.present?
               %li
                 = render :template=>'appointments/new'
-
   .description
-    %h1= @real_estate.title
-
-    .short-infos
-      .info
-        = @real_estate.full_address
-      .info
-        = @real_estate.quick_infos
-      .info
-        = @real_estate.quick_price_infos
-      .clear
-
     = @real_estate.description
 
     .accordion.accordion-classical

@@ -17,11 +17,12 @@ describe RealEstateDecorator do
     end
 
     [
-      :full_address,
-      :quick_infos,
+      :short_info_address,
+      :short_info_price,
+      :short_info_figure,
+      :short_info_size,
       :additional_description,
       :mini_doku_link,
-      :quick_price_infos,
       :information_shared,
       :information_basic,
       :price_info_basic,
