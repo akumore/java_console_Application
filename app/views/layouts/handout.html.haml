@@ -1,6 +1,7 @@
 %html
   %head
-    = stylesheet_link_tag 'handout'
+    %meta{ :charset => 'utf-8' }
+    = stylesheet_link_tag 'handout', :media => :all
   %body
     #minidoku
       = yield

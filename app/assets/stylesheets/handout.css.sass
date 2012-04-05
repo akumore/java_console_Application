@@ -1,6 +1,67 @@
+@import compass/reset
+@import compass/utilities
+@import partials/base
+
+$title-font: 'Rockwell Std'
+$text-font: 'Gotham'
+
 .pb_before
   page-break-before: always !important
 .pb_after
   page-break-after: always !important
 .pbi_avoid
   page-break-inside: avoid !important
+
+body
+  font-family: $text-font
+
+h2
+  font-family: $title-font
+  font-size: 24px
+  color: $dark
+  margin: 1em 0
+
+#title-page-header
+  position: relative
+  height: 560px
+
+  .frame-overlay, .primary-image
+    position: absolute
+    left: 0
+    top: 0
+
+  .frame-overlay
+    z-index: 2
+
+  .primary-image
+    z-index: 1
+
+  .primary-title
+    position: absolute
+    left: 60px
+    top: 400px
+    z-index: 3
+    font-size: 40px
+    color: $dark
+    font-family: $title-font
+
+    span
+      font-family: 'Gotham'
+      font-size: 13px
+      display: block
+      margin-top: 3px
+
+.chapter
+  margin: 60px
+
+  .group
+    +clearfix
+    margin: 1em 0
+
+    .label
+      font-weight: bold
+      font-family: $title-font
+      float: left
+
+    .content
+      margin-left: 190px
