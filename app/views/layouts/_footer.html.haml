@@ -26,13 +26,13 @@
     %h5 St. Martin
     %dl
       %dt In Kamerun ermöglichen wir den Menschen Zugang zu sauberem Trinkwasser.
-      %dd=link_to t(".get_more"), t('company_url')+'#StMartin'
+      %dd=link_to t(".get_more"), t('company_url'), :anchor=>'StMartin'
 
   %div
     %h5 Allmig
     %dl
       %dt Die Kompostier- und Biostromanlage in der Region Zug
-      %dd=link_to t(".get_more"), t('company_url')+'#Allmig'
+      %dd=link_to t(".get_more"), t('company_url'), :anchor=>'Allmig'
 
 .footer-contact
   %div
@@ -46,7 +46,7 @@
     %h5= t '.memberships'
     %dl
       %dt Verband Schweizerischer Generalunternehmer VSGU
-      %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch"
+      %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", :target=>:blank
       %dt Schweizerischer Verband der Immobilienwirtschaft SVIT
       %dd= link_to "www.svit.ch", "http://www.svit.ch"
       %dt Schweizerischer Ingenieur- und Architektenverein SIA
