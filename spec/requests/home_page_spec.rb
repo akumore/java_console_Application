@@ -48,7 +48,7 @@ describe "Homepage" do
       it "shows the primary image of the appropriate real estate" do
         visit root_path
         within(".rent-slide") do
-          page.should have_css("img[src='#{@image.file.url}']")
+          page.should have_css("img[src='#{@image.file.gallery.url}']")
         end
       end
 
@@ -84,7 +84,7 @@ describe "Homepage" do
       it "shows the primary image of the appropriate real estate" do
         visit root_path
         within(".sale-slide") do
-          page.should have_css("img[src='#{@image.file.url}']")
+          page.should have_css("img[src='#{@image.file.gallery.url}']")
         end
       end
 
