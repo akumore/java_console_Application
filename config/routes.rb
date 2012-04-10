@@ -32,11 +32,12 @@ AlfredMueller::Application.routes.draw do
   scope ':locale' do
     resources :real_estates, :only => [:index, :show] do
       resources :appointments, :only => [:new, :create]
+      resource :handout, :only => :show
     end
     resource :job_application, :only => [:new, :create]
     resource :contact, :only => [:new, :create]
     resources :news_items, :only => :index
-    resources :handouts, :only => :show
+
   end
 
   scope ':locale' do
