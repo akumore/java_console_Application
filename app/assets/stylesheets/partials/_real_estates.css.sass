@@ -87,22 +87,24 @@ td
   padding: 20px
 
   label
+    +float-left
     margin-right: 15px
+    margin-top: 10px
 
   select
-    margin-right: 20px
     width: 200px
 
   input[type=submit]
     +form-submit
 
-  .chzn-container-multi 
+  .chzn-container-multi
     .chzn-choices
+      margin-top: 5px
       background-color: #e6e6e2
       @extend .arrow-dropdown
 
   .chzn-container
-    vertical-align: middle
+    +float-left
     margin-right: 20px
 
 .offer-tabs
@@ -134,3 +136,4 @@ td
   top: 25px
   position: absolute
   +hide-text
+
