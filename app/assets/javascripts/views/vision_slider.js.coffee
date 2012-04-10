@@ -23,7 +23,9 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
 
   initialize: ->
     @visionClickArea = @el.find(".vision-click-area")
+    @initSlider()
 
+  initSlider: ->
     $(".flexslider", @el).flexslider(
       directionNav: true,
       controlNav: false,
@@ -35,6 +37,7 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
 
   open: ->
     @animate("open")
+    @initSlider()
     $("html").addClass("vision-slider-open")
     AlfredMueller.Views.VisionSlider.setState("open")
 

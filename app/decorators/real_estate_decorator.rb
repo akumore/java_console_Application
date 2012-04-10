@@ -1,6 +1,6 @@
 class RealEstateDecorator < ApplicationDecorator
   include Draper::LazyHelpers
-  
+
   decorates :real_estate
   decorates_association :contact
 
@@ -72,7 +72,7 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def reference_project_caption
-    
+
     if address && address.link_url.present?
       link = real_estate.address.link_url
     elsif channels.include?(RealEstate::WEBSITE_CHANNEL) && channels.include?(RealEstate::REFERENCE_PROJECT_CHANNEL)
@@ -81,7 +81,7 @@ class RealEstateDecorator < ApplicationDecorator
 
     buffer = []
     buffer << h.content_tag(:h3, real_estate.title)
-    buffer << h.content_tag(:p, link_to(t('real_estates.reference_projects.link_title'), link)) if link.present?
+    buffer << h.content_tag(:div, link_to(t('real_estates.reference_projects.link_title'), link)) if link.present?
     buffer.join.html_safe
   end
 
