@@ -42,7 +42,7 @@
                     = number_to_currency real_estate.pricing.try(:for_rent_netto), :locale=>'de-CH'
 
     - if @real_estates.any?
-      .map
+      .map.search-results-map
         Map goes here
 
   - unless @reference_projects.empty?
