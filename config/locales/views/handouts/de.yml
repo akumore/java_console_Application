@@ -10,3 +10,18 @@ de:
       upper_floor: '%{floor}. Obergeschoss'
       rooms: 'Anzahl Zimmer'
       usable_surface: 'Bruttonutzfläche'
+    pricing:
+      title: Preise
+      for_rent_netto: Mietzins
+      vat_for_rent_netto: Mwst Mietzins
+      for_rent_extra: Nebenkosten
+      vat_for_rent_extra: Mwst Nebenkosten
+      price_unit:
+        month: monatlich
+        year: jährlich
+        week: wöchentlich
+        once: einmalig
+      inside_parking: Parkplatz in Autoeinstellhalle
+      inside_parking_temporary: Parkplatz in Autoeinstellhalle temporär
+      outside_parking: Parkplatz nicht überdacht
+      outside_parking_temporary: Parkplatz nicht überdacht temporär

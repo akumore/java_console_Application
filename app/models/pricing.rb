@@ -3,6 +3,7 @@ class Pricing
   include Mongoid::Timestamps
 
   PRICE_UNITS = %w(month year week once)
+  TAX = 8
 
   embedded_in :real_estate
 
@@ -25,4 +26,13 @@ class Pricing
   validates :price_unit, :presence => true, :if => :for_rent?
 
   delegate :for_sale?, :for_rent?, :to => :_parent
+
+  def vat_for_rent_netto
+    ValueAddedTax.new(for_rent_netto, TAX).vat
+  end
+
+  def vat_for_rent_extra
+    ValueAddedTax.new(for_rent_extra, TAX).vat
+  end
+
 end
