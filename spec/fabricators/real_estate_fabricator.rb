@@ -15,3 +15,19 @@ end
 Fabricator(:published_real_estate, :from => :real_estate) do
   state RealEstate::STATE_PUBLISHED
 end
+
+Fabricator(:residential_building, :from => :real_estate) do
+  category { Fabricate(:apartment_category) }
+  offer RealEstate::OFFER_FOR_RENT
+  utilization RealEstate::UTILIZATION_PRIVATE
+  state RealEstate::STATE_PUBLISHED
+  channels [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
+end
+
+Fabricator(:commercial_building, :from => :real_estate) do
+  category { Fabricate(:house_category) }
+  offer RealEstate::OFFER_FOR_RENT
+  utilization RealEstate::UTILIZATION_COMMERICAL
+  state RealEstate::STATE_PUBLISHED
+  channels [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
+end
