@@ -18,7 +18,8 @@ class RealEstate
   REFERENCE_PROJECT_CHANNEL = 'reference_projects'
   WEBSITE_CHANNEL = 'website'
   HOMEGATE_CHANNEL = 'homegate'
-  CHANNELS = %W(#{WEBSITE_CHANNEL} #{HOMEGATE_CHANNEL} print #{REFERENCE_PROJECT_CHANNEL})
+  PRINT_CHANNEL = 'print'
+  CHANNELS = %W(#{WEBSITE_CHANNEL} #{HOMEGATE_CHANNEL} #{PRINT_CHANNEL} #{REFERENCE_PROJECT_CHANNEL})
 
   belongs_to :category
   belongs_to :contact, :class_name => 'Employee'
