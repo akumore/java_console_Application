@@ -234,3 +234,67 @@
 
   img
     width: 100%
+
+// Styles for tab slider placeholder
+.tab-slider
+  margin: 0 0 50px 0
+  +float_left
+  ul
+    +horizontal-list
+    overflow: hidden
+  
+  .first-level, .second-level
+    li
+      padding: 0
+      margin: 0px 10px 0px 0px
+    a
+      display: block
+
+  .first-level
+    margin-bottom: -2px
+    a
+      padding: 10px 20px
+      background-color: $search-background-color
+      border:
+        top: 1px solid $search-filter-border-dark
+        right: 1px solid $search-filter-border-dark
+        left: 1px solid $search-filter-border-dark
+      &:hover
+        background-color: #BABA98
+        position: relative
+        z-index: 2
+
+    .current
+      a
+        background-color: #BABA98
+        position: relative
+        z-index: 2
+  
+  .second-level
+    border-top: 1px solid $search-filter-border-dark
+    background-color: #BABA98
+    position: relative
+    z-index: 2
+    .current
+      a
+        text-decoration: underline
+    a
+      padding: 17px 20px
+      &:hover
+        text-decoration: underline
+
+  .tab-slider-content
+    +float_left
+    height: 400px
+    width: 939px
+    border-left: 1px solid $search-filter-border-dark
+    position: relative
+    z-index: 1
+  
+  .tab-slider-description
+    width: 270px
+    position: absolute
+    left: 535px
+    top: 65px
+    h1
+      margin-left: 0px
