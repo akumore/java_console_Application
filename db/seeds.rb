@@ -627,7 +627,6 @@ module InitialPages
         :locale => :de,
         :date => Date.parse('2012-05-14'),
         :title => %(Messe ImmoMarkt der Zuger Kantonalbank),
-        :teaser => %(Besuchen Sie unseren Stand am ImmoMarkt 2012 der Zuger Kantonalbank.),
         :content => [
             %(Besuchen Sie unseren Stand Nr. 1-3 am ImmoMarkt 2012 der Zuger Kantonalbank in der Waldmannhalle in Baar.),
             %(Öffnungszeiten),
@@ -643,7 +642,6 @@ module InitialPages
         :locale => :de,
         :date => Date.parse('2012-05-21'),
         :title => %(Vermarktungsstart «Gartenstadt» Schlieren, Mietwohnungen),
-        :teaser => %(Weitere Details zu unseren 2½ bis 4½-Zimmer-Wohnungen sowie Ateliers finden Sie unter [www.gartenstadt-schlieren.ch](http://www.gartenstadt-schlieren.ch)),
         :content => %(Weitere Details zu unseren 2½ bis 4½-Zimmer-Wohnungen sowie Ateliers finden Sie unter [www.gartenstadt-schlieren.ch](http://www.gartenstadt-schlieren.ch)),
         :images => [
             NewsItemImage.new(:file =>
@@ -658,7 +656,6 @@ module InitialPages
         :locale => :de,
         :date => Date.parse('2012-06-04'),
         :title => %(Vermarktungsstart «Feldpark» Zug, Eigentumswohnungen),
-        :teaser => %(In der 3. Etappe verkaufen wir 20 Eigentumswohnungen mit 4½ und 5½ Zimmern.),
         :content => %(In der 3. Etappe verkaufen wir 20 Eigentumswohnungen mit 4½ und 5½ Zimmern.),
         :images => [
             NewsItemImage.new(:file =>
