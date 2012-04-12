@@ -4,27 +4,6 @@ require "spec_helper"
 describe "Handout aka MiniDoku" do
   monkey_patch_default_url_options
 
-  it "is available for real estates having print channel enabled" do
-    pending
-    #not_for_print = Fabricate :residential_building, :channels => [RealEstate::WEBSITE_CHANNEL]
-    #expect {
-    #  visit real_estate_handout_path(not_for_print)
-    #}.should raise_exception(Mongoid::Errors::DocumentNotFound)
-
-    #for_print = Fabricate :residential_building, :channels => [RealEstate::PRINT_CHANNEL]
-    #expect {
-    #  visit real_estate_handout_path(for_print)
-    #}.should_not raise_exception
-  end
-
-  it "is available for real estates 'for rent' only" do
-    pending
-    #real_estate = Fabricate :real_estate, :offer => RealEstate::OFFER_FOR_SALE, :category => Fabricate(:category)
-    #expect {
-    #  visit real_estate_handout_path(real_estate)
-    #}.should raise_exception(HandoutsController::NoHandoutAvailable)
-  end
-
   describe "Chapter Pricing" do
 
     shared_examples_for "Pricing information shown for all kind of real estates" do
