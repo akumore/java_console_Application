@@ -1,0 +1,46 @@
+.chapter.pricing
+  %h2= t('.title')
+
+  %dl
+    %dt= t '.for_rent_netto'
+    %dd
+      = number_to_currency pricing.for_rent_netto, :locale=>'de-CH'
+      = I18n.t "handouts.pricing.price_unit.#{pricing.price_unit}"
+
+    - if real_estate.commercial_utilization? && pricing.opted?
+      %dt= t '.vat_for_rent_netto'
+      %dd= number_to_currency pricing.vat_for_rent_netto, :locale=>'de-CH'
+
+    %dt= t '.for_rent_extra'
+    %dd
+      = number_to_currency pricing.for_rent_extra, :locale=>'de-CH'
+      = I18n.t "handouts.pricing.price_unit.#{pricing.price_unit}"
+
+    - if real_estate.commercial_utilization? && pricing.opted?
+      %dt= t '.vat_for_rent_extra'
+      %dd= number_to_currency pricing.vat_for_rent_extra, :locale=>'de-CH'
+
+    - if pricing.inside_parking.present?
+      %dt= t '.inside_parking'
+      %dd
+        = number_to_currency pricing.inside_parking, :locale=>'de-CH'
+        = I18n.t "handouts.pricing.price_unit.#{pricing.price_unit}"
+
+    - if pricing.inside_parking_temporary.present?
+      %dt= t '.inside_parking_temporary'
+      %dd
+        = number_to_currency pricing.inside_parking_temporary, :locale=>'de-CH'
+        = I18n.t "handouts.pricing.price_unit.#{pricing.price_unit}"
+
+    - if pricing.outside_parking.present?
+      %dt= t '.outside_parking'
+      %dd
+        = number_to_currency pricing.outside_parking, :locale=>'de-CH'
+        = I18n.t "handouts.pricing.price_unit.#{pricing.price_unit}"
+
+    - if pricing.outside_parking_temporary.present?
+      %dt= t '.outside_parking_temporary'
+      %dd
+        = number_to_currency pricing.outside_parking_temporary, :locale=>'de-CH'
+        = I18n.t "handouts.pricing.price_unit.#{pricing.price_unit}"
+
