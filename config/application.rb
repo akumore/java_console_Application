@@ -21,9 +21,7 @@ module AlfredMueller
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    if Rails.env.development?
-      config.threadsafe! # so pdfkit responds when using webrick
-    end
+    config.threadsafe! # so pdfkit responds when using webrick
     config.middleware.use "PDFKit::Middleware"
 
 
