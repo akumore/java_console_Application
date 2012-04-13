@@ -10,7 +10,27 @@
 
 = render 'search_filter'
 
+.result-nav
+  %ul
+    %li= link_to t('.prev'), real_estate_path(@prev_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-left image-link'
+    %li= link_to t('.overview'), real_estates_path(@search_filter.to_h)
+    %li= link_to t('.next'), real_estate_path(@next_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-right image-link'
+
 .detail
+  .main-title
+    %h1= @real_estate.title
+  .clear
+  .short-info
+    .info.first
+      = @real_estate.short_info_address
+    .info
+      = @real_estate.short_info_price
+    .info
+      = @real_estate.short_info_figure
+    .info
+      = @real_estate.short_info_size
+    .clear
+
   .gallery
     .container
       .map-slider
@@ -23,7 +43,7 @@
             - @real_estate.media_assets.displayable.each do |asset|
               %li{ 'data-is_floorplan' => asset.is_floorplan.to_s }
                 - if asset.image?
-                  = image_tag asset.file.url
+                  = image_tag asset.file.gallery.url
                   .flex-caption
                     %span= asset.title
                 - if asset.is_floorplan?
@@ -35,22 +55,12 @@
             - if @real_estate.contact.present?
               %li
                 = render :template=>'appointments/new'
-
   .description
-    %h1= @real_estate.title
-
-    .short-infos
-      .info
-        = @real_estate.full_address
-      .info
-        = @real_estate.quick_infos
-      .info
-        = @real_estate.quick_price_infos
-      .clear
-
-    = @real_estate.description
-
-    .accordion.accordion-classical
+    .accordion.accordion-classical{ 'data-open_first' => 1 }
+      .accordion-item
+        .title= t('.real_estate_description')
+        .content
+          = @real_estate.description
       .accordion-item
         .title= t('.real_estate_infos')
         .content
@@ -70,7 +80,7 @@
             %ul
               - @real_estate.price_info_parking.each do |line|
                 %li= line
-                
+
       - unless @real_estate.facts_and_figures
         .accordion-item
           .title= t('.facts_and_figures')
@@ -94,19 +104,16 @@
         .accordion-item
           .title= t('.contact_person')
           .content
-            = image_tag @real_estate.contact.image
-            .image-caption
-              .image-caption-text
-                = @real_estate.contact.contact_info
-              .clear
+            %p
+              = image_tag @real_estate.contact.image
+              .image-caption
+                .image-caption-text
+                  = @real_estate.contact.contact_info
+                .clear
 
   .sidebar
-    .nav
-      %ul
-        %li= link_to t('.prev'), real_estate_path(@prev_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-left image-link'
-        %li= link_to t('.overview'), real_estates_path(@search_filter.to_h), :class => 'classic'
-        %li= link_to t('.next'), real_estate_path(@next_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-right image-link'
-
     %ul
       %li= @real_estate.mini_doku_link
       %li= @real_estate.floorplan_link
+
+  .clear

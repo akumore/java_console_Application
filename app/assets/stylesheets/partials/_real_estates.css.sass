@@ -10,6 +10,8 @@
 
 .map
   +column(5, 10)
+
+.search-results-map
   height: 500px
 
 table
@@ -34,18 +36,30 @@ td
 .detail
   background: $search-background-color
   padding-bottom: 2em
-  +clearfix
+  +row
 
 .gallery
-  +column(10, 10)
-  margin-bottom: 1em
+  +column(10)
+  margin-bottom: 2em
 
   img
     width: 100%
 
-.short-infos
+.main-title
+  +column(9)
+  +push(1)
+
+  h1
+    @extend .title-font-bold
+
+.short-info
+  +row
+
+  .info.first
+    +push(1)
+
   .info
-    +column(2, 6)
+    +column(2, 9)
     @extend .text-font-bold
     margin:
       bottom: 1.5em
@@ -54,25 +68,28 @@ td
   +column(6, 10)
   +push(1)
 
-  h1
-    @extend .title-font-bold
-
 .sidebar
   +column(3, 10)
   @extend .text-font-bold
 
   ul
     @extend .icon-list
+    margin-left: 2em
 
-  .nav
-    margin:
-      top: 1.5em
-      bottom: 1.5em
+.result-nav
+  +float_right
+  border: 1px solid $search-filter-border-dark
+  border-bottom: 0px solid transparent
+  padding: 0.75em 0.75em 0.5em 0.75em
+  margin-right: 1em
+  position: relative
+  top: -38px
+  background: $search-background-color
+  display: none
 
-    ul
-      +horizontal-list(0.25em)
-      +no-bullets
-      margin-left: 30px
+  ul
+    +horizontal-list(0.5em)
+    +no-bullets
 
 .search-filter-container
   position: relative
@@ -88,22 +105,24 @@ td
   padding: 20px
 
   label
+    +float-left
     margin-right: 15px
+    margin-top: 10px
 
   select
-    margin-right: 20px
     width: 200px
 
   input[type=submit]
     +form-submit
 
-  .chzn-container-multi 
+  .chzn-container-multi
     .chzn-choices
+      margin-top: 5px
       background-color: #e6e6e2
       @extend .arrow-dropdown
 
   .chzn-container
-    vertical-align: middle
+    +float-left
     margin-right: 20px
 
 .offer-tabs
@@ -135,3 +154,4 @@ td
   top: 25px
   position: absolute
   +hide-text
+

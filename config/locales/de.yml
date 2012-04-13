@@ -73,3 +73,7 @@ de:
   jobs_url: '/de/jobs'
   company_url: '/de/company'
   contact_url: '/de/contact'
+#  errors:
+#    messages:
+#      extension_white_list_error: "muss ein %{allowed_types} sein"
+

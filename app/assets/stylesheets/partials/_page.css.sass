@@ -42,7 +42,7 @@ html
 .main-navigation
   +horizontal-list(0.55em)
   +float_right
-  margin-top: 23px
+  margin-top: 15px
 
 .meta-navigation
   +horizontal-list(10px)
@@ -81,7 +81,20 @@ h1, h2, h3, h4, p, ul, ol
   +column(3)
 
 .footer-teasers
-  +column(4)
+  +column(3)
+  margin-left: 5%
+  margin-right: 5%
 
 .footer-contact
   +column(3)
+  .memberships dd
+    padding-bottom: 7px
+
+  > div
+    margin-left: 80px
+
+.footer-news, .footer-teasers, .footer-contact
+  div
+    margin-bottom: 30px
+  dl
+    margin-top: 10px

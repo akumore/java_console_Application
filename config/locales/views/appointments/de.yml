@@ -1,9 +1,10 @@
 de:
   appointments:
     new:
-      headline: Vereinbaren Sie einen Termin mit uns
+      headline: Nehmen Sie Kontakt mit uns auf
     form:
       submit: Kontaktieren Sie mich
+      errors: Fehler
     contact_information:
       headline: Ihre Kontaktperson
     confirmation:

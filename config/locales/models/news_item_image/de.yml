@@ -1,0 +1,7 @@
+de:
+  mongoid:
+    models:
+      news_item_image: News Bild
+    attributes:
+      news_item_image:
+        file: Datei
