@@ -1,5 +1,6 @@
 .chapter
   %h2= t('.title')
+
   %dl
     %dt= t('.property')
     %dd= [@real_estate.property_name.presence, @real_estate.category.label.presence, @real_estate.try(:reference).try(:unit_key).presence].compact.join ', '
@@ -17,6 +18,7 @@
     - if @real_estate.figure.present?
 
       - if floor = @real_estate.figure.try(:floor).presence
+
         %dt= t('.floor')
         %dd
           - if floor < 0
