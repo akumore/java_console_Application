@@ -1,27 +1,50 @@
-.tab-slider
-  %ul.first-level
+#head-of-alfred-mueller-gallery
+  %ul.first-level-navigation
     %li
-      %a{ :href => '#' } Vision
-    %li.current
+      %a.active{ :href => '#' } Vision
+    %li
       %a{ :href => '#' } Verwaltungsrat
     %li
       %a{ :href => '#' } Geschäftsleitung
     %li
       %a{ :href => '#' } Referenzprojekte
-  .tab-slider-content
-    %ul.second-level
-      %li
-        %a{ :href => '#' } Alfred Müller
-      %li.current
-        %a{ :href => '#' } Christoph Müller
-      %li
-        %a{ :href => '#' } Viktor Naumann
-      %li
-        %a{ :href => '#' } Dr. Erich Rüegg
-
-    %img{ :src => '' }
-    .tab-slider-description
-      %h1
-        Christoph Müller
-      %h5
-        Präsident des Verwaltungsrates
+  #board_of_directors.tab-slider-content
+    .flexslider
+      %ul.second-level-navigation
+        %li
+          %a.active{ :href => '#' } Alfred Müller
+        %li
+          %a{ :href => '#' } Christoph Müller
+        %li
+          %a{ :href => '#' } Viktor Naumann
+        %li
+          %a{ :href => '#' } Dr. Erich Rüegg
+      %ul.slides
+        %li
+          = image_tag 'http://placekitten.com/1000/500'
+          .tab-slider-description
+            %h1
+              Alfred Müller
+            %h5
+              Präsident des Verwaltungsrates
+        %li
+          = image_tag 'http://placekitten.com/1000/500'
+          .tab-slider-description
+            %h1
+              Christoph Müller
+            %h5
+              Präsident des Verwaltungsrates
+        %li
+          = image_tag 'http://placekitten.com/1000/500'
+          .tab-slider-description
+            %h1
+              Viktor Naumann
+            %h5
+              Präsident des Verwaltungsrates
+        %li
+          = image_tag 'http://placekitten.com/1000/500'
+          .tab-slider-description
+            %h1
+              Dr. Erich Rüegg
+            %h5
+              Präsident des Verwaltungsrates

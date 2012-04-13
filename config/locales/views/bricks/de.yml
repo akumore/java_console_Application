@@ -5,6 +5,7 @@ de:
         jobs_openings: 'Jobs: Offene Stellen'
         jobs_apply_with_success: 'Jobs: Erfolgreich bewerben'
         contact_form: 'Kontakt: Kontaktformular'
+        company_header: 'Unternehmen: Tab Slider'
       placeholder_show:
         <<: *placeholder_form
   bricks:

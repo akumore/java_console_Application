@@ -236,21 +236,21 @@
     width: 100%
 
 // Styles for tab slider placeholder
-.tab-slider
+#head-of-alfred-mueller-gallery
   margin: 0 0 50px 0
   +float_left
   ul
     +horizontal-list
     overflow: hidden
   
-  .first-level, .second-level
+  .first-level-navigation, .second-level-navigation
     li
       padding: 0
-      margin: 0px 10px 0px 0px
+      margin: 0px 5px 0px 0px
     a
       display: block
 
-  .first-level
+  .first-level-navigation
     margin-bottom: -2px
     a
       padding: 10px 20px
@@ -259,34 +259,28 @@
         top: 1px solid $search-filter-border-dark
         right: 1px solid $search-filter-border-dark
         left: 1px solid $search-filter-border-dark
-      &:hover
-        background-color: #BABA98
+      &:hover, &.active
+        background: image-url('tab-slider-top.png') repeat-x top left
         position: relative
         z-index: 2
 
-    .current
-      a
-        background-color: #BABA98
-        position: relative
-        z-index: 2
-  
-  .second-level
+  .second-level-navigation
     border-top: 1px solid $search-filter-border-dark
-    background-color: #BABA98
-    position: relative
+    background: image-url('tab-slider-bottom.png') repeat-x top left
+    position: absolute
     z-index: 2
-    .current
-      a
-        text-decoration: underline
+    width: 100%
+    .active
+      text-decoration: underline
     a
-      padding: 17px 20px
+      padding: 18px 20px
       &:hover
         text-decoration: underline
 
   .tab-slider-content
     +float_left
-    height: 400px
-    width: 939px
+    height: 500px
+    width: 1001px
     border-left: 1px solid $search-filter-border-dark
     position: relative
     z-index: 1
@@ -298,3 +292,8 @@
     top: 65px
     h1
       margin-left: 0px
+
+  .flexslider
+    position: absolute
+    li
+      padding: 0
