@@ -20,8 +20,8 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     # initialize tab slider
     $("#head-of-alfred-mueller-gallery").each ->
       new AlfredMueller.Views.TabSlider(el: $(this))
-      
-    $("#head-of-alfred-mueller-gallery .flexslider").flexslider(
+
+    $("#head-of-alfred-mueller-gallery .tab-container").flexslider(
       directionNav: true,
       slideshow: false,
       animation: "slide",
