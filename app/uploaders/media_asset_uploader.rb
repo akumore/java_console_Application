@@ -28,23 +28,35 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
   end
 
   version :gallery, :if => :is_image? do
+    process :convert => 'jpg'
     process :resize_to_fill=>[1000,500]
+    process :quality => 80
   end
 
   version :minidoku, :if => :is_image? do
+    process :convert => 'jpg'
     process :resize_to_fill=>[2000,1000]
   end
 
   version :thumb, :if => :is_image? do
+    process :convert => 'jpg'
     process :resize_to_fill => [145,88]
+    process :quality => 80
   end
 
   version :cms_preview, :if => :is_image? do
+    process :convert => 'jpg'
     process :resize_to_fill => [600, 340]
+    process :quality => 80
   end
 
-  version :jpeg_format, :if => :image_needs_conversion? do
-    process :convert => 'jpeg'
+  version :jpeg_format, :if => :is_image? do
+    process :convert => 'jpg'
+  end
+
+  def filename
+    return super unless is_image? self.file
+    super.chomp(File.extname(super)) + '.jpg'
   end
 
   def is_image? image
