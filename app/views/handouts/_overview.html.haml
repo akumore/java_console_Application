@@ -1,4 +1,4 @@
-.chapter
+.chapter.pb-after
   %h2= t('.title')
 
   %dl
@@ -30,8 +30,16 @@
 
       - if rooms = @real_estate.figure.try(:rooms).presence
         %dt= t('.rooms')
-        %dd= rooms
+        %dd= t('.rooms_value', :count => rooms)
 
       - if usable_surface = @real_estate.figure.try(:usable_surface).presence
         %dt= t('.usable_surface')
-        %dd= usable_surface
+        %dd
+          = t('.usable_surface_value', :count => usable_surface)
+          %span.helptext= t('.usable_surface_helptext')
+
+    - if @real_estate.description.present?
+      %dt= t('.description')
+      %dd= @real_estate.description
+
+.pb-after

@@ -5,81 +5,88 @@
 $title-font: 'Rockwell Std'
 $text-font: 'Gotham'
 
-.pb_before
-  page-break-before: always !important
-.pb_after
-  page-break-after: always !important
-.pbi_avoid
-  page-break-inside: avoid !important
+@media print
 
-body
-  font-family: $text-font
+  .pb-before
+    page-break-before: always !important
+  .pb-after
+    page-break-after: always !important
+  .pbi-avoid
+    page-break-inside: avoid !important
 
-h2
-  font-family: $title-font
-  font-size: 30px
-  color: $dark
-  margin: 1em 0
+  body
+    font-family: $text-font
 
-#title-page-header
-  position: relative
-  height: 560px
-
-  .frame-overlay, .primary-image
-    position: absolute
-    left: 0
-    top: 0
-
-  .frame-overlay
-    z-index: 2
-    width: 100%
-
-    img
-      width: 100%
-
-  .primary-image
-    z-index: 1
-
-    img
-      width: 100%
-
-  .primary-title
-    position: absolute
-    left: 60px
-    top: 275px
-    z-index: 3
-    font-size: 40px
-    color: $dark
+  h2
     font-family: $title-font
-
-    span
-      font-family: 'Gotham'
-      font-size: 14px
-      display: block
-      margin-top: 3px
-
-.chapter
-  margin: 60px
-
-  .group
-    +clearfix
+    font-size: 30px
+    color: $dark
     margin: 1em 0
 
-    .label
+  .helptext
+    font-size: 12px
+    line-height: 16px
+
+  #title-page-header
+    position: relative
+    height: 380px
+
+    .frame-overlay, .primary-image
+      position: absolute
+      left: 0
+      top: 0
+
+    .frame-overlay
+      z-index: 2
+      width: 100%
+
+      img
+        width: 100%
+
+    .primary-image
+      z-index: 1
+
+      img
+        width: 100%
+
+    .primary-title
+      position: absolute
+      left: 60px
+      top: 275px
+      z-index: 3
+      font-size: 40px
+      color: $dark
+      font-family: $title-font
+
+      span
+        font-family: 'Gotham'
+        font-size: 14px
+        display: block
+        margin-top: 3px
+
+  .chapter
+    margin: 60px
+    +clearfix
+
+    .group
+      +clearfix
+      margin: 1em 0
+
+      .label
+        font-weight: bold
+        font-family: $title-font
+        float: left
+
+      .content
+        margin-left: 190px
+
+    dt
+      padding: 0.5em 0
       font-weight: bold
       font-family: $title-font
       float: left
-
-    .content
+      clear: left
+    dd
+      padding: 0.5em 0
       margin-left: 190px
-
-  dt
-    padding: 0.5em 0
-    font-weight: bold
-    font-family: $title-font
-    float: left
-    clear: left
-  dd
-    padding: 0.5em 0
-    margin-left: 190px
 

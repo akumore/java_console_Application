@@ -6,11 +6,12 @@ PDFKit.configure do |config|
   end
 
   config.default_options = {
-      :page_size => 'A4',
-      :dpi => 300, #Seem not to have any effect
-      :margin_top => 10,
-      :margin_left => 10,
-      :margin_right => 10,
-      :margin_bottom => 15
+    :page_size => 'A4',
+    :dpi => 300, #Seem not to have any effect
+    :margin_top => 10,
+    :margin_left => 10,
+    :margin_right => 10,
+    :margin_bottom => 15,
+    :print_media_type => true
   }
 end
