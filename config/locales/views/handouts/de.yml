@@ -17,9 +17,8 @@ de:
     pricing:
       title: Preise
       for_rent_netto: Mietzins
-      vat_for_rent_netto: Mwst Mietzins
       for_rent_extra: Nebenkosten
-      vat_for_rent_extra: Mwst Nebenkosten
+      without_vat: (ohne Mehrwertsteuer)
       price_unit:
         month: monatlich
         year: jährlich

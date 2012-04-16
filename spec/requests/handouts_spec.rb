@@ -14,6 +14,13 @@ describe "Handout aka MiniDoku" do
         page.should have_content "CHF 1'999.00 monatlich"
       end
 
+      it "marks the rent price opted if 'opted'" do
+        @pricing.update_attribute :opted, true
+        visit real_estate_handout_path(@real_estate)
+        save_and_open_page
+        page.should have_content "CHF 1'999.00 monatlich (ohne Mehrwertsteuer)"
+      end
+
       it "shows additional expenses" do
         visit real_estate_handout_path(@real_estate)
 
@@ -73,21 +80,12 @@ describe "Handout aka MiniDoku" do
 
     context "Real Estate, commercial, for rent" do
       before do
-        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'month', :opted => true
+        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'month', :opted => false
         @real_estate = Fabricate :commercial_building, :pricing => @pricing
       end
 
       it_should_behave_like "Pricing information shown for all kind of real estates"
 
-      it "shows the VAT of rent price if 'opted'" do
-        visit real_estate_handout_path(@real_estate)
-        page.should have_content 'Mwst Mietzins CHF 159.92'
-      end
-
-      it "shows the VAT of additional expenses if 'opted'" do
-        visit real_estate_handout_path(@real_estate)
-        page.should have_content 'Mwst Nebenkosten CHF 7.92'
-      end
     end
 
   end

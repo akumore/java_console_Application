@@ -6,19 +6,15 @@
     %dd
       = number_to_currency pricing.for_rent_netto, :locale=>'de-CH'
       = I18n.t "handouts.pricing.price_unit.#{pricing.price_unit}"
-
-    - if real_estate.commercial_utilization? && pricing.opted?
-      %dt= t '.vat_for_rent_netto'
-      %dd= number_to_currency pricing.vat_for_rent_netto, :locale=>'de-CH'
+      - if pricing.opted?
+        = t ".without_vat"
 
     %dt= t '.for_rent_extra'
     %dd
       = number_to_currency pricing.for_rent_extra, :locale=>'de-CH'
       = I18n.t "handouts.pricing.price_unit.#{pricing.price_unit}"
-
-    - if real_estate.commercial_utilization? && pricing.opted?
-      %dt= t '.vat_for_rent_extra'
-      %dd= number_to_currency pricing.vat_for_rent_extra, :locale=>'de-CH'
+      - if pricing.opted?
+        = t ".without_vat"
 
     - if pricing.inside_parking.present?
       %dt= t '.inside_parking'
@@ -43,4 +39,3 @@
       %dd
         = number_to_currency pricing.outside_parking_temporary, :locale=>'de-CH'
         = I18n.t "handouts.pricing.price_unit.#{pricing.price_unit}"
-
