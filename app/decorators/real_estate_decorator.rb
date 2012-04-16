@@ -95,7 +95,7 @@ class RealEstateDecorator < ApplicationDecorator
     if model.persisted?
       link_to(
         t('real_estates.show.description_download'),
-        real_estate_path(model, :format => :pdf),
+        real_estate_handout_path(:real_estate_id => model.id, :format => :pdf),
         :class => 'icon-description'
       )
     end
