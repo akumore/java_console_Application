@@ -353,27 +353,37 @@ describe "RealEstates" do
     end
 
     context 'when the real estate is for rent' do
-      it "shows the localized price for rent" do
+      before :each do
         real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
         visit real_estate_path(real_estate)
+      end
+
+      it "shows the localized price for rent" do
         page.should have_content number_to_currency(real_estate.pricing.for_rent_netto, :locale=>'de-CH')
+      end
+
+      it 'has a link to the mini doku' do
+        page.should have_link('Objektbeschrieb')
       end
     end
 
     context 'when the real estate is for sale' do
-      it "shows the localized price for sale" do
+      before :each do
         real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
         visit real_estate_path(real_estate)
+      end
+
+      it "shows the localized price for sale" do
         page.should have_content number_to_currency(real_estate.pricing.for_sale, :locale=>'de-CH')
+      end
+
+      it 'has no link to the mini doku' do
+        page.should_not have_link('Objektbeschrieb')
       end
     end
 
     it 'has a link to the next search result' do
       page.should have_link('Nächstes Projekt')
-    end
-
-    it 'has a link to the mini doku' do
-      page.should have_link('Objektbeschrieb')
     end
 
     it 'displays the full name of the responsible person' do
@@ -390,9 +400,9 @@ describe "RealEstates" do
     it "has a map of the real estate location" do
       page.should have_css(".map", :count => 1)
     end
-    
+
     it "has the json representation of the location" do
-      find(".map[data-real_estate]")['data-real_estate'].should == real_estate.to_json(:only => :_id, :methods => :coordinates)      
+      find(".map[data-real_estate]")['data-real_estate'].should == real_estate.to_json(:only => :_id, :methods => :coordinates)
     end
 
     context 'having a floorplan', :fp => true do

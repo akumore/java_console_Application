@@ -68,6 +68,7 @@ class RealEstate
   scope :in_review, :where => { :state => STATE_IN_REVIEW }
   scope :editing, :where => { :state => STATE_EDITING }
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
+  scope :print_channel, :where => { :channels => PRINT_CHANNEL }
   scope :recently_updated, lambda { where( :updated_at.gte => 12.hours.ago ) }
 
   class << self
