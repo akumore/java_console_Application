@@ -4,18 +4,23 @@ require "spec_helper"
 describe "Handout aka MiniDoku" do
   monkey_patch_default_url_options
 
-  describe 'Title page' do
-    before :each do
-      @real_estate = Fabricate(:residential_building,
+  let :printable_real_estate do
+    Fabricate(:residential_building,
         :address => Fabricate.build(:address, :street => 'Musterstrasse', :street_number => '1', :zip => '8400', :city => 'Hausen'),
         :figure => Fabricate.build(:figure, :floor => 3, :rooms => '3.5', :usable_surface => 120),
         :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'month'),
         :title => 'Demo Objekt',
         :description => 'Lorem Ipsum',
-        :property_name => 'Gartenstadt'
+        :property_name => 'Gartenstadt',
+        :media_assets => [
+          Fabricate.build(:media_asset_floorplan)
+        ]
       )
+  end
 
-      visit real_estate_handout_path(@real_estate)
+  describe 'Title page' do
+    before do
+      visit real_estate_handout_path(printable_real_estate)
     end
 
     it 'shows the real estate title' do
@@ -24,6 +29,10 @@ describe "Handout aka MiniDoku" do
 
     it 'shows the utilization of the real estate' do
       page.should have_content('Miete Privat')
+    end
+
+    it 'shows the chapter title' do
+      page.should have_content('Objektübersicht')
     end
 
     it 'shows the property name' do
@@ -53,6 +62,22 @@ describe "Handout aka MiniDoku" do
     it 'shows the description' do
       page.should have_content('Lorem Ipsum')
     end
+  end
+
+  describe 'Chapter Floorplan' do
+    before do
+      visit real_estate_handout_path(printable_real_estate)
+    end
+
+    it 'shows the chapter title' do
+      page.should have_content('Grundriss')
+    end
+
+    it 'shows the floorplan' do
+      page.should have_css(".floorplan-image img", :count => 1)
+    end
+
+    it 'shows the compass direction'
   end
 
   describe "Chapter Pricing" do
