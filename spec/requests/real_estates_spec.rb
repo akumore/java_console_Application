@@ -12,6 +12,7 @@ describe "RealEstates" do
   let :real_estate do
     Fabricate :published_real_estate,
               :category => category,
+              :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
               :address => Fabricate.build(:address),
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
               :pricing => Fabricate.build(:pricing),
