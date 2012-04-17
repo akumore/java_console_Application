@@ -9,7 +9,6 @@
       = t(".#{RealEstate::OFFER_FOR_RENT}_#{@real_estate.utilization}")
 
 = render 'overview'
-
-= render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
-
 = render 'floorplan'
+= render 'information'
+= render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing

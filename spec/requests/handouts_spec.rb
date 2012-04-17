@@ -9,6 +9,30 @@ describe "Handout aka MiniDoku" do
         :address => Fabricate.build(:address, :street => 'Musterstrasse', :street_number => '1', :zip => '8400', :city => 'Hausen'),
         :figure => Fabricate.build(:figure, :floor => 3, :rooms => '3.5', :usable_surface => 120),
         :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'month'),
+        :information => Fabricate.build(:information,
+          :display_estimated_available_from => 'Verfügbar ab Mitte Mai',
+          :is_new_building => true,
+          :is_old_building => true,
+          :is_minergie_style => true,
+          :is_minergie_certified => true,
+          :has_outlook => true,
+          :has_fireplace => true,
+          :has_isdn => true,
+          :has_elevator => true,
+          :is_wheelchair_accessible => true,
+          :is_child_friendly => true,
+          :has_balcony => true,
+          :has_raised_ground_floor => true,
+          :has_swimming_pool => true,
+          :has_ramp => true,
+          :maximal_floor_loading => 1234,
+          :freight_elevator_carrying_capacity => 4321,
+          :has_lifting_platform => true,
+          :has_railway_terminal => true,
+          :has_water_supply => true,
+          :has_sewage_supply => true,
+          :number_of_restrooms => 3
+        ),
         :title => 'Demo Objekt',
         :description => 'Lorem Ipsum',
         :property_name => 'Gartenstadt',
@@ -163,5 +187,127 @@ describe "Handout aka MiniDoku" do
 
     end
 
+  end
+
+  describe "Chapter Information" do
+    before do
+      visit real_estate_handout_path(printable_real_estate)
+    end
+
+    it 'shows the chapter title' do
+      page.should have_content 'Immobilieninfos'
+    end
+
+    it 'shows the availability date' do
+      page.should have_content 'Verfügbar ab Mitte Mai'
+    end
+
+    it 'shows if it is a new building' do
+      page.should have_content 'Neubau'
+    end
+
+    it 'shows if it is an old building' do
+      page.should have_content 'Altbau'
+    end
+
+    it 'shows the minergie infos' do
+      page.should have_content 'Minergie Bauweise'
+      page.should have_content 'Minergie zertifiziert'
+    end
+
+    it 'shows if it is under building laws' do
+      pending 'figure out what this is supposed to do'
+    end
+
+    it 'shows the min rent time' do
+      pending 'needs to be implemented in the model first'
+    end
+
+    it 'shows the cancelation period' do
+      pending 'needs to be implemented in the model first'
+    end
+
+    it 'shows the cancelation dates' do
+      pending 'needs to be implemented in the model first'
+    end
+
+    context 'real estate for private utilization' do
+      it 'has a view' do
+        page.should have_content 'Ausblick'
+      end
+
+      it 'has fireplace' do
+        page.should have_content 'Cheminée'
+      end
+
+      it 'has an elevator' do
+        page.should have_content 'Liftzugang'
+      end
+
+      it 'has isdn connectivity' do
+        page.should have_content 'ISDN Anschluss'
+      end
+
+      it 'is wheelchair accessible' do
+        page.should have_content 'rollstuhltauglich'
+      end
+
+      it 'is child friendly' do
+        page.should have_content 'kinderfreundlich'
+      end
+
+      it 'has a balcony' do
+        page.should have_content 'Balkon'
+      end
+
+      it 'has a raised groundfloor' do
+        page.should have_content 'Hochparterre'
+      end
+
+      it 'has a swimmingpool' do
+        page.should have_content 'Schwimmbecken'
+      end
+    end
+
+    context 'real estate for commercial utilization' do
+      before do
+        printable_real_estate.update_attribute :utilization, RealEstate::UTILIZATION_COMMERICAL
+        visit real_estate_handout_path printable_real_estate
+      end
+
+      it 'has max floor loading' do
+        page.should have_content 'Maximale Bodenbelastung'
+        page.should have_content "1234 kg"
+      end
+
+      it 'has max elevator carrying capacity' do
+        page.should have_content 'Maximales Gewicht für Warenlift'
+        page.should have_content "4321 kg"
+      end
+
+      it 'has the number of restrooms' do
+        page.should have_content '3 WC'
+      end
+
+      it 'has a lifting platform' do
+        page.should have_content 'Hebebühne'
+      end
+
+      it 'has a ramp' do
+        page.should have_content 'Anfahrtsrampe'
+      end
+
+      it 'has a railway terminal' do
+        page.should have_content 'Bahnanschluss'
+      end
+
+      it 'has water supply' do
+        page.should have_content 'Wasseranschluss'
+      end
+
+      it 'has sewage supply' do
+        page.should have_content 'Abwasseranschluss'
+      end
+    end
   end
 end
