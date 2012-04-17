@@ -28,3 +28,5 @@ de:
       inside_parking_temporary: Parkplatz in Autoeinstellhalle temporär
       outside_parking: Parkplatz nicht überdacht
       outside_parking_temporary: Parkplatz nicht überdacht temporär
+    floorplan:
+      title: 'Grundriss'
