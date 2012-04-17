@@ -17,7 +17,7 @@ Fabricator(:published_real_estate, :from => :real_estate) do
 end
 
 Fabricator(:residential_building, :from => :real_estate) do
-  category { Fabricate(:apartment_category) }
+  category { Fabricate(:category) }
   offer RealEstate::OFFER_FOR_RENT
   utilization RealEstate::UTILIZATION_PRIVATE
   state RealEstate::STATE_PUBLISHED
@@ -25,7 +25,7 @@ Fabricator(:residential_building, :from => :real_estate) do
 end
 
 Fabricator(:commercial_building, :from => :real_estate) do
-  category { Fabricate(:house_category) }
+  category { Fabricate(:category) }
   offer RealEstate::OFFER_FOR_RENT
   utilization RealEstate::UTILIZATION_COMMERICAL
   state RealEstate::STATE_PUBLISHED
