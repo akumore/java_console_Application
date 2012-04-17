@@ -20,3 +20,18 @@
       %dl
         %dt= t('.freight_elevator_carrying_capacity')
         %dd= "#{@real_estate.information.freight_elevator_carrying_capacity} kg"
+
+    - if minimum_rental_period = @real_estate.information.minimum_rental_period.presence
+      %dl
+        %dt= t('.minimum_rental_period')
+        %dd= minimum_rental_period
+
+    - if notice_dates = @real_estate.information.notice_dates.presence
+      %dl
+        %dt= t('.notice_dates')
+        %dd= notice_dates
+
+    - if notice_period = @real_estate.information.notice_period.presence
+      %dl
+        %dt= t('.notice_period')
+        %dd= notice_period

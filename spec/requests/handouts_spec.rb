@@ -31,7 +31,10 @@ describe "Handout aka MiniDoku" do
           :has_railway_terminal => true,
           :has_water_supply => true,
           :has_sewage_supply => true,
-          :number_of_restrooms => 3
+          :number_of_restrooms => 3,
+          :minimum_rental_period => '1 Jahr',
+          :notice_dates => 'September, März',
+          :notice_period => '3 Monate'
         ),
         :title => 'Demo Objekt',
         :description => 'Lorem Ipsum',
@@ -162,13 +165,17 @@ describe "Handout aka MiniDoku" do
         page.should have_content 'CHF 20.00 monatlich'
       end
 
-      it "shows the rent depot price"
+      it "shows the rent depot price" do
+        visit real_estate_handout_path(@real_estate)
+        page.should have_content 'Mietzinsdepot'
+        page.should have_content 'CHF 4\'000.00'
+      end
     end
 
 
     context "Real Estate, private, for rent" do
       before do
-        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'month'
+        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :for_rent_depot => 4000, :price_unit => 'month'
         @real_estate = Fabricate :residential_building, :pricing => @pricing
       end
 
@@ -179,7 +186,7 @@ describe "Handout aka MiniDoku" do
 
     context "Real Estate, commercial, for rent" do
       before do
-        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'month', :opted => false
+        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :for_rent_depot => 4000, :price_unit => 'month', :opted => false
         @real_estate = Fabricate :commercial_building, :pricing => @pricing
       end
 
@@ -199,6 +206,7 @@ describe "Handout aka MiniDoku" do
     end
 
     it 'shows the availability date' do
+      page.should have_content 'Bezugstermin'
       page.should have_content 'Verfügbar ab Mitte Mai'
     end
 
@@ -220,15 +228,18 @@ describe "Handout aka MiniDoku" do
     end
 
     it 'shows the min rent time' do
-      pending 'needs to be implemented in the model first'
+      page.should have_content 'Mindestmietdauer'
+      page.should have_content '1 Jahr'
     end
 
-    it 'shows the cancelation period' do
-      pending 'needs to be implemented in the model first'
+    it 'shows the notice dates' do
+      page.should have_content 'Kündigungstermine'
+      page.should have_content 'September, März'
     end
 
-    it 'shows the cancelation dates' do
-      pending 'needs to be implemented in the model first'
+    it 'shows the notice period' do
+      page.should have_content 'Kündigungsfrist'
+      page.should have_content '3 Monate'
     end
 
     context 'real estate for private utilization' do
