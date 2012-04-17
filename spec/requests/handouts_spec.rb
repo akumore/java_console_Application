@@ -14,10 +14,10 @@ describe "Handout aka MiniDoku" do
         page.should have_content "CHF 1'999.00 monatlich"
       end
 
-      it "marks the rent price opted if 'opted'" do
+      it "shows 'without VAT message' if 'opted'" do
         @pricing.update_attribute :opted, true
         visit real_estate_handout_path(@real_estate)
-        page.should have_content "CHF 1'999.00 monatlich (ohne Mehrwertsteuer)"
+        page.should have_content "Alle Preise ohne Mehrwertsteuer"
       end
 
       it "shows additional expenses" do
