@@ -41,4 +41,4 @@
         = I18n.t "handouts.pricing.price_unit.#{pricing.price_unit}"
 
   - if pricing.opted?
-    %p= t ".without_vat"
+    .disclaimer= t ".without_vat"
