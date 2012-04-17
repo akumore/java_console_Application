@@ -1,51 +1,129 @@
-#head-of-alfred-mueller-gallery
+#head-of-alfred-mueller-gallery.tab-slider
   %ul.first-level-navigation
     %li
-      %a.active{ :href => '#' } Vision
+      %a{ :href => '#vision' } Vision
     %li
-      %a{ :href => '#' } Verwaltungsrat
+      %a.active{ :href => '#board-of-directors' } Verwaltungsrat
     %li
-      %a{ :href => '#' } Geschäftsleitung
+      %a{ :href => '#managing-board' } Geschäftsleitung
     %li
-      %a{ :href => '#' } Referenzprojekte
-  #board_of_directors.tab-slider-content
-    
-    .tab-container
+      %a{ :href => '#reference-projects' } Referenzprojekte
+  
+  .flex-container#vision.tab-content
+    .flexslider
       %ul.second-level-navigation
         %li
-          %a.active{ :href => '#' } Alfred Müller
+          %a{ :href => '#' } Alfred Müller
         %li
           %a{ :href => '#' } Christoph Müller
         %li
           %a{ :href => '#' } Viktor Naumann
         %li
           %a{ :href => '#' } Dr. Erich Rüegg
+
       %ul.slides
         %li
           = image_tag 'http://placekitten.com/1000/500'
-          .tab-slider-description
-            %h1
-              Alfred Müller
-            %h5
-              Präsident des Verwaltungsrates
         %li
-          = image_tag 'http://placekitten.com/1000/500'
+          = image_tag 'http://placekitten.com/1000/499'
+        %li
+          = image_tag 'http://placekitten.com/1000/498'
+        %li
+          = image_tag 'http://placekitten.com/999/500'
+
+  .flex-container.hidden#board-of-directors.tab-content
+    .flexslider
+      %ul.second-level-navigation
+        %li
+          %a{ :href => '#' } Christoph Müller
+        %li
+          %a{ :href => '#' } Viktor Naumann
+        %li
+          %a{ :href => '#' } Dr. Erich Rüegg
+
+      %ul.slides
+        %li
+          = image_tag 'http://placekitten.com/1001/500'
           .tab-slider-description
             %h1
               Christoph Müller
             %h5
               Präsident des Verwaltungsrates
         %li
+          = image_tag 'http://placekitten.com/1000/501'
+          .tab-slider-description
+            %h1
+              Viktor Naumann
+            %h5
+              Vizepräsident des Verwaltungsrates
+        %li
+          = image_tag 'http://placekitten.com/1000/502'
+          .tab-slider-description
+            %h1
+              Dr. Erich Rüegg
+            %h5
+              Mitglied des Verwaltungsrates
+
+  .flex-container.hidden#managing-board.tab-content
+    .flexslider
+      %ul.second-level-navigation
+        %li
+          %a{ :href => '#' } Christoph Müller
+        %li
+          %a{ :href => '#' } Michael Müller
+        %li
+          %a{ :href => '#' } Viktor Naumann
+        %li
+          %a{ :href => '#' } Walter Hochreutener
+        %li
+          %a{ :href => '#' } Joe Schmalz
+        %li
+          %a{ :href => '#' } David Spiess
+
+      %ul.slides
+        %li
+          = image_tag 'http://placekitten.com/1000/500'
+          .tab-slider-description
+            %h1
+              Christoph Müller
+            %h5
+              Vorsitzender der Geschäftsleitung
+        %li
+          = image_tag 'http://placekitten.com/1000/500'
+          .tab-slider-description
+            %h1
+              Michael Müller
+            %h5
+              Mitglied der Geschäftsleitung
+        %li
           = image_tag 'http://placekitten.com/1000/500'
           .tab-slider-description
             %h1
               Viktor Naumann
             %h5
-              Präsident des Verwaltungsrates
+              Mitglied der Geschäftsleitung
         %li
           = image_tag 'http://placekitten.com/1000/500'
           .tab-slider-description
             %h1
-              Dr. Erich Rüegg
+              Walter Hochreutener
             %h5
-              Präsident des Verwaltungsrates
+              Mitglied der Geschäftsleitung
+        %li
+          = image_tag 'http://placekitten.com/1000/500'
+          .tab-slider-description
+            %h1
+              Joe Schmalz
+            %h5
+              Mitglied der Geschäftsleitung
+        %li
+          = image_tag 'http://placekitten.com/1000/500'
+          .tab-slider-description
+            %h1
+              David Spiess
+            %h5
+              Mitglied der Geschäftsleitung
+
+  - unless reference_projects.empty?
+    #reference-projects.hidden.tab-content.flex-container
+      = render 'slider', :projects => reference_projects
