@@ -262,6 +262,7 @@
         right: 1px solid $search-filter-border-dark
         left: 1px solid $search-filter-border-dark
       &:hover, &.active
+        height: 20px
         position: relative
         z-index: 2
         background: image-url('tab-slider-top.png') repeat-x top left
@@ -272,6 +273,8 @@
     position: absolute
     z-index: 1
     width: 100%
+    top: 0px
+    left: 0px
 
     .active
       text-decoration: underline
@@ -295,3 +298,19 @@
 #reference-projects
   .flex-control-nav
     display: none
+
+// IE 7 optimization tab slider
+*+html .tab-slider
+  .first-level-navigation
+    a.active, a:hover
+      height: 20px
+
+*+html .flex-container
+  overflow: hidden
+
+// IE 8 optimization
+@media \0screen
+  .tab-slider
+    .first-level-navigation
+      a.active, a:hover
+        height: 20px
