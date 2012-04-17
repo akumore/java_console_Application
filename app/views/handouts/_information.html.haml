@@ -2,19 +2,21 @@
   .chapter
     %h2= t('.title')
 
-    %dl
-      - if display_estimated_available_from = @real_estate.information.display_estimated_available_from.presence
+    - if display_estimated_available_from = @real_estate.information.display_estimated_available_from.presence
+      %dl
         %dt= t('.display_estimated_available_from')
         %dd= display_estimated_available_from
 
-      - if characteristics.any?
+    - if characteristics.any?
+      %dl
         %dt= t('.characteristics')
         %dd= characteristics.join(', ')
 
-      - if @real_estate.commercial_utilization?
-
+    - if @real_estate.commercial_utilization?
+      %dl
         %dt= t('.maximal_floor_loading')
         %dd= "#{@real_estate.information.maximal_floor_loading} kg"
 
+      %dl
         %dt= t('.freight_elevator_carrying_capacity')
         %dd= "#{@real_estate.information.freight_elevator_carrying_capacity} kg"
