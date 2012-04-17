@@ -33,3 +33,9 @@ de:
       outside_parking_temporary: Parkplatz nicht überdacht temporär
     floorplan:
       title: 'Grundriss'
+    contact:
+      title: Kontakt
+      street: Neuhofstrasse 10
+      zip: CH-6340
+      city: Baar
+      www: www.alfred-mueller.ch

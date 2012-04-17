@@ -164,4 +164,72 @@ describe "Handout aka MiniDoku" do
     end
 
   end
+
+
+  describe "Chapter Contact" do
+
+    before do
+      @contact_person = Fabricate :employee
+      @real_estate = Fabricate :residential_building, :contact=>@contact_person, :pricing=>Fabricate.build(:pricing_for_rent)
+    end
+
+    it "is not available, if contact person is't assigned to real estate" do
+      real_estate = Fabricate :residential_building, :pricing=>Fabricate.build(:pricing_for_rent)
+      visit real_estate_handout_path(real_estate)
+
+      page.should_not have_css ".chapter.contact"
+    end
+
+    it "shows the employees department name" do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.contact" do
+        page.should have_content "Vermarktung"
+      end
+    end
+
+    it 'shows the employees name' do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.contact" do
+        page.should have_content "#{@contact_person.firstname} #{@contact_person.lastname}"
+      end
+    end
+
+    it 'shows the employees function' do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.contact" do
+        page.should have_content @contact_person.job_function
+      end
+    end
+
+    it 'shows the employees address' do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.contact" do
+        page.should have_content "Neuhofstrasse 10"
+        page.should have_content "CH-6340 Baar"
+      end
+    end
+
+    it 'shows the employees phone numbers' do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.contact" do
+        page.should have_content @contact_person.phone
+      end
+    end
+
+    it 'shows the employees email address' do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.contact" do
+        page.should have_content @contact_person.email
+      end
+    end
+
+    it 'shows the homepage address' do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.contact" do
+        page.should have_content 'www.alfred-mueller.ch'
+      end
+    end
+
+  end
+
 end
