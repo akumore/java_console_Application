@@ -92,13 +92,11 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def mini_doku_link
-    if model.persisted? && model.for_rent? && model.channels.include?(RealEstate::PRINT_CHANNEL)
-      link_to(
+    link_to(
         t('real_estates.show.description_download'),
         real_estate_handout_path(:real_estate_id => model.id, :format => :pdf),
         :class => 'icon-description'
-      )
-    end
+    ) if model.has_handout?
   end
 
   def floorplan_link

@@ -352,9 +352,10 @@ describe "RealEstates" do
       page.should have_content real_estate.figure.living_surface
     end
 
-    context 'when the real estate is for rent' do
+    context 'when the real estate has a handout' do
       before :each do
         real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
+        real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
         visit real_estate_path(real_estate)
       end
 

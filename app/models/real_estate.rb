@@ -134,6 +134,10 @@ class RealEstate
     self.utilization == RealEstate::UTILIZATION_PRIVATE
   end
 
+  def has_handout?
+    for_rent? && channels.include?(RealEstate::PRINT_CHANNEL)
+  end
+
   def top_level_category
     category.parent
   end
