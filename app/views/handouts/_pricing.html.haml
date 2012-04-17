@@ -12,6 +12,10 @@
       = number_to_currency pricing.for_rent_extra, :locale=>'de-CH'
       = I18n.t "handouts.pricing.price_unit.#{pricing.price_unit}"
 
+    %dt= t '.for_rent_depot'
+    %dd
+      = number_to_currency pricing.for_rent_depot, :locale=>'de-CH'
+
   - if pricing.inside_parking.present?
     %dl
       %dt= t '.inside_parking'

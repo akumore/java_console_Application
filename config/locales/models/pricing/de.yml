@@ -6,6 +6,7 @@ de:
       pricing:
         for_rent_netto: 'Netto Miete'
         for_rent_extra: 'Mietnebenkosten'
+        for_rent_depot: 'Mietzinsdepot'
         for_sale: 'Kaufpreis'
         price_unit: 'Preiseinheit'
         inside_parking: 'Permanent'

@@ -12,7 +12,7 @@ describe "Cms::Pricings" do
           @real_estate = Fabricate(:real_estate,
             :utilization => RealEstate::UTILIZATION_PRIVATE,
             :offer => RealEstate::OFFER_FOR_RENT,
-            :category => Category.last, 
+            :category => Category.last,
             :reference => Fabricate.build(:reference)
           )
           visit edit_cms_real_estate_path(@real_estate)
@@ -40,6 +40,7 @@ describe "Cms::Pricings" do
             within(".new_pricing") do
               fill_in 'Netto Miete', :with => '1500'
               fill_in 'Mietnebenkosten', :with => '50'
+              fill_in 'Mietzinsdepot', :with => '4500'
               select 'monatlich', :from => 'Preiseinheit'
 
               within('.inside-parking') do
@@ -73,6 +74,7 @@ describe "Cms::Pricings" do
             it 'has saved the provided attributes' do
               @pricing.for_rent_netto.should == 1500
               @pricing.for_rent_extra.should == 50
+              @pricing.for_rent_depot.should == 4500
               @pricing.price_unit.should ==  'month'
               @pricing.inside_parking.should == 140
               @pricing.outside_parking.should == 160
@@ -92,7 +94,7 @@ describe "Cms::Pricings" do
           @real_estate = Fabricate(:real_estate,
             :utilization => RealEstate::UTILIZATION_PRIVATE,
             :offer => RealEstate::OFFER_FOR_SALE,
-            :category => Category.last, 
+            :category => Category.last,
             :reference => Fabricate.build(:reference)
           )
           visit edit_cms_real_estate_path(@real_estate)
@@ -127,7 +129,7 @@ describe "Cms::Pricings" do
           before :each do
             within(".new_pricing") do
               fill_in 'Kaufpreis', :with => '100000'
-              
+
               within('.inside-parking') do
                 fill_in 'Permanent', :with => '50000'
                 fill_in 'Temporär', :with => '1000'
@@ -179,7 +181,7 @@ describe "Cms::Pricings" do
           @real_estate = Fabricate(:real_estate,
             :utilization => RealEstate::UTILIZATION_COMMERICAL,
             :offer => RealEstate::OFFER_FOR_RENT,
-            :category => Category.last, 
+            :category => Category.last,
             :reference => Fabricate.build(:reference)
           )
           visit edit_cms_real_estate_path(@real_estate)
@@ -199,6 +201,7 @@ describe "Cms::Pricings" do
             within(".new_pricing") do
               fill_in 'Netto Miete', :with => '2300'
               fill_in 'Mietnebenkosten', :with => '150'
+              fill_in 'Mietzinsdepot', :with => '6000'
               select 'monatlich', :from => 'Preiseinheit'
 
               within('.inside-parking') do
@@ -235,6 +238,7 @@ describe "Cms::Pricings" do
             it 'has saved the provided attributes' do
               @pricing.for_rent_netto.should == 2300
               @pricing.for_rent_extra.should == 150
+              @pricing.for_rent_depot.should == 6000
               @pricing.price_unit.should ==  'month'
               @pricing.inside_parking.should == 200
               @pricing.outside_parking.should == 150
@@ -256,7 +260,7 @@ describe "Cms::Pricings" do
           @real_estate = Fabricate(:real_estate,
             :utilization => RealEstate::UTILIZATION_COMMERICAL,
             :offer => RealEstate::OFFER_FOR_SALE,
-            :category => Category.last, 
+            :category => Category.last,
             :reference => Fabricate.build(:reference)
           )
           visit edit_cms_real_estate_path(@real_estate)
@@ -283,7 +287,7 @@ describe "Cms::Pricings" do
           before :each do
             within(".new_pricing") do
               fill_in 'Kaufpreis', :with => '200000'
-              
+
               within('.inside-parking') do
                 fill_in 'Permanent', :with => '40000'
                 fill_in 'Temporär', :with => '2000'

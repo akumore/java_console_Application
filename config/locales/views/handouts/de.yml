@@ -21,6 +21,7 @@ de:
       title: Preise
       for_rent_netto: Mietzins
       for_rent_extra: Nebenkosten
+      for_rent_depot: Mietzinsdepot
       without_vat: Alle Preise ohne Mehrwertsteuer
       price_unit:
         month: monatlich

@@ -8,9 +8,10 @@ class Pricing
 
   field :for_rent_netto, :type => Integer
   field :for_rent_extra, :type => Integer # Nebenkosten
+  field :for_rent_depot, :type => Integer
   field :for_sale, :type => Integer # Kaufpreis
   field :price_unit, :type => String # Pro Woche, Jahr, Monat, Einmalig
-  field :inside_parking, :type => Integer # Pro Parkplatz in Autoeinstellhalle 
+  field :inside_parking, :type => Integer # Pro Parkplatz in Autoeinstellhalle
   field :outside_parking, :type => Integer # Pro Parkplatz nicht überdacht
   field :inside_parking_temporary, :type => Integer # Pro Parkplatz in Autoeinstellhalle temporär
   field :outside_parking_temporary, :type => Integer # Pro Parkplatz nicht überdacht temporär

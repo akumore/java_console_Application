@@ -20,6 +20,10 @@
         = f.label :for_rent_extra
         .controls
           = f.text_field :for_rent_extra, :class => 'span8'
+      .control-group
+        = f.label :for_rent_depot
+        .controls
+          = f.text_field :for_rent_depot, :class => 'span8'
     - if @real_estate.for_sale?
       .control-group.mandatory
         = f.label :for_sale
