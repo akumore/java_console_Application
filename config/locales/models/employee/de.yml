@@ -14,3 +14,6 @@ de:
         email: 'E-Mail Adresse'
         job_function: 'Funktion'
         department: 'Abteilung'
+        departments:
+          marketing: 'Vermarktung'
+          real_estate_management: 'Bewirtschaftung'

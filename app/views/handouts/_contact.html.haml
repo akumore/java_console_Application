@@ -1,0 +1,29 @@
+.chapter.contact
+  %h2= t '.title'
+
+  %dl
+    %dt= t "mongoid.attributes.employee.departments.#{contact.department}"
+    %dd
+      = contact.firstname
+      = contact.lastname
+      %br
+      = contact.job_function
+
+  %dl
+    %dt
+    %dd
+      = t '.street'
+      %br
+      = t '.zip'
+      = t '.city'
+
+  %dl
+    %dt
+    %dd= contact.phone
+
+  %dl
+    %dt
+    %dd
+      = contact.email
+      %br
+      = t '.www'

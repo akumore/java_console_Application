@@ -62,3 +62,9 @@ de:
       minimum_rental_period: 'Mindestmietdauer'
       notice_dates: 'Kündigungstermine'
       notice_period: 'Kündigungsfrist'
+    contact:
+      title: Kontakt
+      street: Neuhofstrasse 10
+      zip: CH-6340
+      city: Baar
+      www: www.alfred-mueller.ch

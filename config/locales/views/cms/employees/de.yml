@@ -3,9 +3,6 @@ de:
     employees:
       form:
         image_help: 'Bildgrösse in der Kontaktansicht: 570x260 Pixel'
-        departments:
-          marketing: 'Vermarktung'
-          real_estate_management: 'Bewirtschaftung'
         overview: 'Zurück zur Übersicht'
       index:
         new: 'Neuen Mitarbeiter erfassen'
