@@ -6,7 +6,7 @@
   .primary-title
     = @real_estate.title
     %span
-      Etappe 4 | Miete Privat, Text zu definieren
+      = t(".#{RealEstate::OFFER_FOR_RENT}_#{@real_estate.utilization}")
 
 = render 'overview'
 

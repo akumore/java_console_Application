@@ -1,5 +1,8 @@
 de:
   handouts:
+    show:
+      for_rent_private: 'Miete Privat'
+      for_rent_commercial: 'Miete Gewerblich'
     overview:
       title: 'Objektübersicht'
       property: 'Liegenschaft'

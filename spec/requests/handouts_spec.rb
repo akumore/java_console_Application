@@ -4,6 +4,57 @@ require "spec_helper"
 describe "Handout aka MiniDoku" do
   monkey_patch_default_url_options
 
+  describe 'Title page' do
+    before :each do
+      @real_estate = Fabricate(:residential_building,
+        :address => Fabricate.build(:address, :street => 'Musterstrasse', :street_number => '1', :zip => '8400', :city => 'Hausen'),
+        :figure => Fabricate.build(:figure, :floor => 3, :rooms => '3.5', :usable_surface => 120),
+        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'month'),
+        :title => 'Demo Objekt',
+        :description => 'Lorem Ipsum',
+        :property_name => 'Gartenstadt'
+      )
+
+      visit real_estate_handout_path(@real_estate)
+    end
+
+    it 'shows the real estate title' do
+      page.should have_content('Demo Objekt')
+    end
+
+    it 'shows the utilization of the real estate' do
+      page.should have_content('Miete Privat')
+    end
+
+    it 'shows the property name' do
+      page.should have_content('Gartenstadt')
+    end
+
+    it 'shows the address' do
+      page.should have_content('Musterstrasse 1, 8400 Hausen')
+    end
+
+    it 'shows the floor' do
+      page.should have_content('3. Obergeschoss')
+    end
+
+    it 'shows the number of rooms' do
+      page.should have_content('3.5')
+    end
+
+    it 'shows the usable surface' do
+      page.should have_content('120m2')
+    end
+
+    it 'shows the helptext for the usable surface' do
+      page.should have_content I18n.t('handouts.overview.usable_surface_helptext')
+    end
+
+    it 'shows the description' do
+      page.should have_content('Lorem Ipsum')
+    end
+  end
+
   describe "Chapter Pricing" do
 
     shared_examples_for "Pricing information shown for all kind of real estates" do
@@ -17,7 +68,6 @@ describe "Handout aka MiniDoku" do
       it "marks the rent price opted if 'opted'" do
         @pricing.update_attribute :opted, true
         visit real_estate_handout_path(@real_estate)
-        save_and_open_page
         page.should have_content "CHF 1'999.00 monatlich (ohne Mehrwertsteuer)"
       end
 
