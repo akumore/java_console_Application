@@ -2,18 +2,15 @@
   %h2= t('.title')
 
   %dl
-    %dt= t('.property')
-    %dd= [@real_estate.property_name.presence, @real_estate.category.label.presence, @real_estate.try(:reference).try(:unit_key).presence].compact.join ', '
+    - if property_name = @real_estate.property_name.presence
+      %dt= t('.property')
+      %dd= property_name
 
     - if @real_estate.address.present?
 
       %dt= t('.address')
       %dd
-        = @real_estate.address.street.presence
-        = @real_estate.address.street_number.presence
-        ,
-        = @real_estate.address.zip.presence
-        = @real_estate.address.city.presence
+        = "#{[@real_estate.address.street, @real_estate.address.street_number.presence].compact.join ' '}, #{@real_estate.address.zip} #{@real_estate.address.city}"
 
     - if @real_estate.figure.present?
 

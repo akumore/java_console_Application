@@ -1,0 +1,6 @@
+- if @real_estate.media_assets.floorplans.any?
+  .chapter.floorplan.pbi-avoid
+    %h2= t('.title')
+
+    .floorplan-image.pbi-avoid
+      = image_tag(@real_estate.media_assets.floorplans.first.url)
