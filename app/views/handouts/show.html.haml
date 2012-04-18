@@ -18,7 +18,7 @@
 
 = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
 
-- unless (handout_images = @real_estate.media_assets.for_print).empty?
+- if (handout_images = @real_estate.media_assets.for_print).any?
   = render 'images', :images => handout_images
 
 - if @real_estate.contact.present?
