@@ -43,8 +43,24 @@ describe "Pages" do
         end
       end
 
-      it "shows the managing directors"
-      it "shows reference projects"
+      it "shows the managing directors" do
+        visit "/de/company"
+        within "#managing-board" do
+          page.should have_content "Christoph Müller"
+          page.should have_content "Michael Müller"
+          page.should have_content "Viktor Naumann"
+          page.should have_content "Walter Hochreutener"
+          page.should have_content "Joe Schmalz"
+          page.should have_content "David Spiess"
+        end
+      end
+      
+      it "shows a reference projects slider" do
+        Fabricate :published_real_estate, :offer => RealEstate::OFFER_FOR_RENT, :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL], :category => Fabricate(:category)
+        visit "/de/company"
+        page.should have_css("#reference-projects .flex-container .flexslider")
+        page.should have_css("#reference-projects ul.slides li")
+      end
     end
 
   end
