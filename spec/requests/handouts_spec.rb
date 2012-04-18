@@ -433,7 +433,6 @@ describe "Handout aka MiniDoku" do
 
       it "shows the first one enlarged" do
         visit real_estate_handout_path(@real_estate)
-        save_and_open_page
         page.should have_css ".chapter.images div.enlarged-image#image-#{@kitchen.id}"
       end
 
