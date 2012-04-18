@@ -59,6 +59,6 @@ class MediaAsset
 
   private
   def setup_position
-    self.position = real_estate.media_assets.where(:media_type => media_type).max(:position) + 1
+    self.position ||= real_estate.media_assets.where(:media_type => media_type).max(:position) + 1
   end
 end
