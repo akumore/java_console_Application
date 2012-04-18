@@ -1,33 +1,32 @@
-- if @real_estate.additional_description.present?
-  .chapter.additional-description
-    %h2= t('.title')
+.chapter.additional-description
+  %h2= t('.title')
 
-    - if generic = @real_estate.additional_description.generic.presence
-      %dl
-        %dt= t('.generic')
-        %dd= markdown generic
+  - if generic = additional_description.generic.presence
+    %dl
+      %dt= t('.generic')
+      %dd= markdown generic
 
-    - if location = @real_estate.additional_description.location.presence
-      %dl
-        %dt= t('.location')
-        %dd= markdown location
+  - if location = additional_description.location.presence
+    %dl
+      %dt= t('.location')
+      %dd= markdown location
 
-    - if interior = @real_estate.additional_description.interior.presence
-      %dl
-        %dt= t('.interior')
-        %dd= markdown interior
+  - if interior = additional_description.interior.presence
+    %dl
+      %dt= t('.interior')
+      %dd= markdown interior
 
-    - if offer = @real_estate.additional_description.offer.presence
-      %dl
-        %dt= t('.offer')
-        %dd= markdown offer
+  - if offer = additional_description.offer.presence
+    %dl
+      %dt= t('.offer')
+      %dd= markdown offer
 
-    - if infrastructure = @real_estate.additional_description.infrastructure.presence
-      %dl
-        %dt= t('.infrastructure')
-        %dd= markdown infrastructure
+  - if infrastructure = additional_description.infrastructure.presence
+    %dl
+      %dt= t('.infrastructure')
+      %dd= markdown infrastructure
 
-    - if usage = @real_estate.additional_description.usage.presence
-      %dl
-        %dt= t('.usage')
-        %dd= markdown usage
+  - if usage = additional_description.usage.presence
+    %dl
+      %dt= t('.usage')
+      %dd= markdown usage

@@ -70,6 +70,8 @@ de:
       offer: 'Angebot'
       infrastructure: 'Infrastruktur'
       usage: 'Nutzung'
+    images:
+      title: Bilder
     contact:
       title: Kontakt
       street: Neuhofstrasse 10

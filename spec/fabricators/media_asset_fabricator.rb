@@ -3,6 +3,7 @@ Fabricator(:media_asset_image, :class_name => 'MediaAsset') do
   is_primary false
   file File.open("#{Rails.root}/spec/support/test_files/image.jpg")
   title "Image title"
+  position { Fabricate.sequence }
 end
 
 Fabricator(:media_asset_image_png, :class_name => 'MediaAsset') do
@@ -10,6 +11,7 @@ Fabricator(:media_asset_image_png, :class_name => 'MediaAsset') do
   is_primary false
   file File.open("#{Rails.root}/spec/support/test_files/image.png")
   title "Image title"
+  position { Fabricate.sequence }
 end
 
 Fabricator(:media_asset_floorplan, :from => :media_asset_image) do
@@ -21,6 +23,7 @@ Fabricator(:media_asset_video, :class_name => 'MediaAsset') do
   is_primary false
   file File.open("#{Rails.root}/spec/support/test_files/video.mp4")
   title "Video title"
+  position { Fabricate.sequence }
 end
 
 Fabricator(:media_asset_document, :class_name => 'MediaAsset') do
@@ -28,4 +31,5 @@ Fabricator(:media_asset_document, :class_name => 'MediaAsset') do
   is_primary false
   file File.open("#{Rails.root}/spec/support/test_files/document.pdf")
   title "Document title"
+  position { Fabricate.sequence }
 end
