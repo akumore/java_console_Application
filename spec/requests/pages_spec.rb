@@ -20,4 +20,32 @@ describe "Pages" do
     end
   end
 
+
+  describe "Company Page" do
+
+    before do
+      @brick = Fabricate.build(:placeholder_brick, :placeholder => 'company_header')
+      @page = Fabricate(:page, :name => 'company', :bricks => [@brick])
+    end
+
+    it "has a tab slider" do
+      visit "/de/company"
+      page.should have_css "#head-of-alfred-mueller-gallery"
+    end
+
+    describe "The tab slider" do
+      it "shows the board of directors" do
+        visit "/de/company"
+        within "#board-of-directors" do
+          page.should have_content "Christoph Müller"
+          page.should have_content "Viktor Naumann"
+          page.should have_content "Dr. Erich Rüegg"
+        end
+      end
+
+      it "shows the managing directors"
+      it "shows reference projects"
+    end
+
+  end
 end
