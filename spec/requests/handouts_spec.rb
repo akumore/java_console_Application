@@ -41,7 +41,15 @@ describe "Handout aka MiniDoku" do
         :property_name => 'Gartenstadt',
         :media_assets => [
           Fabricate.build(:media_asset_floorplan)
-        ]
+        ],
+        :additional_description => Fabricate.build(:additional_description,
+          :generic => 'Lorem ipsum ... 1. Beschreibung',
+          :location => 'Lorem ipsum ... 2. Beschreibung',
+          :interior => 'Lorem ipsum ... 3. Beschreibung',
+          :offer => 'Lorem ipsum ... 4. Beschreibung',
+          :infrastructure => 'Lorem ipsum ... 5. Beschreibung',
+          :usage => 'Lorem ipsum ... 6. Beschreibung',
+        )
       )
   end
 
@@ -319,6 +327,46 @@ describe "Handout aka MiniDoku" do
       it 'has sewage supply' do
         page.should have_content 'Abwasseranschluss'
       end
+    end
+  end
+
+  describe "Chapter Descriptions" do
+    before do
+      visit real_estate_handout_path(printable_real_estate)
+    end
+
+    it 'shows the chapter title' do
+      page.should have_content 'Beschreibung'
+    end
+
+    it 'shows the generic description' do
+      page.should have_content 'Allgemein'
+      page.should have_content 'Lorem ipsum ... 1. Beschreibung'
+    end
+
+    it 'shows the location description' do
+      page.should have_content 'Standort'
+      page.should have_content 'Lorem ipsum ... 2. Beschreibung'
+    end
+
+    it 'shows the interior description' do
+      page.should have_content 'Ausbaustandard'
+      page.should have_content 'Lorem ipsum ... 3. Beschreibung'
+    end
+
+    it 'shows the offer description' do
+      page.should have_content 'Angebot'
+      page.should have_content 'Lorem ipsum ... 4. Beschreibung'
+    end
+
+    it 'shows the infrastructure description' do
+      page.should have_content 'Infrastruktur'
+      page.should have_content 'Lorem ipsum ... 5. Beschreibung'
+    end
+
+    it 'shows the usage description' do
+      page.should have_content 'Nutzung'
+      page.should have_content 'Lorem ipsum ... 6. Beschreibung'
     end
   end
 

@@ -12,5 +12,6 @@
 = render 'floorplan'
 = render 'information'
 = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
+= render 'description'
 - if @real_estate.contact.present?
   = render 'contact', :contact => @real_estate.contact
