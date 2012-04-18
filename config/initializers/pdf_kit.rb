@@ -8,7 +8,7 @@ PDFKit.configure do |config|
   config.default_options = {
     :page_size => 'A4',
     :dpi => 300, #Seem not to have any effect
-    :margin_top => 10,
+    :margin_top => 15,
     :margin_left => 10,
     :margin_right => 10,
     :margin_bottom => 15,
