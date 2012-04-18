@@ -387,4 +387,68 @@ describe "Handout aka MiniDoku" do
     end
 
   end
+
+
+  describe "Chapter Pictures" do
+    before do
+      @primary_image = Fabricate.build :media_asset_image, :is_primary=>true, :title=>"The primary image"
+      @ground_plot = Fabricate.build :media_asset_floorplan, :title=>"The beautiful floor plan"
+      @kitchen = Fabricate.build(:media_asset_image, :title=>"The kitchen")
+      @bathroom = Fabricate.build(:media_asset_image, :title=>"The bathroom")
+
+      @real_estate = Fabricate :residential_building, :contact=>@contact_person, :pricing => Fabricate.build(:pricing_for_rent),
+                               :media_assets => [@primary_image, @ground_plot, @kitchen, @bathroom]
+    end
+
+    it "shows the chapter title" do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.images h2" do
+        page.should have_content "Bilder"
+      end
+    end
+
+    it "doesn't show the main-picture" do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.images" do
+        page.should_not have_content @primary_image.title
+        page.should_not have_css "#image-#{@primary_image.id}"
+      end
+    end
+
+    it "doesn't show the ground plot" do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.images" do
+        page.should_not have_content @ground_plot.title
+        page.should_not have_css "#image-#{@ground_plot.id}"
+      end
+    end
+
+    context "All other pictures" do
+      it "shows all other pictures" do
+        visit real_estate_handout_path(@real_estate)
+        within ".chapter.images" do
+          [@kitchen, @bathroom].each { |img| page.should have_css "#image-#{img.id}" }
+        end
+      end
+
+      it "shows the first one enlarged" do
+        visit real_estate_handout_path(@real_estate)
+        save_and_open_page
+        page.should have_css ".chapter.images div.enlarged-image#image-#{@kitchen.id}"
+      end
+
+      it "uses a two-column layout for rendering others" do
+        visit real_estate_handout_path(@real_estate)
+        page.should have_css ".chapter.images div.smaller-images #image-#{@bathroom.id}"
+      end
+    end
+
+    it "shows the title of the pictures" do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.images" do
+        [@bathroom, @kitchen].each { |image| page.should have_content image.title }
+      end
+    end
+
+  end
 end

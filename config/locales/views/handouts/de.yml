@@ -62,6 +62,8 @@ de:
       minimum_rental_period: 'Mindestmietdauer'
       notice_dates: 'Kündigungstermine'
       notice_period: 'Kündigungsfrist'
+    images:
+      title: Bilder
     contact:
       title: Kontakt
       street: Neuhofstrasse 10
