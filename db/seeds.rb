@@ -390,6 +390,7 @@ module InitialPages
 
   module CompanyPage
     Page.create(:title => 'Unternehmen', :name => 'company', :locale => :de) do |jobs_page|
+      jobs_page.bricks << Brick::Placeholder.new(:placeholder => 'company_header')
       jobs_page.bricks << Brick::Title.new(:title => 'Sie engagieren uns, damit ihr Bauprojekt gelingt')
       jobs_page.bricks << Brick::Text.new(
           :text => 'Die Alfred Müller AG gehört zu den führenden Schweizer Immobilenunternehmungen. Im Auftrag ihrer Kunden oder für ihr eigenes Portfolio entwickelt, realisiert und vermarktet sie qualitativ hochwertige Wohn- und Geschäftshäuser. Seit seiner Gründung hat das Familienunternehmen mehr als 5800 Wohnungen und 1,7 Millionen Quadratmeter Geschäftsfläche erstellt.',
