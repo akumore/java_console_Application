@@ -62,6 +62,8 @@ describe "RealEstates" do
       let :primary_image do
         Fabricate.build(:media_asset_image, :is_primary=>true)
       end
+      before { MediaAssetUploader.enable_processing = true }
+      after { MediaAssetUploader.enable_processing = false }
 
       it "shows the thumbnail of the primary image" do
         real_estate.media_assets << primary_image
