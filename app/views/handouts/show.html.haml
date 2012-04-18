@@ -10,7 +10,10 @@
 
 = render 'overview'
 = render 'floorplan'
-= render 'information'
+
+- if @real_estate.information.present?
+  = render 'information', :real_estate => @real_estate, :information => @real_estate.information
+
 = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
 
 - unless (handout_images = @real_estate.media_assets.for_print).empty?
