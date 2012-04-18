@@ -17,22 +17,29 @@
           %i.icon-file
           = t('.new_document')
 
-%table.table.table-bordered.table-striped
-  %tr
-    %th{ :width => '70%' } Titel
-    %th Typ
-    %th
-    %th
-
-  - @media_assets.each do |media_asset|
+= form_for [:cms, @real_estate], :remote => true, :html => { :class => :autosubmit } do |f|
+  %table.table.table-bordered.table-striped.sortable
     %tr
-      %td= media_asset.title
-      %td= t(".types.#{media_asset.media_type}")
-      %td
-        - if can? :update, media_asset
-          = link_to  t('.destroy'), cms_real_estate_media_asset_path(@real_estate, media_asset), :method => :delete, :confirm => t('.confirm_delete', :title => media_asset.title)
-      %td
-        - if can? :update, media_asset
-          = link_to  t('.edit'), edit_cms_real_estate_media_asset_path(@real_estate, media_asset)
-        - else
-          = link_to t('.show'), cms_real_estate_media_asset_path(@real_estate, media_asset)
+      %th
+      %th{ :width => '70%' } Titel
+      %th Typ
+      %th
+      %th
+
+    %tbody
+      - @media_assets.each do |media_asset|
+        = f.fields_for :media_assets, media_asset do |media_asset_form|
+          %tr.draggable-row
+            %td.drag-handle
+              %i.icon-align-justify
+              = media_asset_form.hidden_field :position, :value => media_asset.position
+            %td= media_asset.title
+            %td= t(".types.#{media_asset.media_type}")
+            %td
+              - if can? :update, media_asset
+                = link_to  t('.destroy'), cms_real_estate_media_asset_path(@real_estate, media_asset), :method => :delete, :confirm => t('.confirm_delete', :title => media_asset.title)
+            %td
+              - if can? :update, media_asset
+                = link_to  t('.edit'), edit_cms_real_estate_media_asset_path(@real_estate, media_asset)
+              - else
+                = link_to t('.show'), cms_real_estate_media_asset_path(@real_estate, media_asset)

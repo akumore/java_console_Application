@@ -38,6 +38,8 @@ class RealEstate
     end
   end
 
+  accepts_nested_attributes_for :media_assets
+
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE
   field :offer, :type => String, :default => RealEstate::OFFER_FOR_RENT

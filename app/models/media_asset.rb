@@ -1,5 +1,5 @@
 class MediaAsset
-  
+
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -10,13 +10,15 @@ class MediaAsset
 
   embedded_in :real_estate
 
+  default_scope asc(:position)
+
   scope :images, where(:media_type => MediaAsset::IMAGE)
   scope :videos, where(:media_type => MediaAsset::VIDEO)
   scope :docs, where(:media_type => MediaAsset::DOCUMENT)
-  
+
   scope :primary, where(:is_primary=>true)
   scope :displayable, any_of(
-    { :media_type => MediaAsset::IMAGE }, 
+    { :media_type => MediaAsset::IMAGE },
     { :media_type => MediaAsset::VIDEO }
   )
   scope :floorplans, where(:media_type => MediaAsset::IMAGE, :is_floorplan => true)
@@ -28,6 +30,7 @@ class MediaAsset
   field :is_floorplan, :type => Boolean
   field :title, :type => String
   field :file, :type => String
+  field :position, :type => Integer, :default => 1
 
   validates :title, :presence => true
   validates :media_type, :presence => true

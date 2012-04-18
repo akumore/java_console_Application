@@ -27,6 +27,9 @@ de:
         commercial: Gewerblich
         editing: In Bearbeitung
         destroyed: "Die Immobilie \"%{title}\" wurde erfolgreich gelöscht."
+      update:
+        sorted:
+          success: 'Die Sortierung wurde erfolgreich gespeichert.'
   real_estates:
     reference_projects:
       link_title: 'Zum Projekt'
