@@ -27,31 +27,22 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
      "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   end
 
-  version :gallery, :if => :is_image? do
-    process :convert => 'jpg'
-    process :resize_to_fill=>[1000,500]
-    process :quality => 80
-  end
-
   version :minidoku, :if => :is_image? do
     process :convert => 'jpg'
-    process :resize_to_fill=>[2000,1000]
+    process :resize_to_fill => [2000, 1000]
   end
 
-  version :thumb, :if => :is_image? do
-    process :convert => 'jpg'
-    process :resize_to_fill => [145,88]
+  version :gallery, :if => :is_image?, :from_version => :minidoku do
+    process :resize_to_fill => [1000, 500]
     process :quality => 80
   end
 
-  version :cms_preview, :if => :is_image? do
-    process :convert => 'jpg'
+  version :thumb, :if => :is_image?, :from_version => :gallery do
+    process :resize_to_fill => [145, 88]
+  end
+
+  version :cms_preview, :if => :is_image?, :from_version => :gallery do
     process :resize_to_fill => [600, 340]
-    process :quality => 80
-  end
-
-  version :jpeg_format, :if => :is_image? do
-    process :convert => 'jpg'
   end
 
   def filename
