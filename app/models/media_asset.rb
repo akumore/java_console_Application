@@ -38,6 +38,8 @@ class MediaAsset
 
   delegate :url, :to=>:file
 
+  before_create :setup_position
+
   def image?
     media_type == MediaAsset::IMAGE
   end
@@ -52,5 +54,11 @@ class MediaAsset
 
   def is_floorplan?
     image? && is_floorplan
+  end
+
+
+  private
+  def setup_position
+    self.position = real_estate.media_assets.where(:media_type => media_type).max(:position) + 1
   end
 end
