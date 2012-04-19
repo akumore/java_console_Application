@@ -21,7 +21,7 @@ share_examples_for "All CMS controllers not accessible to editors" do |resource_
   end
 
   it 'can not be accessed on #edit' do
-    get :new
+    get :edit, :id => resource.id
     response.should redirect_to cms_dashboards_path
     flash[:warn].should == @prohibited
   end
