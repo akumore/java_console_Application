@@ -1,11 +1,15 @@
 # encoding: utf-8
 
-share_examples_for "All CMS controllers not accessible to editors" do |resource|
+share_examples_for "All CMS controllers not accessible to editors" do |resource_name|
   before do
     @request.env["devise.mapping"] = Devise.mappings[:users]
     sign_in Fabricate(:cms_editor)
 
     @prohibited = 'Sie haben keine Berechtigungen für diese Aktion'
+  end
+
+  let :resource do
+    Fabricate(resource_name)
   end
 
   [:new, :index].each do |action|
