@@ -4,8 +4,7 @@ module Cms
     authorize_resource
 
     rescue_from CanCan::AccessDenied do |err|
-      flash[:warn] = err.message
-      redirect_to cms_dashboards_path
+      redirect_to cms_dashboards_path, :alert => err.message
     end
 
     rescue_from Mongoid::Errors::DocumentNotFound do |err|
