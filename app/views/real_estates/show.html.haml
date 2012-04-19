@@ -105,7 +105,8 @@
           .title= t('.contact_person')
           .content
             %p
-              = image_tag @real_estate.contact.image
+              - if @real_estate.contact.image.present?
+                = image_tag @real_estate.contact.image
               .image-caption
                 .image-caption-text
                   = @real_estate.contact.contact_info
