@@ -16,31 +16,31 @@ share_examples_for "All CMS controllers not accessible to editors" do |resource_
     it "can not be accessed on ##{action}" do
       get action
       response.should redirect_to cms_dashboards_path
-      flash[:warn].should == @prohibited
+      flash[:alert].should == @prohibited
     end
   end
 
   it 'can not be accessed on #edit' do
     get :edit, :id => resource.id
     response.should redirect_to cms_dashboards_path
-    flash[:warn].should == @prohibited
+    flash[:alert].should == @prohibited
   end
 
   it 'can not be accessed for creating new objects' do
     post :create
     response.should redirect_to cms_dashboards_path
-    flash[:warn].should == @prohibited
+    flash[:alert].should == @prohibited
   end
 
   it 'can not be accessed for updating existing objects' do
     put :update, :id => resource.id
     response.should redirect_to cms_dashboards_path
-    flash[:warn].should == @prohibited
+    flash[:alert].should == @prohibited
   end
 
   it 'can not be accessed for deleting objects' do
     delete :destroy, :id => resource.id
     response.should redirect_to cms_dashboards_path
-    flash[:warn].should == @prohibited
+    flash[:alert].should == @prohibited
   end
 end
