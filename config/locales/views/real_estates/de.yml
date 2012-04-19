@@ -26,6 +26,8 @@ de:
         private: Wohnen
         commercial: Arbeiten
         editing: In Bearbeitung
+        published: 'Veröffentlicht'
+        in_review: 'Zu Verifizieren'
         destroyed: "Die Immobilie \"%{title}\" wurde erfolgreich gelöscht."
       update:
         sorted:
