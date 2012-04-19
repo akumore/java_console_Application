@@ -1,5 +1,4 @@
 require 'carrierwave/processing/mime_types'
-require 'extension_white_list'
 
 class BaseUploader < CarrierWave::Uploader::Base
 
