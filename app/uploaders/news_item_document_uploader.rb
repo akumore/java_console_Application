@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class NewsItemDocumentUploader < BaseUploader
 
   # Add a white list of extensions which are allowed to be uploaded.
