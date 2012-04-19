@@ -6,7 +6,7 @@
   = render 'cms/shared/errors', :model => @information
 
   %fieldset
-    .control-group
+    .control-group.mandatory
       = f.label :available_from
       .controls
         = f.date_select :available_from#, :start_year=>Date.today.year, :end_year=>5.years.from_now.year

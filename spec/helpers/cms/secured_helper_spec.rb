@@ -55,19 +55,19 @@ describe Cms::SecuredHelper do
       Fabricate :real_estate, :category => Fabricate(:category)
     end
 
-    [:address, :pricing].each do |tab|
+    [:address, :pricing, :information].each do |tab|
       it "marks the #{tab} tab 'mandatory'" do
         helper.mark_mandatory_tab(tab).should == 'mandatory'
       end
     end
 
-    [:information, :figure, :infrastructure, :additional_description].each do |tab|
+    [:figure, :infrastructure, :additional_description].each do |tab|
       it "doesn't mark #{tab} tab 'mandatory'" do
         helper.mark_mandatory_tab(tab).should be_nil
       end
     end
 
-    [:address, :pricing].each do |tab|
+    [:address, :pricing, :information].each do |tab|
       it "highlights the #{tab} tab 'invalid' because of validation errors within it" do
         not_publishable.publish_it.should be_false
         assign :real_estate, not_publishable
@@ -76,7 +76,7 @@ describe Cms::SecuredHelper do
       end
     end
 
-    [:information, :figure, :infrastructure, :additional_description].each do |tab|
+    [:figure, :infrastructure, :additional_description].each do |tab|
       it "doesn't highlight valid #{tab} tabs" do
         not_publishable.publish_it.should be_false
         assign :real_estate, not_publishable

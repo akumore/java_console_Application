@@ -42,7 +42,7 @@ describe "RealEstates" do
 
     it "renders the search results within a table" do
       visit real_estates_path
-      page.should have_selector('table tr', :count => 1)
+      page.should have_selector('table tbody tr', :count => 1)
     end
 
     it "shows published real estates only" do
@@ -210,32 +210,32 @@ describe "RealEstates" do
 
     it "shows non-commercial offers for sale" do
       visit real_estates_path(:utilization=>RealEstate::UTILIZATION_PRIVATE, :offer=>RealEstate::OFFER_FOR_SALE)
-      page.should have_selector('table tr', :count => 1)
+      page.should have_selector('table tbody tr', :count => 1)
       page.should have_css("tr[id=real-estate-#{@non_commercial_for_sale.id}]")
     end
 
     it "shows non-commercial offers for rent" do
       visit real_estates_path(:utilization=>RealEstate::UTILIZATION_PRIVATE, :offer=>RealEstate::OFFER_FOR_RENT)
-      page.should have_selector('table tr', :count => 1)
+      page.should have_selector('table tbody tr', :count => 1)
       page.should have_css("tr[id=real-estate-#{@non_commercial_for_rent.id}]")
     end
 
     it "shows commercial offers for sale" do
       visit real_estates_path(:utilization=>RealEstate::UTILIZATION_COMMERICAL, :offer=>RealEstate::OFFER_FOR_SALE)
-      page.should have_selector('table tr', :count => 1)
+      page.should have_selector('table tbody tr', :count => 1)
       page.should have_css("tr[id=real-estate-#{@commercial_for_sale.id}]")
     end
 
     it "shows commercial offers for rent" do
       visit real_estates_path(:utilization=>RealEstate::UTILIZATION_COMMERICAL, :offer=>RealEstate::OFFER_FOR_RENT)
-      page.should have_selector('table tr', :count => 1)
+      page.should have_selector('table tbody tr', :count => 1)
       page.should have_css("tr[id=real-estate-#{@commercial_for_rent.id}]")
     end
 
     it "filters out all real estates because there is no match" do
       @commercial_for_rent.destroy
       visit real_estates_path(:utilization=>RealEstate::UTILIZATION_COMMERICAL, :offer=>RealEstate::OFFER_FOR_RENT)
-      page.should_not have_selector('table tr')
+      page.should_not have_selector('table tbody tr')
     end
   end
 
