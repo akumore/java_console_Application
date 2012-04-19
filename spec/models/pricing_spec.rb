@@ -21,16 +21,16 @@ describe Pricing do
       end
 
       it 'requires a netto rent price' do
-        @pricing.should have(1).error_on(:for_rent_netto)
+        @pricing.should have(2).error_on(:for_rent_netto)
       end
 
       it 'requires the rent extras' do
-        @pricing.should have(1).error_on(:for_rent_extra)
+        @pricing.should have(2).error_on(:for_rent_extra)
       end
 
-      it 'has 3 errors' do
+      it 'has 6 errors' do
         @pricing.valid?
-        @pricing.errors.should have(3).items
+        @pricing.errors.should have(5).items
       end
     end
 
@@ -44,13 +44,13 @@ describe Pricing do
       end
 
       it 'requires a sale price' do
-        @pricing.should have(1).error_on(:for_sale)
+        @pricing.should have(2).error_on(:for_sale)
       end
 
-      it 'has 1 errors' do
+      it 'has 2 errors' do
         @pricing.valid?
-        @pricing.errors.should have(1).items
+        @pricing.errors.should have(2).items
       end
     end
-  end  
+  end
 end
