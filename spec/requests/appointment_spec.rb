@@ -38,7 +38,7 @@ describe "Appointment" do
     visit new_real_estate_appointment_path(@real_estate)
     click_button I18n.t("appointments.form.submit")
 
-    %w(firstname lastname email phone).each do |field|
+    %w(firstname lastname email).each do |field|
       within(".alert") { page.should have_content %(#{I18n.t("mongoid.attributes.appointment.#{field}")} muss ausgefüllt werden) }
     end
   end

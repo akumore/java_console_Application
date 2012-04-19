@@ -7,7 +7,7 @@ describe "Cms::MediaAssets" do
 
   before :each do
     @real_estate = Fabricate(:real_estate,
-      :category => Category.last, 
+      :category => Category.last,
       :reference => Fabricate.build(:reference)
     )
 
@@ -36,6 +36,8 @@ describe "Cms::MediaAssets" do
       @real_estate.reload
       @real_estate.media_assets.count.should == 3
     end
+
+    it 'is sortable via drag and drop'
   end
 
   describe '#new image' do
@@ -48,7 +50,7 @@ describe "Cms::MediaAssets" do
     end
 
     context 'adding an image' do
-      
+
       before :each do
         within '.new_media_asset' do
           fill_in 'Titel', :with => 'Das neue Bild'
@@ -95,7 +97,7 @@ describe "Cms::MediaAssets" do
     end
 
     context 'adding a video' do
-      
+
       before :each do
         within '.new_media_asset' do
           fill_in 'Titel', :with => 'Das neue Video'
@@ -141,7 +143,7 @@ describe "Cms::MediaAssets" do
     end
 
     context 'adding a document' do
-      
+
       before :each do
         within '.new_media_asset' do
           fill_in 'Titel', :with => 'Das neue Dokument'

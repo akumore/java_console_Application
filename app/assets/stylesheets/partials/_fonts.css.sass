@@ -55,9 +55,12 @@ h3
   @extend text-font-bold
   font-size: 1.25em
   color: $dark
-  margin-bottom: -0.5em
+  //margin-bottom: -0.5em
   margin-top: 2em
   text-transform: uppercase
+
+h3:first-child
+  margin-top: 1em
 
 h4
   @extend .title-font-bold
@@ -72,9 +75,6 @@ h5
 
 strong
   font-weight: 600
-
-h3:first-child
-  margin-top: 1em
 
 input, select, textarea
   font-size: 1em
@@ -157,7 +157,7 @@ input, select, textarea
 
   .image-caption-text
     h3
-      @extend .title-font-bold 
+      @extend .title-font-bold
       font-size: 2em
       line-height: 1.15em
 

@@ -10,3 +10,9 @@ de:
           admin: 'Admin'
           editor: 'Redaktor'
         overview: 'Zurück zur Übersicht'
+      create:
+        success: Der Benutzer %{email} wurde erfolgreich gespeichert
+      update:
+        success: Der Benutzer %{email} wurde erfolgreich gespeichert
+      destroy:
+        success: Der Benutzer %{email} wurde erfolgreich gelöscht

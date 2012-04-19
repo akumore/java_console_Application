@@ -18,6 +18,8 @@
     = form_for @search_filter, :url=>real_estates_path, :method=>'GET' do |f|
       = f.hidden_field :offer
       = f.hidden_field :utilization
+      = f.hidden_field :sort_field
+      = f.hidden_field :sort_order
       = f.label :cantons
       = f.collection_select :cantons, cantons_for_collection_select(@search_filter.available_cantons.sort) , :first, :last, {}, :multiple=>true, :data=>{:placeholder=>t("helpers.select.prompt")}, :class=>'chzn-select'
       = f.label :cities

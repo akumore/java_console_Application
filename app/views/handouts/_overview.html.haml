@@ -1,0 +1,40 @@
+.chapter
+  %h2= t('.title')
+
+  %dl
+    - if property_name = @real_estate.property_name.presence
+      %dt= t('.property')
+      %dd= property_name
+
+    - if @real_estate.address.present?
+
+      %dt= t('.address')
+      %dd
+        = "#{[@real_estate.address.street, @real_estate.address.street_number.presence].compact.join ' '}, #{@real_estate.address.zip} #{@real_estate.address.city}"
+
+    - if @real_estate.figure.present?
+
+      - if floor = @real_estate.figure.try(:floor).presence
+
+        %dt= t('.floor')
+        %dd
+          - if floor < 0
+            = t('.lower_floor', :floor => floor)
+          - elsif floor == 0
+            = t('.ground_floor')
+          - else
+            = t('.upper_floor', :floor => floor)
+
+      - if rooms = @real_estate.figure.try(:rooms).presence
+        %dt= t('.rooms')
+        %dd= t('.rooms_value', :count => rooms)
+
+      - if usable_surface = @real_estate.figure.try(:usable_surface).presence
+        %dt= t('.usable_surface')
+        %dd
+          = t('.usable_surface_value', :count => usable_surface)
+          %span.helptext= t('.usable_surface_helptext')
+
+    - if @real_estate.description.present?
+      %dt= t('.description')
+      %dd= @real_estate.description

@@ -33,6 +33,9 @@ describe Export::Homegate::RealEstatePackage do
   end
 
   describe '#save' do
+    before { MediaAssetUploader.enable_processing=true }
+    after { MediaAssetUploader.enable_processing=false }
+
     it 'packages all assets into their respective folders' do
       package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
       package.should_receive(:package_assets).once
@@ -47,6 +50,9 @@ describe Export::Homegate::RealEstatePackage do
   end
 
   describe '#package_assets' do
+    before { MediaAssetUploader.enable_processing=true }
+    after { MediaAssetUploader.enable_processing=false }
+
     it 'copies the real estate images into /images' do
       package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
       package.should_receive(:add_image).exactly(3).times
@@ -75,25 +81,6 @@ describe Export::Homegate::RealEstatePackage do
   end
 
   describe '#add_image' do
-    context 'with a png image' do
-      it 'converts the image to the jpeg format' do
-        pending 'figure out why file is nil'
-        package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
-        file = real_estate.media_assets.images.last.file
-        file.should_receive(:jpeg_format)
-        package.add_image(file)
-      end
-    end
-
-    context 'with a jpeg image' do
-      it 'does not convert the image to the jpeg format' do
-        package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
-        file = real_estate.media_assets.images.first.file
-        file.should_not_receive(:jpeg_format)
-        package.add_image(file)
-      end
-    end
-
     it 'remembers the filename for the export' do
       package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
       package.add_image(real_estate.media_assets.images.first.file)
@@ -128,7 +115,7 @@ describe Export::Homegate::RealEstatePackage do
       package.asset_paths[:documents].first.should == "d_#{real_estate.id}_1.pdf"
     end
 
-    it 'copies the documet into /docs with a unique filename' do
+    it 'copies the document into /docs with a unique filename' do
       package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
       package.add_document(real_estate.media_assets.docs.first.file)
       File.exists?(File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf")).should be_true

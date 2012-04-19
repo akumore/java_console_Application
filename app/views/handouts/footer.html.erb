@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      function subst() {
+        var vars={};
+        var x=document.location.search.substring(1).split('&');
+        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+        for(var i in x) {
+          var y = document.getElementsByClassName(x[i]);
+          for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+        }
+      }
+    </script>
+
+    <script type="text/javascript">
+      function selectFooter() {
+          var currentPage=document.getElementsByClassName('page')[0].textContent;
+          if (currentPage=="1")
+            document.getElementById("title-page-footer").style.display = "block";
+          else
+            document.getElementById("page-footer").style.display = "block";
+      }
+    </script>
+  </head>
+
+  <body style="margin: 0;" onload="subst();selectFooter();">
+    <div id="title-page-footer" style="display: none; text-align: right">
+      <%= image_tag '/images/handout-footer-logo.png', :width => "126" %>
+    </div>
+    <div id="page-footer" style="display:none; text-align: right; font-size: 11px;">
+        Alfred Müller AG | Kurzdokumentation | <span class="page"></span>
+    </div>
+  </body>
+</html>

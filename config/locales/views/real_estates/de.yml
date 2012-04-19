@@ -27,6 +27,9 @@ de:
         commercial: Gewerblich
         editing: In Bearbeitung
         destroyed: "Die Immobilie \"%{title}\" wurde erfolgreich gelöscht."
+      update:
+        sorted:
+          success: 'Die Sortierung wurde erfolgreich gespeichert.'
   real_estates:
     reference_projects:
       link_title: 'Zum Projekt'
@@ -36,6 +39,18 @@ de:
       for_sale: Kaufen
       for_rent: Mieten
       search: Suchen
+    search_filter_order:
+      sort_field_label: 'Sortieren nach:'
+      search_fields:
+        rooms: 'Zimmer'
+        price: 'Preis'
+        available_from: 'Bezug'
+        category: 'Objekt-Art'
+        floor: 'Geschoss'
+        usable_surface: 'm²'
+      search_orders:
+        asc: 'Aufsteigend'
+        desc: 'Absteigend'
     index:
       number_of_rooms: "%{count} Zimmer"
       hits: "%{count} Treffer"
@@ -48,6 +63,7 @@ de:
       number_of_rooms: '%{count} Zimmer'
       floor: '%{floor}. Stockwerk'
       living_surface_html: '%{size}m<sup>2</sup>'
+      real_estate_description: 'Objektbeschrieb'
       real_estate_infos: 'Immobilieninfos'
       pricing: 'Preise'
       facts_and_figures: 'Zahlen und Fakten'
@@ -89,7 +105,7 @@ de:
       elementary_school: 'Primarschule: %{number}'
       high_school: 'Oberstufe: %{number}'
       highway_access: 'Autobahn Anschluss: %{number}'
-      available_from: 'Verfügbar ab: %{date}'
+      available_from: 'Bezug %{date}'
       has_outlook: 'Mit Ausblick'
       has_fireplace: 'Cheminée'
       has_elevator: 'Lift'

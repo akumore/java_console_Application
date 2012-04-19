@@ -14,7 +14,7 @@ module Export
 
       def package_assets
         @real_estate.media_assets.images.each do |image|
-          add_image(image.file)
+          add_image(image.file.gallery)
         end
 
         @real_estate.media_assets.videos.each do |video|
@@ -38,12 +38,6 @@ module Export
       def add_image(file)
         ext   = File.extname(file.path)
         path  = file.path
-        
-        unless ['.jpeg', '.jpg'].include? ext
-          path  = file.jpeg_format.path
-          ext   = File.extname(path)
-        end
-
         filename = "i_#{@real_estate.id}_#{asset_paths[:images].length + 1}#{ext}"
         target_path = File.join(@packager.path, 'images', filename)
         FileUtils.cp(path, target_path)

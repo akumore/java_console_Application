@@ -31,11 +31,11 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
         )
     )
 
-    $(".flexslider").flexslider(
+    $(".reference-projects-slider .flexslider, .services-slides-container .flexslider").flexslider(
       directionNav: true,
       controlNav: false,
       slideshow: false,
-      animation: "slide",
+      animation: "slide"
     )
 
     # initialize all accordions after the sliders, because they can contain sliders
@@ -66,3 +66,7 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     #initialize updater of filter-cities dropdown
     $('.search-filter-form').each ->
       new AlfredMueller.Views.SearchFilterOptionsUpdater(el: $(this))
+
+    # initialize sorting dropdowns
+    $(".sort-order-dropdown").each ->
+      new AlfredMueller.Views.SortOrderDropdown(el: $(this))

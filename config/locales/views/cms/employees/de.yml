@@ -1,0 +1,17 @@
+de:
+  cms:
+    employees:
+      form:
+        image_help: 'Bildgrösse in der Kontaktansicht: 570x260 Pixel'
+        overview: 'Zurück zur Übersicht'
+      index:
+        new: 'Neuen Mitarbeiter erfassen'
+        edit: 'Editieren'
+        confirm_delete: 'Den Mitarbeiter %{title} wirklich löschen?'
+        destroy: 'Löschen'
+      create:
+        success: Mitarbeiter erfolgreich angelegt
+      update:
+        success: Mitarbeiter erfolgreich aktualisiert
+      destroy:
+        success: "Mitarbeiter erfolgreich gelöscht"

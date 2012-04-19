@@ -7,7 +7,7 @@ SimpleNavigation::Configuration.run do |navigation|
   # navigation.renderer = Your::Custom::Renderer
 
   # Specify the class that will be applied to active navigation items. Defaults to 'selected'
-  # navigation.selected_class = 'your_selected_class'
+  navigation.selected_class = 'selected'
 
   # Specify the class that will be applied to the current leaf of
   # active navigation items. Defaults to 'simple-navigation-active-leaf'
@@ -33,10 +33,10 @@ SimpleNavigation::Configuration.run do |navigation|
   # Define the primary navigation
   navigation.items do |primary|
 
-    primary.item :real_estate, t('navigation.main.real_estate'), real_estates_path
+    primary.item :real_estate, t('navigation.main.real_estate'), real_estates_path, :highlights_on => proc { controller.request.path.include?('real_estate') }
     primary.item :jobs, t('navigation.main.jobs'), t('jobs_url'), :highlights_on => proc { controller.request.path == I18n.t('jobs_url') }
     primary.item :company, t('navigation.main.company'), t('company_url'), :highlights_on => proc { controller.request.path == I18n.t('company_url') }
-    primary.item :news, t('navigation.main.news'), news_items_path
+    primary.item :news, t('navigation.main.news'), news_items_path, :highlights_on => proc { controller.request.path == news_items_path }
     primary.item :knowledge, t('navigation.main.knowledge'), root_path
 
     # you can also specify a css id or class to attach to this particular level

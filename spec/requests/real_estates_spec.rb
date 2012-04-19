@@ -12,6 +12,7 @@ describe "RealEstates" do
   let :real_estate do
     Fabricate :published_real_estate,
               :category => category,
+              :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
               :address => Fabricate.build(:address),
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
               :pricing => Fabricate.build(:pricing),
@@ -41,7 +42,7 @@ describe "RealEstates" do
 
     it "renders the search results within a table" do
       visit real_estates_path
-      page.should have_selector('table tr', :count => 1)
+      page.should have_selector('table tbody tr', :count => 1)
     end
 
     it "shows published real estates only" do
@@ -61,6 +62,8 @@ describe "RealEstates" do
       let :primary_image do
         Fabricate.build(:media_asset_image, :is_primary=>true)
       end
+      before { MediaAssetUploader.enable_processing = true }
+      after { MediaAssetUploader.enable_processing = false }
 
       it "shows the thumbnail of the primary image" do
         real_estate.media_assets << primary_image
@@ -207,32 +210,32 @@ describe "RealEstates" do
 
     it "shows non-commercial offers for sale" do
       visit real_estates_path(:utilization=>RealEstate::UTILIZATION_PRIVATE, :offer=>RealEstate::OFFER_FOR_SALE)
-      page.should have_selector('table tr', :count => 1)
+      page.should have_selector('table tbody tr', :count => 1)
       page.should have_css("tr[id=real-estate-#{@non_commercial_for_sale.id}]")
     end
 
     it "shows non-commercial offers for rent" do
       visit real_estates_path(:utilization=>RealEstate::UTILIZATION_PRIVATE, :offer=>RealEstate::OFFER_FOR_RENT)
-      page.should have_selector('table tr', :count => 1)
+      page.should have_selector('table tbody tr', :count => 1)
       page.should have_css("tr[id=real-estate-#{@non_commercial_for_rent.id}]")
     end
 
     it "shows commercial offers for sale" do
       visit real_estates_path(:utilization=>RealEstate::UTILIZATION_COMMERICAL, :offer=>RealEstate::OFFER_FOR_SALE)
-      page.should have_selector('table tr', :count => 1)
+      page.should have_selector('table tbody tr', :count => 1)
       page.should have_css("tr[id=real-estate-#{@commercial_for_sale.id}]")
     end
 
     it "shows commercial offers for rent" do
       visit real_estates_path(:utilization=>RealEstate::UTILIZATION_COMMERICAL, :offer=>RealEstate::OFFER_FOR_RENT)
-      page.should have_selector('table tr', :count => 1)
+      page.should have_selector('table tbody tr', :count => 1)
       page.should have_css("tr[id=real-estate-#{@commercial_for_rent.id}]")
     end
 
     it "filters out all real estates because there is no match" do
       @commercial_for_rent.destroy
       visit real_estates_path(:utilization=>RealEstate::UTILIZATION_COMMERICAL, :offer=>RealEstate::OFFER_FOR_RENT)
-      page.should_not have_selector('table tr')
+      page.should_not have_selector('table tbody tr')
     end
   end
 
@@ -352,28 +355,39 @@ describe "RealEstates" do
       page.should have_content real_estate.figure.living_surface
     end
 
-    context 'when the real estate is for rent' do
-      it "shows the localized price for rent" do
+    context 'when the real estate has a handout' do
+      before :each do
         real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
+        real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
         visit real_estate_path(real_estate)
+      end
+
+      it "shows the localized price for rent" do
         page.should have_content number_to_currency(real_estate.pricing.for_rent_netto, :locale=>'de-CH')
+      end
+
+      it 'has a link to the mini doku' do
+        page.should have_link('Objektbeschrieb')
       end
     end
 
     context 'when the real estate is for sale' do
-      it "shows the localized price for sale" do
+      before :each do
         real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
         visit real_estate_path(real_estate)
+      end
+
+      it "shows the localized price for sale" do
         page.should have_content number_to_currency(real_estate.pricing.for_sale, :locale=>'de-CH')
+      end
+
+      it 'has no link to the mini doku' do
+        page.should_not have_link('Objektbeschrieb')
       end
     end
 
     it 'has a link to the next search result' do
       page.should have_link('Nächstes Projekt')
-    end
-
-    it 'has a link to the mini doku' do
-      page.should have_link('Objektbeschrieb')
     end
 
     it 'displays the full name of the responsible person' do
@@ -382,16 +396,17 @@ describe "RealEstates" do
         page.should have_content(real_estate.contact.phone)
         page.should have_content(real_estate.contact.fax)
         page.should have_content(real_estate.contact.mobile)
-        page.should have_content(real_estate.contact.email)
+        page.should have_link('E-Mail')
+
       end
     end
 
     it "has a map of the real estate location" do
       page.should have_css(".map", :count => 1)
     end
-    
+
     it "has the json representation of the location" do
-      find(".map[data-real_estate]")['data-real_estate'].should == real_estate.to_json(:only => :_id, :methods => :coordinates)      
+      find(".map[data-real_estate]")['data-real_estate'].should == real_estate.to_json(:only => :_id, :methods => :coordinates)
     end
 
     context 'having a floorplan', :fp => true do

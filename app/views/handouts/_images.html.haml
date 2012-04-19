@@ -1,0 +1,17 @@
+.chapter.images
+  .pbi-avoid
+    %h2= t ".title"
+    .enlarged-image{:id=>"image-#{images.first.id}"}
+      %h3= images.first.title
+      = image_tag images.first.file.url
+
+  - images[1..-1].in_groups_of(2, false).each do |image_group|
+    .smaller-images
+      .col-left{:id=>"image-#{image_group.first.id}"}
+        .pbi-avoid
+          %h3= image_group.first.title
+          = image_tag image_group.first.file.minidoku.url
+      - if image_group.size > 1
+        .col-right{:id=>"image-#{image_group.last.id}"}
+          %h3= image_group.last.title
+          = image_tag image_group.last.file.minidoku.url

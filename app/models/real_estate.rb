@@ -18,7 +18,8 @@ class RealEstate
   REFERENCE_PROJECT_CHANNEL = 'reference_projects'
   WEBSITE_CHANNEL = 'website'
   HOMEGATE_CHANNEL = 'homegate'
-  CHANNELS = %W(#{WEBSITE_CHANNEL} #{HOMEGATE_CHANNEL} print #{REFERENCE_PROJECT_CHANNEL})
+  PRINT_CHANNEL = 'print'
+  CHANNELS = %W(#{WEBSITE_CHANNEL} #{HOMEGATE_CHANNEL} #{PRINT_CHANNEL} #{REFERENCE_PROJECT_CHANNEL})
 
   belongs_to :category
   belongs_to :contact, :class_name => 'Employee'
@@ -36,6 +37,8 @@ class RealEstate
       images.primary.first || MediaAsset.new(:media_type => MediaAsset::IMAGE)
     end
   end
+
+  accepts_nested_attributes_for :media_assets
 
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE
@@ -67,6 +70,7 @@ class RealEstate
   scope :in_review, :where => { :state => STATE_IN_REVIEW }
   scope :editing, :where => { :state => STATE_EDITING }
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
+  scope :print_channel, :where => { :channels => PRINT_CHANNEL }
   scope :recently_updated, lambda { where( :updated_at.gte => 12.hours.ago ) }
 
   class << self
@@ -130,6 +134,10 @@ class RealEstate
 
   def private_utilization?
     self.utilization == RealEstate::UTILIZATION_PRIVATE
+  end
+
+  def has_handout?
+    for_rent? && channels.include?(RealEstate::PRINT_CHANNEL)
   end
 
   def top_level_category

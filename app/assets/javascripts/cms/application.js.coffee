@@ -37,4 +37,7 @@ $(document).ready ->
       $("table.sortable .draggable-row").each (idx, elem) ->
         $(this).find("td.drag-handle input[type=hidden]").val(idx+1)
 
+      if $("form.autosubmit").length
+        $("form.autosubmit").trigger("submit")
+
   $("textarea").autoResize()

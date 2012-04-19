@@ -51,10 +51,10 @@ describe "Cms News Items Administration" do
       visit new_cms_news_item_path
 
       fill_in 'news_item_title', :with => 'Invasion vom Mars'
-      fill_in 'news_item_teaser', :with => 'Visit me at the page footer'
       fill_in 'news_item_content', :with => 'Das ist ja kaum zu glauben!'
 
       expect { click_button 'News erstellen' }.should change(NewsItem, :count).by(1)
+      page.should have_content I18n.t("cms.news_items.create.success")
     end
 
     it "doesn't create because of validation errors" do
@@ -70,16 +70,14 @@ describe "Cms News Items Administration" do
 
       within ".alert" do
         page.should have_content 'Titel muss ausgefüllt werden'
-        page.should have_content 'Inhalt für Footer muss ausgefüllt werden'
         page.should have_content 'Inhalt muss ausgefüllt werden'
       end
     end
 
     it "creates news item within the chosen language" do
-      visit new_cms_news_item_path :locale => 'it'
+      visit new_cms_news_item_path :content_locale => 'it'
 
       fill_in 'news_item_title', :with => 'it: Invasion vom Mars'
-      fill_in 'news_item_teaser', :with => 'it: Visit me at the page footer'
       fill_in 'news_item_content', :with => 'it: Das ist ja kaum zu glauben!'
 
       expect { click_button 'News erstellen' }.should change(NewsItem, :count).by(1)
@@ -90,7 +88,6 @@ describe "Cms News Items Administration" do
       visit new_cms_news_item_path
 
       fill_in 'news_item_title', :with => 'Hello'
-      fill_in 'news_item_teaser', :with => 'Visit me at the page footer'
       fill_in 'news_item_content', :with => 'Hello World'
       attach_file 'news_item_images_attributes_0_file', "#{Rails.root}/spec/support/test_files/image.jpg"
 
@@ -98,17 +95,46 @@ describe "Cms News Items Administration" do
       NewsItem.where(:title => 'Hello').first.images.count.should == 1
     end
 
+
+    it "doesn't add image because uploaded no image" do
+      visit new_cms_news_item_path
+
+      fill_in 'news_item_title', :with => 'Hello'
+      fill_in 'news_item_content', :with => 'Hello World'
+      attach_file 'news_item_images_attributes_0_file', "#{Rails.root}/spec/support/test_files/document.pdf"
+
+      expect {
+        click_button 'News erstellen'
+      }.should_not change(NewsItem, :count)
+
+      page.should have_content "Bild ist nicht gültig"
+    end
+
     it 'adds documents to the news item' do
       visit new_cms_news_item_path
 
       fill_in 'news_item_title', :with => 'Hello'
-      fill_in 'news_item_teaser', :with => 'Visit me at the page footer'
       fill_in 'news_item_content', :with => 'Hello World'
       attach_file 'news_item_documents_attributes_0_file', "#{Rails.root}/spec/support/test_files/document.pdf"
 
       click_button 'News erstellen'
       NewsItem.where(:title => 'Hello').first.documents.count.should == 1
     end
+
+    it "doesn't add document because uploaded non of the supported types" do
+      visit new_cms_news_item_path
+
+      fill_in 'news_item_title', :with => 'Hello'
+      fill_in 'news_item_content', :with => 'Hello World'
+      attach_file 'news_item_documents_attributes_0_file', "#{Rails.root}/spec/support/test_files/image.jpg"
+
+      expect {
+        click_button 'News erstellen'
+      }.should_not change(NewsItem, :count)
+
+      page.should have_content "Dokument ist nicht gültig"
+    end
+
   end
 
   describe "#edit" do
@@ -117,13 +143,14 @@ describe "Cms News Items Administration" do
       @content_for_update = Fabricate.attributes_for :news_item
     end
 
-    [:title, :teaser, :content].each do |attr|
+    [:title, :content].each do |attr|
       it "updates the news item #{attr}" do
         visit edit_cms_news_item_path(@news_item)
         fill_in "news_item_#{attr}", :with => @content_for_update[attr]
 
         click_button 'News speichern'
         NewsItem.find(@news_item.id).send(attr).should == @content_for_update[attr]
+        page.should have_content I18n.t("cms.news_items.update.success")
       end
 
       it "doesn't update because of validation error caused by #{attr}" do
@@ -147,6 +174,7 @@ describe "Cms News Items Administration" do
       end
       click_button 'News speichern'
 
+      visit edit_cms_news_item_path(@news_item)
       page.should have_css "#image-#{@news_item.reload.images.first.id}"
     end
 
@@ -170,6 +198,7 @@ describe "Cms News Items Administration" do
       end
       click_button 'News speichern'
 
+      visit edit_cms_news_item_path(@news_item)
       page.should have_css "#document-#{@news_item.reload.documents.first.id}"
     end
 
@@ -185,6 +214,16 @@ describe "Cms News Items Administration" do
 
       page.should_not have_css "#document-#{doc.id}"
     end
+  end
+
+
+  it 'destroys a certain news item' do
+    news_item = Fabricate :news_item
+    visit cms_news_items_path
+    within "#news_item_#{news_item.id}" do
+      expect { click_link "Löschen" }.should change(NewsItem, :count).by(-1)
+    end
+    page.should have_content I18n.t "cms.news_items.destroy.success"
   end
 
 end

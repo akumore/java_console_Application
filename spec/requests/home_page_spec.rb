@@ -16,56 +16,6 @@ describe "Homepage" do
     end
   end
 
-  describe 'Vision header' do
-    before :each do
-      visit root_path
-    end
-
-    it 'has a slider' do
-      within('.vision-slider') do
-        page.should have_css('.flexslider', :count => 1)
-      end
-    end
-
-    it 'is open by default', :js => true do
-      page.should have_css('.vision-slider-open .vision-slider', :count => 1)
-    end
-
-    it 'can be toggled', :js => true do
-      within('.vision-slider') do
-        page.find('.toggle').click
-      end
-      
-      page.should_not have_css('.vision-slider-open .vision-slider', :count => 1)
-
-      within('.vision-slider') do
-        page.find('.toggle').click
-      end
-
-      page.should have_css('.vision-slider-open .vision-slider', :count => 1)
-    end
-
-    context 'persisting the toggled state between pages', :js => true do
-      it 'is stays closed' do
-        # check that it's open by default
-        page.should have_css('.vision-slider-open .vision-slider', :count => 1)
-
-        within('.vision-slider') do
-          page.find('.toggle').click
-        end
-
-        # now it should be closed …
-        page.should_not have_css('.vision-slider-open .vision-slider', :count => 1)
-
-        visit root_path
-
-        # … and it should still be after revisiting
-        page.should_not have_css('.vision-slider-open .vision-slider', :count => 1)
-
-      end
-    end
-  end
-
   describe "Services Slider App" do
     it "contains a slide for renting real estates" do
       visit root_path
@@ -85,6 +35,7 @@ describe "Homepage" do
 
     describe "The slide for renting real estates" do
       before do
+        MediaAssetUploader.enable_processing = true
         @real_estate = Fabricate :real_estate,
                                  :title => "Home Sweet Home for rent",
                                  :offer => RealEstate::OFFER_FOR_RENT,
@@ -95,10 +46,14 @@ describe "Homepage" do
         @real_estate.media_assets << @image
       end
 
+      after do
+        MediaAssetUploader.enable_processing = false
+      end
+
       it "shows the primary image of the appropriate real estate" do
         visit root_path
         within(".rent-slide") do
-          page.should have_css("img[src='#{@image.file.url}']")
+          page.should have_css("img[src='#{@image.file.gallery.url}']")
         end
       end
 
@@ -121,6 +76,7 @@ describe "Homepage" do
 
     describe "The slide for buying real estates" do
       before do
+        MediaAssetUploader.enable_processing = true
         @real_estate = Fabricate :real_estate,
                                  :title => "Home Sweet Home for sale",
                                  :offer => RealEstate::OFFER_FOR_SALE,
@@ -130,11 +86,14 @@ describe "Homepage" do
         @image = Fabricate.build :media_asset_image, :is_primary => true
         @real_estate.media_assets << @image
       end
+      after do
+        MediaAssetUploader.enable_processing = false
+      end
 
       it "shows the primary image of the appropriate real estate" do
         visit root_path
         within(".sale-slide") do
-          page.should have_css("img[src='#{@image.file.url}']")
+          page.should have_css("img[src='#{@image.file.gallery.url}']")
         end
       end
 

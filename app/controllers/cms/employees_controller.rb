@@ -16,10 +16,10 @@ class Cms::EmployeesController < Cms::SecuredController
     @employee = Employee.new(params[:employee])
 
     if @employee.save
-      redirect_to edit_cms_employee_path(@employee)
-    else
-      render 'new'
+      flash[:success] = t("cms.employees.create.success")
     end
+
+    respond_with @employee, :location => [:cms, :employees]
   end
 
   def edit
@@ -31,15 +31,17 @@ class Cms::EmployeesController < Cms::SecuredController
     @employee = Employee.find(params[:id])
 
     if @employee.update_attributes(params[:employee])
-      redirect_to edit_cms_employee_path(@employee)
-    else
-      render 'edit'
+      flash[:success] = t("cms.employees.update.success")
     end
+
+    respond_with @employee, :location => [:cms, :employees]
   end
 
   def destroy
-    employee = Employee.find(params[:id])
-    employee.destroy
-    redirect_to cms_employees_path
+    @employee = Employee.find(params[:id])
+    if @employee.destroy
+      flash[:success] = t("cms.employees.destroy.success")
+    end
+    redirect_to [:cms, :employees]
   end
 end

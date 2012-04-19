@@ -21,7 +21,7 @@
     .control-group.mandatory
       = f.label :department
       .controls
-        = f.select :department, Employee::DEPARTMENTS.map { |c| [t(".departments.#{c}"), c] }, :prompt => 'Abteilung auswählen', :class => 'span8'
+        = f.select :department, Employee::DEPARTMENTS.map { |c| [t("mongoid.attributes.employee.departments.#{c}"), c] }, :prompt => 'Abteilung auswählen', :class => 'span8'
     .control-group
       = f.label :job_function
       .controls

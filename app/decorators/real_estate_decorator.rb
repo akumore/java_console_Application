@@ -1,6 +1,6 @@
 class RealEstateDecorator < ApplicationDecorator
   include Draper::LazyHelpers
-  
+
   decorates :real_estate
   decorates_association :contact
 
@@ -14,9 +14,8 @@ class RealEstateDecorator < ApplicationDecorator
     ].join(' ')
   end
 
-  def full_address
+  def short_info_address
     [
-      category.try(:label).presence,
       [
         address.try(:zip).presence,
         address.try(:city).presence,
@@ -29,18 +28,20 @@ class RealEstateDecorator < ApplicationDecorator
     ].join(tag('br')).html_safe
   end
 
-  def reference_project_caption
-    if address && address.link_url.present?
-      raw [
-            h.content_tag(:h3, real_estate.title),
-            h.content_tag(:h4, link_to(t('real_estates.reference_projects.link_title'), real_estate.address.link_url))
-        ].join
-    else
-      content_tag(:h3, real_estate.title)
+  def short_info_price
+    buffer = []
+    buffer << category.try(:label).presence
+
+    if model.for_rent? && model.pricing.try(:for_rent_netto).present?
+      buffer << number_to_currency(model.pricing.for_rent_netto, :locale=>'de-CH')
+    elsif model.for_sale? && model.pricing.try(:for_sale).present?
+      buffer << number_to_currency(model.pricing.for_sale, :locale=>'de-CH')
     end
+
+    buffer.join(tag('br')).html_safe
   end
 
-  def quick_infos
+  def short_info_figure
     buffer = []
 
     if figure.try(:rooms).present?
@@ -51,11 +52,37 @@ class RealEstateDecorator < ApplicationDecorator
       buffer << t('real_estates.show.floor', :number => figure.floor)
     end
 
+    buffer.join(tag('br')).html_safe
+  end
+
+  def short_info_size
+    buffer = []
+
     if figure.try(:living_surface).present?
       buffer << t('real_estates.show.living_surface_html', :size => figure.living_surface)
     end
 
+    if information.try(:display_estimated_available_from).present?
+      buffer << information.try(:display_estimated_available_from)
+    elsif information.try(:available_from).present?
+      buffer << t('real_estates.show.available_from', :date => l(information.try(:available_from)))
+    end
+
     buffer.join(tag('br')).html_safe
+  end
+
+  def reference_project_caption
+
+    if address && address.link_url.present?
+      link = real_estate.address.link_url
+    elsif channels.include?(RealEstate::WEBSITE_CHANNEL) && channels.include?(RealEstate::REFERENCE_PROJECT_CHANNEL)
+      link = h.real_estate_path(model)
+    end
+
+    buffer = []
+    buffer << h.content_tag(:h3, real_estate.title)
+    buffer << h.content_tag(:div, link_to(t('real_estates.reference_projects.link_title'), link)) if link.present?
+    buffer.join.html_safe
   end
 
   def description
@@ -65,33 +92,17 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def mini_doku_link
-    if model.persisted?
-      link_to(
+    link_to(
         t('real_estates.show.description_download'),
-        real_estate_path(model, :format => :pdf),
+        real_estate_handout_path(:real_estate_id => model.id, :format => :pdf),
         :class => 'icon-description'
-      )
-    end
+    ) if model.has_handout?
   end
 
   def floorplan_link
     if model.media_assets.floorplans.exists?
       link_to t('real_estates.show.floorplan'), '#', :class => 'icon-groundplan'
     end
-  end
-
-  def quick_price_infos
-    buffer = []
-
-    if model.for_rent? && model.pricing.try(:for_rent_netto).present?
-      buffer << t('real_estates.show.for_rent')
-      buffer << number_to_currency(model.pricing.for_rent_netto, :locale=>'de-CH')
-    elsif model.for_sale? && model.pricing.try(:for_sale).present?
-      buffer << t('real_estates.show.for_sale')
-      buffer << number_to_currency(model.pricing.for_sale, :locale=>'de-CH')
-    end
-
-    buffer.join(tag('br')).html_safe
   end
 
   def information_shared

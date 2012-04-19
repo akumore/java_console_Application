@@ -27,8 +27,13 @@ class SearchFilter < OpenStruct
     params[:utilization] ||= NON_COMMERCIAL
     params[:cities] ||= []
     params[:cantons] ||= []
+    params[:sort_order] ||= ''
+    params[:sort_field] ||= ''
     super
     @cantons_cities_map = init_cantons_cities_map
+
+    self.sort_order = sanitize_sort_order(params[:sort_order])
+    self.sort_field = sanitize_sort_field(params[:sort_field])
   end
 
   def persisted?
@@ -48,7 +53,26 @@ class SearchFilter < OpenStruct
   end
 
   def to_params
-    {:offer => offer, :utilization => utilization, :cantons=>cantons, :cities=>cities}
+    {
+      :offer => offer,
+      :utilization => utilization,
+      :cantons => cantons,
+      :cities => cities,
+      :sort_order => sort_order,
+      :sort_field => sort_field
+    }
+  end
+
+  def available_sort_fields
+    if NON_COMMERCIAL == utilization
+      %w(rooms price available_from category)
+    else
+      %w(usable_surface floor price available_from)
+    end
+  end
+
+  def available_sort_orders
+    %w(asc desc)
   end
 
   def to_query_hash
@@ -58,6 +82,9 @@ class SearchFilter < OpenStruct
     end
   end
 
+  def to_query_order_array
+    [actual_sort_field(sort_field), sort_order]
+  end
 
   private
   def init_cantons_cities_map
@@ -68,6 +95,37 @@ class SearchFilter < OpenStruct
       map[canton] << address.city
       map[canton].uniq!
       map
+    end
+  end
+
+  def actual_sort_field field
+    {
+      'rooms' => 'figure.rooms',
+      'price' => 'pricing.for_rent_netto',
+      'available_from' => 'information.available_from',
+      'category' => 'category.label',
+      'usable_surface' => 'figure.usable_surface',
+      'floor' => 'figure.floor'
+    }[field]
+  end
+
+  def sanitize_sort_field field
+    if available_sort_fields.include? field
+      field
+    else
+      if utilization == COMMERCIAL
+        'usable_surface'
+      else
+        'rooms'
+      end
+    end
+  end
+
+  def sanitize_sort_order order
+    if available_sort_orders.include? order
+      order
+    else
+      'desc'
     end
   end
 

@@ -27,18 +27,27 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
      "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   end
 
-  process :resize_to_fill=>[1000,560], :if=> :is_image?
-
-  version :thumb, :if => :is_image? do
-    process :resize_to_fill => [145,88]
+  version :minidoku, :if => :is_image? do
+    process :convert => 'jpg'
+    process :resize_to_fill => [2000, 1000]
   end
 
-  version :cms_preview, :if => :is_image? do
+  version :gallery, :if => :is_image?, :from_version => :minidoku do
+    process :resize_to_fill => [1000, 500]
+    process :quality => 80
+  end
+
+  version :thumb, :if => :is_image?, :from_version => :gallery do
+    process :resize_to_fill => [145, 88]
+  end
+
+  version :cms_preview, :if => :is_image?, :from_version => :gallery do
     process :resize_to_fill => [600, 340]
   end
 
-  version :jpeg_format, :if => :image_needs_conversion? do
-    process :convert => 'jpeg'
+  def filename
+    return super unless is_image? self.file
+    super.chomp(File.extname(super)) + '.jpg'
   end
 
   def is_image? image
@@ -72,13 +81,15 @@ class MediaAssetUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    if model.image?
+    allowed_types = if model.image?
       %w(jpg jpeg png)
     elsif model.video?
       %w(mp4 m4v mov)
     elsif model.document?
       %w(pdf)
     end
+
+    ExtensionWhiteList.new allowed_types if allowed_types.present?
   end
 
   # Override the filename of the uploaded files:
