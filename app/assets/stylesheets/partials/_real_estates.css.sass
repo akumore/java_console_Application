@@ -125,6 +125,47 @@ td
     +float-left
     margin-right: 20px
 
+.search-filter-order-form
+  @extend .clearfix
+  background: image-url('search-filter-order-bg.png') repeat-x
+  border: 1px solid #a6a7a6
+
+  .sort-field, .sort-order
+    +float_left
+
+  .sort-field
+    width: 60%
+
+    .sort-order-dropdown
+      border-right: 1px solid #a6a7a6
+
+  .sort-order
+    width: 40%
+
+    .sort-order-dropdown
+      border-left: 1px solid #baba99
+
+  .sort-order-dropdown
+    color: $dark
+    padding: 0px 25px 0px 5px
+    background: image-url('arrows/arrow-sort-dropdown.png') no-repeat right center
+    @extend .text-font
+    position: relative
+    height: 40px
+
+    .label
+      z-index: 1
+      position: absolute
+      padding: 10px
+
+    select
+      width: 100%
+      margin-top: 10px
+      +opacity(0)
+      z-index: 2
+      position: absolute
+
+
 .offer-tabs
   ul
     +horizontal-list(false, right)

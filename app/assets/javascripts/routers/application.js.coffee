@@ -66,3 +66,7 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     #initialize updater of filter-cities dropdown
     $('.search-filter-form').each ->
       new AlfredMueller.Views.SearchFilterOptionsUpdater(el: $(this))
+
+    # initialize sorting dropdowns
+    $(".sort-order-dropdown").each ->
+      new AlfredMueller.Views.SortOrderDropdown(el: $(this))

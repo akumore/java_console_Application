@@ -1,10 +1,10 @@
 class window.AlfredMueller.Views.InteractiveTable extends Backbone.View
   initialize: ->
-    @el.find("tr").each ->
+    @el.find("tbody tr").each ->
       new AlfredMueller.Views.InteractiveRow(el: $(this))
 
 class window.AlfredMueller.Views.InteractiveRow extends Backbone.View
-  
+
   events:
     "click" : "handleClick"
     "mouseenter" : "handleMouseEnter"
