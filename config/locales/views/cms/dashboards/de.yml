@@ -9,3 +9,7 @@ de:
         published: 'Zuletzt publizierte Immobilien:'
         in_review: 'Zu verifizierende Immobilien:'
         last_edited: 'Zuletzt bearbeitet'
+      cms_user_info:
+        signed_in_as: 'Angemeldet als:'
+        role: 'Rolle:'
+        logout: 'Abmelden'
