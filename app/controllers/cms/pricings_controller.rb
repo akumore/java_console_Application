@@ -1,5 +1,5 @@
 class Cms::PricingsController < Cms::SecuredController
-  include EmbeddedInRealEstate
+  include Concerns::EmbeddedInRealEstate
 
   load_resource :through => :real_estate, :singleton => true
   authorize_resource :through => :real_estate, :singleton => true, :except => :show
