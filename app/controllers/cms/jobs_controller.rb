@@ -1,8 +1,13 @@
 # encoding: utf-8
 
 class Cms::JobsController < Cms::SecuredController
-
   respond_to :html
+  authorize_resource
+
+  rescue_from CanCan::AccessDenied do |err|
+    flash[:warn] = err.message
+    redirect_to cms_dashboards_path
+  end
 
   def index
     @jobs = Job.where(:locale => content_locale).order([:updated_at, :desc])
