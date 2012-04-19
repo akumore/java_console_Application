@@ -35,6 +35,7 @@ class Ability
       can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset]
       cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'published'}
 
+      can :manage, NewsItem
 
       #real estate state machine abilities, order matters, do not put before controller action abilities
       can :reject_it, RealEstate
@@ -52,6 +53,8 @@ class Ability
       can :destroy, RealEstate, :state => 'editing'
       can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'editing'}
       cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => ['in_review', 'published']}
+
+      cannot :manage, NewsItem
     end
 
   end

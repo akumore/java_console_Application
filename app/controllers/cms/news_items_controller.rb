@@ -1,6 +1,13 @@
 module Cms
   class NewsItemsController < Cms::SecuredController
 
+    authorize_resource
+
+    rescue_from CanCan::AccessDenied do |err|
+      flash[:warn] = err.message
+      redirect_to cms_dashboards_path
+    end
+
     rescue_from Mongoid::Errors::DocumentNotFound do |err|
       flash[:warn] = "Gesuchter Newseintrag wirde nicht gefunden"
       redirect_to cms_news_items_path
