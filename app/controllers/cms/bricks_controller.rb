@@ -3,6 +3,13 @@ class Cms::BricksController < Cms::SecuredController
   before_filter :load_page
   respond_to :html
 
+  authorize_resource Page
+  rescue_from CanCan::AccessDenied do |err|
+    flash[:warn] = err.message
+    redirect_to cms_dashboards_path
+  end
+
+
   def new
     @brick = @page.bricks.build({}, brick_from_type)
     respond_with @brick
