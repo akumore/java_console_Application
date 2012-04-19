@@ -51,15 +51,15 @@ describe "Cms::Users" do
       end
 
       it 'shows the username for the current session' do
-        page.should have_content "Eingeloggt als: #{@cms_user.email}"
+        page.should have_content "Angemeldet als: #{@cms_user.email}"
       end
 
       it 'shows the user role for the current session' do
-        page.should have_content "Rolle: Administrator"
+        page.should have_content "Rolle: Admin"
       end
 
       it 'shows the logout link' do
-        page.should have_content "Logout"
+        page.should have_link "Abmelden"
       end
     end
   end
@@ -93,7 +93,7 @@ describe "Cms::Users" do
       end
 
       it 'shows the username for the current session' do
-        page.should have_content "Eingeloggt als: #{@cms_user.email}"
+        page.should have_content "Angemeldet als: #{@cms_user.email}"
       end
 
       it 'shows the user role for the current session' do
@@ -101,7 +101,7 @@ describe "Cms::Users" do
       end
 
       it 'shows the logout link' do
-        page.should have_content "Logout"
+        page.should have_link "Abmelden"
       end
     end
   end
@@ -118,8 +118,8 @@ describe "Cms::Users" do
         visit cms_dashboards_path
       end
 
-      it 'has a link to the live page' do
-        page.should have_link root_path
+      it 'has a link to the live page on the eye icon and on the main logo' do
+        page.should have_css("a[href='#{root_path}']", :count => 2)
       end
     end
 
