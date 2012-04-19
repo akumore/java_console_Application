@@ -18,6 +18,21 @@ describe SearchFilter do
     SearchFilter.new.cantons.should be_empty
   end
 
+  it 'defaults to descending sort order' do
+    SearchFilter.new.sort_order.should == 'desc'
+  end
+
+  context 'for commercial utilization' do
+    it 'defaults to search_field usable_surface' do
+      SearchFilter.new(:utilization => RealEstate::UTILIZATION_COMMERICAL).sort_field.should == 'usable_surface'
+    end
+  end
+
+  context 'for private utilization' do
+    it 'defaults to search_field rooms' do
+      SearchFilter.new(:utilization => RealEstate::UTILIZATION_PRIVATE).sort_field.should == 'rooms'
+    end
+  end
 
   describe 'Canton-City-Map' do
     before do
@@ -77,19 +92,31 @@ describe SearchFilter do
 
   describe 'Converting filter' do
     before do
-      @filter = SearchFilter.new(:offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE,
-                                 :cities => ['Arth', 'Fahrwangen'])
+      @filter = SearchFilter.new(
+        :offer => RealEstate::OFFER_FOR_RENT,
+        :utilization => RealEstate::UTILIZATION_PRIVATE,
+        :cities => ['Arth', 'Fahrwangen'],
+        :sort_field => 'price',
+        :sort_order => 'asc'
+      )
     end
 
     it 'converts filter state into a (params) hash' do
       @filter.to_params.should == {:cities => ['Arth', 'Fahrwangen'], :cantons => [],
-                                   :offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE}
+                                   :offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE,
+                                   :sort_field => 'price',
+                                   :sort_order => 'asc'
+                                 }
     end
 
     it 'converts filter state into hash that can be used for querying database' do
       @filter.to_query_hash.should == {:offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE,
                                        'address.city' => {"$in" => ['Arth', 'Fahrwangen']}
       }
+    end
+
+    it 'converts filter state into array that can be used for sorting on the database' do
+      @filter.to_query_order_array == ['price', 'asc']
     end
   end
 end
