@@ -103,7 +103,7 @@ class SearchFilter < OpenStruct
       'rooms' => 'figure.rooms',
       'price' => 'pricing.for_rent_netto',
       'available_from' => 'information.available_from',
-      'category' => 'category.name',
+      'category' => 'category.label',
       'usable_surface' => 'figure.usable_surface',
       'floor' => 'figure.floor'
     }[field]

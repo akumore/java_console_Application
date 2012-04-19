@@ -8,6 +8,7 @@
   .container.clearfix
     .search-results
       %table
+        = render 'search_filter_order'
         %tbody
           - @real_estates.each do |real_estate|
             %tr{ :id => "real-estate-#{real_estate.id}" }

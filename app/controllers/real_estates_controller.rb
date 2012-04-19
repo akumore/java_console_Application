@@ -30,7 +30,7 @@ class RealEstatesController < ApplicationController
   end
 
   def get_filtered_real_estates(search_filter)
-    RealEstate.published.web_channel.where(search_filter.to_query_hash).all
+    RealEstate.published.web_channel.where(search_filter.to_query_hash).order_by(@search_filter.to_query_order_array).all
   end
 
   def get_filtered_reference_projects search_filter
