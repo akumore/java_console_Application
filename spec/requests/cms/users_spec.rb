@@ -14,7 +14,7 @@ describe "Cms::Users" do
       it 'has a link to create a new user' do
         page.should have_link('Neuen Benutzer erfassen')
       end
-      
+
       it 'has a list of the current users in the system' do
         page.should have_css('table tr', :count => Cms::User.count+1)
       end
@@ -41,7 +41,7 @@ describe "Cms::Users" do
       it 'opens the create form' do
         current_path.should == new_cms_user_path
       end
-      
+
       describe '#create' do
         before :each do
           within "#new_cms_user" do
@@ -73,14 +73,14 @@ describe "Cms::Users" do
         describe 'allows the user to sign in to the cms' do
           before :each do
             click_on 'Benutzer erstellen'
-            click_on 'Logout'
+            click_on 'Abmelden'
             visit cms_dashboards_path
 
             within('#user_new') do
               fill_in 'E-Mail', :with => 'benutzername@test.ch'
               fill_in 'Passwort', :with => '123456'
             end
-            
+
             click_on 'Einloggen'
           end
 
@@ -129,7 +129,7 @@ describe "Cms::Users" do
 
         describe 'allows the user to sign in to the cms' do
           before :each do
-            click_on 'Logout'
+            click_on 'Abmelden'
             visit cms_dashboards_path
 
             within('#user_new') do
