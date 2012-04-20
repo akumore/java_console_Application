@@ -14,6 +14,7 @@ describe "RealEstates" do
               :category => category,
               :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
               :address => Fabricate.build(:address),
+              :information => Fabricate.build(:information),
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
               :pricing => Fabricate.build(:pricing),
               :infrastructure => Fabricate.build(:infrastructure),
@@ -62,6 +63,7 @@ describe "RealEstates" do
       let :primary_image do
         Fabricate.build(:media_asset_image, :is_primary=>true)
       end
+
       before { MediaAssetUploader.enable_processing = true }
       after { MediaAssetUploader.enable_processing = false }
 
@@ -81,10 +83,19 @@ describe "RealEstates" do
         page.should have_css('img[src="/images/fallback/thumb_default.png"]')
       end
 
+      it "shows the title" do
+        visit real_estates_path
+        page.should have_content real_estate.title
+      end
+
+      it "shows the category" do
+        visit real_estates_path
+        page.should have_content real_estate.category.label
+      end
+
       it "shows the address" do
         visit real_estates_path
         address = real_estate.address
-        page.should have_content real_estate.category.label
         page.should have_content "#{address.city} #{address.canton.upcase}"
         page.should have_content "#{address.street} #{address.street_number}"
       end
@@ -102,6 +113,11 @@ describe "RealEstates" do
       it "shows the size of the living area" do
         visit real_estates_path
         page.should have_content real_estate.figure.living_surface
+      end
+
+      it "shows the availability date" do
+        visit real_estates_path
+        page.should have_content "Bezug ab #{I18n.l(real_estate.information.available_from)}"
       end
 
       it "shows the localized price for sale" do
