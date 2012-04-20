@@ -4,6 +4,7 @@ class RealEstateDecorator < ApplicationDecorator
   decorates :real_estate
   decorates_association :contact
   decorates_association :address
+  decorates_association :information
 
   def google_maps_address
     [
@@ -52,10 +53,8 @@ class RealEstateDecorator < ApplicationDecorator
       buffer << t('real_estates.show.living_surface_html', :size => figure.living_surface)
     end
 
-    if information.try(:display_estimated_available_from).present?
-      buffer << information.try(:display_estimated_available_from)
-    elsif information.try(:available_from).present?
-      buffer << t('real_estates.show.available_from', :date => l(information.try(:available_from)))
+    if information.try(:available_from).present?
+      buffer << information.available_from
     end
 
     buffer.join(tag('br')).html_safe
@@ -98,10 +97,8 @@ class RealEstateDecorator < ApplicationDecorator
   def information_shared
     buffer = []
 
-    if information.try(:display_estimated_available_from).present?
-      buffer << information.display_estimated_available_from
-    elsif information.try(:available_from).present?
-      buffer << t('real_estates.show.available_from', :date => l(information.available_from))
+    if information.try(:available_from).present?
+      buffer << information.available_from
     end
 
     if information.try(:is_new_building) == true

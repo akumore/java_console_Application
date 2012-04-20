@@ -3,3 +3,5 @@ de:
     information:
       form:
         for_rent: 'Mietinformationen'
+  information:
+    available_from: 'Bezug ab %{date}'

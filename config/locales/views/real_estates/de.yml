@@ -107,7 +107,6 @@ de:
       elementary_school: 'Primarschule: %{number}'
       high_school: 'Oberstufe: %{number}'
       highway_access: 'Autobahn Anschluss: %{number}'
-      available_from: 'Bezug %{date}'
       has_outlook: 'Mit Ausblick'
       has_fireplace: 'Cheminée'
       has_elevator: 'Lift'
