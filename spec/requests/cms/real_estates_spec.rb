@@ -58,7 +58,7 @@ describe "Cms::RealEstates" do
       before :each do
         within(".new_real_estate") do
           select 'Child Category 1', :from => 'Kategorie'
-          choose 'Gewerblich'
+          choose 'Arbeiten'
           choose 'Kaufen'
           check 'Erstvermarktung'
           check 'Website'
@@ -132,7 +132,7 @@ describe "Cms::RealEstates" do
       before :each do
         within(".edit_real_estate") do
           select 'Child Category 2', :from => 'Kategorie'
-          choose 'Privat'
+          choose 'Wohnen'
           choose 'Mieten'
           uncheck 'Erstvermarktung'
           uncheck 'Website'
@@ -201,8 +201,8 @@ describe "Cms::RealEstates" do
 
       context 'a published real estate' do
         before :each do
-          @published_real_estate = Fabricate(:published_real_estate, 
-            :category => Fabricate(:category), 
+          @published_real_estate = Fabricate(:published_real_estate,
+            :category => Fabricate(:category),
             :reference => Fabricate.build(:reference)
           )
           visit edit_cms_real_estate_path(@published_real_estate)
@@ -215,8 +215,8 @@ describe "Cms::RealEstates" do
 
       context 'an editable real estate' do
         before :each do
-          @editable_real_estate = Fabricate(:real_estate, 
-            :category => Fabricate(:category), 
+          @editable_real_estate = Fabricate(:real_estate,
+            :category => Fabricate(:category),
             :reference => Fabricate.build(:reference)
           )
           visit edit_cms_real_estate_path(@editable_real_estate)
@@ -247,8 +247,8 @@ describe "Cms::RealEstates" do
 
       context 'a published real estate' do
         it 'does not have a button to delete the real estate' do
-          @published_real_estate = Fabricate(:published_real_estate, 
-          :category => Fabricate(:category), 
+          @published_real_estate = Fabricate(:published_real_estate,
+          :category => Fabricate(:category),
           :reference => Fabricate.build(:reference)
         )
         visit edit_cms_real_estate_path(@published_real_estate)
@@ -258,8 +258,8 @@ describe "Cms::RealEstates" do
 
       context 'an editable real estate' do
         before :each do
-          @editable_real_estate = Fabricate(:real_estate, 
-            :category => Fabricate(:category), 
+          @editable_real_estate = Fabricate(:real_estate,
+            :category => Fabricate(:category),
             :reference => Fabricate.build(:reference)
           )
           visit edit_cms_real_estate_path(@editable_real_estate)
