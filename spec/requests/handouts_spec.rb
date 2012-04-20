@@ -63,7 +63,7 @@ describe "Handout aka MiniDoku" do
     end
 
     it 'shows the utilization of the real estate' do
-      page.should have_content('Miete Privat')
+      page.should have_content('Miete Wohnen')
     end
 
     it 'shows the chapter title' do
