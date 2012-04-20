@@ -25,3 +25,13 @@ de:
         title: 'Ihr Ansprechpartner für Medienfragen'
         person_html: 'David Spiess<br>T +041 41 767 02 50<br>Neuhofstrasse 10<br>6340 Baar'
         address_html: '<a href="mailto:david.spiess@alfred-mueller.ch">E-Mail</a>'
+      company_header:
+        board_of_directors: 'Verwaltungsrat'
+        managing_board: 'Geschäftsleitung'
+        reference_projects: 'Referenzprojekte'
+        honorary_president: 'Ehrenpräsident'
+        president_of_board_of_directors: 'Präsident des Verwaltungsrates'
+        vice_president_of_board_of_directors: 'Vizepräsident des Verwaltungsrates'
+        member_of_board_of_directors: 'Mitglied des Verwaltungsrates'
+        chairman_of_managing_board: 'Vorsitzender der Geschäftsleitung'
+        member_of_managing_board: 'Mitglied der Geschäftsleitung'
