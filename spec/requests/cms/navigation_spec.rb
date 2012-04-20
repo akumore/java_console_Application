@@ -18,18 +18,26 @@ describe "Cms Navigation" do
       end
     end
 
-    it "provides the logout link" do
-      visit cms_dashboards_path
-      within ".navbar" do
-        page.should have_link "Logout", :href => destroy_user_session_path
-      end
-    end
-
     it "links to the user administration" do
       visit cms_dashboards_path
       within ".navbar" do
         page.should have_link "Benutzer", :href => cms_users_path
       end
+    end
+
+    it 'shows the username for the current session' do
+      visit cms_dashboards_path
+      page.should have_content "Angemeldet als: #{@cms_user.email}"
+    end
+
+    it 'shows the user role for the current session' do
+      visit cms_dashboards_path
+      page.should have_content "Rolle: #{Cms::User.human_attribute_name("role_#{@cms_user.role}")}"
+    end
+
+    it 'shows the logout link' do
+      visit cms_dashboards_path
+      page.should have_link "Abmelden", :href => destroy_user_session_path
     end
   end
 

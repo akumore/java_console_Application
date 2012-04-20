@@ -44,24 +44,6 @@ describe "Cms::Users" do
         find('#flash').text.should be_blank
       end
     end
-
-    describe 'user info' do
-      before do
-        visit cms_dashboards_path
-      end
-
-      it 'shows the username for the current session' do
-        page.should have_content "Angemeldet als: #{@cms_user.email}"
-      end
-
-      it 'shows the user role for the current session' do
-        page.should have_content "Rolle: Admin"
-      end
-
-      it 'shows the logout link' do
-        page.should have_link "Abmelden"
-      end
-    end
   end
 
   context 'as an edior' do
@@ -84,24 +66,6 @@ describe "Cms::Users" do
 
       it 'shows no flash notice' do
         find('#flash').text.should be_blank
-      end
-    end
-
-    describe 'user info' do
-      before do
-        visit cms_dashboards_path
-      end
-
-      it 'shows the username for the current session' do
-        page.should have_content "Angemeldet als: #{@cms_user.email}"
-      end
-
-      it 'shows the user role for the current session' do
-        page.should have_content "Rolle: Editor"
-      end
-
-      it 'shows the logout link' do
-        page.should have_link "Abmelden"
       end
     end
   end
