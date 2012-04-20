@@ -1,8 +1,8 @@
 de:
   handouts:
     show:
-      for_rent_private: 'Miete Wohnen'
-      for_rent_commercial: 'Miete Arbeiten'
+      for_rent_private: 'Miete | Wohnen'
+      for_rent_commercial: 'Miete | Arbeiten'
     overview:
       title: 'Objektübersicht'
       property: 'Liegenschaft'
