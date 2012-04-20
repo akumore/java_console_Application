@@ -42,7 +42,7 @@ de:
       for_rent: Mieten
       search: Suchen
     search_filter_order:
-      sort_field_label: 'Sortieren nach:'
+      sort_field_label: 'Sortiert nach'
       search_fields:
         rooms: 'Zimmer'
         price: 'Preis'
