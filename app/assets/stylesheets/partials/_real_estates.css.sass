@@ -6,10 +6,10 @@
     margin-left: 10px
 
 .search-results
-  +column(5, 10)
+  +column(6, 10)
 
 .map
-  +column(5, 10)
+  +column(4, 10)
 
 .search-results-map
   height: 500px
@@ -24,14 +24,29 @@ tr
     background-color: $search-hover-color
     cursor: pointer
 td
-  padding: 14px 0
-  line-height: 15px
+  padding: 10px 0
+  line-height: 1.1em
   border-bottom: solid
   border-color: $search-background-color
+  vertical-align: top
+  @extend .clearfix
 
   &:first-child
     padding: 0
+    padding-right: 6px
     line-height: 0
+
+  .title
+    @extend .title-font-bold
+    padding-bottom: 0.5em
+
+  .col
+    width: 130px
+    font-size: 0.9em
+    +float_left
+
+  .col.first
+    width: 150px
 
 .detail
   background: $search-background-color
