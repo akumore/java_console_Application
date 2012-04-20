@@ -26,15 +26,14 @@ class Ability
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
 
     if user.admin?
-      can :manage, Cms::User
-      
       #controller action abilities
+      can :manage, [Cms::User, NewsItem, Employee, Job, Page]
+
       can :manage, RealEstate
       cannot :edit, RealEstate, :state => 'published'
       cannot :destroy, RealEstate, :state => 'published'
       can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset]
       cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'published'}
-
 
       #real estate state machine abilities, order matters, do not put before controller action abilities
       can :reject_it, RealEstate
