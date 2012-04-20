@@ -23,7 +23,7 @@
                   = real_estate.address.street
                   %br
                   = real_estate.address.extended_city
-                .col
+                .col.middle
                   - if real_estate.for_sale?
                     = number_to_currency real_estate.pricing.try(:for_sale), :locale=>'de-CH'
                   - else
@@ -36,7 +36,7 @@
                     = succeed "." do
                       = floor
                     = Figure.human_attribute_name :floor
-                .col
+                .col.last
                   - if real_estate.information.present?
                     = real_estate.information.available_from
                     %br
