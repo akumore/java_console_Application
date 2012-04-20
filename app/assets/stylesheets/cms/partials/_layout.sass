@@ -25,6 +25,19 @@ body
   background: image-url('cms/logo-white.png') no-repeat
   width: 120px
 
+.cms-user-info
+  a
+    white-space: normal
+  .no-link
+    cursor: default
+  .icon-white
+    margin: 11px 10px 15px
+    padding: 0px !important
+  &.nav
+    .open > .dropdown-toggle
+      @extend .icon-user
+      @extend .icon-white
+
 .table-striped
   th
     background-color: lighten(#dcdad0, 5%) !important

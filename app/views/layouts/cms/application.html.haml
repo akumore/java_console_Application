@@ -17,8 +17,18 @@
         .container
           .brand= link_to 'Alfred Müller', '/'
           = render_navigation :context => :cms
-          %ul.nav.pull-right
-            %li= link_to 'Logout', destroy_user_session_path, :method => :delete
+          %ul.nav.pull-right.cms-user-info
+            %li.dropdown
+              %i.icon-user.icon-white.dropdown-toggle{ 'data-toggle' => 'dropdown' }
+              %ul.dropdown-menu
+                %li
+                  %a.no-link{ :href => '#' }= "#{t('cms.dashboards.cms_user_info.signed_in_as')} #{current_user.email}"
+                %li
+                  %a.no-link{ :href => '#' }= "#{t('cms.dashboards.cms_user_info.role')} #{Cms::User.human_attribute_name("role_#{current_user.role}")}"
+                %li.divider
+                %li= link_to t('cms.dashboards.cms_user_info.logout'), destroy_user_session_path, :method => :delete
+            %li
+              = link_to '', root_path, :class => 'icon-eye-open icon-white', :target => '_blank'
 
     .container
       .content
