@@ -1,0 +1,114 @@
+#head-of-alfred-mueller-gallery.tab-slider
+  %ul.first-level-navigation
+    %li
+      %a.active{ :href => '#board-of-directors' }=t('.board_of_directors')
+    %li
+      %a{ :href => '#managing-board' }=t('.managing_board')
+    %li
+      %a{ :href => '#reference-projects' }=t('.reference_projects')
+  
+  .flex-container.hidden#board-of-directors.tab-content
+    .flexslider
+      %ul.second-level-navigation
+        %li
+          %a{ :href => '#' } Alfred Müller
+        %li
+          %a{ :href => '#' } Christoph Müller
+        %li
+          %a{ :href => '#' } Viktor Naumann
+        %li
+          %a{ :href => '#' } Dr. Erich Rüegg
+
+      %ul.slides
+        %li
+          = image_tag 'head_of_alfred_mueller/board_of_directors/Alfred_Mueller.jpg'
+          .tab-slider-description
+            %h1
+              Alfred Müller
+            %h5
+              = t('.honorary_president')
+        %li
+          = image_tag 'head_of_alfred_mueller/board_of_directors/Christoph_Mueller.jpg'
+          .tab-slider-description
+            %h1
+              Christoph Müller
+            %h5
+              = t('.president_of_board_of_directors')
+        %li
+          = image_tag 'head_of_alfred_mueller/board_of_directors/Viktor_Naumann.jpg'
+          .tab-slider-description
+            %h1
+              Viktor Naumann
+            %h5
+              = t('.vice_president_of_board_of_directors')
+        %li
+          = image_tag 'head_of_alfred_mueller/board_of_directors/Dr_Erich_Rueegg.jpg'
+          .tab-slider-description
+            %h1
+              Dr. Erich Rüegg
+            %h5
+              = t('.member_of_board_of_directors')
+
+  .flex-container.hidden#managing-board.tab-content
+    .flexslider
+      %ul.second-level-navigation
+        %li
+          %a{ :href => '#' } Christoph Müller
+        %li
+          %a{ :href => '#' } Michael Müller
+        %li
+          %a{ :href => '#' } Viktor Naumann
+        %li
+          %a{ :href => '#' } Walter Hochreutener
+        %li
+          %a{ :href => '#' } Joe Schmalz
+        %li
+          %a{ :href => '#' } David Spiess
+
+      %ul.slides
+        %li
+          = image_tag 'head_of_alfred_mueller/board_of_directors/Christoph_Mueller.jpg'
+          .tab-slider-description
+            %h1
+              Christoph Müller
+            %h5
+              =t('.chairman_of_managing_board')
+        %li
+          = image_tag 'head_of_alfred_mueller/managing_board/Michael_Mueller.jpg'
+          .tab-slider-description
+            %h1
+              Michael Müller
+            %h5
+              =t('.member_of_managing_board')
+        %li
+          = image_tag 'head_of_alfred_mueller/board_of_directors/Viktor_Naumann.jpg'
+          .tab-slider-description
+            %h1
+              Viktor Naumann
+            %h5
+              =t('.member_of_managing_board')
+        %li
+          = image_tag 'head_of_alfred_mueller/managing_board/Walter_Hochreutener.jpg'
+          .tab-slider-description
+            %h1
+              Walter Hochreutener
+            %h5
+              =t('.member_of_managing_board')
+        %li
+          = image_tag 'head_of_alfred_mueller/managing_board/Joe_Schmalz.jpg'
+          .tab-slider-description
+            %h1
+              Joe Schmalz
+            %h5
+              =t('.member_of_managing_board')
+        %li
+          = image_tag 'head_of_alfred_mueller/managing_board/David_Spiess.jpg'
+          .tab-slider-description
+            %h1
+              David Spiess
+            %h5
+              =t('.member_of_managing_board')
+
+  - unless reference_projects.empty?
+    #reference-projects.hidden.tab-content.flex-container
+      = render 'slider', :projects => reference_projects

@@ -389,14 +389,15 @@ module InitialPages
   end
 
   module CompanyPage
-    Page.create(:title => 'Unternehmen', :name => 'company', :locale => :de) do |jobs_page|
-      jobs_page.bricks << Brick::Title.new(:title => 'Sie engagieren uns, damit ihr Bauprojekt gelingt')
-      jobs_page.bricks << Brick::Text.new(
+    Page.create(:title => 'Unternehmen', :name => 'company', :locale => :de) do |company_page|
+      company_page.bricks << Brick::Placeholder.new(:placeholder => 'company_header')
+      company_page.bricks << Brick::Title.new(:title => 'Sie engagieren uns, damit ihr Bauprojekt gelingt')
+      company_page.bricks << Brick::Text.new(
           :text => 'Die Alfred Müller AG gehört zu den führenden Schweizer Immobilenunternehmungen. Im Auftrag ihrer Kunden oder für ihr eigenes Portfolio entwickelt, realisiert und vermarktet sie qualitativ hochwertige Wohn- und Geschäftshäuser. Seit seiner Gründung hat das Familienunternehmen mehr als 5800 Wohnungen und 1,7 Millionen Quadratmeter Geschäftsfläche erstellt.',
           :more_text => 'Der hohe Immobilienbestand und die hohe Kapitalkraft verleihen der Alfred Müller AG eine gesunde finanzielle Basis. Diese bedeutet für ihre Kunden eine grosse Sicherheit und ist ein wichtiger Grund dafür, dass die Alfred Müller AG als Immobilieninvestorin stark gefragt ist. Als eine von wenigen im Baubereich tätigen Firmen verfügt die Alfred Müller AG bei den Banken über ein erstklassiges Kredit-Rating.'
       )
-      jobs_page.bricks << Brick::Title.new(:title => 'Unsere Dienstleistungen')
-      jobs_page.bricks << Brick::Accordion.new(
+      company_page.bricks << Brick::Title.new(:title => 'Unsere Dienstleistungen')
+      company_page.bricks << Brick::Accordion.new(
           :title => 'Projektentwicklung',
           :text => [
               '###Wir schaffen einen Mehrwert',
@@ -418,7 +419,7 @@ module InitialPages
               ].join("\n")
           ].join("\n\n")
       )
-      jobs_page.bricks << Brick::Accordion.new(
+      company_page.bricks << Brick::Accordion.new(
           :title => 'Bauausführung',
           :text => [
               '###Wir geben Ihren Ideen eine Form',
@@ -440,7 +441,7 @@ module InitialPages
               ].join("\n")
           ].join("\n\n")
       )
-      jobs_page.bricks << Brick::Accordion.new(
+      company_page.bricks << Brick::Accordion.new(
           :title => 'Umbau und Renovation',
           :text => [
               '###Wir sorgen dafür, dass Ihre Liegenschaft ihren Wert behält ',
@@ -463,7 +464,7 @@ module InitialPages
               ].join("\n")
           ].join("\n\n")
       )
-      jobs_page.bricks << Brick::Accordion.new(
+      company_page.bricks << Brick::Accordion.new(
           :title => 'Vermarktung',
           :text => [
               '###Wir verhelfen Ihrer Immobilie zum Erfolg',
@@ -486,7 +487,7 @@ module InitialPages
               ].join("\n")
           ].join("\n\n")
       )
-      jobs_page.bricks << Brick::Accordion.new(
+      company_page.bricks << Brick::Accordion.new(
           :title => 'Fascility Management',
           :text => [
               '###Wir sorgen dafür, dass die Rendite langfristig stimmt',
@@ -509,7 +510,7 @@ module InitialPages
               ].join("\n")
           ].join("\n\n")
       )
-      jobs_page.bricks << Brick::Accordion.new(
+      company_page.bricks << Brick::Accordion.new(
           :title => 'Gartenunterhalt',
           :text => [
               '###Damit Sie sich von Anfang an in Ihrem neuen Zuhause wohl fühlen',
@@ -525,13 +526,13 @@ module InitialPages
               ].join("\n")
           ].join("\n\n")
       )
-      jobs_page.bricks << Brick::Title.new(:title => 'Unsere Vision')
-      jobs_page.bricks << Brick::Text.new(
+      company_page.bricks << Brick::Title.new(:title => 'Unsere Vision')
+      company_page.bricks << Brick::Text.new(
           :text => 'Wir schaffen hochwertige Wohn- und Arbeitsräume, in denen Menschen sich wohl fühlen. Mit Leidenschaft und Kompetenz gehen wir an die Arbeit, damit perfekte Immobiliengesamtlösungen entstehen. Gemeinsam verfolgen wir ein Ziel: wir bieten unseren Kunden, Mitarbeitenden und Partnern einen Mehrwert.',
           :more_text => ''
       )
-      jobs_page.bricks << Brick::Title.new(:title => 'Kennzahlen 2011')
-      jobs_page.bricks << Brick::Text.new(
+      company_page.bricks << Brick::Title.new(:title => 'Kennzahlen 2011')
+      company_page.bricks << Brick::Text.new(
           :text => [
               '* **Gründung:** 1965, Inhaber: Alfred Müller-Stocker, Baar',
               '* **Aktienkapital:** 30 Mio. CHF',
@@ -542,29 +543,29 @@ module InitialPages
           ].join("\n"),
           :more_text => ''
       )
-      jobs_page.bricks << Brick::Title.new(:title => 'Hohes Qualitätsbewusstsein')
-      jobs_page.bricks << Brick::Text.new(
+      company_page.bricks << Brick::Title.new(:title => 'Hohes Qualitätsbewusstsein')
+      company_page.bricks << Brick::Text.new(
           :text => [
               'Seit ihrer Gründung pflegt die Alfred Müller AG ein ausgeprägtes Qualitätsbewusstsein. Bei ihren Projekten setzt sie auf bewährte und langlebige Produkte und Standards, damit Bauten entstehen, an denen Nutzer und Eigentümer lange Freude haben.',
               'Um den steigenden Anforderungen und ständigen Neuentwicklungen im Markt gerecht zu werden, fördert die Alfred Müller AG die Aus- und Weiterbildung ihrer Mitarbeitenden gezielt. Ihren Kunden bietet sie aus einer Hand umfassende Dienstleistungen an, die den gesamten Lebenszyklus einer Immobilie umfassen.'
           ].join("\n\n"),
           :more_text => ''
       )
-      jobs_page.bricks << Brick::Title.new(:title => 'Zertifizierung')
-      jobs_page.bricks << Brick::Text.new(
+      company_page.bricks << Brick::Title.new(:title => 'Zertifizierung')
+      company_page.bricks << Brick::Text.new(
           :text => [
               'Aufbauend auf einer fast 50jährigen Erfahrung im Hochbau verfügt die Alfred Müller AG über mehrere Qualitätssicherungs-Zertifikate.',
               'Von der «Schweizerischen Vereinigung für Qualitäts- und Management-Systeme» (SQS) wurde die gesamte Firmen-Gruppe nach ISO 9001 zertifiziert. Die Alfred Müller AG verfügt zudem über das VSGU-Label des Verbandes Schweizerischer Generalunternehmer. Dieses bezieht sich wie auch das ISO-Zertifikat auf sämtliche Bereiche der Firma.'
           ].join("\n\n"),
           :more_text => ''
       )
-      jobs_page.bricks << Brick::Text.new(
+      company_page.bricks << Brick::Text.new(
           :text => [
               '## St. Martin',
               'Mit unserem Trinkwasserprojekt «Wasser ist Leben» in Kamerun ermöglichen wir den Menschen in den ländlichen Gegenden im Süden des Landes Zugang zu sauberem Trinkwasser. Dank der Stiftung St. Martin, den Eigenleistungen der einheimischen Bevölkerung und zahlreichen Spendern konnten bis heute über 1300 Brunnen erstellt werden.'
           ].join("\n\n")
       )
-      jobs_page.bricks << Brick::Text.new(
+      company_page.bricks << Brick::Text.new(
           :text => [
               '## Allmig',
               'Die Kompostier- und Biostromanlage «Allmig» ist ein in der Region Zug verankerter Betrieb. Hier werden pro Jahr 25000 Tonnen Grüngut aus den umliegenden Gemeinden verwertet und zu qualitativ ausgezeichneten Erdsubstraten und Kompost für Privat und Landwirtschaft verarbeitet. Zusätzlich können jährlich zirka 3,5 Millionen Kilowattstunden Biostrom gewonnen werden.'
