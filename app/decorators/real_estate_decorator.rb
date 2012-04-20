@@ -3,10 +3,10 @@ class RealEstateDecorator < ApplicationDecorator
 
   decorates :real_estate
   decorates_association :contact
+  decorates_association :address
 
   def google_maps_address
     [
-      address.try(:street).presence, address.try(:street_number).presence,
       address.try(:street).presence, address.try(:street_number).presence,
       address.try(:zip).presence,
       address.try(:city).presence,
@@ -15,17 +15,7 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def short_info_address
-    [
-      [
-        address.try(:zip).presence,
-        address.try(:city).presence,
-        address.try(:canton).try(:upcase).presence
-      ].join(' '),
-      [
-        address.try(:street).presence,
-        address.try(:street_number).presence
-      ].join(' '),
-    ].join(tag('br')).html_safe
+    [address.try(:street).presence, address.try(:extended_city).presence].join(tag('br')).html_safe
   end
 
   def short_info_price
