@@ -24,7 +24,7 @@ module AlfredMueller
     config.middleware.use "PDFKit::Middleware"
 
     # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/lib) We can't use autoload because of config.threadsafe! is used in all
+    config.autoload_paths += %W(#{config.root}/lib) # We can't use autoload because of config.threadsafe! is used in all
     # environments except development. Not sure whether this is a bug...
 
     # Only load the plugins named here, in the order given (default is alphabetical).
