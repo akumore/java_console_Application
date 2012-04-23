@@ -19,15 +19,17 @@ body
 
 h2
   font-family: $title-font
-  font-size: 30px
+  font-size: 18pt
   color: $dark
-  margin: 1em 0
+  line-height: 1em
+  margin: 30px 0px 15px 0px
+  @extend .pbi-avoid
 
 strong, b
   font-family: 'Gotham Bold'
 
 .helptext
-  font-size: 12px
+  font-size: 7pt
   line-height: 16px
 
 #title-page-header
@@ -57,7 +59,7 @@ strong, b
     left: 60px
     top: 275px
     z-index: 3
-    font-size: 40px
+    font-size: 28pt
     line-height: 1em
     color: $dark
     font-family: $title-font
@@ -65,7 +67,7 @@ strong, b
 
     span
       font-family: $text-font
-      font-size: 14px
+      font-size: 9pt
       display: block
       margin-top: -10px
 
@@ -76,15 +78,18 @@ strong, b
   dl
     +clearfix
   dt
-    padding: 0.5em 0
+    padding: 0.45em 0
     font-weight: bold
     font-family: $title-font
+    font-size: 9pt
     float: left
     clear: left
-    width: 180px
+    width: 140px
+
   dd
-    padding: 0.5em 0
-    margin-left: 190px
+    padding: 0.45em 0
+    margin-left: 155px
+    font-size: 9pt
 
   .disclaimer
     margin-top: 10px
@@ -106,6 +111,7 @@ strong, b
       margin: 0 0 1em 0
       width: 49%
       float: left
+      font-size: 9pt
       img
         max-width: 100%
 
@@ -118,15 +124,14 @@ strong, b
   position: absolute
   left: 0px
   top: 0px
+  background: white
+  @extend .pbi-avoid
 
 .compass-pin
   position: absolute
   width: 40px
   height: 40px
   top: 10px
-
-.compass
-  background: white
 
 .compass-group
   position: relative
