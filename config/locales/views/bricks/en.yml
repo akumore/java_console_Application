@@ -1,0 +1,13 @@
+en:
+  bricks:
+    placeholder:
+      company_header:
+        board_of_directors: 'Board of Directors'
+        managing_board: 'Management Board'
+        reference_projects: 'Reference Projects'
+        honorary_president: 'Honorary president'
+        president_of_board_of_directors: 'Full-time Chairman of the Board of Directors'
+        vice_president_of_board_of_directors: 'Vice-Chairman of the Board of Directors'
+        member_of_board_of_directors: 'Member of the Board of Directors'
+        chairman_of_managing_board: 'Chairman of the Executive Board'
+        member_of_managing_board: 'Member of the Management Board'
