@@ -8,6 +8,9 @@ module Export
         notify_observers(:add, real_estate)
       end
 
+      changed
+      notify_observers :finish
+
       Rails.logger.info 'Export has finished at ' + I18n.l(Time.now)
     end
 
@@ -17,4 +20,4 @@ module Export
       RealEstate.published
     end
   end
-end 
+end
