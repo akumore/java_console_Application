@@ -303,8 +303,11 @@ module Export::Homegate
 
     def offer_type
       #  str(200)  RENT','SALE'
-      'RENT' if model.for_rent?
-      'SALE' if model.for_sale?
+      if model.for_rent?
+        'RENT'
+      elsif model.for_sale?
+        'SALE'
+      end
     end
 
     def ref_property
