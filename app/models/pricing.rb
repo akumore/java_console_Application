@@ -20,9 +20,13 @@ class Pricing
   field :estimate, :type => String # Geschätz, z.B. 200-500.-
   field :opted, :type => Boolean # Optiert, entscheidet ob MwST angezeigt wird
 
-  validates :for_rent_netto, :presence => true, :if => :for_rent?
-  validates :for_rent_extra, :presence => true, :if => :for_rent?
-  validates :for_sale, :presence => true, :if => :for_sale?
+  validates :for_rent_netto, :presence => true, :numericality => true, :if => :for_rent?
+  validates :for_rent_extra, :presence => true, :numericality => true, :if => :for_rent?
+  validates :for_sale, :presence => true, :numericality => true, :if => :for_sale?
+
+  validates :inside_parking, :outside_parking, :inside_parking_temporary,
+            :outside_parking_temporary, :storage, :extra_storage, :numericality => true, :allow_blank => true
+
   validates :price_unit, :presence => true, :if => :for_rent?
 
   delegate :for_sale?, :for_rent?, :to => :_parent

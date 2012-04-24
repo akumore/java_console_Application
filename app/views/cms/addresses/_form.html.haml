@@ -15,13 +15,13 @@
       .controls
         = f.text_field :street_number, :class => 'span3'
     .control-group.mandatory
+      = f.label :zip
+      .controls
+        = f.text_field :zip, :class => 'span2'
+    .control-group.mandatory
       = f.label :city
       .controls
         = f.text_field :city, :class => 'span8'
-    .control-group.mandatory
-      = f.label :zip
-      .controls
-        = f.text_field :zip, :class => 'span3'
     .control-group.mandatory
       = f.label :canton
       .controls

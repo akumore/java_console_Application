@@ -40,7 +40,7 @@
         = f.text_field :outside_parking_spots_temporary, :class => 'span8'
 
   %fieldset
-    %legend Distanzen
+    %legend Distanzen in Meter
     - @infrastructure.points_of_interest.each do |poi|
       .control-group
         = f.fields_for :points_of_interest, poi do |poi_f|

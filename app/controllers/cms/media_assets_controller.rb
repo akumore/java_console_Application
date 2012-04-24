@@ -1,5 +1,5 @@
 class Cms::MediaAssetsController < Cms::SecuredController
-  include EmbeddedInRealEstate
+  include Concerns::EmbeddedInRealEstate
 
   load_resource :through => :real_estate
   authorize_resource :through => :real_estate, :except => [:show, :index]

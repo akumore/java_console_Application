@@ -17,15 +17,6 @@
             = f.radio_button :building_type, RealEstate::BUILDING_MIDDLE_HOUSE
             %span= t(".#{RealEstate::BUILDING_MIDDLE_HOUSE}")
     .control-group.mandatory
-      = f.label :utilization
-      .controls
-        %label.radio
-          = f.radio_button :utilization, RealEstate::UTILIZATION_PRIVATE
-          %span= t(".#{RealEstate::UTILIZATION_PRIVATE}")
-        %label.radio
-          = f.radio_button :utilization, RealEstate::UTILIZATION_COMMERICAL
-          %span= t(".#{RealEstate::UTILIZATION_COMMERICAL}")
-    .control-group.mandatory
       = f.label :offer
       .controls
         %label.radio
@@ -34,6 +25,15 @@
         %label.radio
           = f.radio_button :offer, RealEstate::OFFER_FOR_SALE
           %span= t(".#{RealEstate::OFFER_FOR_SALE}")
+    .control-group.mandatory
+      = f.label :utilization
+      .controls
+        %label.radio
+          = f.radio_button :utilization, RealEstate::UTILIZATION_PRIVATE
+          %span= t(".#{RealEstate::UTILIZATION_PRIVATE}")
+        %label.radio
+          = f.radio_button :utilization, RealEstate::UTILIZATION_COMMERICAL
+          %span= t(".#{RealEstate::UTILIZATION_COMMERICAL}")
     .control-group
       = f.label :is_first_marketing
       .controls

@@ -3,10 +3,11 @@ class RealEstateDecorator < ApplicationDecorator
 
   decorates :real_estate
   decorates_association :contact
+  decorates_association :address
+  decorates_association :information
 
   def google_maps_address
     [
-      address.try(:street).presence, address.try(:street_number).presence,
       address.try(:street).presence, address.try(:street_number).presence,
       address.try(:zip).presence,
       address.try(:city).presence,
@@ -15,17 +16,7 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def short_info_address
-    [
-      [
-        address.try(:zip).presence,
-        address.try(:city).presence,
-        address.try(:canton).try(:upcase).presence
-      ].join(' '),
-      [
-        address.try(:street).presence,
-        address.try(:street_number).presence
-      ].join(' '),
-    ].join(tag('br')).html_safe
+    [address.try(:street).presence, address.try(:extended_city).presence].join(tag('br')).html_safe
   end
 
   def short_info_price
@@ -62,10 +53,8 @@ class RealEstateDecorator < ApplicationDecorator
       buffer << t('real_estates.show.living_surface_html', :size => figure.living_surface)
     end
 
-    if information.try(:display_estimated_available_from).present?
-      buffer << information.try(:display_estimated_available_from)
-    elsif information.try(:available_from).present?
-      buffer << t('real_estates.show.available_from', :date => l(information.try(:available_from)))
+    if information.try(:available_from).present?
+      buffer << information.available_from
     end
 
     buffer.join(tag('br')).html_safe
@@ -95,7 +84,7 @@ class RealEstateDecorator < ApplicationDecorator
     link_to(
         t('real_estates.show.description_download'),
         real_estate_handout_path(:real_estate_id => model.id, :format => :pdf),
-        :class => 'icon-description'
+        :class => 'icon-description', :target => '_blank'
     ) if model.has_handout?
   end
 
@@ -108,10 +97,8 @@ class RealEstateDecorator < ApplicationDecorator
   def information_shared
     buffer = []
 
-    if information.try(:display_estimated_available_from).present?
-      buffer << information.display_estimated_available_from
-    elsif information.try(:available_from).present?
-      buffer << t('real_estates.show.available_from', :date => l(information.available_from))
+    if information.try(:available_from).present?
+      buffer << information.available_from
     end
 
     if information.try(:is_new_building) == true

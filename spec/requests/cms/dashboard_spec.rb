@@ -9,7 +9,7 @@ describe "Cms::Users" do
       before :each do
         time_travel_to(2.hours.ago) do
           2.times do
-            Fabricate(:real_estate, 
+            Fabricate(:real_estate,
               :category => Fabricate(:category),
               :reference => Fabricate.build(:reference),
               :state => RealEstate::STATE_IN_REVIEW
@@ -30,8 +30,8 @@ describe "Cms::Users" do
     context 'without real estates to be reviewed' do
       before :each do
         time_travel_to(24.hours.ago) do
-          Fabricate(:real_estate, 
-            :category => Fabricate(:category), 
+          Fabricate(:real_estate,
+            :category => Fabricate(:category),
             :reference => Fabricate.build(:reference),
             :state => RealEstate::STATE_IN_REVIEW
           )
@@ -53,8 +53,8 @@ describe "Cms::Users" do
       before :each do
         time_travel_to(2.hours.ago) do
           2.times do
-            Fabricate(:real_estate, 
-              :category => Fabricate(:category), 
+            Fabricate(:real_estate,
+              :category => Fabricate(:category),
               :reference => Fabricate.build(:reference),
               :state => RealEstate::STATE_IN_REVIEW
             )
@@ -72,14 +72,24 @@ describe "Cms::Users" do
 
   describe '#show' do
     login_cms_user
-    
+
     before do
       @header_row = 1
     end
 
+    describe 'user info' do
+      before do
+        visit cms_dashboards_path
+      end
+
+      it 'has a link to the live page on the eye icon and on the main logo' do
+        page.should have_css("a[href='#{root_path}']", :count => 2)
+      end
+    end
+
     it 'lists the latest real estates to be reviewed' do
       3.times do
-        Fabricate(:real_estate, 
+        Fabricate(:real_estate,
           :category => Fabricate(:category),
           :reference => Fabricate.build(:reference),
           :state => RealEstate::STATE_IN_REVIEW
@@ -93,7 +103,7 @@ describe "Cms::Users" do
 
     it 'lists the last 5 published real estates' do
       10.times do
-        Fabricate(:real_estate, 
+        Fabricate(:real_estate,
           :category => Fabricate(:category),
           :reference => Fabricate.build(:reference),
           :state => RealEstate::STATE_PUBLISHED
@@ -107,7 +117,7 @@ describe "Cms::Users" do
 
     it 'lists the last 5 edited real estates' do
       10.times do
-        Fabricate(:real_estate, 
+        Fabricate(:real_estate,
           :category => Fabricate(:category),
           :reference => Fabricate.build(:reference),
           :state => RealEstate::STATE_EDITING

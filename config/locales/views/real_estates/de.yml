@@ -2,8 +2,8 @@ de:
   cms:
     real_estates:
       form:
-        private: 'Privat'
-        commercial: 'Gewerblich'
+        private: 'Wohnen'
+        commercial: 'Arbeiten'
         for_rent: 'Mieten'
         for_sale: 'Kaufen'
         corner_house: 'Eckhaus'
@@ -23,9 +23,11 @@ de:
         show: Anzeigen
         for_rent: Mieten
         for_sale: Kaufen
-        private: Privat
-        commercial: Gewerblich
+        private: Wohnen
+        commercial: Arbeiten
         editing: In Bearbeitung
+        published: 'Veröffentlicht'
+        in_review: 'Zu Verifizieren'
         destroyed: "Die Immobilie \"%{title}\" wurde erfolgreich gelöscht."
       update:
         sorted:
@@ -40,7 +42,7 @@ de:
       for_rent: Mieten
       search: Suchen
     search_filter_order:
-      sort_field_label: 'Sortieren nach:'
+      sort_field_label: 'Sortiert nach'
       search_fields:
         rooms: 'Zimmer'
         price: 'Preis'
@@ -105,7 +107,6 @@ de:
       elementary_school: 'Primarschule: %{number}'
       high_school: 'Oberstufe: %{number}'
       highway_access: 'Autobahn Anschluss: %{number}'
-      available_from: 'Bezug %{date}'
       has_outlook: 'Mit Ausblick'
       has_fireplace: 'Cheminée'
       has_elevator: 'Lift'

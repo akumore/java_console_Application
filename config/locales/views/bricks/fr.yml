@@ -1,0 +1,13 @@
+fr:
+  bricks:
+    placeholder:
+      company_header:
+        board_of_directors: "Conseil d'administration"
+        managing_board: "Direction de l'entreprise"
+        reference_projects: 'Référence du projet'
+        honorary_president: "Président d'honneur"
+        president_of_board_of_directors: "Président du Conseil d'administration"
+        vice_president_of_board_of_directors: "Vice-président du Conseil d'administration"
+        member_of_board_of_directors: "Membre du Conseil d'administration"
+        chairman_of_managing_board: 'Président de la direction'
+        member_of_managing_board: 'Membre de la direction'

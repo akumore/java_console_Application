@@ -9,7 +9,7 @@ class RealEstatesController < ApplicationController
   before_filter :set_search_filter
 
   def index
-    @real_estates = get_filtered_real_estates(@search_filter)
+    @real_estates = RealEstateDecorator.decorate get_filtered_real_estates(@search_filter)
     @reference_projects = RealEstateDecorator.decorate get_filtered_reference_projects(@search_filter)
   end
 

@@ -15,16 +15,16 @@ describe "Authenticate Cms::User" do
         click_button 'Einloggen'
       end
     end
-    
+
     it 'redirects to the dashboard' do
       current_path.should == cms_dashboards_path
     end
-        
+
     context 'logout' do
       before :each do
-        click_link 'Logout'
+        click_link 'Abmelden'
       end
-      
+
       it 'redirects to root page' do
         current_path.should == root_path
       end

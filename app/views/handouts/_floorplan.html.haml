@@ -1,11 +1,12 @@
 .chapter.floorplan.pbi-avoid
-  %h2= t('.title')
+  .pb-avoid
+    %h2= t('.title')
 
-  .floorplan-image.pbi-avoid
-    - if orientation_degrees = @real_estate.try(:additional_description).try(:orientation_degrees).presence
-      .compass-group
-        .compass
-          = image_tag('compass.png')
-        .compass-pin{ :style => "-webkit-transform:rotate(#{orientation_degrees}deg);" }
-          = image_tag('compass-pin.png')
-    = image_tag(@real_estate.media_assets.floorplans.first.url)
+    .floorplan-image.pbi-avoid
+      - if orientation_degrees = @real_estate.try(:additional_description).try(:orientation_degrees).presence
+        .compass-group
+          .compass
+            = image_tag('compass.png')
+          .compass-pin{ :style => "-webkit-transform:rotate(#{orientation_degrees}deg);" }
+            = image_tag('compass-pin.png')
+      = image_tag(@real_estate.media_assets.floorplans.first.url)

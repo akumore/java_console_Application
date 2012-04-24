@@ -17,6 +17,10 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     $(".expandable").each ->
       new AlfredMueller.Views.ExpandableContent(el: $(this))
 
+    # initialize tab slider
+    $(".tab-slider").each ->
+      new AlfredMueller.Views.TabSlider(el: $(this))
+
     # initialize slideshows
     $(".gallery .flexslider").flexslider(
       directionNav: true,

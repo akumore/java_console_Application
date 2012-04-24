@@ -161,6 +161,9 @@
   .image-caption
     background: transparent
 
+  .vision-header-title
+    text-transform: none
+
   .image-caption-text
     width: 50%
     padding: 2em 140px 2em 2em
@@ -234,3 +237,89 @@
 
   img
     width: 100%
+
+// Styles for tab slider placeholder
+.tab-slider
+  margin: 50px 0 50px 0
+  width: 1000px
+  
+  .first-level-navigation, .second-level-navigation
+    +horizontal-list
+    overflow: hidden
+    
+    li
+      padding: 0
+      margin: 0px 5px 0px 0px
+    
+    a
+      display: block
+
+  .first-level-navigation
+    margin-bottom: -1px
+    
+    a
+      padding: 10px 20px
+      background-color: $search-background-color
+      border:
+        top: 1px solid $head-of-alfred-mueller-tab-slider-border
+        right: 1px solid $head-of-alfred-mueller-tab-slider-border
+        left: 1px solid $head-of-alfred-mueller-tab-slider-border
+      &:hover, &.active
+        height: 20px
+        position: relative
+        z-index: 2
+        background: image-url('tab-slider-top.png') repeat-x top left
+
+  .second-level-navigation
+    background: image-url('tab-slider-bottom.png') repeat-x top left
+    position: absolute
+    z-index: 1
+    width: 100%
+    top: 0px
+    left: 0px
+
+    .active
+      text-decoration: underline
+
+    a
+      padding: 18px 20px
+      &:hover
+        text-decoration: underline
+
+  .tab-content
+    height: 499px
+    border: 1px solid $head-of-alfred-mueller-tab-slider-border
+
+  .tab-slider-description
+    background: image-url('image-caption-top-big.png') no-repeat top right
+    width: 340px
+    height: 260px
+    position: absolute
+    right: 0px
+    top: 0px
+    padding: 0px 40px 40px 60px
+    h1
+      margin: 90px 0 20px 0
+    h5
+      color: #455264
+      font-size: 1em
+
+#reference-projects
+  .flex-control-nav
+    display: none
+
+// IE 7 optimization tab slider
+*+html .tab-slider
+  .first-level-navigation
+    a.active, a:hover
+      height: 20px
+
+*+html .flex-container
+  overflow: hidden
+
+// IE 8 optimization
+@media \0screen
+  .tab-slider
+    .first-level-navigation
+      a.active, a:hover
+        height: 20px

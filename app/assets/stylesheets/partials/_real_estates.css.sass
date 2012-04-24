@@ -6,10 +6,10 @@
     margin-left: 10px
 
 .search-results
-  +column(5, 10)
+  +column(6, 10)
 
 .map
-  +column(5, 10)
+  +column(4, 10)
 
 .search-results-map
   height: 500px
@@ -24,14 +24,33 @@ tr
     background-color: $search-hover-color
     cursor: pointer
 td
-  padding: 14px 0
-  line-height: 15px
+  padding: 10px 0
+  line-height: 1.1em
   border-bottom: solid
   border-color: $search-background-color
+  vertical-align: top
 
   &:first-child
     padding: 0
+    padding-right: 10px
     line-height: 0
+
+  .title
+    @extend .title-font-bold
+    padding-bottom: 0.5em
+
+  .col
+    font-size: 0.9em
+    +float_left
+
+  .col.first
+    width: 150px
+
+  .col.middle
+    width: 130px
+
+  .col.last
+    width: 125px
 
 .detail
   background: $search-background-color
@@ -127,7 +146,7 @@ td
 
 .search-filter-order-form
   @extend .clearfix
-  background: image-url('search-filter-order-bg.png') repeat-x
+  background: #baba99 image-url('search-filter-order-bg.png') repeat-x
   border: 1px solid #a6a7a6
 
   .sort-field, .sort-order

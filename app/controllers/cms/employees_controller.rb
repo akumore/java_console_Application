@@ -1,6 +1,10 @@
 class Cms::EmployeesController < Cms::SecuredController
-
   respond_to :html
+  authorize_resource
+
+  rescue_from CanCan::AccessDenied do |err|
+    redirect_to cms_dashboards_path, :alert => err.message
+  end
 
   def index
     @employees = Employee.all.order([:lastname, :asc])
