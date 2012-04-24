@@ -577,7 +577,7 @@ module Export::Homegate
 
     def agency_id
       # str(10) given by homegate (Info: agency_id + ref_property + ref_object + ref_house forms the unique object key)
-      'alm'
+      Settings.homegate.agency_id
     end
 
     def agency_name
