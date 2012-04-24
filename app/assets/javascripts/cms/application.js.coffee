@@ -41,3 +41,5 @@ $(document).ready ->
         $("form.autosubmit").trigger("submit")
 
   $("textarea").autoResize()
+
+  $(".help-popover").popover()
