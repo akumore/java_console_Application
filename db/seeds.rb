@@ -581,6 +581,12 @@ module InitialPages
     end
   end
 
+  module KnowledgePage
+    I18n.available_locales.each do |locale|
+      Page.create(:title => 'Wissenswertes', :name => 'knowledge', :locale => locale)
+    end
+  end
+
 
   module ContactPage
     Page.create(:title => 'Kontakt', :name => 'contact', :locale => :de) do |contact_page|
