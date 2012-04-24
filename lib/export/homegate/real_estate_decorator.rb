@@ -342,7 +342,7 @@ module Export::Homegate
 
     def object_state
       #  str(2)  ZH, AG etc.
-      model.try(:address).try(:canton)
+      model.try(:address).try(:canton).try(:upcase)
     end
 
     def object_country
