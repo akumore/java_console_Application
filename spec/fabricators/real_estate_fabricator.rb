@@ -8,7 +8,6 @@ Fabricator(:real_estate) do
   description 'Some real estate description...'
   short_description 'Some short real estate description...'
   keywords 'Real, Estate, Stuff'
-  is_first_marketing true
   utilization_description 'Commercial, Restaurant'
 end
 

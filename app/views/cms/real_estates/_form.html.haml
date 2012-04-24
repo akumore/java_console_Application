@@ -35,11 +35,6 @@
           = f.radio_button :utilization, RealEstate::UTILIZATION_COMMERICAL
           %span= t(".#{RealEstate::UTILIZATION_COMMERICAL}")
     .control-group
-      = f.label :is_first_marketing
-      .controls
-        %label.checkbox
-          = f.check_box :is_first_marketing
-    .control-group
       = f.label :channels
       .controls
         - RealEstate::CHANNELS.each do |channel|
