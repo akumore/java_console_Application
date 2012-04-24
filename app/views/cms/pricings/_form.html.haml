@@ -33,6 +33,7 @@
       = f.label :estimate
       .controls
         = f.text_field :estimate, :class => 'span8'
+        %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Pricing.human_attribute_name(:estimate), 'data-content' => t('.help_popover.estimate') }
     .control-group
       = f.label :opted
       .controls
