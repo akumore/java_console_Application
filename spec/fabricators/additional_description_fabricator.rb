@@ -4,5 +4,4 @@ Fabricator(:additional_description) do
   interior "Interior description"
   offer "Offer description"
   infrastructure "Infrastructure description"
-  reference_date "Reference date description"
 end

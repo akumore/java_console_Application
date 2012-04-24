@@ -27,7 +27,6 @@ describe "Cms::Descriptions" do
           fill_in 'Ausbaustandard', :with => 'Top moderne Küche'
           fill_in 'Angebot', :with => 'Schöne Aussicht'
           fill_in 'Infrastruktur', :with => 'An bester Einkaufslage'
-          fill_in 'Bezugstermin', :with => 'ca. Herbst 2010 für Mieter'
           fill_in 'Ausrichtung Nordpfeil', :with => '45'
         end
       end
@@ -51,7 +50,6 @@ describe "Cms::Descriptions" do
           @additional_description.interior.should == 'Top moderne Küche'
           @additional_description.offer.should == 'Schöne Aussicht'
           @additional_description.infrastructure.should == 'An bester Einkaufslage'
-          @additional_description.reference_date.should == 'ca. Herbst 2010 für Mieter'
           @additional_description.orientation_degrees.should == 45
         end
       end
@@ -69,7 +67,7 @@ describe "Cms::Descriptions" do
 
     it 'shows the additional description within the cms' do
       visit cms_real_estate_additional_description_path real_estate_with_desc
-      [:generic,:location, :interior, :offer, :infrastructure, :reference_date].each do |attr|
+      [:generic,:location, :interior, :offer, :infrastructure].each do |attr|
         page.should have_content real_estate_with_desc.additional_description.send(attr)
       end
     end
