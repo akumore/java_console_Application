@@ -43,7 +43,6 @@ describe "Handout aka MiniDoku" do
           Fabricate.build(:media_asset_floorplan)
         ],
         :additional_description => Fabricate.build(:additional_description,
-          :generic => 'Lorem ipsum ... 1. Beschreibung',
           :location => 'Lorem ipsum ... 2. Beschreibung',
           :interior => 'Lorem ipsum ... 3. Beschreibung',
           :offer => 'Lorem ipsum ... 4. Beschreibung',
@@ -336,11 +335,6 @@ describe "Handout aka MiniDoku" do
 
     it 'shows the chapter title' do
       page.should have_content 'Beschreibung'
-    end
-
-    it 'shows the generic description' do
-      page.should have_content 'Allgemein'
-      page.should have_content 'Lorem ipsum ... 1. Beschreibung'
     end
 
     it 'shows the location description' do

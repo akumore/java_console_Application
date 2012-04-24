@@ -22,7 +22,6 @@ describe "Cms::Descriptions" do
     context 'a valid Description' do
       before :each do
         within(".new_additional_description") do
-          fill_in 'Immobilie', :with => 'Modernes Wohnen in schöner Landschaft'
           fill_in 'Standort', :with => 'In laufweite zum Flughafen'
           fill_in 'Ausbaustandard', :with => 'Top moderne Küche'
           fill_in 'Angebot', :with => 'Schöne Aussicht'
@@ -45,7 +44,6 @@ describe "Cms::Descriptions" do
         end
 
         it 'has saved the provided attributes' do
-          @additional_description.generic.should == 'Modernes Wohnen in schöner Landschaft'
           @additional_description.location.should == 'In laufweite zum Flughafen'
           @additional_description.interior.should == 'Top moderne Küche'
           @additional_description.offer.should == 'Schöne Aussicht'
@@ -54,7 +52,7 @@ describe "Cms::Descriptions" do
         end
       end
     end
-  end
+  encoding
 
   describe '#show' do
     let :real_estate_with_desc do
@@ -67,7 +65,7 @@ describe "Cms::Descriptions" do
 
     it 'shows the additional description within the cms' do
       visit cms_real_estate_additional_description_path real_estate_with_desc
-      [:generic,:location, :interior, :offer, :infrastructure].each do |attr|
+      [:location, :interior, :offer, :infrastructure].each do |attr|
         page.should have_content real_estate_with_desc.additional_description.send(attr)
       end
     end

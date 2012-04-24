@@ -64,7 +64,6 @@ de:
       notice_period: 'Kündigungsfrist'
     description:
       title: 'Beschreibung'
-      generic: 'Allgemein'
       location: 'Standort'
       interior: 'Ausbaustandard'
       offer: 'Angebot'

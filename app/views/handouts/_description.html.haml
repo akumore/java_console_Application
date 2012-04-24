@@ -1,11 +1,5 @@
 .chapter.additional-description
   %h2= t('.title')
-
-  - if generic = additional_description.generic.presence
-    %dl
-      %dt= t('.generic')
-      %dd= markdown generic
-
   - if location = additional_description.location.presence
     %dl
       %dt= t('.location')

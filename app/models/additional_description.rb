@@ -5,7 +5,6 @@ class AdditionalDescription
 
   embedded_in :real_estate
 
-  field :generic, :type => String
   field :location, :type => String
   field :interior, :type => String
   field :offer, :type => String
