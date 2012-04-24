@@ -6,3 +6,5 @@ de:
         year: 'jährlich'
         week: 'wöchentlich'
         once: 'einmalig'
+        help_popover:
+          estimate: 'Für spez. Angaben, z.B. ab 2100, 1500 – 3000'
