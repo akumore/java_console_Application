@@ -69,7 +69,7 @@ de:
       interior: 'Ausbaustandard'
       offer: 'Angebot'
       infrastructure: 'Infrastruktur'
-      usage: 'Nutzung'
+      utilization_description: 'Nutzung'
     images:
       title: Bilder
     contact:

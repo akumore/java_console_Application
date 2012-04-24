@@ -10,7 +10,6 @@ class AdditionalDescription
   field :interior, :type => String
   field :offer, :type => String
   field :infrastructure, :type => String
-  field :usage, :type => String
   field :reference_date, :type => String
   field :orientation_degrees, :type => Integer
 end

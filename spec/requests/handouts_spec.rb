@@ -47,8 +47,7 @@ describe "Handout aka MiniDoku" do
           :location => 'Lorem ipsum ... 2. Beschreibung',
           :interior => 'Lorem ipsum ... 3. Beschreibung',
           :offer => 'Lorem ipsum ... 4. Beschreibung',
-          :infrastructure => 'Lorem ipsum ... 5. Beschreibung',
-          :usage => 'Lorem ipsum ... 6. Beschreibung',
+          :infrastructure => 'Lorem ipsum ... 5. Beschreibung'
         )
       )
   end
@@ -366,7 +365,7 @@ describe "Handout aka MiniDoku" do
 
     it 'shows the usage description' do
       page.should have_content 'Nutzung'
-      page.should have_content 'Lorem ipsum ... 6. Beschreibung'
+      page.should have_content printable_real_estate.utilization_description
     end
   end
 

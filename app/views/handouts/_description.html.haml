@@ -26,7 +26,7 @@
       %dt= t('.infrastructure')
       %dd= markdown infrastructure
 
-  - if usage = additional_description.usage.presence
+  - if utilization_description = real_estate.utilization_description.presence
     %dl
-      %dt= t('.usage')
-      %dd= markdown usage
+      %dt= t('.utilization_description')
+      %dd= markdown utilization_description
