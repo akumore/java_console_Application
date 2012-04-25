@@ -1,0 +1,6 @@
+de:
+  cms:
+    additional_descriptions:
+      form:
+        help_popover:
+          orientation_degrees: "Einfache Zahl eingeben z.B. für Osten 90."
