@@ -8,7 +8,7 @@ describe "Handout aka MiniDoku" do
     Fabricate(:residential_building,
         :address => Fabricate.build(:address, :street => 'Musterstrasse', :street_number => '1', :zip => '8400', :city => 'Hausen'),
         :figure => Fabricate.build(:figure, :floor => 3, :rooms => '3.5', :usable_surface => 120),
-        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'month'),
+        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'monthly'),
         :information => Fabricate.build(:information,
           :display_estimated_available_from => 'Verfügbar ab Mitte Mai',
           :is_new_building => true,
@@ -122,7 +122,7 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content I18n.t('handouts.pricing.for_rent_netto')
-        page.should have_content "CHF 1'999.00 monatlich"
+        page.should have_content "CHF 1'999.00 / Monat"
       end
 
       it "shows 'without VAT message' if 'opted'" do
@@ -135,7 +135,7 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content I18n.t('handouts.pricing.for_rent_extra')
-        page.should have_content "CHF 99.00 monatlich"
+        page.should have_content "CHF 99.00 / Monat"
       end
 
       it "shows the price of the inside parking lot if available" do
@@ -146,7 +146,7 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz in Autoeinstellhalle'
-        page.should have_content 'CHF 100.00 monatlich'
+        page.should have_content 'CHF 100.00 / Monat'
       end
 
       it "shows the price of the temporary inside parking lot if available" do
@@ -154,7 +154,7 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz in Autoeinstellhalle temporär'
-        page.should have_content 'CHF 50.00 monatlich'
+        page.should have_content 'CHF 50.00 / Monat'
       end
 
       it "shows the price of the outside parking lot if available" do
@@ -162,7 +162,7 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz nicht überdacht'
-        page.should have_content 'CHF 80.00 monatlich'
+        page.should have_content 'CHF 80.00 / Monat'
       end
 
       it "shows the price of the temporary outside parking lot if available" do
@@ -170,7 +170,7 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz nicht überdacht temporär'
-        page.should have_content 'CHF 20.00 monatlich'
+        page.should have_content 'CHF 20.00 / Monat'
       end
 
       it "shows the rent depot price" do
@@ -183,7 +183,7 @@ describe "Handout aka MiniDoku" do
 
     context "Real Estate, private, for rent" do
       before do
-        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :for_rent_depot => 4000, :price_unit => 'month'
+        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :for_rent_depot => 4000, :price_unit => 'monthly'
         @real_estate = Fabricate :residential_building, :pricing => @pricing
       end
 
@@ -194,7 +194,7 @@ describe "Handout aka MiniDoku" do
 
     context "Real Estate, commercial, for rent" do
       before do
-        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :for_rent_depot => 4000, :price_unit => 'month', :opted => false
+        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :for_rent_depot => 4000, :price_unit => 'monthly', :opted => false
         @real_estate = Fabricate :commercial_building, :pricing => @pricing
       end
 
@@ -433,9 +433,7 @@ describe "Handout aka MiniDoku" do
         page.should have_content 'www.alfred-mueller.ch'
       end
     end
-
   end
-
 
   describe "Chapter Pictures" do
     before do
