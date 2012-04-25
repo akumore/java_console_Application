@@ -10,7 +10,7 @@
 
       %dt= t('.address')
       %dd
-        = "#{[@real_estate.address.street, @real_estate.address.street_number.presence].compact.join ' '}, #{@real_estate.address.zip} #{@real_estate.address.city}"
+        = @real_estate.address.simple
 
     - if @real_estate.figure.present?
 

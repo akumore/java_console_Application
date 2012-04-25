@@ -19,7 +19,7 @@ de:
       description: 'Kurzbeschrieb'
     pricing:
       title: Preise
-      for_rent_netto: Mietzins
+      for_rent_netto: Miete (ohne Nebenkosten)
       for_rent_extra: Nebenkosten
       for_rent_depot: Mietzinsdepot
       without_vat: Alle Preise ohne Mehrwertsteuer
