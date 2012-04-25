@@ -19,6 +19,14 @@ class PricingDecorator < ApplicationDecorator
     end
   end
 
+  def price
+    if model.for_rent?
+      for_rent_netto
+    elsif model.for_sale?
+      for_sale
+    end
+  end
+
   def for_rent_netto
     if model.estimate.present?
       estimate
@@ -57,6 +65,10 @@ class PricingDecorator < ApplicationDecorator
 
   def estimate
     t("pricings.decorator.price_units.#{model.price_unit}", :price => model.estimate) if model.estimate.present?
+  end
+
+  def for_rent_depot
+    formatted_price(model.for_rent_depot) if model.for_rent_depot.present?
   end
 
   private

@@ -9,7 +9,6 @@ Fabricator(:pricing) do
   outside_parking_temporary 65
   storage 1600
   extra_storage 120
-  estimate '1700 - 2600.-'
 end
 
 Fabricator(:pricing_for_rent, :class_name => :pricing) do

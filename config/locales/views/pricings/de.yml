@@ -9,3 +9,13 @@ de:
         year_m2: 'pro Jahr / m²'
         sell: 'Verkaufspreis'
         sell_m2: 'Verkaufspreis / m²'
+  pricings:
+    decorator:
+      price_units:
+        monthly: '%{price} / Monat'
+        yearly: '%{price} / Jahr'
+        weekly: '%{price} / Woche'
+        daily: '%{price} / Tag'
+        year_m2: '%{price} / Jahr/m²'
+        sell: '%{price} / Verkaufspreis'
+        sell_m2: '%{price} / Verkaufspreis/m²'

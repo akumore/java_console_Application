@@ -72,7 +72,7 @@ de:
       infrastructure: 'Infrastruktur'
       contact_person: 'Kontaktperson'
       for_rent: 'Miete'
-      for_rent_long: 'Miete: %{price}'
+      for_rent_long: 'Miete (ohne Nebenkosten): %{price}'
       for_rent_extra: 'Nebenkosten'
       for_rent_extra_long: 'Nebenkosten: %{price}'
       for_sale: 'Kaufpreis'

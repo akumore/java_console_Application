@@ -16,6 +16,7 @@ describe PricingDecorator do
           :outside_parking => 150,
           :inside_parking_temporary => 160,
           :outside_parking_temporary => 170,
+          :for_rent_depot => 2000,
           :estimate => ''
         )
       )
@@ -25,6 +26,10 @@ describe PricingDecorator do
 
     it 'formats the list price' do
       @pricing.list_price.should == "CHF 2'000.00"
+    end
+
+    it 'formats the price' do
+      @pricing.price.should == @pricing.for_rent_netto
     end
 
     it 'formats the netto rent price' do
@@ -49,6 +54,10 @@ describe PricingDecorator do
 
     it 'formats the temporary outside parking price' do
       @pricing.outside_parking_temporary.should == "CHF 170.00 / Monat"
+    end
+
+    it 'formats the rent depot' do
+      @pricing.for_rent_depot.should == "CHF 2'000.00"
     end
 
     context 'when an estimated price is set' do
@@ -88,6 +97,10 @@ describe PricingDecorator do
 
     it 'formats the list price' do
       @pricing.list_price.should == "CHF 123'456.00"
+    end
+
+    it 'formats the price' do
+      @pricing.price.should == @pricing.for_sale
     end
 
     it 'formats the sale price' do
