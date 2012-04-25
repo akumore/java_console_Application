@@ -3,4 +3,4 @@ de:
     additional_descriptions:
       form:
         help_popover:
-          orientation_degrees: "Einfache Zahl eingeben z.B. für Osten 90."
+          orientation_degrees: "Einfache Zahl eingeben z.B. für Osten 90. <center><div style='height: 200px; width: 200px;'><img src='/assets/nordpfeil.jpg' alt='Nordpfeil' /><div></center>"

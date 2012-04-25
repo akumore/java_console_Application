@@ -43,3 +43,5 @@ $(document).ready ->
   $("textarea").autoResize()
 
   $(".help-popover").popover()
+  $(".help-popover-top").popover
+    placement: 'top'
