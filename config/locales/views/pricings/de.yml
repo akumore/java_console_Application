@@ -7,4 +7,4 @@ de:
         week: 'wöchentlich'
         once: 'einmalig'
         help_popover:
-          estimate: 'Für spez. Angaben, z.B. ab 2100, 1500 – 3000'
+          estimate: 'Für spez. Angaben, z.B. ab 2100, <br />1500 – 3000'

@@ -4,7 +4,7 @@ de:
       form:
         help_popover:
           floor: 'Hier nur Geschoss-Nr. angeben, z.B. -1, 0, 1, 2 etc.'
-          floor_estimate: 'Hier Geschoss angeben, z.B. Attikageschoss, 1./2. Obergeschoss, 1. – 5. Obergeschoss'
+          floor_estimate: 'Hier Geschoss angeben, z.B. Attikageschoss, 1./2. Obergeschoss, 1. – 5. Obergeschoss<br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Stockwerk» auf der Webseite und der Projektdokumentation ausgegeben.'
           rooms: 'z.B. 2.5, 5.5'
-          rooms_estimate: 'Für spez. Angaben, z.B. ab 3.5, 2.5 – 4.5'
-          living_surface_estimate: 'Für spez. Angaben, z.B. ab 102, 104 – 132'
+          rooms_estimate: 'Für spezifische Angaben, z.B. ab 3.5, 2.5 – 4.5 <br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Anzahl Zimmer» auf der Webseite und der Projektdokumentation ausgegeben.'
+          living_surface_estimate: 'Für spez. Angaben, z.B. ab 102, 104 – 132<br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Wohnfläche» auf der Webseite und der Projektdokumentation ausgegeben.'
