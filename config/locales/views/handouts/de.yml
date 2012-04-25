@@ -28,7 +28,7 @@ de:
         yearly: ' / Jahr'
         weekly: ' / Woche'
         daily: ' / Tag'
-        yearly_m2: ' / Jahr/m²'
+        year_m2: ' / Jahr/m²'
         sell: '/ Verkaufspreis'
         sell_m2: '/ Verkaufspreis/m²'
       inside_parking: Parkplatz in Autoeinstellhalle
