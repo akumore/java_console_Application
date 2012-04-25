@@ -47,9 +47,6 @@ class RealEstate
   field :title, :type => String
   field :property_name, :type => String
   field :description, :type => String
-  field :short_description, :type => String
-  field :keywords, :type => String
-  field :is_first_marketing, :type => Boolean
   field :building_type, :type => String
   field :utilization_description, :type => String
 

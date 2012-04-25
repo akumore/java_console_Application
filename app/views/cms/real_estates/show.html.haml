@@ -16,9 +16,6 @@
   %dt= t "mongoid.attributes.real_estate.offer"
   %dd= t("cms.real_estates.form.#{@real_estate.offer}")
 
-  %dt= t "mongoid.attributes.real_estate.is_first_marketing"
-  %dd= @real_estate.is_first_marketing?
-
   %dt= t "mongoid.attributes.real_estate.channels"
   %dd
     = @real_estate.channels.map {|channel| t "cms.real_estates.form.channels.#{channel}"}.join(", ")
@@ -41,16 +38,6 @@
   %dt= t "mongoid.attributes.real_estate.property_name"
   %dd
     = @real_estate.property_name
-    &nbsp;
-
-  %dt= t "mongoid.attributes.real_estate.short_description"
-  %dd
-    = @real_estate.short_description
-    &nbsp;
-
-  %dt= t "mongoid.attributes.real_estate.keywords"
-  %dd
-    = @real_estate.keywords
     &nbsp;
 
   %dt= t "mongoid.attributes.real_estate.utilization_description"

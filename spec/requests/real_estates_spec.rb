@@ -340,12 +340,9 @@ describe "RealEstates" do
       page.should have_content(real_estate.description)
     end
 
-    it 'has keywords for the search engine' do
-      page.should have_css("meta[content='#{real_estate.keywords}']")
-    end
-
     it 'has a description for the search engine' do
-      page.should have_css("meta[content='#{real_estate.short_description}']")
+      pending
+      #page.should have_css("meta[content='#{real_estate.seo_description}']")
     end
 
     it 'has a link to the search results' do

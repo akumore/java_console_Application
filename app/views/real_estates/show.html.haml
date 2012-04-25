@@ -1,6 +1,5 @@
 - content_for :meta do
-  %meta{ :name => :keywords, :content => @real_estate.keywords }
-  %meta{ :name => :description, :content => @real_estate.short_description }
+  - # %meta{ :name => :description, :content => @real_estate.short_description }
 
 = render 'google_maps'
 

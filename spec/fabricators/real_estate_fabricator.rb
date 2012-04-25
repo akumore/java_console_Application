@@ -6,9 +6,6 @@ Fabricator(:real_estate) do
   title { "A fine real estate property #{Fabricate.sequence}" }
   property_name 'Garden City'
   description 'Some real estate description...'
-  short_description 'Some short real estate description...'
-  keywords 'Real, Estate, Stuff'
-  is_first_marketing true
   utilization_description 'Commercial, Restaurant'
 end
 
