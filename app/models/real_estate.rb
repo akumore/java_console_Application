@@ -28,7 +28,7 @@ class RealEstate
   embeds_one :reference, :as => :referencable
   #deprecate :reference # disable for now, because it will always log as long as we have defined embeds_one
 
-  embeds_one :address, :validate => false
+  embeds_one :address, :cascade_callbacks => true, :validate => false # cascade callbacks to guarantee execution of geocoding
   embeds_one :pricing, :validate => false
   embeds_one :figure, :validate => false
   embeds_one :information, :validate => false
@@ -78,7 +78,7 @@ class RealEstate
     def mandatory_for_publishing
       metadata = RealEstate.relations.values.select { |r| r.relation == Mongoid::Relations::Embedded::One }
       mandatory_relations = metadata.select { |relation| relation.class_name.constantize.validators.map(&:class).include?(Mongoid::Validations::PresenceValidator) }
-      mandatory = mandatory_relations.map(&:key)
+      mandatory_relations.map(&:key)
     end
 
     memoize :mandatory_for_publishing
