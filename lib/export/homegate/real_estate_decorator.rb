@@ -201,7 +201,7 @@ module Export::Homegate
       # str(50) Name of the used tool and export versionnumber (eg. Sigmasoft_v2.11, excelsior 21.23, immotools v1.99 ...)
       'AlfredMuellerWebsite_HomegateExporter'
     end
-    
+
     def object_category
       # str(25) APPT','HOUSE','INDUS','PROP','GASTRO','AGRI','PARK','GARDEN','SECONDARY' (see list on tab "ObjectCategory")
       {
@@ -214,7 +214,7 @@ module Export::Homegate
         'secondary' => 'SECONDARY'
       }[top_level_category_name || category_name]
     end
-    
+
     def object_type
       # int(3)  see list on tab "ObjectCategory"
       cat = top_level_category_name || category_name
@@ -300,28 +300,28 @@ module Export::Homegate
 
       subcategories[model.category.name]
     end
-    
+
     def offer_type
       #  str(200)  RENT','SALE'
       'RENT' if model.for_rent?
       'SALE' if model.for_sale?
     end
-    
+
     def ref_property
       #  str(80) at least one of the refs must be non blank (the word null as a value in ref_object cannot be used)
-      model.try(:reference).try(:property_key).presence
+      model.try(:address).try(:reference).try(:property_key).presence
     end
-    
+
     def ref_house
       # str(80) the word null as a value in ref_house cannot be used
-      model.try(:reference).try(:building_key).presence
+      model.try(:address).try(:reference).try(:building_key).presence
     end
-    
+
     def ref_object
       #  str(80) the word null as a value in ref_object cannot be used
-      model.try(:reference).try(:unit_key).presence
+      model.try(:address).try(:reference).try(:unit_key).presence
     end
-    
+
     def object_street
       # str(200)  must field (exact match of street and number) for the geographical search on map.homegate.ch
       [model.try(:address).try(:street).presence, model.try(:address).try(:street_number).presence].compact.join ' '
@@ -333,7 +333,7 @@ module Export::Homegate
     end
 
     def object_city
-      # str(200)  
+      # str(200)
       model.try(:address).try(:city).presence
     end
 
@@ -369,7 +369,7 @@ module Export::Homegate
     end
 
     def object_description
-      #  str(4000) biggest varchar2(4000) in oracle - split description into two parts if required. 
+      #  str(4000) biggest varchar2(4000) in oracle - split description into two parts if required.
       # The following HTML-Tags can be used: <LI>,</LI>,<BR>, <B>,</B>. All other Tags will be removed.
       html = RDiscount.new(model.description.presence.to_s).to_html
       Sanitize.clean(html, :elements => ['b', 'li', 'br'])
@@ -480,7 +480,7 @@ module Export::Homegate
 
     def prop_cabletv
       #  str(1)  object has cable tv connection, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      # AM: obsolete    
+      # AM: obsolete
     end
 
     def prop_elevator
@@ -587,12 +587,12 @@ module Export::Homegate
     end
 
     def agency_name
-      # str(200)  
+      # str(200)
       'Alfred Müller AG'
     end
 
     def agency_name_2
-      # str(255)  
+      # str(255)
     end
 
     def agency_reference
@@ -611,7 +611,7 @@ module Export::Homegate
     end
 
     def agency_city
-      # str(200)  
+      # str(200)
       'Baar'
     end
 
@@ -621,7 +621,7 @@ module Export::Homegate
     end
 
     def agency_phone
-      #  str(200)  
+      #  str(200)
       model.try(:contact).try(:phone).presence || '+41 41 767 02 02'
     end
 
@@ -631,7 +631,7 @@ module Export::Homegate
     end
 
     def agency_fax
-      #  str(200)  
+      #  str(200)
       model.try(:contact).try(:fax).presence || '+41 41 767 02 00'
     end
 
