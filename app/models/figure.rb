@@ -6,7 +6,7 @@ class Figure
 
   field :floor, :type => Integer
   field :floor_estimate, :type => String # 1-5 Stock
-  field :rooms, :type => String # 
+  field :rooms, :type => String #
   field :rooms_estimate, :type => String # 3-5 Zimmer
   field :living_surface, :type => String
   field :living_surface_estimate, :type => String # 50-80 Quadratmeter
@@ -23,5 +23,5 @@ class Figure
 
   validates :storage_surface, :numericality => true, :if => :commercial_utilization?, :allow_blank => true
 
-  delegate :commercial_utilization?, :to => :_parent
+  delegate :commercial_utilization?, :private_utilization?, :to => :_parent
 end

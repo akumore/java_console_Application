@@ -6,6 +6,7 @@ class RealEstateDecorator < ApplicationDecorator
   decorates_association :address
   decorates_association :information
   decorates_association :pricing
+  decorates_association :figure
 
   def google_maps_address
     [
@@ -49,8 +50,8 @@ class RealEstateDecorator < ApplicationDecorator
   def short_info_size
     buffer = []
 
-    if figure.try(:living_surface).present?
-      buffer << t('real_estates.show.living_surface_html', :size => figure.living_surface)
+    if figure.try(:surface).present?
+      buffer << figure.surface
     end
 
     if information.try(:available_from).present?
