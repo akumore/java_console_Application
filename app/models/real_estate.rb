@@ -37,13 +37,13 @@ class RealEstate
 
 
   #TODO Remove media_assets but migrate data on production first!
-  deprecate :media_assets
   embeds_many :media_assets  do
     def primary_image
       images.primary.first || MediaAsset.new(:media_type => MediaAsset::IMAGE)
     end
   end
   accepts_nested_attributes_for :media_assets
+  deprecate :media_assets => 'media_assets will be removed soon'
 
 
   embeds_many :images, :class_name => 'MediaAssets::Image', :cascade_callbacks => true
