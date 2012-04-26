@@ -41,7 +41,7 @@ describe "Cms::Pricings" do
               fill_in 'Netto Miete', :with => '1500'
               fill_in 'Mietnebenkosten', :with => '50'
               fill_in 'Mietzinsdepot', :with => '4500'
-              select 'monatlich', :from => 'Preiseinheit'
+              select 'pro Monat', :from => 'Preiseinheit'
 
               within('.inside-parking') do
                 fill_in 'Permanent', :with => '140'
@@ -75,7 +75,7 @@ describe "Cms::Pricings" do
               @pricing.for_rent_netto.should == 1500
               @pricing.for_rent_extra.should == 50
               @pricing.for_rent_depot.should == 4500
-              @pricing.price_unit.should ==  'month'
+              @pricing.price_unit.should ==  'monthly'
               @pricing.inside_parking.should == 140
               @pricing.outside_parking.should == 160
               @pricing.inside_parking_temporary.should == 100
@@ -105,8 +105,8 @@ describe "Cms::Pricings" do
           current_path.should == new_cms_real_estate_pricing_path(@real_estate)
         end
 
-        it 'does not show the price unit' do
-          page.should_not have_css('#pricing_price_unit')
+        it 'does show the price unit' do
+          page.should have_css('#pricing_price_unit')
         end
 
         it 'does not show the rent price input' do
@@ -129,6 +129,7 @@ describe "Cms::Pricings" do
           before :each do
             within(".new_pricing") do
               fill_in 'Kaufpreis', :with => '100000'
+              select 'Verkaufspreis', :from => 'Preiseinheit'
 
               within('.inside-parking') do
                 fill_in 'Permanent', :with => '50000'
@@ -160,7 +161,7 @@ describe "Cms::Pricings" do
 
             it 'has saved the provided attributes' do
               @pricing.for_sale.should == 100000
-              @pricing.price_unit.should be_blank
+              @pricing.price_unit.should == 'sell'
               @pricing.inside_parking.should == 50000
               @pricing.outside_parking.should == 10000
               @pricing.inside_parking_temporary.should == 1000
@@ -202,7 +203,7 @@ describe "Cms::Pricings" do
               fill_in 'Netto Miete', :with => '2300'
               fill_in 'Mietnebenkosten', :with => '150'
               fill_in 'Mietzinsdepot', :with => '6000'
-              select 'monatlich', :from => 'Preiseinheit'
+              select 'pro Jahr', :from => 'Preiseinheit'
 
               within('.inside-parking') do
                 fill_in 'Permanent', :with => '200'
@@ -239,7 +240,7 @@ describe "Cms::Pricings" do
               @pricing.for_rent_netto.should == 2300
               @pricing.for_rent_extra.should == 150
               @pricing.for_rent_depot.should == 6000
-              @pricing.price_unit.should ==  'month'
+              @pricing.price_unit.should ==  'yearly'
               @pricing.inside_parking.should == 200
               @pricing.outside_parking.should == 150
               @pricing.inside_parking_temporary.should == 90
@@ -271,8 +272,8 @@ describe "Cms::Pricings" do
           current_path.should == new_cms_real_estate_pricing_path(@real_estate)
         end
 
-        it 'does not show the price unit' do
-          page.should_not have_css('#pricing_price_unit')
+        it 'does show the price unit' do
+          page.should have_css('#pricing_price_unit')
         end
 
         it 'does not show the rent price input' do
@@ -287,6 +288,7 @@ describe "Cms::Pricings" do
           before :each do
             within(".new_pricing") do
               fill_in 'Kaufpreis', :with => '200000'
+              select 'Verkaufspreis', :from => 'Preiseinheit'
 
               within('.inside-parking') do
                 fill_in 'Permanent', :with => '40000'
@@ -321,7 +323,7 @@ describe "Cms::Pricings" do
 
             it 'has saved the provided attributes' do
               @pricing.for_sale.should == 200000
-              @pricing.price_unit.should be_blank
+              @pricing.price_unit.should == 'sell'
               @pricing.inside_parking.should == 40000
               @pricing.outside_parking.should == 15000
               @pricing.inside_parking_temporary.should == 2000

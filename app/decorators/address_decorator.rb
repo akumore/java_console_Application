@@ -4,7 +4,7 @@ class AddressDecorator < ApplicationDecorator
   decorates :address
 
   def simple
-    [street, city].compact.join ' '
+    [street, simple_city].compact.join ', '
   end
 
   def street
