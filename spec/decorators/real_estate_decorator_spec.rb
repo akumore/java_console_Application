@@ -22,7 +22,10 @@ describe RealEstateDecorator do
       :short_info_figure,
       :short_info_size,
       :additional_description,
+      :utilization_description,
+      :seo_description,
       :mini_doku_link,
+      :project_website_link,
       :information_shared,
       :information_basic,
       :price_info_basic,
@@ -71,7 +74,7 @@ describe RealEstateDecorator do
   describe '#reference_project_caption' do
     context 'with a link in the address' do
       it 'links to the provided url' do
-        real_estate = Fabricate(:real_estate, 
+        real_estate = Fabricate(:real_estate,
           :address => Fabricate.build(:address, :link_url => 'http://www.google.ch'),
           :category => Fabricate(:category),
           :reference => Fabricate.build(:reference)
@@ -82,9 +85,9 @@ describe RealEstateDecorator do
     end
 
     context 'without a link in the addres' do
-      
+
       it 'shows no link' do
-        real_estate = Fabricate(:real_estate, 
+        real_estate = Fabricate(:real_estate,
           :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
           :address => Fabricate.build(:address, :link_url => ''),
           :category => Fabricate(:category),
@@ -98,7 +101,7 @@ describe RealEstateDecorator do
         it 'links to the detail page' do
           pending 'figure out how draper handles this issue: https://github.com/jcasimir/draper/issues/116'
 
-          real_estate = Fabricate(:real_estate, 
+          real_estate = Fabricate(:real_estate,
           :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL, RealEstate::WEBSITE_CHANNEL],
           :address => Fabricate.build(:address, :link_url => ''),
           :category => Fabricate(:category),

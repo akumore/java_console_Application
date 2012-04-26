@@ -362,6 +362,10 @@ describe "RealEstates" do
       page.should have_content "#{address.street} #{address.street_number}"
     end
 
+    it 'shows the project website link' do
+      page.should have_link 'Zur Projektwebsite', :href => real_estate.address.link_url
+    end
+
     it "shows the number of rooms" do
       page.should have_content "#{real_estate.figure.rooms} Zimmer"
     end

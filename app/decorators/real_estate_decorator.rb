@@ -107,6 +107,12 @@ class RealEstateDecorator < ApplicationDecorator
     end
   end
 
+  def project_website_link
+    if address.present? && address.link_url.present?
+      link_to t('real_estates.show.project_website_link'), address.link_url, :target => '_new', :class => 'icon-groundplan'
+    end
+  end
+
   def information_shared
     buffer = []
 
