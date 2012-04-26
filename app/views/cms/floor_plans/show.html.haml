@@ -1,0 +1,11 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+%dl.dl-horizontal
+  %dt= MediaAssets::FloorPlan.human_attribute_name :title
+  %dd= @floor_plan.title
+
+  %dt Vorschau
+  %dd.well
+    = image_tag @floor_plan.file.cms_preview.url
