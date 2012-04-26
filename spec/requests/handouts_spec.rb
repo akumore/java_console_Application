@@ -39,8 +39,8 @@ describe "Handout aka MiniDoku" do
         :title => 'Demo Objekt',
         :description => 'Lorem Ipsum',
         :property_name => 'Gartenstadt',
-        :media_assets => [
-          Fabricate.build(:media_asset_floorplan)
+        :floor_plans => [
+          Fabricate.build(:media_assets_floor_plan)
         ],
         :additional_description => Fabricate.build(:additional_description,
           :location => 'Lorem ipsum ... 2. Beschreibung',
@@ -430,13 +430,13 @@ describe "Handout aka MiniDoku" do
 
   describe "Chapter Pictures" do
     before do
-      @primary_image = Fabricate.build :media_asset_image, :is_primary=>true, :title=>"The primary image"
-      @ground_plot = Fabricate.build :media_asset_floorplan, :title=>"The beautiful floor plan"
-      @kitchen = Fabricate.build(:media_asset_image, :title=>"The kitchen")
-      @bathroom = Fabricate.build(:media_asset_image, :title=>"The bathroom")
+      @primary_image = Fabricate.build :media_assets_image, :is_primary=>true, :title=>"The primary image"
+      @ground_plot = Fabricate.build :media_assets_floor_plan, :title=>"The beautiful floor plan"
+      @kitchen = Fabricate.build(:media_assets_image, :title=>"The kitchen")
+      @bathroom = Fabricate.build(:media_assets_image, :title=>"The bathroom")
 
       @real_estate = Fabricate :residential_building, :contact=>@contact_person, :pricing => Fabricate.build(:pricing_for_rent),
-                               :media_assets => [@primary_image, @ground_plot, @kitchen, @bathroom]
+                               :images => [@primary_image, @kitchen, @bathroom], :floor_plans => [@ground_plot]
     end
 
     it "shows the chapter title" do

@@ -9,4 +9,4 @@
             = image_tag('compass.png')
           .compass-pin{ :style => "-webkit-transform:rotate(#{orientation_degrees}deg);" }
             = image_tag('compass-pin.png')
-      = image_tag(@real_estate.media_assets.floorplans.first.url)
+      = image_tag(@real_estate.floor_plans.first.file.url)
