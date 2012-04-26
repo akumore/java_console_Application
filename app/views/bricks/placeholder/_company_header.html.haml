@@ -11,22 +11,15 @@
     .flexslider
       %ul.second-level-navigation
         %li
-          %a{ :href => '#' } Alfred Müller
-        %li
           %a{ :href => '#' } Christoph Müller
         %li
           %a{ :href => '#' } Viktor Naumann
         %li
           %a{ :href => '#' } Dr. Erich Rüegg
+        %li
+          %a{ :href => '#' } Alfred Müller
 
       %ul.slides
-        %li
-          = image_tag 'head_of_alfred_mueller/board_of_directors/Alfred_Mueller.jpg'
-          .tab-slider-description
-            %h1
-              Alfred Müller
-            %h5
-              = t('.honorary_president')
         %li
           = image_tag 'head_of_alfred_mueller/board_of_directors/Christoph_Mueller.jpg'
           .tab-slider-description
@@ -48,6 +41,13 @@
               Dr. Erich Rüegg
             %h5
               = t('.member_of_board_of_directors')
+        %li
+          = image_tag 'head_of_alfred_mueller/board_of_directors/Alfred_Mueller.jpg'
+          .tab-slider-description
+            %h1
+              Alfred Müller
+            %h5
+              = t('.honorary_president')
 
   .flex-container.hidden#managing-board.tab-content
     .flexslider
