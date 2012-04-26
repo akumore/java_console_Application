@@ -390,7 +390,7 @@ describe "RealEstates" do
       end
 
       it 'has a link to the mini doku' do
-        page.should have_link('Objektbeschrieb')
+        page.should have_link('Objektdokumentation')
       end
     end
 
