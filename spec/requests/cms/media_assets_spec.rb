@@ -72,6 +72,33 @@ describe "Cms::MediaAssets" do
       visit cms_real_estate_media_assets_path(@real_estate)
       page.should have_css "#document-#{@document.id}"
     end
-  end
 
+    context 'On published real estate' do
+      before do
+        @real_estate.address = Fabricate.build :address
+        @real_estate.pricing = Fabricate.build :pricing
+        @real_estate.information = Fabricate.build :information
+        @real_estate.publish_it!
+      end
+
+      it "links to #show of each asset" do
+        visit cms_real_estate_media_assets_path(@real_estate)
+        page.should have_link "Anzeigen", :href=>cms_real_estate_image_path(@real_estate, @image)
+        page.should have_link "Anzeigen", :href=>cms_real_estate_floor_plan_path(@real_estate, @floor_plan)
+        page.should have_link "Anzeigen", :href=>cms_real_estate_video_path(@real_estate, @video)
+        page.should have_link "Anzeigen", :href=>cms_real_estate_document_path(@real_estate, @document)
+      end
+
+      it "doesn't show edit links" do
+        visit cms_real_estate_media_assets_path(@real_estate)
+        page.should_not have_link 'Bearbeiten'
+      end
+
+      it "doesn't show the delete link" do
+        visit cms_real_estate_media_assets_path(@real_estate)
+        page.should_not have_link 'Löschen'
+      end
+    end
+
+  end
 end
