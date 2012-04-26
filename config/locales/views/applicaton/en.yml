@@ -1,8 +1,8 @@
 en:
   application:
     vision_slider:
-      open: 'aufklappen'
-      close: 'zuklappen'
+      open: 'open'
+      close: 'close'
       vision:
         title1: 'We create top quality living and office space in which people can feel completely comfortable and at home.'
         link_title1: 'Offer'
