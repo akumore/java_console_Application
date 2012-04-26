@@ -14,6 +14,7 @@ module MediaAssets
     field :position, :type => Integer, :default => 1
 
     scope :primary, :where => {:is_primary => true}, :limit => 1
+    scope :for_print, :where => {:is_primary => false}
 
     validates :title, :presence => true
     validates_presence_of :file, :if => :new_record?
