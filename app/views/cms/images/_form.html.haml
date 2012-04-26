@@ -1,0 +1,26 @@
+= render 'cms/shared/errors', :model => @image
+
+%fieldset
+  .control-group.mandatory
+    = f.label :title
+    .controls
+      = f.text_field :title, :class => 'span8'
+  .control-group
+    = f.label :is_primary
+    .controls
+      %label.checkbox
+        = f.check_box :is_primary
+  .control-group.mandatory
+    = f.label :file
+    .controls
+      = f.file_field :file
+      = f.hidden_field :file_cache
+
+      - if @image.file.present?
+        .well
+          = image_tag @image.file.cms_preview.url
+
+.form-actions
+  = f.submit t(".save"), :class => 'btn btn-primary'
+  .pull-right
+    = render "cms/media_assets/actions"
