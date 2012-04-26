@@ -49,6 +49,7 @@ class RealEstate
   field :description, :type => String
   field :building_type, :type => String
   field :utilization_description, :type => String
+  field :category_label, :type => String # used for sorting, normalized by category.label
 
   validates :category_id, :presence => true
   validates :utilization, :presence => true
@@ -57,6 +58,7 @@ class RealEstate
   validates :description, :presence => true
 
   after_initialize :init_channels
+  after_validation :set_category_label
 
   delegate :apartment?, :house?, :property?, :to => :top_level_category, :allow_nil => true
   delegate :row_house?, :to => :category, :allow_nil => true
@@ -145,6 +147,10 @@ class RealEstate
   private
   def init_channels
     self.channels ||= []
+  end
+
+  def set_category_label
+    self.category_label = self.category.label if category.present?
   end
 
 end
