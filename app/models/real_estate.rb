@@ -34,13 +34,26 @@ class RealEstate
   embeds_one :information, :validate => false
   embeds_one :infrastructure, :validate => false
   embeds_one :additional_description
+
+
+  #TODO Remove media_assets but migrate data on production first!
+  deprecate :media_assets
   embeds_many :media_assets  do
     def primary_image
       images.primary.first || MediaAsset.new(:media_type => MediaAsset::IMAGE)
     end
   end
-
   accepts_nested_attributes_for :media_assets
+
+
+  embeds_many :images, :class_name => 'MediaAssets::Image', :cascade_callbacks => true
+  embeds_many :floor_plans, :class_name => 'MediaAssets::FloorPlan', :cascade_callbacks => true
+  embeds_many :videos, :class_name => 'MediaAssets::Video', :cascade_callbacks => true
+  embeds_many :documents, :class_name => 'MediaAssets::Document', :cascade_callbacks => true
+  accepts_nested_attributes_for :images
+  accepts_nested_attributes_for :floor_plans
+  accepts_nested_attributes_for :videos
+  accepts_nested_attributes_for :documents
 
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE
@@ -97,7 +110,6 @@ class RealEstate
 
       validates_associated *RealEstate.mandatory_for_publishing,
                            :if=>:state_changed? # Allows admin to save real estate in_review state
-
     end
 
     state :published do
@@ -148,10 +160,15 @@ class RealEstate
     category.parent
   end
 
+  def primary_image
+    images.primary.first || MediaAssets::Image.new
+  end
+
   def is_homegate?
     self.channels.include? HOMEGATE_CHANNEL
   end
 
+  
   private
   def init_channels
     self.channels ||= []
