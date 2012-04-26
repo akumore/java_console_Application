@@ -1,0 +1,6 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+= form_for @document, :as=>:document, :url=>cms_real_estate_document_path(@real_estate, @document), :method=>:put, :html => {:multipart => true } do |f|
+  = render 'form', :f=>f
