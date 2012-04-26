@@ -26,7 +26,7 @@ class RealEstate
   has_many :appointments
 
   embeds_one :reference, :as => :referencable
-  deprecate :reference
+  #deprecate :reference # disable for now, because it will always log as long as we have defined embeds_one
 
   embeds_one :address, :validate => false
   embeds_one :pricing, :validate => false
