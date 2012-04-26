@@ -1,0 +1,8 @@
+de:
+  mongoid:
+    models:
+      media_assets/floor_plan: Grundrisse
+    attributes:
+      media_assets/floor_plan:
+        title: Titel
+        file: Datei
