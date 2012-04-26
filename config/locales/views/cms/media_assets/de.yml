@@ -8,6 +8,7 @@ de:
         new_document: 'Dokument erfassen'
         edit: 'Bearbeiten'
         destroy: 'Löschen'
+        show: Anzeigen
         confirm_delete: '"%{title}" wirklich löschen?'
         types:
           image: 'Bild'
