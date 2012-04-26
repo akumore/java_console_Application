@@ -1,0 +1,25 @@
+.btn-toolbar
+  .btn-group
+    = link_to(new_cms_real_estate_image_path, :class=>'btn') do
+      %i.icon-picture
+      = t('.add_image')
+  .btn-group
+    = link_to "", :class => 'btn dropdown-toggle', 'data-toggle' => 'dropdown' do
+      Grundriss oder Dokument hinzufügen
+      %span.caret
+    %ul.dropdown-menu
+      %li
+        = link_to(new_cms_real_estate_floor_plan_path) do
+          %i.icon-picture
+          = t('.add_floor_plan')
+      %li
+        = link_to(new_cms_real_estate_video_path) do
+          %i.icon-film
+          = t('.add_video')
+      %li
+        = link_to(new_cms_real_estate_document_path) do
+          %i.icon-file
+          = t('.add_document')
+    = link_to(cms_real_estate_media_assets_path, :class => 'btn btn-info') do
+      %i.icon-list
+      = t('.to_overview')
