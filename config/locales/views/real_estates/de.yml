@@ -106,7 +106,7 @@ de:
       kindergarden: 'Kindergarten: %{number}'
       elementary_school: 'Primarschule: %{number}'
       high_school: 'Oberstufe: %{number}'
-      highway_access: 'Autobahn Anschluss: %{number}'
+      highway_access: 'Autobahnanschluss: %{number}'
       has_outlook: 'Mit Ausblick'
       has_fireplace: 'Cheminée'
       has_elevator: 'Lift'
