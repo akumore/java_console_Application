@@ -345,8 +345,7 @@ describe "RealEstates" do
     end
 
     it 'has a description for the search engine' do
-      pending
-      #page.should have_css("meta[content='#{real_estate.seo_description}']")
+      page.should have_css("meta[content='#{RealEstateDecorator.new(real_estate).seo_description}']")
     end
 
     it 'has a link to the search results' do

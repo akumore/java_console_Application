@@ -79,6 +79,11 @@ class RealEstateDecorator < ApplicationDecorator
     end
   end
 
+  def seo_description
+    sanitized_description = strip_tags(markdown(description)).chomp.chomp
+    [title, address.simple, sanitized_description].compact.join ' - '
+  end
+
   def mini_doku_link
     link_to(
         t('real_estates.show.description_download'),
