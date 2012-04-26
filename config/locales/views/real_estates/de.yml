@@ -131,4 +131,7 @@ de:
       is_developed: 'Bauland ist erschlossen'
       is_under_building_laws: 'Ist im Baurecht'
       project_website_link: 'Zur Projektwebsite'
-
+      location_title: 'Standort'
+      interior_title: 'Ausbaustandard'
+      offer_title: 'Angebot'
+      infrastructure_title: 'Infrastruktur'

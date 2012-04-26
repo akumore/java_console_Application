@@ -61,7 +61,26 @@
       .accordion-item
         .title= t('.real_estate_description')
         .content
-          = @real_estate.description
+          = markdown @real_estate.description
+
+          - if @real_estate.additional_description.present?
+
+            - if @real_estate.additional_description.location.present?
+              %h3= t('.location_title')
+              = markdown @real_estate.additional_description.location
+
+            - if @real_estate.additional_description.interior.present?
+              %h3= t('.interior_title')
+              = markdown @real_estate.additional_description.interior
+
+            - if @real_estate.additional_description.offer.present?
+              %h3= t('.offer_title')
+              = markdown @real_estate.additional_description.offer
+
+            - if @real_estate.additional_description.infrastructure.present?
+              %h3= t('.infrastructure_title')
+              = markdown @real_estate.additional_description.infrastructure
+
       .accordion-item
         .title= t('.real_estate_infos')
         .content

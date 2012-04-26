@@ -18,6 +18,7 @@ describe "RealEstates" do
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
               :pricing => Fabricate.build(:pricing),
               :infrastructure => Fabricate.build(:infrastructure),
+              :additional_description => Fabricate.build(:additional_description),
               :contact => Fabricate(:employee)
   end
 
@@ -342,6 +343,28 @@ describe "RealEstates" do
 
     it 'shows the description' do
       page.should have_content(real_estate.description)
+    end
+
+    describe 'additional descriptions' do
+      it 'renders the location description' do
+        page.should have_css('h3:contains(Standort)')
+        page.should have_content real_estate.additional_description.location
+      end
+
+      it 'renders the interior description' do
+        page.should have_css('h3:contains(Ausbaustandard)')
+        page.should have_content real_estate.additional_description.interior
+      end
+
+      it 'renders the offer description' do
+        page.should have_css('h3:contains(Angebot)')
+        page.should have_content real_estate.additional_description.offer
+      end
+
+      it 'renders the infrastructure description' do
+        page.should have_css('h3:contains(Infrastruktur)')
+        page.should have_content real_estate.additional_description.infrastructure
+      end
     end
 
     it 'shows the utilization description' do
