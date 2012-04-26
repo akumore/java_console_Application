@@ -33,6 +33,7 @@ gem 'sanitize'
 gem 'chosen-rails'
 gem 'jquery-scrollto-rails'
 gem 'pdfkit'
+gem 'mongoid_rails_migrations'
 
 # Gems used only for assets and not required
 # in production environments by default.

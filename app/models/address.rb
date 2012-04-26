@@ -51,6 +51,6 @@ class Address
   end
 
   def any_reference_key
-    reference.property_key.presence || reference.building_key.presence || reference.unit_key.presence
+    (reference.property_key.presence || reference.building_key.presence || reference.unit_key.presence) if reference.present?
   end
 end
