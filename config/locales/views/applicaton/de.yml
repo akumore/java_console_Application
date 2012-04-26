@@ -4,5 +4,11 @@ de:
       open: 'aufklappen'
       close: 'zuklappen'
       vision:
-        title: 'Wir schaffen hochwertige Wohn- und Arbeitsräume, in denen Menschen sich wohl fühlen.'
-        link_title: 'Unsere Vision'
+        title1: 'Wir schaffen hochwertige Wohn- und Arbeitsräume, in denen Menschen sich wohl fühlen.'
+        link_title1: 'Angebot'
+        title2: 'Wohnräume, bei denen alles andere zur Nebensache wird.'
+        link_title2: 'Angebot'
+        title3: 'Die 2. Generation führt das Unternehmen in die Zukunft. Christoph und Michael Müller.'
+        link_title3: 'Unternehmen'
+        title4: 'Der Mensch steht bei uns im Mittelpunkt.'
+        link_title4: 'Jobs'

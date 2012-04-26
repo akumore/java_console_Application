@@ -1,0 +1,14 @@
+en:
+  application:
+    vision_slider:
+      open: 'aufklappen'
+      close: 'zuklappen'
+      vision:
+        title1: 'We create top quality living and office space in which people can feel completely comfortable and at home.'
+        link_title1: 'Offer'
+        title2: 'Living space that makes everything else seem secondary.'
+        link_title2: 'Offer'
+        title3: ''
+        link_title3: 'Enterprise'
+        title4: 'Above all it’s people we value.'
+        link_title4: 'Careers'
