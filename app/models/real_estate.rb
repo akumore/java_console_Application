@@ -25,8 +25,10 @@ class RealEstate
   belongs_to :contact, :class_name => 'Employee'
   has_many :appointments
 
-  embeds_one :reference
-  embeds_one :address
+  embeds_one :reference, :as => :referencable
+  deprecate :reference
+
+  embeds_one :address, :validate => false
   embeds_one :pricing, :validate => false
   embeds_one :figure, :validate => false
   embeds_one :information, :validate => false
@@ -76,7 +78,7 @@ class RealEstate
     def mandatory_for_publishing
       metadata = RealEstate.relations.values.select { |r| r.relation == Mongoid::Relations::Embedded::One }
       mandatory_relations = metadata.select { |relation| relation.class_name.constantize.validators.map(&:class).include?(Mongoid::Validations::PresenceValidator) }
-      mandatory_relations.map(&:key)
+      mandatory = mandatory_relations.map(&:key)
     end
 
     memoize :mandatory_for_publishing
@@ -90,13 +92,16 @@ class RealEstate
       validates *RealEstate.mandatory_for_publishing, :presence=>true,
                 :if=>:state_changed?, # Allows admin to save real estate in_review state
                 :unless=>:new_record? # ...otherwise the fabricator can't create real estates 'in_review', any idea?
+
       validates_associated *RealEstate.mandatory_for_publishing,
                            :if=>:state_changed? # Allows admin to save real estate in_review state
+
     end
 
     state :published do
       validates *RealEstate.mandatory_for_publishing, :presence=>true,
                 :unless=>:new_record? # ...otherwise the fabricator can't create real estates in 'published' state, any idea?
+
       validates_associated *RealEstate.mandatory_for_publishing
     end
 
@@ -141,6 +146,9 @@ class RealEstate
     category.parent
   end
 
+  def is_homegate?
+    self.channels.include? HOMEGATE_CHANNEL
+  end
 
   private
   def init_channels
