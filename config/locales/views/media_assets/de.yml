@@ -3,6 +3,7 @@ de:
     media_assets:
       index: &index
         new_image: 'Bild erfassen'
+        new_floor_plan: 'Grundriss erfassen'
         new_video: 'Video erfassen'
         new_document: 'Dokument erfassen'
         edit: 'Bearbeiten'
@@ -12,13 +13,11 @@ de:
           image: 'Bild'
           video: 'Video'
           document: 'Dokument'
-      new: 
-        <<: *index
       form:
-        save_image: 'Bild speichern'
-        save_video: 'Video speichern'
-        save_document: 'Dokument speichern'
+        <<: *index
+      actions:
         add_image: 'Neues Bild'
+        add_floor_plan: 'Neuer Grundriss'
         add_video: 'Neues Video'
         add_document: 'Neues Dokument'
         to_overview: 'Zurück zur Übersicht'
