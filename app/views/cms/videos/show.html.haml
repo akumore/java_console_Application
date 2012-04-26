@@ -1,0 +1,12 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+%dl.dl-horizontal
+  %dt= MediaAssets::Video.human_attribute_name :title
+  %dd= @video.title
+
+  %dt Vorschau
+  %dd.well
+    %video.sublime{ :width => 640, :height => 360, :preload => 'none' }
+    %source{ :src => @video.file.url }
