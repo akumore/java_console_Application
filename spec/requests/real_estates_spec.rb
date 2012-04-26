@@ -327,13 +327,17 @@ describe "RealEstates" do
 
   end
 
-  describe 'Visit real estate show path' do
+  describe 'Visit real estate show path', :show => true do
     before :each do
       visit real_estate_path(real_estate)
     end
 
     it 'shows the title' do
       page.should have_content(real_estate.title)
+    end
+
+    it 'shows the property name' do
+      page.should have_content(real_estate.property_name)
     end
 
     it 'shows the description' do

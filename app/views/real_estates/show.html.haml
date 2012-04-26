@@ -1,7 +1,7 @@
 - content_for :meta do
   - # %meta{ :name => :description, :content => @real_estate.short_description }
 
-= render 'google_maps'
+= #render 'google_maps'
 
 - if @real_estate.media_assets.videos.size > 0
   - content_for :javascript do
@@ -18,6 +18,8 @@
 .detail
   .main-title
     %h1= @real_estate.title
+    - if @real_estate.property_name.present?
+      %h3= @real_estate.property_name
   .clear
   .short-info
     .info.first
