@@ -22,4 +22,9 @@
   .build-slide
     .build-handle.handle
       %h3= t ".build"
-    = image_tag "construction.jpg"
+    .flex-container
+      = image_tag "construction.jpg"
+      .image-caption
+        .image-caption-text
+          %h3= t '.build_title'
+          %div= link_to t('.build_link'), "#{t('company_url')}#dienstleistungen"
