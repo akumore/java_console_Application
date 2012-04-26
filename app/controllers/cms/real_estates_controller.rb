@@ -62,6 +62,6 @@ class Cms::RealEstatesController < Cms::SecuredController
 
   def copy
     @real_estate = RealEstate.find(params[:id])
-    redirect_to edit_cms_real_estate_path(@real_estate)
+    redirect_to edit_cms_real_estate_path(@real_estate.copy)
   end
 end

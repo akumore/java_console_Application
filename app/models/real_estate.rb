@@ -141,6 +141,13 @@ class RealEstate
     category.parent
   end
 
+  def copy
+    copied = self.clone
+    copied.state = STATE_EDITING
+    copied.title = "Kopie von #{title}"
+    copied.save
+    copied
+  end
 
   private
   def init_channels

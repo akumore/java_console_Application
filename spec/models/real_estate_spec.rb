@@ -56,6 +56,34 @@ describe RealEstate do
   	end
   end
 
+  describe '#copy' do
+    before do
+      @original = Fabricate(:published_real_estate,
+        :category => Fabricate(:category),
+        :pricing => Fabricate.build(:pricing),
+        :address => Fabricate.build(:address),
+        :information => Fabricate.build(:information)
+      )
+    end
+
+    it 'copies the real estate with a new unique id' do
+      copy = @original.copy
+      copy.id.should_not == @original.id
+      copy.should be_a(RealEstate)
+    end
+
+    it 'changes the title to reflect on the real estate beeing a copy' do
+      @original.copy.title.should == "Kopie von #{@original.title}"
+    end
+
+    it 'changes the state to in editing' do
+      @original.copy.state.should == RealEstate::STATE_EDITING
+    end
+
+    it 'saves the copy' do
+      @original.copy.persisted?.should be_true
+    end
+  end
 
   describe 'top_level_category' do
     before do
