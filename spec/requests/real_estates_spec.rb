@@ -344,6 +344,10 @@ describe "RealEstates" do
       page.should have_content(real_estate.description)
     end
 
+    it 'shows the utilization description' do
+      page.should have_content(RealEstateDecorator.new(real_estate).utilization_description)
+    end
+
     it 'has a description for the search engine' do
       page.should have_css("meta[content='#{RealEstateDecorator.new(real_estate).seo_description}']")
     end
@@ -354,7 +358,6 @@ describe "RealEstates" do
 
     it "shows the address" do
       address = real_estate.address
-      page.should have_content real_estate.category.label
       page.should have_content "#{address.city} #{address.canton.upcase}"
       page.should have_content "#{address.street} #{address.street_number}"
     end

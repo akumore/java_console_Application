@@ -22,7 +22,8 @@ class RealEstateDecorator < ApplicationDecorator
 
   def short_info_price
     buffer = []
-    buffer << category.try(:label).presence
+
+    buffer << utilization_description
 
     if model.pricing.present?
       buffer << pricing.price if pricing.price.present?
@@ -76,6 +77,14 @@ class RealEstateDecorator < ApplicationDecorator
   def description
     if model.description.present?
       markdown model.description
+    end
+  end
+
+  def utilization_description
+    if model.utilization_description.present?
+      model.utilization_description
+    else
+      category.label
     end
   end
 
