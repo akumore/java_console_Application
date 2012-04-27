@@ -383,10 +383,10 @@ describe "Handout aka MiniDoku" do
       page.should_not have_css ".chapter.contact"
     end
 
-    it "shows the employees department name" do
+    it "shows the handouts-version of department name" do
       visit real_estate_handout_path(@real_estate)
       within ".chapter.contact" do
-        page.should have_content "Vermarktung"
+        page.should have_content "Beratung und Vermietung"
       end
     end
 
