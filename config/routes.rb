@@ -6,6 +6,7 @@ AlfredMueller::Application.routes.draw do
     resource :dashboards
     resources :news_items, :except => :show
     resources :real_estates do
+      get :copy, :on => :member
       resource :address
       resource :pricing, :except=>:destroy
       resource :figure, :except=>:destroy

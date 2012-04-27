@@ -40,6 +40,12 @@ describe "Cms::RealEstates" do
       page.click_link I18n.t('cms.real_estates.index.new')
       current_path.should == new_cms_real_estate_path
     end
+
+    it "has a link to copy the real estate" do
+      within("#real_estate_#{@real_estate.id}") do
+        page.should have_link "Diesen Eintrag kopieren", :href => copy_cms_real_estate_path(@real_estate)
+      end
+    end
   end
 
   describe '#new' do
