@@ -23,7 +23,6 @@ class RealEstateDecorator < ApplicationDecorator
 
   def short_info_price
     buffer = []
-
     buffer << utilization_description
 
     if model.pricing.present?
@@ -36,12 +35,9 @@ class RealEstateDecorator < ApplicationDecorator
   def short_info_figure
     buffer = []
 
-    if figure.try(:rooms).present?
-      buffer << t('real_estates.show.number_of_rooms', :count => figure.rooms)
-    end
-
-    if figure.try(:floor).present?
-      buffer << t('real_estates.show.floor', :number => figure.floor)
+    if figure.present?
+      buffer << figure.rooms if figure.rooms.present?
+      buffer << figure.floor if figure.floor.present?
     end
 
     buffer.join(tag('br')).html_safe
@@ -50,12 +46,12 @@ class RealEstateDecorator < ApplicationDecorator
   def short_info_size
     buffer = []
 
-    if figure.try(:surface).present?
-      buffer << figure.surface
+    if figure.present?
+      buffer << figure.surface if figure.surface.present?
     end
 
-    if information.try(:available_from).present?
-      buffer << information.available_from
+    if information.try(:available_from_compact).present?
+      buffer << information.available_from_compact
     end
 
     buffer.join(tag('br')).html_safe

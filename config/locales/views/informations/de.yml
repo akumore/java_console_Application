@@ -6,7 +6,8 @@ de:
   information:
     title: 'Immobilieninfos'
     characteristics: 'Merkmale'
-    available_from: 'Bezug ab %{date}'
+    available_from: 'Bezug ab'
+    available_from_compact: 'Bezug ab %{date}'
     maximal_floor_loading: 'Maximale Bodenbelastung'
     maximal_floor_loading_value: '%{count} kg'
     freight_elevator_carrying_capacity: 'Maximales Gewicht für Warenlift'

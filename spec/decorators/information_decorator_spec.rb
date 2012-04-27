@@ -20,11 +20,11 @@ describe InformationDecorator do
   end
 
   it 'has the formatted availability date' do
-    @information.available_from.should == 'Bezug ab Mai 2012'
+    @information.available_from_compact.should == 'Bezug ab Mai 2012'
   end
 
   it 'has the pure availability date' do
-    @information.simple_available_from.should == 'Mai 2012'
+    @information.available_from.should == 'Mai 2012'
   end
 
   it 'has a textual list of characteristics' do

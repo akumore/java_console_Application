@@ -3,8 +3,8 @@
 
   - if information.available_from.present?
     %dl
-      %dt= t('.available_from')
-      %dd= information.simple_available_from
+      %dt= t('information.available_from')
+      %dd= information.available_from
 
   - if information.characteristics.any?
     %dl

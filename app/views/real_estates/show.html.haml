@@ -101,13 +101,8 @@
               - @real_estate.price_info_parking.each do |line|
                 %li= line
 
-      - unless @real_estate.facts_and_figures
-        .accordion-item
-          .title= t('information.title')
-          .content
-            %ul
-              - @real_estate.facts_and_figures.each do |line|
-                %li= line
+      - unless @real_estate.facts_and_figures.present? || @real_estate.information.present?
+        = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figures => @real_estate.facts_and_figures
 
       - unless @real_estate.infrastructure_parking.empty? && @real_estate.infrastructure_distances.empty?
         .accordion-item

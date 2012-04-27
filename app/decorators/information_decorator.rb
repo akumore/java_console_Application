@@ -3,11 +3,11 @@ class InformationDecorator < ApplicationDecorator
 
   decorates :information
 
-  def available_from
-    I18n.t('information.available_from', :date => simple_available_from) if simple_available_from.present?
+  def available_from_compact
+    I18n.t('information.available_from_compact', :date => available_from) if available_from.present?
   end
 
-  def simple_available_from
+  def available_from
     if model.display_estimated_available_from.present?
       model.display_estimated_available_from
     elsif model.available_from.present?
@@ -33,7 +33,7 @@ class InformationDecorator < ApplicationDecorator
       buffer << t('information.balcony') if model.has_balcony?
       buffer << t('information.raised_ground_floor') if model.has_raised_ground_floor?
       buffer << t('information.swimmingpool') if model.has_swimming_pool?
-    else
+    elsif model.commercial_utilization?
       if model.number_of_restrooms.to_i > 0
         buffer << t('information.number_of_restrooms', :count => model.number_of_restrooms)
       end
