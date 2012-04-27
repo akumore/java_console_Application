@@ -44,5 +44,5 @@
     - @infrastructure.points_of_interest.each do |poi|
       %dt= t ".points_of_interest.types.#{poi.name}"
       %dd
-        = @infrastructure.distance
+        = poi.distance
         &nbsp;
