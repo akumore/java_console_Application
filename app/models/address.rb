@@ -21,7 +21,7 @@ class Address
   validates :city, :presence => true
   validates :street, :presence => true
   validates :zip, :presence => true
-  validates :canton, :presence => true, :inclusion => Address::CANTONS
+  validates :canton, :presence => true, :inclusion => CANTONS
   validates :any_reference_key, :presence => true, :if => :is_homegate?
 
   field :location, :type => Array #Keep in mind coordinates are stored in long, lat order internally!! Use to_coordinates always.
