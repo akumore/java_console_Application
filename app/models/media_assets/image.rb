@@ -11,7 +11,7 @@ module MediaAssets
     field :title, :type => String
     field :is_primary, :type => Boolean, :default => false
     field :file, :type => String
-    field :position, :type => Integer, :default => 1
+    field :position, :type => Integer
 
     scope :primaries, :where => {:is_primary => true}
     scope :for_print, :where => {:is_primary => false}
