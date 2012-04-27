@@ -25,4 +25,4 @@
   = render 'images', :images => handout_images
 
 - if @real_estate.contact.present?
-  = render 'contact', :contact => @real_estate.contact, :real_estate => @real_estate
+  = render 'contact', :contact => @real_estate.contact, :direct_link => @real_estate.address.link_url

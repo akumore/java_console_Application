@@ -37,3 +37,7 @@
       = contact.email
       %br
       = t '.www'
+
+      - if direct_link.present?
+        %br
+        = direct_link

@@ -373,7 +373,8 @@ describe "Handout aka MiniDoku" do
 
     before do
       @contact_person = Fabricate :employee
-      @real_estate = Fabricate :residential_building, :contact=>@contact_person, :pricing=>Fabricate.build(:pricing_for_rent)
+      @real_estate = Fabricate :residential_building, :contact => @contact_person, :pricing => Fabricate.build(:pricing_for_rent),
+                               :address => Fabricate.build(:address, :link_url => 'www.gartenstadt.ch')
     end
 
     it "is not available, if contact person is't assigned to real estate" do
@@ -430,6 +431,13 @@ describe "Handout aka MiniDoku" do
       visit real_estate_handout_path(@real_estate)
       within ".chapter.contact" do
         page.should have_content 'www.alfred-mueller.ch'
+      end
+    end
+
+    it 'shows the link from the address record if present' do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.contact" do
+        page.should have_content 'www.gartenstadt.ch'
       end
     end
   end
