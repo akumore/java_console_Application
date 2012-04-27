@@ -148,6 +148,10 @@ class RealEstate
     category.parent
   end
 
+  def is_homegate?
+    channels.include? HOMEGATE_CHANNEL
+  end
+
   def copy
     copied = self.clone
     copied.state = STATE_EDITING
