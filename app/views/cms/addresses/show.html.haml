@@ -24,6 +24,23 @@
   %dd
     = @address.link_url
     &nbsp;
+%legend= Reference.model_name.human
+
+%dl.dl-horizontal
+  %dt= t "mongoid.attributes.reference.property_key"
+  %dd
+    = @address.reference.try(:property_key)
+    &nbsp;
+
+  %dt= t "mongoid.attributes.reference.building_key"
+  %dd
+    = @address.reference.try(:building_key)
+    &nbsp;
+
+  %dt= t "mongoid.attributes.reference.unit_key"
+  %dd
+    = @address.reference.try(:unit_key)
+    &nbsp;
 
 %legend= t "mongoid.attributes.address.location"
 

@@ -13,3 +13,4 @@ de:
         location: 'Geo Koordinaten'
         lat: 'Breitengrad'
         lng: 'Längengrad'
+        any_reference_key: 'Referenznummer'

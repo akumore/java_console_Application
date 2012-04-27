@@ -52,7 +52,7 @@ describe "Cms::Descriptions" do
         end
       end
     end
-  encoding
+  end
 
   describe '#show' do
     let :real_estate_with_desc do

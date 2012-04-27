@@ -2,7 +2,20 @@ de:
   cms:
     pricings:
       form:
-        month: 'monatlich'
-        year: 'jährlich'
-        week: 'wöchentlich'
-        once: 'einmalig'
+        monthly: 'pro Monat'
+        yearly: 'pro Jahr'
+        weekly: 'pro Woche'
+        daily: 'pro Tag'
+        year_m2: 'pro Jahr / m²'
+        sell: 'Verkaufspreis'
+        sell_m2: 'Verkaufspreis / m²'
+  pricings:
+    decorator:
+      price_units:
+        monthly: '%{price} / Monat'
+        yearly: '%{price} / Jahr'
+        weekly: '%{price} / Woche'
+        daily: '%{price} / Tag'
+        year_m2: '%{price} / Jahr/m²'
+        sell: '%{price} / Verkaufspreis'
+        sell_m2: '%{price} / Verkaufspreis/m²'

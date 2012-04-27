@@ -8,7 +8,8 @@
   .container.clearfix
     .search-results
       %table
-        = render 'search_filter_order'
+        - if @real_estates.count > 0
+          = render 'search_filter_order'
         %tbody
           - @real_estates.each do |real_estate|
             %tr{ :id => "real-estate-#{real_estate.id}" }
@@ -24,10 +25,7 @@
                   %br
                   = real_estate.address.extended_city
                 .col.middle
-                  - if real_estate.for_sale?
-                    = number_to_currency real_estate.pricing.try(:for_sale), :locale=>'de-CH'
-                  - else
-                    = number_to_currency real_estate.pricing.try(:for_rent_netto), :locale=>'de-CH'
+                  = real_estate.pricing.list_price
                   %br
                   - unless (rooms = real_estate.figure.try :rooms).blank?
                     = t('.number_of_rooms', :count => rooms)

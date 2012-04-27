@@ -19,15 +19,18 @@ de:
       description: 'Kurzbeschrieb'
     pricing:
       title: Preise
-      for_rent_netto: Mietzins
+      for_rent_netto: Miete (ohne Nebenkosten)
       for_rent_extra: Nebenkosten
       for_rent_depot: Mietzinsdepot
       without_vat: Alle Preise ohne Mehrwertsteuer
       price_unit:
-        month: monatlich
-        year: jährlich
-        week: wöchentlich
-        once: einmalig
+        monthly: ' / Monat'
+        yearly: ' / Jahr'
+        weekly: ' / Woche'
+        daily: ' / Tag'
+        year_m2: ' / Jahr/m²'
+        sell: '/ Verkaufspreis'
+        sell_m2: '/ Verkaufspreis/m²'
       inside_parking: Parkplatz in Autoeinstellhalle
       inside_parking_temporary: Parkplatz in Autoeinstellhalle temporär
       outside_parking: Parkplatz nicht überdacht

@@ -17,7 +17,7 @@ describe Pricing do
       end
 
       it 'requires a price unit' do
-        @pricing.should have(1).error_on(:price_unit)
+        @pricing.should have(2).error_on(:price_unit)
       end
 
       it 'requires a netto rent price' do
@@ -30,7 +30,7 @@ describe Pricing do
 
       it 'has 6 errors' do
         @pricing.valid?
-        @pricing.errors.should have(5).items
+        @pricing.errors.should have(6).items
       end
     end
 
@@ -39,17 +39,17 @@ describe Pricing do
         @real_estate.offer = RealEstate::OFFER_FOR_SALE
       end
 
-      it 'does not require a price_unit' do
-        @pricing.should have(0).error_on(:price_unit)
+      it 'does require a price_unit' do
+        @pricing.should have(2).error_on(:price_unit)
       end
 
       it 'requires a sale price' do
         @pricing.should have(2).error_on(:for_sale)
       end
 
-      it 'has 2 errors' do
+      it 'has 4 errors' do
         @pricing.valid?
-        @pricing.errors.should have(2).items
+        @pricing.errors.should have(4).items
       end
     end
   end

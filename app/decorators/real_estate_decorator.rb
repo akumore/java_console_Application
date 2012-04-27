@@ -5,6 +5,7 @@ class RealEstateDecorator < ApplicationDecorator
   decorates_association :contact
   decorates_association :address
   decorates_association :information
+  decorates_association :pricing
 
   def google_maps_address
     [
@@ -23,10 +24,8 @@ class RealEstateDecorator < ApplicationDecorator
     buffer = []
     buffer << category.try(:label).presence
 
-    if model.for_rent? && model.pricing.try(:for_rent_netto).present?
-      buffer << number_to_currency(model.pricing.for_rent_netto, :locale=>'de-CH')
-    elsif model.for_sale? && model.pricing.try(:for_sale).present?
-      buffer << number_to_currency(model.pricing.for_sale, :locale=>'de-CH')
+    if model.pricing.present?
+      buffer << pricing.price if pricing.price.present?
     end
 
     buffer.join(tag('br')).html_safe
@@ -169,20 +168,13 @@ class RealEstateDecorator < ApplicationDecorator
   def price_info_basic
     buffer = []
 
-    if model.for_rent?
-
-      if model.pricing.try(:estimate).present?
-        buffer << t('real_estates.show.for_rent_long', :price => model.pricing.estimate)
-      elsif model.pricing.try(:for_rent_netto).present?
-        buffer << t('real_estates.show.for_rent_long', :price => number_to_currency(model.pricing.for_rent_netto, :locale=>'de-CH'))
+    if pricing.present?
+      if model.for_rent?
+        buffer << t('real_estates.show.for_rent_long', :price => pricing.for_rent_netto) if pricing.for_rent_netto.present?
+        buffer << t('real_estates.show.for_rent_extra_long', :price => pricing.for_rent_extra) if pricing.for_rent_extra.present?
+      elsif model.for_sale?
+        buffer << pricing.for_sale if pricing.for_sale.present?
       end
-
-      if model.pricing.try(:for_rent_extra).present?
-        buffer << t('real_estates.show.for_rent_extra_long', :price => number_to_currency(model.pricing.for_rent_extra, :locale=>'de-CH'))
-      end
-
-    elsif model.for_sale? && model.pricing.try(:for_sale).present?
-
     end
 
     buffer

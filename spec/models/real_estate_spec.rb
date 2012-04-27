@@ -56,6 +56,20 @@ describe RealEstate do
   	end
   end
 
+  describe '#category_label' do
+    it 'contains the label of the referenced category' do
+      category = Fabricate(:category)
+      real_estate = Fabricate(:published_real_estate,
+        :category => category,
+        :pricing => Fabricate.build(:pricing),
+        :information => Fabricate.build(:information),
+        :address => Fabricate.build(:address)
+      )
+
+      real_estate.category_label.should == category.label
+    end
+  end
+  
   describe '#copy' do
     before do
       @original = Fabricate(:published_real_estate,

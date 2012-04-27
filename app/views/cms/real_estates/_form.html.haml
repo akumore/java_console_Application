@@ -63,21 +63,6 @@
       = f.label :utilization_description
       .controls
         = f.text_area :utilization_description, :class => 'span8 short'
-  %fieldset
-    %legend= Reference.model_name.human
-    = f.fields_for @real_estate.reference do |rf|
-      .control-group
-        = rf.label :property_key
-        .controls
-          = rf.text_field :property_key, :class => 'span8'
-      .control-group
-        = rf.label :building_key
-        .controls
-          = rf.text_field :building_key, :class => 'span8'
-      .control-group
-        = rf.label :unit_key
-        .controls
-          = rf.text_field :unit_key, :class => 'span8'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'
