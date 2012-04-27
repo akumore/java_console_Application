@@ -1,17 +1,12 @@
 module MediaAssets
-  class Video
-    include Mongoid::Document
-    include Mongoid::Timestamps
-
-    embedded_in :real_estate
-
+  class Video < Base
     mount_uploader :file, MediaAssets::VideoUploader
 
-    field :title, :type => String
-    field :file, :type => String
 
-    validates :title, :presence => true
-    validates_presence_of :file, :if => :new_record?
+    private
+    def setup_position
+      self.position ||= real_estate.videos.max(:position) + 1
+    end
 
   end
 end

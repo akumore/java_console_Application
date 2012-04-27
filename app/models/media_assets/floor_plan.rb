@@ -1,17 +1,11 @@
 module MediaAssets
-  class FloorPlan
-    include Mongoid::Document
-    include Mongoid::Timestamps
-
-    embedded_in :real_estate
-
+  class FloorPlan < Base
     mount_uploader :file, MediaAssets::FloorPlanUploader
 
-    field :title, :type => String
-    field :file, :type => String
 
-    validates :title, :presence => true
-    validates_presence_of :file, :if => :new_record?
-
+    private
+    def setup_position
+      self.position ||= real_estate.floor_plans.max(:position) + 1
+    end
   end
 end
