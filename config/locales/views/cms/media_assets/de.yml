@@ -14,7 +14,13 @@ de:
           image: 'Bild'
           video: 'Video'
           document: 'Dokument'
-      form:
+      images_form:
+        <<: *index
+      floor_plans_form:
+        <<: *index
+      videos_form:
+        <<: *index
+      documents_form:
         <<: *index
       actions:
         add_image: 'Neues Bild'

@@ -1,0 +1,20 @@
+= form_for [:cms, real_estate], :remote => true, :html => { :class => :autosubmit, :id => 'order-images-form' } do |f|
+  %table.table.table-bordered.table-striped.sortable
+    %thead
+      %tr
+        %th{ :width => '7%' }
+        %th{ :width => '80%' } Bilder
+        %th
+        %th
+
+    %tbody
+      = f.fields_for :images do |form|
+        %tr.draggable-row{:id => "image-#{form.object.id}"}
+          %td.drag-handle{ :width => '7%' }
+            %i.icon-align-justify
+            = form.hidden_field :position
+          %td{ :width => '80%' }= form.object.title
+          %td
+            = link_to  t('.destroy'), cms_real_estate_image_path(real_estate, form.object), :method => :delete, :confirm => t('.confirm_delete', :title => form.object.title)
+          %td
+            = link_to  t('.edit'), edit_cms_real_estate_image_path(real_estate, form.object)
