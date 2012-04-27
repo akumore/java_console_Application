@@ -160,10 +160,6 @@ class RealEstate
     category.parent
   end
 
-  def primary_image
-    images.primary.first || MediaAssets::Image.new
-  end
-
   def is_homegate?
     self.channels.include? HOMEGATE_CHANNEL
   end

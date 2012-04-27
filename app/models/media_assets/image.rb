@@ -13,13 +13,17 @@ module MediaAssets
     field :file, :type => String
     field :position, :type => Integer, :default => 1
 
-    scope :primary, :where => {:is_primary => true}, :limit => 1
+    scope :primaries, :where => {:is_primary => true}
     scope :for_print, :where => {:is_primary => false}
 
     validates :title, :presence => true
     validates_presence_of :file, :if => :new_record?
 
     before_create :setup_position
+
+    def self.primary
+      primaries.first || MediaAssets::Image.new
+    end
 
 
     private
