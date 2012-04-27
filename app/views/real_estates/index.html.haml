@@ -27,20 +27,17 @@
                 .col.middle
                   = real_estate.pricing.list_price
                   %br
-                  - unless (rooms = real_estate.figure.try :rooms).blank?
-                    = t('.number_of_rooms', :count => rooms)
+                  - if real_estate.figure.try(:rooms).present?
+                    = real_estate.figure.rooms
                     %br
-                  - unless (floor = real_estate.figure.try :floor).blank?
-                    = succeed "." do
-                      = floor
-                    = Figure.human_attribute_name :floor
+                  - if real_estate.figure.try(:floor).present?
+                    = real_estate.figure.floor
                 .col.last
                   - if real_estate.information.present?
                     = real_estate.information.available_from
                     %br
-                  - unless (living_surface = real_estate.figure.try :living_surface).blank?
-                    = living_surface
-                    m²
+                  - if real_estate.figure.try(:surface).present?
+                    = real_estate.figure.surface
                 .clear
 
 
