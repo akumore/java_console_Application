@@ -3,7 +3,7 @@
 
 = render 'google_maps'
 
-- if @real_estate.media_assets.videos.size > 0
+- if @real_estate.videos.any?
   - content_for :javascript do
     %script{ :type => "text/javascript", :src => "http://cdn.sublimevideo.net/js/go4z5g30.js" }
 

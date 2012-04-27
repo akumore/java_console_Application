@@ -286,9 +286,8 @@ module InitialCategories
         r.infrastructure = Infrastructure.new(:has_parking_spot => true)
         r.description = "Beschreibung 1!!!"
         r.additional_description = AdditionalDescription.new
-        r.media_assets = gartenstadt_images.map { |img_path|
-          MediaAsset.new(
-              :media_type => MediaAsset::IMAGE,
+        r.images = gartenstadt_images.map { |img_path|
+          MediaAssets::Image.new(
               :is_primary => img_path==gartenstadt_images.first,
               :file => File.open(img_path),
               :title => "IMG #{File.basename(img_path)}"

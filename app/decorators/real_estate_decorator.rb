@@ -88,7 +88,7 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def floorplan_link
-    if model.media_assets.floorplans.exists?
+    if model.floor_plans.exists?
       link_to t('real_estates.show.floorplan'), '#', :class => 'icon-groundplan'
     end
   end
