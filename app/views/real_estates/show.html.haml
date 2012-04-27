@@ -81,15 +81,9 @@
               %h3= t('.infrastructure_title')
               = markdown @real_estate.additional_description.infrastructure
 
-      .accordion-item
-        .title= t('.real_estate_infos')
-        .content
-          %ul
-            - @real_estate.information_shared.each do |line|
-              %li= line
-          %ul
-            - @real_estate.information_basic.each do |line|
-              %li= line
+      - if @real_estate.information.present? || @real_estate.figure.present?
+        = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
+
       - unless @real_estate.price_info_basic.empty? && @real_estate.price_info_parking.empty?
         .accordion-item
           .title= t('.pricing')
@@ -101,8 +95,6 @@
               - @real_estate.price_info_parking.each do |line|
                 %li= line
 
-      - unless @real_estate.facts_and_figures.present? || @real_estate.information.present?
-        = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figures => @real_estate.facts_and_figures
 
       - unless @real_estate.infrastructure_parking.empty? && @real_estate.infrastructure_distances.empty?
         .accordion-item

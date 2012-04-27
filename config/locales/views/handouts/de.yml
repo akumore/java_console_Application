@@ -7,7 +7,6 @@ de:
       title: 'Objektübersicht'
       property: 'Liegenschaft'
       address: 'Adresse'
-      usable_surface: 'Bruttonutzfläche (BNF)'
       usable_surface_helptext: '(Fläche exklusive Fassaden-, Treppenhauswände, Wohnungs-Trennwände, Leitungsschächten und Balkon/Terrassen, Fläche inklusive Innenwände)'
       description: 'Kurzbeschrieb'
     pricing:

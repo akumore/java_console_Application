@@ -137,6 +137,56 @@ describe "RealEstates" do
         end
       end
 
+      describe 'information' do
+
+        context 'when the real estate is for rent' do
+          before :each do
+            real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
+            visit real_estate_path(real_estate)
+          end
+
+          it 'shows the min rent time' do
+            page.should have_content 'Mindestmietdauer'
+            page.should have_content '1 Jahr'
+          end
+
+          it 'shows the notice dates' do
+            page.should have_content 'Kündigungstermine'
+            page.should have_content 'September, Oktober'
+          end
+
+          it 'shows the notice period' do
+            page.should have_content 'Kündigungsfrist'
+            page.should have_content '3 Monate'
+          end
+        end
+      end
+
+      describe 'prices' do
+        context 'when the real estate is for rent' do
+          before :each do
+            real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
+            real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
+            visit real_estate_path(real_estate)
+          end
+
+          it "shows the localized price for rent" do
+            page.should have_content number_to_currency(real_estate.pricing.for_rent_netto, :locale=>'de-CH')
+          end
+        end
+
+        context 'when the real estate is for sale' do
+          before :each do
+            real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
+            visit real_estate_path(real_estate)
+          end
+
+          it "shows the localized price for sale" do
+            page.should have_content number_to_currency(real_estate.pricing.for_sale, :locale=>'de-CH')
+          end
+        end
+      end
+
       describe 'contact' do
         it 'displays the full name of the responsible person' do
           within(".accordion-item .image-caption-text") do
@@ -156,36 +206,26 @@ describe "RealEstates" do
           page.should have_link 'Zur Projektwebsite', :href => real_estate.address.link_url
         end
       end
-    end
 
-    context 'when the real estate is for rent' do
-      before :each do
-        real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
-        real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
-        visit real_estate_path(real_estate)
+      context 'when the real estate is for rent' do
+        it 'has a link to the mini doku' do
+          real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
+          real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
+          visit real_estate_path(real_estate)
+          page.within('.sidebar') do
+            page.should have_link('Objektdokumentation')
+          end
+        end
       end
 
-      it "shows the localized price for rent" do
-        page.should have_content number_to_currency(real_estate.pricing.for_rent_netto, :locale=>'de-CH')
-      end
-
-      it 'has a link to the mini doku' do
-        page.should have_link('Objektdokumentation')
-      end
-    end
-
-    context 'when the real estate is for sale' do
-      before :each do
-        real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
-        visit real_estate_path(real_estate)
-      end
-
-      it "shows the localized price for sale" do
-        page.should have_content number_to_currency(real_estate.pricing.for_sale, :locale=>'de-CH')
-      end
-
-      it 'has no link to the mini doku' do
-        page.should_not have_link('Objektbeschrieb')
+      context 'when the real estate is for sale' do
+        it 'has no link to the mini doku' do
+          real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
+          visit real_estate_path(real_estate)
+          page.within('.sidebar') do
+            page.should_not have_link('Objektbeschrieb')
+          end
+        end
       end
     end
 
