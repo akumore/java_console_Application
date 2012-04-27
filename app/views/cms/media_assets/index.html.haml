@@ -37,7 +37,10 @@
         - @real_estate.images.each do |image|
           %tr{:id => "image-#{image.id}"}
             %td
-            %td= image.title
+            %td
+              = image.title
+              - if image.is_primary?
+                (Hauptbild)
             %td
             %td
               = link_to t('.show'), cms_real_estate_image_path(@real_estate, image)

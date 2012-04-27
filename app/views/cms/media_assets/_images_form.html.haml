@@ -13,7 +13,10 @@
           %td.drag-handle{ :width => '7%' }
             %i.icon-align-justify
             = form.hidden_field :position
-          %td{ :width => '80%' }= form.object.title
+          %td{ :width => '80%' }
+            = form.object.title
+            - if form.object.is_primary?
+              (Hauptbild)
           %td
             = link_to  t('.destroy'), cms_real_estate_image_path(real_estate, form.object), :method => :delete, :confirm => t('.confirm_delete', :title => form.object.title)
           %td
