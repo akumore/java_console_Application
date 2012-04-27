@@ -7,14 +7,7 @@ de:
       title: 'Objektübersicht'
       property: 'Liegenschaft'
       address: 'Adresse'
-      floor: 'Geschoss'
-      lower_floor: '%{floor}. Untergeschoss'
-      ground_floor: 'Erdgeschoss'
-      upper_floor: '%{floor}. Obergeschoss'
-      rooms: 'Zimmeranzahl'
-      rooms_value: '%{count} Zimmer'
       usable_surface: 'Bruttonutzfläche (BNF)'
-      usable_surface_value: '%{count}m2'
       usable_surface_helptext: '(Fläche exklusive Fassaden-, Treppenhauswände, Wohnungs-Trennwände, Leitungsschächten und Balkon/Terrassen, Fläche inklusive Innenwände)'
       description: 'Kurzbeschrieb'
     pricing:
@@ -38,7 +31,6 @@ de:
     floorplan:
       title: 'Grundriss'
     information:
-      title: 'Immobilieninfos'
       available_from: 'Bezug ab'
     description:
       title: 'Beschreibung'

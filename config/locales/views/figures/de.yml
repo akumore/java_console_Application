@@ -1,0 +1,13 @@
+de:
+  figures:
+    floor: 'Geschoss'
+    rooms: 'Zimmeranzahl'
+    lower_floor: '%{floor}. Untergeschoss'
+    ground_floor: 'Erdgeschoss'
+    upper_floor: '%{floor}. Obergeschoss'
+    rooms_value: '%{count} Zimmer'
+    surface_value: '%{size} m²'
+    ceiling_height_value: '%{size} m'
+    floors_value:
+      one: '%{count} Geschoss'
+      other: '%{count} Geschosse'

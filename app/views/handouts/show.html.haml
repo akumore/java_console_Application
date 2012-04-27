@@ -8,7 +8,7 @@
     %span
       = t(".#{RealEstate::OFFER_FOR_RENT}_#{@real_estate.utilization}")
 
-= render 'overview'
+= render 'overview', :real_estate => @real_estate
 
 - if @real_estate.media_assets.floorplans.any?
   = render 'floorplan'

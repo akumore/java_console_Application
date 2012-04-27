@@ -4,6 +4,7 @@ de:
       form:
         for_rent: 'Mietinformationen'
   information:
+    title: 'Immobilieninfos'
     characteristics: 'Merkmale'
     available_from: 'Bezug ab %{date}'
     maximal_floor_loading: 'Maximale Bodenbelastung'

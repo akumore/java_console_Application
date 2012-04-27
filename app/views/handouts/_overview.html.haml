@@ -2,39 +2,31 @@
   %h2= t('.title')
 
   %dl
-    - if property_name = @real_estate.property_name.presence
+    - if property_name = real_estate.property_name.presence
       %dt= t('.property')
       %dd= property_name
 
-    - if @real_estate.address.present?
+    - if real_estate.address.present?
 
       %dt= t('.address')
-      %dd
-        = @real_estate.address.simple
+      %dd= real_estate.address.simple
 
-    - if @real_estate.figure.present?
+    - if real_estate.figure.present?
 
-      - if floor = @real_estate.figure.try(:floor).presence
+      - if real_estate.figure.floor.present?
+        %dt= t('figures.floor')
+        %dd= real_estate.figure.floor
 
-        %dt= t('.floor')
-        %dd
-          - if floor < 0
-            = t('.lower_floor', :floor => floor)
-          - elsif floor == 0
-            = t('.ground_floor')
-          - else
-            = t('.upper_floor', :floor => floor)
+      - if real_estate.figure.rooms.present?
+        %dt= t('figures.rooms')
+        %dd= real_estate.figure.rooms
 
-      - if rooms = @real_estate.figure.try(:rooms).presence
-        %dt= t('.rooms')
-        %dd= t('.rooms_value', :count => rooms)
-
-      - if usable_surface = @real_estate.figure.try(:usable_surface).presence
+      - if real_estate.figure.surface.present?
         %dt= t('.usable_surface')
         %dd
-          = t('.usable_surface_value', :count => usable_surface)
+          = real_estate.figure.surface
           %span.helptext= t('.usable_surface_helptext')
 
-    - if @real_estate.description.present?
+    - if real_estate.description.present?
       %dt= t('.description')
-      %dd= @real_estate.description
+      %dd= markdown real_estate.description

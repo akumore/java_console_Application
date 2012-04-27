@@ -7,7 +7,7 @@ describe "Handout aka MiniDoku" do
   let :printable_real_estate do
     Fabricate(:residential_building,
         :address => Fabricate.build(:address, :street => 'Musterstrasse', :street_number => '1', :zip => '8400', :city => 'Hausen'),
-        :figure => Fabricate.build(:figure, :floor => 3, :rooms => '3.5', :usable_surface => 120),
+        :figure => Fabricate.build(:figure, :floor => 3, :floor_estimate => '', :rooms => '3.5', :living_surface => 120, :living_surface_estimate => ''),
         :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'monthly'),
         :information => Fabricate.build(:information,
           :display_estimated_available_from => 'Mitte Mai',
@@ -77,15 +77,17 @@ describe "Handout aka MiniDoku" do
     end
 
     it 'shows the floor' do
+      page.should have_content('Geschoss')
       page.should have_content('3. Obergeschoss')
     end
 
     it 'shows the number of rooms' do
-      page.should have_content('3.5')
+      page.should have_content('Zimmeranzahl')
+      page.should have_content('3.5 Zimmer')
     end
 
     it 'shows the usable surface' do
-      page.should have_content('120m2')
+      page.should have_content('120 m²')
     end
 
     it 'shows the helptext for the usable surface' do

@@ -5,11 +5,64 @@ class FigureDecorator < ApplicationDecorator
 
   def surface
     value = if model.commercial_utilization?
-      model.usable_surface.presence
+      usable_surface
     elsif model.private_utilization?
-      model.living_surface.presence
+      living_surface
     end
-
-    t('real_estates.show.surface', :size => value) if value.present?
   end
+
+  def floor
+    if model.floor_estimate.present?
+      model.floor_estimate
+    elsif model.floor.present?
+      if model.floor < 0
+        t('figures.lower_floor', :floor => model.floor * -1)
+      elsif model.floor == 0
+        t('figures.ground_floor')
+      elsif model.floor > 0
+        t('figures.upper_floor', :floor => model.floor)
+      end
+    end
+  end
+
+  def rooms
+    if model.rooms_estimate.present?
+      model.rooms_estimate
+    elsif model.rooms.present?
+      t('figures.rooms_value', :count => model.rooms)
+    end
+  end
+
+  def living_surface
+    if model.living_surface_estimate.present?
+      model.living_surface_estimate
+    elsif model.living_surface.present?
+      t('figures.surface_value', :size => model.living_surface)
+    end
+  end
+
+  def usable_surface
+    t('figures.surface_value', :size => model.usable_surface) if model.usable_surface.present?
+  end
+
+  def property_surface
+    # Grundstückfläche
+    t('figures.surface_value', :size => model.property_surface) if model.property_surface.present?
+  end
+
+  def storage_surface
+    # Lagerfläche
+    t('figures.surface_value', :size => model.storage_surface) if model.storage_surface.present?
+  end
+
+  def ceiling_height
+    # Raumhöhe
+    t('figures.ceiling_height_value', :size => model.ceiling_height) if model.ceiling_height.present?
+  end
+
+  def floors
+    # Geschosse
+    t('figures.floors_value', :count => model.floors) if model.floors.present?
+  end
+
 end
