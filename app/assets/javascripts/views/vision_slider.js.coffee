@@ -8,7 +8,6 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
       monster.get("vision_slider_state") || "open"
     else
       @internalState || "closed"
-    "open"
 
   @setState: (state)->
     if window.location.pathname == '/'
