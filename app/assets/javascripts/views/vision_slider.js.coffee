@@ -8,6 +8,7 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
       monster.get("vision_slider_state") || "open"
     else
       @internalState || "closed"
+    "open"
 
   @setState: (state)->
     if window.location.pathname == '/'
@@ -66,4 +67,4 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
     if link.length > 0
       @visionClickArea.attr("href", link.attr("href")).removeClass("disabled")
     else
-      @visionClickArea.attr("href", "#").addClass("disabled")
+      @visionClickArea.attr("href", link).addClass("disabled")
