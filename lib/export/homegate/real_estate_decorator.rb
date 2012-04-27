@@ -912,12 +912,12 @@ module Export::Homegate
 
     def ceiling_height
       #  int(10,2) height of room in meters
-      model.try(:figure).try(:ceiling_height)
+      model.try(:figure).try(:ceiling_height).presence
     end
 
     def hall_height
       # int(10,2) height of hall in meters
-      model.try(:figure).try(:ceiling_height)
+      model.try(:figure).try(:ceiling_height).presence
     end
 
     def maximal_floor_loading
