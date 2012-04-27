@@ -66,4 +66,4 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
     if link.length > 0
       @visionClickArea.attr("href", link.attr("href")).removeClass("disabled")
     else
-      @visionClickArea.attr("href", "#").addClass("disabled")
+      @visionClickArea.attr("href", link).addClass("disabled")
