@@ -5,7 +5,7 @@ module MediaAssets
 
     private
     def setup_position
-      self.position ||= real_estate.floor_plans.max(:position) + 1
+      self.position ||= real_estate.floor_plans.max(:position).to_i + 1
     end
   end
 end

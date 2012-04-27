@@ -14,7 +14,7 @@ module MediaAssets
 
     private
     def setup_position
-      self.position ||= real_estate.images.max(:position) + 1
+      self.position ||= real_estate.images.max(:position).to_i + 1
     end
 
   end
