@@ -29,7 +29,7 @@ module MediaAssets
     end
 
     version :thumb, :from_version => :gallery do
-      process :resize_to_fill => [145, 88]
+      process :resize_to_fill => [145, 92]
     end
 
     version :cms_preview, :from_version => :gallery do
