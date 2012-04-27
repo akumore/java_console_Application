@@ -37,4 +37,5 @@ class Information
   validates_numericality_of :freight_elevator_carrying_capacity, :number_of_restrooms, :maximal_floor_loading, :greater_than_or_equal_to=>0, :allow_nil=>true
   validates :available_from, :presence => true
 
+  delegate :private_utilization?, :to => :_parent
 end

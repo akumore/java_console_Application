@@ -10,7 +10,7 @@ describe "Handout aka MiniDoku" do
         :figure => Fabricate.build(:figure, :floor => 3, :rooms => '3.5', :usable_surface => 120),
         :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'monthly'),
         :information => Fabricate.build(:information,
-          :display_estimated_available_from => 'Verfügbar ab Mitte Mai',
+          :display_estimated_available_from => 'Mitte Mai',
           :is_new_building => true,
           :is_old_building => true,
           :is_minergie_style => true,
@@ -212,8 +212,12 @@ describe "Handout aka MiniDoku" do
     end
 
     it 'shows the availability date' do
-      page.should have_content 'Bezugstermin'
-      page.should have_content 'Verfügbar ab Mitte Mai'
+      page.should have_content 'Bezug ab'
+      page.should have_content 'Mitte Mai'
+    end
+
+    it 'shows the characteristics' do
+      page.should have_content('Merkmale')
     end
 
     it 'shows if it is a new building' do

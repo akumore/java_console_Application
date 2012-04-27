@@ -1,36 +1,38 @@
 .chapter
   %h2= t('.title')
 
-  - if display_estimated_available_from = information.display_estimated_available_from.presence
+  - if information.available_from.present?
     %dl
-      %dt= t('.display_estimated_available_from')
-      %dd= display_estimated_available_from
+      %dt= t('.available_from')
+      %dd= information.simple_available_from
 
-  - if characteristics.any?
+  - if information.characteristics.any?
     %dl
-      %dt= t('.characteristics')
-      %dd= characteristics.join(', ')
+      %dt= t('information.characteristics')
+      %dd= information.characteristics.join(', ')
 
   - if real_estate.commercial_utilization?
-    %dl
-      %dt= t('.maximal_floor_loading')
-      %dd= "#{information.maximal_floor_loading} kg"
+    - if information.maximal_floor_loading.present?
+      %dl
+        %dt= t('information.maximal_floor_loading')
+        %dd= information.maximal_floor_loading
 
-    %dl
-      %dt= t('.freight_elevator_carrying_capacity')
-      %dd= "#{information.freight_elevator_carrying_capacity} kg"
+    - if information.freight_elevator_carrying_capacity.present?
+      %dl
+        %dt= t('information.freight_elevator_carrying_capacity')
+        %dd= information.freight_elevator_carrying_capacity
 
   - if minimum_rental_period = information.minimum_rental_period.presence
     %dl
-      %dt= t('.minimum_rental_period')
+      %dt= t('information.minimum_rental_period')
       %dd= minimum_rental_period
 
   - if notice_dates = information.notice_dates.presence
     %dl
-      %dt= t('.notice_dates')
+      %dt= t('information.notice_dates')
       %dd= notice_dates
 
   - if notice_period = information.notice_period.presence
     %dl
-      %dt= t('.notice_period')
+      %dt= t('information.notice_period')
       %dd= notice_period
