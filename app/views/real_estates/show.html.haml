@@ -3,7 +3,7 @@
 
 = render 'google_maps'
 
-- if @real_estate.media_assets.videos.size > 0
+- if @real_estate.videos.any?
   - content_for :javascript do
     %script{ :type => "text/javascript", :src => "http://cdn.sublimevideo.net/js/go4z5g30.js" }
 
@@ -39,18 +39,21 @@
       .flex-container
         .flexslider
           %ul.slides
-            - @real_estate.media_assets.displayable.each do |asset|
-              %li{ 'data-is_floorplan' => asset.is_floorplan.to_s }
-                - if asset.image?
-                  = image_tag asset.file.gallery.url
-                  .flex-caption
-                    %span= asset.title
-                - if asset.is_floorplan?
-                  = link_to t('.floorplan'), asset.url, :class => 'zoom-floorplan zoom-overlay'
-
-                - if asset.video?
-                  %video.sublime{ :preload => 'preload' }
-                    %source{ :src => asset.file.url }
+            - @real_estate.images.each do |image|
+              %li
+                = image_tag image.file.gallery.url
+                .flex-caption
+                  %span= image.title
+            - @real_estate.floor_plans.each do |floor_plan|
+              %li{ 'data-is_floorplan' => 'true' }
+                = image_tag floor_plan.file.gallery.url
+                .flex-caption
+                  %span= floor_plan.title
+                = link_to t('.floorplan'), floor_plan.file.url, :class => 'zoom-floorplan zoom-overlay'
+            - @real_estate.videos.each do |video|
+              %li
+                %video.sublime{ :preload => 'preload' }
+                  %source{ :src => video.file.url }
             - if @real_estate.contact.present?
               %li
                 = render :template=>'appointments/new'

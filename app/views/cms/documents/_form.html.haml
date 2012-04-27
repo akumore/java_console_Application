@@ -1,0 +1,21 @@
+= render 'cms/shared/errors', :model => @document
+
+%fieldset
+  .control-group.mandatory
+    = f.label :title
+    .controls
+      = f.text_field :title, :class => 'span8'
+  .control-group.mandatory
+    = f.label :file
+    .controls
+      = f.file_field :file
+      = f.hidden_field :file_cache
+
+      - if @document.file.present?
+        .well
+          = link_to "\"#{@document.title}\" in neuem Fenster öffnen", @document.file.url, :target => '_new'
+
+.form-actions
+  = f.submit t(".save"), :class => 'btn btn-primary'
+  .pull-right
+    = render "cms/media_assets/actions"

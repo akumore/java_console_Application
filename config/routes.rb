@@ -13,10 +13,12 @@ AlfredMueller::Application.routes.draw do
       resource :information
       resource :infrastructure, :except=>:destroy
       resource :additional_description, :except=>:destroy
-      resources :media_assets
-      resources :images, :controller => :media_assets, :media_type => :image, :only => :new
-      resources :videos, :controller => :media_assets, :media_type => :video, :only => :new
-      resources :documents, :controller => :media_assets, :media_type => :document, :only => :new
+
+      resources :media_assets, :only => :index
+      resources :images, :except => :index
+      resources :floor_plans, :except => :index
+      resources :videos, :except => :index
+      resources :documents, :except => :index
     end
 
     resources :jobs
@@ -42,7 +44,6 @@ AlfredMueller::Application.routes.draw do
     resource :job_application, :only => [:new, :create]
     resource :contact, :only => [:new, :create]
     resources :news_items, :only => :index
-
   end
 
   scope ':locale' do

@@ -13,15 +13,19 @@ module Export
       end
 
       def package_assets
-        @real_estate.media_assets.images.each do |image|
+        @real_estate.images.each do |image|
           add_image(image.file.gallery)
         end
 
-        @real_estate.media_assets.videos.each do |video|
+        @real_estate.floor_plans.each do |floor_plan|
+          add_image(floor_plan.file.gallery)
+        end
+
+        @real_estate.videos.each do |video|
           add_video(video.file)
         end
 
-        @real_estate.media_assets.docs.each do |document|
+        @real_estate.documents.each do |document|
           add_document(document.file)
         end
       end
