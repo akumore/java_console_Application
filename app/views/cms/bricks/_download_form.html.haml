@@ -1,0 +1,20 @@
+= form_for @brick, :url => url do |f|
+  = render 'cms/shared/errors', :model => @brick
+
+  %fieldset
+    .control-group.mandatory
+      = f.label :title
+      .controls
+        = f.text_field :title, :class => 'span8'
+    .control-group.mandatory
+      = f.label :file
+      .controls
+        = f.file_field :file
+
+        - if @brick.file.present?
+          .well
+            = link_to "\"#{@brick.title}\" in neuem Fenster öffnen", @brick.file.url, :target => '_new'
+
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
