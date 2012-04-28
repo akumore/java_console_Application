@@ -11,3 +11,5 @@ de:
             elementary_school: 'Grundschule'
             high_school: 'Oberstufe'
             highway_access: 'Autobahnanschluss'
+  infrastructures:
+    title: 'Infrastruktur'

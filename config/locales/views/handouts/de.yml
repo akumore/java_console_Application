@@ -9,37 +9,10 @@ de:
       address: 'Adresse'
       usable_surface_helptext: '(Fläche exklusive Fassaden-, Treppenhauswände, Wohnungs-Trennwände, Leitungsschächten und Balkon/Terrassen, Fläche inklusive Innenwände)'
       description: 'Kurzbeschrieb'
-    pricing:
-      title: Preise
-      for_rent_netto: Miete (ohne Nebenkosten)
-      for_rent_extra: Nebenkosten
-      for_rent_depot: Mietzinsdepot
-      without_vat: Alle Preise ohne Mehrwertsteuer
-      price_unit:
-        monthly: ' / Monat'
-        yearly: ' / Jahr'
-        weekly: ' / Woche'
-        daily: ' / Tag'
-        year_m2: ' / Jahr/m²'
-        sell: '/ Verkaufspreis'
-        sell_m2: '/ Verkaufspreis/m²'
-      inside_parking: Parkplatz in Autoeinstellhalle
-      inside_parking_temporary: Parkplatz in Autoeinstellhalle temporär
-      outside_parking: Parkplatz nicht überdacht
-      outside_parking_temporary: Parkplatz nicht überdacht temporär
     floorplan:
       title: 'Grundriss'
-    information:
-      available_from: 'Bezug ab'
-    description:
-      title: 'Beschreibung'
-      location: 'Standort'
-      interior: 'Ausbaustandard'
-      offer: 'Angebot'
-      infrastructure: 'Infrastruktur'
-      utilization_description: 'Nutzung'
     images:
-      title: Bilder
+      title: 'Bilder'
     contact:
       title: Kontakt
       street: Neuhofstrasse 10

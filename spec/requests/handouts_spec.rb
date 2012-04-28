@@ -121,7 +121,7 @@ describe "Handout aka MiniDoku" do
       it "shows the rent price" do
         visit real_estate_handout_path(@real_estate)
 
-        page.should have_content I18n.t('handouts.pricing.for_rent_netto')
+        page.should have_content I18n.t('pricings.for_rent_netto')
         page.should have_content "CHF 1'999.00 / Monat"
       end
 
@@ -134,13 +134,13 @@ describe "Handout aka MiniDoku" do
       it "shows additional expenses" do
         visit real_estate_handout_path(@real_estate)
 
-        page.should have_content I18n.t('handouts.pricing.for_rent_extra')
+        page.should have_content I18n.t('pricings.for_rent_extra')
         page.should have_content "CHF 99.00 / Monat"
       end
 
       it "shows the price of the inside parking lot if available" do
         visit real_estate_handout_path(@real_estate)
-        page.should_not have_content I18n.t('handouts.pricing.inside_parking')
+        page.should_not have_content I18n.t('pricings.inside_parking')
 
         @pricing.update_attribute :inside_parking, 100
         visit real_estate_handout_path(@real_estate)
@@ -161,7 +161,7 @@ describe "Handout aka MiniDoku" do
         @pricing.update_attribute :outside_parking, 80
         visit real_estate_handout_path(@real_estate)
 
-        page.should have_content 'Parkplatz nicht überdacht'
+        page.should have_content 'Parkplatz im Freien'
         page.should have_content 'CHF 80.00 / Monat'
       end
 
@@ -169,7 +169,7 @@ describe "Handout aka MiniDoku" do
         @pricing.update_attribute :outside_parking_temporary, 20
         visit real_estate_handout_path(@real_estate)
 
-        page.should have_content 'Parkplatz nicht überdacht temporär'
+        page.should have_content 'Parkplatz im Freien temporär'
         page.should have_content 'CHF 20.00 / Monat'
       end
 

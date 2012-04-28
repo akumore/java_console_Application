@@ -1,22 +1,22 @@
 .accordion-item
-  .title= t('.real_estate_description')
+  .title= t('additional_descriptions.title')
   .content
     = markdown real_estate.description
 
     - if additional_description.present?
 
       - if additional_description.location.present?
-        %h3= t('.location_title')
+        %h3= t('additional_descriptions.location')
         = markdown additional_description.location
 
       - if additional_description.interior.present?
-        %h3= t('.interior_title')
+        %h3= t('additional_descriptions.interior')
         = markdown additional_description.interior
 
       - if additional_description.offer.present?
-        %h3= t('.offer_title')
+        %h3= t('additional_descriptions.offer')
         = markdown additional_description.offer
 
       - if additional_description.infrastructure.present?
-        %h3= t('.infrastructure_title')
+        %h3= t('additional_descriptions.infrastructure')
         = markdown additional_description.infrastructure
