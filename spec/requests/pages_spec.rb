@@ -54,7 +54,7 @@ describe "Pages" do
           page.should have_content "David Spiess"
         end
       end
-      
+
       it "shows a reference projects slider" do
         Fabricate :published_real_estate, :offer => RealEstate::OFFER_FOR_RENT, :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL], :category => Fabricate(:category)
         visit "/de/company"
@@ -62,6 +62,18 @@ describe "Pages" do
         page.should have_css("#reference-projects ul.slides li")
       end
     end
+  end
 
+  describe 'Knowledge Page' do
+    before do
+      @page = Fabricate(:page, :name => 'knowledge')
+      @page.bricks << Fabricate.build(:download_brick)
+      visit '/de/knowledge'
+    end
+
+    it 'renders a download brick' do
+      page.should have_css(".brick.download-brick", :count => 1)
+      page.should have_link("#{@page.bricks.first.title}", :href => @page.bricks.first.file.url)
+    end
   end
 end

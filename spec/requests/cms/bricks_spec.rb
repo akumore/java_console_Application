@@ -20,7 +20,6 @@ describe "Cms::Bricks" do
       @accordion_brick = @page.bricks[3]
       @download_brick = @page.bricks[4]
 
-#      binding.pry
       visit edit_cms_page_path(@page)
     end
 
