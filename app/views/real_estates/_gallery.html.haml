@@ -1,0 +1,23 @@
+.container
+  .map-slider
+    .map-slide
+      .map-handle
+      .map{ 'data' => { :real_estate => @real_estate.model.to_json(:only => :_id, :methods => :coordinates) } }
+  .flex-container
+    .flexslider
+      %ul.slides
+        - @real_estate.media_assets.displayable.each do |asset|
+          %li{ 'data-is_floorplan' => asset.is_floorplan.to_s }
+            - if asset.image?
+              = image_tag asset.file.gallery.url
+              .flex-caption
+                %span= asset.title
+            - if asset.is_floorplan?
+              = link_to t('.floorplan'), asset.url, :class => 'zoom-floorplan zoom-overlay'
+
+            - if asset.video?
+              %video.sublime{ :preload => 'preload' }
+                %source{ :src => asset.file.url }
+        - if @real_estate.contact.present?
+          %li
+            = render :template=>'appointments/new'

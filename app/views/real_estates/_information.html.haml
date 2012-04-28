@@ -1,88 +1,89 @@
-.accordion-item
-  .title= t('information.title')
-  .content
-    - if information.available_from.present?
-      %dl
-        %dt= t('information.available_from')
-        %dd= information.available_from
-
-    - if real_estate.private_utilization? && figure.present?
-
-      - if figure.floor.present?
-        %dt= t('figures.floor')
-        %dd= figure.floor
-
-      - if figure.rooms.present?
-        %dt= t('figures.rooms')
-        %dd= figure.rooms
-
-    - if figure.surface.present?
-      %dl
-        %dt= t('figures.surface')
-        %dd= figure.surface
-
-    - if real_estate.commercial_utilization? && figure.present?
-
-      - if figure.property_surface.present?
+- if information.present? || figure.present?
+  .accordion-item
+    .title= t('information.title')
+    .content
+      - if information.available_from.present?
         %dl
-          %dt= t('figures.property_surface')
-          %dd= figure.property_surface
+          %dt= t('information.available_from')
+          %dd= information.available_from
 
-      - if figure.ceiling_height.present?
+      - if real_estate.private_utilization? && figure.present?
+
+        - if figure.floor.present?
+          %dt= t('figures.floor')
+          %dd= figure.floor
+
+        - if figure.rooms.present?
+          %dt= t('figures.rooms')
+          %dd= figure.rooms
+
+      - if figure.surface.present?
         %dl
-          %dt= t('figures.ceiling_height')
-          %dd= figure.ceiling_height
+          %dt= t('figures.surface')
+          %dd= figure.surface
 
-    - if figure.storage_surface.present?
-      %dl
-        %dt= t('figures.storage_surface')
-        %dd= figure.storage_surface
+      - if real_estate.commercial_utilization? && figure.present?
 
-    - if figure.floors.present?
-      %dl
-        %dt= t('figures.floors')
-        %dd= figure.floors
+        - if figure.property_surface.present?
+          %dl
+            %dt= t('figures.property_surface')
+            %dd= figure.property_surface
 
-    - if figure.renovated_on.present?
-      %dl
-        %dt= t('figures.renovated_on')
-        %dd= figure.renovated_on
+        - if figure.ceiling_height.present?
+          %dl
+            %dt= t('figures.ceiling_height')
+            %dd= figure.ceiling_height
 
-    - if figure.built_on.present?
-      %dl
-        %dt= t('figures.built_on')
-        %dd= figure.built_on
-
-    - if information.characteristics.any?
-      %dl
-        %dt= t('information.characteristics')
-        %dd= information.characteristics.join(', ')
-
-    - if real_estate.for_rent?
-
-      - if information.minimum_rental_period.present?
+      - if figure.storage_surface.present?
         %dl
-          %dt= t('information.minimum_rental_period')
-          %dd= information.minimum_rental_period
+          %dt= t('figures.storage_surface')
+          %dd= figure.storage_surface
 
-      - if information.notice_dates.present?
+      - if figure.floors.present?
         %dl
-          %dt= t('information.notice_dates')
-          %dd= information.notice_dates
+          %dt= t('figures.floors')
+          %dd= figure.floors
 
-      - if information.notice_period.present?
+      - if figure.renovated_on.present?
         %dl
-          %dt= t('information.notice_period')
-          %dd= information.notice_period
+          %dt= t('figures.renovated_on')
+          %dd= figure.renovated_on
 
-    - if real_estate.commercial_utilization?
-
-      - if information.maximal_floor_loading.present?
+      - if figure.built_on.present?
         %dl
-          %dt= t('information.maximal_floor_loading')
-          %dd= information.maximal_floor_loading
+          %dt= t('figures.built_on')
+          %dd= figure.built_on
 
-      - if information.freight_elevator_carrying_capacity.present?
+      - if information.characteristics.any?
         %dl
-          %dt= t('information.freight_elevator_carrying_capacity')
-          %dd= information.freight_elevator_carrying_capacity
+          %dt= t('information.characteristics')
+          %dd= information.characteristics.join(', ')
+
+      - if real_estate.for_rent?
+
+        - if information.minimum_rental_period.present?
+          %dl
+            %dt= t('information.minimum_rental_period')
+            %dd= information.minimum_rental_period
+
+        - if information.notice_dates.present?
+          %dl
+            %dt= t('information.notice_dates')
+            %dd= information.notice_dates
+
+        - if information.notice_period.present?
+          %dl
+            %dt= t('information.notice_period')
+            %dd= information.notice_period
+
+      - if real_estate.commercial_utilization?
+
+        - if information.maximal_floor_loading.present?
+          %dl
+            %dt= t('information.maximal_floor_loading')
+            %dd= information.maximal_floor_loading
+
+        - if information.freight_elevator_carrying_capacity.present?
+          %dl
+            %dt= t('information.freight_elevator_carrying_capacity')
+            %dd= information.freight_elevator_carrying_capacity

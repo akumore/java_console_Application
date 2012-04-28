@@ -1,0 +1,11 @@
+- if contact.present?
+  .accordion-item
+    .title= t('.contact_person')
+    .content
+      %p
+        - if contact.image.present?
+          = image_tag contact.image
+        .image-caption
+          .image-caption-text
+            = contact.contact_info
+          .clear

@@ -1,0 +1,9 @@
+.accordion-item
+  .title= t('infrastructures.title')
+  .content
+    %ul
+      - @real_estate.infrastructure_parking.each do |line|
+        %li= line
+    %ul
+      - @real_estate.infrastructure_distances.each do |line|
+        %li= line

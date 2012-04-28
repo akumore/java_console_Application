@@ -33,91 +33,19 @@
     .clear
 
   .gallery
-    .container
-      .map-slider
-        .map-slide
-          .map-handle
-          .map{ 'data' => { :real_estate => @real_estate.model.to_json(:only => :_id, :methods => :coordinates) } }
-      .flex-container
-        .flexslider
-          %ul.slides
-            - @real_estate.media_assets.displayable.each do |asset|
-              %li{ 'data-is_floorplan' => asset.is_floorplan.to_s }
-                - if asset.image?
-                  = image_tag asset.file.gallery.url
-                  .flex-caption
-                    %span= asset.title
-                - if asset.is_floorplan?
-                  = link_to t('.floorplan'), asset.url, :class => 'zoom-floorplan zoom-overlay'
+    = render 'gallery'
 
-                - if asset.video?
-                  %video.sublime{ :preload => 'preload' }
-                    %source{ :src => asset.file.url }
-            - if @real_estate.contact.present?
-              %li
-                = render :template=>'appointments/new'
   .description
     .accordion.accordion-classical{ 'data-open_first' => 1 }
-      .accordion-item
-        .title= t('.real_estate_description')
-        .content
-          = markdown @real_estate.description
+      = render 'descriptions', :real_estate => @real_estate, :additional_description => @real_estate.additional_description
 
-          - if @real_estate.additional_description.present?
+      = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
 
-            - if @real_estate.additional_description.location.present?
-              %h3= t('.location_title')
-              = markdown @real_estate.additional_description.location
+      = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
 
-            - if @real_estate.additional_description.interior.present?
-              %h3= t('.interior_title')
-              = markdown @real_estate.additional_description.interior
+      = render 'infrastructure', :real_estate => @real_estate, :infrastructure => @real_estate.infrastructure
 
-            - if @real_estate.additional_description.offer.present?
-              %h3= t('.offer_title')
-              = markdown @real_estate.additional_description.offer
-
-            - if @real_estate.additional_description.infrastructure.present?
-              %h3= t('.infrastructure_title')
-              = markdown @real_estate.additional_description.infrastructure
-
-      - if @real_estate.information.present? || @real_estate.figure.present?
-        = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
-
-      - unless @real_estate.price_info_basic.empty? && @real_estate.price_info_parking.empty?
-        .accordion-item
-          .title= t('.pricing')
-          .content
-            %ul
-              - @real_estate.price_info_basic.each do |line|
-                %li= line
-            %ul
-              - @real_estate.price_info_parking.each do |line|
-                %li= line
-
-
-      - unless @real_estate.infrastructure_parking.empty? && @real_estate.infrastructure_distances.empty?
-        .accordion-item
-          .title= t('.infrastructure')
-          .content
-            %ul
-              - @real_estate.infrastructure_parking.each do |line|
-                %li= line
-            %ul
-              - @real_estate.infrastructure_distances.each do |line|
-                %li= line
-
-      - if @real_estate.contact.present?
-        .accordion-item
-          .title= t('.contact_person')
-          .content
-            %p
-              - if @real_estate.contact.image.present?
-                = image_tag @real_estate.contact.image
-              .image-caption
-                .image-caption-text
-                  = @real_estate.contact.contact_info
-                .clear
+      = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
 
   .sidebar
     %ul

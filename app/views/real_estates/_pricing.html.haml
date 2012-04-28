@@ -1,0 +1,9 @@
+.accordion-item
+  .title= t('pricings.title')
+  .content
+    %ul
+      - @real_estate.price_info_basic.each do |line|
+        %li= line
+    %ul
+      - @real_estate.price_info_parking.each do |line|
+        %li= line
