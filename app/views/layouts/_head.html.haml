@@ -3,7 +3,7 @@
 
 %title
   = "#{ controller.controller_name.titleize } - #{ controller.action_name.titleize }"
-  
+
 %meta{ :name => "description", :content => "" }
 %meta{ :name => "author", :content => "" }
 
@@ -20,7 +20,7 @@
 - if local_assigns[:stylesheet_partial]
   = render :partial => local_assigns[:stylesheet_partial]
 
--# 
+-#
   All JavaScript at the bottom, except for Modernizr / Respond.
   Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
   For optimal performance, use a custom Modernizr build: www.modernizr.com/download/
