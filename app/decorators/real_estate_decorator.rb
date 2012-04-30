@@ -107,7 +107,7 @@ class RealEstateDecorator < ApplicationDecorator
 
   def project_website_link
     if address.present? && address.link_url.present?
-      link_to t('real_estates.show.project_website_link'), address.link_url, :target => '_new', :class => 'icon-groundplan'
+      link_to t('real_estates.show.project_website_link'), address.link_url, :target => '_new', :class => 'icon-globe'
     end
   end
 end

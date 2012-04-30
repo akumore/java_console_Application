@@ -29,7 +29,7 @@ class PricingDecorator < ApplicationDecorator
 
   def for_rent_netto
     if model.estimate.present?
-      estimate
+      model.estimate
     elsif model.for_rent_netto.present?
       formatted(model.for_rent_netto)
     end
@@ -37,7 +37,7 @@ class PricingDecorator < ApplicationDecorator
 
   def for_sale
     if model.estimate.present?
-      estimate
+      model.estimate
     elsif model.for_sale.present?
       formatted(model.for_sale)
     end
@@ -61,10 +61,6 @@ class PricingDecorator < ApplicationDecorator
 
   def outside_parking_temporary
     formatted(model.outside_parking_temporary) if model.outside_parking_temporary.present?
-  end
-
-  def estimate
-    t("pricings.decorator.price_units.#{model.price_unit}", :price => model.estimate) if model.estimate.present?
   end
 
   def for_rent_depot

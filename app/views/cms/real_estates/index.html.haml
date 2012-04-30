@@ -25,7 +25,7 @@
       %td= t ".#{real_estate.utilization}"
       %td= t ".#{real_estate.state}"
       %td
-        - if can_be_edited?(real_estate)
+        - if can?(:edit, real_estate)
           = link_to  t('.edit'), edit_cms_real_estate_path(real_estate)
         - else
           = link_to  t('.show'), cms_real_estate_path(real_estate)

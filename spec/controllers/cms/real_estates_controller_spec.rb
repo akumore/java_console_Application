@@ -36,7 +36,6 @@ describe 'Real Estate Wizard' do
       end
     end
 
-
     describe '#authorization as an admin' do
       before do
         @real_estate = Fabricate :published_real_estate,
@@ -86,12 +85,21 @@ describe 'Real Estate Wizard' do
         @access_denied = "Sie haben keine Berechtigungen für diese Aktion"
       end
 
-      it "prevents editors from updating real estate 'published'" do
+      it 'prevents from accessing #edit' do
         real_estate = Fabricate :published_real_estate, :category => Fabricate(:category)
+
+        get :edit, :id => real_estate.id
+        response.should redirect_to [:cms, real_estate]
+        flash[:alert].should == @access_denied
+      end
+
+      it "doesn't prevents editors from accessing #update because of changing state requests" do
+        real_estate = Fabricate :published_real_estate, :category => Fabricate(:category), :address => Fabricate.build(:address),
+                                :pricing => Fabricate.build(:pricing), :information => Fabricate.build(:information)
 
         put :update, :id => real_estate.id
         response.should redirect_to [:cms, real_estate]
-        flash[:alert].should == @access_denied
+        flash[:alert].should_not == @access_denied
       end
 
       it "prevents from updating real estate 'in_review'" do
