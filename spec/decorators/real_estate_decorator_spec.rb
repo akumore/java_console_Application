@@ -26,8 +26,6 @@ describe RealEstateDecorator do
       :seo_description,
       :mini_doku_link,
       :project_website_link,
-      :infrastructure_parking,
-      :infrastructure_distances,
       :reference_project_caption
     ].each do |accessor|
       it "calling #{accessor} doesnt raise an exception with invalid data" do
