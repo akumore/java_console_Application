@@ -8,7 +8,7 @@ describe "Cms::Descriptions" do
   describe '#new' do
     before :each do
       @real_estate = Fabricate(:real_estate,
-        :category => Category.last, 
+        :category => Category.last,
         :reference => Fabricate.build(:reference)
       )
       visit edit_cms_real_estate_path(@real_estate)
@@ -22,13 +22,10 @@ describe "Cms::Descriptions" do
     context 'a valid Description' do
       before :each do
         within(".new_additional_description") do
-          fill_in 'Immobilie', :with => 'Modernes Wohnen in schöner Landschaft'
           fill_in 'Standort', :with => 'In laufweite zum Flughafen'
           fill_in 'Ausbaustandard', :with => 'Top moderne Küche'
           fill_in 'Angebot', :with => 'Schöne Aussicht'
           fill_in 'Infrastruktur', :with => 'An bester Einkaufslage'
-          fill_in 'Nutzungsart', :with => 'Zum schönen Wohnen'
-          fill_in 'Bezugstermin', :with => 'ca. Herbst 2010 für Mieter'
           fill_in 'Ausrichtung Nordpfeil', :with => '45'
         end
       end
@@ -47,13 +44,10 @@ describe "Cms::Descriptions" do
         end
 
         it 'has saved the provided attributes' do
-          @additional_description.generic.should == 'Modernes Wohnen in schöner Landschaft'
           @additional_description.location.should == 'In laufweite zum Flughafen'
           @additional_description.interior.should == 'Top moderne Küche'
           @additional_description.offer.should == 'Schöne Aussicht'
           @additional_description.infrastructure.should == 'An bester Einkaufslage'
-          @additional_description.usage.should == 'Zum schönen Wohnen'
-          @additional_description.reference_date.should == 'ca. Herbst 2010 für Mieter'
           @additional_description.orientation_degrees.should == 45
         end
       end
@@ -71,7 +65,7 @@ describe "Cms::Descriptions" do
 
     it 'shows the additional description within the cms' do
       visit cms_real_estate_additional_description_path real_estate_with_desc
-      [:generic,:location, :interior, :offer, :infrastructure, :usage, :reference_date].each do |attr|
+      [:location, :interior, :offer, :infrastructure].each do |attr|
         page.should have_content real_estate_with_desc.additional_description.send(attr)
       end
     end

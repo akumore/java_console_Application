@@ -1,0 +1,8 @@
+de:
+  mongoid:
+    models:
+      media_assets/video: Videos
+    attributes:
+      media_assets/video:
+        title: Titel
+        file: Datei

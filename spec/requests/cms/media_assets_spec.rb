@@ -2,180 +2,103 @@
 require 'spec_helper'
 
 describe "Cms::MediaAssets" do
-  login_cms_user
+  login_cms_editor
   create_category_tree
 
   before :each do
-    @real_estate = Fabricate(:real_estate,
-      :category => Category.last,
-      :reference => Fabricate.build(:reference)
-    )
+    @document = Fabricate.build :media_assets_document
+    @video = Fabricate.build :media_assets_video
+    @image = Fabricate.build :media_assets_image
+    @floor_plan = Fabricate.build :media_assets_floor_plan
 
-    @real_estate.media_assets << Fabricate.build(:media_asset_image, :real_estate => @real_estate)
-    @real_estate.media_assets << Fabricate.build(:media_asset_video, :real_estate => @real_estate)
-    @real_estate.media_assets << Fabricate.build(:media_asset_document, :real_estate => @real_estate)
+    @real_estate = Fabricate :real_estate, :category => Fabricate(:category),
+                             :images => [@image], :floor_plans => [@floor_plan], :videos => [@video], :documents => [@document]
+  end
 
+  it 'takes me to media assets #index' do
     visit edit_cms_real_estate_path(@real_estate)
     click_on 'Bilder & Dokumente'
+    current_path.should == cms_real_estate_media_assets_path(@real_estate)
   end
 
   describe '#index' do
-    it 'has a link to create a new image' do
-      page.should have_link('Bild erfassen')
-    end
-
-    it 'has a link to create a new video' do
-      page.should have_link('Video erfassen')
-    end
-
-    it 'has a link to create a new document' do
-      page.should have_link('Dokument erfassen')
-    end
-
-    it 'has 3 media assets in the list' do
-      @real_estate.reload
-      @real_estate.media_assets.count.should == 3
-    end
-
-    it 'is sortable via drag and drop'
-  end
-
-  describe '#new image' do
-    before :each do
+    it 'links to create a new image' do
+      visit cms_real_estate_media_assets_path(@real_estate)
       click_on 'Bild erfassen'
-    end
-
-    it 'opens the create form' do
       current_path.should == new_cms_real_estate_image_path(@real_estate)
     end
 
-    context 'adding an image' do
-
-      before :each do
-        within '.new_media_asset' do
-          fill_in 'Titel', :with => 'Das neue Bild'
-          check 'Hauptbild'
-          attach_file 'Datei', "#{Rails.root}/spec/support/test_files/image.jpg"
-        end
-        click_on 'Bild speichern'
-      end
-
-      it 'renders the edit form' do
-        @real_estate.reload
-        current_path.should == edit_cms_real_estate_media_asset_path(@real_estate, @real_estate.media_assets.last)
-      end
-
-      it 'can be checked as primary visual' do
-        page.should have_css('#media_asset_is_primary[type=checkbox]')
-      end
-
-      it 'can be checked as floorplan' do
-        page.should have_css('#media_asset_is_floorplan[type=checkbox]')
-      end
-
-      it 'displays a preview of the image' do
-        page.should have_css('.well img', :count => 1)
-      end
-
-      it 'saves the provided attributes' do
-        @real_estate.reload
-        image = @real_estate.media_assets.last
-        image.title.should == 'Das neue Bild'
-        image.is_primary.should be_true
-        image.media_type.should == MediaAsset::IMAGE
-      end
+    it 'links to create a new floor plan' do
+      visit cms_real_estate_media_assets_path(@real_estate)
+      click_on 'Grundriss erfassen'
+      current_path.should == new_cms_real_estate_floor_plan_path(@real_estate)
     end
-  end
 
-  describe '#new video' do
-    before :each do
+    it 'has a link to create a new video' do
+      visit cms_real_estate_media_assets_path(@real_estate)
       click_on 'Video erfassen'
-    end
-
-    it 'opens the create form' do
       current_path.should == new_cms_real_estate_video_path(@real_estate)
     end
 
-    context 'adding a video' do
-
-      before :each do
-        within '.new_media_asset' do
-          fill_in 'Titel', :with => 'Das neue Video'
-          attach_file 'Datei', "#{Rails.root}/spec/support/test_files/video.mp4"
-        end
-        click_on 'Video speichern'
-      end
-
-      it 'renders the edit form' do
-        @real_estate.reload
-        current_path.should == edit_cms_real_estate_media_asset_path(@real_estate, @real_estate.media_assets.last)
-      end
-
-      it 'can be checked as primary visual' do
-        page.should have_css('#media_asset_is_primary[type=checkbox]')
-      end
-
-      it 'cannot be checked as floorplan' do
-        page.should_not have_css('#media_asset_is_floorplan[type=checkbox]')
-      end
-
-      it 'displays a preview of the video' do
-        page.should have_css('video.sublime', :count => 1)
-      end
-
-      it 'saves the provided attributes' do
-        @real_estate.reload
-        video = @real_estate.media_assets.last
-        video.title.should == 'Das neue Video'
-        video.is_primary.should be_false
-        video.media_type.should == MediaAsset::VIDEO
-      end
-    end
-  end
-
-  describe '#new document' do
-    before :each do
+    it 'has a link to create a new document' do
+      visit cms_real_estate_media_assets_path(@real_estate)
       click_on 'Dokument erfassen'
-    end
-
-    it 'opens the create form' do
       current_path.should == new_cms_real_estate_document_path(@real_estate)
     end
 
-    context 'adding a document' do
+    context 'images table' do
 
-      before :each do
-        within '.new_media_asset' do
-          fill_in 'Titel', :with => 'Das neue Dokument'
-          attach_file 'Datei', "#{Rails.root}/spec/support/test_files/document.pdf"
-        end
-        click_on 'Dokument speichern'
+      it 'shows the list of images' do
+        visit cms_real_estate_media_assets_path(@real_estate)
+        page.should have_css "#image-#{@image.id}"
       end
 
-      it 'renders the edit form' do
-        @real_estate.reload
-        current_path.should == edit_cms_real_estate_media_asset_path(@real_estate, @real_estate.media_assets.last)
+      it 'is sortable via drag and drop'
+
+    end
+
+    it 'shows the list of floor plans' do
+      visit cms_real_estate_media_assets_path(@real_estate)
+
+      page.should have_css "#floor-plan-#{@floor_plan.id}"
+    end
+
+    it 'shows the list of videos' do
+      visit cms_real_estate_media_assets_path(@real_estate)
+      page.should have_css "#video-#{@video.id}"
+    end
+
+    it 'shows the list of documents' do
+      visit cms_real_estate_media_assets_path(@real_estate)
+      page.should have_css "#document-#{@document.id}"
+    end
+
+    context 'On published real estate' do
+      before do
+        @real_estate.address = Fabricate.build :address
+        @real_estate.pricing = Fabricate.build :pricing
+        @real_estate.information = Fabricate.build :information
+        @real_estate.publish_it!
       end
 
-      it 'cannot be checked as primary visual' do
-        page.should_not have_css('#media_asset_is_primary[type=checkbox]')
+      it "links to #show of each asset" do
+        visit cms_real_estate_media_assets_path(@real_estate)
+        page.should have_link "Anzeigen", :href=>cms_real_estate_image_path(@real_estate, @image)
+        page.should have_link "Anzeigen", :href=>cms_real_estate_floor_plan_path(@real_estate, @floor_plan)
+        page.should have_link "Anzeigen", :href=>cms_real_estate_video_path(@real_estate, @video)
+        page.should have_link "Anzeigen", :href=>cms_real_estate_document_path(@real_estate, @document)
       end
 
-      it 'cannot be checked as floorplan' do
-        page.should_not have_css('#media_asset_is_floorplan[type=checkbox]')
+      it "doesn't show edit links" do
+        visit cms_real_estate_media_assets_path(@real_estate)
+        page.should_not have_link 'Bearbeiten'
       end
 
-      it 'displays a link to the document' do
-        page.should have_content('"Das neue Dokument" in neuem Fenster öffnen')
-      end
-
-      it 'saves the provided attributes' do
-        @real_estate.reload
-        video = @real_estate.media_assets.last
-        video.title.should == 'Das neue Dokument'
-        video.is_primary.should be_false
-        video.media_type.should == MediaAsset::DOCUMENT
+      it "doesn't show the delete link" do
+        visit cms_real_estate_media_assets_path(@real_estate)
+        page.should_not have_link 'Löschen'
       end
     end
+
   end
 end

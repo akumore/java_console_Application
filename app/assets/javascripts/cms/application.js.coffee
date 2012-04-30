@@ -34,10 +34,12 @@ $(document).ready ->
   $("table.sortable tbody").sortable
     handle: ".drag-handle"
     update: (event, ui) ->
-      $("table.sortable .draggable-row").each (idx, elem) ->
+      $(this).find(".draggable-row").each (idx, elem) ->
         $(this).find("td.drag-handle input[type=hidden]").val(idx+1)
-
-      if $("form.autosubmit").length
-        $("form.autosubmit").trigger("submit")
+      $(this).closest("form.autosubmit").trigger("submit")
 
   $("textarea").autoResize()
+
+  $(".help-popover").popover()
+  $(".help-popover-top").popover
+    placement: 'top'

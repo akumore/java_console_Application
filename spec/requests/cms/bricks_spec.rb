@@ -11,12 +11,14 @@ describe "Cms::Bricks" do
       @page.bricks << Fabricate.build(:text_brick)
       @page.bricks << Fabricate.build(:placeholder_brick)
       @page.bricks << Fabricate.build(:accordion_brick)
+      @page.bricks << Fabricate.build(:download_brick)
       @page.reload
 
       @title_brick = @page.bricks[0]
       @text_brick = @page.bricks[1]
       @placeholder_brick = @page.bricks[2]
       @accordion_brick = @page.bricks[3]
+      @download_brick = @page.bricks[4]
 
       visit edit_cms_page_path(@page)
     end
@@ -51,6 +53,13 @@ describe "Cms::Bricks" do
         page.click_link 'Editieren'
       end
       current_path.should == edit_cms_page_placeholder_brick_path(@page, @placeholder_brick)
+    end
+
+    it "takes me to the edit page of a download brick" do
+      within("tr.download") do
+        page.click_link 'Editieren'
+      end
+      current_path.should == edit_cms_page_download_brick_path(@page, @download_brick)
     end
   end
 
@@ -249,6 +258,56 @@ describe "Cms::Bricks" do
           @page.reload
           @brick = @page.bricks.find(@placeholder_brick.id)
           @brick.placeholder.should == 'jobs_openings'
+        end
+      end
+    end
+  end
+
+  context 'download brick' do
+    describe '#new' do
+      before :each do
+        @page = Fabricate(:page)
+        visit new_cms_page_download_brick_path(@page)
+      end
+
+      context 'creating' do
+        before :each do
+          within('.new_brick_download') do
+            fill_in 'Titel', :with => 'Mein Dokument'
+            attach_file 'Datei', "#{Rails.root}/spec/support/test_files/document.pdf"
+          end
+        end
+
+        it 'has saved the provided attributes' do
+          click_on 'Download Baustein erstellen'
+          @page.reload
+          @brick = @page.bricks.last
+          @brick.title.should == 'Mein Dokument'
+          @brick.file.should be_present
+        end
+      end
+    end
+
+    describe '#edit' do
+      before :each do
+        @page = Fabricate(:page)
+        @page.bricks << Fabricate.build(:download_brick)
+        @download_brick = @page.bricks.last
+        visit edit_cms_page_download_brick_path(@page, @download_brick)
+      end
+
+      context 'updating ' do
+        before :each do
+          within('.edit_brick_download') do
+            fill_in 'Titel', :with => 'Anderer Titel'
+          end
+        end
+
+        it 'has updated the edited attributes' do
+          click_on 'Download Baustein speichern'
+          @page.reload
+          @brick = @page.bricks.find(@download_brick.id)
+          @brick.title.should == 'Anderer Titel'
         end
       end
     end

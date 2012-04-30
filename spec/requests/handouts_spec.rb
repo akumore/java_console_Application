@@ -7,10 +7,10 @@ describe "Handout aka MiniDoku" do
   let :printable_real_estate do
     Fabricate(:residential_building,
         :address => Fabricate.build(:address, :street => 'Musterstrasse', :street_number => '1', :zip => '8400', :city => 'Hausen'),
-        :figure => Fabricate.build(:figure, :floor => 3, :rooms => '3.5', :usable_surface => 120),
-        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'month'),
+        :figure => Fabricate.build(:figure, :floor => 3, :floor_estimate => '', :rooms => '3.5', :living_surface => 120, :living_surface_estimate => ''),
+        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'monthly'),
         :information => Fabricate.build(:information,
-          :display_estimated_available_from => 'Verfügbar ab Mitte Mai',
+          :display_estimated_available_from => 'Mitte Mai',
           :is_new_building => true,
           :is_old_building => true,
           :is_minergie_style => true,
@@ -39,16 +39,14 @@ describe "Handout aka MiniDoku" do
         :title => 'Demo Objekt',
         :description => 'Lorem Ipsum',
         :property_name => 'Gartenstadt',
-        :media_assets => [
-          Fabricate.build(:media_asset_floorplan)
+        :floor_plans => [
+          Fabricate.build(:media_assets_floor_plan)
         ],
         :additional_description => Fabricate.build(:additional_description,
-          :generic => 'Lorem ipsum ... 1. Beschreibung',
           :location => 'Lorem ipsum ... 2. Beschreibung',
           :interior => 'Lorem ipsum ... 3. Beschreibung',
           :offer => 'Lorem ipsum ... 4. Beschreibung',
-          :infrastructure => 'Lorem ipsum ... 5. Beschreibung',
-          :usage => 'Lorem ipsum ... 6. Beschreibung',
+          :infrastructure => 'Lorem ipsum ... 5. Beschreibung'
         )
       )
   end
@@ -79,15 +77,17 @@ describe "Handout aka MiniDoku" do
     end
 
     it 'shows the floor' do
+      page.should have_content('Geschoss')
       page.should have_content('3. Obergeschoss')
     end
 
     it 'shows the number of rooms' do
-      page.should have_content('3.5')
+      page.should have_content('Zimmeranzahl')
+      page.should have_content('3.5 Zimmer')
     end
 
     it 'shows the usable surface' do
-      page.should have_content('120m2')
+      page.should have_content('120 m²')
     end
 
     it 'shows the helptext for the usable surface' do
@@ -121,8 +121,8 @@ describe "Handout aka MiniDoku" do
       it "shows the rent price" do
         visit real_estate_handout_path(@real_estate)
 
-        page.should have_content I18n.t('handouts.pricing.for_rent_netto')
-        page.should have_content "CHF 1'999.00 monatlich"
+        page.should have_content I18n.t('pricings.for_rent_netto')
+        page.should have_content "CHF 1'999.00 / Monat"
       end
 
       it "shows 'without VAT message' if 'opted'" do
@@ -134,19 +134,19 @@ describe "Handout aka MiniDoku" do
       it "shows additional expenses" do
         visit real_estate_handout_path(@real_estate)
 
-        page.should have_content I18n.t('handouts.pricing.for_rent_extra')
-        page.should have_content "CHF 99.00 monatlich"
+        page.should have_content I18n.t('pricings.for_rent_extra')
+        page.should have_content "CHF 99.00 / Monat"
       end
 
       it "shows the price of the inside parking lot if available" do
         visit real_estate_handout_path(@real_estate)
-        page.should_not have_content I18n.t('handouts.pricing.inside_parking')
+        page.should_not have_content I18n.t('pricings.inside_parking')
 
         @pricing.update_attribute :inside_parking, 100
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz in Autoeinstellhalle'
-        page.should have_content 'CHF 100.00 monatlich'
+        page.should have_content 'CHF 100.00 / Monat'
       end
 
       it "shows the price of the temporary inside parking lot if available" do
@@ -154,23 +154,23 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz in Autoeinstellhalle temporär'
-        page.should have_content 'CHF 50.00 monatlich'
+        page.should have_content 'CHF 50.00 / Monat'
       end
 
       it "shows the price of the outside parking lot if available" do
         @pricing.update_attribute :outside_parking, 80
         visit real_estate_handout_path(@real_estate)
 
-        page.should have_content 'Parkplatz nicht überdacht'
-        page.should have_content 'CHF 80.00 monatlich'
+        page.should have_content 'Parkplatz im Freien'
+        page.should have_content 'CHF 80.00 / Monat'
       end
 
       it "shows the price of the temporary outside parking lot if available" do
         @pricing.update_attribute :outside_parking_temporary, 20
         visit real_estate_handout_path(@real_estate)
 
-        page.should have_content 'Parkplatz nicht überdacht temporär'
-        page.should have_content 'CHF 20.00 monatlich'
+        page.should have_content 'Parkplatz im Freien temporär'
+        page.should have_content 'CHF 20.00 / Monat'
       end
 
       it "shows the rent depot price" do
@@ -183,7 +183,7 @@ describe "Handout aka MiniDoku" do
 
     context "Real Estate, private, for rent" do
       before do
-        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :for_rent_depot => 4000, :price_unit => 'month'
+        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :for_rent_depot => 4000, :price_unit => 'monthly'
         @real_estate = Fabricate :residential_building, :pricing => @pricing
       end
 
@@ -194,7 +194,7 @@ describe "Handout aka MiniDoku" do
 
     context "Real Estate, commercial, for rent" do
       before do
-        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :for_rent_depot => 4000, :price_unit => 'month', :opted => false
+        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :for_rent_depot => 4000, :price_unit => 'monthly', :opted => false
         @real_estate = Fabricate :commercial_building, :pricing => @pricing
       end
 
@@ -214,8 +214,12 @@ describe "Handout aka MiniDoku" do
     end
 
     it 'shows the availability date' do
-      page.should have_content 'Bezugstermin'
-      page.should have_content 'Verfügbar ab Mitte Mai'
+      page.should have_content 'Bezug ab'
+      page.should have_content 'Mitte Mai'
+    end
+
+    it 'shows the characteristics' do
+      page.should have_content('Merkmale')
     end
 
     it 'shows if it is a new building' do
@@ -339,11 +343,6 @@ describe "Handout aka MiniDoku" do
       page.should have_content 'Beschreibung'
     end
 
-    it 'shows the generic description' do
-      page.should have_content 'Allgemein'
-      page.should have_content 'Lorem ipsum ... 1. Beschreibung'
-    end
-
     it 'shows the location description' do
       page.should have_content 'Standort'
       page.should have_content 'Lorem ipsum ... 2. Beschreibung'
@@ -366,7 +365,7 @@ describe "Handout aka MiniDoku" do
 
     it 'shows the usage description' do
       page.should have_content 'Nutzung'
-      page.should have_content 'Lorem ipsum ... 6. Beschreibung'
+      page.should have_content printable_real_estate.utilization_description
     end
   end
 
@@ -433,19 +432,17 @@ describe "Handout aka MiniDoku" do
         page.should have_content 'www.alfred-mueller.ch'
       end
     end
-
   end
-
 
   describe "Chapter Pictures" do
     before do
-      @primary_image = Fabricate.build :media_asset_image, :is_primary=>true, :title=>"The primary image"
-      @ground_plot = Fabricate.build :media_asset_floorplan, :title=>"The beautiful floor plan"
-      @kitchen = Fabricate.build(:media_asset_image, :title=>"The kitchen")
-      @bathroom = Fabricate.build(:media_asset_image, :title=>"The bathroom")
+      @primary_image = Fabricate.build :media_assets_image, :is_primary=>true, :title=>"The primary image"
+      @ground_plot = Fabricate.build :media_assets_floor_plan, :title=>"The beautiful floor plan"
+      @kitchen = Fabricate.build(:media_assets_image, :title=>"The kitchen")
+      @bathroom = Fabricate.build(:media_assets_image, :title=>"The bathroom")
 
       @real_estate = Fabricate :residential_building, :contact=>@contact_person, :pricing => Fabricate.build(:pricing_for_rent),
-                               :media_assets => [@primary_image, @ground_plot, @kitchen, @bathroom]
+                               :images => [@primary_image, @kitchen, @bathroom], :floor_plans => [@ground_plot]
     end
 
     it "shows the chapter title" do

@@ -28,12 +28,16 @@ class Ability
     if user.admin?
       #controller action abilities
       can :manage, [Cms::User, NewsItem, Employee, Job, Page]
-
+      
       can :manage, RealEstate
       cannot :edit, RealEstate, :state => 'published'
       cannot :destroy, RealEstate, :state => 'published'
-      can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset]
-      cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'published'}
+
+      can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription]
+      cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription], :real_estate=>{:state => 'published'}
+
+      can :manage, [MediaAssets::Image, MediaAssets::FloorPlan, MediaAssets::Video, MediaAssets::Document]
+      cannot :manage, [MediaAssets::Image, MediaAssets::FloorPlan, MediaAssets::Video, MediaAssets::Document], :real_estate=>{:state => 'published'}
 
       #real estate state machine abilities, order matters, do not put before controller action abilities
       can :reject_it, RealEstate
@@ -49,8 +53,12 @@ class Ability
       #controller action abilities
       can :update, RealEstate, :state => 'editing' #do not use :manage, this will break state machine cans
       can :destroy, RealEstate, :state => 'editing'
-      can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => 'editing'}
-      cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription,MediaAsset], :real_estate=>{:state => ['in_review', 'published']}
+
+      can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription], :real_estate=>{:state => 'editing'}
+      cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription], :real_estate=>{:state => ['in_review', 'published']}
+
+      can :manage, [MediaAssets::Image, MediaAssets::FloorPlan, MediaAssets::Video, MediaAssets::Document], :real_estate=>{:state => 'editing'}
+      cannot :manage, [MediaAssets::Image, MediaAssets::FloorPlan, MediaAssets::Video, MediaAssets::Document], :real_estate=>{:state => ['in_review', 'published']}
     end
 
   end

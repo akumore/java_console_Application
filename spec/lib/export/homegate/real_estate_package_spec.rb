@@ -14,15 +14,10 @@ describe Export::Homegate::RealEstatePackage do
       :category => Fabricate(:category),
       :reference => Reference.new,
       :address => Fabricate.build(:address),
-      :media_assets => [
-        Fabricate.build(:media_asset_image),
-        Fabricate.build(:media_asset_image),
-        Fabricate.build(:media_asset_image_png),
-        Fabricate.build(:media_asset_video),
-        Fabricate.build(:media_asset_video),
-        Fabricate.build(:media_asset_document),
-        Fabricate.build(:media_asset_document)
-      ]
+      :images => 2.times.map { Fabricate.build :media_assets_image },
+      :floor_plans => [Fabricate.build(:media_assets_floor_plan)],
+      :videos => 2.times.map { Fabricate.build :media_assets_video },
+      :documents => 2.times.map { Fabricate.build :media_assets_document }
     )
   end
 
@@ -83,13 +78,13 @@ describe Export::Homegate::RealEstatePackage do
   describe '#add_image' do
     it 'remembers the filename for the export' do
       package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
-      package.add_image(real_estate.media_assets.images.first.file)
+      package.add_image(real_estate.images.first.file)
       package.asset_paths[:images].first.should == "i_#{real_estate.id}_1.jpg"
     end
 
     it 'copies the image into /images with a unique filename' do
       package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
-      package.add_image(real_estate.media_assets.images.first.file)
+      package.add_image(real_estate.images.first.file)
       File.exists?(File.join(@tmp_path, 'images', "i_#{real_estate.id}_1.jpg")).should be_true
     end
   end
@@ -97,13 +92,13 @@ describe Export::Homegate::RealEstatePackage do
   describe '#add_video' do
     it 'remembers the filename for the export' do
       package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
-      package.add_video(real_estate.media_assets.videos.first.file)
+      package.add_video(real_estate.videos.first.file)
       package.asset_paths[:videos].first.should == "v_#{real_estate.id}_1.mp4"
     end
 
     it 'copies the video into /movies with a unique filename' do
       package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
-      package.add_video(real_estate.media_assets.videos.first.file)
+      package.add_video(real_estate.videos.first.file)
       File.exists?(File.join(@tmp_path, 'movies', "v_#{real_estate.id}_1.mp4")).should be_true
     end
   end
@@ -111,13 +106,13 @@ describe Export::Homegate::RealEstatePackage do
   describe '#add_document' do
     it 'remembers the filename for the export' do
       package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
-      package.add_document(real_estate.media_assets.docs.first.file)
+      package.add_document(real_estate.documents.first.file)
       package.asset_paths[:documents].first.should == "d_#{real_estate.id}_1.pdf"
     end
 
     it 'copies the document into /docs with a unique filename' do
       package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
-      package.add_document(real_estate.media_assets.docs.first.file)
+      package.add_document(real_estate.documents.first.file)
       File.exists?(File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf")).should be_true
     end
   end

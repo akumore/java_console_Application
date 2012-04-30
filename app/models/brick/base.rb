@@ -2,10 +2,11 @@ class Brick::Base
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  TYPES = %w(title text accordion placeholder)
+  TYPES = %w(title text accordion placeholder download)
 
   embedded_in :page
   default_scope asc(:position)
+  before_create :setup_position
 
   field :position, :type => Integer
 
@@ -25,5 +26,11 @@ class Brick::Base
   def next
     idx = _parent.bricks.map(&:id).index(id)
     _parent.bricks.to_a[idx + 1] rescue nil
+  end
+
+  private
+
+  def setup_position
+    self.position ||= _parent.bricks.max(:position).to_i + 1
   end
 end

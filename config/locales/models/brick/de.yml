@@ -5,6 +5,7 @@ de:
       brick/text: 'Text Baustein'
       brick/accordion: 'Akkordeon Baustein'
       brick/placeholder: 'Platzhalter Baustein'
+      brick/download: 'Download Baustein'
     attributes:
       brick/title:
         title: 'Titel'
@@ -16,3 +17,6 @@ de:
         text: 'Text'
       brick/placeholder:
         placeholder: 'Platzhalter'
+      brick/download:
+        title: 'Titel'
+        file: 'Datei'

@@ -1,11 +1,144 @@
-// ==|== media queries ======================================================
-// PLACEHOLDER Media Queries for Responsive Design.
-// These override the primary ('mobile first') styles
-// Modify as content requires.
-// ========================================================================== */
+// handheld
+@media only screen and (min-width : 320px)
+  // ...
 
-@media only screen and (min-width: 480px)
-  /* Style adjustments for viewports 480px and over go here
+// handheld-landscape
+@media only screen and (min-width : 321px)
+  //@content
 
-@media only screen and (min-width: 768px)
-  /* Style adjustments for viewports 768px and over go here
+// handheld-portrait
+@media only screen and (max-width : 320px)
+  $margin-side: 20px
+
+  .vision-slider
+    display: none
+    margin-top: 0px
+    visibility: hidden
+
+  .main-logo
+    +column(9)
+    margin-left: $margin-side
+
+  .navigations
+    +column(10)
+
+  .meta-navigation
+    float: none
+    margin: 10px $margin-side
+    width: 100%
+    display: block
+
+  .main-navigation
+    float: none
+    margin: 0.5em 0em
+    display: block
+
+    li, li:first-child
+      float: none
+      display: block
+      padding: 1em $margin-side
+      border-top: 1px solid $clay
+      background: image-url('button-bg.png') repeat-x
+
+  .services-slides-container
+    overflow: auto
+    height: auto
+
+    .handle
+      display: block
+      float: none
+      width: 100%
+      text-align: left
+      height: auto
+
+      h3, h3:first-child
+        padding: 1em $margin-side
+        margin: 0
+
+    .link-box
+      position: relative
+      left: 0
+      top: 0
+      width: 100%
+
+      li
+        height: auto
+        margin: 0
+        padding: 0
+        display: block
+        float: none
+
+        a
+          padding: 1em $margin-side
+          margin: 0
+          display: block
+
+  .image-caption
+    height: auto
+    position: relative
+
+  .image-caption-text
+    display: block
+    float: none
+    padding: 1em $margin-side
+    width: 100%
+
+  .rent-slide, .sale-slide, .build-slide
+    position: relative !important
+    left: 0 !important
+    width: 100%
+    float: none
+    height: auto
+    border: 0px solid transparent
+
+  .footer-news, .footer-teasers, .footer-contact
+    +column(10)
+
+    > div
+      margin: 1em $margin-side
+
+  .footer-news, .footer-teasers
+    border-bottom: 1px solid $normal
+
+  #footer h4
+    padding: 1em $margin-side
+    margin-bottom: 0
+
+// tablet
+@media only screen and (min-width : 600px)
+  //@content
+
+// tablet-landscape
+@media only screen and (min-width : 600px) and (orientation : landscape)
+  //@content
+
+// tablet-portrait
+@media only screen and (min-width : 600px) and (orientation : portrait)
+  //@content
+
+// tablet-large
+@media only screen and (min-width : 768px)
+  //@content
+
+// tablet-large-landscape
+@media only screen and (min-width : 768px) and (orientation : landscape)
+  //@content
+
+// tablet-large-portrait
+@media only screen and (min-width : 768px) and (orientation : portrait)
+  //@content
+
+// desktop
+@media only screen and (min-width : 1224px)
+  //@content
+
+// desktop-large
+@media only screen and (min-width : 1824px)
+  //@content
+
+// retina-display
+@media only screen and (-webkit-min-device-pixel-ratio: 2)
+  //@content
+  .main-logo
+    background: image-url('main-logo@2x.png') no-repeat left bottom
+    background-size: 229px 30px

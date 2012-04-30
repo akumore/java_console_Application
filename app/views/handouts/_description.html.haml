@@ -1,32 +1,26 @@
 .chapter.additional-description
-  %h2= t('.title')
-
-  - if generic = additional_description.generic.presence
-    %dl
-      %dt= t('.generic')
-      %dd= markdown generic
-
+  %h2= t('additional_descriptions.title')
   - if location = additional_description.location.presence
     %dl
-      %dt= t('.location')
+      %dt= t('additional_descriptions.location')
       %dd= markdown location
 
   - if interior = additional_description.interior.presence
     %dl
-      %dt= t('.interior')
+      %dt= t('additional_descriptions.interior')
       %dd= markdown interior
 
   - if offer = additional_description.offer.presence
     %dl
-      %dt= t('.offer')
+      %dt= t('additional_descriptions.offer')
       %dd= markdown offer
 
   - if infrastructure = additional_description.infrastructure.presence
     %dl
-      %dt= t('.infrastructure')
+      %dt= t('additional_descriptions.infrastructure')
       %dd= markdown infrastructure
 
-  - if usage = additional_description.usage.presence
+  - if utilization_description = real_estate.utilization_description.presence
     %dl
-      %dt= t('.usage')
-      %dd= markdown usage
+      %dt= t('additional_descriptions.utilization_description')
+      %dd= markdown utilization_description

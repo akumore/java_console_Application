@@ -35,11 +35,6 @@
           = f.radio_button :utilization, RealEstate::UTILIZATION_COMMERICAL
           %span= t(".#{RealEstate::UTILIZATION_COMMERICAL}")
     .control-group
-      = f.label :is_first_marketing
-      .controls
-        %label.checkbox
-          = f.check_box :is_first_marketing
-    .control-group
       = f.label :channels
       .controls
         - RealEstate::CHANNELS.each do |channel|
@@ -65,32 +60,9 @@
       .controls
         = f.text_field :property_name, :class => 'span8'
     .control-group
-      = f.label :short_description
-      .controls
-        = f.text_area :short_description, :class => 'span8 short'
-    .control-group
-      = f.label :keywords
-      .controls
-        = f.text_area :keywords, :class => 'span8 short'
-    .control-group
       = f.label :utilization_description
       .controls
         = f.text_area :utilization_description, :class => 'span8 short'
-  %fieldset
-    %legend= Reference.model_name.human
-    = f.fields_for @real_estate.reference do |rf|
-      .control-group
-        = rf.label :property_key
-        .controls
-          = rf.text_field :property_key, :class => 'span8'
-      .control-group
-        = rf.label :building_key
-        .controls
-          = rf.text_field :building_key, :class => 'span8'
-      .control-group
-        = rf.label :unit_key
-        .controls
-          = rf.text_field :unit_key, :class => 'span8'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

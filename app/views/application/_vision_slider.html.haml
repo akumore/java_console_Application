@@ -6,19 +6,25 @@
       %span= t('.close')
   .flex-container
     .flexslider
-      .vision-frame
-        %a.vision-click-area.disabled{ :href => '#' }
-        = image_tag 'vision/frame.png'
       %ul.slides
         %li
           = image_tag 'vision/slide-1.jpg'
           .image-caption
             .image-caption-text
-              %h3.vision-header-title= t('.vision.title')
-              = link_to t('.vision.link_title'), root_path, :class => :go
+              %h3.vision-header-title= t('.vision.real_estate_title_kids')
+              = link_to t('.vision.real_estate_link_title'), real_estates_path, :class => :go
         %li
-          = image_tag 'vision/slide-1.jpg'
+          = image_tag 'vision/slide-2.jpg'
           .image-caption
             .image-caption-text
-              %h3.vision-header-title= t('.vision.title')
-              = link_to t('.vision.link_title'), root_path, :class => :go
+              %h3.vision-header-title= t('.vision.real_estate_title_couple')
+              = link_to t('.vision.real_estate_link_title'), real_estates_path, :class => :go
+        %li
+          = image_tag 'vision/slide-3.jpg'
+          .image-caption
+            .image-caption-text
+              %h3.vision-header-title= t('.vision.jobs_title')
+              = link_to t('.vision.jobs_link_title'), t('jobs_url'), :class => :go
+      .vision-frame
+        %a.vision-click-area.disabled{ :href => '#' }
+        = image_tag 'vision/frame.png'

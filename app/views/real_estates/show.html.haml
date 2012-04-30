@@ -1,10 +1,9 @@
 - content_for :meta do
-  %meta{ :name => :keywords, :content => @real_estate.keywords }
-  %meta{ :name => :description, :content => @real_estate.short_description }
+  %meta{ :name => :description, :content => @real_estate.seo_description }
 
 = render 'google_maps'
 
-- if @real_estate.media_assets.videos.size > 0
+- if @real_estate.videos.any?
   - content_for :javascript do
     %script{ :type => "text/javascript", :src => "http://cdn.sublimevideo.net/js/go4z5g30.js" }
 
@@ -19,6 +18,8 @@
 .detail
   .main-title
     %h1= @real_estate.title
+    - if @real_estate.property_name.present?
+      %h3= @real_estate.property_name
   .clear
   .short-info
     .info.first
@@ -32,89 +33,27 @@
     .clear
 
   .gallery
-    .container
-      .map-slider
-        .map-slide
-          .map-handle
-          .map{ 'data' => { :real_estate => @real_estate.model.to_json(:only => :_id, :methods => :coordinates) } }
-      .flex-container
-        .flexslider
-          %ul.slides
-            - @real_estate.media_assets.displayable.each do |asset|
-              %li{ 'data-is_floorplan' => asset.is_floorplan.to_s }
-                - if asset.image?
-                  = image_tag asset.file.gallery.url
-                  .flex-caption
-                    %span= asset.title
-                - if asset.is_floorplan?
-                  = link_to t('.floorplan'), asset.url, :class => 'zoom-floorplan zoom-overlay'
+    = render 'gallery', :real_estate => @real_estate
 
-                - if asset.video?
-                  %video.sublime{ :preload => 'preload' }
-                    %source{ :src => asset.file.url }
-            - if @real_estate.contact.present?
-              %li
-                = render :template=>'appointments/new'
   .description
     .accordion.accordion-classical{ 'data-open_first' => 1 }
-      .accordion-item
-        .title= t('.real_estate_description')
-        .content
-          = @real_estate.description
-      .accordion-item
-        .title= t('.real_estate_infos')
-        .content
-          %ul
-            - @real_estate.information_shared.each do |line|
-              %li= line
-          %ul
-            - @real_estate.information_basic.each do |line|
-              %li= line
-      - unless @real_estate.price_info_basic.empty? && @real_estate.price_info_parking.empty?
-        .accordion-item
-          .title= t('.pricing')
-          .content
-            %ul
-              - @real_estate.price_info_basic.each do |line|
-                %li= line
-            %ul
-              - @real_estate.price_info_parking.each do |line|
-                %li= line
+      = render 'descriptions', :real_estate => @real_estate, :additional_description => @real_estate.additional_description
 
-      - unless @real_estate.facts_and_figures
-        .accordion-item
-          .title= t('.facts_and_figures')
-          .content
-            %ul
-              - @real_estate.facts_and_figures.each do |line|
-                %li= line
+      = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
 
-      - unless @real_estate.infrastructure_parking.empty? && @real_estate.infrastructure_distances.empty?
-        .accordion-item
-          .title= t('.infrastructure')
-          .content
-            %ul
-              - @real_estate.infrastructure_parking.each do |line|
-                %li= line
-            %ul
-              - @real_estate.infrastructure_distances.each do |line|
-                %li= line
+      = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
 
-      - if @real_estate.contact.present?
-        .accordion-item
-          .title= t('.contact_person')
-          .content
-            %p
-              - if @real_estate.contact.image.present?
-                = image_tag @real_estate.contact.image
-              .image-caption
-                .image-caption-text
-                  = @real_estate.contact.contact_info
-                .clear
+      = render 'infrastructure', :real_estate => @real_estate, :infrastructure => @real_estate.infrastructure
+
+      = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
 
   .sidebar
     %ul
       %li= @real_estate.mini_doku_link
       %li= @real_estate.floorplan_link
+      %li= @real_estate.project_website_link
+
+      - @real_estate.documents.each do |doc|
+        %li= link_to doc.title, doc.file.url, :class => 'icon icon-pdf'
 
   .clear

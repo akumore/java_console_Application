@@ -7,10 +7,6 @@
 
   %fieldset
     .control-group
-      = f.label :generic
-      .controls
-        = f.text_area :generic, :class => 'span8'
-    .control-group
       = f.label :location
       .controls
         = f.text_area :location, :class => 'span8'
@@ -27,18 +23,10 @@
       .controls
         = f.text_area :infrastructure, :class => 'span8'
     .control-group
-      = f.label :usage
-      .controls
-        = f.text_area :usage, :class => 'span8'
-    .control-group
-      = f.label :reference_date
-      .controls
-        = f.text_field :reference_date, :class => 'span8'
-    .control-group
       = f.label :orientation_degrees
       .controls
         = f.text_field :orientation_degrees, :class => 'span3'
-
+        %i.icon-question-sign.help-popover-top{ :rel => 'popover', 'data-original-title' => AdditionalDescription.human_attribute_name(:orientation_degrees), 'data-content' => t('.help_popover.orientation_degrees') }
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

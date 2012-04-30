@@ -2,7 +2,31 @@ de:
   cms:
     pricings:
       form:
-        month: 'monatlich'
-        year: 'jährlich'
-        week: 'wöchentlich'
-        once: 'einmalig'
+        monthly: 'pro Monat'
+        yearly: 'pro Jahr'
+        weekly: 'pro Woche'
+        daily: 'pro Tag'
+        year_m2: 'pro Jahr / m²'
+        sell: 'Verkaufspreis'
+        sell_m2: 'Verkaufspreis / m²'
+        help_popover:
+            estimate: 'Für spez. Angaben, z.B. ab 2100, <br />1500 – 3000'
+  pricings:
+    decorator:
+      price_units:
+        monthly: '%{price} / Monat'
+        yearly: '%{price} / Jahr'
+        weekly: '%{price} / Woche'
+        daily: '%{price} / Tag'
+        year_m2: '%{price} / Jahr/m²'
+        sell: '%{price} / Verkaufspreis'
+        sell_m2: '%{price} / Verkaufspreis/m²'
+    title: 'Preise'
+    for_rent_netto: 'Miete (ohne Nebenkosten)'
+    for_rent_extra: 'Nebenkosten'
+    for_rent_depot: 'Mietzinsdepot'
+    without_vat: 'Alle Preise ohne Mehrwertsteuer'
+    inside_parking: 'Parkplatz in Autoeinstellhalle'
+    inside_parking_temporary: 'Parkplatz in Autoeinstellhalle temporär'
+    outside_parking: 'Parkplatz im Freien'
+    outside_parking_temporary: 'Parkplatz im Freien temporär'

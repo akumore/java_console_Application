@@ -40,6 +40,12 @@ describe "Cms::RealEstates" do
       page.click_link I18n.t('cms.real_estates.index.new')
       current_path.should == new_cms_real_estate_path
     end
+
+    it "has a link to copy the real estate" do
+      within("#real_estate_#{@real_estate.id}") do
+        page.should have_link "Diesen Eintrag kopieren", :href => copy_cms_real_estate_path(@real_estate)
+      end
+    end
   end
 
   describe '#new' do
@@ -60,7 +66,6 @@ describe "Cms::RealEstates" do
           select 'Child Category 1', :from => 'Kategorie'
           choose 'Arbeiten'
           choose 'Kaufen'
-          check 'Erstvermarktung'
           check 'Website'
           check 'Homegate'
           select 'Muster, Hans', :from => 'Kontaktperson'
@@ -68,11 +73,6 @@ describe "Cms::RealEstates" do
           fill_in 'Titel', :with => 'My Real Estate'
           fill_in 'Liegenschaftsname', :with => 'Gartenstadt'
           fill_in 'Beschreibung', :with => 'Some description...'
-          fill_in 'Kurzbeschreibung', :with => 'Some short description...'
-          fill_in 'Schlüsselwörter', :with => 'Premium, Realty'
-          fill_in 'Liegenschaftsreferenz', :with => 'LR12345'
-          fill_in 'Gebäudereferenz', :with => 'GR12345'
-          fill_in 'Objektreferenz', :with => 'OR12345'
           fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel'
         end
       end
@@ -93,17 +93,11 @@ describe "Cms::RealEstates" do
           @real_estate.category.label.should == 'Child Category 1'
           @real_estate.utilization.should == RealEstate::UTILIZATION_COMMERICAL
           @real_estate.offer.should == RealEstate::OFFER_FOR_SALE
-          @real_estate.is_first_marketing.should == true
           @real_estate.channels.should == %w(website homegate)
           @real_estate.contact.fullname == 'Hans Muster'
           @real_estate.title.should == 'My Real Estate'
           @real_estate.property_name.should == 'Gartenstadt'
           @real_estate.description.should == 'Some description...'
-          @real_estate.short_description.should == 'Some short description...'
-          @real_estate.keywords.should == 'Premium, Realty'
-          @real_estate.reference.property_key.should == 'LR12345'
-          @real_estate.reference.building_key.should == 'GR12345'
-          @real_estate.reference.unit_key.should == 'OR12345'
           @real_estate.utilization_description.should == 'Gewerbe, Hotel'
         end
 
@@ -134,7 +128,6 @@ describe "Cms::RealEstates" do
           select 'Child Category 2', :from => 'Kategorie'
           choose 'Wohnen'
           choose 'Mieten'
-          uncheck 'Erstvermarktung'
           uncheck 'Website'
           check 'Mini Doku'
           select 'Henker, Hanna', :from => 'Kontaktperson'
@@ -142,11 +135,6 @@ describe "Cms::RealEstates" do
           fill_in 'Titel', :with => 'My edited Real Estate'
           fill_in 'Liegenschaftsname', :with => 'Gartenstadt 2012'
           fill_in 'Beschreibung', :with => 'Some edited description...'
-          fill_in 'Kurzbeschreibung', :with => 'Some edited short description...'
-          fill_in 'Schlüsselwörter', :with => 'Premium, Realty, Edit'
-          fill_in 'Liegenschaftsreferenz', :with => 'E_LR12345'
-          fill_in 'Gebäudereferenz', :with => 'E_GR12345'
-          fill_in 'Objektreferenz', :with => 'E_OR12345'
           fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel, Restaurant'
         end
 
@@ -158,17 +146,11 @@ describe "Cms::RealEstates" do
         @real_estate.category.label.should == 'Child Category 2'
         @real_estate.utilization.should == RealEstate::UTILIZATION_PRIVATE
         @real_estate.offer.should == RealEstate::OFFER_FOR_RENT
-        @real_estate.is_first_marketing.should == false
         @real_estate.channels.should == %w(print)
         @real_estate.title.should == 'My edited Real Estate'
         @real_estate.contact.fullname.should == 'Hanna Henker'
         @real_estate.property_name.should == 'Gartenstadt 2012'
         @real_estate.description.should == 'Some edited description...'
-        @real_estate.short_description.should == 'Some edited short description...'
-        @real_estate.keywords.should == 'Premium, Realty, Edit'
-        @real_estate.reference.property_key.should == 'E_LR12345'
-        @real_estate.reference.building_key.should == 'E_GR12345'
-        @real_estate.reference.unit_key.should == 'E_OR12345'
         @real_estate.utilization_description.should == 'Gewerbe, Hotel, Restaurant'
       end
 

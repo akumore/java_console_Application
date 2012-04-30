@@ -7,74 +7,18 @@ de:
       title: 'Objektübersicht'
       property: 'Liegenschaft'
       address: 'Adresse'
-      floor: 'Geschoss'
-      lower_floor: '%{floor}. Untergeschoss'
-      ground_floor: 'Erdgeschoss'
-      upper_floor: '%{floor}. Obergeschoss'
-      rooms: 'Zimmeranzahl'
-      rooms_value: '%{count} Zimmer'
-      usable_surface: 'Bruttonutzfläche (BNF)'
-      usable_surface_value: '%{count}m2'
       usable_surface_helptext: '(Fläche exklusive Fassaden-, Treppenhauswände, Wohnungs-Trennwände, Leitungsschächten und Balkon/Terrassen, Fläche inklusive Innenwände)'
       description: 'Kurzbeschrieb'
-    pricing:
-      title: Preise
-      for_rent_netto: Mietzins
-      for_rent_extra: Nebenkosten
-      for_rent_depot: Mietzinsdepot
-      without_vat: Alle Preise ohne Mehrwertsteuer
-      price_unit:
-        month: monatlich
-        year: jährlich
-        week: wöchentlich
-        once: einmalig
-      inside_parking: Parkplatz in Autoeinstellhalle
-      inside_parking_temporary: Parkplatz in Autoeinstellhalle temporär
-      outside_parking: Parkplatz nicht überdacht
-      outside_parking_temporary: Parkplatz nicht überdacht temporär
     floorplan:
       title: 'Grundriss'
-    information:
-      title: 'Immobilieninfos'
-      characteristics: 'Merkmale'
-      maximal_floor_loading: 'Maximale Bodenbelastung'
-      display_estimated_available_from: 'Bezugstermin'
-      freight_elevator_carrying_capacity: 'Maximales Gewicht für Warenlift'
-      new_building: 'Neubau'
-      old_building: 'Altbau'
-      minergie_style: 'Minergie Bauweise'
-      minergie_certified: 'Minergie zertifiziert'
-      view: 'Ausblick'
-      fireplace: 'Cheminée'
-      elevator: 'Liftzugang'
-      isdn: 'ISDN Anschluss'
-      wheelchair_accessible: 'rollstuhltauglich'
-      child_friendly: 'kinderfreundlich'
-      balcony: 'Balkon'
-      raised_ground_floor: 'Hochparterre'
-      swimmingpool: 'Schwimmbecken'
-      number_of_restrooms: '%{count} WC'
-      lifting_platform: 'Hebebühne'
-      ramp: 'Anfahrtsrampe'
-      railway_terminal: 'Bahnanschluss'
-      water_supply: 'Wasseranschluss'
-      sewage_supply: 'Abwasseranschluss'
-      minimum_rental_period: 'Mindestmietdauer'
-      notice_dates: 'Kündigungstermine'
-      notice_period: 'Kündigungsfrist'
-    description:
-      title: 'Beschreibung'
-      generic: 'Allgemein'
-      location: 'Standort'
-      interior: 'Ausbaustandard'
-      offer: 'Angebot'
-      infrastructure: 'Infrastruktur'
-      usage: 'Nutzung'
     images:
-      title: Bilder
+      title: 'Bilder'
     contact:
       title: Kontakt
       street: Neuhofstrasse 10
       zip: CH-6340
       city: Baar
+      phone: Telefon
+      mobile: Mobile
+      fax: Fax
       www: www.alfred-mueller.ch

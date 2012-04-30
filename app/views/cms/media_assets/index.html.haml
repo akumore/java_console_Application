@@ -2,44 +2,116 @@
 
 = render_navigation :context => :real_estate
 
+- if can_be_edited?(@real_estate)
+  .row
+    .pull-right
+      .padded
+        .btn-group
+          = link_to(new_cms_real_estate_image_path, :class => 'btn') do
+            %i.icon-picture
+            = t('.new_image')
+          = link_to(new_cms_real_estate_floor_plan_path, :class => 'btn') do
+            %i.icon-picture
+            = t('.new_floor_plan')
+          = link_to(new_cms_real_estate_video_path, :class => 'btn') do
+            %i.icon-film
+            = t('.new_video')
+          = link_to(new_cms_real_estate_document_path, :class => 'btn') do
+            %i.icon-file
+            = t('.new_document')
 
-- if can_be_edited?(@real_estate) #the latter keeps the admin away
-  .pull-right
-    .padded
-      .btn-group
-        = link_to(new_cms_real_estate_image_path, :class => 'btn') do
-          %i.icon-picture
-          = t('.new_image')
-        = link_to(new_cms_real_estate_video_path, :class => 'btn') do
-          %i.icon-film
-          = t('.new_video')
-        = link_to(new_cms_real_estate_document_path, :class => 'btn') do
-          %i.icon-file
-          = t('.new_document')
 
-= form_for [:cms, @real_estate], :remote => true, :html => { :class => :autosubmit } do |f|
-  %table.table.table-bordered.table-striped.sortable
-    %tr
-      %th
-      %th{ :width => '70%' } Titel
-      %th Typ
-      %th
-      %th
+- if @real_estate.images.any?
+  - if can_be_edited?(@real_estate)
+    = render 'images_form', :real_estate => @real_estate
+  - else
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th{ :width => '7%' }
+          %th{ :width => '80%' } Bilder
+          %th
+          %th
 
-    %tbody
-      - @media_assets.each do |media_asset|
-        = f.fields_for :media_assets, media_asset do |media_asset_form|
-          %tr.draggable-row
-            %td.drag-handle
-              %i.icon-align-justify
-              = media_asset_form.hidden_field :position, :value => media_asset.position
-            %td= media_asset.title
-            %td= t(".types.#{media_asset.media_type}")
+      %tbody
+        - @real_estate.images.each do |image|
+          %tr{:id => "image-#{image.id}"}
             %td
-              - if can? :update, media_asset
-                = link_to  t('.destroy'), cms_real_estate_media_asset_path(@real_estate, media_asset), :method => :delete, :confirm => t('.confirm_delete', :title => media_asset.title)
             %td
-              - if can? :update, media_asset
-                = link_to  t('.edit'), edit_cms_real_estate_media_asset_path(@real_estate, media_asset)
+              = image.title
+              - if image.is_primary?
+                (Hauptbild)
+            %td
+            %td
+              = link_to t('.show'), cms_real_estate_image_path(@real_estate, image)
+
+
+- if @real_estate.floor_plans.any?
+  - if can_be_edited?(@real_estate)
+    = render 'floor_plans_form', :real_estate => @real_estate
+  - else
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th{ :width => '7%' }
+          %th{ :width => '80%' } Grundrisse
+          %th
+          %th
+
+      %tbody
+        - @real_estate.floor_plans.each do |floor_plan|
+          %tr{:id => "floor-plan-#{floor_plan.id}"}
+            %td
+            %td= floor_plan.title
+            %td
+            %td
+              = link_to t('.show'), cms_real_estate_floor_plan_path(@real_estate, floor_plan)
+
+
+- if @real_estate.videos.any?
+  - if can_be_edited?(@real_estate)
+    = render 'videos_form', :real_estate => @real_estate
+  - else
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th{ :width => '7%' }
+          %th{ :width => '80%' } Filme
+          %th
+          %th
+
+      %tbody
+        - @real_estate.videos.each do |video|
+          %tr{:id => "video-#{video.id}"}
+            %td
+            %td= video.title
+            %td
+              - if can? :update, video
+                = link_to  t('.destroy'), cms_real_estate_video_path(@real_estate, video), :method => :delete, :confirm => t('.confirm_delete', :title => video.title)
+            %td
+              - if can? :update, video
+                = link_to  t('.edit'), edit_cms_real_estate_video_path(@real_estate, video)
               - else
-                = link_to t('.show'), cms_real_estate_media_asset_path(@real_estate, media_asset)
+                = link_to t('.show'), cms_real_estate_video_path(@real_estate, video)
+
+
+- if @real_estate.documents.any?
+  - if can_be_edited?(@real_estate)
+    = render 'documents_form', :real_estate => @real_estate
+  - else
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th{ :width => '7%' }
+          %th{ :width => '80%' } Dokumente
+          %th
+          %th
+
+      %tbody
+        - @real_estate.documents.each do |document|
+          %tr{:id => "document-#{document.id}"}
+            %td
+            %td= document.title
+            %td
+            %td
+              = link_to t('.show'), cms_real_estate_document_path(@real_estate, document)

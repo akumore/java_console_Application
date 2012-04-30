@@ -1,0 +1,11 @@
+de:
+  application:
+    vision_slider:
+      open: 'aufklappen'
+      close: 'zuklappen'
+      vision:
+        real_estate_title_kids: 'Wir schaffen hochwertige Wohn- und Arbeitsräume, in denen Menschen sich wohl fühlen.'
+        real_estate_title_couple: 'Wohnräume, bei denen alles andere zur Nebensache wird.'
+        real_estate_link_title: 'Angebot'
+        jobs_title: 'Der Mensch steht bei uns im Mittelpunkt.'
+        jobs_link_title: 'Jobs'

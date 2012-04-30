@@ -22,14 +22,10 @@ describe RealEstateDecorator do
       :short_info_figure,
       :short_info_size,
       :additional_description,
+      :utilization_description,
+      :seo_description,
       :mini_doku_link,
-      :information_shared,
-      :information_basic,
-      :price_info_basic,
-      :price_info_parking,
-      :facts_and_figures,
-      :infrastructure_parking,
-      :infrastructure_distances,
+      :project_website_link,
       :reference_project_caption
     ].each do |accessor|
       it "calling #{accessor} doesnt raise an exception with invalid data" do
@@ -52,26 +48,12 @@ describe RealEstateDecorator do
       )
       @decorator = RealEstateDecorator.new(real_estate)
     end
-
-    [
-      :information_shared,
-      :information_basic,
-      :price_info_basic,
-      :price_info_parking,
-      :facts_and_figures,
-      :infrastructure_parking,
-      :infrastructure_distances
-    ].each do |accessor|
-      it "#{accessor} returns an array of printable properties" do
-        @decorator.send(accessor).should be_a(Array)
-      end
-    end
   end
 
   describe '#reference_project_caption' do
     context 'with a link in the address' do
       it 'links to the provided url' do
-        real_estate = Fabricate(:real_estate, 
+        real_estate = Fabricate(:real_estate,
           :address => Fabricate.build(:address, :link_url => 'http://www.google.ch'),
           :category => Fabricate(:category),
           :reference => Fabricate.build(:reference)
@@ -81,10 +63,10 @@ describe RealEstateDecorator do
       end
     end
 
-    context 'without a link in the addres' do
-      
+    context 'without a link in the address' do
+
       it 'shows no link' do
-        real_estate = Fabricate(:real_estate, 
+        real_estate = Fabricate(:real_estate,
           :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
           :address => Fabricate.build(:address, :link_url => ''),
           :category => Fabricate(:category),
@@ -98,7 +80,7 @@ describe RealEstateDecorator do
         it 'links to the detail page' do
           pending 'figure out how draper handles this issue: https://github.com/jcasimir/draper/issues/116'
 
-          real_estate = Fabricate(:real_estate, 
+          real_estate = Fabricate(:real_estate,
           :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL, RealEstate::WEBSITE_CHANNEL],
           :address => Fabricate.build(:address, :link_url => ''),
           :category => Fabricate(:category),

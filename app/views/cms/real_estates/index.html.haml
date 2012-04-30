@@ -15,6 +15,7 @@
     %th= RealEstate.human_attribute_name :utilization
     %th Status
     %th
+    %th
 
   - @real_estates.each do |real_estate|
     %tr{:id => "real_estate_#{real_estate.id}"}
@@ -25,6 +26,10 @@
       %td= t ".#{real_estate.state}"
       %td
         - if can_be_edited?(real_estate)
-          = link_to  t('cms.real_estates.index.edit'), edit_cms_real_estate_path(real_estate)
+          = link_to  t('.edit'), edit_cms_real_estate_path(real_estate)
         - else
-          = link_to  t('cms.real_estates.index.show'), cms_real_estate_path(real_estate)
+          = link_to  t('.show'), cms_real_estate_path(real_estate)
+      %td
+        = link_to copy_cms_real_estate_path(real_estate), :title => t('.copy') do
+          %span.hidden-text= t('.copy')
+          %i.icon-share

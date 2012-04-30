@@ -11,3 +11,25 @@ de:
             elementary_school: 'Grundschule'
             high_school: 'Oberstufe'
             highway_access: 'Autobahnanschluss'
+  infrastructures:
+    title: 'Infrastruktur'
+    inside_parking_spots:
+      one: 'Parkplatz in Autoeinstellhalle'
+      other: 'Parkplätze in Autoeinstellhalle'
+    outside_parking_spots:
+      one: 'Parkplatz im Freien'
+      other: 'Parkplätze im Freien'
+    inside_parking_spots_temporary:
+      one: 'Parkplatz in Autoeinstellhalle (temporär)'
+      other: 'Parkplätze in Autoeinstellhalle (temporär)'
+    outside_parking_spots_temporary:
+      one: 'Parkplatz im Freien (temporär)'
+      other: 'Parkplätze im Freien (temporär)'
+    distances: 'In der Nähe'
+    points_of_interest:
+      public_transport: 'Öffentlicher Verkehr %{distance}m'
+      shopping: 'Einkaufen %{distance}m'
+      kindergarden: 'Kindergarten %{distance}m'
+      elementary_school: 'Primarschule %{distance}m'
+      high_school: 'Oberstufe %{distance}m'
+      highway_access: 'Autobahnanschluss %{distance}m'
