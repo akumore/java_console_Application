@@ -26,7 +26,7 @@
       = f.label :orientation_degrees
       .controls
         = f.text_field :orientation_degrees, :class => 'span3'
-
+        %i.icon-question-sign.help-popover-top{ :rel => 'popover', 'data-original-title' => AdditionalDescription.human_attribute_name(:orientation_degrees), 'data-content' => t('.help_popover.orientation_degrees') }
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

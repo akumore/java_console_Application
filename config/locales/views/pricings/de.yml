@@ -9,6 +9,8 @@ de:
         year_m2: 'pro Jahr / m²'
         sell: 'Verkaufspreis'
         sell_m2: 'Verkaufspreis / m²'
+        help_popover:
+            estimate: 'Für spez. Angaben, z.B. ab 2100, <br />1500 – 3000'
   pricings:
     decorator:
       price_units:

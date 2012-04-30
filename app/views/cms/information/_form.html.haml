@@ -14,6 +14,7 @@
       = f.label :display_estimated_available_from
       .controls
         = f.text_field :display_estimated_available_from
+        %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Information.human_attribute_name(:display_estimated_available_from), 'data-content' => t('.help_popover.display_estimated_available_from') }
     .row
       .span4
         .control-group
