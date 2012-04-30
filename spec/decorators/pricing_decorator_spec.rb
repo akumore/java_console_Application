@@ -67,7 +67,7 @@ describe PricingDecorator do
       end
 
       it 'formats the estimate price' do
-        @pricing.estimate.should == 'CHF 200 - 3000 / Monat'
+        @pricing.estimate.should == 'CHF 200 - 3000'
       end
 
       it 'overrides the for rent price' do
@@ -130,7 +130,7 @@ describe PricingDecorator do
       end
 
       it 'formats the estimate price' do
-        @pricing.estimate.should == 'CHF 15000 - 13000 / Verkaufspreis'
+        @pricing.estimate.should == 'CHF 15000 - 13000'
       end
 
       it 'overrides the for rent price' do

@@ -201,7 +201,7 @@ describe "RealEstates" do
     describe 'sidebar' do
       it 'shows the project website link' do
         page.within('.sidebar') do
-          page.should have_link 'Zur Projektwebsite', :href => real_estate.address.link_url
+          page.should have_link 'Zur Projektwebseite', :href => real_estate.address.link_url
         end
       end
 

@@ -10,7 +10,7 @@ de:
         sell: 'Verkaufspreis'
         sell_m2: 'Verkaufspreis / m²'
         help_popover:
-            estimate: 'Für spez. Angaben, z.B. ab 2100, <br />1500 – 3000'
+            estimate: 'Freitextfeld, z.B. ab CHF 2100.00, CHF 1500 – 3000 oder Preis auf Anfrage'
   pricings:
     decorator:
       price_units:
