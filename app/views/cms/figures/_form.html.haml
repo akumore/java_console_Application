@@ -10,18 +10,22 @@
       = f.label :floor
       .controls
         = f.text_field :floor, :class => 'span4'
+        %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:floor), 'data-content' => t('.help_popover.floor') }
     .control-group
       = f.label :floor_estimate
       .controls
         = f.text_field :floor_estimate, :class => 'span8'
+        %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:floor_estimate), 'data-content' => t('.help_popover.floor_estimate') }          
     .control-group
       = f.label :rooms
       .controls
         = f.text_field :rooms, :class => 'span4'
+        %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:rooms), 'data-content' => t('.help_popover.rooms') }          
     .control-group
       = f.label :rooms_estimate
       .controls
         = f.text_field :rooms_estimate, :class => 'span8'
+        %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:rooms_estimate), 'data-content' => t('.help_popover.rooms_estimate') }          
     .control-group
       = f.label :living_surface
       .controls
@@ -30,6 +34,7 @@
       = f.label :living_surface_estimate
       .controls
         = f.text_field :living_surface_estimate, :class => 'span8'
+        %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:living_surface_estimate), 'data-content' => t('.help_popover.living_surface_estimate') }          
     .control-group
       = f.label :property_surface
       .controls
