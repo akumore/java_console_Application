@@ -2,7 +2,7 @@ de:
   cms:
     real_estates:
       form:
-        private: 'Wohnennn'
+        private: 'Wohnen'
         commercial: 'Arbeiten'
         for_rent: 'Mieten'
         for_sale: 'Kaufen'
@@ -11,7 +11,7 @@ de:
         channels:
           website: 'Website'
           homegate: 'Homegate'
-          print: 'Mini Doku'
+          print: 'Objektdokumentation'
           reference_projects: 'Referenzprojekt'
         help_popover:
           property_key: 'Für IMB: Liegenschafts-Nr. eingeben, z.B. L2716 <br /> Für M+V: Projekt-Nr. eingeben, z.B. 20643'
