@@ -7,6 +7,7 @@ class RealEstateDecorator < ApplicationDecorator
   decorates_association :information
   decorates_association :pricing
   decorates_association :figure
+  decorates_association :infrastructure
 
   def google_maps_address
     [
@@ -109,53 +110,4 @@ class RealEstateDecorator < ApplicationDecorator
       link_to t('real_estates.show.project_website_link'), address.link_url, :target => '_new', :class => 'icon-groundplan'
     end
   end
-
-  def infrastructure_parking
-    buffer = []
-
-    if model.infrastructure.try(:has_parking_spot).present?
-      buffer << t('real_estates.show.has_parking_spot')
-    end
-
-    if model.infrastructure.try(:has_roofed_parking_spot).present?
-      buffer << t('real_estates.show.has_roofed_parking_spot')
-    end
-
-    if model.infrastructure.try(:has_garage).present?
-      buffer << t('real_estates.show.has_garage')
-    end
-
-    if model.infrastructure.try(:inside_parking_spots).present?
-      buffer << t('real_estates.show.inside_parking_spots', :number => model.infrastructure.inside_parking_spots)
-    end
-
-    if model.infrastructure.try(:outside_parking_spots).present?
-      buffer << t('real_estates.show.outside_parking_spots', :number => model.infrastructure.outside_parking_spots)
-    end
-
-    if model.infrastructure.try(:inside_parking_spots_temporary).present?
-      buffer << t('real_estates.show.inside_parking_spots_temporary', :number => model.infrastructure.inside_parking_spots_temporary)
-    end
-
-    if model.infrastructure.try(:outside_parking_spots_temporary).present?
-      buffer << t('real_estates.show.outside_parking_spots_temporary', :number => model.infrastructure.outside_parking_spots_temporary)
-    end
-
-    buffer
-  end
-
-  def infrastructure_distances
-    buffer = []
-
-    if model.infrastructure.present?
-      model.infrastructure.points_of_interest.each do |poi|
-        if poi.distance.present?
-          buffer << t("real_estates.show.#{poi.name}", :number => poi.distance)
-        end
-      end
-    end
-
-    buffer
-  end
-
 end

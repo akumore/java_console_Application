@@ -1,9 +1,28 @@
-.accordion-item
-  .title= t('infrastructures.title')
-  .content
-    %ul
-      - @real_estate.infrastructure_parking.each do |line|
-        %li= line
-    %ul
-      - @real_estate.infrastructure_distances.each do |line|
-        %li= line
+- if infrastructure.present?
+  .accordion-item
+    .title= t('infrastructures.title')
+    .content
+      - if infrastructure.inside_parking_spots.present?
+        %dl
+          %dt= t('infrastructures.inside_parking_spots', :count => infrastructure.inside_parking_spots)
+          %dd= infrastructure.inside_parking_spots
+
+      - if infrastructure.outside_parking_spots.present?
+        %dl
+          %dt= t('infrastructures.outside_parking_spots', :count => infrastructure.outside_parking_spots)
+          %dd= infrastructure.outside_parking_spots
+
+      - if infrastructure.inside_parking_spots_temporary.present?
+        %dl
+          %dt= t('infrastructures.inside_parking_spots_temporary', :count => infrastructure.inside_parking_spots_temporary)
+          %dd= infrastructure.inside_parking_spots_temporary
+
+      - if infrastructure.outside_parking_spots_temporary.present?
+        %dl
+          %dt= t('infrastructures.outside_parking_spots_temporary', :count => infrastructure.outside_parking_spots_temporary)
+          %dd= infrastructure.outside_parking_spots_temporary
+
+      - if infrastructure.distances.any?
+        %dl
+          %dt= t('infrastructures.distances')
+          %dd= infrastructure.distances.join(', ')
