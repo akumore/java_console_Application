@@ -11,30 +11,30 @@
 
 .footer-teasers
   %div
-    %h5= t ".we_want_you"
-    %dl
-      %dd=t ".discover_alfred_mueller"
-      %dd= link_to t(".take_me_to_the_jobs"), t('jobs_url')
-
-  %div
     %h5= t ".what_we_do"
     %dl
       %dt= t ".what_we_do_content"
       %dd= link_to t(".get_more"), t('company_url')
 
   %div
+    %h5= t ".we_want_you"
+    %dl
+      %dd=t ".discover_alfred_mueller"
+      %dd= link_to t(".take_me_to_the_jobs"), t('jobs_url')
+
+  %div
     %h5 St. Martin
     %dl
       %dt=t ".cameroon_drinking_water"
       %dd=link_to t(".get_more"), t('company_url')
-      %dd=link_to t(".take_me_to_st_martin_website"), 'http://www.martinstiftung.ch/', :target => '_new'
+      %dd=link_to t(".take_me_to_st_martin_website"), 'http://www.martinstiftung.ch/', :target => '_target'
 
   %div
     %h5 Allmig
     %dl
       %dt=t ".compost_and_nuclear_plant_in_region_zug"
       %dd=link_to t(".get_more"), t('company_url')
-      %dd=link_to t(".take_me_to_allmig_website"), 'http://www.allmig.ch/', :target => '_new'
+      %dd=link_to t(".take_me_to_allmig_website"), 'http://www.allmig.ch/', :target => '_target'
 
 .footer-contact
   %div
