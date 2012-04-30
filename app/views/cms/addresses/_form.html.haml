@@ -48,7 +48,7 @@
           = rf.label :unit_key
           .controls
             = rf.text_field :unit_key, :class => 'span8'
-          %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Reference.human_attribute_name(:unit_key), 'data-content' => t('.help_popover.unit_key') }
+            %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Reference.human_attribute_name(:unit_key), 'data-content' => t('.help_popover.unit_key') }
   %fieldset
     %legend= t "mongoid.attributes.address.location"
     = f.fields_for :location, @address.to_coordinates do |rf|
