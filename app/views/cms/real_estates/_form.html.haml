@@ -42,9 +42,9 @@
             = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel)
             %span= t(".channels.#{channel}")
   .control-group
-    = f.label :contact
+    = f.label :contact_id
     .controls
-      = f.select :contact, Employee.all.order([:lastname, :asc]).map { |e| [e.fullname_reversed, e.id]}, :prompt => 'Kontaktperson auswählen', :class => 'span8'
+      = f.select :contact_id, Employee.all.order([:lastname, :asc]).map { |e| [e.fullname_reversed, e.id]}, :prompt => 'Kontaktperson auswählen', :class => 'span8'
   %fieldset
     %legend Titel und Beschreibungen
     .control-group.mandatory
