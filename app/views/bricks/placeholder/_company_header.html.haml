@@ -1,12 +1,22 @@
 #head-of-alfred-mueller-gallery.tab-slider
   %ul.first-level-navigation
     %li
-      %a.active{ :href => '#board-of-directors' }=t('.board_of_directors')
+      %a.active{ :href => '#vision' }=t('.vision')
+    %li
+      %a{ :href => '#board-of-directors' }=t('.board_of_directors')
     %li
       %a{ :href => '#managing-board' }=t('.managing_board')
     %li
       %a{ :href => '#reference-projects' }=t('.reference_projects')
-  
+
+  .flex-container.hidden#vision.tab-content
+    .flexslider
+      %ul.slides
+        %li
+          %video.sublime{ :preload => 'preload' }
+            %source{ :src => '/videos/imagefilm.mp4' }
+            %source{ :src => '/videos/imagefilm.webm' }
+
   .flex-container.hidden#board-of-directors.tab-content
     .flexslider
       %ul.second-level-navigation
