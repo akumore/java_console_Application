@@ -2,6 +2,7 @@ fr:
   bricks:
     placeholder:
       company_header:
+        vision: 'Vision'
         board_of_directors: "Conseil d'administration"
         managing_board: "Direction de l'entreprise"
         reference_projects: 'Référence du projet'
