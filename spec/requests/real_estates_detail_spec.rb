@@ -189,13 +189,11 @@ describe "RealEstates" do
 
       describe 'contact' do
         it 'displays the full name of the responsible person' do
-          within(".accordion-item .image-caption-text") do
-            page.should have_content(real_estate.contact.fullname)
-            page.should have_content(real_estate.contact.phone)
-            page.should have_content(real_estate.contact.fax)
-            page.should have_content(real_estate.contact.mobile)
-            page.should have_link('E-Mail')
-          end
+          page.should have_content(real_estate.contact.fullname)
+          page.should have_content(real_estate.contact.phone)
+          page.should have_content(real_estate.contact.fax)
+          page.should have_content(real_estate.contact.mobile)
+          page.should have_link('E-Mail')
         end
       end
     end
