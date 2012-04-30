@@ -1,0 +1,38 @@
+de:
+  cms:
+    real_estates:
+      form:
+        private: 'Wohnennn'
+        commercial: 'Arbeiten'
+        for_rent: 'Mieten'
+        for_sale: 'Kaufen'
+        corner_house: 'Eckhaus'
+        middle_house: 'Mittelhaus'
+        channels:
+          website: 'Website'
+          homegate: 'Homegate'
+          print: 'Mini Doku'
+          reference_projects: 'Referenzprojekt'
+        help_popover:
+          property_key: 'Für IMB: Liegenschafts-Nr. eingeben, z.B. L2716 <br /> Für M+V: Projekt-Nr. eingeben, z.B. 20643'
+          building_key: 'Für IMB: Objekt-Nr. eingeben, z.B. 1012 <br /> Für M+V: genaue Bezeichnung, z.B. Feldpark9_9.12'
+          unit_key: 'Kurzzeichen des Auftraggebers, z.B. bz'
+      actions:
+        overview: 'Zurück zur Übersicht'
+        destroy: 'Immobilie löschen'
+        confirm_delete: 'Immobilie "%{title} wirklich löschen?'
+      index:
+        new: Neue Immobilie erfassen
+        edit: Editieren
+        show: Anzeigen
+        for_rent: Mieten
+        for_sale: Kaufen
+        private: Wohnen
+        commercial: Arbeiten
+        editing: In Bearbeitung
+        published: 'Veröffentlicht'
+        in_review: 'Zu Verifizieren'
+        destroyed: "Die Immobilie \"%{title}\" wurde erfolgreich gelöscht."
+      update:
+        sorted:
+          success: 'Die Sortierung wurde erfolgreich gespeichert.'

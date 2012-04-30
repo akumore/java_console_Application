@@ -39,3 +39,7 @@ $(document).ready ->
       $(this).closest("form.autosubmit").trigger("submit")
 
   $("textarea").autoResize()
+
+  $(".help-popover").popover()
+  $(".help-popover-top").popover
+    placement: 'top'

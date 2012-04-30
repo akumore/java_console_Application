@@ -1,0 +1,6 @@
+de:
+  cms:
+    information:
+      form:
+        help_popover:
+          display_estimated_available_from: 'Wenn dieses Feld ausgefüllt ist, wird es anstelle des präzisen Datums auf der Webseite und der Projektdokumentation ausgegeben.'
