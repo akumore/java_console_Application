@@ -244,7 +244,7 @@ describe "RealEstates" do
     context 'having a floorplan', :fp => true do
       before :each do
         @real_estate_with_floorplan = real_estate
-        @real_estate_with_floorplan.media_assets << Fabricate.build(:media_asset_floorplan)
+        @real_estate_with_floorplan.floor_plans << Fabricate.build(:media_assets_floor_plan)
         visit real_estate_path(@real_estate_with_floorplan)
       end
 
@@ -258,7 +258,7 @@ describe "RealEstates" do
 
       it 'zooms the floorplan in an overlay', :js => true do
         find('.flexslider .slides li .zoom-floorplan').click
-        page.should have_css(".fancybox-opened img[src='#{@real_estate_with_floorplan.media_assets.images.where(:is_floorplan => true).first.url}']")
+        page.should have_css(".fancybox-opened img[src='#{@real_estate_with_floorplan.floor_plans.first.file.url}']")
       end
     end
 
