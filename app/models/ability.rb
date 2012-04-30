@@ -49,10 +49,12 @@ class Ability
     if user.editor?
       # state machine abilities
       can :review_it, RealEstate
+      can :unpublish_it, RealEstate
 
       #controller action abilities
-      can :update, RealEstate, :state => 'editing' #do not use :manage, this will break state machine cans
+      can :update, RealEstate, :state => ['editing', 'published'] #do not use :manage, this will break state machine cans
       can :destroy, RealEstate, :state => 'editing'
+      cannot :edit, RealEstate, :state => ['in_review', 'published']
 
       can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription], :real_estate=>{:state => 'editing'}
       cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription], :real_estate=>{:state => ['in_review', 'published']}

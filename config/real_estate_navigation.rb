@@ -19,7 +19,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
   # Define the primary navigation
   navigation.items do |primary|
-    if can_be_edited?(@real_estate)
+    if can?(:edit, @real_estate)
 
       primary.item :real_estate, 'Stammdaten', edit_cms_real_estate_path(@real_estate),
                    :highlights_on=> lambda { controller_name=='real_estates' && ['edit', 'update'].include?(action_name)},

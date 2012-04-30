@@ -2,7 +2,7 @@
 
 = render_navigation :context => :real_estate
 
-- if can_be_edited?(@real_estate)
+- if can?(:edit, @real_estate)
   .row
     .pull-right
       .padded
@@ -22,7 +22,7 @@
 
 
 - if @real_estate.images.any?
-  - if can_be_edited?(@real_estate)
+  - if can?(:edit, @real_estate)
     = render 'images_form', :real_estate => @real_estate
   - else
     %table.table.table-bordered.table-striped
@@ -47,7 +47,7 @@
 
 
 - if @real_estate.floor_plans.any?
-  - if can_be_edited?(@real_estate)
+  - if can?(:edit, @real_estate)
     = render 'floor_plans_form', :real_estate => @real_estate
   - else
     %table.table.table-bordered.table-striped
@@ -69,7 +69,7 @@
 
 
 - if @real_estate.videos.any?
-  - if can_be_edited?(@real_estate)
+  - if can?(:edit, @real_estate)
     = render 'videos_form', :real_estate => @real_estate
   - else
     %table.table.table-bordered.table-striped
@@ -96,7 +96,7 @@
 
 
 - if @real_estate.documents.any?
-  - if can_be_edited?(@real_estate)
+  - if can?(:edit, @real_estate)
     = render 'documents_form', :real_estate => @real_estate
   - else
     %table.table.table-bordered.table-striped
