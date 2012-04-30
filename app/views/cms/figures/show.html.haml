@@ -15,26 +15,26 @@
     %dd
       = @figure.floor_estimate
       &nbsp;
+    - if @real_estate.private_utilization?
+      %dt= t "mongoid.attributes.figure.rooms"
+      %dd
+        = @figure.rooms
+        &nbsp;
 
-    %dt= t "mongoid.attributes.figure.rooms"
-    %dd
-      = @figure.rooms
-      &nbsp;
+      %dt= t "mongoid.attributes.figure.rooms_estimate"
+      %dd
+        = @figure.rooms_estimate
+        &nbsp;
 
-    %dt= t "mongoid.attributes.figure.rooms_estimate"
-    %dd
-      = @figure.rooms_estimate
-      &nbsp;
+      %dt= t "mongoid.attributes.figure.living_surface"
+      %dd
+        = @figure.living_surface
+        &nbsp;
 
-    %dt= t "mongoid.attributes.figure.living_surface"
-    %dd
-      = @figure.living_surface
-      &nbsp;
-
-    %dt= t "mongoid.attributes.figure.living_surface_estimate"
-    %dd
-      = @figure.living_surface_estimate
-      &nbsp;
+      %dt= t "mongoid.attributes.figure.living_surface_estimate"
+      %dd
+        = @figure.living_surface_estimate
+        &nbsp;
 
     %dt= t "mongoid.attributes.figure.property_surface"
     %dd
@@ -42,15 +42,20 @@
       &nbsp;
 
     - if @real_estate.commercial_utilization?
+      %dt= t "mongoid.attributes.figure.usable_surface"
+      %dd
+        = @figure.usable_surface
+        &nbsp;
+
       %dt= t "mongoid.attributes.figure.storage_surface"
       %dd
         = @figure.storage_surface
         &nbsp;
 
-    %dt= t "mongoid.attributes.figure.ceiling_height"
-    %dd
-      = @figure.ceiling_height
-      &nbsp;
+      %dt= t "mongoid.attributes.figure.ceiling_height"
+      %dd
+        = @figure.ceiling_height
+        &nbsp;
 
     %dt= t "mongoid.attributes.figure.floors"
     %dd
