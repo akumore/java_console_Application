@@ -6,7 +6,7 @@ de:
         yearly: 'pro Jahr'
         weekly: 'pro Woche'
         daily: 'pro Tag'
-        year_m2: 'pro Jahr / m²'
+        year_m2: 'm² / pro Jahr'
         sell: 'Verkaufspreis'
         sell_m2: 'Verkaufspreis / m²'
         help_popover:
@@ -18,7 +18,7 @@ de:
         yearly: '%{price} / Jahr'
         weekly: '%{price} / Woche'
         daily: '%{price} / Tag'
-        year_m2: '%{price} / Jahr/m²'
+        year_m2: '%{price} / m²/Jahr'
         sell: '%{price} / Verkaufspreis'
         sell_m2: '%{price} / Verkaufspreis/m²'
     title: 'Preise'
