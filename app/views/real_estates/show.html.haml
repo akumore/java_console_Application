@@ -33,32 +33,8 @@
     .clear
 
   .gallery
-    .container
-      .map-slider
-        .map-slide
-          .map-handle
-          .map{ 'data' => { :real_estate => @real_estate.model.to_json(:only => :_id, :methods => :coordinates) } }
-      .flex-container
-        .flexslider
-          %ul.slides
-            - @real_estate.images.each do |image|
-              %li
-                = image_tag image.file.gallery.url
-                .flex-caption
-                  %span= image.title
-            - @real_estate.floor_plans.each do |floor_plan|
-              %li{ 'data-is_floorplan' => 'true' }
-                = image_tag floor_plan.file.gallery.url
-                .flex-caption
-                  %span= floor_plan.title
-                = link_to t('.floorplan'), floor_plan.file.url, :class => 'zoom-floorplan zoom-overlay'
-            - @real_estate.videos.each do |video|
-              %li
-                %video.sublime{ :preload => 'preload' }
-                  %source{ :src => video.file.url }
-            - if @real_estate.contact.present?
-              %li
-                = render :template=>'appointments/new'
+    = render 'gallery', :real_estate => @real_estate
+
   .description
     .accordion.accordion-classical{ 'data-open_first' => 1 }
       = render 'descriptions', :real_estate => @real_estate, :additional_description => @real_estate.additional_description
