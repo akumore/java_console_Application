@@ -25,20 +25,35 @@ class RealEstate
   belongs_to :contact, :class_name => 'Employee'
   has_many :appointments
 
-  embeds_one :reference
-  embeds_one :address
+  embeds_one :reference, :as => :referencable
+  #deprecate :reference # disable for now, because it will always log as long as we have defined embeds_one
+
+  embeds_one :address, :cascade_callbacks => true, :validate => false # cascade callbacks to guarantee execution of geocoding
   embeds_one :pricing, :validate => false
   embeds_one :figure, :validate => false
   embeds_one :information, :validate => false
   embeds_one :infrastructure, :validate => false
   embeds_one :additional_description
+
+
+  #TODO Remove media_assets but migrate data on production first!
   embeds_many :media_assets  do
     def primary_image
       images.primary.first || MediaAsset.new(:media_type => MediaAsset::IMAGE)
     end
   end
-
   accepts_nested_attributes_for :media_assets
+  deprecate :media_assets => 'media_assets will be removed soon'
+
+
+  embeds_many :images, :class_name => 'MediaAssets::Image', :cascade_callbacks => true
+  embeds_many :floor_plans, :class_name => 'MediaAssets::FloorPlan', :cascade_callbacks => true
+  embeds_many :videos, :class_name => 'MediaAssets::Video', :cascade_callbacks => true
+  embeds_many :documents, :class_name => 'MediaAssets::Document', :cascade_callbacks => true
+  accepts_nested_attributes_for :images
+  accepts_nested_attributes_for :floor_plans
+  accepts_nested_attributes_for :videos
+  accepts_nested_attributes_for :documents
 
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE
@@ -92,6 +107,7 @@ class RealEstate
       validates *RealEstate.mandatory_for_publishing, :presence=>true,
                 :if=>:state_changed?, # Allows admin to save real estate in_review state
                 :unless=>:new_record? # ...otherwise the fabricator can't create real estates 'in_review', any idea?
+
       validates_associated *RealEstate.mandatory_for_publishing,
                            :if=>:state_changed? # Allows admin to save real estate in_review state
     end
@@ -99,6 +115,7 @@ class RealEstate
     state :published do
       validates *RealEstate.mandatory_for_publishing, :presence=>true,
                 :unless=>:new_record? # ...otherwise the fabricator can't create real estates in 'published' state, any idea?
+
       validates_associated *RealEstate.mandatory_for_publishing
     end
 
@@ -143,7 +160,19 @@ class RealEstate
     category.parent
   end
 
+  def is_homegate?
+    channels.include? HOMEGATE_CHANNEL
+  end
 
+  def copy
+    copied = self.clone
+    copied.state = STATE_EDITING
+    copied.title = "Kopie von #{title}"
+    copied.save
+    copied
+  end
+
+  
   private
   def init_channels
     self.channels ||= []

@@ -1,0 +1,11 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+%dl.dl-horizontal
+  %dt= MediaAssets::Document.human_attribute_name :title
+  %dd= @document.title
+
+  %dt Vorschau
+  %dd.well
+    = link_to "\"#{@document.title}\" in neuem Fenster öffnen", @document.file.url, :target => '_blank'

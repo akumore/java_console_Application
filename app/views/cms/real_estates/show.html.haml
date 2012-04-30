@@ -44,21 +44,3 @@
   %dd
     = @real_estate.utilization_description.presence
     &nbsp;
-
-%legend= Reference.model_name.human
-
-%dl.dl-horizontal
-  %dt= t "mongoid.attributes.reference.property_key"
-  %dd
-    = @real_estate.reference.try(:property_key)
-    &nbsp;
-
-  %dt= t "mongoid.attributes.reference.building_key"
-  %dd
-    = @real_estate.reference.try(:building_key)
-    &nbsp;
-
-  %dt= t "mongoid.attributes.reference.unit_key"
-  %dd
-    = @real_estate.reference.try(:unit_key)
-    &nbsp;

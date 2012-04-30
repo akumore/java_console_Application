@@ -1,0 +1,14 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+%dl.dl-horizontal
+  %dt= MediaAssets::Image.human_attribute_name :title
+  %dd= @image.title
+
+  %dt= MediaAssets::Image.human_attribute_name :is_primary
+  %dd= @image.is_primary
+
+  %dt Vorschau
+  %dd.well
+    = image_tag @image.file.cms_preview.url

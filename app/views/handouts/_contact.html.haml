@@ -19,11 +19,21 @@
 
   %dl
     %dt
-    %dd= contact.phone
-
-  %dl
-    %dt
     %dd
+      = t '.phone'
+      = contact.phone
+
+      - if contact.mobile.present?
+        %br
+        = t '.mobile'
+        = contact.mobile
+
+      -if contact.fax.present?
+        %br
+        = t '.fax'
+        = contact.fax
+
+      %br
       = contact.email
       %br
       = t '.www'

@@ -36,14 +36,14 @@ describe "Homepage" do
     describe "The slide for renting real estates" do
       before do
         MediaAssetUploader.enable_processing = true
+        @image = Fabricate.build :media_assets_image, :is_primary => true
         @real_estate = Fabricate :real_estate,
                                  :title => "Home Sweet Home for rent",
                                  :offer => RealEstate::OFFER_FOR_RENT,
                                  :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
                                  :address => Fabricate.build(:address),
-                                 :category => Fabricate(:category)
-        @image = Fabricate.build :media_asset_image, :is_primary => true
-        @real_estate.media_assets << @image
+                                 :category => Fabricate(:category),
+                                 :images => [@image]
       end
 
       after do
@@ -77,14 +77,14 @@ describe "Homepage" do
     describe "The slide for buying real estates" do
       before do
         MediaAssetUploader.enable_processing = true
+        @image = Fabricate.build :media_assets_image, :is_primary => true
         @real_estate = Fabricate :real_estate,
                                  :title => "Home Sweet Home for sale",
                                  :offer => RealEstate::OFFER_FOR_SALE,
                                  :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
                                  :address => Fabricate.build(:address),
-                                 :category => Fabricate(:category)
-        @image = Fabricate.build :media_asset_image, :is_primary => true
-        @real_estate.media_assets << @image
+                                 :category => Fabricate(:category),
+                                 :images => [@image]
       end
       after do
         MediaAssetUploader.enable_processing = false

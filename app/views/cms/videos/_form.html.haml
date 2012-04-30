@@ -1,0 +1,22 @@
+= render 'cms/shared/errors', :model => @video
+
+%fieldset
+  .control-group.mandatory
+    = f.label :title
+    .controls
+      = f.text_field :title, :class => 'span8'
+  .control-group.mandatory
+    = f.label :file
+    .controls
+      = f.file_field :file
+      = f.hidden_field :file_cache
+
+      - if @video.file.present?
+        .well
+          %video.sublime{ :width => 640, :height => 360, :preload => 'none' }
+            %source{ :src => @video.file.url }
+
+.form-actions
+  = f.submit t(".save"), :class => 'btn btn-primary'
+  .pull-right
+    = render "cms/media_assets/actions"

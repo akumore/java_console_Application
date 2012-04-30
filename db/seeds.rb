@@ -275,11 +275,9 @@ module InitialCategories
         r.utilization = RealEstate::UTILIZATION_PRIVATE
         r.offer = RealEstate::OFFER_FOR_RENT
         r.channels = [RealEstate::CHANNELS.first]
-        r.reference = Reference.new(
-            :property_key => 'SC P 1', :building_key => 'SC B 1', :unit_key => 'SC U 1'
-        )
         r.address = Address.new(:canton => 'ag',
-                                :city => 'Fahrwangen', :street => 'Bahnhofstrasse', :street_number => '18', :zip => '1234'
+                                :city => 'Fahrwangen', :street => 'Bahnhofstrasse', :street_number => '18', :zip => '1234',
+                                :reference => Reference.new(:property_key => 'SC P 1', :building_key => 'SC B 1', :unit_key => 'SC U 1')
         )
         r.category = Category.where(:name => 'flat').first
         r.pricing = Pricing.new(:price_unit => Pricing::PRICE_UNITS.first, :for_rent_netto => 2380, :for_rent_extra => 380)
@@ -288,9 +286,8 @@ module InitialCategories
         r.infrastructure = Infrastructure.new(:has_parking_spot => true)
         r.description = "Beschreibung 1!!!"
         r.additional_description = AdditionalDescription.new
-        r.media_assets = gartenstadt_images.map { |img_path|
-          MediaAsset.new(
-              :media_type => MediaAsset::IMAGE,
+        r.images = gartenstadt_images.map { |img_path|
+          MediaAssets::Image.new(
               :is_primary => img_path==gartenstadt_images.first,
               :file => File.open(img_path),
               :title => "IMG #{File.basename(img_path)}"
@@ -304,11 +301,9 @@ module InitialCategories
           r.utilization = RealEstate::UTILIZATION_PRIVATE
           r.offer = RealEstate::OFFER_FOR_RENT
           r.channels = [RealEstate::CHANNELS.first]
-          r.reference = Reference.new(
-              :property_key => "P #{t}", :building_key => "B #{t}", :unit_key => "U #{t}"
-          )
           r.address = Address.new(:canton => 'ag',
-                                  :city => 'Fahrwangen', :street => 'Bahnhofstrasse', :street_number => '18', :zip => '1234'
+                                  :city => 'Fahrwangen', :street => 'Bahnhofstrasse', :street_number => '18', :zip => '1234',
+                                  :reference => Reference.new(:property_key => "P #{t}", :building_key => "B #{t}", :unit_key => "U #{t}")
           )
           r.information = Information.new(:available_from => Date.parse('2012-01-01'))
           r.category = Category.where(:name => 'flat').first

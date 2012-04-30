@@ -1,0 +1,9 @@
+de:
+  mongoid:
+    models:
+      media_assets/image: Bilder
+    attributes:
+      media_assets/image:
+        title: Titel
+        is_primary: Hauptbild
+        file: Datei

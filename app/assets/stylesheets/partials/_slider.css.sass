@@ -147,13 +147,20 @@
       position: relative
       z-index: 9
 
+  .flex-container
+    height: 535px
+
+  .flex-direction-nav li a
+    z-index: 20
+
   .vision-click-area
     width: 70%
-    height: 100%
+    height: 60%
     display: block
     position: absolute
     left: 50%
     margin-left: -35%
+    background: image-url('transparent.png')
 
     &.disabled
       cursor: none
@@ -167,7 +174,7 @@
   .image-caption-text
     width: 50%
     padding: 2em 140px 2em 2em
-    background: rgba(255,255,255,0.3)
+    background: image-url('transparent-white.png')
     height: 100%
 
     a, a:link
@@ -211,11 +218,6 @@
       background: image-url('arrows/arch-tall-down-rollover.png') no-repeat left center
       color: $dark
 
-  .flex-direction-nav
-    z-index: 20
-    position: relative
-    margin-top: -25%
-
 .vision-slider-open
   .vision-slider
     margin-top: 0px
@@ -231,9 +233,11 @@
     +single-transition("margin-top")
 
 .vision-frame
-  position: relative
+  position: absolute
+  top: 0px
+  left: 0px
   z-index: 10
-  float: left
+  //display: none
 
   img
     width: 100%
@@ -242,21 +246,21 @@
 .tab-slider
   margin: 50px 0 50px 0
   width: 1000px
-  
+
   .first-level-navigation, .second-level-navigation
     +horizontal-list
     overflow: hidden
-    
+
     li
       padding: 0
       margin: 0px 5px 0px 0px
-    
+
     a
       display: block
 
   .first-level-navigation
     margin-bottom: -1px
-    
+
     a
       padding: 10px 20px
       background-color: $search-background-color

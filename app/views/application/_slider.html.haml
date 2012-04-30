@@ -3,7 +3,7 @@
     %ul.slides
       - projects.each do |real_estate|
         %li
-          = image_tag real_estate.media_assets.primary_image.file.gallery.url
+          = image_tag real_estate.images.primary.file.gallery.url
           .image-caption
             .image-caption-text
               = real_estate.reference_project_caption

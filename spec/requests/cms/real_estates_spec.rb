@@ -40,6 +40,12 @@ describe "Cms::RealEstates" do
       page.click_link I18n.t('cms.real_estates.index.new')
       current_path.should == new_cms_real_estate_path
     end
+
+    it "has a link to copy the real estate" do
+      within("#real_estate_#{@real_estate.id}") do
+        page.should have_link "Diesen Eintrag kopieren", :href => copy_cms_real_estate_path(@real_estate)
+      end
+    end
   end
 
   describe '#new' do
@@ -67,9 +73,6 @@ describe "Cms::RealEstates" do
           fill_in 'Titel', :with => 'My Real Estate'
           fill_in 'Liegenschaftsname', :with => 'Gartenstadt'
           fill_in 'Beschreibung', :with => 'Some description...'
-          fill_in 'Liegenschaftsreferenz', :with => 'LR12345'
-          fill_in 'Gebäudereferenz', :with => 'GR12345'
-          fill_in 'Objektreferenz', :with => 'OR12345'
           fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel'
         end
       end
@@ -95,9 +98,6 @@ describe "Cms::RealEstates" do
           @real_estate.title.should == 'My Real Estate'
           @real_estate.property_name.should == 'Gartenstadt'
           @real_estate.description.should == 'Some description...'
-          @real_estate.reference.property_key.should == 'LR12345'
-          @real_estate.reference.building_key.should == 'GR12345'
-          @real_estate.reference.unit_key.should == 'OR12345'
           @real_estate.utilization_description.should == 'Gewerbe, Hotel'
         end
 
@@ -135,9 +135,6 @@ describe "Cms::RealEstates" do
           fill_in 'Titel', :with => 'My edited Real Estate'
           fill_in 'Liegenschaftsname', :with => 'Gartenstadt 2012'
           fill_in 'Beschreibung', :with => 'Some edited description...'
-          fill_in 'Liegenschaftsreferenz', :with => 'E_LR12345'
-          fill_in 'Gebäudereferenz', :with => 'E_GR12345'
-          fill_in 'Objektreferenz', :with => 'E_OR12345'
           fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel, Restaurant'
         end
 
@@ -154,9 +151,6 @@ describe "Cms::RealEstates" do
         @real_estate.contact.fullname.should == 'Hanna Henker'
         @real_estate.property_name.should == 'Gartenstadt 2012'
         @real_estate.description.should == 'Some edited description...'
-        @real_estate.reference.property_key.should == 'E_LR12345'
-        @real_estate.reference.building_key.should == 'E_GR12345'
-        @real_estate.reference.unit_key.should == 'E_OR12345'
         @real_estate.utilization_description.should == 'Gewerbe, Hotel, Restaurant'
       end
 

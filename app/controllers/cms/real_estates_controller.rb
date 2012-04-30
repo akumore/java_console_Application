@@ -60,4 +60,8 @@ class Cms::RealEstatesController < Cms::SecuredController
     redirect_to(cms_real_estates_url, :notice => t('cms.real_estates.index.destroyed', :title => @real_estate.title))
   end
 
+  def copy
+    @real_estate = RealEstate.find(params[:id])
+    redirect_to edit_cms_real_estate_path(@real_estate.copy)
+  end
 end

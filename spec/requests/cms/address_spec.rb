@@ -7,13 +7,23 @@ describe "Cms::Addresses" do
 
   describe '#new' do
     before :each do
-      @real_estate = Fabricate(:real_estate, :category => Category.last, :reference => Fabricate.build(:reference) )
+      @real_estate = Fabricate(:real_estate,
+        :category => Category.last,
+        :reference => Fabricate.build(:reference),
+        :channels => [RealEstate::WEBSITE_CHANNEL]
+      )
       visit edit_cms_real_estate_path(@real_estate)
       click_on 'Adresse'
     end
 
     it 'opens the create form' do
       current_path.should == new_cms_real_estate_address_path(@real_estate)
+    end
+
+    it 'doesnt render the reference number fields' do
+      page.should_not have_css('#address_reference_property_key')
+      page.should_not have_css('#address_reference_building_key')
+      page.should_not have_css('#address_reference_unit_key')
     end
 
     context 'a valid Address' do
@@ -55,10 +65,10 @@ describe "Cms::Addresses" do
 
   describe '#edit' do
     before :each do
-      @real_estate = Fabricate(:real_estate, 
+      @real_estate = Fabricate(:real_estate,
         :reference => Reference.new,
         :category => Fabricate(:category),
-        :reference => Reference.new, 
+        :reference => Reference.new,
         :address => Fabricate.build(:address))
 
       visit edit_cms_real_estate_path(@real_estate)
@@ -92,6 +102,40 @@ describe "Cms::Addresses" do
         @address.zip.should == '8135'
         @address.canton.should == 'sh'
         @address.link_url.should == 'http://www.google.com'
+      end
+    end
+  end
+
+  context 'when the real estate is to be published to homegate' do
+    before do
+      @real_estate = Fabricate(:real_estate,
+        :category => Fabricate(:category),
+        :address => Fabricate.build(:address,
+          :reference => Fabricate.build(:reference)
+        ),
+        :reference => Fabricate.build(:reference),
+        :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::HOMEGATE_CHANNEL]
+      )
+      visit edit_cms_real_estate_path(@real_estate)
+      click_on 'Adresse'
+    end
+
+    it 'shows the reference fields' do
+      page.should have_css('#address_reference_property_key', :count => 1)
+      page.should have_css('#address_reference_building_key', :count => 1)
+      page.should have_css('#address_reference_unit_key', :count => 1)
+    end
+
+    describe '#update with invalid reference numbers' do
+      before :each do
+        fill_in 'Liegenschaftsreferenz', :with => ''
+        fill_in 'Gebäudereferenz', :with => ''
+        fill_in 'Objektreferenz', :with => ''
+        click_on 'Adresse speichern'
+      end
+
+      it 'requires at least one reference number' do
+        page.should have_content 'Referenznummer muss ausgefüllt werden'
       end
     end
   end

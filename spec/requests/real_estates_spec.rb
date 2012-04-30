@@ -62,14 +62,14 @@ describe "RealEstates" do
 
     describe "Shown information about a search results" do
       let :primary_image do
-        Fabricate.build(:media_asset_image, :is_primary=>true)
+        Fabricate.build(:media_assets_image, :is_primary=>true)
       end
 
       before { MediaAssetUploader.enable_processing = true }
       after { MediaAssetUploader.enable_processing = false }
 
       it "shows the thumbnail of the primary image" do
-        real_estate.media_assets << primary_image
+        real_estate.images << primary_image
         visit real_estates_path
         page.should have_css(%(img[src="#{primary_image.file.thumb.url}"]))
       end
@@ -143,7 +143,7 @@ describe "RealEstates" do
               :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
               :category => Fabricate(:category),
               :address => Fabricate.build(:address),
-              :media_assets => [Fabricate.build(:media_asset_image, :is_primary => :true)]
+              :media_assets => [Fabricate.build(:media_assets_image, :is_primary => :true)]
             )
           end
           visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT)
@@ -166,7 +166,7 @@ describe "RealEstates" do
               :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
               :category => Fabricate(:category),
               :address => Fabricate.build(:address),
-              :media_assets => [Fabricate.build(:media_asset_image, :is_primary => :true)]
+              :media_assets => [Fabricate.build(:media_assets_image, :is_primary => :true)]
             )
           end
           visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
@@ -306,5 +306,176 @@ describe "RealEstates" do
       page.should_not have_css("tr[id=real-estate-#{@goldau.id}]")
       page.should_not have_css("tr[id=real-estate-#{@adliswil.id}]")
     end
+  end
+
+
+  describe "Visiting unpublished real estate" do
+
+    it "redirects to real estate index page" do
+      visit real_estate_path(unpublished_real_estate)
+      current_path.should == real_estates_path
+    end
+
+  end
+
+  context "Visiting web channel disabled real estate" do
+
+    it 'redirects to real estate index page' do
+      real_estate.update_attribute :channels, []
+      visit real_estate_path(real_estate)
+      current_path.should == real_estates_path
+    end
+
+  end
+
+  describe 'Visit real estate show path' do
+    before :each do
+      visit real_estate_path(real_estate)
+    end
+
+    it 'shows the title' do
+      page.should have_content(real_estate.title)
+    end
+
+    it 'shows the description' do
+      page.should have_content(real_estate.description)
+    end
+
+    it 'has a description for the search engine' do
+      pending
+      #page.should have_css("meta[content='#{real_estate.seo_description}']")
+    end
+
+    it 'has a link to the search results' do
+      page.should have_link('Übersicht')
+    end
+
+    it "shows the address" do
+      address = real_estate.address
+      page.should have_content real_estate.category.label
+      page.should have_content "#{address.city} #{address.canton.upcase}"
+      page.should have_content "#{address.street} #{address.street_number}"
+    end
+
+    it "shows the number of rooms" do
+      page.should have_content "#{real_estate.figure.rooms} Zimmer"
+    end
+
+    it "shows the floor" do
+      page.should have_content "#{real_estate.figure.floor}. Stockwerk"
+    end
+
+    it "shows the size of the living area" do
+      page.should have_content real_estate.figure.living_surface
+    end
+
+    context 'when the real estate has a handout' do
+      before :each do
+        real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
+        real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
+        visit real_estate_path(real_estate)
+      end
+
+      it "shows the localized price for rent" do
+        page.should have_content number_to_currency(real_estate.pricing.for_rent_netto, :locale=>'de-CH')
+      end
+
+      it 'has a link to the mini doku' do
+        page.should have_link('Objektbeschrieb')
+      end
+    end
+
+    context 'when the real estate is for sale' do
+      before :each do
+        real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
+        visit real_estate_path(real_estate)
+      end
+
+      it "shows the localized price for sale" do
+        page.should have_content number_to_currency(real_estate.pricing.for_sale, :locale=>'de-CH')
+      end
+
+      it 'has no link to the mini doku' do
+        page.should_not have_link('Objektbeschrieb')
+      end
+    end
+
+    it 'has a link to the next search result' do
+      page.should have_link('Nächstes Projekt')
+    end
+
+    it 'displays the full name of the responsible person' do
+      within(".accordion-item .image-caption-text") do
+        page.should have_content(real_estate.contact.fullname)
+        page.should have_content(real_estate.contact.phone)
+        page.should have_content(real_estate.contact.fax)
+        page.should have_content(real_estate.contact.mobile)
+        page.should have_link('E-Mail')
+
+      end
+    end
+
+    it "has a map of the real estate location" do
+      page.should have_css(".map", :count => 1)
+    end
+
+    it "has the json representation of the location" do
+      find(".map[data-real_estate]")['data-real_estate'].should == real_estate.to_json(:only => :_id, :methods => :coordinates)
+    end
+
+    context 'having a floorplan', :fp => true do
+      before :each do
+        @real_estate_with_floorplan = real_estate
+        @real_estate_with_floorplan.floor_plans << Fabricate.build(:media_assets_floor_plan)
+        visit real_estate_path(@real_estate_with_floorplan)
+      end
+
+      it 'shows the floorplan link' do
+        page.should have_link('Grundriss anzeigen')
+      end
+
+      it 'shows the floorplan slide with a zoom button' do
+        page.should have_css('.flexslider .slides li .zoom-floorplan')
+      end
+
+      it 'zooms the floorplan in an overlay', :js => true do
+        find('.flexslider .slides li .zoom-floorplan').click
+        page.should have_css(".fancybox-opened img[src='#{@real_estate_with_floorplan.floor_plans.first.file.url}']")
+      end
+    end
+
+    context 'not having a floorplan', :fp => true do
+      it 'does not show the floorplan link' do
+        page.should_not have_link('Grundriss anzeigen')
+      end
+    end
+
+    context 'Making an appointment', :appointment => true do
+      it 'integrates appointment slide into slide show' do
+        visit real_estate_path(real_estate)
+        page.should have_css ".appointment"
+      end
+
+      it "renders no appointment slide if contact isn't assigned to real estate" do
+        real_estate.contact.destroy
+        visit real_estate_path(real_estate)
+        page.should_not have_css ".appointment"
+      end
+
+      it "sends an appointment mail upon submitting the form" do
+        visit real_estate_path(real_estate)
+        within(".appointment") do
+          fill_in 'appointment_firstname', :with => 'Hans'
+          fill_in 'appointment_lastname', :with => 'Muster'
+          fill_in 'appointment_email', :with => 'hans.muster@test.ch'
+          fill_in 'appointment_phone', :with => '123 456 66 44'
+        end
+
+        lambda {
+          click_on 'Kontaktieren Sie mich'
+        }.should change(ActionMailer::Base.deliveries, :size).by(1)
+      end
+    end
+
   end
 end

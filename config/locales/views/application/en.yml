@@ -1,0 +1,11 @@
+en:
+  application:
+    vision_slider:
+      open: 'open'
+      close: 'close'
+      vision:
+        real_estate_title_kids: 'We create top quality living and office space in which people can feel completely comfortable and at home.'
+        real_estate_title_couple: 'Living space that makes everything else seem secondary.'
+        real_estate_link_title: 'Offer'
+        jobs_title: 'Above all it’s people we value.'
+        jobs_link_title: 'Careers'

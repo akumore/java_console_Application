@@ -309,17 +309,17 @@ module Export::Homegate
 
     def ref_property
       #  str(80) at least one of the refs must be non blank (the word null as a value in ref_object cannot be used)
-      model.try(:reference).try(:property_key).presence
+      model.try(:address).try(:reference).try(:property_key).presence
     end
 
     def ref_house
       # str(80) the word null as a value in ref_house cannot be used
-      model.try(:reference).try(:building_key).presence
+      model.try(:address).try(:reference).try(:building_key).presence
     end
 
     def ref_object
       #  str(80) the word null as a value in ref_object cannot be used
-      model.try(:reference).try(:unit_key).presence
+      model.try(:address).try(:reference).try(:unit_key).presence
     end
 
     def object_street
@@ -549,7 +549,7 @@ module Export::Homegate
 
     def movie_title
       # str(200)  title of movie
-      model.media_assets.videos.try(:first).try(:title).presence
+      model.videos.try(:first).try(:title).presence
     end
 
     def movie_description
@@ -563,7 +563,7 @@ module Export::Homegate
 
     def document_title
       #  str(200)  title of document
-      model.media_assets.docs.try(:first).try(:title).presence
+      model.documents.try(:first).try(:title).presence
     end
 
     def document_description
@@ -733,67 +733,67 @@ module Export::Homegate
 
     def picture_1_title
       # str(200)  title of picture
-      model.media_assets.images.to_a[0].title rescue nil
+      model.images.to_a[0].title rescue nil
     end
 
     def picture_2_title
       # str(200)  title of picture
-      model.media_assets.images.to_a[1].title rescue nil
+      model.images.to_a[1].title rescue nil
     end
 
     def picture_3_title
       # str(200)  title of picture
-      model.media_assets.images.to_a[2].title rescue nil
+      model.images.to_a[2].title rescue nil
     end
 
     def picture_4_title
       # str(200)  title of picture
-      model.media_assets.images.to_a[3].title rescue nil
+      model.images.to_a[3].title rescue nil
     end
 
     def picture_5_title
       # str(200)  title of picture
-      model.media_assets.images.to_a[4].title rescue nil
+      model.images.to_a[4].title rescue nil
     end
 
     def picture_6_title
       # str(200)  title of picture
-      model.media_assets.images.to_a[5].title rescue nil
+      model.images.to_a[5].title rescue nil
     end
 
     def picture_7_title
       # str(200)  title of picture
-      model.media_assets.images.to_a[6].title rescue nil
+      model.images.to_a[6].title rescue nil
     end
 
     def picture_8_title
       # str(200)  title of picture
-      model.media_assets.images.to_a[7].title rescue nil
+      model.images.to_a[7].title rescue nil
     end
 
     def picture_9_title
       # str(200)  title of picture
-      model.media_assets.images.to_a[8].title rescue nil
+      model.images.to_a[8].title rescue nil
     end
 
     def picture_10_title
       #  str(200)  title of picture
-      model.media_assets.images.to_a[9].title rescue nil
+      model.images.to_a[9].title rescue nil
     end
 
     def picture_11_title
       #  str(200)  title of picture
-      model.media_assets.images.to_a[10].title rescue nil
+      model.images.to_a[10].title rescue nil
     end
 
     def picture_12_title
       #  str(200)  title of picture
-      model.media_assets.images.to_a[11].title rescue nil
+      model.images.to_a[11].title rescue nil
     end
 
     def picture_13_title
       #  str(200)  title of picture
-      model.media_assets.images.to_a[12].title rescue nil
+      model.images.to_a[12].title rescue nil
     end
 
     def picture_1_description
