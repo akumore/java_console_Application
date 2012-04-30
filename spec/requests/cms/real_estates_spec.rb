@@ -158,6 +158,11 @@ describe "Cms::RealEstates" do
         visit edit_cms_real_estate_path(@fabricated_real_estate)
         find(:css, '#real_estate_category_id option[selected]').text.should == 'Child Category 2'
       end
+
+      it 'has the contact Hanna Henker selected' do
+        visit edit_cms_real_estate_path(@fabricated_real_estate)
+        find(:css, '#real_estate_contact_id option[selected]').text.should == 'Henker, Hanna'
+      end
     end
   end
 

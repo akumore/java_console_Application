@@ -7,6 +7,7 @@ de:
         category_id: 'Kategorie'
         reference: 'Referenz'
         contact: 'Kontaktperson'
+        contact_id: 'Kontaktperson'
         utilization: 'Gebäudenutzung'
         offer: 'Angebotstyp'
         channels: 'Ausgabekanäle'
