@@ -18,7 +18,7 @@ describe InfrastructureDecorator do
 
   describe '#distances' do
     it 'formats points of interest' do
-      @infrastructure.distances.should == ['Einkaufen 200m', 'Öffentlicher Verkehr 100m']
+      @infrastructure.distances.should == ['Einkaufen 200 m', 'Öffentlicher Verkehr 100 m']
     end
   end
 end

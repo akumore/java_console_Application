@@ -22,6 +22,7 @@ de:
         sell: '%{price} / Verkaufspreis'
         sell_m2: '%{price} / Verkaufspreis/m²'
     title: 'Preise'
+    for_sale: 'Verkaufspreis'
     for_rent_netto: 'Miete (ohne Nebenkosten)'
     for_rent_extra: 'Nebenkosten'
     for_rent_depot: 'Mietzinsdepot'
