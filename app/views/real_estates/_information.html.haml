@@ -16,10 +16,10 @@
         %dt= t('figures.rooms')
         %dd= figure.rooms
 
-    - if figure.surface.present?
-      %dl
-        %dt= t('figures.surface')
-        %dd= figure.surface
+      - if figure.surface.present?
+        %dl
+          %dt= t('figures.surface')
+          %dd= figure.surface
 
     - if real_estate.commercial_utilization? && figure.present?
 
@@ -33,10 +33,10 @@
           %dt= t('figures.ceiling_height')
           %dd= figure.ceiling_height
 
-    - if figure.storage_surface.present?
-      %dl
-        %dt= t('figures.storage_surface')
-        %dd= figure.storage_surface
+      - if figure.storage_surface.present?
+        %dl
+          %dt= t('figures.storage_surface')
+          %dd= figure.storage_surface
 
     - if figure.floors.present?
       %dl
