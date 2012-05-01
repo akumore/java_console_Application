@@ -22,7 +22,7 @@ class MigrateMediaAssetsIntoDedicatedAssets < Mongoid::Migration
 
       videos.each do |video|
         with_rescue_from_file_not_found do
-          real_estate.images << MediaAssets::Video.new(:title => video.title, :file => get_file_handle(video))
+          real_estate.videos << MediaAssets::Video.new(:title => video.title, :file => get_file_handle(video))
         end
       end
 
