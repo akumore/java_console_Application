@@ -47,7 +47,7 @@
       - if @real_estate.infrastructure.present?
         = render 'infrastructure', :real_estate => @real_estate, :infrastructure => @real_estate.infrastructure
 
-      - if contact.present?
+      - if @real_estate.contact.present?
         = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
 
   .sidebar
