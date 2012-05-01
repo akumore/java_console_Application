@@ -44,9 +44,11 @@
 
       = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
 
-      = render 'infrastructure', :real_estate => @real_estate, :infrastructure => @real_estate.infrastructure
+      - if @real_estate.infrastructure.present?
+        = render 'infrastructure', :real_estate => @real_estate, :infrastructure => @real_estate.infrastructure
 
-      = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
+      - if contact.present?
+        = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
 
   .sidebar
     %ul
