@@ -28,23 +28,29 @@ class PricingDecorator < ApplicationDecorator
   end
 
   def for_rent_netto
-    if model.estimate.present?
-      model.estimate
-    elsif model.for_rent_netto.present?
-      formatted(model.for_rent_netto)
+    if model.for_rent?
+      if model.estimate.present?
+        model.estimate
+      elsif model.for_rent_netto.present?
+        formatted(model.for_rent_netto)
+      end
     end
   end
 
   def for_sale
-    if model.estimate.present?
-      model.estimate
-    elsif model.for_sale.present?
-      formatted(model.for_sale)
+    if model.for_sale?
+      if model.estimate.present?
+        model.estimate
+      elsif model.for_sale.present?
+        formatted(model.for_sale)
+      end
     end
   end
 
   def for_rent_extra
-    formatted(model.for_rent_extra) if model.for_rent_extra.present?
+    if model.for_rent_extra.present? && model.for_rent?
+      formatted(model.for_rent_extra)
+    end
   end
 
   def inside_parking
@@ -64,7 +70,9 @@ class PricingDecorator < ApplicationDecorator
   end
 
   def for_rent_depot
-    formatted_price(model.for_rent_depot) if model.for_rent_depot.present?
+    if model.for_rent? && model.for_rent_depot.present?
+      formatted_price(model.for_rent_depot)
+    end
   end
 
   private

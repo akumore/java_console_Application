@@ -133,8 +133,8 @@ describe PricingDecorator do
         @pricing.estimate.should == 'CHF 15000 - 13000'
       end
 
-      it 'overrides the for rent price' do
-        @pricing.for_rent_netto.should == @pricing.estimate
+      it 'overrides the for sale price' do
+        @pricing.for_sale.should == @pricing.estimate
       end
     end
   end
