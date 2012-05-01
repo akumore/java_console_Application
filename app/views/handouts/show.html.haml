@@ -4,6 +4,7 @@
   .frame-overlay
     = image_tag('vision/frame.png')
   .primary-title
+    \...
     = @real_estate.title
     %span
       = t(".#{RealEstate::OFFER_FOR_RENT}_#{@real_estate.utilization}")
