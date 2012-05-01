@@ -1,13 +1,12 @@
 .accordion-item
   .title= t('information.title')
   .content
-    - if information.available_from.present?
+    - if information && information.available_from.present?
       %dl
         %dt= t('information.available_from')
         %dd= information.available_from
 
-    - if real_estate.private_utilization? && figure.present?
-
+    - if figure && real_estate.private_utilization?
       - if figure.floor.present?
         %dt= t('figures.floor')
         %dd= figure.floor
@@ -21,8 +20,7 @@
           %dt= t('figures.surface')
           %dd= figure.surface
 
-    - if real_estate.commercial_utilization? && figure.present?
-
+    - if figure && real_estate.commercial_utilization?
       - if figure.property_surface.present?
         %dl
           %dt= t('figures.property_surface')
@@ -38,44 +36,44 @@
           %dt= t('figures.storage_surface')
           %dd= figure.storage_surface
 
-    - if figure.floors.present?
+    - if figure && figure.floors.present?
       %dl
         %dt= t('figures.floors')
         %dd= figure.floors
 
-    - if figure.renovated_on.present?
+    - if figure && figure.renovated_on.present?
       %dl
         %dt= t('figures.renovated_on')
         %dd= figure.renovated_on
 
-    - if figure.built_on.present?
+    - if figure && figure.built_on.present?
       %dl
         %dt= t('figures.built_on')
         %dd= figure.built_on
 
-    - if information.characteristics.any?
+    - if information && information.characteristics.any?
       %dl
         %dt= t('information.characteristics')
         %dd= information.characteristics.join(', ')
 
-    - if real_estate.for_rent?
+    - if information && real_estate.for_rent?
 
-      - if information.minimum_rental_period.present?
+      - if information && information.minimum_rental_period.present?
         %dl
           %dt= t('information.minimum_rental_period')
           %dd= information.minimum_rental_period
 
-      - if information.notice_dates.present?
+      - if information && information.notice_dates.present?
         %dl
           %dt= t('information.notice_dates')
           %dd= information.notice_dates
 
-      - if information.notice_period.present?
+      - if information && information.notice_period.present?
         %dl
           %dt= t('information.notice_period')
           %dd= information.notice_period
 
-    - if real_estate.commercial_utilization?
+    - if information && real_estate.commercial_utilization?
 
       - if information.maximal_floor_loading.present?
         %dl
