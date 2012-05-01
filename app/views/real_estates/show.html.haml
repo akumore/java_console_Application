@@ -39,6 +39,7 @@
     .accordion.accordion-classical{ 'data-open_first' => 1 }
       = render 'descriptions', :real_estate => @real_estate, :additional_description => @real_estate.additional_description
 
+    - if information.present? || figure.present?
       = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
 
       = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
