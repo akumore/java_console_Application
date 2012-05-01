@@ -1,15 +1,17 @@
 .chapter.pricing
   %h2= t('pricings.title')
 
-  %dl
-    %dt= t('pricings.for_rent_netto')
-    %dd
-      = pricing.for_rent_netto
+  - if pricing.for_rent_netto.present?
+    %dl
+      %dt= t('pricings.for_rent_netto')
+      %dd
+        = pricing.for_rent_netto
 
-  %dl
-    %dt= t('pricings.for_rent_extra')
-    %dd
-      = pricing.for_rent_extra
+  - if pricing.for_rent_extra.present?
+    %dl
+      %dt= t('pricings.for_rent_extra')
+      %dd
+        = pricing.for_rent_extra
 
   - if pricing.for_rent_depot.present?
     %dl
