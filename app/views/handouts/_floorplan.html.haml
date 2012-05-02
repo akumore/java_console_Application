@@ -8,5 +8,6 @@
           .compass
             = image_tag('compass.png')
           .compass-pin{ :style => "-webkit-transform:rotate(#{orientation_degrees}deg);" }
-            = image_tag('compass-pin.png')
+            .pbi-avoid
+              = image_tag('compass-pin.png')
       = image_tag(@real_estate.floor_plans.first.file.minidoku.url)
