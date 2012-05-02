@@ -22,7 +22,8 @@ class RealEstate
   WEBSITE_CHANNEL = 'website'
   HOMEGATE_CHANNEL = 'homegate'
   PRINT_CHANNEL = 'print'
-  CHANNELS = %W(#{WEBSITE_CHANNEL} #{HOMEGATE_CHANNEL} #{PRINT_CHANNEL} #{REFERENCE_PROJECT_CHANNEL})
+  MICROSITE_CHANNEL = 'microsite'
+  CHANNELS = %W(#{WEBSITE_CHANNEL} #{HOMEGATE_CHANNEL} #{PRINT_CHANNEL} #{REFERENCE_PROJECT_CHANNEL} #{MICROSITE_CHANNEL})
 
   belongs_to :category
   belongs_to :contact, :class_name => 'Employee'

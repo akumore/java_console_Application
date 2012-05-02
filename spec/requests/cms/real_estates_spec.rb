@@ -125,12 +125,20 @@ describe "Cms::RealEstates" do
           real_estate.channels.should include RealEstate::PRINT_CHANNEL
         end
 
+        it 'enables it for micro-sites' do
+          check 'Micro-Site'
+          click_on 'Immobilie erstellen'
+          real_estate.channels.should include RealEstate::MICROSITE_CHANNEL
+        end
+
         it 'enables it for multiple channels' do
           check 'Website'
           check 'Homegate'
           check 'Referenzprojekt'
           click_on 'Immobilie erstellen'
-          real_estate.channels.should == [RealEstate::WEBSITE_CHANNEL, RealEstate::HOMEGATE_CHANNEL, RealEstate::REFERENCE_PROJECT_CHANNEL]
+          [RealEstate::HOMEGATE_CHANNEL, RealEstate::REFERENCE_PROJECT_CHANNEL, RealEstate::WEBSITE_CHANNEL].each do |channel|
+            real_estate.channels.should include channel
+          end
         end
 
         it 'assigns the contact person aka employee' do
