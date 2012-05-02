@@ -90,6 +90,7 @@ class RealEstate
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
   scope :print_channel, :where => { :channels => PRINT_CHANNEL }
   scope :reference_projects, :where => { :channels => REFERENCE_PROJECT_CHANNEL }
+  scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
 
 
   class << self
