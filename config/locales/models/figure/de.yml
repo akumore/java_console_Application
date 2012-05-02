@@ -14,6 +14,6 @@ de:
         usable_surface: 'Nutzfläche in m²'
         storage_surface: 'Lagerfläche in m²'
         ceiling_height: 'Raumhöhe in Meter'
-        floors: 'Anzahl Stockwerke'
+        floors: 'Anzahl Geschosse'
         renovated_on: 'Renovationsjahr'
         built_on: 'Baujahr'

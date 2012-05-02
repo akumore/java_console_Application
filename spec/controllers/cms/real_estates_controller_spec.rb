@@ -42,7 +42,8 @@ describe 'Real Estate Wizard' do
           :category => Fabricate(:category),
           :address => Fabricate.build(:address),
           :pricing => Fabricate.build(:pricing),
-          :information => Fabricate.build(:information)
+          :information => Fabricate.build(:information),
+          :figure => Fabricate.build(:figure)
         @access_denied = "Sie haben keine Berechtigungen für diese Aktion"
       end
 
@@ -93,9 +94,10 @@ describe 'Real Estate Wizard' do
         flash[:alert].should == @access_denied
       end
 
-      it "doesn't prevents editors from accessing #update because of changing state requests" do
+      it "doesn't prevent editors from accessing #update because of changing state requests" do
         real_estate = Fabricate :published_real_estate, :category => Fabricate(:category), :address => Fabricate.build(:address),
-                                :pricing => Fabricate.build(:pricing), :information => Fabricate.build(:information)
+                                :pricing => Fabricate.build(:pricing), :information => Fabricate.build(:information),
+                                :figure => Fabricate.build(:figure)
 
         put :update, :id => real_estate.id
         response.should redirect_to [:cms, real_estate]

@@ -78,6 +78,7 @@ describe "Cms::MediaAssets" do
         @real_estate.address = Fabricate.build :address
         @real_estate.pricing = Fabricate.build :pricing
         @real_estate.information = Fabricate.build :information
+        @real_estate.figure = Fabricate.build :figure
         @real_estate.publish_it!
       end
 
