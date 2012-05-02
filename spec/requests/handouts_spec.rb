@@ -52,49 +52,66 @@ describe "Handout aka MiniDoku" do
   end
 
   describe 'Title page' do
-    before do
-      visit real_estate_handout_path(printable_real_estate)
-    end
-
     it 'shows the real estate title' do
+      visit real_estate_handout_path(printable_real_estate)
       page.should have_content('Demo Objekt')
     end
 
     it 'shows the utilization of the real estate' do
+      visit real_estate_handout_path(printable_real_estate)
       page.should have_content('Miete | Wohnen')
     end
 
     it 'shows the chapter title' do
+      visit real_estate_handout_path(printable_real_estate)
       page.should have_content('Objektübersicht')
     end
 
     it 'shows the property name' do
+      visit real_estate_handout_path(printable_real_estate)
       page.should have_content('Gartenstadt')
     end
 
     it 'shows the address' do
+      visit real_estate_handout_path(printable_real_estate)
       page.should have_content('Musterstrasse 1, 8400 Hausen')
     end
 
     it 'shows the floor' do
+      visit real_estate_handout_path(printable_real_estate)
       page.should have_content('Geschoss')
       page.should have_content('3. Obergeschoss')
     end
 
     it 'shows the number of rooms' do
+      visit real_estate_handout_path(printable_real_estate)
       page.should have_content('Zimmeranzahl')
       page.should have_content('3.5 Zimmer')
     end
 
-    it 'shows the usable surface' do
-      page.should have_content('120 m²')
+
+    describe "Usable surface" do
+      it "shows the living surface if utilization is 'private'" do
+        visit real_estate_handout_path(printable_real_estate)
+        page.should have_content('Wohnfläche 120 m²')
+      end
+
+      it "shows the usable surface if utilization is 'commercial'" do
+        printable_real_estate.figure = Fabricate.build(:figure, :usable_surface => 400)
+        printable_real_estate.update_attribute(:utilization, RealEstate::UTILIZATION_COMMERICAL)
+
+        visit real_estate_handout_path(printable_real_estate)
+        page.should have_content('Nutzfläche 400 m²')
+      end
     end
 
     it 'shows the helptext for the usable surface' do
+      visit real_estate_handout_path(printable_real_estate)
       page.should have_content I18n.t('handouts.overview.usable_surface_helptext')
     end
 
     it 'shows the description' do
+      visit real_estate_handout_path(printable_real_estate)
       page.should have_content('Lorem Ipsum')
     end
   end
@@ -373,7 +390,8 @@ describe "Handout aka MiniDoku" do
 
     before do
       @contact_person = Fabricate :employee
-      @real_estate = Fabricate :residential_building, :contact=>@contact_person, :pricing=>Fabricate.build(:pricing_for_rent)
+      @real_estate = Fabricate :residential_building, :contact => @contact_person, :pricing => Fabricate.build(:pricing_for_rent),
+                               :address => Fabricate.build(:address, :link_url => 'www.gartenstadt.ch')
     end
 
     it "is not available, if contact person is't assigned to real estate" do
@@ -383,10 +401,10 @@ describe "Handout aka MiniDoku" do
       page.should_not have_css ".chapter.contact"
     end
 
-    it "shows the employees department name" do
+    it "shows the handouts-version of department name" do
       visit real_estate_handout_path(@real_estate)
       within ".chapter.contact" do
-        page.should have_content "Vermarktung"
+        page.should have_content "Beratung und Vermietung"
       end
     end
 
@@ -430,6 +448,13 @@ describe "Handout aka MiniDoku" do
       visit real_estate_handout_path(@real_estate)
       within ".chapter.contact" do
         page.should have_content 'www.alfred-mueller.ch'
+      end
+    end
+
+    it 'shows the link from the address record if present' do
+      visit real_estate_handout_path(@real_estate)
+      within ".chapter.contact" do
+        page.should have_content 'www.gartenstadt.ch'
       end
     end
   end

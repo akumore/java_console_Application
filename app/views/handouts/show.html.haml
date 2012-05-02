@@ -4,6 +4,7 @@
   .frame-overlay
     = image_tag('vision/frame.png')
   .primary-title
+    \...
     = @real_estate.title
     %span
       = t(".#{RealEstate::OFFER_FOR_RENT}_#{@real_estate.utilization}")
@@ -25,4 +26,4 @@
   = render 'images', :images => handout_images
 
 - if @real_estate.contact.present?
-  = render 'contact', :contact => @real_estate.contact
+  = render 'contact', :contact => @real_estate.contact, :direct_link => @real_estate.address.link_url

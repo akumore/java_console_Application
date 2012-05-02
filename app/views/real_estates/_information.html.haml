@@ -17,7 +17,7 @@
 
       - if figure.surface.present?
         %dl
-          %dt= t('figures.surface')
+          %dt= figure.surface_label
           %dd= figure.surface
 
     - if figure && real_estate.commercial_utilization?

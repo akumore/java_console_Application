@@ -3,6 +3,14 @@ class FigureDecorator < ApplicationDecorator
 
   decorates :figure
 
+  def surface_label
+    if model.commercial_utilization?
+      t "figures.surface.commercial"
+    else
+      t "figures.surface.private"
+    end
+  end
+
   def surface
     value = if model.commercial_utilization?
       usable_surface

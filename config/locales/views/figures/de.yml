@@ -3,7 +3,9 @@ de:
     floor: 'Geschoss'
     floors: 'Geschosse'
     rooms: 'Zimmeranzahl'
-    surface: 'Bruttonutzfläche'
+    surface:
+      commercial: Nutzfläche
+      private:  Wohnfläche
     property_surface: 'Grundstückfläche'
     storage_surface: 'Lagerfläche'
     ceiling_height: 'Raumhöhe'
