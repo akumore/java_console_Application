@@ -1,3 +1,5 @@
+require 'export/export'
+
 desc 'Run all exports (so far: homegate)'
 task :export => :environment do
   dispatcher = Export::Dispatcher.new
