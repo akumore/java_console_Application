@@ -43,7 +43,7 @@ describe "Cms::Figures" do
             fill_in 'Wohnfläche', :with => '124.6'
             fill_in 'Wohnfläche ungefähr', :with => '124.6 - 130.4m2'
             fill_in 'Grundstückfläche', :with => '400.5'
-            fill_in 'Anzahl Stockwerke', :with => 3
+            fill_in 'Anzahl Geschosse', :with => 3
             fill_in 'Renovationsjahr', :with => 1997
             fill_in 'Baujahr', :with => 1956
           end
@@ -120,7 +120,7 @@ describe "Cms::Figures" do
             fill_in 'Nutzfläche', :with => '200.6'
             fill_in 'Lagerfläche', :with => '150'
             fill_in 'Raumhöhe', :with => '2.6'
-            fill_in 'Anzahl Stockwerke', :with => 3
+            fill_in 'Anzahl Geschosse', :with => 3
             fill_in 'Renovationsjahr', :with => 1997
             fill_in 'Baujahr', :with => 1956
           end
@@ -161,22 +161,12 @@ describe "Cms::Figures" do
        Fabricate :real_estate, :category => Fabricate(:category), :figure => Fabricate.build(:figure)
      end
 
-     let :real_estate_without_figure do
-       Fabricate :real_estate, :category => Fabricate(:category)
-     end
-
      it 'shows the figure within the cms' do
        visit cms_real_estate_figure_path real_estate
        [:floor,:rooms,:living_surface].each do |attr|
          page.should have_content real_estate.figure.send(attr)
        end
      end
-
-     it 'shows a message if no figure exist' do
-       visit cms_real_estate_figure_path real_estate_without_figure
-       page.should have_content "Für diese Immobilie wurden keine Zahlen und Fakten hinterlegt."
-     end
-
   end
 
 end
