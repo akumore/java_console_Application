@@ -22,11 +22,10 @@ module Export
         end
       end
 
-
       private
+
       def filtered(content)
-        filtered = content.map {|val| val.respond_to?(:force_encoding) ? val.force_encoding(options[:encoding]) : val}
-        filtered.map {|val| val.respond_to?(:gsub) ? val.gsub(@options[:col_sep], "") : val }
+        content.map {|val| val.respond_to?(:gsub) ? val.gsub(@options[:col_sep], "") : val }
       end
 
     end
