@@ -18,10 +18,34 @@ class Figure
   field :renovated_on, :type => Integer # Renovationsjahr
   field :built_on, :type => Integer # Baujahr
 
-  validates :floor, :rooms, :living_surface, :property_surface, :usable_surface,
-            :ceiling_height, :floors, :renovated_on, :built_on, :numericality => true, :allow_blank => true
+  # fields which must be numeric
+  validates :property_surface, :floors, :renovated_on, :built_on,
+            :numericality => true,
+            :allow_blank => true
 
-  validates :storage_surface, :numericality => true, :if => :commercial_utilization?, :allow_blank => true
+  # fields which must be numeric, but only if private
+  validates :living_surface,
+            :numericality => true,
+            :allow_blank => true,
+            :if => :private_utilization?
+
+  # fields which must be numeric, but only if commercial
+  validates :ceiling_height, :storage_surface,
+            :numericality => true,
+            :allow_blank => true,
+            :if => :commercial_utilization?
+
+  # fields which must be present and numeric, but only if private
+  validates :rooms,
+            :presence => true,
+            :numericality => true,
+            :if => :private_utilization?
+
+  # fields which must be present and numeric, but only if commercial
+  validates :floor, :usable_surface,
+            :presence => true,
+            :numericality => true,
+            :if => :commercial_utilization?
 
   delegate :commercial_utilization?, :private_utilization?, :to => :_parent
 end
