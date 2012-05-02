@@ -83,13 +83,14 @@ class RealEstate
   delegate :row_house?, :to => :category, :allow_nil => true
   delegate :coordinates, :to => :address, :allow_nil => true
 
-  scope :reference_projects, :where => { :channels => REFERENCE_PROJECT_CHANNEL }
   scope :published, :where => { :state => STATE_PUBLISHED }
   scope :in_review, :where => { :state => STATE_IN_REVIEW }
   scope :editing, :where => { :state => STATE_EDITING }
+  scope :recently_updated, lambda { where( :updated_at.gte => 12.hours.ago ) }
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
   scope :print_channel, :where => { :channels => PRINT_CHANNEL }
-  scope :recently_updated, lambda { where( :updated_at.gte => 12.hours.ago ) }
+  scope :reference_projects, :where => { :channels => REFERENCE_PROJECT_CHANNEL }
+
 
   class << self
     extend ActiveSupport::Memoizable
