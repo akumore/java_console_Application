@@ -1,7 +1,7 @@
 module Export
   module Homegate
     class RealEstatePackage
-      
+
       attr_accessor :packager
 
       def initialize(real_estate, packager)
@@ -72,7 +72,7 @@ module Export
 
       private
       def writer
-        @writer ||= CsvWriter.new(File.join(@packager.path, 'data', 'unload.txt'), 'ab')
+        @writer ||= Homegate::CsvWriter.new(File.join(@packager.path, 'data', 'unload.txt'), 'ab')
       end
 
     end
