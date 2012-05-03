@@ -1,6 +1,30 @@
 fr:
+  cms:
+    bricks:
+      placeholder_form: &placeholder_form
+        jobs_openings: 'Jobs: Offene Stellen'
+        jobs_apply_with_success: 'Jobs: Erfolgreich bewerben'
+        contact_form: 'Kontakt: Kontaktformular'
+        company_header: 'Unternehmen: Galerien'
+      placeholder_show:
+        <<: *placeholder_form
   bricks:
     placeholder:
+      jobs_openings:
+        download_pdf: 'Stellenprofil herunterladen'
+        recommend_job: 'Stelle weiterempfehlen'
+        recommend_job_title: 'Interessante Stellenanzeige bei Alfred Müller'
+        apply_for_job: 'Online bewerben'
+      jobs_apply_with_success:
+        apply: 'Postuler en direct'
+        title: 'Heidi Rohner'
+        person_html: 'Telefon +41 41 767 02 02<br>Neuhofstrasse 10<br>6340 Baar'
+        address_html: '<a href="mailto:heidi.rohner@alfred-mueller.ch">E-Mail</a>'
+      contact_form:
+        form_title: 'Kontaktformular'
+        title: 'David Spiess'
+        person_html: 'Telefon +41 41 767 02 50<br>Neuhofstrasse 10<br>6340 Baar'
+        address_html: '<a href="mailto:david.spiess@alfred-mueller.ch">E-Mail</a>'
       company_header:
         board_of_directors: "Conseil d'administration"
         managing_board: "Direction de l'entreprise"
