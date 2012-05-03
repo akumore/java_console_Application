@@ -1,0 +1,33 @@
+en:
+  real_estates:
+    reference_projects:
+      link_title: 'Zum Projekt'
+    search_filter:
+      private: 'Residential'
+      commercial: 'Commercial'
+      for_sale: 'Buy'
+      for_rent: 'Rental'
+      search: 'Search'
+    search_filter_order:
+      sort_field_label: 'Sortiert nach'
+      search_fields:
+        rooms: 'rooms'
+        price: 'Preis'
+        available_from: 'Bezug'
+        category: 'Objekt-Art'
+        floor: 'floor'
+        usable_surface: 'm²'
+      search_orders:
+        asc: 'Aufsteigend'
+        desc: 'Absteigend'
+    index:
+      number_of_rooms: "%{count} rooms"
+      hits: "%{count} Hit(s)"
+    show:
+      to_favorites: 'Zu Favoriten hinzufügen'
+      overview: 'Übersicht'
+      next: 'Nächstes Projekt'
+      floorplan: 'Grundriss anzeigen'
+      description_download: 'Objektdokumentation'
+      project_website_link: 'Zur Projektwebseite'
+      contact_title: 'Kontaktperson'

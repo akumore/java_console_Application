@@ -1,0 +1,33 @@
+fr:
+  real_estates:
+    reference_projects:
+      link_title: 'Zum Projekt'
+    search_filter:
+      private: 'Habiter'
+      commercial: 'Travailler'
+      for_sale: 'Acheter'
+      for_rent: 'Louer'
+      search: 'Chercher'
+    search_filter_order:
+      sort_field_label: 'Sortiert nach'
+      search_fields:
+        rooms: 'Pièces'
+        price: 'Preis'
+        available_from: 'Bezug'
+        category: 'Objekt-Art'
+        floor: 'Etage'
+        usable_surface: 'm²'
+      search_orders:
+        asc: 'Aufsteigend'
+        desc: 'Absteigend'
+    index:
+      number_of_rooms: "%{count} Pièces"
+      hits: "%{count} Objet/Objets"
+    show:
+      to_favorites: 'Zu Favoriten hinzufügen'
+      overview: 'Übersicht'
+      next: 'Nächstes Projekt'
+      floorplan: 'Grundriss anzeigen'
+      description_download: 'Objektdokumentation'
+      project_website_link: 'Zur Projektwebseite'
+      contact_title: 'Kontaktperson'
