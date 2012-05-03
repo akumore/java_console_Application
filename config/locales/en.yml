@@ -4,11 +4,11 @@
 en:
   navigation:
     main:
-      real_estate: 'Angebot'
-      jobs: 'Jobs'
-      company: 'Unternehmen'
-      news: 'Aktuell'
-      knowledge: 'Wissenswertes'
+      real_estate: 'Offers'
+      jobs: 'Careers'
+      company: 'Our company'
+      news: 'News and updates'
+      knowledge: 'Useful information'
     meta:
       contact: 'Kontakt'
     cms:
