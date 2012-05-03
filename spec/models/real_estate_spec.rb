@@ -69,7 +69,7 @@ describe RealEstate do
       real_estate.category_label.should == category.label
     end
   end
-  
+
   describe '#copy' do
     before do
       @original = Fabricate(:published_real_estate,
@@ -119,7 +119,7 @@ describe RealEstate do
   end
 
   it 'detects embedded models having a presence validation defined' do
-    RealEstate.mandatory_for_publishing.should == ["address", "pricing", "information"]
+    RealEstate.mandatory_for_publishing.should == ["address", "pricing", "figure", "information"]
   end
 
   describe "State machine" do
@@ -138,7 +138,8 @@ describe RealEstate do
         :category => category,
         :address => Fabricate.build(:address),
         :pricing => Fabricate.build(:pricing),
-        :information => Fabricate.build(:information)
+        :information => Fabricate.build(:information),
+        :figure => Fabricate.build(:figure)
       real_estate.review_it!
 
       real_estate.in_review?.should be_true
@@ -149,7 +150,8 @@ describe RealEstate do
         :category => category,
         :address => Fabricate.build(:address),
         :pricing => Fabricate.build(:pricing),
-        :information => Fabricate.build(:information)
+        :information => Fabricate.build(:information),
+        :figure => Fabricate.build(:figure)
       real_estate.publish_it!
 
       real_estate.published?.should be_true
@@ -167,7 +169,8 @@ describe RealEstate do
         :category => category,
         :address => Fabricate.build(:address),
         :pricing => Fabricate.build(:pricing),
-        :information => Fabricate.build(:information)
+        :information => Fabricate.build(:information),
+        :figure => Fabricate.build(:figure)
       real_estate.publish_it!
 
       real_estate.published?.should be_true
@@ -219,7 +222,8 @@ describe RealEstate do
                                   :category => Fabricate(:category),
                                   :address => Fabricate.build(:address),
                                   :pricing => Fabricate.build(:pricing, :for_sale=>nil),
-                                  :information => Fabricate.build(:information)
+                                  :information => Fabricate.build(:information),
+                                  :figure => Fabricate.build(:figure)
       end
 
       it "doesn't change over from 'editing' to 'in_review'" do

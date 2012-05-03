@@ -14,7 +14,7 @@ module Export
       end
 
       def path
-        File.join root_path, @date_folder, @time_folder
+        @path ||= File.join root_path, @date_folder, @time_folder
       end
 
       def root_path

@@ -22,7 +22,7 @@
         %dd= real_estate.figure.rooms
 
       - if real_estate.figure.surface.present?
-        %dt= t('figures.surface')
+        %dt= real_estate.figure.surface_label
         %dd
           = real_estate.figure.surface
           %span.helptext= t('.usable_surface_helptext')

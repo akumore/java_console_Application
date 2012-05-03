@@ -48,7 +48,6 @@ describe 'Real Estate Wizard' do
       end
     end
 
-
     describe '#authorization' do
       context "Real estate isn't editable" do
         before do

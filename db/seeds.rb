@@ -574,6 +574,10 @@ module InitialPages
       #Trying to create an empty Company Page for each locale, uniqueness validation rejects us not to overwrite existing pages
       Page.create(:title => 'Company', :name => 'company', :locale => locale)
     end
+
+    Page.where(:name => 'company', :locale => :fr).first.bricks << Brick::Placeholder.new(:placeholder => 'company_header')
+    Page.where(:name => 'company', :locale => :it).first.bricks << Brick::Placeholder.new(:placeholder => 'company_header')
+    Page.where(:name => 'company', :locale => :en).first.bricks << Brick::Placeholder.new(:placeholder => 'company_header')
   end
 
   module KnowledgePage

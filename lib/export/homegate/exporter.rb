@@ -7,14 +7,15 @@ module Export
 
       def initialize(dispatcher)
         @packager = Homegate::Packager.new
-        @uploader = Homegate::Uploader.new(@packager.path, Settings.homegate.ftp)
+        @uploader = Homegate::FtpUploader.new(@packager, Settings.homegate.ftp)
         @packages = []
-        
+
         super(dispatcher)
       end
 
-      def update(action, real_estate)
-        self.send(action, real_estate) if respond_to?(action)
+      def update(*args)
+        action = args.shift
+        self.send(action, *args) if respond_to?(action)
       end
 
       def add(real_estate)
@@ -22,7 +23,7 @@ module Export
       end
 
       def finish
-        @uploader.upload
+        @uploader.do_upload!
       end
 
     end

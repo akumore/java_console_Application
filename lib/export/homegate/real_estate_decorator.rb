@@ -303,8 +303,11 @@ module Export::Homegate
 
     def offer_type
       #  str(200)  RENT','SALE'
-      'RENT' if model.for_rent?
-      'SALE' if model.for_sale?
+      if model.for_rent?
+        'RENT'
+      elsif model.for_sale?
+        'SALE'
+      end
     end
 
     def ref_property
@@ -339,7 +342,7 @@ module Export::Homegate
 
     def object_state
       #  str(2)  ZH, AG etc.
-      model.try(:address).try(:canton)
+      model.try(:address).try(:canton).try(:upcase)
     end
 
     def object_country
@@ -577,7 +580,7 @@ module Export::Homegate
 
     def agency_id
       # str(10) given by homegate (Info: agency_id + ref_property + ref_object + ref_house forms the unique object key)
-      'alm'
+      Settings.homegate.agency_id
     end
 
     def agency_name
@@ -909,12 +912,12 @@ module Export::Homegate
 
     def ceiling_height
       #  int(10,2) height of room in meters
-      model.try(:figure).try(:ceiling_height)
+      model.try(:figure).try(:ceiling_height).presence
     end
 
     def hall_height
       # int(10,2) height of hall in meters
-      model.try(:figure).try(:ceiling_height)
+      model.try(:figure).try(:ceiling_height).presence
     end
 
     def maximal_floor_loading

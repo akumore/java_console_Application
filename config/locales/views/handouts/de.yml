@@ -15,6 +15,7 @@ de:
       title: 'Bilder'
     contact:
       title: Kontakt
+      position: Beratung und Vermietung
       street: Neuhofstrasse 10
       zip: CH-6340
       city: Baar
@@ -22,3 +23,6 @@ de:
       mobile: Mobile
       fax: Fax
       www: www.alfred-mueller.ch
+      department_names:
+        for_rent: Beratung und Vermietung
+        for_sale: Beratung und Verkauft #currently not used, we have handouts for_rent only

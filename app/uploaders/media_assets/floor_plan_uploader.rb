@@ -20,11 +20,10 @@ module MediaAssets
 
     version :minidoku do
       process :convert => 'jpg'
-      process :resize_to_fill => [2000, 1000]
     end
 
     version :gallery, :from_version => :minidoku do
-      process :resize_to_fill => [1000, 500]
+      process :resize_and_pad => [1000, 500, '#FFFFFF']
       process :quality => 80
     end
 

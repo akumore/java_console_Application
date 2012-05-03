@@ -15,7 +15,7 @@
     .controls
       = f.file_field :file
       = f.hidden_field :file_cache
-      .help-block
+      .help-block.bold-black
         Bildformat möglichst 2:1, Auflösung so gross wie möglich, idealerweise 2000 x 1000 Pixel bei 72 dpi.
 
       - if @image.file.present?

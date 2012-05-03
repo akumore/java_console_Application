@@ -11,28 +11,31 @@
 
 .footer-teasers
   %div
+    %h5= t ".we_are_here_for_you"
+    %dl
+      %dt= t ".we_are_here_for_you_content"
+      %dd= link_to t(".get_more"), t('company_url')
+      %dd= link_to t(".take_me_to_image_film"), "#{t('company_url')}#vision"
+
+  %div
     %h5= t ".we_want_you"
     %dl
       %dd=t ".discover_alfred_mueller"
       %dd= link_to t(".take_me_to_the_jobs"), t('jobs_url')
 
   %div
-    %h5= t ".from_a_hand"
-    %dl
-      %dt= t ".from_a_hand_content"
-      %dd= link_to t(".get_more"), t('company_url')
-
-  %div
     %h5 St. Martin
     %dl
-      %dt In Kamerun ermöglichen wir den Menschen Zugang zu sauberem Trinkwasser.
+      %dt=t ".cameroon_drinking_water"
       %dd=link_to t(".get_more"), t('company_url')
+      %dd=link_to t(".take_me_to_st_martin_website"), 'http://www.martinstiftung.ch/', :target => '_target'
 
   %div
     %h5 Allmig
     %dl
-      %dt Die Kompostier- und Biostromanlage in der Region Zug
+      %dt=t ".compost_and_nuclear_plant_in_region_zug"
       %dd=link_to t(".get_more"), t('company_url')
+      %dd=link_to t(".take_me_to_allmig_website"), 'http://www.allmig.ch/', :target => '_target'
 
 .footer-contact
   %div
@@ -45,13 +48,21 @@
   .memberships
     %h5= t '.memberships'
     %dl
-      %dt Verband Schweizerischer Generalunternehmer VSGU
-      %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", :target=>"_blank"
-      %dt Schweizerischer Verband der Immobilienwirtschaft SVIT
-      %dd= link_to "www.svit.ch", "http://www.svit.ch", :target=>"_blank"
-      %dt Schweizerischer Ingenieur- und Architektenverein SIA
-      %dd= link_to "www.sia.ch", "http://www.sia.ch", :target=>"_blank"
-      %dt Bundesamt für Bauten und Logistik
-      %dd= link_to "www.bbl.admin.ch", "http://www.bbl.admin.ch", :target=>"_blank"
-      %dt Hauseigentümerverband HEV
-      %dd= link_to "www.hev-schweiz.ch", "http://www.hev-schweiz.ch", :target=>"_blank"
+      - if I18n.locale == :de
+        %dt Verband Schweizerischer Generalunternehmer VSGU
+        %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", :target=>"_blank"
+        %dt Schweizerischer Verband der Immobilienwirtschaft SVIT
+        %dd= link_to "www.svit.ch", "http://www.svit.ch", :target=>"_blank"
+        %dt Schweizerischer Ingenieur- und Architektenverein SIA
+        %dd= link_to "www.sia.ch", "http://www.sia.ch", :target=>"_blank"
+        %dt Bundesamt für Bauten und Logistik
+        %dd= link_to "www.bbl.admin.ch", "http://www.bbl.admin.ch", :target=>"_blank"
+        %dt Hauseigentümerverband HEV
+        %dd= link_to "www.hev-schweiz.ch", "http://www.hev-schweiz.ch", :target=>"_blank"
+      - else
+        %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", :target=>"_blank"
+        %dd= link_to "www.svit.ch", "http://www.svit.ch", :target=>"_blank"
+        %dd= link_to "www.sia.ch", "http://www.sia.ch", :target=>"_blank"
+        %dd= link_to "www.bbl.admin.ch", "http://www.bbl.admin.ch", :target=>"_blank"
+        %dd= link_to "www.hev-schweiz.ch", "http://www.hev-schweiz.ch", :target=>"_blank"
+
