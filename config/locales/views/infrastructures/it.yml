@@ -1,0 +1,24 @@
+it:
+  infrastructures:
+    title: 'Infrastruttura'
+    inside_parking_spots:
+      one: 'Parcheggio in autorimessa'
+      other: 'Parcheggi in autorimessa'
+    outside_parking_spots:
+      one: 'Parcheggio all‘esterno'
+      other: 'Parcheggi all‘esterno'
+    inside_parking_spots_temporary:
+      one: 'Parcheggio temporanei in autorimessa'
+      other: 'Parcheggi temporanei in autorimessa'
+    outside_parking_spots_temporary:
+      one: 'Parcheggio temporanei all‘esterno'
+      other: 'Parcheggi temporanei all‘esterno'
+    distances: 'Presso'
+    points_of_interest:
+      public_transport: 'Transporti pubblici %{distance} m'
+      shopping: 'Negozi %{distance} m'
+      kindergarden: 'Asilo %{distance} m'
+      elementary_school: 'Scuola elementare %{distance} m'
+      high_school: 'Scuole superiori %{distance} m'
+      highway_access: 'Autostrada %{distance} m'
+
