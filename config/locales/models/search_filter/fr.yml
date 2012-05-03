@@ -1,0 +1,11 @@
+fr:
+  activemodel:
+    models:
+      search_filter: 'Suchfilter'
+    attributes:
+      search_filter:
+        cantons: 'Canton'
+        cities: 'Ville'
+        offer: 'Angebotstyp'
+        utilization: 'Nutzung'
+

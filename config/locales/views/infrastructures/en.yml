@@ -1,0 +1,24 @@
+en:
+  infrastructures:
+    title: 'Infrastructure'
+    inside_parking_spots:
+      one: 'Car park in garage'
+      other: 'Parking spaces in garage'
+    outside_parking_spots:
+      one: 'Car park im Freien'
+      other: 'Parking spaces im Freien'
+    inside_parking_spots_temporary:
+      one: 'Temporary car park in garage'
+      other: 'Temporary parking spaces in garage'
+    outside_parking_spots_temporary:
+      one: 'Temporary car park outside'
+      other: 'Temporary parking outside'
+    distances: 'Nearby'
+    points_of_interest:
+      public_transport: 'Public transport %{distance} m'
+      shopping: 'Shops %{distance} m'
+      kindergarden: 'Kindergarten %{distance} m'
+      elementary_school: 'Primary school %{distance} m'
+      high_school: 'Secondary / high school %{distance} m'
+      highway_access: 'Motorway access %{distance} m'
+

@@ -1,0 +1,11 @@
+it:
+  activemodel:
+    models:
+      search_filter: 'Suchfilter'
+    attributes:
+      search_filter:
+        cantons: 'Cantone'
+        cities: 'Città'
+        offer: 'Angebotstyp'
+        utilization: 'Nutzung'
+
