@@ -26,6 +26,7 @@ de:
         person_html: 'Telefon +41 41 767 02 50<br>Neuhofstrasse 10<br>6340 Baar'
         address_html: '<a href="mailto:david.spiess@alfred-mueller.ch">E-Mail</a>'
       company_header:
+        vision: 'Vision'
         board_of_directors: 'Verwaltungsrat'
         managing_board: 'Geschäftsleitung'
         reference_projects: 'Referenzprojekte'

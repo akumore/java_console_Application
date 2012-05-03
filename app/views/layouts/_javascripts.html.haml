@@ -1,7 +1,10 @@
 = javascript_include_tag 'application'
-    
+
 -#  Append your own using content_for :javascripts
 = yield :javascripts
+
+-# Sublime Embed Code
+%script{ :type => 'text/javascript', :src => 'http://cdn.sublimevideo.net/js/go4z5g30.js' }
 
 -# asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet
 -# Looks for google_account_id first in ENV['GOOGLE_ACCOUNT_ID'] then in config/google.yml
