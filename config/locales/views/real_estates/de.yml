@@ -1,38 +1,4 @@
 de:
-  cms:
-    real_estates:
-      form:
-        private: 'Wohnen'
-        commercial: 'Arbeiten'
-        for_rent: 'Mieten'
-        for_sale: 'Kaufen'
-        corner_house: 'Eckhaus'
-        middle_house: 'Mittelhaus'
-        channels:
-          website: 'Website'
-          homegate: 'Homegate'
-          print: 'Mini Doku'
-          reference_projects: 'Referenzprojekt'
-      actions:
-        overview: 'Zurück zur Übersicht'
-        destroy: 'Immobilie löschen'
-        confirm_delete: 'Immobilie "%{title} wirklich löschen?'
-      index:
-        new: 'Neue Immobilie erfassen'
-        edit: 'Editieren'
-        show: 'Anzeigen'
-        copy: 'Diesen Eintrag kopieren'
-        for_rent: 'Mieten'
-        for_sale: 'Kaufen'
-        private: 'Wohnen'
-        commercial: 'Arbeiten'
-        editing: 'In Bearbeitung'
-        published: 'Veröffentlicht'
-        in_review: 'Zu Verifizieren'
-        destroyed: "Die Immobilie \"%{title}\" wurde erfolgreich gelöscht."
-      update:
-        sorted:
-          success: 'Die Sortierung wurde erfolgreich gespeichert.'
   real_estates:
     reference_projects:
       link_title: 'Zum Projekt'

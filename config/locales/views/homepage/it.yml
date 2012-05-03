@@ -1,0 +1,11 @@
+it:
+  homepage:
+    index:
+      rent: 'Affittare'
+      sale: 'Acquistare'
+      build: 'Costruire'
+      living: 'Abitare'
+      working: 'Lavorare'
+      build_title: 'Damit ihr Bauprojekt gelingt'
+      build_link: 'Unsere Dienstleistungen'
+

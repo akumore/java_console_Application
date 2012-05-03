@@ -4,13 +4,13 @@
 fr:
   navigation:
     main:
-      real_estate: 'Angebot'
-      jobs: 'Jobs'
-      company: 'Unternehmen'
-      news: 'Aktuell'
-      knowledge: 'Wissenswertes'
+      real_estate: 'Offre'
+      jobs: 'Emplois'
+      company: 'L‘entreprise'
+      news: 'Actualité'
+      knowledge: 'Bon à savoir'
     meta:
-      contact: 'Kontakt'
+      contact: 'Contact'
     cms:
       real_estates_navigation:
         real_estate: 'Stammdaten'

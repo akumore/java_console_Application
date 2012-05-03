@@ -1,0 +1,11 @@
+fr:
+  homepage:
+    index:
+      rent: 'Louer'
+      sale: 'Acheter'
+      build: 'Construire'
+      living: 'Habiter'
+      working: 'Travailler'
+      build_title: 'Damit ihr Bauprojekt gelingt'
+      build_link: 'Unsere Dienstleistungen'
+
