@@ -1,28 +1,28 @@
-de:
+fr:
   real_estates:
     reference_projects:
       link_title: 'Zum Projekt'
     search_filter:
-      private: 'Wohnen'
-      commercial: 'Arbeiten'
-      for_sale: 'Kaufen'
-      for_rent: 'Mieten'
-      search: 'Suchen'
+      private: 'Habiter'
+      commercial: 'Travailler'
+      for_sale: 'Acheter'
+      for_rent: 'Louer'
+      search: 'Chercher'
     search_filter_order:
       sort_field_label: 'Sortiert nach'
       search_fields:
-        rooms: 'Zimmer'
+        rooms: 'Pièces'
         price: 'Preis'
         available_from: 'Bezug'
         category: 'Objekt-Art'
-        floor: 'Geschoss'
+        floor: 'Etage'
         usable_surface: 'm²'
       search_orders:
         asc: 'Aufsteigend'
         desc: 'Absteigend'
     index:
-      number_of_rooms: "%{count} Zimmer"
-      hits: "%{count} Treffer"
+      number_of_rooms: "%{count} Pièces"
+      hits: "%{count} Objet/Objets"
     show:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Übersicht'

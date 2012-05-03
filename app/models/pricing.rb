@@ -29,7 +29,8 @@ class Pricing
   validates :inside_parking, :outside_parking, :inside_parking_temporary,
             :outside_parking_temporary, :storage, :extra_storage, :numericality => true, :allow_blank => true
 
-  validates :price_unit, :presence => true, :inclusion => PRICE_UNITS
+  validates :price_unit, :presence => true, :inclusion => PRICE_UNITS_FOR_SALE, :if => :for_sale?
+  validates :price_unit, :presence => true, :inclusion => PRICE_UNITS_FOR_RENT, :if => :for_rent?
 
   delegate :for_sale?, :for_rent?, :to => :_parent
 end

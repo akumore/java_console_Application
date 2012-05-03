@@ -1,0 +1,11 @@
+en:
+  homepage:
+    index:
+      rent: 'Rental'
+      sale: 'Buy'
+      build: 'Build'
+      living: 'Residential'
+      working: 'Commercial'
+      build_title: 'Damit ihr Bauprojekt gelingt'
+      build_link: 'Unsere Dienstleistungen'
+

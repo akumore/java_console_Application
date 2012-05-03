@@ -1,0 +1,22 @@
+fr:
+  pricings:
+    decorator:
+      price_units:
+        monthly: '%{price} / Mensuel'
+        yearly: '%{price} / Annuel'
+        weekly: '%{price} / Hebdomadaire'
+        daily: '%{price} / Tag'
+        year_m2: '%{price} / m²/Annuel'
+        sell: '%{price} / Verkaufspreis'
+        sell_m2: '%{price} / Verkaufspreis/m²'
+    title: 'Preise'
+    for_sale: 'Kaufpreis'
+    for_rent_netto: 'Miete (ohne Nebenkosten)'
+    for_rent_extra: 'Nebenkosten'
+    for_rent_depot: 'Mietzinsdepot'
+    without_vat: 'Alle Preise ohne Mehrwertsteuer'
+    inside_parking: 'Place de parc dans parking souterrain'
+    inside_parking_temporary: 'Place de parc temporaires dans parking souterrain'
+    outside_parking: 'Place de parc à l‘extérieur'
+    outside_parking_temporary: 'Place de parc temporaires à l‘extérieur'
+

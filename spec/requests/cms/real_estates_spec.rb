@@ -129,7 +129,7 @@ describe "Cms::RealEstates" do
           choose 'Wohnen'
           choose 'Mieten'
           uncheck 'Website'
-          check 'Mini Doku'
+          check 'Objektdokumentation'
           select 'Henker, Hanna', :from => 'Kontaktperson'
 
           fill_in 'Titel', :with => 'My edited Real Estate'
