@@ -20,6 +20,11 @@ describe Pricing do
         @pricing.should have(2).error_on(:price_unit)
       end
 
+      it 'requires a "rent" price unit ' do
+        @pricing.update_attribute :price_unit, Pricing::PRICE_UNITS_FOR_SALE.first
+        @pricing.should have(1).error_on(:price_unit)
+      end
+
       it 'requires a netto rent price' do
         @pricing.should have(2).error_on(:for_rent_netto)
       end
@@ -41,6 +46,11 @@ describe Pricing do
 
       it 'does require a price_unit' do
         @pricing.should have(2).error_on(:price_unit)
+      end
+
+      it 'requires a "sell" price unit ' do
+        @pricing.update_attribute :price_unit, Pricing::PRICE_UNITS_FOR_RENT.first
+        @pricing.should have(1).error_on(:price_unit)
       end
 
       it 'requires a sale price' do
