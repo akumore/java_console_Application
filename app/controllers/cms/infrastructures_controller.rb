@@ -34,8 +34,8 @@ class Cms::InfrastructuresController < Cms::SecuredController
       render 'edit'
     end
   end
-  
+
   def show
   end
-  
+
 end
