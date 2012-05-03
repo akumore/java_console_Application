@@ -12,7 +12,8 @@ describe Export::Dispatcher do
     end
 
     it 'notifies its observing exporters of real estates to be published' do
-      @dispatcher.should_receive(:notify_observers).with(:add, kind_of(RealEstate)).exactly(3).times
+      @dispatcher.should_receive(:notify_observers).with(:add, kind_of(RealEstate)).at_least(3).times
+      @dispatcher.should_receive(:notify_observers).with(:finish).at_least(1).times
       @dispatcher.run
     end
   end
