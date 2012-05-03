@@ -168,7 +168,7 @@ class RealEstate
     copied = self.clone
     copied.state = STATE_EDITING
     copied.title = "Kopie von #{title}"
-    copied.created_at = copied.updated_at = nil
+    copied.created_at = nil
     copied.save
     copied
   end
