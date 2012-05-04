@@ -6,9 +6,9 @@ it:
       contact:
         name: 'Nome'
         address: 'Adresse'
-        street: 'Rue'
-        city: 'Lieu'
-        zip: 'NPA'
+        street: 'Via'
+        city: 'Città'
+        zip: 'Codice postale'
         email: 'e-Mail Adresse'
         message: 'Nachricht'
 
