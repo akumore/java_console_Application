@@ -5,7 +5,7 @@ it:
       contact:
         title: 'Contatto'
         address_html: 'Alfred Müller AG<br>Neuhofstrasse 10<br>CH-6340 Baar'
-        phone_html: 'Telefono: +41 41 767 02 02<br>Fax: +41 41 767 02 00'
+        phone_html: 'Telefono +41 41 767 02 02<br>Fax +41 41 767 02 00'
         directions: 'Tragitto'
       we_want_you: La cerchiamo
       discover_alfred_mueller: Scopra la Alfred Müller AG quale datore di lavoro attrattivo
