@@ -60,6 +60,14 @@ describe PricingDecorator do
       @pricing.for_rent_depot.should == "CHF 2'000.00"
     end
 
+    it 'formats all parking prices monthly' do
+      @pricing.update_attribute :price_unit, 'year_m2'
+      @pricing.inside_parking.should == "CHF 140.00 / Monat"
+      @pricing.outside_parking.should == "CHF 150.00 / Monat"
+      @pricing.inside_parking_temporary.should == "CHF 160.00 / Monat"
+      @pricing.outside_parking_temporary.should == "CHF 170.00 / Monat"
+    end
+
     context 'when an estimated price is set' do
       before :each do
         @pricing.update_attribute :estimate, 'CHF 200 - 3000'
@@ -120,6 +128,14 @@ describe PricingDecorator do
     end
 
     it 'formats the temporary outside parking price' do
+      @pricing.outside_parking_temporary.should == "CHF 170.00 / Verkaufspreis"
+    end
+
+    it 'formats all parking prices monthly' do
+      @pricing.update_attribute :price_unit, 'sell_m2'
+      @pricing.inside_parking.should == "CHF 140.00 / Verkaufspreis"
+      @pricing.outside_parking.should == "CHF 150.00 / Verkaufspreis"
+      @pricing.inside_parking_temporary.should == "CHF 160.00 / Verkaufspreis"
       @pricing.outside_parking_temporary.should == "CHF 170.00 / Verkaufspreis"
     end
 
