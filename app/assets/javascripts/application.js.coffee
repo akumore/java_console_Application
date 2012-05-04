@@ -9,6 +9,7 @@
 #= require jquery.remotipart
 #= require jquery.flexslider
 #= require jquery.fancybox
+#= require jquery.placeholder
 #= require scrollTo
 #= require underscore
 #= require backbone
