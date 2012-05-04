@@ -65,7 +65,7 @@ td
 .gallery
   +column(10)
   margin-bottom: 2em
-  margin-top: -1em
+  margin-top: 0
 
   img
     width: 100%
@@ -144,12 +144,12 @@ td
   margin-top: 1em
 
   li
-    padding: 7px 30px
+    padding: 7px 40px 3px 40px
     line-height: 1.5em
 
 .search-filter-form
   background: $brown
-  padding: 0.5em 30px
+  padding: 0.5em 40px
 
   label
     +float-left
@@ -212,10 +212,16 @@ td
       z-index: 2
       position: absolute
 
+.chzn-container-multi
+  .chzn-choices
+    .search-field
+      input
+        padding: 4px
 
 .offer-tabs
   ul
     +horizontal-list(false, right)
+    font-size: 14px
 
     li
       background: $search-background-color
@@ -227,6 +233,7 @@ td
   background: $browny
   ul
     +horizontal-list(false)
+    font-size: 14px
 
     li
       background: $browny

@@ -47,7 +47,7 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
     AlfredMueller.Views.VisionSlider.setState("closed")
 
   animate: (state)->
-    marginTop = if state == "open" then "0px" else "-385px"
+    marginTop = if state == "open" then "0px" else "-488px"
     if Modernizr.csstransitions
       @el.css("marginTop", marginTop)
     else
