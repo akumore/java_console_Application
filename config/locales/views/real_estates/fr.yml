@@ -12,7 +12,7 @@ fr:
       sort_field_label: 'Sortiert nach'
       search_fields:
         rooms: 'Pièces'
-        price: 'Preis'
+        price: 'Prix'
         available_from: 'Bezug'
         category: 'Objekt-Art'
         floor: 'Etage'
@@ -30,4 +30,4 @@ fr:
       floorplan: 'Grundriss anzeigen'
       description_download: 'Objektdokumentation'
       project_website_link: 'Zur Projektwebseite'
-      contact_title: 'Kontaktperson'
+      contact_title: 'Votre contact'
