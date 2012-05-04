@@ -45,12 +45,15 @@ td
 
   .col.first
     width: 150px
+    padding-right: 10px
+    +ellipsis
 
   .col.middle
-    width: 130px
+    width: 125px
+    padding-right: 5px
 
   .col.last
-    width: 125px
+    width: 115px
 
 .detail
   background: $search-background-color
@@ -60,6 +63,7 @@ td
 .gallery
   +column(10)
   margin-bottom: 2em
+  margin-top: -1em
 
   img
     width: 100%
@@ -71,15 +75,16 @@ td
   h1
     @extend .title-font-bold
     margin-bottom: 0
+    margin-top: 0.7em
 
   h3
     margin-bottom: 0
-    margin-top: 0.5em
+    margin-top: 0.3em
     color: $normal
 
 .short-info
   +row
-  margin-top: 1.5em
+  margin-top: 1em
 
   .info.first
     +push(1)
@@ -88,7 +93,7 @@ td
     +column(2, 9)
     @extend .text-font-bold
     margin:
-      bottom: 1.5em
+      bottom: 1em
 
 .description
   +column(6, 10)
@@ -137,12 +142,12 @@ td
   margin-top: 1em
 
   li
-    padding: 10px 20px
+    padding: 7px 25px 4px 25px
     line-height: 1.5em
 
 .search-filter-form
   background: $brown
-  padding: 20px
+  padding: 0.5em 25px
 
   label
     +float-left
