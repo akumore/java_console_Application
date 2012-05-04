@@ -41,13 +41,12 @@
 
   %fieldset
     %legend Distanzen in Meter
-    - @infrastructure.points_of_interest.each do |poi|
+    = f.fields_for :points_of_interest do |poi_f|
       .control-group
-        = f.fields_for :points_of_interest, poi do |poi_f|
-          = poi_f.label :distance, t(".points_of_interest.types.#{poi.name}")
-          .controls
-            = poi_f.text_field :distance
-            = poi_f.hidden_field :name
+        = poi_f.label :distance, t(".points_of_interest.types.#{poi_f.object.name}")
+        .controls
+          = poi_f.text_field :distance
+          = poi_f.hidden_field :name
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'
