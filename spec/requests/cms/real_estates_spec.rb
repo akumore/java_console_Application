@@ -120,7 +120,7 @@ describe "Cms::RealEstates" do
         end
 
         it 'enables it for the minidoku' do
-          check 'Mini Doku'
+          check 'Objektdokumentation'
           click_on 'Immobilie erstellen'
           real_estate.channels.should include RealEstate::PRINT_CHANNEL
         end
