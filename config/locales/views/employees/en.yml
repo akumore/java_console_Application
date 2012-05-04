@@ -1,7 +1,7 @@
-de:
+en:
   employees:
     contact:
-      phone: 'Telefon %{number}'
+      phone: 'Telephone %{number}'
       fax: 'Fax %{number}'
       mobile: 'Mobile %{number}'
       email: 'E-Mail'
