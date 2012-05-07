@@ -19,7 +19,7 @@ class FixAttachmentsOfImages < Mongoid::Migration
     real_estates = RealEstate.all.select { |r| r.images.any? }
     real_estates.each do |real_estate|
       real_estate.images.each do |image|
-        if image.created_at < (Time.now - 5.minutes)
+        if image.created_at < (Time.now - 15.minutes)
           puts "Destroying image #{image.id}, title: #{image.title}, created_at: #{image.created_at} of real estate #{real_estate.id}"
           image.destroy
         end
@@ -28,7 +28,7 @@ class FixAttachmentsOfImages < Mongoid::Migration
   end
 
   def self.down
-    raise Mongoid::IrreversibleMigration.new("Redoing this migration will remove all assets created_at < Time.now - 5.minutes")
+    raise Mongoid::IrreversibleMigration.new("Redoing this migration will remove all assets created_at < Time.now - 15.minutes")
   end
 
   private

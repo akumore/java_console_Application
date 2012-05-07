@@ -2,7 +2,7 @@ class FixAttachmentsOfVideos < Mongoid::Migration
   def self.up
     real_estates = RealEstate.all.select {|r| r.videos.any?}
     real_estates.each do |real_estate|
-      new_video s = []
+      new_videos = []
       real_estate.videos.each do |video|
         new_videos << copy_asset(video)
       end
