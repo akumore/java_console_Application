@@ -1,6 +1,9 @@
+require 'copy_real_estate'
+
 class RealEstate
   include Mongoid::Document
   include Mongoid::Timestamps
+  extend CopyRealEstate
 
   UTILIZATION_PRIVATE = 'private'
   UTILIZATION_COMMERICAL = 'commercial'
@@ -164,15 +167,7 @@ class RealEstate
     channels.include? HOMEGATE_CHANNEL
   end
 
-  def copy
-    copied = self.clone
-    copied.state = STATE_EDITING
-    copied.title = "Kopie von #{title}"
-    copied.save
-    copied
-  end
 
-  
   private
   def init_channels
     self.channels ||= []

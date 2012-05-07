@@ -166,6 +166,57 @@ describe "Cms::RealEstates" do
     end
   end
 
+
+  describe "#copy" do
+    shared_examples_for "Copying a real estate" do
+      let :real_estate_copy do
+        RealEstate.last
+      end
+
+      it "copies 'published' real estates" do
+        Fabricate :residential_building, :state => RealEstate::STATE_PUBLISHED
+        visit cms_real_estates_path
+
+        expect {
+          click_link "Diesen Eintrag kopieren"
+        }.should change(RealEstate, :count).by(1)
+        real_estate_copy
+        current_path.should == edit_cms_real_estate_path(real_estate_copy)
+      end
+
+      it "copies to copy 'in_review' real estates" do
+        Fabricate :residential_building, :state => RealEstate::STATE_IN_REVIEW
+        visit cms_real_estates_path
+
+        expect {
+          click_link "Diesen Eintrag kopieren"
+        }.should change(RealEstate, :count).by(1)
+        current_path.should == edit_cms_real_estate_path(real_estate_copy)
+      end
+
+      it "copies to copy not published real estates" do
+        Fabricate :residential_building, :state => RealEstate::STATE_EDITING
+        visit cms_real_estates_path
+
+        expect {
+          click_link "Diesen Eintrag kopieren"
+        }.should change(RealEstate, :count).by(1)
+        current_path.should == edit_cms_real_estate_path(real_estate_copy)
+      end
+    end
+
+    context "As an editor" do
+      login_cms_editor
+      it_should_behave_like "Copying a real estate"
+    end
+
+    context "As an Admin" do
+      login_cms_admin
+      it_should_behave_like "Copying a real estate"
+    end
+  end
+
+
   describe 'invalid tab' do
     login_cms_user
 
