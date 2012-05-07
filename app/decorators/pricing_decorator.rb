@@ -54,19 +54,19 @@ class PricingDecorator < ApplicationDecorator
   end
 
   def inside_parking
-    formatted(model.inside_parking) if model.inside_parking.present?
+    formatted(model.inside_parking, parking_price_unit) if model.inside_parking.present?
   end
 
   def outside_parking
-    formatted(model.outside_parking) if model.outside_parking.present?
+    formatted(model.outside_parking, parking_price_unit) if model.outside_parking.present?
   end
 
   def inside_parking_temporary
-    formatted(model.inside_parking_temporary) if model.inside_parking_temporary.present?
+    formatted(model.inside_parking_temporary, parking_price_unit) if model.inside_parking_temporary.present?
   end
 
   def outside_parking_temporary
-    formatted(model.outside_parking_temporary) if model.outside_parking_temporary.present?
+    formatted(model.outside_parking_temporary, parking_price_unit) if model.outside_parking_temporary.present?
   end
 
   def for_rent_depot
@@ -77,11 +77,20 @@ class PricingDecorator < ApplicationDecorator
 
   private
 
-  def formatted price
-    t("pricings.decorator.price_units.#{model.price_unit}", :price => formatted_price(price))
+  def formatted(price, price_unit = nil)
+    price_unit ||= model.price_unit
+    t("pricings.decorator.price_units.#{price_unit}", :price => formatted_price(price))
   end
 
   def formatted_price price
     number_to_currency(price, :locale => 'de-CH')
+  end
+
+  def parking_price_unit
+    if model.for_sale?
+      'sell'
+    else
+      'monthly'
+    end
   end
 end

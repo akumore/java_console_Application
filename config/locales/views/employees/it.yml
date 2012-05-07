@@ -1,8 +1,8 @@
-de:
+it:
   employees:
     contact:
-      phone: 'Telefon %{number}'
+      phone: 'Telefono %{number}'
       fax: 'Fax %{number}'
-      mobile: 'Mobile %{number}'
+      mobile: 'Cellulare %{number}'
       email: 'E-Mail'
 

@@ -1,0 +1,13 @@
+fr:
+  mongoid:
+    models:
+      contact: 'Kontakt'
+    attributes:
+      contact:
+        name: 'Nom'
+        address: 'Adresse'
+        street: 'Rue'
+        city: 'Lieu'
+        zip: 'NPA'
+        email: 'e-Mail Adresse'
+        message: 'Nachricht'

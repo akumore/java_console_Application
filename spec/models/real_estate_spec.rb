@@ -70,34 +70,108 @@ describe RealEstate do
     end
   end
 
+
   describe '#copy' do
     before do
-      @original = Fabricate(:published_real_estate,
-        :category => Fabricate(:category),
-        :pricing => Fabricate.build(:pricing),
-        :address => Fabricate.build(:address),
-        :information => Fabricate.build(:information)
-      )
+      @original = Fabricate :published_real_estate, :category => Fabricate(:category), :pricing => Fabricate.build(:pricing),
+                            :address => Fabricate.build(:address), :information => Fabricate.build(:information)
     end
 
-    it 'copies the real estate with a new unique id' do
-      copy = @original.copy
+    let :copy do
+      RealEstate.copy!(@original)
+    end
+
+    it 'is also an real estate' do
+      copy.should be_a RealEstate
+    end
+
+    it 'has an new, unique id' do
       copy.id.should_not == @original.id
-      copy.should be_a(RealEstate)
     end
 
-    it 'changes the title to reflect on the real estate beeing a copy' do
-      @original.copy.title.should == "Kopie von #{@original.title}"
+    it 'changes the title to reflect being a copy' do
+      copy.title.should == "Kopie von #{@original.title}"
     end
 
     it 'changes the state to in editing' do
-      @original.copy.state.should == RealEstate::STATE_EDITING
+      copy.state.should == RealEstate::STATE_EDITING
     end
 
     it 'saves the copy' do
-      @original.copy.persisted?.should be_true
+      copy.persisted?.should be_true
+    end
+
+    describe 'Copying assets' do
+      let(:image) { Fabricate.build :media_assets_image }
+      let(:image_copy) { copy.images.first }
+
+      it 'makes a copy of the images' do
+        @original.images << image
+        image_copy.title.should == image.title
+        File.basename(image_copy.file.to_s).should == File.basename(image.file.to_s)
+      end
+
+      it 'creates images from scratch with a global-unique id' do
+        #this is important in order to keep the storage path of the carrierwave uploader unique
+        @original.images << Fabricate.build(:media_assets_image)
+        copy.images.count.should == @original.images.count
+        image_copy.id.should_not == @original.images.first.id
+        image_copy.file.to_s.should_not == @original.images.first.file.to_s
+      end
+
+      let(:floor_plan) { Fabricate.build :media_assets_floor_plan }
+      let(:floor_plan_copy) { copy.floor_plans.first }
+
+      it 'makes a copy of the floor_plans' do
+        @original.floor_plans << floor_plan
+        floor_plan_copy.title.should == floor_plan.title
+        File.basename(floor_plan_copy.file.to_s).should == File.basename(floor_plan.file.to_s)
+      end
+
+      it 'creates floor plans from scratch with a global-unique id' do
+        #this is important in order to keep the storage path of the carrierwave uploader unique
+        @original.floor_plans << Fabricate.build(:media_assets_floor_plan)
+        copy.floor_plans.count.should == @original.floor_plans.count
+        copy.floor_plans.first.id.should_not == @original.floor_plans.first.id
+        copy.floor_plans.first.file.to_s.should_not == @original.floor_plans.first.file.to_s
+      end
+
+      let(:video) { Fabricate.build :media_assets_video }
+      let(:video_copy) { copy.videos.first }
+
+      it 'makes a copy of the videos' do
+        @original.videos << video
+        video_copy.title.should == video.title
+        File.basename(video_copy.file.to_s).should == File.basename(video.file.to_s)
+      end
+
+      it 'creates videos from scratch with a global-unique id' do
+        #this is important in order to keep the storage path of the carrierwave uploader unique
+        @original.videos << video
+        copy.videos.count.should == @original.videos.count
+        video_copy.id.should_not == @original.videos.first.id
+        video_copy.file.to_s.should_not == @original.videos.first.file.to_s
+      end
+
+      let(:document) { Fabricate.build :media_assets_document }
+      let(:document_copy) { copy.documents.first}
+
+      it 'makes a copy of the documents' do
+        @original.documents << document
+        document_copy.title.should == document.title
+        File.basename(document_copy.file.to_s).should == File.basename(document.file.to_s)
+      end
+
+      it 'creates documents from scratch with a global-unique id' do
+        #this is important in order to keep the storage path of the carrierwave uploader unique
+        @original.documents << document
+        copy.documents.count.should == @original.documents.count
+        document_copy.id.should_not == document.id
+        document_copy.file.to_s.should_not == document.file.to_s
+      end
     end
   end
+
 
   describe 'top_level_category' do
     before do

@@ -66,7 +66,7 @@
 %dl.dl-horizontal
   %dt= t "mongoid.attributes.pricing.outside_parking"
   %dd
-    = number_to_currency @pricing.outside_parking
+    = number_to_currency @pricing.outside_parking, :locale => 'de-CH'
     &nbsp;
 
   %dt= t "mongoid.attributes.pricing.outside_parking_temporary"
