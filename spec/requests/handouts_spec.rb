@@ -334,7 +334,7 @@ describe "Handout aka MiniDoku" do
       end
 
       it 'has a ramp' do
-        page.should have_content 'Anfahrtsrampe'
+        page.should have_content 'Anfahrrampe'
       end
 
       it 'has a railway terminal' do

@@ -27,7 +27,7 @@ it:
     swimmingpool: 'Piscina'
     number_of_restrooms: '%{count} WC'
     lifting_platform: 'Hebebühne'
-    ramp: 'Anfahrtsrampe'
+    ramp: 'Anfahrrampe'
     railway_terminal: 'Bahnanschluss'
     water_supply: 'Wasseranschluss'
     sewage_supply: 'Abwasseranschluss'
