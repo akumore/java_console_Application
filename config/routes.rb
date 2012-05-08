@@ -2,6 +2,10 @@ AlfredMueller::Application.routes.draw do
 
   devise_for :users, :class_name => 'Cms::User'
 
+  namespace :api do
+    resources :real_estates, :only=>:index
+  end
+
   namespace :cms do
     resource :dashboards
     resources :news_items, :except => :show

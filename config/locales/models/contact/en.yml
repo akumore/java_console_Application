@@ -5,10 +5,10 @@ en:
     attributes:
       contact:
         name: 'Name'
-        address: 'Adresse'
+        address: 'Address'
         street: 'Street'
         city: 'City'
         zip: 'Postal code'
-        email: 'e-Mail Adresse'
-        message: 'Nachricht'
+        email: 'E-Mail'
+        message: 'Message'
 

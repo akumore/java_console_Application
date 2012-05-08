@@ -4,8 +4,8 @@ fr:
       form:
         for_rent: 'Mietinformationen'
   information:
-    title: 'Immobilieninfos'
-    characteristics: 'Merkmale'
+    title: 'Informations immobilières'
+    characteristics: 'Caractéristiques'
     available_from: 'Disponible dès'
     available_from_compact: 'Disponible dès %{date}'
     maximal_floor_loading: 'Maximale Bodenbelastung'
@@ -31,7 +31,7 @@ fr:
     railway_terminal: 'Bahnanschluss'
     water_supply: 'Wasseranschluss'
     sewage_supply: 'Abwasseranschluss'
-    minimum_rental_period: 'Mindestmietdauer'
-    notice_dates: 'Kündigungstermine'
-    notice_period: 'Kündigungsfrist'
+    minimum_rental_period: 'Durée de location minimale'
+    notice_dates: 'Terme de résiliation'
+    notice_period: 'Délai de résiliation'
 

@@ -1,7 +1,7 @@
 en:
   real_estates:
     reference_projects:
-      link_title: 'Zum Projekt'
+      link_title: 'Project'
     search_filter:
       private: 'Residential'
       commercial: 'Commercial'
@@ -9,17 +9,17 @@ en:
       for_rent: 'Rental'
       search: 'Search'
     search_filter_order:
-      sort_field_label: 'Sortiert nach'
+      sort_field_label: 'Sorted by'
       search_fields:
         rooms: 'rooms'
-        price: 'Price'
-        available_from: 'Bezug'
-        category: 'Objekt-Art'
+        price: 'price'
+        available_from: 'move-in date'
+        category: 'type of object'
         floor: 'floor'
         usable_surface: 'm²'
       search_orders:
-        asc: 'Aufsteigend'
-        desc: 'Absteigend'
+        asc: 'Descending'
+        desc: 'Ascending'
     index:
       number_of_rooms: "%{count} rooms"
       hits: "%{count} Hit(s)"
@@ -27,7 +27,7 @@ en:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Übersicht'
       next: 'Nächstes Projekt'
-      floorplan: 'Grundriss anzeigen'
-      description_download: 'Objektdokumentation'
-      project_website_link: 'Zur Projektwebseite'
+      floorplan: 'Show Layout'
+      description_download: 'Documentation'
+      project_website_link: 'Project Website'
       contact_title: 'Contact'

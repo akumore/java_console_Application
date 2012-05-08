@@ -66,8 +66,6 @@ describe "Cms::RealEstates" do
           select 'Child Category 1', :from => 'Kategorie'
           choose 'Arbeiten'
           choose 'Kaufen'
-          check 'Website'
-          check 'Homegate'
           select 'Muster, Hans', :from => 'Kontaktperson'
 
           fill_in 'Titel', :with => 'My Real Estate'
@@ -84,25 +82,93 @@ describe "Cms::RealEstates" do
       end
 
       context '#create' do
-        before :each do
+        let :real_estate do
+          RealEstate.last
+        end
+
+        it 'saves the category' do
           click_on 'Immobilie erstellen'
-          @real_estate = RealEstate.last
+          real_estate.category.label.should == 'Child Category 1'
         end
 
-        it 'has saved the provided attributes' do
-          @real_estate.category.label.should == 'Child Category 1'
-          @real_estate.utilization.should == RealEstate::UTILIZATION_COMMERICAL
-          @real_estate.offer.should == RealEstate::OFFER_FOR_SALE
-          @real_estate.channels.should == %w(website homegate)
-          @real_estate.contact.fullname == 'Hans Muster'
-          @real_estate.title.should == 'My Real Estate'
-          @real_estate.property_name.should == 'Gartenstadt'
-          @real_estate.description.should == 'Some description...'
-          @real_estate.utilization_description.should == 'Gewerbe, Hotel'
+        it 'saves the utilization type' do
+          click_on 'Immobilie erstellen'
+          real_estate.utilization.should == RealEstate::UTILIZATION_COMMERICAL
         end
 
-        it 'is in the editing state' do
-          @real_estate.state.should == RealEstate::STATE_EDITING
+        it 'saves the offer type' do
+          click_on 'Immobilie erstellen'
+          real_estate.offer.should == RealEstate::OFFER_FOR_SALE
+        end
+
+        it 'enables it for the website' do
+          check 'Website'
+          click_on 'Immobilie erstellen'
+          real_estate.channels.should include RealEstate::WEBSITE_CHANNEL
+        end
+
+        it 'enables it as reference project' do
+          check 'Referenzprojekt'
+          click_on 'Immobilie erstellen'
+          real_estate.channels.should include RealEstate::REFERENCE_PROJECT_CHANNEL
+        end
+
+        it 'enables it for homegate export' do
+          check 'Homegate'
+          click_on 'Immobilie erstellen'
+          real_estate.channels.should include RealEstate::HOMEGATE_CHANNEL
+        end
+
+        it 'enables it for the minidoku' do
+          check 'Objektdokumentation'
+          click_on 'Immobilie erstellen'
+          real_estate.channels.should include RealEstate::PRINT_CHANNEL
+        end
+
+        it 'enables it for micro-sites' do
+          check 'Micro-Site'
+          click_on 'Immobilie erstellen'
+          real_estate.channels.should include RealEstate::MICROSITE_CHANNEL
+        end
+
+        it 'enables it for multiple channels' do
+          check 'Website'
+          check 'Homegate'
+          check 'Referenzprojekt'
+          click_on 'Immobilie erstellen'
+          [RealEstate::HOMEGATE_CHANNEL, RealEstate::REFERENCE_PROJECT_CHANNEL, RealEstate::WEBSITE_CHANNEL].each do |channel|
+            real_estate.channels.should include channel
+          end
+        end
+
+        it 'assigns the contact person aka employee' do
+          click_on 'Immobilie erstellen'
+          real_estate.contact.fullname == 'Hans Muster'
+        end
+
+        it 'saves the title' do
+          click_on 'Immobilie erstellen'
+          real_estate.title.should == 'My Real Estate'
+        end
+
+        it 'saves the property name' do
+          click_on 'Immobilie erstellen'
+          real_estate.property_name.should == 'Gartenstadt'
+        end
+
+        it 'saves the description' do
+          click_on 'Immobilie erstellen'
+          real_estate.description.should == 'Some description...'
+        end
+
+        it 'has saved the utilization description' do
+          click_on 'Immobilie erstellen'
+          real_estate.utilization_description.should == 'Gewerbe, Hotel'
+        end
+
+        it 'puts the real estate in the editing state' do
+          click_on 'Immobilie erstellen'
+          real_estate.state.should == RealEstate::STATE_EDITING
         end
       end
     end
