@@ -40,6 +40,7 @@ AlfredMueller::Application.routes.draw do
           get 'footer'
         end
       end
+      match '*name' => 'handout#show', :as => :object_documentation
     end
     resource :job_application, :only => [:new, :create]
     resource :contact, :only => [:new, :create]
