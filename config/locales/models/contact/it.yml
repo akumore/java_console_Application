@@ -5,10 +5,10 @@ it:
     attributes:
       contact:
         name: 'Nome'
-        address: 'Adresse'
+        address: 'Indirizzo'
         street: 'Via'
         city: 'Città'
         zip: 'Codice postale'
-        email: 'e-Mail Adresse'
-        message: 'Nachricht'
+        email: 'Indirizzo e-mail'
+        message: 'Comunicazione'
 

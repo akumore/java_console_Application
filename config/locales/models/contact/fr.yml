@@ -9,5 +9,5 @@ fr:
         street: 'Rue'
         city: 'Lieu'
         zip: 'NPA'
-        email: 'e-Mail Adresse'
-        message: 'Nachricht'
+        email: 'Adresse e-mail'
+        message: 'Information'
