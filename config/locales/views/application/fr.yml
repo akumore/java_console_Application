@@ -1,8 +1,6 @@
 fr:
   application:
     vision_slider:
-      open: 'ouvrir'
-      close: 'fermer'
       vision:
         real_estate_title_kids: 'Nous réalisons des espaces de vie et de travail agréables.'
         real_estate_title_couple: 'Espaces de vie où rien d’autre n’est important.'
