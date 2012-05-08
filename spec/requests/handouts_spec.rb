@@ -357,7 +357,9 @@ describe "Handout aka MiniDoku" do
     end
 
     it 'shows the chapter title' do
-      page.should have_content 'Beschreibung'
+      within('.chapter.additional-description h2') do
+        page.should have_content 'Beschreibung'
+      end
     end
 
     it 'shows the location description' do
