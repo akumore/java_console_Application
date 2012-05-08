@@ -20,7 +20,7 @@ de:
         daily: '%{price} / Tag'
         year_m2: '%{price} / m² / Jahr'
         sell: '%{price} / Verkaufspreis'
-        sell_m2: '%{price} / Verkaufspreis/m²'
+        sell_m2: '%{price} / Verkaufspreis / m²'
     title: 'Preise'
     for_sale: 'Kaufpreis'
     for_rent_netto: 'Miete (ohne Nebenkosten)'
