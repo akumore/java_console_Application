@@ -218,6 +218,26 @@ describe "RealEstates" do
             ))
           end
         end
+
+        context 'for living' do
+          it 'has a link for the application form pdf' do
+            real_estate.update_attribute :utilization, RealEstate::UTILIZATION_PRIVATE
+            visit real_estate_path(real_estate)
+            page.within('.sidebar') do
+              page.should have_link('Anmeldeformular', :href => '/documents/Anmeldeformular-Mieten-Wohnen.pdf')
+            end
+          end
+        end
+
+        context 'for working' do
+          it 'has a link for the application form pdf' do
+            real_estate.update_attribute :utilization, RealEstate::UTILIZATION_COMMERICAL
+            visit real_estate_path(real_estate)
+            page.within('.sidebar') do
+              page.should have_link('Anmeldeformular', :href => '/documents/Anmeldeformular-Mieten-Gewerbe.pdf')
+            end
+          end
+        end
       end
 
       context 'when the real estate is for sale' do
@@ -280,6 +300,13 @@ describe "RealEstates" do
         real_estate.contact.destroy
         visit real_estate_path(real_estate)
         page.should_not have_css ".appointment"
+      end
+
+      it 'renders the appointment form download link' do
+        visit real_estate_path(real_estate)
+        page.within('.sidebar') do
+          page.should have_link('Anmeldeformular', :href => '/documents/Anmeldeformular-Mieten-Wohnen.pdf')
+        end
       end
 
       it "sends an appointment mail upon submitting the form" do

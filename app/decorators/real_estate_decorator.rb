@@ -102,6 +102,17 @@ class RealEstateDecorator < ApplicationDecorator
     ) if model.has_handout?
   end
 
+  def application_form_link
+    if model.for_rent?
+      link = if model.private_utilization?
+        '/documents/Anmeldeformular-Mieten-Wohnen.pdf'
+      elsif model.commercial_utilization?
+        '/documents/Anmeldeformular-Mieten-Gewerbe.pdf'
+      end
+      link_to(t('real_estates.show.application_form'), link, :class => 'icon-description', :target => '_blank')
+    end
+  end
+
   def floorplan_link
     if model.floor_plans.exists?
       link_to t('real_estates.show.floorplan'), '#', :class => 'icon-groundplan'
