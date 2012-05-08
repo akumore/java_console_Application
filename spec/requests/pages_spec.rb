@@ -3,26 +3,35 @@
 require "spec_helper"
 
 describe "Pages" do
+  monkey_patch_default_url_options
 
   describe 'Jobs' do
     before :each do
-      @page = Fabricate(:page, :name => 'jobs')
-      @page.bricks << Fabricate.build(:placeholder_brick, :placeholder => 'jobs_openings')
+      [:de, :fr].each do |locale|
+        Fabricate :page, :name => 'jobs', :locale => locale,
+                  :bricks => [Fabricate.build(:placeholder_brick, :placeholder => 'jobs_openings')]
+      end
 
-      Fabricate(:job) # create unpublished job
-      3.times { Fabricate(:published_job) }
-      3.times { Fabricate(:published_job, :locale => :fr) }
-      visit I18n.t('jobs_url')
+      @unpublished_job = Fabricate :job
+      @german_published_job = Fabricate :published_job, :locale => :de
+      @french_published_job = Fabricate :published_job, :locale => :fr
     end
 
-    it 'has an accordion with 3 jobs in german' do
-      page.should have_css('.jobs .accordion-item', :count => 3)
+    it 'has an accordion with jobs in german' do
+      visit I18n.t('jobs_url', :locale => 'de')
+      page.should have_css '.jobs .accordion-item', :count => 1
+      page.should have_css "#job_#{@german_published_job.id}"
+    end
+
+    it 'has an accordion with jobs in french' do
+      visit I18n.t('jobs_url', :locale => 'fr')
+      page.should have_css '.jobs .accordion-item', :count => 1
+      page.should have_css "#job_#{@french_published_job.id}"
     end
   end
 
 
   describe "Company Page" do
-
     before do
       @brick = Fabricate.build(:placeholder_brick, :placeholder => 'company_header')
       @page = Fabricate(:page, :name => 'company', :bricks => [@brick])
