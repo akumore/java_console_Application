@@ -2,8 +2,10 @@
   background: $search-background-color
   +column(10)
   border-top: 1px solid $search-container-border-top
+
   h2
-    margin-left: 10px
+    margin: 0.75em
+    margin-left: 15px
 
 .search-results
   +column(6, 10)
@@ -45,12 +47,15 @@ td
 
   .col.first
     width: 150px
+    padding-right: 10px
+    +ellipsis
 
   .col.middle
-    width: 130px
+    width: 125px
+    padding-right: 5px
 
   .col.last
-    width: 125px
+    width: 115px
 
 .detail
   background: $search-background-color
@@ -60,6 +65,7 @@ td
 .gallery
   +column(10)
   margin-bottom: 2em
+  margin-top: 0
 
   img
     width: 100%
@@ -71,15 +77,16 @@ td
   h1
     @extend .title-font-bold
     margin-bottom: 0
+    margin-top: 0.7em
 
   h3
     margin-bottom: 0
-    margin-top: 0.5em
+    margin-top: 0.3em
     color: $normal
 
 .short-info
   +row
-  margin-top: 1.5em
+  margin-top: 1em
 
   .info.first
     +push(1)
@@ -88,7 +95,7 @@ td
     +column(2, 9)
     @extend .text-font-bold
     margin:
-      bottom: 1.5em
+      bottom: 1em
 
 .description
   +column(6, 10)
@@ -137,12 +144,12 @@ td
   margin-top: 1em
 
   li
-    padding: 10px 20px
+    padding: 7px 40px 3px 40px
     line-height: 1.5em
 
 .search-filter-form
   background: $brown
-  padding: 20px
+  padding: 0.5em 40px
 
   label
     +float-left
@@ -157,7 +164,7 @@ td
 
   .chzn-container-multi
     .chzn-choices
-      margin-top: 5px
+      margin-top: 7px
       background-color: #e6e6e2
       @extend .arrow-dropdown
 
@@ -205,10 +212,18 @@ td
       z-index: 2
       position: absolute
 
+.chzn-container-multi
+  .chzn-choices
+    .search-field
+      input
+        padding: 3px 6px
+        line-height: 1em
+        vertical-align: middle
 
 .offer-tabs
   ul
     +horizontal-list(false, right)
+    font-size: 14px
 
     li
       background: $search-background-color
@@ -220,6 +235,7 @@ td
   background: $browny
   ul
     +horizontal-list(false)
+    font-size: 14px
 
     li
       background: $browny

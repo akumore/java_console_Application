@@ -22,7 +22,8 @@ class RealEstate
   WEBSITE_CHANNEL = 'website'
   HOMEGATE_CHANNEL = 'homegate'
   PRINT_CHANNEL = 'print'
-  CHANNELS = %W(#{WEBSITE_CHANNEL} #{HOMEGATE_CHANNEL} #{PRINT_CHANNEL} #{REFERENCE_PROJECT_CHANNEL})
+  MICROSITE_CHANNEL = 'microsite'
+  CHANNELS = %W(#{WEBSITE_CHANNEL} #{HOMEGATE_CHANNEL} #{PRINT_CHANNEL} #{REFERENCE_PROJECT_CHANNEL} #{MICROSITE_CHANNEL})
 
   belongs_to :category
   belongs_to :contact, :class_name => 'Employee'
@@ -37,17 +38,6 @@ class RealEstate
   embeds_one :information, :validate => false
   embeds_one :infrastructure, :validate => false
   embeds_one :additional_description
-
-
-  #TODO Remove media_assets but migrate data on production first!
-  embeds_many :media_assets  do
-    def primary_image
-      images.primary.first || MediaAsset.new(:media_type => MediaAsset::IMAGE)
-    end
-  end
-  accepts_nested_attributes_for :media_assets
-  deprecate :media_assets => 'media_assets will be removed soon'
-
 
   embeds_many :images, :class_name => 'MediaAssets::Image', :cascade_callbacks => true
   embeds_many :floor_plans, :class_name => 'MediaAssets::FloorPlan', :cascade_callbacks => true
@@ -82,13 +72,15 @@ class RealEstate
   delegate :row_house?, :to => :category, :allow_nil => true
   delegate :coordinates, :to => :address, :allow_nil => true
 
-  scope :reference_projects, :where => { :channels => REFERENCE_PROJECT_CHANNEL }
   scope :published, :where => { :state => STATE_PUBLISHED }
   scope :in_review, :where => { :state => STATE_IN_REVIEW }
   scope :editing, :where => { :state => STATE_EDITING }
+  scope :recently_updated, lambda { where( :updated_at.gte => 12.hours.ago ) }
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
   scope :print_channel, :where => { :channels => PRINT_CHANNEL }
-  scope :recently_updated, lambda { where( :updated_at.gte => 12.hours.ago ) }
+  scope :reference_projects, :where => { :channels => REFERENCE_PROJECT_CHANNEL }
+  scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
+
 
   class << self
     extend ActiveSupport::Memoizable

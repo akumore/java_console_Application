@@ -7,3 +7,5 @@
 
   .appointment-contact-details
     = render "appointments/contact_information", :contact=>@real_estate.contact
+    %p.section
+      = @real_estate.application_form_link

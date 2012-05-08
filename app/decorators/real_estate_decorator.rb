@@ -94,9 +94,23 @@ class RealEstateDecorator < ApplicationDecorator
   def mini_doku_link
     link_to(
         t('real_estates.show.description_download'),
-        real_estate_handout_path(:real_estate_id => model.id, :format => :pdf),
+        real_estate_object_documentation_path(
+          :real_estate_id => model.id,
+          :format => :pdf,
+          :name => "Objektdokumentation-#{model.title.parameterize}"),
         :class => 'icon-description', :target => '_blank'
     ) if model.has_handout?
+  end
+
+  def application_form_link
+    if model.for_rent?
+      link = if model.private_utilization?
+        '/documents/Anmeldeformular-Mieten-Wohnen.pdf'
+      elsif model.commercial_utilization?
+        '/documents/Anmeldeformular-Mieten-Gewerbe.pdf'
+      end
+      link_to(t('real_estates.show.application_form'), link, :class => 'icon-description', :target => '_blank')
+    end
   end
 
   def floorplan_link

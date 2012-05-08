@@ -4,8 +4,8 @@ it:
       form:
         for_rent: 'Mietinformationen'
   information:
-    title: 'Immobilieninfos'
-    characteristics: 'Merkmale'
+    title: 'Info immobile'
+    characteristics: 'Caratteristiche'
     available_from: 'Disponibile dal'
     available_from_compact: 'Disponibile dal %{date}'
     maximal_floor_loading: 'Maximale Bodenbelastung'
@@ -27,11 +27,11 @@ it:
     swimmingpool: 'Piscina'
     number_of_restrooms: '%{count} WC'
     lifting_platform: 'Hebebühne'
-    ramp: 'Anfahrtsrampe'
+    ramp: 'Anfahrrampe'
     railway_terminal: 'Bahnanschluss'
     water_supply: 'Wasseranschluss'
     sewage_supply: 'Abwasseranschluss'
-    minimum_rental_period: 'Mindestmietdauer'
-    notice_dates: 'Kündigungstermine'
-    notice_period: 'Kündigungsfrist'
+    minimum_rental_period: 'Durata locazione minima'
+    notice_dates: 'Termini di disdetta'
+    notice_period: 'Scadenza disdetta'
 

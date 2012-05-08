@@ -33,6 +33,9 @@
   - if @real_estate.is_homegate?
     %fieldset
       %legend= Reference.model_name.human
+      .control-group
+        .controls
+          .help-block.bold-black= t('.help_reference_numbers')
       = f.fields_for @address.reference do |rf|
         .control-group
           = rf.label :property_key

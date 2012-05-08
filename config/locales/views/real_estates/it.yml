@@ -1,7 +1,7 @@
 it:
   real_estates:
     reference_projects:
-      link_title: 'Zum Projekt'
+      link_title: 'Al progetto'
     search_filter:
       private: 'Abitare'
       commercial: 'Lavorare'
@@ -9,17 +9,17 @@ it:
       for_rent: 'Affittare'
       search: 'Cercare'
     search_filter_order:
-      sort_field_label: 'Sortiert nach'
+      sort_field_label: 'Ricerca secondo'
       search_fields:
-        rooms: 'Locali'
-        price: 'Prezzo'
-        available_from: 'Bezug'
-        category: 'Objekt-Art'
+        rooms: 'locali'
+        price: 'prezzo'
+        available_from: 'la disponibilità'
+        category: 'il tipo di oggetto'
         floor: 'Piano'
         usable_surface: 'm²'
       search_orders:
-        asc: 'Aufsteigend'
-        desc: 'Absteigend'
+        asc: 'Indietro'
+        desc: 'Avanti'
     index:
       number_of_rooms: "%{count} Locali"
       hits: "%{count} Risultato/Risultati"
@@ -27,7 +27,8 @@ it:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Übersicht'
       next: 'Nächstes Projekt'
-      floorplan: 'Grundriss anzeigen'
-      description_download: 'Objektdokumentation'
-      project_website_link: 'Zur Projektwebseite'
+      floorplan: 'Mostra pianta'
+      description_download: 'Documentazione oggetto'
+      project_website_link: 'Alla pagina web'
       contact_title: 'Persona di contatto'
+      application_form: 'Anmeldeformular'

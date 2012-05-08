@@ -143,7 +143,7 @@ describe "RealEstates" do
               :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
               :category => Fabricate(:category),
               :address => Fabricate.build(:address),
-              :media_assets => [Fabricate.build(:media_assets_image, :is_primary => :true)]
+              :images => [Fabricate.build(:media_assets_image, :is_primary => :true)]
             )
           end
           visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT)
@@ -166,17 +166,18 @@ describe "RealEstates" do
               :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
               :category => Fabricate(:category),
               :address => Fabricate.build(:address),
-              :media_assets => [Fabricate.build(:media_assets_image, :is_primary => :true)]
+              :images => [Fabricate.build(:media_assets_image, :is_primary => :true)]
             )
           end
-          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
         end
 
         it "shows the slider container" do
+          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
           page.should have_css(".real_estates .flex-container .flexslider")
         end
 
         it "has 2 slides" do
+          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
           page.should have_css(".real_estates ul.slides li", :count => 2)
         end
       end

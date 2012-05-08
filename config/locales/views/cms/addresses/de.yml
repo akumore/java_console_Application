@@ -2,6 +2,7 @@ de:
   cms:
     addresses:
       form:
+        help_reference_numbers: 'Für Homegate muss mindestens eine der folgenden 3 Referenznummern ausgefüllt werden.'
         help_popover:
           property_key: 'Für IMB: Liegenschafts-Nr. eingeben, z.B. L2716 <br /> Für M+V: Projekt-Nr. eingeben, z.B. 20643'
           building_key: 'Für IMB: Objekt-Nr. eingeben, z.B. 1012 <br /> Für M+V: genaue Bezeichnung, z.B. Feldpark9_9.12'

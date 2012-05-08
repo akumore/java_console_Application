@@ -1,0 +1,8 @@
+fr:
+  contacts:
+    form:
+      send: 'Envoyer une demande'
+      errors: 'Contrôler vos données:'
+    confirmation:
+      confirmation: 'Vielen Dank für Ihre Anfrage, %{name}'
+      your_contact: 'Ihre Kontaktanfrage:'

@@ -140,15 +140,13 @@
 .vision-slider
   position: relative
   margin-bottom: 20px
-  margin-top: -385px
+  margin-top: -488px
+  height: 535px
 
   .flexslider
     .slides
       position: relative
       z-index: 9
-
-  .flex-container
-    height: 535px
 
   .flex-direction-nav li a
     z-index: 20
@@ -183,8 +181,8 @@
 
   .toggle
     position: absolute
-    left: 5%
-    bottom: 10%
+    left: 15px
+    bottom: 17px
     z-index: 30
     cursor: pointer
 
@@ -198,25 +196,25 @@
 
 
   .toggle-close, .toggle-open
-    padding-left: 35px
-    padding-right: 10px
-    line-height: 35px
+    width: 25px
+    height: 25px
 
   .toggle-close
     display: none
-    background: image-url('arrows/arch-tall-up.png') no-repeat left center
+    background: image-url('arrows/arrow-header-up.png') no-repeat left center
 
     &:hover
-      background: image-url('arrows/arch-tall-up-rollover.png') no-repeat left center
+      background: image-url('arrows/arrow-header-up-hover.png') no-repeat left center
       color: $dark
 
   .toggle-open
     display: block
-    background: image-url('arrows/arch-tall-down.png') no-repeat left center
+    background: image-url('arrows/arrow-header-down.png') no-repeat left center
 
     &:hover
-      background: image-url('arrows/arch-tall-down-rollover.png') no-repeat left center
+      background: image-url('arrows/arrow-header-down-hover.png') no-repeat left center
       color: $dark
+
 
 .vision-slider-open
   .vision-slider
@@ -237,7 +235,6 @@
   top: 0px
   left: 0px
   z-index: 10
-  //display: none
 
   img
     width: 100%
