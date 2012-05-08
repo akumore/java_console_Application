@@ -37,10 +37,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :jobs, t('navigation.main.jobs'), t('jobs_url'), :highlights_on => proc { controller.request.path == I18n.t('jobs_url') }
     primary.item :company, t('navigation.main.company'), t('company_url'), :highlights_on => proc { controller.request.path == I18n.t('company_url') }
     primary.item :news, t('navigation.main.news'), news_items_path, :highlights_on => proc { controller.request.path == news_items_path }
-
-    if I18n.locale == :de
-      primary.item :knowledge, t('navigation.main.knowledge'), t('knowledge_url'), :highlights_on => proc { controller.request.path == I18n.t('knowledge_url') }
-    end
+    primary.item :knowledge, t('navigation.main.knowledge'), t('knowledge_url'), :highlights_on => proc { controller.request.path == I18n.t('knowledge_url') }
 
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu
