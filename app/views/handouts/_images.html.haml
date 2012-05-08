@@ -3,7 +3,7 @@
     %h2= t ".title"
     .enlarged-image{:id=>"image-#{images.first.id}"}
       %h3= images.first.title
-      = image_tag images.first.file.url
+      = image_tag images.first.file.minidoku.url
 
   - images[1..-1].in_groups_of(2, false).each do |image_group|
     .smaller-images
