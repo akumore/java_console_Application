@@ -1,0 +1,17 @@
+fr:
+  mongoid:
+    models:
+      job_application: 'Bewerbung'
+    attributes:
+      job_application:
+        firstname: 'Prénom'
+        lastname: 'Nom'
+        birthdate: 'Geboren am'
+        address: 'Adresse'
+        street: 'Rue'
+        city: 'Lieu'
+        zipcode: 'NPA'
+        phone: 'Telefon'
+        mobil: 'Mobil'
+        email: 'Adresse e-mail'
+        comment: 'Information'
