@@ -39,17 +39,6 @@ class RealEstate
   embeds_one :infrastructure, :validate => false
   embeds_one :additional_description
 
-
-  #TODO Remove media_assets but migrate data on production first!
-  embeds_many :media_assets  do
-    def primary_image
-      images.primary.first || MediaAsset.new(:media_type => MediaAsset::IMAGE)
-    end
-  end
-  accepts_nested_attributes_for :media_assets
-  deprecate :media_assets => 'media_assets will be removed soon'
-
-
   embeds_many :images, :class_name => 'MediaAssets::Image', :cascade_callbacks => true
   embeds_many :floor_plans, :class_name => 'MediaAssets::FloorPlan', :cascade_callbacks => true
   embeds_many :videos, :class_name => 'MediaAssets::Video', :cascade_callbacks => true
