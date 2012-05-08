@@ -3,6 +3,7 @@
 require "spec_helper"
 
 describe "Pages" do
+  monkey_patch_default_url_options
 
   describe 'Jobs' do
     before :each do
@@ -12,7 +13,7 @@ describe "Pages" do
       Fabricate(:job) # create unpublished job
       3.times { Fabricate(:published_job) }
       3.times { Fabricate(:published_job, :locale => :fr) }
-      visit I18n.t('jobs_url')
+      visit I18n.t('jobs_url', :locale=>'de')
     end
 
     it 'has an accordion with 3 jobs in german' do
