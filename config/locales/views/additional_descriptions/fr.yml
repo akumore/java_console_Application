@@ -1,0 +1,8 @@
+fr:
+  additional_descriptions:
+    title: "Aperçu de l'objet"
+    location: 'Lieu'
+    interior: 'Standard de construction'
+    offer: 'Offre'
+    infrastructure: 'Infrastructure'
+    utilization_description: 'Utilisation'
