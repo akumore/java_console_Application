@@ -54,35 +54,19 @@ describe "Main Navigation" do
         page.should have_link I18n.t('navigation.main.news'), :href => news_items_path(:locale => lang)
       end
     end
-  end
-
-
-  shared_examples_for "All languages but 'DE'" do |lang|
-    it "has no link to the content page 'knowledge'" do
-      visit root_path(:locale => lang)
-      within '.main-navigation' do
-        page.should_not have_link I18n.t('navigation.main.knowledge'), :href => "/#{lang}/knowledge"
-      end
-    end
-  end
-
-
-  context "Language 'DE'" do
-    it_behaves_like "All language versions", 'de'
 
     it "links to the content page 'knowledge'" do
-      visit root_path
+      visit root_path(:locale => lang)
       within '.main-navigation' do
-        page.should have_link 'Wissenswertes', :href => "/de/knowledge"
+        page.should have_link I18n.t('navigation.main.knowledge'), :href => "/#{lang}/knowledge"
       end
     end
   end
 
 
-  %w(fr en it).each do |lang|
-    context "Language '#{lang.upcase}'" do
-      it_behaves_like "All language versions", lang
-      it_behaves_like "All languages but 'DE'", lang
+  %w(de fr en it).each do |language|
+    context "Language '#{language.upcase}'" do
+      it_behaves_like "All language versions", language
     end
   end
 
