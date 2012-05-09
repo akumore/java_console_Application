@@ -1,13 +1,16 @@
 // handheld
-@media only screen and (min-width : 320px)
+//@media only screen and (min-width : 320px)
   // ...
 
 // handheld-landscape
-@media only screen and (min-width : 321px)
+//@media only screen and (min-width : 321px)
   //@content
 
 // handheld-portrait
-@media only screen and (max-width : 320px)
+//@media only screen and (max-width : 320px)
+
+// handheld, up to widescreen
+@media only screen and (max-width : 599px)
   $margin-side: 20px
 
   .vision-slider
@@ -25,7 +28,6 @@
   .meta-navigation
     float: none
     margin: 10px $margin-side
-    width: 100%
     display: block
 
   .main-navigation
@@ -40,9 +42,27 @@
       border-top: 1px solid $clay
       background: image-url('button-bg.png') repeat-x
 
+  .offer-tabs, .utilization-tabs
+    li
+      width: 50%
+      text-align: center
+
+  .search-filter-form
+    label, .chzn-container
+      display: block
+      float: none
+
+    select
+      width: 100%
+
+    input[type="submit"]
+      width: 100%
+      margin: 1em 0
+
   .services-slides-container
     overflow: auto
     height: auto
+    border-top: 1px solid $border-light
 
     .handle
       display: block
@@ -81,7 +101,6 @@
     display: block
     float: none
     padding: 1em $margin-side
-    width: 100%
 
   .rent-slide, .sale-slide, .build-slide
     position: relative !important
@@ -90,6 +109,10 @@
     float: none
     height: auto
     border: 0px solid transparent
+
+    .handle
+      border-bottom: 1px solid $border-light
+      border-top: 1px solid #fff
 
   .footer-news, .footer-teasers, .footer-contact
     +column(10)
