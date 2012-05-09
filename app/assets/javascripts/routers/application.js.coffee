@@ -70,8 +70,9 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
             backgroundColor: '#0A1930'
     )
 
-    #initialize chosen selects
-    $(".chzn-select").chosen()
+    #initialize chosen selects, doesn't work smoothly on iOS or touch devices in general
+    unless Modernizr.touch
+      $(".chzn-select").chosen()
 
     #initialize updater of filter-cities dropdown
     $('.search-filter-form').each ->
