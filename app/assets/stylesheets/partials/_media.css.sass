@@ -59,6 +59,52 @@
       width: 100%
       margin: 1em 0
 
+  .search-results, .map
+    float: none
+    width: 100%
+    display: block
+
+  td
+    .col.first,
+    .col.middle,
+    .col.last
+      width: auto
+      white-space: normal
+      margin: 5px 0
+
+  .search-filter-order-form
+    .sort-field, .sort-order
+      width: 100%
+
+    .sort-order
+      border-top: 1px solid #a6a7a6
+
+  .detail
+    width: 94%
+    padding: 3%
+
+  .content
+    img
+      max-width: 100%
+
+  .short-info
+    .info
+      +column(5)
+
+      &.first
+        margin-left: 0
+
+
+  .main-title
+    +column(10)
+
+  .description, .gallery, .sidebar
+    +column(10)
+
+  .gallery
+    .container
+      margin: 1em 0
+
   .services-slides-container
     overflow: auto
     height: auto
