@@ -41,7 +41,7 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
         )
     )
 
-    $(".reference-projects-slider .flexslider, .services-slides-container .flexslider").flexslider(
+    $(".reference-projects-slider .flexslider, .services-slides-container .flexslider, .job-profile-slides-container .flexslider").flexslider(
       directionNav: true,
       controlNav: false,
       slideshow: false,
