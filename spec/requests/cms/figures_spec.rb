@@ -29,6 +29,10 @@ describe "Cms::Figures" do
         page.should_not have_css('#figure_usage_surface')
       end
 
+      it 'does not show the usage surface estimate input' do
+        page.should_not have_css('#figure_usage_surface_estimate')
+      end
+
       it 'does not show the ceiling height input' do
         page.should_not have_css('#figure_ceiling_height')
       end
@@ -43,6 +47,7 @@ describe "Cms::Figures" do
             fill_in 'Wohnfläche', :with => '124.6'
             fill_in 'Wohnfläche ungefähr', :with => '124.6 - 130.4m2'
             fill_in 'Grundstückfläche', :with => '400.5'
+            fill_in 'Grundstückfläche ungefähr', :with => '124.5 - 123m2'
             fill_in 'Anzahl Geschosse', :with => 3
             fill_in 'Renovationsjahr', :with => 1997
             fill_in 'Baujahr', :with => 1956
@@ -70,6 +75,7 @@ describe "Cms::Figures" do
             @figure.living_surface.should == '124.6'
             @figure.living_surface_estimate.should == '124.6 - 130.4m2'
             @figure.property_surface.should == '400.5'
+            @figure.property_surface_estimate.should == '124.5 - 123m2'
             @figure.floors.should == 3
             @figure.renovated_on.should == 1997
             @figure.built_on.should == 1956
@@ -117,7 +123,9 @@ describe "Cms::Figures" do
             fill_in 'Geschoss', :with => '-1'
             fill_in 'Geschoss ungefähr', :with => 'UG. - 2.OG'
             fill_in 'Grundstückfläche', :with => '400.5'
+            fill_in 'Grundstückfläche ungefähr', :with => '40.3 - 120 m2'
             fill_in 'Nutzfläche', :with => '200.6'
+            fill_in 'Nutzfläche ungefähr', :with => '200.6 - 200.7 m2'
             fill_in 'Lagerfläche', :with => '150'
             fill_in 'Raumhöhe', :with => '2.6'
             fill_in 'Anzahl Geschosse', :with => 3
@@ -143,7 +151,9 @@ describe "Cms::Figures" do
             @figure.floor.should == -1
             @figure.floor_estimate.should == 'UG. - 2.OG'
             @figure.property_surface.should == '400.5'
+            @figure.property_surface_estimate.should == '40.3 - 120 m2'
             @figure.usable_surface.should == '200.6'
+            @figure.usable_surface_estimate.should == '200.6 - 200.7 m2'
             @figure.storage_surface.should == '150'
             @figure.ceiling_height.should == '2.6'
             @figure.floors.should == 3
@@ -154,7 +164,6 @@ describe "Cms::Figures" do
       end
     end
   end
-
 
   describe '#show' do
      let :real_estate do
