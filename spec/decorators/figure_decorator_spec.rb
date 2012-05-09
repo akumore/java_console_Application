@@ -70,12 +70,26 @@ describe FigureDecorator do
     end
   end
 
-  it 'formats the usable surface' do
-    @figure.usable_surface.should == '135 m²'
+  describe '#property_surface' do
+    it 'formats the size' do
+      @figure.property_surface.should == '145 m²'
+    end
+
+    it 'renders the estimate property surface if present' do
+      @figure.update_attribute :property_surface_estimate, '182 - 120 m²'
+      @figure.property_surface.should == '182 - 120 m²'
+    end
   end
 
-  it 'formats the property surface' do
-    @figure.property_surface.should == '145 m²'
+  describe '#usable_surface' do
+    it 'formats the size' do
+      @figure.usable_surface.should == '135 m²'
+    end
+
+    it 'renders the estimate usable surface if present' do
+      @figure.update_attribute :usable_surface_estimate, '181 - 191 m²'
+      @figure.usable_surface.should == '181 - 191 m²'
+    end
   end
 
   it 'formats the size the storage surface' do
@@ -136,7 +150,13 @@ describe FigureDecorator do
 
     describe '#surface' do
       it 'returns the formatted usable surface' do
+        @figure.update_attribute :usable_surface_estimate, ''
         @figure.surface.should == '120 m²'
+      end
+
+      it 'returns the estimate usable surface' do
+        @figure.update_attribute :usable_surface_estimate, '82 - 93 m²'
+        @figure.surface.should == '82 - 93 m²'
       end
     end
   end

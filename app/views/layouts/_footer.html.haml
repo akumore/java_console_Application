@@ -26,14 +26,12 @@
     %h5 St. Martin
     %dl
       %dt=t ".cameroon_drinking_water"
-      %dd=link_to t(".get_more"), t('company_url')
       %dd=link_to t(".take_me_to_st_martin_website"), 'http://www.martinstiftung.ch/', :target => '_target'
 
   %div
     %h5 Allmig
     %dl
       %dt=t ".compost_and_nuclear_plant_in_region_zug"
-      %dd=link_to t(".get_more"), t('company_url')
       %dd=link_to t(".take_me_to_allmig_website"), 'http://www.allmig.ch/', :target => '_target'
 
 .footer-contact
@@ -49,19 +47,10 @@
     %dl
       - if I18n.locale == :de
         %dt Verband Schweizerischer Generalunternehmer VSGU
-        %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", :target=>"_blank"
+        %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", :target => "_blank"
         %dt Schweizerischer Verband der Immobilienwirtschaft SVIT
-        %dd= link_to "www.svit.ch", "http://www.svit.ch", :target=>"_blank"
-        %dt Schweizerischer Ingenieur- und Architektenverein SIA
-        %dd= link_to "www.sia.ch", "http://www.sia.ch", :target=>"_blank"
-        %dt Bundesamt für Bauten und Logistik
-        %dd= link_to "www.bbl.admin.ch", "http://www.bbl.admin.ch", :target=>"_blank"
-        %dt Hauseigentümerverband HEV
-        %dd= link_to "www.hev-schweiz.ch", "http://www.hev-schweiz.ch", :target=>"_blank"
+        %dd= link_to "www.svit.ch", "http://www.svit.ch", :target => "_blank"
       - else
-        %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", :target=>"_blank"
-        %dd= link_to "www.svit.ch", "http://www.svit.ch", :target=>"_blank"
-        %dd= link_to "www.sia.ch", "http://www.sia.ch", :target=>"_blank"
-        %dd= link_to "www.bbl.admin.ch", "http://www.bbl.admin.ch", :target=>"_blank"
-        %dd= link_to "www.hev-schweiz.ch", "http://www.hev-schweiz.ch", :target=>"_blank"
+        %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", :target => "_blank"
+        %dd= link_to "www.svit.ch", "http://www.svit.ch", :target => "_blank"
 

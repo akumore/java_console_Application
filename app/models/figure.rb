@@ -11,7 +11,9 @@ class Figure
   field :living_surface, :type => String
   field :living_surface_estimate, :type => String # 50-80 Quadratmeter
   field :property_surface, :type => String # Grundstückfläche
+  field :property_surface_estimate, :type => String # Grundstückfläche ungefähr
   field :usable_surface, :type => String # Nutzfläche
+  field :usable_surface_estimate, :type => String # Nutzfläche ungefähr
   field :storage_surface, :type => String # Lagerfläche
   field :ceiling_height, :type => String # Raumhöhe
   field :floors, :type => Integer # Anzahl Stockwerke
