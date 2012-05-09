@@ -4,7 +4,9 @@ de:
       form:
         help_popover:
           floor: 'Hier nur Geschoss-Nr. angeben, z.B. -1, 0, 1, 2 etc.'
-          floor_estimate: 'Hier Geschoss angeben, z.B. Attikageschoss, 1./2. Obergeschoss, 1. – 5. Obergeschoss<br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Geschoss» auf der Webseite und der Projektdokumentation ausgegeben.'
+          floor_estimate: 'Hier Geschoss angeben, z.B. Attikageschoss, 1./2. Obergeschoss, 1. – 5. Obergeschoss<br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Geschoss» auf der Webseite und der Objektdokumentation ausgegeben.'
           rooms: 'z.B. 2.5, 5.5'
-          rooms_estimate: 'Für spezifische Angaben, z.B. ab 3.5, 2.5 – 4.5 <br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Anzahl Zimmer» auf der Webseite und der Projektdokumentation ausgegeben.'
-          living_surface_estimate: 'Für spez. Angaben, z.B. ab 102 m², 104 m² – 132 m²<br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Wohnfläche» auf der Webseite und der Projektdokumentation ausgegeben.'
+          rooms_estimate: 'Für spezifische Angaben, z.B. ab 3.5, 2.5 – 4.5 <br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Anzahl Zimmer» auf der Webseite und der Objektdokumentation ausgegeben.'
+          living_surface_estimate: 'Für spez. Angaben, z.B. ab 102 m², 104 m² – 132 m²<br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Wohnfläche» auf der Webseite und der Objektdokumentation ausgegeben.'
+          property_surface_estimate: 'Für spez. Angaben, z.B. ab 102 m², 104 m² – 132 m²<br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Grundstückfläche» auf der Webseite und der Objektdokumentation ausgegeben.'
+          usable_surface_estimate: 'Für spez. Angaben, z.B. ab 102 m², 104 m² – 132 m²<br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Nutzfläche» auf der Webseite und der Objektdokumentation ausgegeben.'

@@ -40,11 +40,21 @@
       = f.label :property_surface
       .controls
         = f.text_field :property_surface, :class => 'span4'
+    .control-group
+      = f.label :property_surface_estimate
+      .controls
+        = f.text_field :property_surface_estimate, :class => 'span4'
+        %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:property_surface_estimate), 'data-content' => t('.help_popover.property_surface_estimate') }
     - if @real_estate.commercial_utilization?
       .control-group.mandatory
         = f.label :usable_surface
         .controls
           = f.text_field :usable_surface, :class => 'span4'
+      .control-group
+        = f.label :usable_surface_estimate
+        .controls
+          = f.text_field :usable_surface_estimate, :class => 'span4'
+          %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:usable_surface_estimate), 'data-content' => t('.help_popover.usable_surface_estimate') }
       .control-group
         = f.label :storage_surface
         .controls
