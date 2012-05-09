@@ -50,12 +50,20 @@ class FigureDecorator < ApplicationDecorator
   end
 
   def usable_surface
-    t('figures.surface_value', :size => model.usable_surface) if model.usable_surface.present?
+    if model.usable_surface_estimate.present?
+      model.usable_surface_estimate
+    elsif model.usable_surface.present?
+      t('figures.surface_value', :size => model.usable_surface)
+    end
   end
 
   def property_surface
     # Grundstückfläche
-    t('figures.surface_value', :size => model.property_surface) if model.property_surface.present?
+    if model.property_surface_estimate.present?
+      model.property_surface_estimate
+    elsif model.property_surface.present?
+      t('figures.surface_value', :size => model.property_surface)
+    end
   end
 
   def storage_surface
