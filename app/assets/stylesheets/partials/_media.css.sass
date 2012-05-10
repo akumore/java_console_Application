@@ -95,15 +95,45 @@
         margin-left: 0
 
 
-  .main-title
-    +column(10)
-
-  .description, .gallery, .sidebar
+  .main-title, .description, .gallery, .sidebar
     +column(10)
 
   .gallery
     .container
       margin: 1em 0
+
+  .brick, .brick.accordion-brick, .brick.download-brick
+    margin-left: $margin-side
+    margin-right: $margin-side
+    width: auto
+
+  .brick
+    h1
+      font-size: 2em
+
+  .accordion-classical
+    .title
+      font-size: 1.25em
+
+  .accordion-spacey
+    margin-top: 1em
+
+    .title
+      font-size: 1.5em
+
+    .title, .content
+      margin-left: $margin-side
+      margin-right: $margin-side
+
+    p, .title
+      width: auto
+      max-width: 100%
+
+  .load-more
+    padding-left: $margin-side
+
+  .tab-slider
+    width: 100%
 
   .services-slides-container
     overflow: auto
@@ -172,6 +202,7 @@
   #footer h4
     padding: 1em $margin-side
     margin-bottom: 0
+
 
 // tablet
 @media only screen and (min-width : 600px)
