@@ -45,7 +45,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.dom_class = 'meta-navigation'
 
     # You can turn off auto highlighting for a specific level
-    primary.auto_highlight = false
+    primary.auto_highlight = true
 
   end
 

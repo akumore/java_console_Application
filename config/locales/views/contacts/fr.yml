@@ -4,5 +4,5 @@ fr:
       send: 'Envoyer une demande'
       errors: 'Contrôler vos données:'
     confirmation:
-      confirmation: 'Vielen Dank für Ihre Anfrage, %{name}'
-      your_contact: 'Ihre Kontaktanfrage:'
+      confirmation: 'Merci pour votre demande, %{name}'
+      your_contact: 'Demande de contact:'

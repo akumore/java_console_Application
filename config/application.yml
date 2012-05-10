@@ -31,17 +31,17 @@ test:
 staging:
   <<: *defaults
   homegate:
-  agency_id: 'almtest'
-  ftp:
-    host: '62.65.135.69'
-    username: 'almtest'
-    password: 'cal31cium'
+    agency_id: 'almtest'
+    ftp:
+      host: '62.65.135.69'
+      username: 'almtest'
+      password: 'cal31cium'
 
 production:
   <<: *defaults
   homegate:
-  agency_id: 'almtest'
-  ftp:
-    host: '62.65.135.69'
-    username: 'almtest'
-    password: 'cal31cium'
+    agency_id: 'almtest'
+    ftp:
+      host: '62.65.135.69'
+      username: 'almtest'
+      password: 'cal31cium'

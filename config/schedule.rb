@@ -21,10 +21,10 @@
 
 # Learn more: http://github.com/javan/whenever
 
-#every :tuesday, :at=>'6:66 pm' do
-#  rake '-T'
-#end
-
 every :day, :at => '5am, 11am, 5pm, 11pm' do
   rake 'export', :output => File.join(path, "log/#{environment}_export_cron.log")
+end
+
+every :day, :at=>'11:30 pm' do
+  rake 'db:backup',:output => File.join(path, "log/#{environment}_backup_cron.log")
 end

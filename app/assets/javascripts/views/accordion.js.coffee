@@ -38,7 +38,9 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
     @closeItem(@open) if @open
     @open = elem.addClass("open").removeClass("closed")
     @initSlider(elem)
-    $.scrollTo(elem, 500) if scroll
+    # TODO: fix later
+    unless Modernizr.touch
+      $.scrollTo(elem, 500) if scroll
 
   closeItem: (elem) ->
     elem.removeClass("open").addClass("closed")

@@ -102,6 +102,9 @@ input, select, textarea
   a, a:link, a:visited, a:active
     @extend .text-font
 
+  .selected a
+    +link-colors($dark)
+
 .more, .less
   +link-colors($classic)
 

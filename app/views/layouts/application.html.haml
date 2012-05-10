@@ -11,15 +11,17 @@
       = render 'vision_slider'
       %header#header.clearfix
         = link_to 'Alfred-Müller.ch', root_path, :class => 'main-logo'
-        .navigations
+        .navigations#navigation
+          = link_to 'Navigation', '#navigation', :class => 'navigation-link-open'
+          = link_to 'Navigation', '#close-navigation', :class => 'navigation-link-close'
           = render_navigation :context => :meta
           .clear
           = render_navigation :context => :main
-        
+
       #main{ :role => 'main', :class => "#{controller_name} #{action_name}" }
         = render 'layouts/flashes'
         = yield
-        
+
       %footer#footer
         = render 'layouts/footer'
     -# Javascript at the bottom for fast page loading

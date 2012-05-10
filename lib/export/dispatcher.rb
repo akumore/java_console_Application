@@ -1,21 +1,25 @@
 module Export
-  class Dispatcher
+  class Dispatcher < Logger::Application
     include Observable
+    include Logging
+
+    def initialize(appname = nil)
+      super
+      init_logging
+    end
 
     def run
       exportable_real_estates.each do |real_estate|
-        changed
-        notify_observers(:add, real_estate)
+        logger.debug "Adding published real estate #{real_estate.id} as possible export target"
+        changed and notify_observers(:add, real_estate)
       end
 
-      changed
-      notify_observers :finish
-
-      Rails.logger.info 'Export has finished at ' + I18n.l(Time.now)
+      changed and notify_observers :finish
+      true
     end
 
-    private
 
+    private
     def exportable_real_estates
       RealEstate.published
     end

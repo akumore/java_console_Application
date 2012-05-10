@@ -2,16 +2,21 @@ require 'net/ftp'
 
 module Export
   module Homegate
-    class FtpUploader
+    class FtpUploader < Logger::Application
+      include Logging
 
       attr_reader :packager, :config
 
       def initialize(packager, config)
+        super "Homegate FTP Uploader"
+        init_logging
+
         @packager = packager
         @config = config
       end
 
       def do_upload!
+        logger.info "Uploading files."
         connect! do
           files.each { |item| upload item }
         end
@@ -23,7 +28,7 @@ module Export
         local_element = element
         remote_element = element.gsub(packager.path, @ftp.pwd)
 
-        logger.info "Uploading file '#{local_element}' to '#{remote_element}'"
+        logger.debug "Uploading file '#{local_element}' to '#{remote_element}'"
 
         if FileTest.directory?(local_element)
           # check to prevent '550 File exists' error
@@ -43,20 +48,16 @@ module Export
         Dir.glob("#{local_base_dir}/**/**").sort
       end
 
-      def logger
-        Rails.logger
-      end
-
       def local_base_dir
         @packager.path
       end
 
       def connect!
-        logger.info 'FTP connect'
+        logger.debug 'FTP connect'
         @ftp ||= Net::FTP.open(config[:host], config[:username], config[:password])
         if block_given?
           yield self
-          logger.info "FTP disconnect"
+          logger.debug "FTP disconnect"
           @ftp.close
         end
         @ftp

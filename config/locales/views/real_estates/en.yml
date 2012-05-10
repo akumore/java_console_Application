@@ -22,7 +22,9 @@ en:
         desc: 'Ascending'
     index:
       number_of_rooms: "%{count} rooms"
-      hits: "%{count} Hit(s)"
+      hits:
+        one: "%{count} Hit"
+        other: "%{count} Hits"
     show:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Übersicht'
@@ -31,4 +33,4 @@ en:
       description_download: 'Documentation'
       project_website_link: 'Project Website'
       contact_title: 'Contact'
-      application_form: 'Anmeldeformular'
+      application_form: 'Application Form'

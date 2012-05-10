@@ -19,28 +19,73 @@
     visibility: hidden
 
   .main-logo
-    +column(9)
-    margin-left: $margin-side
+    +column(7)
+    margin-left: 90px
+    height: 43px
+    background-size: 80%
 
   .navigations
-    +column(10)
+    float: none
+    width: 100%
+    height: 100%
+    position: fixed
+    top: 0px
+    left: -100%
+    z-index: 100
+    +transition(left 0.5s, background-color 1s ease-out)
+
+  #navigation:target
+    left: 0
+
+    &.navigations
+      background: rgba(0, 0, 0, 0.2)
+
+    .navigation-link-open
+      display: none
+
+    .navigation-link-close
+      display: block
+      left: 80%
+
+  .navigation-link-open, .navigation-link-close
+    display: block
+    background: image-url('ribbon.png') no-repeat left -5px
+    background-size: 74px 62px
+    width: 74px
+    height: 62px
+    position: absolute
+    left: 100%
+    top: 1px
+    +hide-text
+
+  .navigation-link-close
+    display: none
 
   .meta-navigation
     float: none
-    margin: 10px $margin-side
+    padding: 14px 0 0 0
     display: block
+    background: #f0f0f0
+    height: 30px
+    overflow: hidden
+    width: 80%
+
+    li.first, li:first-child
+      padding-left: $margin-side
 
   .main-navigation
     float: none
-    margin: 0.5em 0em
+    margin: 0em
     display: block
+    background: #f0f0f0
+    width: 80%
+    height: 100%
 
     li, li:first-child
       float: none
       display: block
       padding: 1em $margin-side
-      border-top: 1px solid $clay
-      background: image-url('button-bg.png') repeat-x
+      border-top: 1px solid $border-light
 
   .offer-tabs, .utilization-tabs
     li
@@ -98,9 +143,28 @@
   .main-title, .description, .gallery, .sidebar
     +column(10)
 
+  .description
+    dt
+      float: none
+      width: auto
+
+    dd
+      margin-left: 0
+
+    h3
+      margin-top: 1em
+
   .gallery
     .container
       margin: 1em 0
+
+  .appointment
+    min-height: 0
+
+    h2
+      display: none
+    .contact-form
+      display: none
 
   .brick, .brick.accordion-brick, .brick.download-brick
     margin-left: $margin-side
@@ -170,6 +234,7 @@
     overflow: auto
     height: auto
     border-top: 1px solid $border-light
+    margin-top: 10px
 
     .handle
       display: block
@@ -258,7 +323,91 @@
 
 // tablet-portrait
 @media only screen and (min-width : 600px) and (orientation : portrait)
-  //@content
+  #container
+    padding: 0 10px
+
+  .navigations
+    margin-top: 10px
+
+  .main-logo
+    background-size: 90%
+
+  .services-slides-container
+    .link-box
+      width: auto
+
+      li
+        padding: 10px 15px
+        height: auto
+
+  .vision-slider
+    .image-caption-text
+      h3
+        margin-top: 1em
+
+  .footer-contact > div
+    margin-left: 0
+
+  .search-filter-form
+    select
+      margin-right: 10px
+      float: left
+
+  .short-info
+    +push(1)
+
+    .info
+      +column(4)
+
+    .info.first
+      margin-left: 0
+
+  .sidebar
+    ul
+      margin-left: 0
+
+  .vision-slider
+    .image-caption-text
+      margin-top: 0
+
+      h3
+        font-size: 1.75em
+        margin-top: 0
+
+  .vision-slider
+    height: 400px
+
+  .appointment
+    min-height: 353px
+
+    .headline
+      margin-bottom: 0
+
+    h2
+      margin-top: 1em
+
+  .brick, .brick.accordion-brick
+    margin: 1em
+    width: 90%
+
+  .tab-slider
+    width: 100%
+
+    .second-level-navigation
+      display: none
+
+    .tab-content
+      border-width: 0px
+      height: auto
+
+    .tab-slider-description
+      width: 180px
+      height: 200px
+      background: image-url('image-caption-top-big.png') no-repeat bottom left
+
+      h1
+        font-size: 2em
+        margin-top: 40px
 
 // tablet-large
 @media only screen and (min-width : 768px)
@@ -283,6 +432,6 @@
 // retina-display
 @media only screen and (-webkit-min-device-pixel-ratio: 2)
   //@content
-  .main-logo
-    background: image-url('main-logo@2x.png') no-repeat left bottom
-    background-size: 229px 30px
+  //.main-logo
+  //  background: image-url('main-logo@2x.png') no-repeat left bottom
+  //  background-size: 229px 30px

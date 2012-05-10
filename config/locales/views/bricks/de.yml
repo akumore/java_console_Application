@@ -18,12 +18,12 @@ de:
       jobs_apply_with_success:
         apply: 'Direkt bewerben'
         title: 'Heidi Rohner'
-        person_html: 'Telefon +41 41 767 02 02<br>Neuhofstrasse 10<br>6340 Baar'
+        person_html: 'Telefon +41 41 767 02 02<br>Neuhofstrasse 10<br>CH-6340 Baar'
         address_html: '<a href="mailto:heidi.rohner@alfred-mueller.ch">E-Mail</a>'
       contact_form:
         form_title: 'Kontaktformular'
         title: 'David Spiess'
-        person_html: 'Telefon +41 41 767 02 50<br>Neuhofstrasse 10<br>6340 Baar'
+        person_html: 'Telefon +41 41 767 02 50<br>Neuhofstrasse 10<br>CH-6340 Baar'
         address_html: '<a href="mailto:david.spiess@alfred-mueller.ch">E-Mail</a>'
       company_header:
         vision: 'Vision'
