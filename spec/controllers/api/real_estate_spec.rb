@@ -30,4 +30,54 @@ describe Api::RealEstatesController do
     end
   end
 
+  describe "Expected json format of a real estate" do
+    before do
+      @gartenstadt = Fabricate :published_real_estate, :category=>Fabricate(:category), :channels=>[RealEstate::MICROSITE_CHANNEL],
+      :figure => Fabricate.build( :figure, :rooms => 10, :floor => 3)
+      # @decorated_gartenstadt = MicrositeDecorator.decorate @gartenstadt
+    end
+
+    it "contains the id" do
+      get 'index', :format => :json
+      json = JSON.parse(response.body)
+      gartenstadt_hash = json.first
+      gartenstadt_hash['id'] == @gartenstadt._id
+    end
+
+    it "contains the number of rooms" do
+      get 'index', :format => :json
+      json = JSON.parse(response.body)
+      gartenstadt_hash = json.first
+      gartenstadt_hash['rooms'] == 10
+    end
+
+    it "contains the floor label" do
+      get 'index', :format => :json
+      json = JSON.parse(response.body)
+      gartenstadt_hash = json.first
+      gartenstadt_hash['floor_label'] == '3. Obergeschoss'
+    end
+
+    it "contains the house index" do
+      get 'index', :format => :json
+      json = JSON.parse(response.body)
+      gartenstadt_hash = json.first
+      gartenstadt_hash['house'] == 'Haus M'
+    end
+
+    it "contains the surface" do
+      get 'index', :format => :json
+      json = JSON.parse(response.body)
+      gartenstadt_hash = json.first
+      gartenstadt_hash['surface'] == '200 m²'
+    end
+
+    it "contains the price" do
+      get 'index', :format => :json
+      json = JSON.parse(response.body)
+      gartenstadt_hash = json.first
+      gartenstadt_hash['price'] == 'CHF 10000'
+    end
+  end
+
 end
