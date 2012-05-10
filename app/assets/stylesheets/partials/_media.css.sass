@@ -111,6 +111,9 @@
     h1
       font-size: 2em
 
+    h1, h2
+      word-wrap: break-word
+
   .accordion-classical
     .title
       font-size: 1.25em
@@ -135,8 +138,26 @@
   .tab-slider
     width: 100%
 
+    .tab-slider-description
+      width: auto
+      height: auto
+      padding: 0
+      position: relative
+
+      h1, h5
+        margin: 10px
+
     .tab-content
       height: auto
+      border-width: 0px
+
+    .first-level-navigation
+      li
+        display: block
+        float: none
+
+    .second-level-navigation
+      display: none
 
   .services-slides-container
     overflow: auto
