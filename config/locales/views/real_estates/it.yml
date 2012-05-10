@@ -22,7 +22,9 @@ it:
         desc: 'Avanti'
     index:
       number_of_rooms: "%{count} Locali"
-      hits: "%{count} Risultato/Risultati"
+      hits:
+        one: "%{count} Risultato"
+        other: "%{count} Risultati"
     show:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Übersicht'
@@ -31,4 +33,4 @@ it:
       description_download: 'Documentazione oggetto'
       project_website_link: 'Alla pagina web'
       contact_title: 'Persona di contatto'
-      application_form: 'Anmeldeformular'
+      application_form: 'Formulario di contatto'

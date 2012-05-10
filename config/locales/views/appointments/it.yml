@@ -1,0 +1,12 @@
+it:
+  appointments:
+    new:
+      headline: Prenda contatto con noi
+    form:
+      submit: Contattatemi
+      errors: 'Prego controllare i dati inseriti:'
+    contact_information:
+      headline: La sua persona di contatto
+    confirmation:
+      thanks: Grazie della sua richiesta.
+      we_will_contact_you: Sarà contattato a breve  termine.

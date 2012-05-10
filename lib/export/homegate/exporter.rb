@@ -6,11 +6,12 @@ module Export
       attr_accessor :uploader
 
       def initialize(dispatcher)
+        super(dispatcher, "Homegate Export")
+
+        logger.info "Initializing and preparing..."
         @packager = Homegate::Packager.new
         @uploader = Homegate::FtpUploader.new(@packager, Settings.homegate.ftp)
         @packages = []
-
-        super(dispatcher)
       end
 
       def update(*args)
@@ -19,11 +20,15 @@ module Export
       end
 
       def add(real_estate)
-        @packages << @packager.package(real_estate) if real_estate.channels.include?(RealEstate::HOMEGATE_CHANNEL)
+        if real_estate.channels.include?(RealEstate::HOMEGATE_CHANNEL)
+          logger.debug "Exporting real estate #{real_estate.id}"
+          @packages << @packager.package(real_estate)
+        end
       end
 
       def finish
         @uploader.do_upload!
+        logger.info "Published #{@packages.size} real estates on Homegate."
       end
 
     end

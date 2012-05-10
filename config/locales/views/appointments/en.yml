@@ -1,0 +1,12 @@
+en:
+  appointments:
+    new:
+      headline: Contact us
+    form:
+      submit: Contact me
+      errors: 'Please check your inputs:'
+    contact_information:
+      headline: Your contact
+    confirmation:
+      thanks: Thank you for your enquiry.
+      we_will_contact_you: We will contact you immediately.
