@@ -6,7 +6,7 @@ fr:
       job_application:
         firstname: 'Prénom'
         lastname: 'Nom'
-        birthdate: 'Geboren am'
+        birthdate: 'Date de naissance'
         address: 'Adresse'
         street: 'Rue'
         city: 'Lieu'

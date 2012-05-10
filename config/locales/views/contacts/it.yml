@@ -4,5 +4,5 @@ it:
       send: 'Invio richiesta di contatto'
       errors: 'Prego controllare i dati inseriti:'
     confirmation:
-      confirmation: 'Vielen Dank für Ihre Anfrage, %{name}'
-      your_contact: 'Ihre Kontaktanfrage:'
+      confirmation: 'Grazie della sua richiesta, %{name}'
+      your_contact: 'Sua richiesta:'
