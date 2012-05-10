@@ -10,3 +10,4 @@ public/uploads
 uploads
 *.*~
 config/mongoid.yml
+db/backups/*
