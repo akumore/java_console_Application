@@ -323,7 +323,91 @@
 
 // tablet-portrait
 @media only screen and (min-width : 600px) and (orientation : portrait)
-  //@content
+  #container
+    padding: 0 10px
+
+  .navigations
+    margin-top: 10px
+
+  .main-logo
+    background-size: 90%
+
+  .services-slides-container
+    .link-box
+      width: auto
+
+      li
+        padding: 10px 15px
+        height: auto
+
+  .vision-slider
+    .image-caption-text
+      h3
+        margin-top: 1em
+
+  .footer-contact > div
+    margin-left: 0
+
+  .search-filter-form
+    select
+      margin-right: 10px
+      float: left
+
+  .short-info
+    +push(1)
+
+    .info
+      +column(4)
+
+    .info.first
+      margin-left: 0
+
+  .sidebar
+    ul
+      margin-left: 0
+
+  .vision-slider
+    .image-caption-text
+      margin-top: 0
+
+      h3
+        font-size: 1.75em
+        margin-top: 0
+
+  .vision-slider
+    height: 400px
+
+  .appointment
+    min-height: 353px
+
+    .headline
+      margin-bottom: 0
+
+    h2
+      margin-top: 1em
+
+  .brick, .brick.accordion-brick
+    margin: 1em
+    width: 90%
+
+  .tab-slider
+    width: 100%
+
+    .second-level-navigation
+      display: none
+
+    .tab-content
+      border-width: 0px
+      height: auto
+
+    .tab-slider-description
+      width: 180px
+      height: 200px
+      background: image-url('image-caption-top-big.png') no-repeat bottom left
+
+      h1
+        font-size: 2em
+        margin-top: 40px
 
 // tablet-large
 @media only screen and (min-width : 768px)
