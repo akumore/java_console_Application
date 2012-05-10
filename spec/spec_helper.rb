@@ -1,11 +1,12 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV["RAILS_ENV"] ||= 'test'
+ENV["RAILS_ENV"] = 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
 # Load homegate export in order to get tests running TODO: move this into a better place
-Dir[Rails.root.join("lib/export/**/*.rb")].each {|f| require f}
+require 'export/export'
+
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
