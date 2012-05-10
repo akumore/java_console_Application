@@ -1,13 +1,16 @@
 // handheld
-@media only screen and (min-width : 320px)
+//@media only screen and (min-width : 320px)
   // ...
 
 // handheld-landscape
-@media only screen and (min-width : 321px)
+//@media only screen and (min-width : 321px)
   //@content
 
 // handheld-portrait
-@media only screen and (max-width : 320px)
+//@media only screen and (max-width : 320px)
+
+// handheld, up to widescreen
+@media only screen and (max-width : 599px)
   $margin-side: 20px
 
   .vision-slider
@@ -25,7 +28,6 @@
   .meta-navigation
     float: none
     margin: 10px $margin-side
-    width: 100%
     display: block
 
   .main-navigation
@@ -40,9 +42,134 @@
       border-top: 1px solid $clay
       background: image-url('button-bg.png') repeat-x
 
+  .offer-tabs, .utilization-tabs
+    li
+      width: 50%
+      text-align: center
+
+  .search-filter-form
+    label, .chzn-container
+      display: block
+      float: none
+
+    select
+      width: 100%
+
+    input[type="submit"]
+      width: 100%
+      margin: 1em 0
+
+  .search-results, .map
+    float: none
+    width: 100%
+    display: block
+
+  td
+    .col.first,
+    .col.middle,
+    .col.last
+      width: auto
+      white-space: normal
+      margin: 5px 0
+
+  .search-filter-order-form
+    .sort-field, .sort-order
+      width: 100%
+
+    .sort-order
+      border-top: 1px solid #a6a7a6
+
+  .detail
+    width: 94%
+    padding: 3%
+
+  .content
+    img
+      max-width: 100%
+
+  .short-info
+    .info
+      +column(5)
+
+      &.first
+        margin-left: 0
+
+
+  .main-title, .description, .gallery, .sidebar
+    +column(10)
+
+  .gallery
+    .container
+      margin: 1em 0
+
+  .brick, .brick.accordion-brick, .brick.download-brick
+    margin-left: $margin-side
+    margin-right: $margin-side
+    width: auto
+
+  .brick
+    h1
+      font-size: 2em
+
+    h1, h2
+      word-wrap: break-word
+
+  .contact-box .image
+    background: none !important
+    height: auto !important
+
+    .image-caption
+      background: $clay
+
+  .accordion-classical
+    .title
+      font-size: 1.25em
+
+  .accordion-spacey
+    margin-top: 1em
+
+    .title
+      font-size: 1.5em
+
+    .title, .content
+      margin-left: $margin-side
+      margin-right: $margin-side
+
+    p, .title
+      width: auto
+      max-width: 100%
+
+  .load-more
+    padding-left: $margin-side
+
+  .tab-slider
+    width: 100%
+
+    .tab-slider-description
+      width: auto
+      height: auto
+      padding: 0
+      position: relative
+
+      h1, h5
+        margin: 10px
+
+    .tab-content
+      height: auto
+      border-width: 0px
+
+    .first-level-navigation
+      li
+        display: block
+        float: none
+
+    .second-level-navigation
+      display: none
+
   .services-slides-container
     overflow: auto
     height: auto
+    border-top: 1px solid $border-light
 
     .handle
       display: block
@@ -76,12 +203,24 @@
   .image-caption
     height: auto
     position: relative
+    background: #fff
 
   .image-caption-text
     display: block
     float: none
     padding: 1em $margin-side
-    width: 100%
+
+  .control-group
+    label
+      float: none
+      display: block
+
+  .controls
+    margin: 5px 0 10px 0
+
+    input[type="text"], input[type="text"].short, select, textarea, input[type="file"], input[type="submit"]
+      width: 100%
+      margin-left : 0
 
   .rent-slide, .sale-slide, .build-slide
     position: relative !important
@@ -90,6 +229,10 @@
     float: none
     height: auto
     border: 0px solid transparent
+
+    .handle
+      border-bottom: 1px solid $border-light
+      border-top: 1px solid #fff
 
   .footer-news, .footer-teasers, .footer-contact
     +column(10)
@@ -103,6 +246,7 @@
   #footer h4
     padding: 1em $margin-side
     margin-bottom: 0
+
 
 // tablet
 @media only screen and (min-width : 600px)
