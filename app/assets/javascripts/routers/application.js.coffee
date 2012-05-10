@@ -15,6 +15,10 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     $(".map-slider").each ->
       new AlfredMueller.Views.MapSlider(el: $(this))
 
+    # init responsive sublime players
+    $("video").each ->
+      new AlfredMueller.Views.SublimeResponsive(el: $(this))
+
     # initialize clickable/hoverable table rows
     $("table").each ->
       new AlfredMueller.Views.InteractiveTable(el: $(this))
