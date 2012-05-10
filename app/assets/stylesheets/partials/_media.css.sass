@@ -114,6 +114,10 @@
     h1, h2
       word-wrap: break-word
 
+  .contact-box .image
+    background: none !important
+    height: auto !important
+
   .accordion-classical
     .title
       font-size: 1.25em
@@ -196,11 +200,25 @@
   .image-caption
     height: auto
     position: relative
+    background: $clay
+    border-bottom: 1px solid #fff
 
   .image-caption-text
     display: block
     float: none
     padding: 1em $margin-side
+
+  .control-group
+    label
+      float: none
+      display: block
+
+  .controls
+    margin: 5px 0 10px 0
+
+    input[type="text"], input[type="text"].short, select, textarea, input[type="file"], input[type="submit"]
+      width: 100%
+      margin-left : 0
 
   .rent-slide, .sale-slide, .build-slide
     position: relative !important
