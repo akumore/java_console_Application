@@ -22,7 +22,9 @@ it:
         desc: 'Avanti'
     index:
       number_of_rooms: "%{count} Locali"
-      hits: "%{count} Risultato/Risultati"
+      hits:
+        one: "%{count} Risultato"
+        other: "%{count} Risultati"
     show:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Übersicht'

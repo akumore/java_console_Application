@@ -22,7 +22,9 @@ fr:
         desc: 'Ordre croissant'
     index:
       number_of_rooms: "%{count} Pièces"
-      hits: "%{count} Objet/Objets"
+      hits:
+        one: "%{count} Objet"
+        other: "%{count} Objets"
     show:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Übersicht'
