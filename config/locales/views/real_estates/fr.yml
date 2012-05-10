@@ -22,7 +22,9 @@ fr:
         desc: 'Ordre croissant'
     index:
       number_of_rooms: "%{count} Pièces"
-      hits: "%{count} Objet/Objets"
+      hits:
+        one: "%{count} Objet"
+        other: "%{count} Objets"
     show:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Übersicht'
@@ -31,4 +33,4 @@ fr:
       description_download: "Documentation de l'objet"
       project_website_link: 'Vers le site internet du projet'
       contact_title: 'Votre contact'
-      application_form: 'Anmeldeformular'
+      application_form: 'Formulaire d‘inscription'

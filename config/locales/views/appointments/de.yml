@@ -4,7 +4,7 @@ de:
       headline: Nehmen Sie Kontakt mit uns auf
     form:
       submit: Kontaktieren Sie mich
-      errors: Fehler
+      errors: 'Bitte überprüfen Sie ihre Eingaben:'
     contact_information:
       headline: Ihre Kontaktperson
     confirmation:

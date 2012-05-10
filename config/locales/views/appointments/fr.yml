@@ -1,0 +1,12 @@
+fr:
+  appointments:
+    new:
+      headline: Prenez contact avec nous
+    form:
+      submit: Contactez-moi
+      errors: 'Contrôler vos données:'
+    contact_information:
+      headline: Votre personne de contact
+    confirmation:
+      thanks: Merci pour votre demande.
+      we_will_contact_you: Nous vous contacterons dans les plus brefs délais.

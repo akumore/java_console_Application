@@ -4,5 +4,5 @@ en:
       send: 'Send Contact Request'
       errors: 'Please check your inputs:'
     confirmation:
-      confirmation: 'Vielen Dank für Ihre Anfrage, %{name}'
-      your_contact: 'Ihre Kontaktanfrage:'
+      confirmation: 'Thank you for your enquiry, %{name}'
+      your_contact: 'Your contact request:'
