@@ -138,11 +138,6 @@
     width: 100%
 
 .vision-slider
-  position: relative
-  margin-bottom: 20px
-  margin-top: -488px
-  height: 535px
-
   .flexslider
     .slides
       position: relative
@@ -215,6 +210,11 @@
       background: image-url('arrows/arrow-header-down-hover.png') no-repeat left center
       color: $dark
 
+.vision-slider
+  position: relative
+  margin-bottom: 20px
+  margin-top: -488px
+  height: 535px
 
 .vision-slider-open
   .vision-slider
@@ -226,15 +226,16 @@
     .toggle-close
       display: block
 
-.cssanimations.animation-start
-  .vision-slider
-    +single-transition("margin-top")
+//.cssanimations.animation-start
+//  .vision-slider
+//    +single-transition("margin-top")
 
 .vision-frame
   position: absolute
   top: 0px
   left: 0px
   z-index: 10
+  width: 100%
 
   img
     width: 100%
