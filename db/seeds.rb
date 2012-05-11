@@ -14,15 +14,28 @@ Cms::User.create(email: 'staging@alfred-mueller.ch', password: 'am2012', passwor
 module InitialCategories
 
   # Top level categories
-
   {
-      'apartment' => {:label => 'Wohnung'},
-      'gastronomy' => {:label => 'Gastronomie'},
-      'house' => {:label => 'Haus'},
-      'industrial' => {:label => 'Gewerbe/Industrie'},
-      'parking' => {:label => 'Parkplatz'},
-      'properties' => {:label => 'Grundstück'},
-      'secondary' => {:label => 'Wohnnebenräume'}
+      'apartment' => {:label_translations => {
+          :de => 'Wohnung', :fr => 'Appartement', :it => 'Appartamento', :en => 'Apartment'}
+      },
+      'gastronomy' => {:label_translations => {
+          :de => 'Gastronomie', :fr => 'Gastronomie', :it => 'Gastronomia', :en => 'Gastronomy'}
+      },
+      'house' => {:label_translations => {
+          :de => 'Haus', :fr => 'Maison', :it => 'Casa', :en => 'House'}
+      },
+      'industrial' => {:label_translations => {
+          :de => 'Gewerbe/Industrie', :fr => 'Commerce/Industrie', :it => 'Industria/Commercio', :en => 'Industrial Objects'}
+      },
+      'parking' => {:label_translations => {
+          :de => 'Parkplatz', :fr => 'Place de parc', :it => 'Posteggio', :en => 'Parking space'}
+      },
+      'properties' => {:label_translations => {
+          :de => 'Grundstück', :fr => 'Terrain', :it => 'Terreno', :en => 'Plot'}
+      },
+      'secondary' => {:label_translations => {
+          :de => 'Wohnnebenräume', :fr => 'Pièces annexes', :it => 'Locale di servizio', :en => 'Secondary rooms'}
+      }
   }.each do |key, value|
     category = Category.find_or_create_by(:name => key)
     category.update_attributes(value)
@@ -572,12 +585,10 @@ module InitialPages
     #Seed more CompanyPages above this line
     I18n.available_locales.each do |locale|
       #Trying to create an empty Company Page for each locale, uniqueness validation rejects us not to overwrite existing pages
-      Page.create(:title => 'Company', :name => 'company', :locale => locale)
+      Page.create(:title => 'Company', :name => 'company', :locale => locale) do
+        company_page.bricks <<  Brick::Placeholder.new(:placeholder => 'company_header')
+      end
     end
-
-    Page.where(:name => 'company', :locale => :fr).first.bricks << Brick::Placeholder.new(:placeholder => 'company_header')
-    Page.where(:name => 'company', :locale => :it).first.bricks << Brick::Placeholder.new(:placeholder => 'company_header')
-    Page.where(:name => 'company', :locale => :en).first.bricks << Brick::Placeholder.new(:placeholder => 'company_header')
   end
 
   module KnowledgePage
