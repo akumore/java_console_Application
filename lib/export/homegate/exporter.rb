@@ -22,6 +22,7 @@ module Export
         rescue => err
           logger.warn "Exception raised on action '#{action}', exception message was:\n#{err.message}"
           logger.debug err.backtrace.join("\n")
+          raise err if Rails.env.test? || Rails.env.development?
         end
       end
 
