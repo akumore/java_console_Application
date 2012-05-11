@@ -16,7 +16,13 @@ module Export
 
       def update(*args)
         action = args.shift
-        self.send(action, *args) if respond_to?(action)
+
+        begin
+          self.send(action, *args) if respond_to?(action)
+        rescue => err
+          logger.warn "Exception raised on action '#{action}', exception message was:\n#{err.message}"
+          logger.debug err.backtrace.join("\n")
+        end
       end
 
       def add(real_estate)
