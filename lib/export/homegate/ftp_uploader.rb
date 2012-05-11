@@ -32,13 +32,16 @@ module Export
 
         if FileTest.directory?(local_element)
           # check to prevent '550 File exists' error
-          begin
-            @ftp.nlst(remote_element).empty?
-          rescue
-            if @ftp.last_response_code == 550
-              @ftp.mkdir(remote_element)
-            end
-          end
+          #begin
+          #  @ftp.nlst(remote_element).empty?
+          #rescue Net::FTPPermError => err
+          #  binding.pry
+          #  if @ftp.last_response_code == 550
+          #    @ftp.mkdir(remote_element)
+          #  else
+          #    raise err
+          #  end
+          #end
         else
           @ftp.put element, remote_element
         end
@@ -55,6 +58,7 @@ module Export
       def connect!
         logger.debug 'FTP connect'
         @ftp ||= Net::FTP.open(config[:host], config[:username], config[:password])
+        @ftp.passive = true
         if block_given?
           yield self
           logger.debug "FTP disconnect"

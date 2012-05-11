@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module Export::Homegate
-  class RealEstateDecorator < ApplicationDecorator
+  class RealEstateDecorator < Draper::Base
     decorates :real_estate
     allows  :version,
             :sender_id,

@@ -9,7 +9,7 @@ fr:
         year_m2: '%{price} / m² / annuel'
         sell: '%{price} / Verkaufspreis'
         sell_m2: '%{price} / Verkaufspreis / m²'
-    title: 'Preise'
+    title: 'Prix'
     for_sale: 'Kaufpreis'
     for_rent_netto: 'Location (sans charges)'
     for_rent_extra: 'Charges'
