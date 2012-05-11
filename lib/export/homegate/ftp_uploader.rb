@@ -34,9 +34,11 @@ module Export
           # check to prevent '550 File exists' error
           begin
             @ftp.nlst(remote_element).empty?
-          rescue
+          rescue Net::FTPPermError => err
             if @ftp.last_response_code == 550
               @ftp.mkdir(remote_element)
+            else
+              raise err
             end
           end
         else
