@@ -1,21 +1,10 @@
-#head-of-alfred-mueller-gallery.tab-slider
+.tab-slider
   %ul.first-level-navigation
     %li
       %a.active{ :href => '#building-site-manager' } Bauleiter
-    %li
-      %a{ :href => '#real-estate-manager' } Immobilenverwalter
-
-  .flex-container.hidden.tab-content#building-site-manager
+  .flex-container.tab-content#building-site-manager
     .flexslider
       %ul.slides
         %li
           %video.sublime{ :poster => '/movies/bauleiter.png', :width => '100%', :height => '100%', :preload => 'preload' }
             %source{ :src => '/movies/alfred_mueller_bauleiter.mp4' }
-
-  .flex-container.hidden.tab-content#real-estate-manager
-    .flexslider
-      %ul.slides
-        %li
-          %video.sublime{ :poster => '/movies/immobilienverwalterin.png', :width => '100%', :height => '100%', :preload => 'preload' }
-            %source{ :src => '/movies/alfred_mueller_immobilienverwalterin.mp4' }
-
