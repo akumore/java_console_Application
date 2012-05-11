@@ -9,7 +9,10 @@ describe "Pages" do
     before :each do
       [:de, :fr].each do |locale|
         Fabricate :page, :name => 'jobs', :locale => locale,
-                  :bricks => [Fabricate.build(:placeholder_brick, :placeholder => 'jobs_openings')]
+                  :bricks => [
+                    Fabricate.build(:placeholder_brick, :placeholder => 'jobs_openings'),
+                    Fabricate.build(:placeholder_brick, :placeholder => 'job_profile_slider')
+                  ]
       end
 
       @unpublished_job = Fabricate :job
@@ -27,6 +30,11 @@ describe "Pages" do
       visit I18n.t('jobs_url', :locale => 'fr')
       page.should have_css '.jobs .accordion-item', :count => 1
       page.should have_css "#job_#{@french_published_job.id}"
+    end
+
+    it "has a job profile slider" do
+      visit I18n.t('jobs_url', :locale => 'de')
+      page.should have_css '.job-profile-slides-container', :count => 1
     end
   end
 

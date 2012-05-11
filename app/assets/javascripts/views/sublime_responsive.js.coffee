@@ -1,7 +1,6 @@
 class window.AlfredMueller.Views.SublimeResponsive extends Backbone.View
 
   initialize: ->
-
     # Prevents some flickering
     @el.css("visibility", "hidden");
 
@@ -15,7 +14,6 @@ class window.AlfredMueller.Views.SublimeResponsive extends Backbone.View
     sublimevideo.ready =>
       sublimevideo.prepare(@el.get(0))
       @handleWindowResize()
-
 
   handleWindowResize: =>
     newWidth = @parent.width()
