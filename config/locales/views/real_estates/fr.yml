@@ -15,7 +15,7 @@ fr:
         price: 'prix'
         available_from: 'disponibilité'
         category: "genre d'objet"
-        floor: 'Etage'
+        floor: 'étage'
         usable_surface: 'm²'
       search_orders:
         asc: 'Ordre décroissant'
