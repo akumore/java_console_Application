@@ -5,8 +5,8 @@ describe AppointmentMailer do
   monkey_patch_default_url_options
 
   let :real_estate do
-    Fabricate(:published_real_estate, 
-      :category => Fabricate(:category), 
+    Fabricate(:published_real_estate,
+      :category => Fabricate(:category),
       :reference => Fabricate.build(:reference),
       :contact => Fabricate(:employee)
     )
@@ -53,7 +53,7 @@ describe AppointmentMailer do
       appointment_mail.body.should match I18n.l(appointment.created_at)
     end
 
-    [:firstname, :lastname, :email, :phone].each do |name|
+    [:firstname, :lastname, :email, :phone, :street, :zipcode, :city].each do |name|
       it "contains the #{name} of the applicant" do
         appointment_mail.body.should match appointment.send(name)
       end
