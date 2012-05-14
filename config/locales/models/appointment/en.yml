@@ -1,4 +1,4 @@
-de:
+en:
   mongoid:
     models:
       appointment: 'Termin'
