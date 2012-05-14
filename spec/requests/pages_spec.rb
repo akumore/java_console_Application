@@ -34,7 +34,7 @@ describe "Pages" do
 
     it "has a job profile slider" do
       visit I18n.t('jobs_url', :locale => 'de')
-      page.should have_css '.job-profile-slides-container', :count => 1
+      page.should have_css '.tab-slider', :count => 1
     end
   end
 
