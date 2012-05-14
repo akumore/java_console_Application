@@ -5,7 +5,9 @@
   .contact-form
     = render "appointments/form"
 
-  .appointment-contact-details
-    = render "appointments/contact_information", :contact=>@real_estate.contact
+  .col.appointment-contact-details
+    %h3= t "appointments.contact_information.headline"
+    = @real_estate.contact.basic_contact_info
+
     %p.section
       = @real_estate.application_form_link

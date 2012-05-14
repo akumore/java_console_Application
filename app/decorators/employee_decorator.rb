@@ -18,6 +18,19 @@ class EmployeeDecorator < ApplicationDecorator
     buffer.join.html_safe
   end
 
+  def basic_contact_info
+    p_buffer = []
+    p_buffer << model.fullname
+    p_buffer << t('employees.contact.phone', :number => model.phone)
+    p_buffer << t('employees.contact.mobile', :number => model.mobile) if model.mobile.present?
+    p_buffer << t('employees.contact.fax', :number => model.fax) if model.fax.present?
+
+    buffer = []
+    buffer << h.content_tag(:p, p_buffer.join(tag('br')).html_safe)
+    buffer << h.content_tag(:p, link_to(t('employees.contact.email'), "mailto:#{model.email}"))
+    buffer.join.html_safe
+  end
+
   def image
     if model.image.present?
       model.image.contact.url
