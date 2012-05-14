@@ -122,11 +122,11 @@ describe "Homepage" do
       end
 
       it "shows not more than three items" do
-        4.times { Fabricate :news_item }
+        5.times { Fabricate :news_item }
         visit root_path
 
         within ".footer-news" do
-          page.should have_css("div[id*='footer-news-item-']", :count => 3)
+          page.should have_css("div[id*='footer-news-item-']", :count => 4)
         end
       end
 
