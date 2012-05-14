@@ -14,4 +14,5 @@ fr:
         phone: 'Telefon'
         mobil: 'Mobil'
         email: 'Adresse e-mail'
+        attachment: 'Appendice (max. 5 MB)'
         comment: 'Information'

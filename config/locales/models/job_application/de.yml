@@ -13,5 +13,6 @@ de:
         zipcode: 'PLZ'
         phone: 'Telefon'
         mobil: 'Mobil'
-        email: 'e-Mail Adresse'
-        comment: Nachricht
+        email: 'E-Mail'
+        attachment: 'Anhang (max. 5 MB)'
+        comment: 'Nachricht'
