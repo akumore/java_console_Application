@@ -316,6 +316,9 @@ describe "RealEstates" do
           fill_in 'appointment_lastname', :with => 'Muster'
           fill_in 'appointment_email', :with => 'hans.muster@test.ch'
           fill_in 'appointment_phone', :with => '123 456 66 44'
+          fill_in 'appointment_street', :with => 'musterstrasse'
+          fill_in 'appointment_zipcode', :with => '8234'
+          fill_in 'appointment_city', :with => 'the citey'
         end
 
         lambda {
