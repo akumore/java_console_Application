@@ -14,4 +14,5 @@ it:
         phone: 'Telefon'
         mobil: 'Natel'
         email: 'Indirizzo e-mail'
+        attachment: 'Appendice (max. 5 MB)'
         comment: 'Comunicazione'

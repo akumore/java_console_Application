@@ -166,6 +166,10 @@
     .contact-form
       display: none
 
+    .appointment-contact-details
+      +column(7)
+      +push(1)
+
   .brick, .brick.accordion-brick, .brick.download-brick
     margin-left: $margin-side
     margin-right: $margin-side
@@ -322,7 +326,8 @@
   //@content
 
 // tablet-portrait
-@media only screen and (min-width : 600px) and (orientation : portrait)
+@media only screen and (min-width : 600px) and (max-width: 1024px)
+  //and (orientation : portrait)
   #container
     padding: 0 10px
 
@@ -362,8 +367,6 @@
       margin-left: 0.5em
 
   .vision-slider
-    //margin-top: -360px
-
     .image-caption-text
       margin-top: 0
 
@@ -371,17 +374,11 @@
         font-size: 1.75em
         margin-top: 0
 
-  .vision-slider
-    //height: 400px
-
   .appointment
     min-height: 353px
 
-    .headline
-      margin-bottom: 0
-
     h2
-      margin-top: 1em
+      font-size: 1.5em
 
   .brick, .brick.accordion-brick
     margin: 1em

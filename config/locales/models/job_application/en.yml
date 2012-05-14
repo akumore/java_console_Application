@@ -14,4 +14,5 @@ en:
         phone: 'Telephone'
         mobil: 'Mobile phone'
         email: 'E-Mail'
+        attachment: 'Attachment'
         comment: 'Message'

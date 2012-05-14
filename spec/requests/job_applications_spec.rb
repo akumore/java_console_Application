@@ -28,9 +28,9 @@ describe "JobApplications" do
           fill_in 'job_application_zipcode', :with => '6312'
           fill_in 'Telefon', :with => '052 255 65 68'
           fill_in 'Mobil', :with => '079 123 12 13'
-          fill_in 'e-Mail Adresse', :with => 'hans.muster@domain.com'
+          fill_in 'E-Mail', :with => 'hans.muster@domain.com'
           fill_in 'Nachricht', :with => 'Sehr geehrte Damen und Herren,\n\nIch will den Job!\n\n VG\nHans'
-          attach_file 'Attachment', @attachment
+          attach_file 'Anhang (max. 5 MB)', @attachment
         end
       end
 
