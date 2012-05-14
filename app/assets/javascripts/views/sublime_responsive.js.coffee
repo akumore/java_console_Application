@@ -20,6 +20,8 @@ class window.AlfredMueller.Views.SublimeResponsive extends Backbone.View
     @aspectRatio = 2 # 2:1
 
     $(window).resize @handleWindowResize
+    @el.parent().bind 'activate', @handleWindowResize
+
     AlfredMueller.Views.SublimeResponsive.addVideo(@)
 
   getVideo: ->

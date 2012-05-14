@@ -9,6 +9,7 @@ class window.AlfredMueller.Views.TabSliderContent extends Backbone.View
   activate: ->
     @link.addClass("active")
     @el.removeClass("hidden")
+    @el.trigger("activate")
 
     $(".flexslider", @el).flexslider(
       directionNav: true,
@@ -20,8 +21,8 @@ class window.AlfredMueller.Views.TabSliderContent extends Backbone.View
   deactivate: ->
     @link.removeClass("active")
     @el.addClass("hidden")
-    
-  makeActive: (link) -> 
+
+  makeActive: (link) ->
     @deactivateAll()
     link.addClass("active")
 
@@ -30,4 +31,4 @@ class window.AlfredMueller.Views.TabSliderContent extends Backbone.View
 
   handleClick: (event) ->
     makeActive($(event.target))
-  
+
