@@ -1,10 +1,13 @@
 de:
   mongoid:
     models:
-      appointment: Termin
+      appointment: 'Termin'
     attributes:
       appointment:
-        firstname: Vorname
-        lastname: Nachname
-        email:  Emailadresse
-        phone: Telefonnummer
+        firstname: 'Vorname'
+        lastname: 'Nachname'
+        email:  'E-Mail'
+        phone: 'Telefonnummer'
+        street: 'Strasse und Hausnummer'
+        zipcode: 'PLZ'
+        city: 'Ort'

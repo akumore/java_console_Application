@@ -1,0 +1,13 @@
+de:
+  mongoid:
+    models:
+      appointment: 'Termin'
+    attributes:
+      appointment:
+        firstname: 'First name'
+        lastname: 'Name'
+        email:  'E-Mail'
+        phone: 'Telephone'
+        street: 'Street'
+        zipcode: 'Postal code'
+        city: 'City'
