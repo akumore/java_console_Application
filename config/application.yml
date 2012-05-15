@@ -40,8 +40,8 @@ staging:
 production:
   <<: *defaults
   homegate:
-    agency_id: 'almtest'
+    agency_id: 'alm'
     ftp:
-      host: '62.65.135.69'
-      username: 'almtest'
-      password: 'cal31cium'
+      host: 'ftp.homegate.ch'
+      username: 'alm'
+      password: 'neu33hof'
