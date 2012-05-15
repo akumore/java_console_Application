@@ -21,7 +21,7 @@ on the staging server in `/home/usr/amstaging/.ssh/authorized_keys`
 
 ## Development
 
-Make sure you have a running instance of MongoDB before starting the rails server. 
+Make sure you have a running instance of MongoDB before starting the rails server.
 If not, start it by calling `mongod` in your terminal.
 
 ## Staging
@@ -37,3 +37,7 @@ The app runs on the screenconcept2 server:
 * Home: `/home/usr/alfred_mueller/public_html`
 * Web: [production.alfredmueller.screenconcept.ch](http://production.alfredmueller.screenconcept.ch)
 * CMS admin account: admin@screenconcept.ch / ****** (ask Immanuel, Thomas or Melinda)
+
+# Environment setups
+
+In order for RVM to work with the whenever gem, we have to write a `.rvmrc` with the contents of `rvm_trust_rvmrcs_flag=1` in our user home.
