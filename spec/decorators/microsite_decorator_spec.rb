@@ -3,15 +3,6 @@
 require 'spec_helper'
 
 describe MicrositeDecorator do
-  # workaround for issue: https://github.com/jcasimir/draper/issues/60
-  # include Rails.application.routes.url_helpers
-  # before :all do
-  #   c = ApplicationController.new
-  #   c.request = ActionDispatch::TestRequest.new
-  #   c.set_current_view_context
-  # end
-  # end of workaround
-  #
 
   context "When the number of rooms is defined" do
 
@@ -106,18 +97,18 @@ describe MicrositeDecorator do
         real_estate =  Fabricate :residential_building,
           :figure => Fabricate.build(:figure, :living_surface => '50')
         decorated_real_estate = MicrositeDecorator.decorate real_estate
-        decorated_real_estate.floor_label.should == '50m²'
+        decorated_real_estate.surface.should == '50m²'
       end
 
     end
 
     context "for a commercial building" do
 
-      it 'returns the useable surface' do
-        real_estate =  Fabricate :residential_building,
-          :figure => Fabricate.build(:figure, :useable_surface => '50')
+      it 'returns the usable surface' do
+        real_estate =  Fabricate :commercial_building,
+          :figure => Fabricate.build(:figure, living_surface: nil, :usable_surface => '50')
         decorated_real_estate = MicrositeDecorator.decorate real_estate
-        decorated_real_estate.floor_label.should == '50m²'
+        decorated_real_estate.surface.should == '50m²'
       end
 
     end

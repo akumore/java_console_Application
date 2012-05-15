@@ -1,6 +1,10 @@
+# encoding: utf-8
+
 class MicrositeDecorator < ApplicationDecorator
 
   include Draper::LazyHelpers
+
+  decorates :real_estate
 
   GARTENSTADT_STREET = 'Badenerstrasse'
   STREET_NUMBER_HOUSE_MAP = {
@@ -19,8 +23,6 @@ class MicrositeDecorator < ApplicationDecorator
     3  => '3.OG',
     4  => '4.OG',
   }
-
-  decorates :real_estate
 
   def rooms
     real_estate.figure.rooms
@@ -45,7 +47,14 @@ class MicrositeDecorator < ApplicationDecorator
   end
 
   def surface
-    
+    figure = real_estate.figure
+    if figure.private_utilization? && figure.living_surface.present? then
+      return "#{figure.living_surface}m²"
+    elsif figure.commercial_utilization? && figure.usable_surface.present? then
+      return "#{figure.usable_surface}m²"
+    else
+      return nil
+    end
   end
 
   def price
