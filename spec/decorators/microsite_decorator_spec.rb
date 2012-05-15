@@ -130,6 +130,14 @@ describe MicrositeDecorator do
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.id.should == real_estate.id
     end
+  end
 
+  context "as json" do
+
+    it 'returns only the selected attributes' do
+      real_estate =  Fabricate :commercial_building
+        decorated_real_estate = MicrositeDecorator.decorate real_estate
+        decorated_real_estate.as_json.keys.should == ['_id', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group']
+    end
   end
 end

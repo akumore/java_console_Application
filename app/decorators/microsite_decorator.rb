@@ -7,6 +7,7 @@ class MicrositeDecorator < ApplicationDecorator
   include Draper::LazyHelpers
 
   decorates :real_estate
+  allows '_id', :rooms, :floor_label, :house, :surface, :price
 
   GARTENSTADT_STREET = 'Badenerstrasse'
   STREET_NUMBER_HOUSE_MAP = {
@@ -70,6 +71,17 @@ class MicrositeDecorator < ApplicationDecorator
 
   def group
     GroupMicrositeRealEstates.get_group real_estate
+  end
+
+  def as_json(options = {})
+    json = real_estate.as_json options.merge({ :only => [ :_id ] })
+    json['rooms']       = rooms()
+    json['floor_label'] = floor_label()
+    json['house']       = house()
+    json['surface']     = surface()
+    json['price']       = price()
+    json['group']       = group()
+    json
   end
 
 end
