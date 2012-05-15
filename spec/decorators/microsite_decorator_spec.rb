@@ -110,7 +110,16 @@ describe MicrositeDecorator do
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.surface.should == '50m²'
       end
+    end
+  end
 
+
+  context "group" do
+    it 'delegates to get_group in GroupMicrositeRealEstates' do
+      real_estate =  Fabricate :residential_building
+      GroupMicrositeRealEstates.should_receive(:get_group).with(real_estate).and_return('MYGROUP')
+      decorated_real_estate = MicrositeDecorator.decorate real_estate
+      decorated_real_estate.group.should == 'MYGROUP'
     end
   end
 

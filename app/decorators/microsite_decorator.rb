@@ -1,4 +1,6 @@
 # encoding: utf-8
+#
+require 'group_microsite_real_estate'
 
 class MicrositeDecorator < ApplicationDecorator
 
@@ -65,4 +67,9 @@ class MicrositeDecorator < ApplicationDecorator
       return "CHF #{net_price}"
     end
   end
+
+  def group
+    GroupMicrositeRealEstates.get_group real_estate
+  end
+
 end
