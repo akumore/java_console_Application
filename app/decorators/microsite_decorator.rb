@@ -28,7 +28,11 @@ class MicrositeDecorator < ApplicationDecorator
   }
 
   def rooms
-    real_estate.figure.rooms
+    if real_estate.figure.present?
+      real_estate.figure.rooms
+    else
+      return nil
+    end
   end
 
   def floor_label
@@ -51,9 +55,9 @@ class MicrositeDecorator < ApplicationDecorator
 
   def surface
     figure = real_estate.figure
-    if figure.private_utilization? && figure.living_surface.present? then
+    if figure.present? && figure.private_utilization? && figure.living_surface.present? then
       return "#{figure.living_surface}m²"
-    elsif figure.commercial_utilization? && figure.usable_surface.present? then
+    elsif figure.present? && figure.commercial_utilization? && figure.usable_surface.present? then
       return "#{figure.usable_surface}m²"
     else
       return nil
@@ -62,10 +66,10 @@ class MicrositeDecorator < ApplicationDecorator
 
   def price
     net_price = real_estate.pricing && real_estate.pricing.for_rent_netto
-    if net_price.nil?
-      return nil
-    else
+    if net_price.present?
       return "CHF #{net_price}"
+    else
+      return nil
     end
   end
 

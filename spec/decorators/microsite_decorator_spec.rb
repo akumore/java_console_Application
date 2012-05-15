@@ -15,7 +15,6 @@ describe MicrositeDecorator do
     it 'returns the correct value' do
       @decorated_real_estate.rooms.should == '1.5'
     end
-
   end
 
   context "with correct net price" do
@@ -50,7 +49,6 @@ describe MicrositeDecorator do
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.price.should be_nil
     end
-
   end
 
   context "with correct address" do
@@ -74,7 +72,6 @@ describe MicrositeDecorator do
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.house.should be_nil
     end
-
   end
 
   context "with assigned floor number" do
@@ -87,7 +84,6 @@ describe MicrositeDecorator do
         decorated_real_estate.floor_label.should == floor_label
       end
     end
-
   end
 
   context "with a valid surface" do
@@ -99,7 +95,6 @@ describe MicrositeDecorator do
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.surface.should == '50m²'
       end
-
     end
 
     context "for a commercial building" do
