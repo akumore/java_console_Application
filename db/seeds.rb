@@ -14,15 +14,14 @@ Cms::User.create(email: 'staging@alfred-mueller.ch', password: 'am2012', passwor
 module InitialCategories
 
   # Top level categories
-
   {
-      'apartment' => {:label => 'Wohnung'},
-      'gastronomy' => {:label => 'Gastronomie'},
-      'house' => {:label => 'Haus'},
-      'industrial' => {:label => 'Gewerbe/Industrie'},
-      'parking' => {:label => 'Parkplatz'},
-      'properties' => {:label => 'Grundstück'},
-      'secondary' => {:label => 'Wohnnebenräume'}
+    'apartment'   => { :label_translations => { :de => 'Wohnung',           :fr => 'Appartement',         :it => 'Appartamento',        :en => 'Apartment' }},
+    'gastronomy'  => { :label_translations => { :de => 'Gastronomie',       :fr => 'Gastronomie',         :it => 'Gastronomia',         :en => 'Gastronomy' }},
+    'house'       => { :label_translations => { :de => 'Haus',              :fr => 'Maison',              :it => 'Casa',                :en => 'House' }},
+    'industrial'  => { :label_translations => { :de => 'Gewerbe/Industrie', :fr => 'Commerce/Industrie',  :it => 'Industria/Commercio', :en => 'Industrial Objects' }},
+    'parking'     => { :label_translations => { :de => 'Parkplatz',         :fr => 'Place de parc',       :it => 'Posteggio',           :en => 'Parking space' }},
+    'properties'  => { :label_translations => { :de => 'Grundstück',        :fr => 'Terrain',             :it => 'Terreno',             :en => 'Plot' }},
+    'secondary'   => { :label_translations => { :de => 'Wohnnebenräume',    :fr => 'Pièces annexes',      :it => 'Locale di servizio',  :en => 'Secondary rooms' }}
   }.each do |key, value|
     category = Category.find_or_create_by(:name => key)
     category.update_attributes(value)
@@ -30,238 +29,101 @@ module InitialCategories
 
   # Sub level categories
 
-  def self.create_sublevel_for(top_level_name, sublevel_category)
+  def self.create_sublevel_for(top_level_name, sublevel_name, sublevel_labels)
     top_level = Category.where(:name => top_level_name).first
-    category = Category.find_or_create_by(:name => sublevel_category[:name])
-    category.update_attributes(sublevel_category.merge(:parent => top_level))
+    category = Category.find_or_create_by(:name => sublevel_name)
+    category.update_attributes(sublevel_labels.merge(:parent => top_level))
   end
 
-  [{
-       :label => 'Wohnung',
-       :name => 'flat'
-   },
-   {
-       :label => 'Maisonette',
-       :name => 'duplex'
-   },
-   {
-       :label => 'Attikawohnung',
-       :name => 'attic_flat'
-   },
-   {
-       :label => 'Dachwohnung',
-       :name => 'roof_flat'
-   },
-   {
-       :label => 'Studio',
-       :name => 'studio'
-   },
-   {
-       :label => 'Einzelzimmer',
-       :name => 'single_room'
-   },
-   {
-       :label => 'Möbl. Wohnobj.',
-       :name => 'furnished_flat'
-   },
-   {
-       :label => 'Terrassenwohnung',
-       :name => 'terrace_flat'
-   },
-   {
-       :label => 'Loft',
-       :name => 'loft'
-   }
-  ].each do |sublevel_category|
-    create_sublevel_for('apartment', sublevel_category)
+  {
+    'flat' =>           { :label_translations => { :de => 'Wohnung',              :fr =>  'Appartement',          :it => 'Appartamento',              :en => 'Apartment' }},
+    'duplex' =>         { :label_translations => { :de => 'Maisonette / Duplex',  :fr => 'Duplex',                :it => 'Duplex',                    :en => 'Duplex' }},
+    'attic_flat' =>     { :label_translations => { :de => 'Attikawohnung',        :fr => 'Attique',               :it => 'Attico',                    :en => 'Attic flat' }},
+    'roof_flat' =>      { :label_translations => { :de => 'Dachwohnung',          :fr => 'Dernier étage',         :it => 'Appartamento ultimo piano', :en => 'Roof flat' }},
+    'studio' =>         { :label_translations => { :de => 'Studio',               :fr => 'Studio',                :it => 'Monolocale',                :en => 'Studio' }},
+    'single_room' =>    { :label_translations => { :de => 'Einzelzimmer',         :fr => 'Chambre',               :it => 'Camera',                    :en => 'Single Room' }},
+    'furnished_flat' => { :label_translations => { :de => 'Möbl. Wohnobj.',       :fr => 'Appartement meublé',    :it => 'Appartamento ammobiliato',  :en => 'Furnished flat' }},
+    'terrace_flat' =>   { :label_translations => { :de => 'Terrassenwohnung',     :fr => 'Appartement terrasse',  :it => 'Appart. a terrazza',        :en => 'Terrace flat' }},
+    'loft' =>           { :label_translations => { :de => 'Loft',                 :fr => 'Loft',                  :it => 'Loft',                      :en => 'Loft' }}
+  }.each do |key, value|
+    create_sublevel_for('apartment', key, value)
   end
 
-  [{
-       :label => 'Hotel',
-       :name => 'hotel'
-   },
-   {
-       :label => 'Restaurant',
-       :name => 'restaurant'
-   },
-   {
-       :label => 'Café',
-       :name => 'coffeehouse'
-   }
-  ].each do |sublevel_category|
-    create_sublevel_for('gastronomy', sublevel_category)
+  {
+    'hotel' =>        { :label_translations => { :de => 'Hotel', :fr => 'Hôtel', :it => 'Hotel', :en => 'Hotel' }},
+    'restaurant' =>   { :label_translations => { :de => 'Restaurant', :fr => 'Restaurant', :it => 'Ristorante', :en => 'Restaurant' }},
+    'coffeehouse' =>  { :label_translations => { :de => 'Café', :fr => 'Café', :it => 'Caffé', :en => 'Coffeehouse' }}
+  }
+  .each do |key, value|
+    create_sublevel_for('gastronomy', key, value)
   end
 
-  [{
-       :label => 'Einfamilienhaus',
-       :name => 'single_house'
-   },
-   {
-       :label => 'Reihenfamilienhaus',
-       :name => 'row_house'
-   },
-   {
-       :label => 'Doppeleinfamilienhaus',
-       :name => 'bifamilar_house'
-   },
-   {
-       :label => 'Terrassenhaus',
-       :name => 'terrace_house'
-   },
-   {
-       :label => 'Villa',
-       :name => 'villa'
-   },
-   {
-       :label => 'Bauernhaus',
-       :name => 'farm_house'
-   },
-   {
-       :label => 'Mehrfamilienhaus',
-       :name => 'multiple_dwelling'
-   }
-  ].each do |sublevel_category|
-    create_sublevel_for('house', sublevel_category)
+  {
+    'single_house' =>       { :label_translations => { :de => 'Einfamilienhaus',        :fr => 'Maison',                :it => 'Casa unifamiliare',   :en => 'Single house' }},
+    'row_house' =>          { :label_translations => { :de => 'Reihenfamilienhaus',     :fr => 'Maison jumelle',        :it => 'Casa a schiera',      :en => 'Row house' }},
+    'bifamilar_house' =>    { :label_translations => { :de => 'Doppeleinfamilienhaus',  :fr => 'Maison double',         :it => 'Casa bifamiliare',    :en => 'Bifamiliar house' }},
+    'terrace_house' =>      { :label_translations => { :de => 'Terrassenhaus',          :fr => 'Maison terrasse',       :it => 'Casa a terrazza',     :en => 'Terrace house' }},
+    'villa' =>              { :label_translations => { :de => 'Villa',                  :fr => 'Villa',                 :it => 'Villa',               :en => 'Villa' }},
+    'farm_house' =>         { :label_translations => { :de => 'Bauernhaus',             :fr => 'Ferme',                 :it => 'Fattoria',            :en => 'Farm house' }},
+    'multiple_dwelling' =>  { :label_translations => { :de => 'Mehrfamilienhaus',       :fr => 'Maison plurifamiliale', :it => 'Casa plurifamiliare', :en => 'Multiple dwelling' }}
+  }
+  .each do |key, value|
+    create_sublevel_for('house', key, value)
   end
 
-  [{
-       :label => 'Büro',
-       :name => 'office'
-   },
-   {
-       :label => 'Ladenfläche',
-       :name => 'shop'
-   },
-   {
-       :label => 'Werbefläche',
-       :name => 'advertising_area'
-   },
-   {
-       :label => 'Gewerbe',
-       :name => 'commercial'
-   },
-   {
-       :label => 'Lager',
-       :name => 'depot'
-   },
-   {
-       :label => 'Praxis',
-       :name => 'practice'
-   },
-   {
-       :label => 'Kiosk',
-       :name => 'kiosk'
-   },
-   {
-       :label => 'Autogarage',
-       :name => 'garage'
-   },
-   {
-       :label => 'Bäckerei',
-       :name => 'bakery'
-   },
-   {
-       :label => 'Coiffeursalon',
-       :name => 'hairdresser'
-   },
-   {
-       :label => 'Fabrik',
-       :name => 'factory'
-   },
-   {
-       :label => 'Industrieobjekt',
-       :name => 'industrial_object'
-   },
-   {
-       :label => 'Atelier',
-       :name => 'aterlier'
-   },
-   {
-       :label => 'Wohn- / Geschäftshaus',
-       :name => 'living_commercial_building'
-   },
-   {
-       :label => 'Werkstatt',
-       :name => 'workshop'
-   },
-   {
-       :label => 'Geschäftshaus',
-       :name => 'department_store'
-   },
-   {
-       :label => 'Schaufenster',
-       :name => 'display_window'
-   },
-   {
-       :label => 'Parkhaus',
-       :name => 'parking_garage'
-   },
-   {
-       :label => 'Parkfläche',
-       :name => 'parking_surface'
-   }
-  ].each do |sublevel_category|
-    create_sublevel_for('industrial', sublevel_category)
+  {
+    'office' =>                       { :label_translations => { :de => 'Büro',                   :fr => 'Bureau',              :it => 'Ufficio',                       :en => 'Office' }},
+    'shop' =>                         { :label_translations => { :de => 'Ladenfläche',            :fr => 'Commerce',            :it => 'Commercio / negozio',           :en => 'Shop' }},
+    'advertising_area' =>             { :label_translations => { :de => 'Werbefläche',            :fr => 'Exposition',          :it => 'Esposizioni',                   :en => 'Advertising area' }},
+    'commercial' =>                   { :label_translations => { :de => 'Gewerbe',                :fr => 'Industrie',           :it => 'Industrie',                     :en => 'Commercial' }},
+    'depot' =>                        { :label_translations => { :de => 'Lager',                  :fr => 'Dépôt',               :it => 'Magazzino',                     :en => 'Storage room' }},
+    'practice' =>                     { :label_translations => { :de => 'Praxis',                 :fr => 'Cabinet médical',     :it => 'Studio medico',                 :en => 'Practice' }},
+    'kiosk' =>                        { :label_translations => { :de => 'Kiosk',                  :fr => 'Kiosque',             :it => 'Chiosco',                       :en => 'Kiosk' }},
+    'garage' =>                       { :label_translations => { :de => 'Autogarage',             :fr => 'Garage',              :it => 'Autorimessa',                   :en => 'Garage' }},
+    'bakery' =>                       { :label_translations => { :de => 'Bäckerei',               :fr => 'Boulangerie',         :it => 'Panetteria',                    :en => 'Bakery' }},
+    'hairdresser' =>                  { :label_translations => { :de => 'Coiffeursalon',          :fr => 'Salon de coiffure',   :it => 'Salone da parrucchiere',        :en => 'Hairdresser' }},
+    'factory' =>                      { :label_translations => { :de => 'Fabrik',                 :fr => 'Fabrique',            :it => 'Fabbrica',                      :en => 'Factory' }},
+    'industrial_object' =>            { :label_translations => { :de => 'Industrieobjekt',        :fr => 'Objet industriel',    :it =>  'Oggetto industriale',          :en => 'Industrial object' }},
+    'atelier' =>                      { :label_translations => { :de => 'Atelier',                :fr => 'Atelier',             :it => 'Atelier',                       :en => 'Atelier' }},
+    'living_commercial_building' =>   { :label_translations => { :de => 'Wohn- / Geschäftshaus',  :fr => 'Imm.com.& hab.',      :it => 'Immob.com. e abitativo',        :en => 'Living / commercial building' }},
+    'workshop' =>                     { :label_translations => { :de => 'Werkstatt',              :fr => 'Atelier',             :it => 'Officina',                      :en => 'Workshop' }},
+    'department_store' =>             { :label_translations => { :de => 'Geschäftshaus',          :fr => 'Commerce',            :it =>  'Edificio per uffici o negozi', :en => 'Department store' }},
+    'display_window' =>               { :label_translations => { :de => 'Schaufenster',           :fr => 'Vitrine',             :it => 'Vetrina',                       :en => 'Display window' }},
+    'parking_garage' =>               { :label_translations => { :de => 'Parkhaus',               :fr => 'Parking à étages',    :it => 'Autosilo',                      :en => 'Parking garage' }},
+    'parking_surface' =>              { :label_translations => { :de => 'Parkfläche',             :fr => 'Surface de parking',  :it => 'Superficie per posteggi',       :en => 'Parking surface' }}
+  }
+  .each do |key, value|
+    create_sublevel_for('industrial', key, value)
   end
 
-  [{
-       :label => 'Offener Parkplatz',
-       :name => 'open_slot'
-   },
-   {
-       :label => 'Unterstand',
-       :name => 'covered_slot'
-   },
-   {
-       :label => 'Einzelgarage',
-       :name => 'single_garage'
-   },
-   {
-       :label => 'Doppelgarage',
-       :name => 'double_garage'
-   },
-   {
-       :label => 'Tiefgarage',
-       :name => 'underground_slot'
-   },
-   {
-       :label => 'Moto Hallenplatz',
-       :name => 'covered_parking_place_bike'
-   },
-   {
-       :label => 'Moto Aussenplatz',
-       :name => 'outdoor_parking_place_bike'
-   }
-  ].each do |sublevel_category|
-    create_sublevel_for('parking', sublevel_category)
+  {
+    'open_slot'                   => { :label_translations => { :de => 'offener Parkplatz', :fr => 'Place ouverte',             :it => 'Parcheggio all\'aperto',    :en => 'Open slot' }},
+    'covered_slot'                => { :label_translations => { :de => 'Unterstand',        :fr => 'Place couverte',            :it => 'Parcheggio coperto',        :en =>  'Covered slot' }},
+    'single_garage'               => { :label_translations => { :de => 'Einzelgarage',      :fr => 'Garage individuel',         :it => 'Garage singolo',            :en =>  'Single garage' }},
+    'double_garage'               => { :label_translations => { :de => 'Doppelgarage',      :fr => 'Garage double',             :it => 'Garage doppio',             :en => 'Double garage' }},
+    'underground_slot'            => { :label_translations => { :de => 'Tiefgarage',        :fr => 'Place souterraine',         :it => 'Parcheggio sotterraneo',    :en =>  'Underground slot' }},
+    'covered_parking_place_bike'  => { :label_translations => { :de => 'Moto Hallenplatz',  :fr => 'Halle à motos',             :it => 'Posteggio moto in garage',  :en => 'Covered parking place bike' }},
+    'outdoor_parking_place_bike'  => { :label_translations => { :de => 'Moto Aussenplatz',  :fr => 'Place extérieure à motos',  :it => 'Posteggio moto esterno',    :en => 'Outdoor parking place bike' }}
+  }
+  .each do |key, value|
+    create_sublevel_for('parking', key, value)
   end
 
-  [{
-       :label => 'Bauland',
-       :name => 'building_land'
-   },
-   {
-       :label => 'Agrarland',
-       :name => 'agricultural_land'
-   },
-   {
-       :label => 'Gewerbeland',
-       :name => 'commercial_land'
-   },
-   {
-       :label => 'Industriebauland',
-       :name => 'industrial_land'
-   }
-  ].each do |sublevel_category|
-    create_sublevel_for('properties', sublevel_category)
+  {
+    'building_land'       => { :label_translations => { :de => 'Bauland',           :fr => 'Terrain à bâtir',     :it => 'Terreno da costruire',  :en => 'Building land' }},
+    'agricultural_land'   => { :label_translations => { :de => 'Agrarland',         :fr => 'Terrain agricole',    :it => 'Terreno agricolo',      :en => 'Agricultural land' }},
+    'commercial_land'     => { :label_translations => { :de => 'Gewerbeland',       :fr => 'Terrain commercial',  :it => 'Terreno commerciale',   :en => 'Commercial land' }},
+    'industrial_land'     => { :label_translations => { :de => 'Industriebauland',  :fr => 'Terrain industriel',  :it => 'Terreno industriale',   :en => 'Industrial land' }}
+  }
+  .each do |key, value|
+    create_sublevel_for('properties', key, value)
   end
 
-  [{
-       :label => 'Hobbyraum',
-       :name => 'hobby_room'
-   }
-  ].each do |sublevel_category|
-    create_sublevel_for('secondary', sublevel_category)
+  {
+    'hobby_room' => { :label_translations => { :de => 'Hobbyraum', :fr => 'Pièce pour les hobbys', :it => 'Locale per hobby', :en => 'Hobby room' }}
+  }
+  .each do |key, value|
+    create_sublevel_for('secondary', key, value)
   end
 
   if Rails.env.development? || Rails.env.staging?
@@ -572,12 +434,10 @@ module InitialPages
     #Seed more CompanyPages above this line
     I18n.available_locales.each do |locale|
       #Trying to create an empty Company Page for each locale, uniqueness validation rejects us not to overwrite existing pages
-      Page.create(:title => 'Company', :name => 'company', :locale => locale)
+      Page.create(:title => 'Company', :name => 'company', :locale => locale) do |company_page|
+        company_page.bricks <<  Brick::Placeholder.new(:placeholder => 'company_header')
+      end
     end
-
-    Page.where(:name => 'company', :locale => :fr).first.bricks << Brick::Placeholder.new(:placeholder => 'company_header')
-    Page.where(:name => 'company', :locale => :it).first.bricks << Brick::Placeholder.new(:placeholder => 'company_header')
-    Page.where(:name => 'company', :locale => :en).first.bricks << Brick::Placeholder.new(:placeholder => 'company_header')
   end
 
   module KnowledgePage
@@ -627,47 +487,49 @@ module InitialPages
 
 
   module InitialNewsItems
-    my_unique_creation_time = Time.parse('2012-03-30 11:30:00')
-    NewsItem.create(
-        :created_at => my_unique_creation_time,
-        :locale => :de,
-        :date => Date.parse('2012-05-14'),
-        :title => %(Messe ImmoMarkt der Zuger Kantonalbank),
-        :content => [
-            %(Besuchen Sie unseren Stand Nr. 1-3 am ImmoMarkt 2012 der Zuger Kantonalbank in der Waldmannhalle in Baar.),
-            %(Öffnungszeiten),
-            %(Montag, 14. Mai 2012, 17 bis 21 Uhr),
-            %(Dienstag,15. Mai 2012, 17 bis 21 Uhr),
-            %(\nWir freuen uns auf Ihren Besuch.)
-        ].join("\n")
-    ) unless NewsItem.where(:created_at => my_unique_creation_time).exists? #Avoids to double-create the item if changed via CMS
+    if Rails.env.development?
+      my_unique_creation_time = Time.parse('2012-03-30 11:30:00')
+      NewsItem.create(
+          :created_at => my_unique_creation_time,
+          :locale => :de,
+          :date => Date.parse('2012-05-14'),
+          :title => %(Messe ImmoMarkt der Zuger Kantonalbank),
+          :content => [
+              %(Besuchen Sie unseren Stand Nr. 1-3 am ImmoMarkt 2012 der Zuger Kantonalbank in der Waldmannhalle in Baar.),
+              %(Öffnungszeiten),
+              %(Montag, 14. Mai 2012, 17 bis 21 Uhr),
+              %(Dienstag,15. Mai 2012, 17 bis 21 Uhr),
+              %(\nWir freuen uns auf Ihren Besuch.)
+          ].join("\n")
+      ) unless NewsItem.where(:created_at => my_unique_creation_time).exists? #Avoids to double-create the item if changed via CMS
 
-    my_unique_creation_time = Time.parse('2012-03-30 11:30:11')
-    NewsItem.create(
-        :created_at => my_unique_creation_time,
-        :locale => :de,
-        :date => Date.parse('2012-05-21'),
-        :title => %(Vermarktungsstart «Gartenstadt» Schlieren, Mietwohnungen),
-        :content => %(Weitere Details zu unseren 2½ bis 4½-Zimmer-Wohnungen sowie Ateliers finden Sie unter [www.gartenstadt-schlieren.ch](http://www.gartenstadt-schlieren.ch)),
-        :images => [
-            NewsItemImage.new(:file =>
-                                          File.open("#{Rails.root}/db/seeds/news_items/gartenstadt_news.jpg")
-            )
-        ]
-    ) unless NewsItem.where(:created_at => my_unique_creation_time).exists? #Avoids to double-create the item if changed via CMS
+      my_unique_creation_time = Time.parse('2012-03-30 11:30:11')
+      NewsItem.create(
+          :created_at => my_unique_creation_time,
+          :locale => :de,
+          :date => Date.parse('2012-05-21'),
+          :title => %(Vermarktungsstart «Gartenstadt» Schlieren, Mietwohnungen),
+          :content => %(Weitere Details zu unseren 2½ bis 4½-Zimmer-Wohnungen sowie Ateliers finden Sie unter [www.gartenstadt-schlieren.ch](http://www.gartenstadt-schlieren.ch)),
+          :images => [
+              NewsItemImage.new(:file =>
+                                            File.open("#{Rails.root}/db/seeds/news_items/gartenstadt_news.jpg")
+              )
+          ]
+      ) unless NewsItem.where(:created_at => my_unique_creation_time).exists? #Avoids to double-create the item if changed via CMS
 
-    my_unique_creation_time = Time.parse('2012-03-30 11:30:22')
-    NewsItem.create(
-        :created_at => my_unique_creation_time,
-        :locale => :de,
-        :date => Date.parse('2012-06-04'),
-        :title => %(Vermarktungsstart «Feldpark» Zug, Eigentumswohnungen),
-        :content => %(In der 3. Etappe verkaufen wir 20 Eigentumswohnungen mit 4½ und 5½ Zimmern.),
-        :images => [
-            NewsItemImage.new(:file =>
-                                          File.open("#{Rails.root}/db/seeds/news_items/feldpark_news.jpg")
-            )
-        ]
-    ) unless NewsItem.where(:created_at => my_unique_creation_time).exists? #Avoids to double-create the item if changed via CMS
+      my_unique_creation_time = Time.parse('2012-03-30 11:30:22')
+      NewsItem.create(
+          :created_at => my_unique_creation_time,
+          :locale => :de,
+          :date => Date.parse('2012-06-04'),
+          :title => %(Vermarktungsstart «Feldpark» Zug, Eigentumswohnungen),
+          :content => %(In der 3. Etappe verkaufen wir 20 Eigentumswohnungen mit 4½ und 5½ Zimmern.),
+          :images => [
+              NewsItemImage.new(:file =>
+                                            File.open("#{Rails.root}/db/seeds/news_items/feldpark_news.jpg")
+              )
+          ]
+      ) unless NewsItem.where(:created_at => my_unique_creation_time).exists? #Avoids to double-create the item if changed via CMS
+    end
   end
 end

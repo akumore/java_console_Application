@@ -57,7 +57,7 @@ class RealEstate
   field :description, :type => String
   field :building_type, :type => String
   field :utilization_description, :type => String
-  field :category_label, :type => String # used for sorting, normalized by category.label
+  field :category_label, :type => String, :localize => true # used for sorting, normalized by category.label
 
   validates :category_id, :presence => true
   validates :utilization, :presence => true
@@ -166,7 +166,7 @@ class RealEstate
   end
 
   def set_category_label
-    self.category_label = self.category.label if category.present?
+    self.category_label_translations = self.category.label_translations if category.present?
   end
 
 end
