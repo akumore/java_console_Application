@@ -79,6 +79,17 @@ class MicrositeDecorator < ApplicationDecorator
     g && g[:label]
   end
 
+  def chapters
+    chapters = []
+    if real_estate.pricing.present?
+      chapters << PricingDecorator.decorate(real_estate.pricing).chapter
+    end
+    if real_estate.infrastructure.present?
+      chapters << InfrastructureDecorator.decorate(real_estate.infrastructure).chapter
+    end
+    chapters
+  end
+
   def group_sort_key
     g = Microsite::GroupRealEstates.get_group(real_estate)
     g && g[:sort_key]
@@ -92,6 +103,7 @@ class MicrositeDecorator < ApplicationDecorator
     json['surface']     = surface()
     json['price']       = price()
     json['group']       = group()
+    json['chapters']    = chapters()
     json
   end
 
