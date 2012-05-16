@@ -1,6 +1,7 @@
 # encoding: utf-8
-#
-require 'group_microsite_real_estate'
+
+require 'microsite/group_real_estate'
+require 'microsite/sort_real_estate'
 
 class MicrositeDecorator < ApplicationDecorator
 
@@ -74,7 +75,13 @@ class MicrositeDecorator < ApplicationDecorator
   end
 
   def group
-    GroupMicrositeRealEstates.get_group real_estate
+    g = Microsite::GroupRealEstates.get_group(real_estate)
+    g && g[:label]
+  end
+
+  def group_sort_key
+    g = Microsite::GroupRealEstates.get_group(real_estate)
+    g && g[:sort_key]
   end
 
   def as_json(options = {})
@@ -88,4 +95,10 @@ class MicrositeDecorator < ApplicationDecorator
     json
   end
 
+  def <=>(otherRealEstate)
+    #Microsite::SortRealEstates.sort(self, otherRealEstate)
+    0
+  end
+
 end
+
