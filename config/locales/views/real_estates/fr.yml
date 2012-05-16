@@ -29,7 +29,8 @@ fr:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Übersicht'
       next: 'Nächstes Projekt'
-      floorplan: 'Afficher le plan'
+      floorplan: 'Afficnher le plan'
+      print_floorplan: 'Imprimer plan'
       description_download: "Documentation de l'objet"
       project_website_link: 'Vers le site internet du projet'
       contact_title: 'Votre contact'

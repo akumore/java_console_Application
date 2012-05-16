@@ -30,6 +30,7 @@ it:
       overview: 'Übersicht'
       next: 'Nächstes Projekt'
       floorplan: 'Mostra pianta'
+      print_floorplan: 'Stampare la pianta'
       description_download: 'Documentazione oggetto'
       project_website_link: 'Alla pagina web'
       contact_title: 'Persona di contatto'

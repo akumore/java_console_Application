@@ -30,6 +30,7 @@ en:
       overview: 'Übersicht'
       next: 'Nächstes Projekt'
       floorplan: 'Show Layout'
+      print_floorplan: 'Print Layout Plan'
       description_download: 'Documentation'
       project_website_link: 'Project Website'
       contact_title: 'Contact'
