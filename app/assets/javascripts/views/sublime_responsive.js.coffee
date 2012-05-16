@@ -20,7 +20,7 @@ class window.AlfredMueller.Views.SublimeResponsive extends Backbone.View
     @aspectRatio = 2 # 2:1
 
     $(window).resize @handleWindowResize
-    @el.parent().bind 'activate', @handleWindowResize
+    @parent.bind 'activate', @handleWindowResize
 
     AlfredMueller.Views.SublimeResponsive.addVideo(@)
 
@@ -30,4 +30,5 @@ class window.AlfredMueller.Views.SublimeResponsive extends Backbone.View
   handleWindowResize: =>
     newWidth = @parent.width()
     newHeight = newWidth / @aspectRatio
-    sublimevideo.resize(@el.get(0), newWidth, newHeight)
+    if sublimevideo.resize
+      sublimevideo.resize(@getVideo(), newWidth, newHeight)
