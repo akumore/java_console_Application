@@ -75,6 +75,54 @@ class PricingDecorator < ApplicationDecorator
     end
   end
 
+  def chapter
+    content = []
+    content_html = ''
+
+    if pricing.for_sale.present?
+      content << { :key => t('pricings.for_sale'), :value => pricing.for_sale }
+    end
+
+    if pricing.for_rent_netto.present?
+      content << { :key => t('pricings.for_rent_netto'), :value => pricing.for_rent_netto }
+    end
+
+    if pricing.for_rent_extra.present?
+      content << { :key => t('pricings.for_rent_extra'), :value => pricing.for_rent_extra }
+    end
+
+    if pricing.for_rent_depot.present?
+      content << { :key => t('pricings.for_rent_depot'), :value => pricing.for_rent_depot }
+    end
+
+    if pricing.inside_parking.present?
+      content << { :key => t('pricings.inside_parking'), :value => pricing.inside_parking }
+    end
+
+    if pricing.inside_parking_temporary.present?
+      content << { :key => t('pricings.inside_parking_temporary'), :value => pricing.inside_parking_temporary }
+    end
+
+    if pricing.outside_parking.present?
+      content << { :key => t('pricings.outside_parking'), :value => pricing.outside_parking }
+    end
+
+    if pricing.outside_parking_temporary.present?
+      content << { :key => t('pricings.outside_parking_temporary'), :value => pricing.outside_parking_temporary }
+    end
+
+    if pricing.opted?
+      content_html << content_tag(:p, t('pricings.without_vat'))
+    end
+
+    {
+      :title => t('pricings.title'),
+      :collapsible => true,
+      :content_html => content_html,
+      :content => content
+    }
+  end
+
   private
 
   def formatted(price, price_unit = nil)
