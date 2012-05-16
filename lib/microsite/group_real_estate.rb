@@ -6,10 +6,10 @@ module Microsite
     def self.get_group(real_estate)
       if real_estate.commercial_utilization? then
         label = 'Dienstleistungsflächen'
-        sort_key = 'A'
+        sort_key = 'B'
       elsif real_estate.category_label == 'Loft'
         label = real_estate.category_label
-        sort_key = 'B'
+        sort_key = 'A'
       else
         figure = real_estate.figure
         if figure.present? && figure.rooms.present?
