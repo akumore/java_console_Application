@@ -5,7 +5,7 @@
     .control-group.mandatory
       = f.label :category_id
       .controls
-        = f.grouped_collection_select :category_id, Category.top_level, :categories, :label, :id, :label
+        = f.grouped_collection_select :category_id, Category.top_level, :categories, :label, :id, :select_label
     - if @real_estate.row_house?
       .control-group
         = f.label :building_type

@@ -28,4 +28,8 @@ class Category
   def row_house?
     name == 'row_house'
   end
+
+  def select_label
+    label_translations['de'].presence || name
+  end
 end
