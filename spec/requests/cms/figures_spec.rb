@@ -152,7 +152,7 @@ describe "Cms::Figures" do
             @figure.floor_estimate.should == 'UG. - 2.OG'
             @figure.property_surface.should == '400.5'
             @figure.property_surface_estimate.should == '40.3 - 120 m2'
-            @figure.usable_surface.should == '200.6'
+            @figure.usable_surface.should == 200.6
             @figure.usable_surface_estimate.should == '200.6 - 200.7 m2'
             @figure.storage_surface.should == '150'
             @figure.ceiling_height.should == '2.6'

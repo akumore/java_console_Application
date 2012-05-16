@@ -119,6 +119,12 @@ class RealEstateDecorator < ApplicationDecorator
     end
   end
 
+  def floorplan_print_link
+    if model.floor_plans.exists?
+      link_to t('real_estates.show.print_floorplan'), real_estate_floorplans_path(model), :class => 'icon-printer', :target => '_blank'
+    end
+  end
+
   def project_website_link
     if address.present? && address.link_url.present?
       link_to t('real_estates.show.project_website_link'), address.link_url, :target => '_new', :class => 'icon-globe'
