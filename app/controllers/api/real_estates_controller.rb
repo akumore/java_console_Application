@@ -5,7 +5,7 @@ module Api
 
     def index
       @real_estates = MicrositeDecorator.decorate RealEstate.microsite.published.all
-      respond_with @real_estates, :callback=>params[:callback]
+      respond_with @real_estates.sort, :callback=>params[:callback]
     end
 
   end
