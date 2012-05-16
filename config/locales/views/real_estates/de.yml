@@ -28,6 +28,7 @@ de:
       overview: 'Übersicht'
       next: 'Nächstes Projekt'
       floorplan: 'Grundriss anzeigen'
+      print_floorplan: 'Grundriss drucken'
       description_download: 'Objektdokumentation'
       project_website_link: 'Zur Projektwebseite'
       contact_title: 'Kontaktperson'

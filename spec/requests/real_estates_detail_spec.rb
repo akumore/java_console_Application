@@ -274,6 +274,10 @@ describe "RealEstates" do
         page.should have_link('Grundriss anzeigen')
       end
 
+      it 'shows the floorplan print link' do
+        page.should have_link('Grundriss drucken', :href => real_estate_floorplans_path(real_estate))
+      end
+
       it 'shows the floorplan slide with a zoom button' do
         page.should have_css('.flexslider .slides li .zoom-floorplan')
       end
