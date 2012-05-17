@@ -18,7 +18,5 @@ module Microsite
       stub(:commercial_utilization? => true)
     end
 
-
-
   end
 end
