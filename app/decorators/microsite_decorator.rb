@@ -85,14 +85,7 @@ class MicrositeDecorator < ApplicationDecorator
   end
 
   def chapters
-    chapters = []
-    if real_estate.pricing.present?
-      chapters << PricingDecorator.decorate(real_estate.pricing).chapter
-    end
-    if real_estate.infrastructure.present?
-      chapters << InfrastructureDecorator.decorate(real_estate.infrastructure).chapter
-    end
-    chapters
+    Microsite::AssembleRealEstateChapters.get_chapters(real_estate)
   end
 
   def as_json(options = {})
