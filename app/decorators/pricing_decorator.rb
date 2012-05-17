@@ -116,10 +116,10 @@ class PricingDecorator < ApplicationDecorator
     end
 
     {
-      :title => t('pricings.title'),
-      :collapsible => true,
+      :title        => t('pricings.title'),
+      :collapsible  => true,
       :content_html => content_html,
-      :content => content
+      :content      => content
     }
   end
 
