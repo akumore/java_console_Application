@@ -2,6 +2,7 @@
 
 require 'microsite/group_real_estate'
 require 'microsite/sort_real_estate'
+require 'microsite/assemble_real_estate_chapters'
 
 class MicrositeDecorator < ApplicationDecorator
 
