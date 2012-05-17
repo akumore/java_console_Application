@@ -59,4 +59,90 @@ class InformationDecorator < ApplicationDecorator
       t('information.freight_elevator_carrying_capacity_value', :count => model.freight_elevator_carrying_capacity )
     end
   end
+
+  def chapter
+    content = []
+    content_html = ''
+
+    if information.available_from.present?
+      content << { :key => t('information.available_from'), :value => information.available_from }
+    end
+
+    figure = FigureDecorator.decorate real_estate.figure
+    if figure && real_estate.private_utilization?
+      if figure.floor.present?
+        content << { :key => t('figures.floor'), :value => figure.floor }
+      end
+
+      if figure.rooms.present?
+        content << { :key => t('figures.rooms'), :value => figure.rooms }
+      end
+
+      if figure.surface.present?
+        content << { :key => figure.surface_label, :value => figure.surface }
+      end
+    end
+
+    if figure && real_estate.commercial_utilization?
+      if figure.property_surface.present?
+        content << { :key => t('figures.property_surface'),:value => figure.property_surface }
+      end
+
+      if figure.ceiling_height.present?
+        content << { :key => t('figures.ceiling_height'), :value => figure.ceiling_height}
+      end
+
+      if figure.storage_surface.present?
+        content << { :key => t('figures.storage_surface') , :value => figure.storage_surface }
+      end
+    end
+
+    if figure && figure.floors.present?
+      content << { :key => t('figures.floors'), :value => figure.floors }
+    end
+
+    if figure && figure.renovated_on.present?
+      content << { :key => t('figures.renovated_on'), :value => figure.renovated_on }
+    end
+
+    if figure && figure.built_on.present?
+      content << { :key => t('figures.built_on'), :value => figure.built_on }
+    end
+
+    if characteristics.any?
+      content << { :key => t('information.characteristics'), :value => characteristics.join(', ') }
+    end
+
+    if real_estate.for_rent?
+
+      if minimum_rental_period.present?
+        content << { :key => t('information.minimum_rental_period'), :value => minimum_rental_period }
+      end
+
+      if notice_dates.present?
+       content << { :key => t('information.notice_dates'), :value => notice_dates }
+      end
+
+      if notice_period.present?
+       content << { :key => t('information.notice_period'), :value => notice_period }
+      end
+    end
+
+    if real_estate.commercial_utilization?
+      if maximal_floor_loading.present?
+        content << { :key => t('information.maximal_floor_loading'), :value => maximal_floor_loading }
+      end
+
+      if freight_elevator_carrying_capacity.present?
+        content << { :key => t('information.freight_elevator_carrying_capacity'), :value => freight_elevator_carrying_capacity }
+      end
+    end
+
+    {
+      :title        => t('information.title'),
+      :collapsible  => true,
+      :content_html => content_html,
+      :content      => content
+    }
+  end
 end
