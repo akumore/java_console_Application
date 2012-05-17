@@ -110,9 +110,10 @@ describe MicrositeDecorator do
 
 
   context "group" do
-    it 'delegates to get_group in GroupMicrositeRealEstates' do
+    it 'delegates to get_group in Microsite::GroupRealEstates' do
       real_estate =  Fabricate :residential_building
-      GroupMicrositeRealEstates.should_receive(:get_group).with(real_estate).and_return('MYGROUP')
+      Microsite::GroupRealEstates.should_receive(:get_group).with(real_estate).
+        and_return({:label => 'MYGROUP'})
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.group.should == 'MYGROUP'
     end
@@ -132,7 +133,8 @@ describe MicrositeDecorator do
     it 'returns only the selected attributes' do
       real_estate =  Fabricate :commercial_building
         decorated_real_estate = MicrositeDecorator.decorate real_estate
-        decorated_real_estate.as_json.keys.should == ['_id', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group']
+        got = ['_id', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group', 'chapters']
+        decorated_real_estate.as_json.keys.should == got
     end
   end
 end
