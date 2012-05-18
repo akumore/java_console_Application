@@ -89,6 +89,39 @@ class MicrositeDecorator < ApplicationDecorator
     Microsite::AssembleRealEstateChapters.get_chapters(real_estate)
   end
 
+  def images
+    (real_estate.floor_plans.to_a + real_estate.images.to_a).collect do |asset|
+      { :url => path_to_url(asset.file.gallery.url), :title => asset.title }
+    end
+  end
+
+  def downloads
+    dl = []
+    dl << {
+            :title => t('real_estates.show.description_download'),
+            :url => path_to_url(real_estate_object_documentation_path(
+              :real_estate_id => model.id,
+              :format => :pdf,
+              :name => "Objektdokumentation-#{model.title.parameterize}",
+              :locale => I18n.locale
+              ))
+    } if model.has_handout?
+
+    if model.for_rent?
+      link = if model.private_utilization?
+        '/documents/Anmeldeformular-Mieten-Wohnen.pdf'
+      elsif model.commercial_utilization?
+        '/documents/Anmeldeformular-Mieten-Gewerbe.pdf'
+      end
+
+      dl << {
+        :title => t('real_estates.show.application_form'),
+        :url => path_to_url(link)
+      }
+    end
+
+  end
+
   def as_json(options = {})
     json = real_estate.as_json options.merge({ :only => [ :_id ] })
     json['rooms']       = rooms()
@@ -98,6 +131,8 @@ class MicrositeDecorator < ApplicationDecorator
     json['price']       = price()
     json['group']       = group()
     json['chapters']    = chapters()
+    json['images']      = images()
+    json['downloads']   = downloads()
     json
   end
 
