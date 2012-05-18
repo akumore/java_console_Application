@@ -23,7 +23,7 @@ module Microsite
       end
 
       let :real_estate_with_pricing_and_infrastructure do
-        stub( :pricing => pricing, :infrastructure => infrastructure)
+        stub( :pricing => pricing, :infrastructure => infrastructure, :description => nil, :additional_description => nil, :title => nil, :information => nil)
       end
 
       let :pricing do
@@ -105,7 +105,7 @@ module Microsite
     context 'without pricing and infrastructure attributes' do
 
       let :real_estate_with_pricing_and_infrastructure do
-        stub( :pricing => pricing, :infrastructure => infrastructure)
+        stub( :pricing => pricing, :infrastructure => infrastructure, :description => nil, :additional_description => nil, :title => nil, :information => nil)
       end
 
       let :pricing do

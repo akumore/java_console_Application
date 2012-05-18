@@ -6,7 +6,7 @@ class DescriptionDecorator < ApplicationDecorator
   def chapter
     content_html = ''
 
-    unless real_estate.description.blank?
+    if real_estate.description.present?
       content_html << markdown(real_estate.description)
     end
 
