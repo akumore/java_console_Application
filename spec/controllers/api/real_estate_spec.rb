@@ -7,7 +7,7 @@ describe Api::RealEstatesController do
   describe "#index" do
     before do
       @no_microsite = Fabricate :published_real_estate, :category=>Fabricate(:category), :channels=>[RealEstate::WEBSITE_CHANNEL]
-      @gartenstadt = Fabricate :published_real_estate, :category=>Fabricate(:category), :channels=>[RealEstate::MICROSITE_CHANNEL]
+      @gartenstadt = MicrositeDecorator.decorate Fabricate(:published_real_estate, :category=>Fabricate(:category), :channels=>[RealEstate::MICROSITE_CHANNEL])
     end
 
     it "gets real estates enabled for microsites" do

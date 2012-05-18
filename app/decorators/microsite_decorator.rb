@@ -123,6 +123,7 @@ class MicrositeDecorator < ApplicationDecorator
   end
 
   def as_json(options = {})
+    options ||= {}
     json = real_estate.as_json options.merge({ :only => [ :_id ] })
     json['rooms']       = rooms()
     json['floor_label'] = floor_label()
