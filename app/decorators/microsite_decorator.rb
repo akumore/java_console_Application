@@ -48,7 +48,7 @@ class MicrositeDecorator < ApplicationDecorator
 
   def house
     address = real_estate.address
-    if address.present? and address.street == GARTENSTADT_STREET then
+    if address.present? and address.street.try(:strip) == GARTENSTADT_STREET then
       return STREET_NUMBER_HOUSE_MAP[address.street_number]
     else
       return nil
