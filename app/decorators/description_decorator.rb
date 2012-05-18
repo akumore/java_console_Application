@@ -5,6 +5,7 @@ class DescriptionDecorator < ApplicationDecorator
 
   def chapter
     content_html = ''
+
     unless real_estate.description.blank?
       content_html << markdown(real_estate.description)
     end
@@ -33,7 +34,7 @@ class DescriptionDecorator < ApplicationDecorator
     end
 
     {
-      :title        => t('additional_descriptions.title'),
+      :title        => real_estate.title,
       :collapsible  => false,
       :content_html => content_html
     }
