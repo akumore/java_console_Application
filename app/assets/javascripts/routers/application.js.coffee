@@ -53,7 +53,7 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     )
 
     # initialize all accordions after the sliders, because they can contain sliders
-    $(".accordion, .footer-news").each ->
+    $(".accordion").each ->
       new AlfredMueller.Views.Accordion(el: $(this))
 
     # initialize services slider always AFTER flexslider is initialized.

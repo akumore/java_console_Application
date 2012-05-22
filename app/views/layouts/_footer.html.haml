@@ -7,7 +7,7 @@
     %div{:id=>"footer-news-item-#{news_item.id}"}
       %h6= l news_item.date
       %h5= news_item.title
-      = link_to t(".get_more"), news_items_path(:anchor =>"news_item_#{news_item.id}")
+      = footer_news_item_link news_item
 
 .footer-teasers
   %div
