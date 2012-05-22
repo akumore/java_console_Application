@@ -17,6 +17,7 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
 
   events:
     "click .title" : "handleClick"
+    "click a" : "handleFooterNewsClick"
 
   initialize: ->
     @items = @el.find(".accordion-item")
@@ -63,3 +64,7 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
   handleClick: (event) =>
     item = $(event.currentTarget).parent()
     @toggleItem(item)
+
+  handleFooterNewsClick: (event) =>
+    elem = $( '#' + $(event.currentTarget).attr('href').split('#')[1] )
+    @openItem(elem)
