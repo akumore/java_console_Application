@@ -33,7 +33,7 @@ describe Api::RealEstatesController do
   describe "Expected json format of a real estate" do
     before do
       @gartenstadt = Fabricate :published_real_estate, :category=>Fabricate(:category), :channels=>[RealEstate::MICROSITE_CHANNEL],
-      :figure => Fabricate.build( :figure, :rooms => 10, :floor => 3)
+        :figure => Fabricate.build( :figure, :rooms => 10, :floor => 3)
       # @decorated_gartenstadt = MicrositeDecorator.decorate @gartenstadt
     end
 
