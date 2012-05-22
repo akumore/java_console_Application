@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'microsite/group_real_estate'
-require 'microsite/sort_real_estate'
 require 'microsite/assemble_real_estate_chapters'
 
 class MicrositeDecorator < ApplicationDecorator
@@ -9,7 +8,7 @@ class MicrositeDecorator < ApplicationDecorator
   include Draper::LazyHelpers
 
   decorates :real_estate
-  allows '_id', :rooms, :floor_label, :house, :surface, :price
+  allows '_id', :rooms, :floor_label, :house, :surface, :price, :private_utilization?, :figure
 
   GARTENSTADT_STREET = 'Badenerstrasse'
   STREET_NUMBER_HOUSE_MAP = {
@@ -56,14 +55,11 @@ class MicrositeDecorator < ApplicationDecorator
   end
 
   def surface
-    figure = real_estate.figure
-    if figure.present? && figure.private_utilization? && figure.living_surface.present? then
-      return "#{figure.living_surface}m²"
-    elsif figure.present? && figure.commercial_utilization? && figure.usable_surface.present? then
-      return "#{figure.usable_surface}m²"
-    else
-      return nil
-    end
+    "#{surface_value}m²" if surface_value.present?
+  end
+
+  def surface_value
+    private_utilization? ? figure.living_surface.presence : figure.usable_surface.presence
   end
 
   def price
@@ -137,8 +133,12 @@ class MicrositeDecorator < ApplicationDecorator
     json
   end
 
-  def <=>(otherRealEstate)
-    Microsite::SortRealEstates.sort(self, otherRealEstate)
+  def <=>(other)
+    return group_sort_key <=> other.group_sort_key if group_sort_key != other.group_sort_key
+    return house <=> other.house if house != other.house
+    return surface_value <=> other.surface_value if surface_value != other.surface_value
+    return figure.floor <=> other.figure.floor if figure.floor != other.figure.floor
+    0
   end
 
 end
