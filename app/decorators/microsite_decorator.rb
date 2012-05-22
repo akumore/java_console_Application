@@ -22,10 +22,10 @@ class MicrositeDecorator < ApplicationDecorator
   FLOOR_FLOOR_LABEL_MAP = {
     -1 => 'UG',
     0  => 'EG',
-    1  => '1.OG',
-    2  => '2.OG',
-    3  => '3.OG',
-    4  => '4.OG',
+    1  => '1. OG',
+    2  => '2. OG',
+    3  => '3. OG',
+    4  => '4. OG',
   }
 
   def rooms
@@ -55,7 +55,7 @@ class MicrositeDecorator < ApplicationDecorator
   end
 
   def surface
-    "#{surface_value}m²" if surface_value.present?
+    "#{surface_value} m²" if surface_value.present?
   end
 
   def surface_value
@@ -63,12 +63,7 @@ class MicrositeDecorator < ApplicationDecorator
   end
 
   def price
-    net_price = real_estate.pricing && real_estate.pricing.for_rent_netto
-    if net_price.present?
-      return "CHF #{net_price}"
-    else
-      return nil
-    end
+    PricingDecorator.decorate(real_estate.pricing).for_rent_netto if real_estate.pricing.present?
   end
 
   def group
