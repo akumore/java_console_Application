@@ -1,0 +1,9 @@
+en:
+  job_applications:
+    form:
+      speculative_application: 'Initiativbewerbung'
+      send: 'Send application'
+      errors: 'Please check your inputs:'
+    confirmation:
+      confirmation: 'Thank you for your application, %{firstname} %{lastname}'
+      your_application: 'Your application to us:'

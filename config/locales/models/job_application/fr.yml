@@ -11,7 +11,7 @@ fr:
         street: 'Rue'
         city: 'Lieu'
         zipcode: 'NPA'
-        phone: 'Telefon'
+        phone: 'Téléphone'
         mobil: 'Mobil'
         email: 'Adresse e-mail'
         attachment: 'Appendice (max. 5 MB)'
