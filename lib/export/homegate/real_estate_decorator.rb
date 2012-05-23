@@ -265,7 +265,7 @@ module Export::Homegate
           'hairdresser'                 => 14,
           'factory'                     => 16,
           'industrial_object'           => 17,
-          'aterlier'                    => 19,
+          'atelier'                     => 19,
           'living_commercial_building'  => 20,
           'workshop'                    => 28,
           'department_store'            => 34,
