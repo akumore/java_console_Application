@@ -8,6 +8,7 @@ class RealEstateDecorator < ApplicationDecorator
   decorates_association :pricing
   decorates_association :figure
   decorates_association :infrastructure
+  decorates_association :floor_plans
 
   def google_maps_address
     [

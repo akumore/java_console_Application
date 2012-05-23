@@ -13,22 +13,12 @@
               %span= image.title
         - real_estate.floor_plans.each do |floor_plan|
           %li{ 'data-is_floorplan' => 'true' }
-            - if real_estate.additional_description.orientation_degrees.present?
-              - # TODO: move to decorator
-              - angle = real_estate.additional_description.orientation_degrees.to_i
-              - angle = angle - angle % 5
-              .north-star-overlay{ :class => "north-star-#{angle}" }
             = image_tag floor_plan.file.gallery.url
             .flex-caption
               %span= floor_plan.title
-            .floorplan-zoomed{ :id => "floorplan-zoomed-#{floor_plan.id}", :style => "display: none;" }
-              - if real_estate.additional_description.orientation_degrees.present?
-                - # TODO: move to decorator
-                - angle = real_estate.additional_description.orientation_degrees.to_i
-                - angle = angle - angle % 5
-                .north-star-overlay{ :class => "north-star-#{angle}" }
-              = image_tag floor_plan.file.url, :style => "max-width: 100%; max-height: 100%;"
-            = link_to t('.floorplan'), "#floorplan-zoomed-#{floor_plan.id}", :class => 'zoom-floorplan zoom-overlay'
+            = floor_plan.zoom_link
+            = floor_plan.north_star_overlay
+            = floor_plan.zoomed_div
         - real_estate.videos.each do |video|
           %li
             %video.sublime{ :preload => 'preload' }

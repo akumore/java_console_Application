@@ -264,13 +264,19 @@ td
   width: 40px
   height: 50px
   background: image-url('north-arrow-sprite.png')
-  left: 80px
-  top: 30px
+  right: 50px
+  bottom: 25px
   position: absolute
   overflow: hidden
   .floorplan-zoomed &
-    left: 0px
-    top: 0px
+    right: 5px
+    bottom: 5px
+
+.floorplan-zoomed
+  display: none
+  > img
+    max-width: 92%
+    max-height: 92%
 
 @for $angle from 0 through 72
   .north-star-#{$angle * 5}
