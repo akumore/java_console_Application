@@ -63,3 +63,4 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
   handleClick: (event) =>
     item = $(event.currentTarget).parent()
     @toggleItem(item)
+
