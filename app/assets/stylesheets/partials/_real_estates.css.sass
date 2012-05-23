@@ -260,3 +260,18 @@ td
   position: absolute
   +hide-text
 
+.north-star-overlay
+  width: 40px
+  height: 50px
+  background: image-url('north-arrow-sprite.png')
+  left: 80px
+  top: 30px
+  position: absolute
+  overflow: hidden
+  .floorplan-zoomed &
+    left: 0px
+    top: 0px
+
+@for $angle from 0 through 72
+  .north-star-#{$angle * 5}
+    background-position: #{$angle * -40}px 0px
