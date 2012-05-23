@@ -38,6 +38,27 @@ The app runs on the screenconcept2 server:
 * Web: [production.alfredmueller.screenconcept.ch](http://production.alfredmueller.screenconcept.ch)
 * CMS admin account: admin@screenconcept.ch / ****** (ask Immanuel, Thomas or Melinda)
 
+###Special Thin webserver configuration is required in staging and production environments:
+
+* Staging: edit /home/usr/amstaging/.nine/ruby/1.9.3-p0@alfred_mueller/amstaging.yml
+* Production: edit /home/usr/alfred_mueller/.nine/ruby/1.9.3-p0@alfred_mueller/alfred_mueller.yml
+* add the following parameters:
+    * no-epoll: true
+    * threaded: true
+
+
 # Environment setups
 
 In order for RVM to work with the whenever gem, we have to write a `.rvmrc` with the contents of `rvm_trust_rvmrcs_flag=1` in our user home.
+
+# Pitfalls
+
+## PDF Generation
+
+* Thin is freezing when generating PDFs using PDFKit. As an workaround we have to run Thin in threaded mode.
+* This seems to be a bug in Thin.
+
+## Performance
+
+* Thin is very slow when running Ruby 1.9 in threaded mode with 'epoll' enabled. Therefore it has to be disabled!
+* Response times of Mongolab (currently used for database hosting) are very high, around 100ms for each database access. Don't use it in production.
