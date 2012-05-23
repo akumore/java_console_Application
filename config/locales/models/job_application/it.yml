@@ -11,7 +11,7 @@ it:
         street: 'Via'
         city: 'Città'
         zipcode: 'Codice postale'
-        phone: 'Telefon'
+        phone: 'Telefono'
         mobil: 'Natel'
         email: 'Indirizzo e-mail'
         attachment: 'Appendice (max. 5 MB)'

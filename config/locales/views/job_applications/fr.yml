@@ -1,0 +1,9 @@
+fr:
+  job_applications:
+    form:
+      speculative_application: 'Initiativbewerbung'
+      send: 'Envoyer candidature'
+      errors: 'Contrôler vos données:'
+    confirmation:
+      confirmation: 'Merci pour votre candidature, %{firstname} %{lastname}'
+      your_application: 'Votre demande de nous:'

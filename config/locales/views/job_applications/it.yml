@@ -1,0 +1,9 @@
+it:
+  job_applications:
+    form:
+      speculative_application: 'Initiativbewerbung'
+      send: 'Mandare aspirazione'
+      errors: 'Prego controllare i dati inseriti:'
+    confirmation:
+      confirmation: 'Grazie della sua aspirazione, %{firstname} %{lastname}'
+      your_application: "L'applicazione da noi:"
