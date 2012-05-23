@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 require 'microsite/group_real_estate'
-require 'microsite/sort_real_estate'
 require 'microsite/assemble_real_estate_chapters'
 
 class MicrositeDecorator < ApplicationDecorator
@@ -9,7 +8,7 @@ class MicrositeDecorator < ApplicationDecorator
   include Draper::LazyHelpers
 
   decorates :real_estate
-  allows '_id', :rooms, :floor_label, :house, :surface, :price
+  allows '_id', :rooms, :floor_label, :house, :surface, :price, :private_utilization?, :figure
 
   GARTENSTADT_STREET = 'Badenerstrasse'
   STREET_NUMBER_HOUSE_MAP = {
@@ -23,10 +22,10 @@ class MicrositeDecorator < ApplicationDecorator
   FLOOR_FLOOR_LABEL_MAP = {
     -1 => 'UG',
     0  => 'EG',
-    1  => '1.OG',
-    2  => '2.OG',
-    3  => '3.OG',
-    4  => '4.OG',
+    1  => '1. OG',
+    2  => '2. OG',
+    3  => '3. OG',
+    4  => '4. OG',
   }
 
   def rooms
@@ -56,23 +55,15 @@ class MicrositeDecorator < ApplicationDecorator
   end
 
   def surface
-    figure = real_estate.figure
-    if figure.present? && figure.private_utilization? && figure.living_surface.present? then
-      return "#{figure.living_surface}m²"
-    elsif figure.present? && figure.commercial_utilization? && figure.usable_surface.present? then
-      return "#{figure.usable_surface}m²"
-    else
-      return nil
-    end
+    "#{surface_value} m²" if surface_value.present?
+  end
+
+  def surface_value
+    private_utilization? ? figure.living_surface.presence : figure.usable_surface.presence
   end
 
   def price
-    net_price = real_estate.pricing && real_estate.pricing.for_rent_netto
-    if net_price.present?
-      return "CHF #{net_price}"
-    else
-      return nil
-    end
+    PricingDecorator.decorate(real_estate.pricing).for_rent_netto if real_estate.pricing.present?
   end
 
   def group
@@ -137,8 +128,12 @@ class MicrositeDecorator < ApplicationDecorator
     json
   end
 
-  def <=>(otherRealEstate)
-    Microsite::SortRealEstates.sort(self, otherRealEstate)
+  def <=>(other)
+    return group_sort_key <=> other.group_sort_key if group_sort_key != other.group_sort_key
+    return house <=> other.house if house != other.house
+    return surface_value <=> other.surface_value if surface_value != other.surface_value
+    return figure.floor <=> other.figure.floor if figure.floor != other.figure.floor
+    0
   end
 
 end

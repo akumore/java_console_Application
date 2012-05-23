@@ -7,7 +7,8 @@ describe Api::RealEstatesController do
   describe "#index" do
     before do
       @no_microsite = Fabricate :published_real_estate, :category=>Fabricate(:category), :channels=>[RealEstate::WEBSITE_CHANNEL]
-      @gartenstadt = MicrositeDecorator.decorate Fabricate(:published_real_estate, :category=>Fabricate(:category), :channels=>[RealEstate::MICROSITE_CHANNEL])
+      @gartenstadt = MicrositeDecorator.decorate Fabricate(:published_real_estate, :category=>Fabricate(:category), :channels=>[RealEstate::MICROSITE_CHANNEL],
+        :figure => Fabricate.build( :figure))
     end
 
     it "gets real estates enabled for microsites" do
@@ -22,7 +23,8 @@ describe Api::RealEstatesController do
 
     it "doesn't get unpublished real estates" do
       [RealEstate::STATE_EDITING, RealEstate::STATE_IN_REVIEW].each do |state|
-        Fabricate :real_estate, :state => state, :category => Fabricate(:category), :channels => [RealEstate::MICROSITE_CHANNEL]
+        Fabricate :real_estate, :state => state, :category => Fabricate(:category), :channels => [RealEstate::MICROSITE_CHANNEL],
+          :figure => Fabricate.build( :figure)
       end
 
       get  'index', :format=>:json
@@ -33,7 +35,7 @@ describe Api::RealEstatesController do
   describe "Expected json format of a real estate" do
     before do
       @gartenstadt = Fabricate :published_real_estate, :category=>Fabricate(:category), :channels=>[RealEstate::MICROSITE_CHANNEL],
-      :figure => Fabricate.build( :figure, :rooms => 10, :floor => 3)
+        :figure => Fabricate.build( :figure, :rooms => 10, :floor => 3)
       # @decorated_gartenstadt = MicrositeDecorator.decorate @gartenstadt
     end
 

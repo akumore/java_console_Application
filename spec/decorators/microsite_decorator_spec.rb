@@ -22,7 +22,7 @@ describe MicrositeDecorator do
       real_estate =  Fabricate :residential_building,
         :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 2500)
       decorated_real_estate = MicrositeDecorator.decorate real_estate
-      decorated_real_estate.price.should == 'CHF 2500'
+      decorated_real_estate.price.should == 'CHF 2\'500.00 / Monat'
     end
 
   end
@@ -33,7 +33,7 @@ describe MicrositeDecorator do
       real_estate =  Fabricate :residential_building,
         :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 2500, :for_rent_extra => 200)
       decorated_real_estate = MicrositeDecorator.decorate real_estate
-      decorated_real_estate.price.should == 'CHF 2500'
+      decorated_real_estate.price.should == 'CHF 2\'500.00 / Monat'
     end
 
     it 'returns nil if no pricing is specified' do
@@ -92,7 +92,7 @@ describe MicrositeDecorator do
         real_estate =  Fabricate :residential_building,
           :figure => Fabricate.build(:figure, :living_surface => '50')
         decorated_real_estate = MicrositeDecorator.decorate real_estate
-        decorated_real_estate.surface.should == '50m²'
+        decorated_real_estate.surface.should == '50 m²'
       end
     end
 
@@ -102,7 +102,7 @@ describe MicrositeDecorator do
         real_estate =  Fabricate :commercial_building,
           :figure => Fabricate.build(:figure, living_surface: nil, :usable_surface => '50')
         decorated_real_estate = MicrositeDecorator.decorate real_estate
-        decorated_real_estate.surface.should == '50m²'
+        decorated_real_estate.surface.should == '50 m²'
       end
     end
   end
@@ -130,11 +130,72 @@ describe MicrositeDecorator do
   context "as json" do
 
     it 'returns only the selected attributes' do
-      real_estate =  Fabricate :commercial_building
+      real_estate =  Fabricate :commercial_building, :figure => Fabricate.build(:figure)
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.stub(:real_estate_object_documentation_path => '', :path_to_url => '')
         got = ['_id', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group', 'chapters', 'images', 'downloads']
         decorated_real_estate.as_json.keys.should == got
     end
   end
+
+
+  describe "Order real estates" do
+    it "orders by groups/categories" do
+      @loft = MicrositeDecorator.new(Fabricate :real_estate, :category => Fabricate(:category, :label => 'Loft'), :figure => Fabricate.build(:figure))
+      @commercial = MicrositeDecorator.new(Fabricate :commercial_building, :category => Fabricate(:category, :label => 'Atelier'), :figure => Fabricate.build(:figure))
+      @category = Fabricate(:category, :label => 'Wohnung')
+      @small = MicrositeDecorator.new(Fabricate :real_estate, :figure => Fabricate.build(:figure, :rooms => '2.5'), :category => @category)
+      @medium = MicrositeDecorator.new(Fabricate :real_estate, :figure => Fabricate.build(:figure, :rooms => '3.5'), :category => @category)
+      @large = MicrositeDecorator.new(Fabricate :real_estate, :figure => Fabricate.build(:figure, :rooms => '4.5'), :category => @category)
+
+      [@large, @medium, @small, @commercial, @loft].sort.should == [@small, @medium, @large, @loft, @commercial]
+    end
+
+    describe "Inner order of a group of real estates" do
+      let :flat do
+        Fabricate(:category, :label => 'Wohnung')
+      end
+
+      let :real_estate_a do
+        MicrositeDecorator.new(Fabricate.build :real_estate,
+                                               :figure => Fabricate.build(:figure, :rooms => '2.5'),
+                                               :category => flat)
+      end
+
+      let :real_estate_b do
+        MicrositeDecorator.new(Fabricate.build :real_estate,
+                                               :figure => Fabricate.build(:figure, :rooms => '2.5'),
+                                               :category => flat)
+      end
+
+      it "orders by house index alphabetically asc" do
+        real_estate_a.to_model.address = Fabricate.build(:address, :street => 'Badenerstrasse', :street_number => '26')
+        real_estate_b.to_model.address = Fabricate.build(:address, :street => 'Badenerstrasse', :street_number => '28')
+
+        [real_estate_a, real_estate_b].sort.should == [real_estate_b, real_estate_a]
+      end
+
+      describe "Inner order of real estates within the same house" do
+        before do
+          real_estate_a.to_model.address = Fabricate.build(:address, :street => 'Badenerstrasse', :street_number => '26')
+          real_estate_b.to_model.address = Fabricate.build(:address, :street => 'Badenerstrasse', :street_number => '26')
+        end
+
+        it "orders by surface asc" do
+          real_estate_a.to_model.figure.living_surface = 60
+          real_estate_b.to_model.figure.living_surface = 100
+          [real_estate_b, real_estate_a].sort.should == [real_estate_a, real_estate_b]
+        end
+
+        describe "inner order of real estates having the same surface" do
+          it "orders by floor asc" do
+            real_estate_a.to_model.figure.floor = -1
+            real_estate_b.to_model.figure.floor = 2
+            [real_estate_b, real_estate_a].sort.should == [real_estate_a, real_estate_b]
+          end
+        end
+      end
+    end
+  end
+
 end

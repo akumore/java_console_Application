@@ -72,7 +72,7 @@ describe "Cms::Figures" do
             @figure.floor_estimate.should == 'UG. - 2.OG'
             @figure.rooms.should ==  '3.5'
             @figure.rooms_estimate.should == '3 - 3.5 Zimmer'
-            @figure.living_surface.should == '124.6'
+            @figure.living_surface.should == 124.6
             @figure.living_surface_estimate.should == '124.6 - 130.4m2'
             @figure.property_surface.should == '400.5'
             @figure.property_surface_estimate.should == '124.5 - 123m2'

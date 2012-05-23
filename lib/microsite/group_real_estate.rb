@@ -4,7 +4,7 @@ module Microsite
   class GroupRealEstates
 
     def self.get_group(real_estate)
-      if real_estate.commercial_utilization? then
+      if real_estate.commercial_utilization?
         label = 'Dienstleistungsflächen'
         sort_key = 'B'
       elsif real_estate.category_label == 'Loft'
