@@ -1,5 +1,16 @@
 class window.AlfredMueller.Views.SublimeResponsive extends Backbone.View
 
+  @addVideo: (sublime_responsive) ->
+    @videos ||= []
+    @videos.push sublime_responsive
+
+  @ready: ->
+    # when the resources are ready, load up video and resize correctly
+    sublimevideo.ready =>
+      for video in @videos
+        sublimevideo.prepare(video.getVideo())
+        video.handleWindowResize()
+
   initialize: ->
     # Prevents some flickering
     @el.css("visibility", "hidden");
@@ -9,13 +20,15 @@ class window.AlfredMueller.Views.SublimeResponsive extends Backbone.View
     @aspectRatio = 2 # 2:1
 
     $(window).resize @handleWindowResize
+    @parent.bind 'activate', @handleWindowResize
 
-    # when the resources are ready, load up video and resize correctly
-    sublimevideo.ready =>
-      sublimevideo.prepare(@el.get(0))
-      @handleWindowResize()
+    AlfredMueller.Views.SublimeResponsive.addVideo(@)
+
+  getVideo: ->
+    @el.get(0)
 
   handleWindowResize: =>
     newWidth = @parent.width()
     newHeight = newWidth / @aspectRatio
-    sublimevideo.resize(@el.get(0), newWidth, newHeight)
+    if sublimevideo.resize
+      sublimevideo.resize(@getVideo(), newWidth, newHeight)
