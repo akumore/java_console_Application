@@ -27,8 +27,8 @@ describe "Floorplans for printing" do
       visit real_estate_floorplans_path(real_estate)
     end
 
-    it 'shows all floorplans' do
-      page.should have_css('img', :count => 2)
+    it 'shows all floorplans and one north arrow' do
+      page.should have_css('img', :count => 3)
     end
 
     it 'opens the print dialogue' do
