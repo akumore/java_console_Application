@@ -126,10 +126,12 @@ describe "Handout aka MiniDoku" do
     end
 
     it 'shows the floorplan' do
-      page.should have_css(".floorplan-image img", :count => 1)
+      page.should have_css(".floorplan-image > img", :count => 1)
     end
 
-    it 'shows the compass direction'
+    it 'shows the north arrow direction' do
+      page.should have_css(".floorplan-image img.north-arrow", :count => 1)
+    end
   end
 
   describe "Chapter Pricing" do
