@@ -260,27 +260,8 @@ td
   position: absolute
   +hide-text
 
-.north-arrow-container
-  padding: 2px 5px 5px
-  background-color: white
-  right: 50px
-  bottom: 25px
-  position: absolute
-  overflow: hidden
-  .north-arrow-overlay
-    height: 55px
-    width: 40px
-    background: image-url('north-arrow-sprite.png')
-    .floorplan-zoomed &
-      right: 5px
-      bottom: 5px
-
 .floorplan-zoomed
   display: none
   > img
     max-width: 92%
     max-height: 92%
-
-@for $angle from 0 through 72
-  .north-arrow-#{$angle * 5}
-    background-position: #{$angle * -40}px 0px

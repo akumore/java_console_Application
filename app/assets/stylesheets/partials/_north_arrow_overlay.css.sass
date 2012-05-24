@@ -1,0 +1,20 @@
+.north-arrow-container
+  .gallery &
+    padding: 2px 5px 5px
+  background-color: white
+  position: absolute
+  overflow: hidden
+  .north-arrow-overlay
+    height: 55px
+    width: 40px
+    background: image-url('north-arrow-sprite.png')
+  .floorplan-zoomed &
+    right: 1px
+    bottom: 1px
+  .gallery &
+    right: 50px
+    bottom: 25px
+
+@for $angle from 0 through 72
+  .north-arrow-#{$angle * 5}
+    background-position: #{$angle * -40}px 0px

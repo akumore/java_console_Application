@@ -131,4 +131,16 @@ class RealEstateDecorator < ApplicationDecorator
       link_to t('real_estates.show.project_website_link'), address.link_url, :target => '_new', :class => 'icon-globe'
     end
   end
+
+  def north_arrow_overlay
+    additional_description = real_estate.additional_description
+    if additional_description.present? && additional_description.orientation_degrees.present?
+      angle = real_estate.additional_description.orientation_degrees.to_i
+      angle = angle - angle % 5
+      h.content_tag(:div, :class => "north-arrow-container") do
+        h.tag(:div, { :class => "north-arrow-overlay north-arrow-#{angle}" })
+      end
+    end
+  end
+
 end
