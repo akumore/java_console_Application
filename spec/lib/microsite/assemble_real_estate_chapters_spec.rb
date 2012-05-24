@@ -5,9 +5,24 @@ require 'microsite/assemble_real_estate_chapters'
 
 class PricingDecorator; end
 class InfrastructureDecorator; end
+class DescriptionDecorator; end
 
 module Microsite
   describe AssembleRealEstateChapters do
+    let :chapter_not_blank do
+      chapter = stub()
+      chapter.should_receive(:[]).any_number_of_times.with(:content).and_return([{:key => 'value' }])
+      chapter.should_receive(:[]).any_number_of_times.with(:content_html).and_return('<p>not empty</p>')
+      chapter
+    end
+
+    let :chapter_blank do
+      chapter = stub()
+      chapter.should_receive(:[]).any_number_of_times.with(:content).and_return([])
+      chapter.should_receive(:[]).any_number_of_times.with(:content_html).and_return('')
+      chapter
+    end
+
     let :pricing_decorator do
       stub(:chapter => pricing_chapter)
     end
@@ -16,10 +31,15 @@ module Microsite
       stub(:chapter => infrastructure_chapter)
     end
 
+    let :description_decorator do
+      stub(:chapter => description_chapter)
+    end
+
     context 'with pricing and infrastructure attributes' do
       before do
         PricingDecorator.should_receive(:decorate).with(pricing).and_return(pricing_decorator)
         InfrastructureDecorator.should_receive(:decorate).with(infrastructure).and_return(infrastructure_decorator)
+        DescriptionDecorator.should_receive(:decorate).and_return(description_decorator)
       end
 
       let :real_estate_with_pricing_and_infrastructure do
@@ -34,21 +54,10 @@ module Microsite
         stub(:present? => true)
       end
 
-      let :chapter_not_blank do
-        chapter = stub()
-        chapter.should_receive(:[]).any_number_of_times.with(:content).and_return([{:key => 'value' }])
-        chapter.should_receive(:[]).any_number_of_times.with(:content_html).and_return('<p>not empty</p>')
-        chapter
-      end
-
-      let :chapter_blank do
-        chapter = stub()
-        chapter.should_receive(:[]).any_number_of_times.with(:content).and_return([])
-        chapter.should_receive(:[]).any_number_of_times.with(:content_html).and_return('')
-        chapter
-      end
-
       context 'and with both content/content_html not blank' do
+        let :description_chapter do
+          chapter_not_blank
+        end
 
         let :pricing_chapter do
           chapter_not_blank
@@ -58,13 +67,17 @@ module Microsite
           chapter_not_blank
         end
 
-        it 'returns both chapters with the corresponding decorators' do
+        it 'returns all chapters with the corresponding decorators' do
           chapters = AssembleRealEstateChapters.get_chapters real_estate_with_pricing_and_infrastructure
-          chapters.should == [ pricing_chapter, infrastructure_chapter ]
+          chapters.should == [ description_chapter, pricing_chapter, infrastructure_chapter ]
         end
       end
 
       context 'with both content/content_html blank' do
+        let :description_chapter do
+          chapter_blank
+        end
+
         let :pricing_chapter do
           chapter_blank
         end
@@ -73,13 +86,16 @@ module Microsite
           chapter_blank
         end
 
-        it 'returns both chapters with the corresponding decorators' do
+        it 'returns all chapters with the corresponding decorators' do
           chapters = AssembleRealEstateChapters.get_chapters real_estate_with_pricing_and_infrastructure
           chapters.should == []
         end
       end
 
       context 'with only content_html/content blank' do
+        let :description_chapter do
+          chapter_blank
+        end
 
         let :pricing_chapter do
           chapter = stub()
@@ -95,7 +111,7 @@ module Microsite
           chapter
         end
 
-        it 'returns both chapters with the corresponding decorators' do
+        it 'returns all chapters with the corresponding decorators' do
           chapters = AssembleRealEstateChapters.get_chapters real_estate_with_pricing_and_infrastructure
           chapters.should == [ pricing_chapter, infrastructure_chapter ]
         end
@@ -103,6 +119,13 @@ module Microsite
     end
 
     context 'without pricing and infrastructure attributes' do
+      before do
+        DescriptionDecorator.should_receive(:decorate).and_return(description_decorator)
+      end
+
+      let :description_chapter do
+        chapter_blank
+      end
 
       let :real_estate_with_pricing_and_infrastructure do
         stub( :pricing => pricing, :infrastructure => infrastructure, :description => nil, :additional_description => nil, :title => nil, :information => nil)
