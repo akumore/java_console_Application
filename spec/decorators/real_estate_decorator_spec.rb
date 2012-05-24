@@ -94,4 +94,41 @@ describe RealEstateDecorator do
       end
     end
   end
+
+  describe 'north arrow overlay' do
+
+    let(:real_estate) do
+      RealEstateDecorator.decorate Fabricate(:residential_building)
+    end
+
+    context "When additional_description is present" do
+      context "When orientation_degrees is present" do
+        context "and correct" do
+          it "should render round orientation" do
+            real_estate.additional_description = Fabricate.build(:additional_description, :orientation_degrees => 183)
+            real_estate.north_arrow_overlay.should =~ /north-arrow-container.*img.*src.*180/
+          end
+
+          it "should render round orientation" do
+            real_estate.additional_description = Fabricate.build(:additional_description, :orientation_degrees => 191.9)
+            real_estate.north_arrow_overlay.should =~ /north-arrow-container.*img.*src.*190/
+          end
+        end
+
+        context "and incorrect" do
+          it "should render orientation 0 degrees" do
+            real_estate.additional_description = Fabricate.build(:additional_description, :orientation_degrees => 'foobar')
+            real_estate.north_arrow_overlay.should =~ /north-arrow-container.*img.*src.*0/
+          end
+        end
+      end
+
+      context "and orientation_degrees is blank" do
+        it "does not return the north arrow overlay" do
+          real_estate.north_arrow_overlay.should == nil
+        end
+      end
+    end
+
+  end
 end
