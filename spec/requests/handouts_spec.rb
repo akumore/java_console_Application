@@ -470,8 +470,9 @@ describe "Handout aka MiniDoku" do
       @kitchen = Fabricate.build(:media_assets_image, :title=>"The kitchen")
       @bathroom = Fabricate.build(:media_assets_image, :title=>"The bathroom")
 
-      @real_estate = Fabricate :residential_building, :contact=>@contact_person, :pricing => Fabricate.build(:pricing_for_rent),
-                               :images => [@primary_image, @kitchen, @bathroom], :floor_plans => [@ground_plot]
+      @real_estate = RealEstateDecorator.decorate Fabricate :residential_building,
+                                :contact=>@contact_person, :pricing => Fabricate.build(:pricing_for_rent),
+                                :images => [@primary_image, @kitchen, @bathroom], :floor_plans => [@ground_plot]
     end
 
     it "shows the chapter title" do
