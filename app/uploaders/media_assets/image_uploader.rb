@@ -26,7 +26,8 @@ module MediaAssets
       process :resize_to_fill => [2000, 1000]
     end
 
-    version :gallery, :from_version => :minidoku do
+    version :gallery do
+      process :convert => 'jpg'
       process :resize_to_fill => [1000, 500]
       process :quality => 80
     end

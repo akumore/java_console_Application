@@ -22,7 +22,8 @@ module MediaAssets
       process :convert => 'jpg'
     end
 
-    version :gallery, :from_version => :minidoku do
+    version :gallery do
+      process :convert => 'jpg'
       process :resize_and_pad => [1000, 500, '#FFFFFF']
       process :quality => 80
     end
