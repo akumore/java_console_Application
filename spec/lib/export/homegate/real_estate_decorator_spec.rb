@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe Export::Homegate::RealEstateDecorator do
   ## workaround for issue: https://github.com/jcasimir/draper/issues/60
-  #include Rails.application.routes.url_helpers
-  #before :all do
-  #  c = ApplicationController.new
-  #  c.request = ActionDispatch::TestRequest.new
-  #  c.set_current_view_context
-  #end
+  include Rails.application.routes.url_helpers
+  before :all do
+    c = ApplicationController.new
+    c.request = ActionDispatch::TestRequest.new
+    c.set_current_view_context
+  end
   ## end of workaround
 
   describe 'an invalid real estate' do
@@ -210,6 +210,15 @@ describe Export::Homegate::RealEstateDecorator do
       it "calling #{accessor} doesnt raise an exception with invalid data" do
         expect { @decorator.send(accessor) }.to_not raise_error
       end
+    end
+  end
+
+  describe '#object_description', :show => true do
+    it 'strips any whitespace' do
+      Export::Homegate::RealEstateDecorator.new(
+        mock_model(RealEstate, :description => "#title\n\n\r line \nending\n"),
+        {}
+      ).object_description.should == 'title line ending'
     end
   end
 end
