@@ -260,17 +260,20 @@ td
   position: absolute
   +hide-text
 
-.north-arrow-overlay
-  width: 40px
-  height: 50px
-  background: image-url('north-arrow-sprite.png')
+.north-arrow-container
+  padding: 2px 5px 5px
+  background-color: white
   right: 50px
   bottom: 25px
   position: absolute
   overflow: hidden
-  .floorplan-zoomed &
-    right: 5px
-    bottom: 5px
+  .north-arrow-overlay
+    height: 55px
+    width: 40px
+    background: image-url('north-arrow-sprite.png')
+    .floorplan-zoomed &
+      right: 5px
+      bottom: 5px
 
 .floorplan-zoomed
   display: none
