@@ -135,12 +135,16 @@ class RealEstateDecorator < ApplicationDecorator
   def north_arrow_overlay
     additional_description = real_estate.additional_description
     if additional_description.present? && additional_description.orientation_degrees.present?
-      angle = real_estate.additional_description.orientation_degrees.to_i
-      angle = angle - angle % 5
       h.content_tag(:div, :class => "north-arrow-container") do
-        h.tag(:div, { :class => "north-arrow-overlay north-arrow-#{angle}" })
+        north_arrow_img
       end
     end
+  end
+
+  def north_arrow_img
+    angle = real_estate.additional_description.orientation_degrees.to_i
+    angle = angle - angle % 5
+    h.image_tag("north-arrow/#{angle}.png")
   end
 
 end
