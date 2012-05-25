@@ -6,7 +6,7 @@ module MediaAssets
     decorates_association :real_estate
 
     def zoom_link
-      h.link_to I18n.t('.floorplan'), "#floorplan-zoomed-#{id}",
+      h.link_to I18n.t('real_estates.show.floorplan'), "#floorplan-zoomed-#{id}",
         :class => 'zoom-floorplan zoom-overlay'
     end
 
