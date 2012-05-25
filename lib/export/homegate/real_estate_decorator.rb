@@ -375,7 +375,7 @@ module Export::Homegate
       #  str(4000) biggest varchar2(4000) in oracle - split description into two parts if required.
       # The following HTML-Tags can be used: <LI>,</LI>,<BR>, <B>,</B>. All other Tags will be removed.
       html = RDiscount.new(model.description.presence.to_s).to_html
-      strip_newlines Sanitize.clean(html, :elements => ['b', 'li', 'br'])
+      Sanitize.clean(html, :elements => ['b', 'li', 'br'])
     end
 
     def selling_price
@@ -1172,7 +1172,7 @@ module Export::Homegate
     end
 
     def to_a
-      allowed.map { |key| send key }
+      allowed.map { |key| strip_newlines send(key) }
     end
 
 
@@ -1186,7 +1186,7 @@ module Export::Homegate
     end
 
     def strip_newlines str
-      str.gsub(/\n/, ' ').gsub(/\r/, ' ').squeeze.strip.chomp if str.present?
+      str.gsub(/\n/, ' ').gsub(/\r/, ' ').squeeze(' ').strip.chomp if str.present?
     end
 
   end

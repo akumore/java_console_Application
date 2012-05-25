@@ -213,12 +213,15 @@ describe Export::Homegate::RealEstateDecorator do
     end
   end
 
-  describe '#object_description', :show => true do
-    it 'strips any whitespace' do
-      Export::Homegate::RealEstateDecorator.new(
-        mock_model(RealEstate, :description => "#title\n\n\r line \nending\n"),
+  describe '#to_a' do
+    it 'has no newlines' do
+      newline_string = "attribute\n\n\r with \nnewlines\n"
+      real_estate_decorator = Export::Homegate::RealEstateDecorator.new(
+        mock_model(RealEstate, :title => newline_string, :description => newline_string),
         {}
-      ).object_description.should == 'title line ending'
+      )
+      real_estate_decorator.stub(:allowed).and_return([:title, :description])
+      real_estate_decorator.to_a.should be_all { |value| value.should == 'attribute with newlines'  }
     end
   end
 end
