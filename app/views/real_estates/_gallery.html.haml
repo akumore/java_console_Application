@@ -16,7 +16,9 @@
             = image_tag floor_plan.file.gallery.url
             .flex-caption
               %span= floor_plan.title
-            = link_to t('.floorplan'), floor_plan.file.url, :class => 'zoom-floorplan zoom-overlay'
+            = floor_plan.zoom_link
+            = floor_plan.real_estate.north_arrow_overlay
+            = floor_plan.zoomed_div
         - real_estate.videos.each do |video|
           %li
             %video.sublime{ :preload => 'preload' }
