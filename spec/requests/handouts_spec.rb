@@ -126,10 +126,12 @@ describe "Handout aka MiniDoku" do
     end
 
     it 'shows the floorplan' do
-      page.should have_css(".floorplan-image img", :count => 1)
+      page.should have_css(".floorplan-image > img", :count => 1)
     end
 
-    it 'shows the compass direction'
+    it 'shows the north arrow direction' do
+      page.should have_css(".floorplan-image img.north-arrow", :count => 1)
+    end
   end
 
   describe "Chapter Pricing" do
@@ -468,8 +470,9 @@ describe "Handout aka MiniDoku" do
       @kitchen = Fabricate.build(:media_assets_image, :title=>"The kitchen")
       @bathroom = Fabricate.build(:media_assets_image, :title=>"The bathroom")
 
-      @real_estate = Fabricate :residential_building, :contact=>@contact_person, :pricing => Fabricate.build(:pricing_for_rent),
-                               :images => [@primary_image, @kitchen, @bathroom], :floor_plans => [@ground_plot]
+      @real_estate = RealEstateDecorator.decorate Fabricate :residential_building,
+                                :contact=>@contact_person, :pricing => Fabricate.build(:pricing_for_rent),
+                                :images => [@primary_image, @kitchen, @bathroom], :floor_plans => [@ground_plot]
     end
 
     it "shows the chapter title" do

@@ -50,7 +50,7 @@ module Assets
         draw.fill_opacity(1)
         draw.text text_x, TEXT_HEIGHT - 2, 'N'
         draw.draw(image)
-        image.resize_to_fit!(WIDTH / 2, TOTAL_HEIGHT / 2)
+        image.resize_to_fit!(WIDTH, TOTAL_HEIGHT)
         image.write(File.join(dirname, "#{degree}.png"))
       end
     end

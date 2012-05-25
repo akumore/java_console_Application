@@ -142,9 +142,11 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def north_arrow_img
-    angle = real_estate.additional_description.orientation_degrees.to_i
-    angle = angle - angle % 5
-    h.image_tag("north-arrow/#{angle}.png")
+    if real_estate.additional_description.present?
+      angle = real_estate.additional_description.orientation_degrees.to_i
+      angle = angle - angle % 5
+      h.image_tag("north-arrow/#{angle}.png", :class => 'north-arrow')
+    end
   end
 
 end
