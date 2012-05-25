@@ -18,6 +18,7 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     # init responsive sublime players
     $("video").each ->
       new AlfredMueller.Views.SublimeResponsive(el: $(this))
+    AlfredMueller.Views.SublimeResponsive.ready()
 
     # initialize clickable/hoverable table rows
     $("table").each ->

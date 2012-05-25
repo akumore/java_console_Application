@@ -1172,7 +1172,7 @@ module Export::Homegate
     end
 
     def to_a
-      allowed.map { |key| send key }
+      allowed.map { |key| strip_newlines send(key) }
     end
 
 
@@ -1183,6 +1183,10 @@ module Export::Homegate
 
     def category_name
       model.category.name
+    end
+
+    def strip_newlines str
+      str.gsub(/\n/, ' ').gsub(/\r/, ' ').squeeze(' ').strip.chomp if str.present?
     end
 
   end

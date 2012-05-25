@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe Export::Homegate::RealEstateDecorator do
   ## workaround for issue: https://github.com/jcasimir/draper/issues/60
-  #include Rails.application.routes.url_helpers
-  #before :all do
-  #  c = ApplicationController.new
-  #  c.request = ActionDispatch::TestRequest.new
-  #  c.set_current_view_context
-  #end
+  include Rails.application.routes.url_helpers
+  before :all do
+    c = ApplicationController.new
+    c.request = ActionDispatch::TestRequest.new
+    c.set_current_view_context
+  end
   ## end of workaround
 
   describe 'an invalid real estate' do
@@ -210,6 +210,18 @@ describe Export::Homegate::RealEstateDecorator do
       it "calling #{accessor} doesnt raise an exception with invalid data" do
         expect { @decorator.send(accessor) }.to_not raise_error
       end
+    end
+  end
+
+  describe '#to_a' do
+    it 'has no newlines' do
+      newline_string = "attribute\n\n\r with \nnewlines\n"
+      real_estate_decorator = Export::Homegate::RealEstateDecorator.new(
+        mock_model(RealEstate, :title => newline_string, :description => newline_string),
+        {}
+      )
+      real_estate_decorator.stub(:allowed).and_return([:title, :description])
+      real_estate_decorator.to_a.should be_all { |value| value.should == 'attribute with newlines'  }
     end
   end
 end

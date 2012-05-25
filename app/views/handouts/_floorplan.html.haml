@@ -1,13 +1,7 @@
 .chapter.floorplan.pbi-avoid
-  .pb-avoid
-    %h2= t('.title')
+  %h2= t('.title')
 
-    .floorplan-image.pbi-avoid
-      - if orientation_degrees = @real_estate.try(:additional_description).try(:orientation_degrees).presence
-        .compass-group
-          .compass
-            = image_tag('compass.png')
-          .compass-pin{ :style => "-webkit-transform:rotate(#{orientation_degrees}deg);" }
-            .pbi-avoid
-              = image_tag('compass-pin.png')
-      = image_tag(@real_estate.floor_plans.first.file.minidoku.url)
+  .floorplan-image.pbi-avoid
+    %div
+      = @real_estate.north_arrow_img
+    = image_tag(@real_estate.floor_plans.first.file.minidoku.url)

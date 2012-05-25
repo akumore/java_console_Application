@@ -8,6 +8,7 @@ class RealEstateDecorator < ApplicationDecorator
   decorates_association :pricing
   decorates_association :figure
   decorates_association :infrastructure
+  decorates_association :floor_plans
 
   def google_maps_address
     [
@@ -130,4 +131,22 @@ class RealEstateDecorator < ApplicationDecorator
       link_to t('real_estates.show.project_website_link'), address.link_url, :target => '_new', :class => 'icon-globe'
     end
   end
+
+  def north_arrow_overlay
+    additional_description = real_estate.additional_description
+    if additional_description.present? && additional_description.orientation_degrees.present?
+      h.content_tag(:div, :class => "north-arrow-container") do
+        north_arrow_img
+      end
+    end
+  end
+
+  def north_arrow_img
+    if real_estate.additional_description.present?
+      angle = real_estate.additional_description.orientation_degrees.to_i
+      angle = angle - angle % 5
+      h.image_tag("north-arrow/#{angle}.png", :class => 'north-arrow')
+    end
+  end
+
 end
