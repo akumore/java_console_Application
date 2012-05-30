@@ -1186,7 +1186,11 @@ module Export::Homegate
     end
 
     def strip_newlines str
-      str.gsub(/\n/, ' ').gsub(/\r/, ' ').squeeze(' ').strip.chomp if str.present?
+      if str.respond_to? :gsub
+        str.gsub(/\n/, ' ').gsub(/\r/, ' ').squeeze(' ').strip.chomp
+      else
+        str
+      end
     end
 
   end
