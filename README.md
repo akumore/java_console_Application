@@ -62,3 +62,14 @@ In order for RVM to work with the whenever gem, we have to write a `.rvmrc` with
 
 * Thin is very slow when running Ruby 1.9 in threaded mode with 'epoll' enabled. Therefore it has to be disabled!
 * Response times of Mongolab (currently used for database hosting) are very high, around 100ms for each database access. Don't use it in production.
+
+## Avoid SSH disconnects due to firewall timeouts
+
+Firewall timeouts may interrupt long-running rake tasks (e.g.
+db:migrate). As alternative to a screen session, the rake task can be
+run with nohup and in/output redirection.
+
+    RAILS_ENV=production nohup rake db:migrate > ../db_migration.out 2> ../db_migration.err < /dev/null &
+
+The ssh connection can be terminated afterwards and the command output
+is stored in the corresponding files.

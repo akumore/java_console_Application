@@ -118,6 +118,32 @@ describe MicrositeDecorator do
     end
   end
 
+  context 'utilization' do
+    context 'for private buildings' do
+      it 'returns Wohnen' do
+        real_estate =  Fabricate :residential_building
+        decorated_real_estate = MicrositeDecorator.decorate real_estate
+        decorated_real_estate.utilization.should == 'Wohnen'
+      end
+    end
+
+    context 'for commercial buildings' do
+      it 'returns Arbeiten' do
+        real_estate =  Fabricate :commercial_building
+        decorated_real_estate = MicrositeDecorator.decorate real_estate
+        decorated_real_estate.utilization.should == 'Arbeiten'
+      end
+    end
+  end
+
+  context 'category' do
+    it 'returns Category 45' do
+      real_estate =  Fabricate :residential_building
+      decorated_real_estate = MicrositeDecorator.decorate real_estate
+      decorated_real_estate.category.should == 'Category 45'
+    end
+  end
+
   context "with assigned id" do
 
     it 'returns model\'s id' do
@@ -133,7 +159,7 @@ describe MicrositeDecorator do
       real_estate =  Fabricate :commercial_building, :figure => Fabricate.build(:figure)
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.stub(:real_estate_object_documentation_path => '', :path_to_url => '')
-        got = ['_id', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group', 'chapters', 'images', 'downloads']
+        got = ['_id', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group', 'utilization', 'category', 'chapters', 'images', 'downloads']
         decorated_real_estate.as_json.keys.should == got
     end
   end
