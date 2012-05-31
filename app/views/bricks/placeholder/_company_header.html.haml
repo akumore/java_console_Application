@@ -7,6 +7,8 @@
     %li
       %a{ :href => '#managing-board' }=t('.managing_board')
     %li
+      %a{ :href => '#subsidiaries' }=t('.subsidiaries')
+    %li
       %a{ :href => '#reference-projects' }=t('.reference_projects')
 
   .flex-container.hidden#vision.tab-content
@@ -64,15 +66,17 @@
         %li
           %a{ :href => '#' } Christoph Müller
         %li
-          %a{ :href => '#' } Michael Müller
+          %a{ :href => '#' } Joe Schmalz
         %li
-          %a{ :href => '#' } Viktor Naumann
+          %a{ :href => '#' } Michael Müller
         %li
           %a{ :href => '#' } Walter Hochreutener
         %li
-          %a{ :href => '#' } Joe Schmalz
-        %li
           %a{ :href => '#' } David Spiess
+        %li
+          %a{ :href => '#' } Beat Stocker
+        %li
+          %a{ :href => '#' } Viktor Naumann
 
       %ul.slides
         %li
@@ -83,40 +87,71 @@
             %h5
               =t('.chairman_of_managing_board')
         %li
+          = image_tag 'head_of_alfred_mueller/managing_board/Joe_Schmalz.jpg'
+          .tab-slider-description
+            %h1
+              Joe Schmalz
+            %h5
+              =t('.chief_financial_officer')
+        %li
           = image_tag 'head_of_alfred_mueller/managing_board/Michael_Mueller.jpg'
           .tab-slider-description
             %h1
               Michael Müller
             %h5
-              =t('.member_of_managing_board')
-        %li
-          = image_tag 'head_of_alfred_mueller/board_of_directors/Viktor_Naumann.jpg'
-          .tab-slider-description
-            %h1
-              Viktor Naumann
-            %h5
-              =t('.member_of_managing_board')
+              =t('.head_of_portfolio')
         %li
           = image_tag 'head_of_alfred_mueller/managing_board/Walter_Hochreutener.jpg'
           .tab-slider-description
             %h1
               Walter Hochreutener
             %h5
-              =t('.member_of_managing_board')
-        %li
-          = image_tag 'head_of_alfred_mueller/managing_board/Joe_Schmalz.jpg'
-          .tab-slider-description
-            %h1
-              Joe Schmalz
-            %h5
-              =t('.member_of_managing_board')
+              =t('.head_of_real_estate_management')
         %li
           = image_tag 'head_of_alfred_mueller/managing_board/David_Spiess.jpg'
           .tab-slider-description
             %h1
               David Spiess
             %h5
-              =t('.member_of_managing_board')
+              =t('.head_of_marketing_and_sales')
+        %li
+          = image_tag 'head_of_alfred_mueller/managing_board/Beat_Stocker.jpg'
+          .tab-slider-description
+            %h1
+              Beat Stocker
+            %h5
+              =t('.head_development_and_general_contracting')
+        %li
+          = image_tag 'head_of_alfred_mueller/board_of_directors/Viktor_Naumann.jpg'
+          .tab-slider-description
+            %h1
+              Viktor Naumann
+            %h5
+              =t('.head_of_subsidiaries')
+
+  .flex-container.hidden#subsidiaries.tab-content
+    .flexslider
+      %ul.second-level-navigation
+        %li
+          %a{ :href => '#' } Pierre El Soda
+        %li
+          %a{ :href => '#' } Massimiliano Paganini
+
+      %ul.slides
+        %li
+          = image_tag 'head_of_alfred_mueller/branch/Pierre_El_Soda.jpg'
+          .tab-slider-description
+            %h1
+              Pierre El Soda
+            %h5
+              = t('.director_of_subsidiary_western_switzerland')
+        %li
+          = image_tag 'head_of_alfred_mueller/branch/Massimiliano_Paganini.jpg'
+          .tab-slider-description
+            %h1
+              Massimiliano Paganini
+            %h5
+              = t('.director_of_subsidiary_southern_switzerland')
 
   - unless reference_projects.empty?
     #reference-projects.hidden.tab-content.flex-container
