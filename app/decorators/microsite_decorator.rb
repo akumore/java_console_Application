@@ -71,6 +71,10 @@ class MicrositeDecorator < ApplicationDecorator
     g && g[:label]
   end
 
+  def utilization
+    h.t("real_estates.search_filter.#{model.utilization}")
+  end
+
   def group_sort_key
     g = Microsite::GroupRealEstates.get_group(real_estate)
     g && g[:sort_key]
@@ -122,6 +126,7 @@ class MicrositeDecorator < ApplicationDecorator
     json['surface']     = surface()
     json['price']       = price()
     json['group']       = group()
+    json['utilization'] = utilization()
     json['chapters']    = chapters()
     json['images']      = images()
     json['downloads']   = downloads()
