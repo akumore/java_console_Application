@@ -51,6 +51,13 @@ describe RealEstateDecorator do
     end
   end
 
+  describe '#object_documentation_title' do
+    it 'is generated from the title' do
+      real_estate = mock_model(RealEstate, :title => 'My Handout')
+      RealEstateDecorator.new(real_estate).object_documentation_title.should == 'Objektdokumentation-my-handout'
+    end
+  end
+
   describe '#reference_project_caption' do
     context 'with a link in the address' do
       it 'links to the provided url' do
