@@ -61,5 +61,7 @@ module AlfredMueller
       g.test_framework :rspec, :fixture => true
       g.fixture_replacement :fabrication
     end
+
+    config.mongoid.observers = :real_estate_observer
   end
 end
