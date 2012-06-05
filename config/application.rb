@@ -21,8 +21,6 @@ module AlfredMueller
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    config.middleware.use "PDFKit::Middleware"
-
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/lib) # We can't use autoload because of config.threadsafe! is used in all
     # environments except development. Not sure whether this is a bug...
