@@ -138,16 +138,16 @@ describe MicrositeDecorator do
 
   context 'category' do
     it 'returns Category 45' do
-      real_estate =  Fabricate :residential_building
+      real_estate =  Fabricate :real_estate, :category => Fabricate(:category, :label => 'my category')
       decorated_real_estate = MicrositeDecorator.decorate real_estate
-      decorated_real_estate.category.should == 'Category 45'
+      decorated_real_estate.category.should == 'my category'
     end
   end
 
   context "with assigned id" do
 
     it 'returns model\'s id' do
-      real_estate =  Fabricate :real_estate, :category=>Fabricate(:category)
+      real_estate =  Fabricate :real_estate, :category => Fabricate(:category)
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.id.should == real_estate.id
     end
