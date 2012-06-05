@@ -153,13 +153,21 @@ describe MicrositeDecorator do
     end
   end
 
+  context "with title" do
+    it 'returns the title' do
+      real_estate =  Fabricate :real_estate, :title => 'my title', :category=>Fabricate(:category)
+      decorated_real_estate = MicrositeDecorator.decorate real_estate
+      decorated_real_estate.title.should == 'my title'
+    end
+  end
+
   context "as json" do
 
     it 'returns only the selected attributes' do
       real_estate =  Fabricate :commercial_building, :figure => Fabricate.build(:figure)
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.stub(:real_estate_object_documentation_path => '', :path_to_url => '')
-        got = ['_id', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group', 'utilization', 'category', 'chapters', 'images', 'downloads']
+        got = ['_id', 'title', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group', 'utilization', 'category', 'chapters', 'images', 'downloads']
         decorated_real_estate.as_json.keys.should == got
     end
   end

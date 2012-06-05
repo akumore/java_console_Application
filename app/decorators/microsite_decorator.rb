@@ -28,6 +28,10 @@ class MicrositeDecorator < ApplicationDecorator
     4  => '4. OG',
   }
 
+  def title
+    real_estate.title
+  end
+
   def rooms
     if real_estate.figure.present?
       real_estate.figure.rooms
@@ -124,6 +128,7 @@ class MicrositeDecorator < ApplicationDecorator
   def as_json(options = {})
     options ||= {}
     json = real_estate.as_json options.merge({ :only => [ :_id ] })
+    json['title']       = title()
     json['rooms']       = rooms()
     json['floor_label'] = floor_label()
     json['house']       = house()
