@@ -92,9 +92,24 @@ class MicrositeDecorator < ApplicationDecorator
     Microsite::AssembleRealEstateChapters.get_chapters(real_estate)
   end
 
+  def floorplans
+    real_estate.floor_plans.collect do |asset|
+      attributes = {
+        :url => path_to_url(asset.file.gallery.url),
+        :title => asset.title,
+      }
+      north_arrow_img = RealEstateDecorator.decorate(asset.real_estate).north_arrow_img
+      attributes[:north_arrow] = path_to_url(image_path(north_arrow_img)) if north_arrow_img.present?
+      attributes
+    end
+  end
+
   def images
-    (real_estate.floor_plans.to_a + real_estate.images.to_a).collect do |asset|
-      { :url => path_to_url(asset.file.gallery.url), :title => asset.title }
+    real_estate.images.collect do |asset|
+      attrs = {
+        :url => path_to_url(asset.file.gallery.url),
+        :title => asset.title,
+      }
     end
   end
 
@@ -138,6 +153,7 @@ class MicrositeDecorator < ApplicationDecorator
     json['utilization'] = utilization()
     json['category']    = category()
     json['chapters']    = chapters()
+    json['floorplans']  = floorplans()
     json['images']      = images()
     json['downloads']   = downloads()
     json

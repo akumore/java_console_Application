@@ -137,7 +137,7 @@ describe MicrositeDecorator do
   end
 
   context 'category' do
-    it 'returns Category 45' do
+    it 'returns the category' do
       real_estate =  Fabricate :real_estate, :category => Fabricate(:category, :label => 'my category')
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.category.should == 'my category'
@@ -161,13 +161,69 @@ describe MicrositeDecorator do
     end
   end
 
+  context "floorplans" do
+
+    let :real_estate do
+      real_estate =  Fabricate :residential_building, :floor_plans => [Fabricate.build(:media_assets_floor_plan)]
+    end
+
+    let :decorated_real_estate do
+      decorated_real_estate = MicrositeDecorator.decorate real_estate
+      decorated_real_estate.stub(:path_to_url => 'link')
+      decorated_real_estate
+    end
+
+    context "returns the list of floor plans", :wip => true do
+      it "returns all floor plans" do
+        decorated_real_estate.floorplans.should include({ :url=>"link", :title=>"Floor plan title" })
+      end
+
+      it "with title and absolute image url" do
+        title = 'my title'
+        real_estate.floor_plans.first.title = title
+        decorated_real_estate.floorplans.first[:title].should == title
+      end
+
+      it "should call path_to_url for each image link" do
+        decorated_real_estate = MicrositeDecorator.decorate real_estate
+        decorated_real_estate.should_receive(:path_to_url).exactly(1).times.and_return('http://abosute_url')
+        decorated_real_estate.floorplans
+      end
+
+    end
+
+    context "with orientation set" do
+      let :real_estate do
+        real_estate =  Fabricate :residential_building,
+          :floor_plans => [Fabricate.build(:media_assets_floor_plan)],
+          :additional_description => Fabricate.build(:additional_description, :orientation_degrees => 293)
+      end
+
+      it "adds the north-arrow image link to the returned hash" do
+        decorated_real_estate.floorplans.first[:north_arrow].should_not be_nil
+      end
+
+      it "should call path_to_url for each image link and the north arrow" do
+        decorated_real_estate = MicrositeDecorator.decorate real_estate
+        decorated_real_estate.should_receive(:path_to_url).exactly(2).times.and_return('http://abosute_url')
+        decorated_real_estate.floorplans
+      end
+    end
+
+    context "without orientation set" do
+      it "does not add the north-arrow image link to the returned hash" do
+        decorated_real_estate.floorplans.first[:north_arrow].should be_nil
+      end
+    end
+  end
+
   context "as json" do
 
     it 'returns only the selected attributes' do
       real_estate =  Fabricate :commercial_building, :figure => Fabricate.build(:figure)
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.stub(:real_estate_object_documentation_path => '', :path_to_url => '')
-        got = ['_id', 'title', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group', 'utilization', 'category', 'chapters', 'images', 'downloads']
+        got = ['_id', 'title', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group', 'utilization', 'category', 'chapters', 'floorplans', 'images', 'downloads']
         decorated_real_estate.as_json.keys.should == got
     end
   end
