@@ -12,7 +12,7 @@ it:
     placeholder:
       jobs_openings:
         download_pdf: 'Stellenprofil herunterladen'
-        recommend_job: 'Stelle weiterempfehlen'
+        recommend_job: 'Raccomandare il posto'
         recommend_job_title: 'Interessante Stellenanzeige bei Alfred Müller'
         apply_for_job: 'Candidatura diretta'
       jobs_apply_with_success:
