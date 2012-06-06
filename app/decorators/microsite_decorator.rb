@@ -94,11 +94,13 @@ class MicrositeDecorator < ApplicationDecorator
 
   def floorplans
     real_estate.floor_plans.collect do |asset|
-      {
+      attributes = {
         :url => path_to_url(asset.file.gallery.url),
         :title => asset.title,
-        :north_arrow => path_to_url(image_path(RealEstateDecorator.decorate(asset.real_estate).north_arrow_img)),
       }
+      north_arrow_img = RealEstateDecorator.decorate(asset.real_estate).north_arrow_img
+      attributes[:north_arrow] = path_to_url(image_path(north_arrow_img)) if north_arrow_img.present?
+      attributes
     end
   end
 

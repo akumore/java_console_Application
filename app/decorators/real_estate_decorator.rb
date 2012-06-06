@@ -153,7 +153,7 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def north_arrow_img
-    if real_estate.additional_description.present?
+    if real_estate.additional_description.present? and real_estate.additional_description.orientation_degrees.present?
       angle = real_estate.additional_description.orientation_degrees.to_i
       angle = angle - angle % 5
       "north-arrow/#{angle}.png"
