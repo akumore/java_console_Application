@@ -18,6 +18,10 @@ describe HandoutsController do
     end
 
     context 'when the real estate is for rent' do
+      before do
+        PDFKit.should_receive(:new).with("http://test.host/de/real_estates/#{real_estate_for_rent.id}/Objektdokumentation-a-fine-real-estate-property-3.html").and_return mock(PDFKit, :to_pdf => 'yes, this is pdf')
+      end
+
       it 'is accessible' do
         get :show, :real_estate_id => real_estate_for_rent.id, :format => :pdf, :locale => :de
         response.should be_success

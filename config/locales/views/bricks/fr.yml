@@ -10,9 +10,9 @@ fr:
     placeholder:
       jobs_openings:
         download_pdf: 'Stellenprofil herunterladen'
-        recommend_job: 'Stelle weiterempfehlen'
+        recommend_job: 'Recommander le poste'
         recommend_job_title: 'Interessante Stellenanzeige bei Alfred Müller'
-        apply_for_job: 'Online bewerben'
+        apply_for_job: 'Postuler en direct'
       jobs_apply_with_success:
         apply: 'Postuler en direct'
         title: 'Heidi Rohner'

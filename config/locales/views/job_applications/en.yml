@@ -1,7 +1,7 @@
 en:
   job_applications:
     form:
-      speculative_application: 'Initiativbewerbung'
+      speculative_application: 'Unsolicited application'
       send: 'Send application'
       errors: 'Please check your inputs:'
     confirmation:

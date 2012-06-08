@@ -8,8 +8,8 @@
           %ul.icon-list
             - if job.job_profile_file.present?
               %li
-                = link_to t('.download_pdf'), job.job_profile_file.url, :target => '_new', :class => 'icon-pdf'
+                = link_to t('.download_pdf'), job.job_profile_file.url, :target => '_new', :class => 'icon-pdf-white'
             %li
-              = link_to t('.recommend_job'), "mailto:?subject=#{t('.recommend_job_title')}&body=#{URI.encode(request.url)}#job_#{job.id}", :class => 'icon-mail'
+              = link_to t('.recommend_job'), "mailto:?subject=#{t('.recommend_job_title')}&body=#{URI.encode(request.url)}#job_#{job.id}", :class => 'icon-mail-white'
             %li
-              = link_to t('.apply_for_job'), '#apply', :class => 'icon-pen'
+              = link_to t('.apply_for_job'), '#apply', :class => 'icon-pen-white'

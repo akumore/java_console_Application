@@ -5,11 +5,6 @@ module Microsite
 
     def self.get_chapters(real_estate)
       chapters = []
-      description_chapter = DescriptionDecorator.decorate(real_estate).chapter
-      unless description_chapter[:content].blank? and description_chapter[:content_html].blank?
-        chapters << description_chapter
-      end
-
       if real_estate.information.present?
         information_chapter = InformationDecorator.decorate(real_estate.information).chapter
         unless information_chapter[:content].blank? and information_chapter[:content_html].blank?

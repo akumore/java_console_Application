@@ -11,10 +11,10 @@ en:
   bricks:
     placeholder:
       jobs_openings:
-        download_pdf: 'Stellenprofil herunterladen'
-        recommend_job: 'Stelle weiterempfehlen'
+        download_pdf: 'Download job profile'
+        recommend_job: 'Recommend this job'
         recommend_job_title: 'Interessante Stellenanzeige bei Alfred Müller'
-        apply_for_job: 'Online bewerben'
+        apply_for_job: 'Apply directly'
       jobs_apply_with_success:
         apply: 'Apply directly'
         title: 'Heidi Rohner'
