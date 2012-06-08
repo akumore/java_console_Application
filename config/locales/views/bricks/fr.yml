@@ -15,9 +15,9 @@ fr:
         apply_for_job: 'Online bewerben'
       jobs_apply_with_success:
         apply: 'Postuler en direct'
-        title: 'Heidi Rohner'
-        person_html: 'Téléphone +41 41 767 02 02<br>Neuhofstrasse 10<br>CH-6340 Baar'
-        address_html: '<a href="mailto:heidi.rohner@alfred-mueller.ch">E-Mail</a>'
+        title: 'Pierre El Soda'
+        person_html: 'Téléphone +41 32 756 92 92<br>Av. des Champs-Montants 10a<br>CH-2074 Marin'
+        address_html: '<a href="mailto:pierre.elsoda@alfred–mueller.ch">E-Mail</a>'
       contact_form:
         form_title: 'Formulaire de contact'
         title: 'Pierre El Soda'
