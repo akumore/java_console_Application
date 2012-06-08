@@ -1,5 +1,5 @@
 .contact-box
-  .image.image-for-job-application
+  .image{ :class => "image-for-job-application-#{I18n.locale}" }
     .image-caption
       .image-caption-text#apply
         %h3= t('.title')
