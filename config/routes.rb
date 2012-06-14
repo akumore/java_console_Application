@@ -39,7 +39,7 @@ AlfredMueller::Application.routes.draw do
   scope ':locale' do
     resources :real_estates, :only => [:index, :show] do
       resources :appointments, :only => [:new, :create]
-      resources :floorplans, :only => :index
+      resources :floorplans, :only => [:index, :show]
       resource :handout, :only => :show do
         member do
           get 'footer'
