@@ -4,50 +4,59 @@ require "spec_helper"
 describe "Handout aka MiniDoku" do
   monkey_patch_default_url_options
 
+  let :information do
+    Fabricate.build(:information,
+                    :display_estimated_available_from => 'Mitte Mai',
+                    :is_new_building => true,
+                    :is_old_building => true,
+                    :is_minergie_style => true,
+                    :is_minergie_certified => true,
+                    :has_outlook => true,
+                    :has_fireplace => true,
+                    :has_isdn => true,
+                    :has_elevator => true,
+                    :is_wheelchair_accessible => true,
+                    :is_child_friendly => true,
+                    :has_balcony => true,
+                    :has_raised_ground_floor => true,
+                    :has_swimming_pool => true,
+                    :has_ramp => true,
+                    :maximal_floor_loading => 1234,
+                    :freight_elevator_carrying_capacity => 4321,
+                    :has_lifting_platform => true,
+                    :has_railway_terminal => true,
+                    :has_water_supply => true,
+                    :has_sewage_supply => true,
+                    :number_of_restrooms => 3,
+                    :minimum_rental_period => '1 Jahr',
+                    :notice_dates => 'September, März',
+                    :notice_period => '3 Monate'
+                   )
+  end
+
+  let :additional_description do
+    Fabricate.build(:additional_description,
+                    :location => 'Lorem ipsum ... 2. Beschreibung',
+                    :interior => 'Lorem ipsum ... 3. Beschreibung',
+                    :offer => 'Lorem ipsum ... 4. Beschreibung',
+                    :infrastructure => 'Lorem ipsum ... 5. Beschreibung',
+                    :orientation_degrees => 180
+                   )
+  end
+
   let :printable_real_estate do
     Fabricate(:residential_building,
         :address => Fabricate.build(:address, :street => 'Musterstrasse', :street_number => '1', :zip => '8400', :city => 'Hausen'),
         :figure => Fabricate.build(:figure, :floor => 3, :floor_estimate => '', :rooms => '3.5', :living_surface => 120, :living_surface_estimate => ''),
         :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'monthly'),
-        :information => Fabricate.build(:information,
-          :display_estimated_available_from => 'Mitte Mai',
-          :is_new_building => true,
-          :is_old_building => true,
-          :is_minergie_style => true,
-          :is_minergie_certified => true,
-          :has_outlook => true,
-          :has_fireplace => true,
-          :has_isdn => true,
-          :has_elevator => true,
-          :is_wheelchair_accessible => true,
-          :is_child_friendly => true,
-          :has_balcony => true,
-          :has_raised_ground_floor => true,
-          :has_swimming_pool => true,
-          :has_ramp => true,
-          :maximal_floor_loading => 1234,
-          :freight_elevator_carrying_capacity => 4321,
-          :has_lifting_platform => true,
-          :has_railway_terminal => true,
-          :has_water_supply => true,
-          :has_sewage_supply => true,
-          :number_of_restrooms => 3,
-          :minimum_rental_period => '1 Jahr',
-          :notice_dates => 'September, März',
-          :notice_period => '3 Monate'
-        ),
+        :information => information,
         :title => 'Demo Objekt',
         :description => 'Lorem Ipsum',
         :property_name => 'Gartenstadt',
         :floor_plans => [
           Fabricate.build(:media_assets_floor_plan)
         ],
-        :additional_description => Fabricate.build(:additional_description,
-          :location => 'Lorem ipsum ... 2. Beschreibung',
-          :interior => 'Lorem ipsum ... 3. Beschreibung',
-          :offer => 'Lorem ipsum ... 4. Beschreibung',
-          :infrastructure => 'Lorem ipsum ... 5. Beschreibung'
-        )
+        :additional_description => additional_description
       )
   end
 
@@ -129,9 +138,6 @@ describe "Handout aka MiniDoku" do
       page.should have_css(".floorplan-image > img", :count => 1)
     end
 
-    it 'shows the north arrow direction' do
-      page.should have_css(".floorplan-image img.north-arrow", :count => 1)
-    end
   end
 
   describe "Chapter Pricing" do
