@@ -1,0 +1,10 @@
+- if params[:print].present?
+  :coffeescript
+    window.onload = ->
+      window.print()
+
+.floorplan
+  .north-arrow
+    = @floor_plan.real_estate.north_arrow_img_tag
+  = image_tag @floor_plan.file.url
+

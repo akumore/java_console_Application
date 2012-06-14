@@ -17,7 +17,7 @@ describe "Floorplans for printing" do
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
               :pricing => Fabricate.build(:pricing),
               :infrastructure => Fabricate.build(:infrastructure),
-              :additional_description => Fabricate.build(:additional_description),
+              :additional_description => Fabricate.build(:additional_description, :orientation_degrees => 180),
               :floor_plans => [Fabricate.build(:media_assets_floor_plan), Fabricate.build(:media_assets_floor_plan)],
               :contact => Fabricate(:employee)
   end
@@ -31,8 +31,15 @@ describe "Floorplans for printing" do
       page.should have_css('img', :count => 3)
     end
 
-    it 'opens the print dialogue' do
-      page.should have_content('window.print')
+    it 'does not open the print dialogue' do
+      page.should_not have_content('window.print')
+    end
+
+    describe "with print parameter" do
+      it 'opens the print dialogue' do
+        visit real_estate_floorplans_path(real_estate, :print => true)
+        page.should have_content('window.print')
+      end
     end
   end
 end

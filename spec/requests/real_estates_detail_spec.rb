@@ -275,7 +275,7 @@ describe "RealEstates" do
       end
 
       it 'shows the floorplan print link' do
-        page.should have_link('Grundriss drucken', :href => real_estate_floorplans_path(real_estate))
+        page.should have_link('Grundriss drucken', :href => real_estate_floorplans_path(real_estate, :print => true))
       end
 
       it 'shows the floorplan slide with a zoom button' do

@@ -1,3 +1,6 @@
+- content_for :meta do
+  = insert_seo_tags
+
 - @page.bricks.each do |brick|
   - if brick.type == 'accordion'
     - content_for brick.group_id do
