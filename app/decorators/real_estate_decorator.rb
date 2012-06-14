@@ -126,7 +126,7 @@ class RealEstateDecorator < ApplicationDecorator
 
   def floorplan_print_link
     if model.floor_plans.exists?
-      link_to t('real_estates.show.print_floorplan'), real_estate_floorplans_path(model), :class => 'icon-printer', :target => '_blank'
+      link_to t('real_estates.show.print_floorplan'), real_estate_floorplans_path(model, :print => true), :class => 'icon-printer', :target => '_blank'
     end
   end
 
