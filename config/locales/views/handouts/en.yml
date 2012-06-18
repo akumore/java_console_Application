@@ -1,22 +1,22 @@
-de:
+en:
   handouts:
     show:
-      for_rent_private: 'Miete | Wohnen'
-      for_rent_commercial: 'Miete | Arbeiten'
+      for_rent_private: 'Rental | Residential'
+      for_rent_commercial: 'Rental | Commercial'
     overview:
-      title: 'Objektübersicht'
+      title: 'Object Overview'
       property: 'Liegenschaft'
-      address: 'Adresse'
-      usable_surface_helptext: '(Fläche exklusive Fassaden-, Treppenhauswände, Wohnungs-Trennwände, Leitungsschächten und Balkon/Terrassen, Fläche inklusive Innenwände)'
+      address: 'Address'
+      usable_surface_helptext: ''
       description: 'Kurzbeschrieb'
     floorplan:
-      title: 'Grundriss'
+      title: 'Layout plan'
     images:
       title: 'Bilder'
     description:
       title: 'Beschreibung'
     contact:
-      title: Kontakt
+      title: Contact
       position: Beratung und Vermietung
       street: Neuhofstrasse 10
       zip: CH-6340
@@ -28,3 +28,4 @@ de:
       department_names:
         for_rent: Beratung und Vermietung
         for_sale: Beratung und Verkauf #currently not used, we have handouts for_rent only
+
