@@ -4,6 +4,7 @@ fr:
       speculative_application: 'Candidature spontanée'
       send: 'Envoyer candidature'
       errors: 'Contrôler vos données:'
+      mandatory_fields: 'Champs obligatoire (*)'
     confirmation:
       confirmation: 'Merci pour votre candidature, %{firstname} %{lastname}'
       your_application: 'Votre demande de nous:'

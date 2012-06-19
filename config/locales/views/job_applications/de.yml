@@ -4,6 +4,7 @@ de:
       speculative_application: 'Initiativbewerbung'
       send: 'Bewerbung senden'
       errors: 'Bitte überprüfen Sie ihre Eingaben:'
+      mandatory_fields: 'Pflichtfelder (*)'
     confirmation:
       confirmation: 'Vielen Dank für Ihre Bewerbung, %{firstname} %{lastname}'
       your_application: 'Ihre Bewerbung an uns:'
