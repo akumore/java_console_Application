@@ -5,8 +5,14 @@
     +float_left
     margin-top: 7px
 
+  &.mandatory
+    input, textarea
+      background-color: $clay
+    label:after
+      content: ' *'
+
 .controls
-  margin-left: 160px
+  margin-left: 200px
   margin-bottom: 0.5em
   color: #6d6d65
   font-size: 1em
@@ -24,15 +30,21 @@
     outline-color: $clay
 
   select
-    max-width: 200px
+    max-width: 260px
 
   input[type=text]
-    width: 200px
+    width: 260px
     padding: 5px
 
   input[type=text].short
     width: 50px
+
+  input[type=text].medium-short
+    width: 189px
     margin-left: 0.5em
+
+  textarea
+    margin-left: 0px
 
 .field_with_errors
   +float_left
@@ -45,9 +57,21 @@
   input, select, textarea
     background: #ffc9ba
 
+  input[type=text].medium-short
+    margin-left: 0.75em
+
 .alert
   margin: 2em 0
 
   ul
     list-style: disc
     margin-left: 1.5em
+
+.comma-before:before
+  content: ', '
+
+@media \0screen
+  .controls
+    input[type=text].medium-short
+      width: 192px
+      margin-left: 0.2em

@@ -4,6 +4,7 @@ en:
       speculative_application: 'Unsolicited application'
       send: 'Send application'
       errors: 'Please check your inputs:'
+      mandatory_fields: 'Mandatory fields (*)'
     confirmation:
       confirmation: 'Thank you for your application, %{firstname} %{lastname}'
       your_application: 'Your application to us:'

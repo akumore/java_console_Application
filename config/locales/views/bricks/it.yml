@@ -17,9 +17,9 @@ it:
         apply_for_job: 'Candidatura diretta'
       jobs_apply_with_success:
         apply: 'Candidatura diretta'
-        title: 'Heidi Rohner'
-        person_html: 'Telefono +41 41 767 02 02<br>Neuhofstrasse 10<br>CH-6340 Baar'
-        address_html: '<a href="mailto:heidi.rohner@alfred-mueller.ch">E-Mail</a>'
+        title: 'Massimiliano Paganini'
+        person_html: 'Telefono +41 91 858 25 94<br>Centro Monda 3<br>CH-6568 Camorino'
+        address_html: '<a href="mailto:massimiliano.paganini@alfred-mueller.ch">E-Mail</a>'
       contact_form:
         form_title: 'Formulario di contatto'
         title: 'Massimiliano Paganini'

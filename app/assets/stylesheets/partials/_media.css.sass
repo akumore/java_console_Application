@@ -284,10 +284,13 @@
       float: none
       display: block
 
+    .city-label, .zip-label
+      +float_left
+
   .controls
     margin: 5px 0 10px 0
 
-    input[type="text"], input[type="text"].short, select, textarea, input[type="file"], input[type="submit"]
+    input[type="text"], input[type="text"].short, input[type="text"].medium-short, select, textarea, input[type="file"], input[type="submit"]
       width: 100%
       margin-left : 0
 
