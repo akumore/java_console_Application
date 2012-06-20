@@ -1,5 +1,6 @@
 Fabricator(:contact) do
-  name 'Hans Muster'
+  firstname 'Hans'
+  lastname 'Muster'
   street 'Musterstrasse 88'
   zip '9323'
   city 'Musterstadt'

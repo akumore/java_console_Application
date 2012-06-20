@@ -3,6 +3,7 @@ de:
     form:
       send: 'Kontaktanfrage senden'
       errors: 'Bitte überprüfen Sie ihre Eingaben:'
+      mandatory_fields: 'Pflichtfelder (*)'
     confirmation:
-      confirmation: 'Vielen Dank für Ihre Anfrage, %{name}'
+      confirmation: 'Vielen Dank für Ihre Anfrage, %{firstname} %{lastname}'
       your_contact: 'Ihre Kontaktanfrage:'

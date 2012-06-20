@@ -3,6 +3,7 @@ it:
     form:
       send: 'Invio richiesta di contatto'
       errors: 'Prego controllare i dati inseriti:'
+      mandatory_fields: 'Campi obbligatorio (*)'
     confirmation:
-      confirmation: 'Grazie della sua richiesta, %{name}'
+      confirmation: 'Grazie della sua richiesta, %{firstname} %{lastname}'
       your_contact: 'Sua richiesta:'

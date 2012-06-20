@@ -7,26 +7,35 @@
           %li= msg
 
 = form_for @contact, :url => contact_path, :remote => true do |f|
-  .control-group
-    = f.label :name
+  .control-group.mandatory
+    = f.label :firstname
     .controls
-      = f.text_field :name
-  .control-group
-    = f.label :street, Contact.human_attribute_name(:address)
+      = f.text_field :firstname
+  .control-group.mandatory
+    = f.label :lastname
     .controls
-      = f.text_field :street, :placeholder => Contact.human_attribute_name(:street)
-  .control-group
+      = f.text_field :lastname
+  .control-group.mandatory
+    = f.label :street
     .controls
-      = f.text_field :city, :placeholder => Contact.human_attribute_name(:city)
-      = f.text_field :zip, :class => :short, :placeholder => Contact.human_attribute_name(:zip)
-  .control-group
+      = f.text_field :street
+  .control-group.mandatory
+    = f.label :zip, :class => 'zip-label'
+    = f.label :city, :class => 'comma-before'
+    .controls
+      = f.text_field :zip, :class => :short
+      = f.text_field :city, :class => 'medium-short'
+  .control-group.mandatory
     = f.label :email
     .controls
       = f.text_field :email
-  .control-group
+  .control-group.mandatory
     = f.label :message
     .controls
       = f.text_area :message
   .form-actions
     .controls
       = f.submit t('.send')
+
+%p
+  = t('.mandatory_fields')

@@ -3,6 +3,7 @@ fr:
     form:
       send: 'Envoyer une demande'
       errors: 'Contrôler vos données:'
+      mandatory_fields: 'Champs obligatoire (*)'
     confirmation:
-      confirmation: 'Merci pour votre demande, %{name}'
+      confirmation: 'Merci pour votre demande, %{firstname} %{lastname}'
       your_contact: 'Demande de contact:'
