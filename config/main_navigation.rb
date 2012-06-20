@@ -47,6 +47,8 @@ SimpleNavigation::Configuration.run do |navigation|
       company_subnavigation do |title|
         company.item "title-#{title.id}", title.title, "#{t('company_url')}##{title.title.parameterize}"
       end
+
+      company.dom_class = 'clearfix'
     end
 
     primary.item :news, t('navigation.main.news'), news_items_path, :highlights_on => proc { controller.request.path == news_items_path }

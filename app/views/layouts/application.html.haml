@@ -16,7 +16,7 @@
           = link_to 'Navigation', '#close-navigation', :class => 'navigation-link-close'
           = render_navigation :context => :meta
           .clear
-          = render_navigation :context => :main
+          = render_navigation :context => :main, :renderer => MainNavigationRenderer
 
       #main{ :role => 'main', :class => "#{controller_name} #{action_name}" }
         = render 'layouts/flashes'
