@@ -35,7 +35,11 @@ class Cms::RealEstatesController < Cms::SecuredController
   end
 
   def update
-    if @real_estate.update_attributes(params[:real_estate])
+    real_estate_params = params.fetch(:real_estate, {})
+    real_estate_params.merge!(:editor => current_user) if current_user.editor?
+
+    if @real_estate.update_attributes(real_estate_params)
+
       respond_to do |format|
         format.js { flash.now[:success] = t('cms.real_estates.update.sorted.success') }
         format.html do

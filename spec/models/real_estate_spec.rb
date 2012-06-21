@@ -239,7 +239,8 @@ describe RealEstate do
         :address => Fabricate.build(:address),
         :pricing => Fabricate.build(:pricing),
         :information => Fabricate.build(:information),
-        :figure => Fabricate.build(:figure)
+        :figure => Fabricate.build(:figure),
+        :editor => Fabricate(:cms_editor)
       real_estate.review_it!
 
       real_estate.in_review?.should be_true
@@ -251,14 +252,19 @@ describe RealEstate do
         :address => Fabricate.build(:address),
         :pricing => Fabricate.build(:pricing),
         :information => Fabricate.build(:information),
-        :figure => Fabricate.build(:figure)
+        :figure => Fabricate.build(:figure),
+        :editor => Fabricate(:cms_editor)
       real_estate.publish_it!
 
       real_estate.published?.should be_true
     end
 
     it "transitions from 'review' to 'editing'" do
-      real_estate = Fabricate(:real_estate, :state => 'in_review', :category => category)
+      real_estate = Fabricate :real_estate,
+                              :state => 'in_review',
+                              :category => category,
+                              :editor => Fabricate(:cms_editor)
+
       real_estate.reject_it!
       real_estate.editing?.should be_true
     end
@@ -299,7 +305,7 @@ describe RealEstate do
       end
 
       it "can be saved in state 'in_review' anyway" do
-        r = Fabricate(:real_estate, :category=>Fabricate(:category))
+        r = Fabricate(:real_estate, :category => Fabricate(:category), :editor => Fabricate(:cms_editor))
         r.update_attribute :state, 'in_review'
         r.update_attributes(:title => "Something is changed").should be_true
       end
@@ -310,7 +316,10 @@ describe RealEstate do
       end
 
       it "can change over from 'in_review' to 'editing'" do
-        r = Fabricate(:real_estate, :state=>'in_review', :category=>Fabricate(:category))
+        r = Fabricate :real_estate,
+                      :state=>'in_review',
+                      :category=>Fabricate(:category),
+                      :editor => Fabricate(:cms_editor)
         r.reject_it.should be_true
       end
     end
@@ -341,6 +350,7 @@ describe RealEstate do
       end
 
       it "doesn't change over from 'in_review' to 'published'" do
+        @real_estate.editor = Fabricate(:cms_editor)
         @real_estate.review_it.should be_true
         @real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
 

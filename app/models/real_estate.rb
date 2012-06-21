@@ -101,6 +101,9 @@ class RealEstate
     state :editing
 
     state :in_review do
+
+      # editor needed for review notification
+      validates :editor, :presence => true
       validates *RealEstate.mandatory_for_publishing, :presence=>true,
                 :if=>:state_changed?, # Allows admin to save real estate in_review state
                 :unless=>:new_record? # ...otherwise the fabricator can't create real estates 'in_review', any idea?
