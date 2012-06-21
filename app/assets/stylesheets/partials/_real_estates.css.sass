@@ -181,11 +181,13 @@ td
 
 .search-filter-order-form
   @extend .clearfix
-  background: #baba99 image-url('search-filter-order-bg.png') repeat-x
   border: 1px solid #a6a7a6
 
   .sort-field, .sort-order
+    background: #baba99 image-url('search-filter-order-bg.png') repeat-x
     +float_left
+    &:hover
+      background: #baba99 image-url('search-filter-order-upside-down-bg.png') repeat-x
 
   .sort-field
     width: 60%
@@ -195,6 +197,8 @@ td
 
   .sort-order
     width: 40%
+    &:hover
+      cursor: pointer
 
     .sort-order-dropdown
       border-left: 1px solid #baba99
@@ -218,6 +222,8 @@ td
       +opacity(0)
       z-index: 2
       position: absolute
+      &:hover
+        cursor: pointer
 
   .sort-order-toggle
     padding: 10px 10px 10px 15px
