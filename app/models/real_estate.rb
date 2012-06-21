@@ -27,6 +27,8 @@ class RealEstate
 
   belongs_to :category
   belongs_to :contact, :class_name => 'Employee'
+  belongs_to :editor, :class_name => 'Cms::User'
+
   has_many :appointments
 
   embeds_one :reference, :as => :referencable
