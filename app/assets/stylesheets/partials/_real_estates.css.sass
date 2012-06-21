@@ -135,7 +135,6 @@ td
   position: relative
   top: -38px
   background: $search-background-color
-  display: none
 
   ul
     +horizontal-list(0.5em)
@@ -271,3 +270,9 @@ td
   > img
     max-width: 92%
     max-height: 92%
+
+// IE 8 CSS Hack
+@media \0screen
+  .result-nav
+    height: 18px
+
