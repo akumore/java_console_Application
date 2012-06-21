@@ -48,14 +48,14 @@ describe Page do
   end
 
   describe '.subnavigation' do
-    it 'returns only titles' do
+    it 'returns only secondary titles' do
       page = Page.create(:name => 'dummy', :title => 'Dummy', :locale => I18n.locale) do |page|
         page.bricks << Brick::Title.new(:title => 'Test')
         page.bricks << Brick::Text.new(:text => 'Hi there')
         page.bricks << Brick::Title.new(:title => 'Test2')
       end
 
-      page.subnavigation.should be_all { |sn| sn.should be_a(Brick::Title) }
+      page.subnavigation.count.should be(1)
     end
   end
 end

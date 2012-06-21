@@ -15,7 +15,7 @@ class Page
   validates_uniqueness_of :name,  :scope => :locale
 
   def subnavigation
-    bricks.where(:_type => 'Brick::Title')
+    bricks.where(:_type => 'Brick::Title').skip(1)
   end
 
   class << self
