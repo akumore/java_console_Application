@@ -77,6 +77,8 @@ class Cms::RealEstatesController < Cms::SecuredController
     if transition.present?
       if transition == 'review_it'
         RealEstateStateMailer.review_notification(real_estate).deliver
+      elsif transition == 'reject_it'
+        RealEstateStateMailer.reject_notification(real_estate, current_user).deliver
       end
     end
   end

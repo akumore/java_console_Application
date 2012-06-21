@@ -13,6 +13,10 @@ describe 'Real Estate Wizard' do
       Fabricate :cms_editor
     end
 
+    let :admin do
+      Fabricate :cms_admin
+    end
+
 
     describe '#create' do
       it 'redirects to the new address tab' do
@@ -40,14 +44,15 @@ describe 'Real Estate Wizard' do
       end
 
       describe "notifications" do
+
         describe '#review_it' do
           before do
             @real_estate = Fabricate :real_estate, :category => category
             RealEstate.stub!(:find).and_return(@real_estate)
             @real_estate.stub!(:update_attributes).and_return(true)
-            controller.stub!(:current_user).and_return(editor)
             @mailer_stub = stub(:deliver => true)
             RealEstateStateMailer.stub!(:review_notification).and_return(@mailer_stub)
+            controller.stub!(:current_user).and_return(editor)
           end
 
           it 'sends a notification if state_event is review_it' do
@@ -68,6 +73,32 @@ describe 'Real Estate Wizard' do
 
         end
 
+        describe '#reject_it' do
+          before do
+            @real_estate = Fabricate :real_estate, :category => category
+            RealEstate.stub!(:find).and_return(@real_estate)
+            @real_estate.stub!(:update_attributes).and_return(true)
+            @mailer_stub = stub(:deliver => true)
+            RealEstateStateMailer.stub!(:reject_notification).and_return(@mailer_stub)
+            controller.stub!(:current_user).and_return(admin)
+          end
+
+          it 'sends a notification if state_event is reject_it' do
+            RealEstateStateMailer.should_receive(:reject_notification).with(@real_estate, admin)
+            @mailer_stub.should_receive(:deliver)
+            put :update, :id => @real_estate.id, :real_estate => { :state_event => 'reject_it' }
+          end
+
+          it 'does not send a notification if state_event is not reject_it' do
+            RealEstateStateMailer.should_not_receive(:reject_notification)
+            put :update, :id => @real_estate.id, :real_estate => { :state_event => 'publish_it' }
+          end
+
+          it 'does not send a notification if state_event not available' do
+            RealEstateStateMailer.should_not_receive(:reject_notification)
+            put :update, :id => @real_estate.id
+          end
+        end
       end
     end
 

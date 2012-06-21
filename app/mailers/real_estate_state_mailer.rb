@@ -10,10 +10,11 @@ class RealEstateStateMailer < ActionMailer::Base
       :to => Cms::User.admins.map(&:email), reply_to: real_estate.editor.email
   end
 
-  def reject_notification(real_estate)
-    #@real_estate = real_estate
+  def reject_notification(real_estate, admin)
+    @real_estate = real_estate
+    @admin = admin
 
-    #mail :subject => "Zur Verifizierung freigegeben: #{real_estate.title}",
-      #:to => Cms::User.admins.map(&:email)
+    mail :subject => "Freigabe zurückgewiesen: #{real_estate.title}",
+      :to => real_estate.editor.email, reply_to: admin.email
   end
 end
