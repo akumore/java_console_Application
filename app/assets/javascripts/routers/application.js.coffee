@@ -1,12 +1,6 @@
 class window.AlfredMueller.Routers.Application extends Backbone.Router
 
   initialize: ->
-    # placeholder polyfill, do before accordions, because they hide inputs which cannot be found otherwise
-    $('input[placeholder], textarea[placeholder]').placeholder()
-
-    $('body').ajaxSuccess ->
-      $('input[placeholder], textarea[placeholder]').placeholder()
-
     # initialize vision slider at the top of each page
     $(".vision-slider").each ->
       new AlfredMueller.Views.VisionSlider(el: $(this))
