@@ -1,31 +1,31 @@
 fr:
   handouts:
     show:
-      for_rent_private: 'Louer | Habiter'
-      for_rent_commercial: 'Louer | Travailler'
+      for_rent_private: "Louer | Habiter"
+      for_rent_commercial: "Louer | Travailler"
     overview:
       title: "Aperçu de l'objet"
-      property: 'Liegenschaft'
-      address: 'Adresse'
-      usable_surface_helptext: 'surface après déduction des murs des cages d’escalier et des conduits'
-      description: 'Kurzbeschrieb'
+      property: "Immeuble"
+      address: "Adresse"
+      usable_surface_helptext: "surface après déduction des murs des cages d’escalier et des conduits"
+      description: "Description succincte"
     floorplan:
-      title: 'Plan'
+      title: "Plan"
     images:
-      title: 'Bilder'
+      title: "Photo"
     description:
-      title: 'Beschreibung'
+      title: "Description"
     contact:
-      title: Contact
-      position: Beratung und Vermietung
-      street: Av. des Champs-Montants 10a
-      zip: CH-2074
-      city: Baar
-      phone: Téléphone
-      mobile: Mobile
-      fax: Fax
-      www: www.alfred-mueller.ch
+      title: "Contact"
+      position: "Conseil et location"
+      street: "Av. des Champs-Montants 10a"
+      zip: "CH-2074"
+      city: "Marin"
+      phone: "Téléphone"
+      mobile: "Mobile"
+      fax: "Fax"
+      www: "www.alfred-mueller.ch"
       department_names:
-        for_rent: Beratung und Vermietung
-        for_sale: Beratung und Verkauf #currently not used, we have handouts for_rent only
+        for_rent: "Conseil et location"
+        for_sale: "Conseil et vente" #currently not used, we have handouts for_rent only
 
