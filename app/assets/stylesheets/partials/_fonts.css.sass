@@ -84,7 +84,6 @@ input, select, textarea
   font-size: 1.1em
 
   .selected
-    //text-decoration: underline
     a
       border-bottom: 1px solid $normal
       +link-colors($dark)
@@ -92,6 +91,14 @@ input, select, textarea
   a
     @extend .title-font-bold
     +link-colors($normal)
+
+  .sub-navigation
+    a
+      border-bottom: 0px
+
+    .selected
+      a
+        +link-colors($normal)
 
 .meta-navigation
   font-size: 0.9em
