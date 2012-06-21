@@ -175,7 +175,12 @@ describe MicrositeDecorator do
 
     context "returns the list of floor plans" do
       it "returns all floor plans" do
-        decorated_real_estate.floorplans.should include({ :url=>"link", :url_full_size=>"link", :title=>"Floor plan title" })
+        decorated_real_estate.floorplans.should include({
+          :url => "link",
+          :url_full_size => "link",
+          :url_full_size_image => "link",
+          :title => "Floor plan title"
+        })
       end
 
       it "with title and absolute image url" do
@@ -187,7 +192,7 @@ describe MicrositeDecorator do
       it "should call path_to_url for each image link" do
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.stub(:real_estate_floorplan_path => '')
-        decorated_real_estate.should_receive(:path_to_url).exactly(2).times.and_return('http://abosute_url')
+        decorated_real_estate.should_receive(:path_to_url).exactly(3).times.and_return('http://abosute_url')
         decorated_real_estate.floorplans
       end
 
@@ -207,7 +212,7 @@ describe MicrositeDecorator do
       it "should call path_to_url for each image link and the north arrow" do
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.stub(:real_estate_floorplan_path => '')
-        decorated_real_estate.should_receive(:path_to_url).exactly(3).times.and_return('http://abosute_url')
+        decorated_real_estate.should_receive(:path_to_url).exactly(4).times.and_return('http://abosute_url')
         decorated_real_estate.floorplans
       end
     end

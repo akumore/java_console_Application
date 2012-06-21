@@ -97,6 +97,7 @@ class MicrositeDecorator < ApplicationDecorator
       attributes = {
         :url => path_to_url(asset.file.gallery.url),
         :url_full_size => path_to_url(real_estate_floorplan_path(I18n.locale, real_estate, asset)),
+        :url_full_size_image => path_to_url(asset.file.url),
         :title => asset.title,
       }
       north_arrow_img = RealEstateDecorator.decorate(asset.real_estate).north_arrow_img
