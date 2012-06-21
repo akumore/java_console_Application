@@ -12,7 +12,8 @@ describe "Cms::Users" do
             Fabricate(:real_estate,
               :category => Fabricate(:category),
               :reference => Fabricate.build(:reference),
-              :state => RealEstate::STATE_IN_REVIEW
+              :state => RealEstate::STATE_IN_REVIEW,
+              :editor => Fabricate(:cms_editor)
             )
           end
         end
@@ -33,7 +34,8 @@ describe "Cms::Users" do
           Fabricate(:real_estate,
             :category => Fabricate(:category),
             :reference => Fabricate.build(:reference),
-            :state => RealEstate::STATE_IN_REVIEW
+            :state => RealEstate::STATE_IN_REVIEW,
+            :editor => Fabricate(:cms_editor)
           )
         end
 
@@ -56,7 +58,8 @@ describe "Cms::Users" do
             Fabricate(:real_estate,
               :category => Fabricate(:category),
               :reference => Fabricate.build(:reference),
-              :state => RealEstate::STATE_IN_REVIEW
+              :state => RealEstate::STATE_IN_REVIEW,
+              :editor => Fabricate(:cms_editor)
             )
           end
         end
@@ -92,7 +95,8 @@ describe "Cms::Users" do
         Fabricate(:real_estate,
           :category => Fabricate(:category),
           :reference => Fabricate.build(:reference),
-          :state => RealEstate::STATE_IN_REVIEW
+          :state => RealEstate::STATE_IN_REVIEW,
+          :editor => Fabricate(:cms_editor)
         )
       end
 
