@@ -87,6 +87,10 @@
       padding: 1em $margin-side
       border-top: 1px solid $border-light
 
+    > li:hover
+      .sub-navigation-wrapper
+        display: none
+
   .offer-tabs, .utilization-tabs
     li
       width: 50%
@@ -333,6 +337,11 @@
 
   .navigations
     margin-top: 10px
+
+  .main-navigation
+    > li:hover
+      .sub-navigation-wrapper
+        display: none
 
   .main-logo
     background-size: 90%

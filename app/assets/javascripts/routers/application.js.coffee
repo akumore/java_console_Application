@@ -46,9 +46,10 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
         )
     )
 
-    # initialize submenus in main-navigation
-    $(".sub-navigation").each ->
-      new AlfredMueller.Views.Subnavigation(el: $(this))
+    # initialize submenus in main-navigation for non-touch devices
+    unless Modernizr.touch
+      $(".sub-navigation").each ->
+        new AlfredMueller.Views.Subnavigation(el: $(this))
 
     $(".reference-projects-slider .flexslider, .services-slides-container .flexslider, .job-profile-slides-container .flexslider").flexslider(
       directionNav: true,
