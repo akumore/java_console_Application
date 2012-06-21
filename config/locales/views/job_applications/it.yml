@@ -2,7 +2,7 @@ it:
   job_applications:
     form:
       speculative_application: 'Candidatura spontanes'
-      send: 'Mandare aspirazione'
+      send: 'Mandare candidatura'
       errors: 'Prego controllare i dati inseriti:'
       mandatory_fields: 'Campi obbligatorio (*)'
     confirmation:
