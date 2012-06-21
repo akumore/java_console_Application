@@ -6,7 +6,7 @@ class RealEstateStateMailer < ActionMailer::Base
   def review_notification(real_estate)
     @real_estate = real_estate
 
-    mail :subject => "Zur Verifizierung freigegeben: #{real_estate.title}",
+    mail :subject => "Bitte publizieren: #{real_estate.title}",
       :to => Cms::User.admins.map(&:email), reply_to: real_estate.editor.email
   end
 
