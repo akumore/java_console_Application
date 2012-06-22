@@ -42,7 +42,7 @@ describe RealEstateStateMailer do
     end
 
     it 'includes the title in the subject' do
-      review_mail.subject.should == "Zur Verifizierung freigegeben: #{real_estate.title}"
+      review_mail.subject.should == "Bitte publizieren: #{real_estate.title}"
     end
 
     it "includes the review message in the body" do
