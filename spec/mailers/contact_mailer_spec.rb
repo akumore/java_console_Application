@@ -29,6 +29,7 @@ describe ContactMailer do
   describe 'Subject of the contact notification' do
     it 'contains the name of the person initiating the contact' do
       contact_mail.subject.should match contact.firstname
+      contact_mail.subject.should match contact.lastname
     end
   end
 
