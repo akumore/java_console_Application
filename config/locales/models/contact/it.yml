@@ -4,7 +4,8 @@ it:
       contact: 'Kontakt'
     attributes:
       contact:
-        name: 'Nome'
+        firstname: 'Cognome'
+        lastname: 'Nome'
         address: 'Indirizzo'
         street: 'Via'
         city: 'Città'

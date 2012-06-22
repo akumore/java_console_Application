@@ -4,10 +4,12 @@ fr:
       contact: 'Kontakt'
     attributes:
       contact:
-        name: 'Nom'
+        firstname: 'Prénom'
+        lastname: 'Nom'
         address: 'Adresse'
         street: 'Rue'
         city: 'Lieu'
         zip: 'NPA'
         email: 'Adresse e-mail'
         message: 'Information'
+

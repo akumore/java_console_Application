@@ -9,13 +9,13 @@
 
 = render 'search_filter'
 
-.result-nav
-  %ul
-    %li= link_to t('.prev'), real_estate_path(@prev_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-left image-link'
-    %li= link_to t('.overview'), real_estates_path(@search_filter.to_h)
-    %li= link_to t('.next'), real_estate_path(@next_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-right image-link'
-
 .detail
+  .result-nav
+    %ul
+      %li= link_to t('.prev'), real_estate_path(@prev_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-left image-link'
+      %li= link_to t('.overview'), real_estates_path(@search_filter.to_h)
+      %li= link_to t('.next'), real_estate_path(@next_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-right image-link'
+
   .main-title
     %h1= @real_estate.title
     - if @real_estate.property_name.present?

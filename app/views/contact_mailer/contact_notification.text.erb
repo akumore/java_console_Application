@@ -2,7 +2,7 @@ Eine Kontaktanfrage ist am <%= l(@contact.created_at) %> über die Website einge
 
 Kontaktdaten:
 
-Name: <%= @contact.name %>
+Name: <%= @contact.firstname %> <%= @contact.lastname %>
 Adresse: <%= @contact.street %>, <%= @contact.zip %>, <%= @contact.city %>
 E-Mail: <%= @contact.email %>
 
