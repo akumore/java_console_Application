@@ -12,7 +12,7 @@ class window.AlfredMueller.Views.SearchFilterOptionsUpdater extends Backbone.Vie
     @updateCities()
 
   updateCities: =>
-#    console.log 'updateCities called'
+    console.log 'updateCities called', @remainingOptions()
     @clearCitiesOptions()
     @addCitiesOptions(@remainingOptions())
     @notifyCities()
@@ -35,7 +35,7 @@ class window.AlfredMueller.Views.SearchFilterOptionsUpdater extends Backbone.Vie
 
   citiesToOptions: (cities) ->
     _.select @initialCities, (city) ->
-      _.include cities, city.label
+      _.include cities, city.value
 
   availableCities: ->
     cities = []
