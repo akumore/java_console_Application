@@ -50,7 +50,6 @@ describe "Main Navigation" do
       visit I18n.t('jobs_url')
 
       within '.sub-navigation' do
-        page.should have_link 'Brick-Title 1', :href => "#{I18n.t('jobs_url')}#brick-title-1"
         page.should have_link 'Brick-Title 2', :href => "#{I18n.t('jobs_url')}#brick-title-2"
       end
     end
