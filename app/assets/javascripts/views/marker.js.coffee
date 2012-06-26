@@ -8,7 +8,9 @@ class window.AlfredMueller.Views.Marker extends Backbone.View
     )
 
     @interactiveRow = $("#real-estate-#{@model.id()}").data("interactive_row")
-    @interactiveRow.setMarker @
+
+    if @interactiveRow
+      @interactiveRow.setMarker @
 
     google.maps.event.addListener @gmarker, "mouseover", =>
       @interactiveRow.activate()
