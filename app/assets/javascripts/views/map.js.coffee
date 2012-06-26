@@ -35,13 +35,13 @@ class window.AlfredMueller.Views.ScrollingMap extends window.AlfredMueller.Views
   initialize: ->
     super
     setInterval @handleScroll, 150
-    @body = $('body')
+    @window = $(window)
 
   constrainer: ->
     @constrainingContainer ||= @el.parent()
 
   top: ->
-    _top = @body.scrollTop() - @constrainer().offset().top
+    _top = @window.scrollTop() - @constrainer().offset().top
     _bottom = @constrainer().height() - @el.height()
     Math.max(0, Math.min(_top, _bottom))
 
