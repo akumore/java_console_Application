@@ -32,7 +32,7 @@ describe "Cms::Addresses" do
           fill_in 'Strasse', :with => 'Bahnhofstrasse'
           fill_in 'Hausnummer', :with => '5'
           fill_in 'Postleitzahl', :with => '8123'
-          fill_in 'Stadt', :with => 'Adliswil'
+          fill_in 'Ort', :with => 'Adliswil'
           select 'Zürich', :from => 'Kanton'
           fill_in 'Link', :with => 'http://www.google.ch'
         end
@@ -84,7 +84,7 @@ describe "Cms::Addresses" do
         within(".edit_address") do
           fill_in 'Strasse', :with => 'Schaffhauserstrasse'
           fill_in 'Hausnummer', :with => '2'
-          fill_in 'Stadt', :with => 'Adliswil'
+          fill_in 'Ort', :with => 'Adliswil'
           fill_in 'Postleitzahl', :with => '8135'
           select 'Schaffhausen', :from => 'Kanton'
           fill_in 'Link', :with => 'http://www.google.com'

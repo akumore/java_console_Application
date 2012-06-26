@@ -8,7 +8,7 @@ de:
         lastname: 'Nachname'
         address: 'Adresse'
         street: 'Strasse'
-        city: 'Stadt'
+        city: 'Ort'
         zip: 'PLZ'
         email: 'e-Mail Adresse'
         message: 'Nachricht'
