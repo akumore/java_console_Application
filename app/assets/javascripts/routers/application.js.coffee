@@ -91,7 +91,3 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     # initialize sorting dropdowns
     $(".sort-order-dropdown").each ->
       new AlfredMueller.Views.SortOrderDropdown(el: $(this))
-
-    # initialize asc/desc order toggle
-    $(".sort-order-toggle").each ->
-      new AlfredMueller.Views.ToggleButton(el: $(this))
