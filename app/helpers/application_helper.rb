@@ -12,7 +12,7 @@ module ApplicationHelper
 
   def footer_news_item_link(news_item)
     if request.path == news_items_path
-      link_to t(".get_more"), news_items_path(:anchor => "news_item_#{news_item.id}"), :onclick => "$('#news_item_#{news_item.id} .title').click(); return false"
+      link_to t(".get_more"), news_items_path(:anchor => "news_item_#{news_item.id}"), :onclick => "$('#news_item_#{news_item.id} .title').click();"
     else
       link_to t(".get_more"), news_items_path(:anchor => "news_item_#{news_item.id}")
     end
@@ -36,4 +36,19 @@ module ApplicationHelper
     seo_tags_html.html_safe
   end
 
+  def jobs_subnavigation
+    if jobs_page = Page.jobs_page
+      jobs_page.subnavigation.each do |title|
+        yield title
+      end
+    end
+  end
+
+  def company_subnavigation
+    if company_page = Page.company_page
+      company_page.subnavigation.each do |title|
+        yield title
+      end
+    end
+  end
 end

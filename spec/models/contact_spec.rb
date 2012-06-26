@@ -12,7 +12,7 @@ describe Contact do
 
     it 'has 6 errors' do
       @contact.valid?
-      @contact.errors.should have(6).items
+      @contact.errors.should have(7).items
     end
   end
 

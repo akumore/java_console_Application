@@ -23,8 +23,11 @@ describe Api::RealEstatesController do
 
     it "doesn't get unpublished real estates" do
       [RealEstate::STATE_EDITING, RealEstate::STATE_IN_REVIEW].each do |state|
-        Fabricate :real_estate, :state => state, :category => Fabricate(:category), :channels => [RealEstate::MICROSITE_CHANNEL],
-          :figure => Fabricate.build( :figure)
+        Fabricate :real_estate, :state => state,
+          :category => Fabricate(:category),
+          :channels => [RealEstate::MICROSITE_CHANNEL],
+          :figure => Fabricate.build(:figure),
+          :editor => Fabricate(:cms_editor)
       end
 
       get  'index', :format=>:json

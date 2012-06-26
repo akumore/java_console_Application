@@ -34,8 +34,23 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
 
     primary.item :real_estate, t('navigation.main.real_estate'), real_estates_path, :highlights_on => proc { controller.request.path.include?('real_estate') }
-    primary.item :jobs, t('navigation.main.jobs'), t('jobs_url'), :highlights_on => proc { controller.request.path == I18n.t('jobs_url') }
-    primary.item :company, t('navigation.main.company'), t('company_url'), :highlights_on => proc { controller.request.path == I18n.t('company_url') }
+
+    primary.item :jobs, t('navigation.main.jobs'), t('jobs_url'), :highlights_on => proc { controller.request.path == I18n.t('jobs_url') } do |jobs|
+      jobs_subnavigation do |title|
+        jobs.item "title-#{title.id}", title.title, "#{t('jobs_url')}##{title.title.parameterize}"
+      end
+
+      jobs.dom_class = 'clearfix'
+    end
+
+    primary.item :company, t('navigation.main.company'), t('company_url'), :highlights_on => proc { controller.request.path == I18n.t('company_url') } do |company|
+      company_subnavigation do |title|
+        company.item "title-#{title.id}", title.title, "#{t('company_url')}##{title.title.parameterize}"
+      end
+
+      company.dom_class = 'clearfix'
+    end
+
     primary.item :news, t('navigation.main.news'), news_items_path, :highlights_on => proc { controller.request.path == news_items_path }
     primary.item :knowledge, t('navigation.main.knowledge'), t('knowledge_url'), :highlights_on => proc { controller.request.path == I18n.t('knowledge_url') }
 

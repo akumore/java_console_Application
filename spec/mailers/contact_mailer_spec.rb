@@ -28,7 +28,8 @@ describe ContactMailer do
 
   describe 'Subject of the contact notification' do
     it 'contains the name of the person initiating the contact' do
-      contact_mail.subject.should match contact.name
+      contact_mail.subject.should match contact.firstname
+      contact_mail.subject.should match contact.lastname
     end
   end
 
@@ -37,7 +38,7 @@ describe ContactMailer do
       contact_mail.body.should match I18n.l(contact.created_at)
     end
 
-    [:name, :street, :zip, :city, :email, :message].each do |name|
+    [:firstname, :lastname, :street, :zip, :city, :email, :message].each do |name|
       it "contains the #{name} of the applicant" do
         contact_mail.body.should match contact.send(name)
       end

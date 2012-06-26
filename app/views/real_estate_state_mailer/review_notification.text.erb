@@ -1,0 +1,10 @@
+Das Objekt '<%= @real_estate.title %>' wurde von <%= @real_estate.editor.email %> erfasst und kann publiziert werden.
+
+Ausgabekanäle:
+<%- @real_estate.channels.each do |channel| %>
+* <%= t("cms.real_estates.form.channels.#{channel}", :locale=>:de) %>
+<%- end %>
+
+Link zum Objekt:
+<%= edit_cms_real_estate_url(@real_estate, :locale=>:de) %>
+

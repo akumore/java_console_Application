@@ -22,6 +22,8 @@ class Cms::User
   field :role, :type => :String
   validates :role, :presence => true, :inclusion => ROLES
 
+  scope :admins, :where => { :role => :admin }
+
   def editor?
     role.to_sym == :editor
   end
@@ -29,4 +31,5 @@ class Cms::User
   def admin?
     role.to_sym == :admin
   end
+
 end

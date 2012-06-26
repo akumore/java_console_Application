@@ -5,7 +5,7 @@ class ContactMailer < ActionMailer::Base
 
   def contact_notification(contact)
     @contact = contact
-    mail  :subject => "Kontaktanfrage von '#{contact.name}'", 
+    mail  :subject => "Kontaktanfrage von '#{contact.firstname} #{contact.lastname}'",
           :reply_to => contact.email.presence,
           :to => 'mail@alfred-mueller.ch'
   end

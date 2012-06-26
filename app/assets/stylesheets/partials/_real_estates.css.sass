@@ -1,3 +1,8 @@
+#main.real_estates
+  position: relative
+  top: 0px
+  left: 0px
+
 .search-container
   background: $search-background-color
   +column(10)
@@ -15,6 +20,10 @@
 
 .search-results-map
   height: 500px
+
+.scrolling-map
+  @extend .map
+  +single-transition('top', 0.5s)
 
 table
   width: 100%
@@ -61,6 +70,7 @@ td
   background: $search-background-color
   padding-bottom: 2em
   +row
+  position: relative
 
 .gallery
   +column(10)
@@ -127,15 +137,13 @@ td
     margin-left: 2em
 
 .result-nav
-  +float_right
   border: 1px solid $search-filter-border-dark
   border-bottom: 0px solid transparent
-  padding: 0.75em 0.75em 0.5em 0.75em
-  margin-right: 1em
-  position: relative
-  top: -38px
+  padding: 0.75em 0.75em 0.6em 0.75em
+  position: absolute
+  top: -40px
+  right: 1em
   background: $search-background-color
-  display: none
 
   ul
     +horizontal-list(0.5em)
@@ -182,11 +190,13 @@ td
 
 .search-filter-order-form
   @extend .clearfix
-  background: #baba99 image-url('search-filter-order-bg.png') repeat-x
   border: 1px solid #a6a7a6
 
   .sort-field, .sort-order
+    background: #baba99 image-url('search-filter-order-bg.png') repeat-x
     +float_left
+    &:hover
+      background: #baba99 image-url('search-filter-order-upside-down-bg.png') repeat-x
 
   .sort-field
     width: 60%
@@ -196,6 +206,8 @@ td
 
   .sort-order
     width: 40%
+    &:hover
+      cursor: pointer
 
     .sort-order-dropdown
       border-left: 1px solid #baba99
@@ -219,6 +231,8 @@ td
       +opacity(0)
       z-index: 2
       position: absolute
+      &:hover
+        cursor: pointer
 
 .chzn-container-multi
   .chzn-choices
@@ -265,3 +279,10 @@ td
   > img
     max-width: 92%
     max-height: 92%
+
+// IE 8 CSS Hack
+@media \0screen
+  .result-nav
+    height: 16px
+    top: -38px
+

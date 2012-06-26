@@ -27,7 +27,7 @@ it:
         other: "%{count} Risultati"
     show:
       to_favorites: 'Zu Favoriten hinzufügen'
-      overview: 'Übersicht'
+      overview: 'Visione d’insieme'
       next: 'Nächstes Projekt'
       floorplan: 'Mostra pianta'
       print_floorplan: 'Stampare la pianta'

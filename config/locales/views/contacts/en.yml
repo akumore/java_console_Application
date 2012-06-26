@@ -3,6 +3,7 @@ en:
     form:
       send: 'Send Contact Request'
       errors: 'Please check your inputs:'
+      mandatory_fields: 'Mandatory fields (*)'
     confirmation:
-      confirmation: 'Thank you for your enquiry, %{name}'
+      confirmation: 'Thank you for your enquiry, %{firstname} %{lastname}'
       your_contact: 'Your contact request:'

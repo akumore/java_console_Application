@@ -9,13 +9,13 @@
 
 = render 'search_filter'
 
-.result-nav
-  %ul
-    %li= link_to t('.prev'), real_estate_path(@prev_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-left image-link'
-    %li= link_to t('.overview'), real_estates_path(@search_filter.to_h)
-    %li= link_to t('.next'), real_estate_path(@next_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-right image-link'
-
 .detail
+  .result-nav
+    %ul
+      %li= link_to t('.prev'), real_estate_path(@prev_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-left image-link'
+      %li= link_to t('.overview'), real_estates_path(@search_filter.to_params)
+      %li= link_to t('.next'), real_estate_path(@next_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-right image-link'
+
   .main-title
     %h1= @real_estate.title
     - if @real_estate.property_name.present?
@@ -52,11 +52,16 @@
 
   .sidebar
     %ul
-      %li= @real_estate.mini_doku_link
-      %li= @real_estate.application_form_link
-      %li= @real_estate.floorplan_link
-      %li= @real_estate.floorplan_print_link
-      %li= @real_estate.project_website_link
+      - if @real_estate.mini_doku_link
+        %li= @real_estate.mini_doku_link
+      - if @real_estate.application_form_link
+        %li= @real_estate.application_form_link
+      - if @real_estate.floorplan_link
+        %li= @real_estate.floorplan_link
+      - if @real_estate.floorplan_print_link
+        %li= @real_estate.floorplan_print_link
+      - if @real_estate.project_website_link
+        %li= @real_estate.project_website_link
 
       - @real_estate.documents.each do |doc|
         %li= link_to doc.title, doc.file.url, :class => 'icon icon-pdf'

@@ -1,9 +1,10 @@
 it:
   job_applications:
     form:
-      speculative_application: 'Initiativbewerbung'
-      send: 'Mandare aspirazione'
+      speculative_application: 'Candidatura spontanea'
+      send: 'Mandare candidatura'
       errors: 'Prego controllare i dati inseriti:'
+      mandatory_fields: 'Campi obbligatorio (*)'
     confirmation:
       confirmation: 'Grazie della sua aspirazione, %{firstname} %{lastname}'
       your_application: "L'applicazione da noi:"

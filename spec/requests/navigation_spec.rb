@@ -41,6 +41,19 @@ describe "Main Navigation" do
       end
     end
 
+    it "links to the subchapters of the content page 'jobs'" do
+      Page.create(:title => 'Jobs', :name => 'jobs', :locale => I18n.locale) do |jobs_page|
+        jobs_page.bricks << Brick::Title.new(:title => 'Brick-Title 1')
+        jobs_page.bricks << Brick::Title.new(:title => 'Brick-Title 2')
+      end
+
+      visit I18n.t('jobs_url')
+
+      within '.sub-navigation' do
+        page.should have_link 'Brick-Title 2', :href => "#{I18n.t('jobs_url')}#brick-title-2"
+      end
+    end
+
     it "links to the content page 'company'" do
       visit root_path(:locale => lang)
       within '.main-navigation' do

@@ -1,11 +1,15 @@
 .confirmation
   %h3= t('.your_contact')
   %p.message
-    = t('.confirmation', :name => @contact.name)
+    = t('.confirmation', :firstname => @contact.firstname, :lastname => @contact.lastname)
 
   .row
-    .label= Contact.human_attribute_name :name
-    .field= @contact.name
+    .label= Contact.human_attribute_name :firstname
+    .field= @contact.firstname
+
+  .row
+    .label= Contact.human_attribute_name :lastname
+    .field= @contact.lastname
 
   .row
     .label= Contact.human_attribute_name :address

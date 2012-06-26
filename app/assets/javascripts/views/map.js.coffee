@@ -9,7 +9,7 @@ class window.AlfredMueller.Views.Map extends Backbone.View
 
     # basic map
     @map = new google.maps.Map(@el.get(0), options)
-    
+
     # bounds by real estate points
     @bounds = new google.maps.LatLngBounds()
 
@@ -29,3 +29,28 @@ class window.AlfredMueller.Views.Map extends Backbone.View
       width: w + "px",
       height: h + "px"
     )
+
+class window.AlfredMueller.Views.ScrollingMap extends window.AlfredMueller.Views.Map
+
+  initialize: ->
+    super
+    setInterval @handleScroll, 150
+    @window = $(window)
+    @animate = Modernizr.cssanimations
+    @lastTop = 0
+
+  constrainer: ->
+    @constrainingContainer ||= @el.parent()
+
+  top: ->
+    _top = @window.scrollTop() - @constrainer().offset().top
+    _bottom = @constrainer().height() - @el.height()
+    Math.max(0, Math.min(_top, _bottom))
+
+  handleScroll: =>
+    if @lastTop != (t = @top())
+      if @animate
+        @el.css top: t
+      else
+        @el.animate({top: t}, 'fast')
+      @lastTop = t

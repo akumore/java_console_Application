@@ -1,4 +1,4 @@
 - if brick.is_primary?
   %h1= brick.title
 - else
-  %h2= brick.title
+  %h2{ :id => brick.title.parameterize }= brick.title

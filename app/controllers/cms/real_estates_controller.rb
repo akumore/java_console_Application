@@ -35,7 +35,12 @@ class Cms::RealEstatesController < Cms::SecuredController
   end
 
   def update
-    if @real_estate.update_attributes(params[:real_estate])
+    real_estate_params = params.fetch(:real_estate, {})
+    real_estate_params.merge!(:editor => current_user) if current_user.editor?
+
+    if @real_estate.update_attributes(real_estate_params)
+      notify_users(real_estate_params[:state_event], @real_estate)
+
       respond_to do |format|
         format.js { flash.now[:success] = t('cms.real_estates.update.sorted.success') }
         format.html do
@@ -64,5 +69,17 @@ class Cms::RealEstatesController < Cms::SecuredController
     @real_estate = RealEstate.find(params[:id])
     @copy_of_real_estate = RealEstate.copy!(@real_estate)
     redirect_to edit_cms_real_estate_path(@copy_of_real_estate)
+  end
+
+
+  private
+  def notify_users(transition, real_estate)
+    if transition.present?
+      if transition == 'review_it'
+        RealEstateStateMailer.review_notification(real_estate).deliver
+      elsif transition == 'reject_it'
+        RealEstateStateMailer.reject_notification(real_estate, current_user).deliver
+      end
+    end
   end
 end

@@ -14,4 +14,19 @@ class Page
   validates :locale, :presence => true, :inclusion => I18n.available_locales.map(&:to_s)
   validates_uniqueness_of :name,  :scope => :locale
 
+  def subnavigation
+    bricks.where(:_type => 'Brick::Title').skip(1)
+  end
+
+  class << self
+
+    def jobs_page
+      where(:name => 'jobs', :locale => I18n.locale).first
+    end
+
+    def company_page
+      where(:name => 'company', :locale => I18n.locale).first
+    end
+
+  end
 end
