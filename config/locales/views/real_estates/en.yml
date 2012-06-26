@@ -27,7 +27,7 @@ en:
         other: "%{count} Hits"
     show:
       to_favorites: 'Zu Favoriten hinzufügen'
-      overview: 'Übersicht'
+      overview: 'Overview'
       next: 'Nächstes Projekt'
       floorplan: 'Show Layout'
       print_floorplan: 'Print Layout Plan'
