@@ -19,11 +19,18 @@ class window.AlfredMueller.Views.InteractiveRow extends Backbone.View
   deactivate: ->
     @el.removeClass("active")
 
+  setMarker: (marker) ->
+    @marker = marker
+
   handleClick: (e) =>
     window.location.href = @el.find("a:first-child").attr("href")
 
   handleMouseEnter: (e) =>
     @activate()
+    if @marker
+      @marker.bounce()
 
   handleMouseLeave: (e) =>
     @deactivate()
+    if @marker
+      @marker.stopBounce()

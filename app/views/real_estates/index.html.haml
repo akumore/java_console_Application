@@ -42,7 +42,7 @@
 
 
     - if @real_estates.any?
-      .map.search-results-map
+      .scrolling-map.search-results-map
 
   - unless @reference_projects.empty?
     .container.reference-projects-slider
@@ -52,10 +52,9 @@
   = render 'google_maps'
 
   - content_for :javascripts do
-    :javascript
-      $(function(){
-        new AlfredMueller.Views.Map({
-          el: $(".map"),
+    :coffeescript
+      $ ->
+        new AlfredMueller.Views.ScrollingMap({
+          el: $(".scrolling-map"),
           real_estates: new AlfredMueller.Collections.RealEstates(#{@real_estates.map(&:model).to_json(:only => :_id, :methods => :coordinates)})
         })
-      })

@@ -7,10 +7,17 @@ class window.AlfredMueller.Views.Marker extends Backbone.View
       position: @model.toLatLng()
     )
 
-    @interactive_row = $("#real-estate-#{@model.id()}").data("interactive_row")
+    @interactiveRow = $("#real-estate-#{@model.id()}").data("interactive_row")
+    @interactiveRow.setMarker @
 
     google.maps.event.addListener @gmarker, "mouseover", =>
-      @interactive_row.activate()
+      @interactiveRow.activate()
 
     google.maps.event.addListener @gmarker, "mouseout", =>
-      @interactive_row.deactivate()
+      @interactiveRow.deactivate()
+
+  bounce: ->
+    @gmarker.setAnimation(google.maps.Animation.BOUNCE)
+
+  stopBounce: ->
+    @gmarker.setAnimation(null)
