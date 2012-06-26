@@ -36,6 +36,8 @@ class window.AlfredMueller.Views.ScrollingMap extends window.AlfredMueller.Views
     super
     setInterval @handleScroll, 150
     @window = $(window)
+    @animate = Modernizr.cssanimations
+    @lastTop = 0
 
   constrainer: ->
     @constrainingContainer ||= @el.parent()
@@ -46,4 +48,9 @@ class window.AlfredMueller.Views.ScrollingMap extends window.AlfredMueller.Views
     Math.max(0, Math.min(_top, _bottom))
 
   handleScroll: =>
-    @el.css top: @top()
+    if @lastTop != (t = @top())
+      if @animate
+        @el.css top: t
+      else
+        @el.animate({top: t}, 'fast')
+      @lastTop = t
