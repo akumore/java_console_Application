@@ -5,6 +5,6 @@ de:
     attributes:
       search_filter:
         cantons: Kanton
-        cities: Stadt
+        cities: Ort
         offer: Angebotstyp
         utilization: Nutzung
