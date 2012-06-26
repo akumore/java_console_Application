@@ -54,7 +54,9 @@
   - content_for :javascripts do
     :coffeescript
       $ ->
-        new AlfredMueller.Views.ScrollingMap({
-          el: $(".scrolling-map"),
-          real_estates: new AlfredMueller.Collections.RealEstates(#{@real_estates.map(&:model).to_json(:only => :_id, :methods => :coordinates)})
-        })
+        elem = $(".scrolling-map:visible")
+        if elem.count > 0
+          new AlfredMueller.Views.ScrollingMap({
+            el: elem,
+            real_estates: new AlfredMueller.Collections.RealEstates(#{@real_estates.map(&:model).to_json(:only => :_id, :methods => :coordinates)})
+          })
