@@ -28,7 +28,7 @@ class Ability
     if user.admin?
       #controller action abilities
       can :manage, [Cms::User, NewsItem, Employee, Job, Page]
-      
+
       can :manage, RealEstate
       cannot :edit, RealEstate, :state => 'published'
       cannot :destroy, RealEstate, :state => 'published'
@@ -45,7 +45,7 @@ class Ability
       can :unpublish_it, RealEstate
       cannot :review_it, RealEstate
     end
-    
+
     if user.editor?
       # state machine abilities
       can :review_it, RealEstate
