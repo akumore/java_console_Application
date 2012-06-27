@@ -1,30 +1,30 @@
 de:
   handouts:
     show:
-      for_rent_private: 'Miete | Wohnen'
-      for_rent_commercial: 'Miete | Arbeiten'
+      for_rent_private: "Miete | Wohnen"
+      for_rent_commercial: "Miete | Arbeiten"
     overview:
-      title: 'Objektübersicht'
-      property: 'Liegenschaft'
-      address: 'Adresse'
-      usable_surface_helptext: '(Fläche exklusive Fassaden-, Treppenhauswände, Wohnungs-Trennwände, Leitungsschächten und Balkon/Terrassen, Fläche inklusive Innenwände)'
-      description: 'Kurzbeschrieb'
+      title: "Objektübersicht"
+      property: "Liegenschaft"
+      address: "Adresse"
+      usable_surface_helptext: "(Fläche exklusive Fassaden-, Treppenhauswände, Wohnungs-Trennwände, Leitungsschächten und Balkon/Terrassen, Fläche inklusive Innenwände)"
+      description: "Kurzbeschrieb"
     floorplan:
-      title: 'Grundriss'
+      title: "Grundriss"
     images:
-      title: 'Bilder'
+      title: "Bilder"
     description:
-      title: 'Beschreibung'
+      title: "Beschreibung"
     contact:
-      title: Kontakt
-      position: Beratung und Vermietung
-      street: Neuhofstrasse 10
-      zip: CH-6340
-      city: Baar
-      phone: Telefon
-      mobile: Mobile
-      fax: Fax
-      www: www.alfred-mueller.ch
+      title: "Kontakt"
+      position: "Beratung und Vermietung"
+      street: "Neuhofstrasse 10"
+      zip: "CH-6340"
+      city: "Baar"
+      phone: "Telefon"
+      mobile: "Mobile"
+      fax: "Fax"
+      www: "www.alfred-mueller.ch"
       department_names:
-        for_rent: Beratung und Vermietung
-        for_sale: Beratung und Verkauf #currently not used, we have handouts for_rent only
+        for_rent: "Beratung und Vermietung"
+        for_sale: "Beratung und Verkauf" #currently not used, we have handouts for_rent only
