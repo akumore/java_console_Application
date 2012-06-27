@@ -28,7 +28,11 @@ class Address
   field :location, :type => Array #Keep in mind coordinates are stored in long, lat order internally!! Use to_coordinates always.
   #index [[ :location, Mongo::GEO2D ]] TODO Do we need this?
 
-  after_validation :geocode, :if => :address_changed?
+  attr_writer :lat
+  attr_writer :lng
+
+  after_validation :geocode, :if => :should_geocode?
+  after_validation :manually_geocode, :if => :manual_geocoding?
   after_initialize :init_reference
   attr_protected :location
 
@@ -40,9 +44,25 @@ class Address
   end
 
   def address_changed?
-    [:street, :street_number, :zip, :city, :canton, :country].inject(false) do |res, attr|
+    [:street, :street_number, :zip, :city, :canton, :country, :manual_geocoding].inject(false) do |res, attr|
       res || changed.include?(attr.to_s)
     end
+  end
+
+  def should_geocode?
+    address_changed? && manual_geocoding? == false
+  end
+
+  def manually_geocode
+    self.location = [@lng, @lat]
+  end
+
+  def lat
+    location.last if location.present?
+  end
+
+  def lng
+    location.first if location.present?
   end
 
   private

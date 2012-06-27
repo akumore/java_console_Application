@@ -35,7 +35,7 @@ describe "Cms::Addresses" do
           fill_in 'Ort', :with => 'Adliswil'
           select 'Zürich', :from => 'Kanton'
           fill_in 'Link', :with => 'http://www.google.ch'
-          check 'Geokoordinaten manuell eintragen'
+          uncheck 'Geokoordinaten manuell eintragen'
         end
       end
 
@@ -59,7 +59,7 @@ describe "Cms::Addresses" do
           @address.zip.should == '8123'
           @address.canton.should == 'zh'
           @address.link_url.should == 'http://www.google.ch'
-          @address.manual_geocoding.should be_true
+          @address.manual_geocoding.should be_false
         end
       end
     end
