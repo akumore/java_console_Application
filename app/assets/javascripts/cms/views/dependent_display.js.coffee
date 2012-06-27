@@ -7,7 +7,6 @@ class window.AlfredMueller.Cms.Views.DependentDisplay extends Backbone.View
     @valueHasChanged()
 
   valueHasChanged: ->
-    console.log @el
     if @target.val() == @targetValue
       @el.removeClass("hidden")
     else
