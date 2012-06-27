@@ -54,6 +54,10 @@
             %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Reference.human_attribute_name(:unit_key), 'data-content' => t('.help_popover.unit_key') }
   %fieldset
     %legend= t "mongoid.attributes.address.location"
+    .control-group
+      = f.label :manual_geocoding
+      .controls
+        = f.check_box :manual_geocoding
     = f.fields_for :location, @address.to_coordinates do |rf|
       .control-group
         = f.label :first, t("mongoid.attributes.address.lat")
