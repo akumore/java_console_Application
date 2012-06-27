@@ -12,3 +12,9 @@ end
     parent { Fabricate(:category, :label => category_name.upcase, :name => category_name) }
   end
 end
+
+Fabricator(:row_house_category, :from => :category) do
+  label 'Reihenfamilienhaus'
+  name 'row_house'
+  parent { Fabricate(:category) }
+end

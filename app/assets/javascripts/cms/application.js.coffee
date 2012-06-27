@@ -10,23 +10,13 @@
 #= require jquery.autoresize
 #= require underscore
 #= require backbone
-#= require backbone_rails_sync
-#= require backbone_datalink
+#= require ./backbone_setup
 #= require_tree ./templates
 #= require_tree ./models
 #= require_tree ./views
 #= require_tree ./routers
 #= require twitter/bootstrap
 #= require_self
-
-
-window.AlfredMueller =
-  Cms: {
-    Models: {}
-    Collections: {}
-    Routers: {}
-    Views: {}
-  }
 
 $(document).ready ->
   $('.dropdown-toggle').dropdown()
@@ -43,3 +33,11 @@ $(document).ready ->
   $(".help-popover").popover()
   $(".help-popover-top").popover
     placement: 'top'
+
+  $("form div[data-dependent_on]").each ->
+    elem = $(this)
+    new AlfredMueller.Cms.Views.DependentDisplay(
+      el: elem
+      target: $(elem.data('dependent_on'))
+      targetValue: elem.data('dependent_on_value')
+    )
