@@ -1,0 +1,31 @@
+fr:
+  handouts:
+    show:
+      for_rent_private: "Louer | Habiter"
+      for_rent_commercial: "Louer | Travailler"
+    overview:
+      title: "Aperçu de l'objet"
+      property: "Immeuble"
+      address: "Adresse"
+      usable_surface_helptext: "surface après déduction des murs des cages d’escalier et des conduits"
+      description: "Description succincte"
+    floorplan:
+      title: "Plan"
+    images:
+      title: "Photo"
+    description:
+      title: "Description"
+    contact:
+      title: "Contact"
+      position: "Conseil et location"
+      street: "Av. des Champs-Montants 10a"
+      zip: "CH-2074"
+      city: "Marin"
+      phone: "Téléphone"
+      mobile: "Mobile"
+      fax: "Fax"
+      www: "www.alfred-mueller.ch"
+      department_names:
+        for_rent: "Conseil et location"
+        for_sale: "Conseil et vente" #currently not used, we have handouts for_rent only
+
