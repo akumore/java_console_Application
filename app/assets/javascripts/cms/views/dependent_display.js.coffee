@@ -7,7 +7,7 @@ class window.AlfredMueller.Cms.Views.DependentDisplay extends Backbone.View
     @valueHasChanged()
 
   valueHasChanged: ->
-    if @target.val() == @targetValue
+    if @target.is(":checked") == @targetValue || @target.val() == @targetValue
       @el.removeClass("hidden")
     else
       @el.addClass("hidden")

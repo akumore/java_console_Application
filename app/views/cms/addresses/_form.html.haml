@@ -54,15 +54,29 @@
             %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Reference.human_attribute_name(:unit_key), 'data-content' => t('.help_popover.unit_key') }
   %fieldset
     %legend= t "mongoid.attributes.address.location"
-    = f.fields_for :location, @address.to_coordinates do |rf|
+    .control-group
+      = f.label :manual_geocoding
+      .controls
+        = f.check_box :manual_geocoding
+    .automated-geocoordinates-container.hidden{ 'data-dependent_on' => '#address_manual_geocoding', 'data-dependent_on_value' => 'false' }
+      = f.fields_for :location, @address.to_coordinates do |rf|
+        .control-group
+          = rf.label :first, t("mongoid.attributes.address.lat")
+          .controls
+            = rf.text_field :first, :class => 'span8', :readonly => true
+        .control-group
+          = rf.label :last, t("mongoid.attributes.address.lng")
+          .controls
+            = rf.text_field :last, :class => 'span8', :readonly => true
+    .manual-geocoordinates-container.hidden{ 'data-dependent_on' => '#address_manual_geocoding', 'data-dependent_on_value' => 'true' }
       .control-group
-        = f.label :first, t("mongoid.attributes.address.lat")
+        = f.label :lat, t("mongoid.attributes.address.lat")
         .controls
-          = rf.text_field :first, :class => 'span8', :readonly=>true
+          = f.text_field :lat, :class => 'span8'
       .control-group
-        = f.label :last, t("mongoid.attributes.address.lng")
+        = f.label :lng, t("mongoid.attributes.address.lng")
         .controls
-          = rf.text_field :last, :class => 'span8', :readonly=>true
+          = f.text_field :lng, :class => 'span8'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

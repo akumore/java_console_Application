@@ -34,7 +34,7 @@ describe Address do
       @address.valid?
       @address.errors.should have(5).items
     end
-  end  
+  end
 
   describe 'geocoding' do
     before do
@@ -45,6 +45,14 @@ describe Address do
       @address.address.should == "Christian-David-Straße 12, 1234, Herrnhut, zh, Deutschland"
     end
 
+    describe 'manually updating coordinates' do
+      it 'saves the lat and lng attributes into the location' do
+        real_estate = Fabricate(:real_estate, :address => @address, :category => Fabricate(:category))
+        @address.update_attributes(:lng => 123.4, :lat => 321.1, :manual_geocoding => true)
+        @address.save
+        @address.location.should == [123.4, 321.1]
+      end
+    end
 
     describe "detection of changes in geo-coding related fields" do
       before do
