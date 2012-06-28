@@ -10,6 +10,11 @@
       = f.label :role
       .controls
         = f.select :role, Cms::User::ROLES.map { |c| [Cms::User.human_attribute_name("role_#{c}"), c] }, :prompt => 'Rolle auswählen', :class => 'span8'
+    .wants-review-emails-container.hidden{ 'data-dependent_on' => '#cms_user_role', 'data-dependent_on_value' => 'admin' }
+      .control-group
+        = f.label :wants_review_emails
+        .controls
+          = f.check_box :wants_review_emails
     .control-group
       = f.label :password
       .controls
