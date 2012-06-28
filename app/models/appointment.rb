@@ -12,6 +12,6 @@ class Appointment
   field :zipcode, :type => String
   field :city, :type => String
 
-  validates :firstname, :lastname, :email, :street, :zipcode, :city, :presence => true
+  validates :firstname, :lastname, :email, :phone, :street, :zipcode, :city, :presence => true
 
 end
