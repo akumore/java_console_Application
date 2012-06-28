@@ -11,6 +11,15 @@
       = f.label :description
       .controls
         = f.text_area :description, :class => 'span8'
+    .control-group.mandatory
+      = f.label :offer
+      .controls
+        %label.radio
+          = f.radio_button :offer, RealEstate::OFFER_FOR_RENT
+          %span= t(".#{RealEstate::OFFER_FOR_RENT}")
+        %label.radio
+          = f.radio_button :offer, RealEstate::OFFER_FOR_SALE
+          %span= t(".#{RealEstate::OFFER_FOR_SALE}")
     .control-group
       = f.label :url
       .controls

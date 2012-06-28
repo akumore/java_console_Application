@@ -3,6 +3,8 @@ de:
     reference_projects:
       form:
         image_help: 'Bildgrösse in der Referenzprojektansicht: XXxYY Pixel'
+        for_rent: 'Mieten'
+        for_sale: 'Kaufen'
       index:
         confirm_delete: 'Das Referenzprojekt "%{title}" sicher löschen?'
         new: 'Neues Referenzprojekt erstellen'
