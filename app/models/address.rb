@@ -24,6 +24,7 @@ class Address
   validates :zip, :presence => true
   validates :canton, :presence => true, :inclusion => CANTONS
   validates :any_reference_key, :presence => true, :if => :is_homegate?
+  validates :lat, :lng, :presence => true, :if => :manual_geocoding?
 
   field :location, :type => Array #Keep in mind coordinates are stored in long, lat order internally!! Use to_coordinates always.
   #index [[ :location, Mongo::GEO2D ]] TODO Do we need this?
@@ -32,7 +33,7 @@ class Address
   attr_writer :lng
 
   after_validation :geocode, :if => :should_geocode?
-  after_validation :manually_geocode, :if => :manual_geocoding?
+  before_validation :manually_geocode, :if => :manual_geocoding?
   after_initialize :init_reference
   attr_protected :location
 

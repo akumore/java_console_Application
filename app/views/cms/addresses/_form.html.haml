@@ -69,11 +69,11 @@
           .controls
             = rf.text_field :last, :class => 'span8', :readonly => true
     .manual-geocoordinates-container.hidden{ 'data-dependent_on' => '#address_manual_geocoding', 'data-dependent_on_value' => 'true' }
-      .control-group
+      .control-group.mandatory
         = f.label :lat, t("mongoid.attributes.address.lat")
         .controls
           = f.text_field :lat, :class => 'span8'
-      .control-group
+      .control-group.mandatory
         = f.label :lng, t("mongoid.attributes.address.lng")
         .controls
           = f.text_field :lng, :class => 'span8'
