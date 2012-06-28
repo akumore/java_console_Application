@@ -14,7 +14,7 @@ class ReferenceProject
 
   validates :title, :description, :locale, :offer, :image, :presence => true
 
-  #mount_uploader :image, ReferenceProjectImageUploader
+  mount_uploader :image, ReferenceProjectImageUploader
 
   #before_create :setup_position
 

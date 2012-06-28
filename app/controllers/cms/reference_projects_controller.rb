@@ -23,6 +23,18 @@ module Cms
       @reference_project = ReferenceProject.new(:locale => content_locale)
     end
 
+    def create
+      @reference_project = ReferenceProject.new(params[:reference_project])
+
+      if @reference_project.save
+        flash[:success] = %(Das Referenzprojekt "#{@reference_project.title}" wurde erfolgreich gespeichert.)
+        redirect_to cms_reference_projects_path(:content_locale => @reference_project.locale)
+      else
+        render 'new'
+      end
+    end
+
+
     def update
       @reference_project = ReferenceProject.find params[:id]
       @reference_project.assign_attributes(params[:reference_project])

@@ -15,6 +15,10 @@
       = f.label :url
       .controls
         = f.text_field :url, :class => 'span8'
+    .control-group
+      = f.label :image
+      .controls
+        = f.file_field :image
 
     .form-actions
       = f.submit nil, :class => 'btn btn-primary'

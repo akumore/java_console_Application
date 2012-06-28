@@ -75,4 +75,15 @@ describe "Cms::ReferenceProject" do
     end
   end
 
+  describe 'create' do
+    it "renders the complete form" do
+      visit new_cms_reference_project_path
+      fill_in('reference_project_title', :with => 'Neues Referenzprojekt')
+      fill_in('reference_project_description', :with => 'Projektbeschreibung')
+      fill_in('reference_project_url', :with => 'http://www.projekt.com')
+      attach_file('reference_project_image', "#{Rails.root}/spec/support/test_files/image.jpg")
+      click_button 'Referenzprojekt erstellen'
+      ReferenceProject.where(:title => 'Neues Referenzprojekt').count.should == 1
+    end
+  end
 end
