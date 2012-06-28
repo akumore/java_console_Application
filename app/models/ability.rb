@@ -27,7 +27,7 @@ class Ability
 
     if user.admin?
       #controller action abilities
-      can :manage, [Cms::User, NewsItem, Employee, Job, Page]
+      can :manage, [Cms::User, NewsItem, Employee, Job, Page, ReferenceProject]
 
       can :manage, RealEstate
       cannot :edit, RealEstate, :state => 'published'

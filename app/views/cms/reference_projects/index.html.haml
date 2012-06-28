@@ -1,0 +1,43 @@
+- content_for :title do
+  Erfasste Referenzprojekte
+
+%ul.nav-tabs.nav.language-tabs
+  - I18n.available_locales.each do |locale|
+    %li{ :class => (content_locale.to_s == locale.to_s ? 'active' : nil) }
+      = link_to t("languages.#{locale}"), cms_reference_projects_path(:content_locale => locale)
+
+.row
+  .pull-right.padded
+    = link_to(new_cms_reference_project_path(:content_locale => content_locale), :class => 'btn') do
+      %i.icon-plus-sign
+      = t('.new')
+
+= form_for :reference_projects, :model => reference_projects, :url => sort_cms_reference_projects_path, :remote => true, :html => { :class => :autosubmit } do |form|
+  %table.table.table-bordered.table-striped.reference-projects.reference-projects-sortable
+    %tr
+      %th
+      %th{ :width => '50%' }= ReferenceProject.human_attribute_name :title
+      %th
+      %th
+
+    - @reference_projects.each do |reference_project|
+      %tr.reference-project.draggable-row{ :id => "reference_project_#{reference_project.id}"}
+        %td.drag-handle{ :width => '5%' }
+          %i.icon-align-justify
+          = form.fields_for :[], reference_project do |reference_project_fields|
+            = reference_project_fields.hidden_field :position, :class => 'position'
+        %td.title= reference_project.title
+        %td= link_to  t('.destroy'), cms_reference_project_path(reference_project), :method => :delete, :confirm => t('.confirm_delete', :title => reference_project.title)
+        %td= link_to t('.edit'), edit_cms_reference_project_path(reference_project)
+
+- content_for :javascripts do
+  :coffeescript
+    $ ->
+      $("table.reference-projects-sortable tbody").sortable
+        handle: ".drag-handle"
+        update: (event, ui) ->
+          tr = $(event.target).closest('tr.reference-project')
+          tr.closest('table').find(".draggable-row").each (idx, elem) ->
+            $(@).find(".position").val(idx+1)
+          tr.closest('form.autosubmit').submit()
+

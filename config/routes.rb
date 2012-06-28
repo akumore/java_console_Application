@@ -9,6 +9,10 @@ AlfredMueller::Application.routes.draw do
   namespace :cms do
     resource :dashboards
     resources :news_items, :except => :show
+    resources :reference_projects, :except => :show do
+      post :sort, :on => :collection
+    end
+
     resources :real_estates do
       get :copy, :on => :member
       resource :address

@@ -1,0 +1,18 @@
+de:
+  cms:
+    reference_projects:
+      index:
+        confirm_delete: 'Das Referenzprojekt "%{title}" sicher löschen?'
+        new: 'Neues Referenzprojekt erstellen'
+        edit: 'Editieren'
+        destroy: 'Löschen'
+      create:
+        success: "Referenzprojekt erfolgreich erstellt"
+      update:
+        success: "Referenzprojekt erfolgreich aktualisiert"
+      destroy:
+        success: "Referenzprojekt erfolgreich gelöscht"
+      update:
+        sorted:
+          success: 'Die Sortierung wurde erfolgreich gespeichert.'
+

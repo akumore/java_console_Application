@@ -1,0 +1,50 @@
+module Cms
+  class ReferenceProjectsController < Cms::SecuredController
+
+    authorize_resource
+
+    rescue_from CanCan::AccessDenied do |err|
+      redirect_to cms_dashboards_path, :alert => err.message
+    end
+
+    rescue_from Mongoid::Errors::DocumentNotFound do |err|
+      flash[:warn] = "Gesuchtes Referenzprojekt wurde nicht gefunden"
+      redirect_to cms_reference_projects_path
+    end
+
+    def index
+      @reference_projects = ReferenceProject.where(:locale => content_locale)
+    end
+
+    def edit
+    end
+
+    def new
+    end
+
+    def update
+      @reference_project = ReferenceProject.find params[:id]
+      @reference_project.assign_attributes(params[:reference_project])
+      update_position = @reference_project.position_changed?
+
+      if @reference_project.save
+        update_position_attribute(@reference_project) if update_position
+        respond_to do |format|
+          format.js { flash.now[:success] = t('cms.reference_projects.update.sorted.success') }
+          format.html
+        end
+      end
+    end
+
+    def sort
+      params[:reference_projects].each do |id_position_map|
+        id_position_map.each do |id, position|
+          ReferenceProject.find(id).update_attributes(:position => position[:position])
+        end
+      end
+      render :nothing => true
+    end
+  end
+
+end
+
