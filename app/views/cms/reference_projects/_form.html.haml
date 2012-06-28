@@ -1,0 +1,25 @@
+= form_for [:cms, @reference_project], :html => {:multipart => true} do |f|
+  = render 'cms/shared/errors', :model => @reference_project
+
+  %fieldset
+    = f.hidden_field :locale
+    .control-group.mandatory
+      = f.label :title
+      .controls
+        = f.text_field :title, :class => 'span8'
+    .control-group.mandatory
+      = f.label :description
+      .controls
+        = f.text_area :description, :class => 'span8'
+    .control-group
+      = f.label :url
+      .controls
+        = f.text_field :url, :class => 'span8'
+
+    .form-actions
+      = f.submit nil, :class => 'btn btn-primary'
+      .pull-right
+        = link_to(cms_reference_projects_path, :class => 'btn small') do
+          %i.icon-list
+          = t('.overview')
+

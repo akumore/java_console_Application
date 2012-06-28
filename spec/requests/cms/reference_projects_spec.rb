@@ -63,8 +63,16 @@ describe "Cms::ReferenceProject" do
     it "displays the reference projects in the right sort order" do
       page.all(:css, '.reference-projects .reference-project .title').map(&:text).should == ReferenceProject.all.map(&:title)
     end
+  end
 
-
+  describe 'new' do
+    it "renders the complete form" do
+      visit new_cms_reference_project_path
+      page.should have_css('input[name="reference_project[title]"]')
+      page.should have_css('input[name="reference_project[url]"]')
+      page.should have_css('textarea[name="reference_project[description]"]')
+      page.should have_css('input[name="reference_project[locale]"]')
+    end
   end
 
 end

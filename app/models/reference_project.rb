@@ -7,6 +7,7 @@ class ReferenceProject
   field :title,       :type => String
   field :description, :type => String
   field :offer,       :type => String, :default => RealEstate::OFFER_FOR_RENT
+  field :url,         :type => String
   field :locale,      :type => String, :default => 'de'
   field :image,       :type => String
   field :position,    :type => Integer

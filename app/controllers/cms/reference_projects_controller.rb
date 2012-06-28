@@ -20,6 +20,7 @@ module Cms
     end
 
     def new
+      @reference_project = ReferenceProject.new(:locale => content_locale)
     end
 
     def update
