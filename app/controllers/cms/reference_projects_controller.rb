@@ -34,7 +34,6 @@ module Cms
       end
     end
 
-
     def update
       @reference_project = ReferenceProject.find params[:id]
       @reference_project.assign_attributes(params[:reference_project])
@@ -47,6 +46,14 @@ module Cms
           format.html
         end
       end
+    end
+
+    def destroy
+      @reference_project = ReferenceProject.find params[:id]
+      if @reference_project.destroy
+        flash[:success] = t("cms.reference_projects.destroy.success")
+      end
+      redirect_to cms_reference_projects_path(:content_locale => @reference_project.locale)
     end
 
     def sort
