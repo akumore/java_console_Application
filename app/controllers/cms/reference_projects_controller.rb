@@ -37,9 +37,11 @@ module Cms
     end
 
     def sort
-      params[:reference_projects].each do |id_position_map|
-        id_position_map.each do |id, position|
-          ReferenceProject.find(id).update_attributes(:position => position[:position])
+      if params[:reference_projects].present?
+        params[:reference_projects].each do |id_position_map|
+          id_position_map.each do |id, position|
+            ReferenceProject.find(id).update_attributes!(:position => position[:position].to_i)
+          end
         end
       end
       render :nothing => true
