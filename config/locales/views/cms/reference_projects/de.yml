@@ -1,6 +1,8 @@
 de:
   cms:
     reference_projects:
+      form:
+        image_help: 'Bildgrösse in der Referenzprojektansicht: XXxYY Pixel'
       index:
         confirm_delete: 'Das Referenzprojekt "%{title}" sicher löschen?'
         new: 'Neues Referenzprojekt erstellen'

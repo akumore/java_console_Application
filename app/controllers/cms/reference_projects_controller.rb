@@ -17,6 +17,7 @@ module Cms
     end
 
     def edit
+      @reference_project = ReferenceProject.find params[:id]
     end
 
     def new
@@ -36,15 +37,11 @@ module Cms
 
     def update
       @reference_project = ReferenceProject.find params[:id]
-      @reference_project.assign_attributes(params[:reference_project])
-      update_position = @reference_project.position_changed?
-
-      if @reference_project.save
-        update_position_attribute(@reference_project) if update_position
-        respond_to do |format|
-          format.js { flash.now[:success] = t('cms.reference_projects.update.sorted.success') }
-          format.html
-        end
+      if @reference_project.update_attributes(params[:reference_project])
+        flash[:success] = t("cms.reference_projects.update.success")
+        redirect_to cms_reference_projects_path(:content_locale => @reference_project.locale)
+      else
+        render 'edit'
       end
     end
 

@@ -19,6 +19,12 @@
       = f.label :image
       .controls
         = f.file_field :image
+        %p.help-block
+          = t('.image_help')
+        = f.hidden_field :image_cache
+        - if @reference_project.image.present?
+          .well
+            = image_tag @reference_project.image.preview.url
 
     .form-actions
       = f.submit nil, :class => 'btn btn-primary'
