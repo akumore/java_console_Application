@@ -1,0 +1,9 @@
+de:
+  mongoid:
+    models:
+      reference_project: Referenzprojekt
+    attributes:
+      reference_project:
+        title: Titel
+        description: Beschreibung
+        image: Bild
