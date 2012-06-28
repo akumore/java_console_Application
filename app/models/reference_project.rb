@@ -16,11 +16,11 @@ class ReferenceProject
 
   mount_uploader :image, ReferenceProjectImageUploader
 
-  #before_create :setup_position
+  before_create :setup_position
 
-  #private
-  #def setup_position
-    #self.position = news_item.images.max(:position) + 1
-  #end
+  private
+  def setup_position
+    self.position = ReferenceProject.max(:position) || 0 + 1
+  end
 
 end
