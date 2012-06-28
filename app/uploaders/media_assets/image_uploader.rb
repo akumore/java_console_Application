@@ -32,7 +32,9 @@ module MediaAssets
       process :quality => 80
     end
 
-    version :thumb, :from_version => :gallery do
+    version :thumb do
+      process :convert => 'jpg'
+      process :quality => 70
       process :resize_to_fill => [145, 92]
     end
 
