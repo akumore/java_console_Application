@@ -13,7 +13,7 @@ describe AppointmentMailer do
   end
 
   let :appointment do
-    Fabricate :appointment, :real_estate => real_estate, :phone => ''
+    Fabricate :appointment, :real_estate => real_estate
   end
 
   let :appointment_mail do
