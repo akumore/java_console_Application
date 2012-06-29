@@ -58,10 +58,32 @@ describe "Homepage" do
         end
       end
 
-      it "shows the title of the real estate" do
+      it "shows the title of the reference project" do
         visit root_path
         within(".rent-slide .image-caption-text") do
           page.should have_content @reference_project_for_rent.title
+        end
+      end
+
+      describe "with real estate reference" do
+
+        describe "with real estate published" do
+          it "shows the link of the reference project" do
+            real_estate = Fabricate :residential_building, :state => RealEstate::STATE_PUBLISHED
+            puts real_estate.published?
+            ref = Fabricate :reference_project_for_rent, :real_estate => real_estate
+            visit root_path
+            page.should have_link("Zum Projekt"), :href => real_estate_path(real_estate)
+          end
+        end
+
+        describe "without real estate published" do
+          it "shows the link of the reference project" do
+            real_estate = Fabricate :residential_building, :state => RealEstate::STATE_EDITING
+            ref = Fabricate :reference_project_for_rent, :real_estate => real_estate
+            visit root_path
+            page.should_not have_link("Zum Projekt", :href => real_estate_path(real_estate))
+          end
         end
       end
 
