@@ -18,10 +18,12 @@ module Cms
 
     def edit
       @reference_project = ReferenceProject.find params[:id]
+      @real_estates = RealEstate.all
     end
 
     def new
       @reference_project = ReferenceProject.new(:locale => content_locale)
+      @real_estates = RealEstate.all
     end
 
     def create

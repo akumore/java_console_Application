@@ -17,6 +17,14 @@ describe Cms::ReferenceProjectsController do
     Fabricate :reference_project, :position => 3
   end
 
+  describe '#edit' do
+    it 'assigns the needed variables' do
+      get :edit, :id => first.id
+      assigns(:real_estates).should eq(RealEstate.all)
+      assigns(:reference_project).should eq(first)
+    end
+  end
+
   describe '#sort' do
     it 'should update the position attribute' do
       post :sort, :reference_projects => [

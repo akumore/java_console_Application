@@ -72,6 +72,7 @@ describe "Cms::ReferenceProject" do
       page.should have_css('input[name="reference_project[url]"]')
       page.should have_css('textarea[name="reference_project[description]"]')
       page.should have_css('input[name="reference_project[locale]"]')
+      page.should.have_css('select[name="reference_project[real_estate]"]')
     end
   end
 
