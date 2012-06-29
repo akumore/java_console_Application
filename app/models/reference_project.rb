@@ -15,6 +15,8 @@ class ReferenceProject
   field :position,    :type => Integer
 
   validates :title, :description, :locale, :offer, :image, :presence => true
+  validates_length_of :description, maximum: 400
+  validates_length_of :title, maximum: 30
 
   mount_uploader :image, ReferenceProjectImageUploader
 
