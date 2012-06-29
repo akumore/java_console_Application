@@ -23,8 +23,9 @@ class JobApplication
   validates :lastname, :presence => true
   validates :birthdate, :presence => true
   validates :street, :presence => true
-  validates :city, :presence => true
   validates :zipcode, :presence => true
+  validates :city, :presence => true
+  validates :phone, :presence => true
   validates :email, :presence => true
   validates :comment, :presence => true
 

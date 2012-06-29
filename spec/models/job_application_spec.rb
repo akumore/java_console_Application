@@ -12,7 +12,7 @@ describe JobApplication do
 
     it 'has 8 errors' do
       @job_application.valid?
-      @job_application.errors.should have(8).items
+      @job_application.errors.should have(9).items
     end
   end
 

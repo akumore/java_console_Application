@@ -18,11 +18,11 @@ describe "Contacts" do
       before :each do
         within(".new_contact") do
           fill_in 'Vorname', :with => 'Bruno'
-          fill_in 'Nachname', :with => 'Meier'
+          fill_in 'Name', :with => 'Meier'
           fill_in 'contact_street', :with => 'Musterstrasse 86'
           fill_in 'contact_zip', :with => '6312'
           fill_in 'contact_city', :with => 'Steinhausen'
-          fill_in 'e-Mail Adresse', :with => 'bruno.meier@domain.com'
+          fill_in 'E-Mail', :with => 'bruno.meier@domain.com'
           fill_in 'Nachricht', :with => 'Sehr geehrte Damen und Herren,\n\nKontaktieren Sie mich!\n\n VG\nBruno'
         end
       end
