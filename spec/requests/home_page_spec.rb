@@ -36,14 +36,7 @@ describe "Homepage" do
     describe "The slide for renting real estates" do
       before do
         MediaAssetUploader.enable_processing = true
-        @image = Fabricate.build :media_assets_image, :is_primary => true
-        @real_estate = Fabricate :real_estate,
-                                 :title => "Home Sweet Home for rent",
-                                 :offer => RealEstate::OFFER_FOR_RENT,
-                                 :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
-                                 :address => Fabricate.build(:address),
-                                 :category => Fabricate(:category),
-                                 :images => [@image]
+        @reference_project_for_rent = Fabricate :reference_project_for_rent
       end
 
       after do
@@ -53,7 +46,7 @@ describe "Homepage" do
       it "shows the primary image of the appropriate real estate" do
         visit root_path
         within(".rent-slide") do
-          page.should have_css("img[src='#{@image.file.gallery.url}']")
+          page.should have_css("img[src='#{@reference_project_for_rent.image.gallery.url}']")
         end
       end
 
@@ -68,24 +61,30 @@ describe "Homepage" do
       it "shows the title of the real estate" do
         visit root_path
         within(".rent-slide .image-caption-text") do
-          page.should have_content @real_estate.title
+          page.should have_content @reference_project_for_rent.title
         end
       end
+
+      describe "with url" do
+        before do
+          @reference_project_with_url = Fabricate :reference_project_for_rent, :url => 'link_to_project_website'
+        end
+
+        it "shows the link in the slider" do
+          visit root_path
+          page.should have_css("a[href='link_to_project_website']")
+        end
+      end
+
     end
 
 
     describe "The slide for buying real estates" do
       before do
         MediaAssetUploader.enable_processing = true
-        @image = Fabricate.build :media_assets_image, :is_primary => true
-        @real_estate = Fabricate :real_estate,
-                                 :title => "Home Sweet Home for sale",
-                                 :offer => RealEstate::OFFER_FOR_SALE,
-                                 :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
-                                 :address => Fabricate.build(:address),
-                                 :category => Fabricate(:category),
-                                 :images => [@image]
+        @reference_project_for_sale = Fabricate :reference_project_for_sale
       end
+
       after do
         MediaAssetUploader.enable_processing = false
       end
@@ -93,7 +92,7 @@ describe "Homepage" do
       it "shows the primary image of the appropriate real estate" do
         visit root_path
         within(".sale-slide") do
-          page.should have_css("img[src='#{@image.file.gallery.url}']")
+          page.should have_css("img[src='#{@reference_project_for_sale.image.gallery.url}']")
         end
       end
 
@@ -108,7 +107,7 @@ describe "Homepage" do
       it "shows the title of the real estate" do
         visit root_path
         within(".sale-slide .image-caption-text") do
-          page.should have_content @real_estate.title
+          page.should have_content @reference_project_for_sale.title
         end
       end
     end

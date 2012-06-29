@@ -3,6 +3,8 @@ class ReferenceProject
   include Mongoid::Timestamps
 
   default_scope asc(:position)
+  scope :for_rent, where(:offer => RealEstate::OFFER_FOR_RENT)
+  scope :for_sale, where(:offer => RealEstate::OFFER_FOR_SALE)
 
   field :title,       :type => String
   field :description, :type => String

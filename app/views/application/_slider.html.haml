@@ -1,9 +1,12 @@
 .flex-container
   .flexslider
     %ul.slides
-      - projects.each do |real_estate|
+      - projects.each do |reference_project|
         %li
-          = image_tag real_estate.images.primary.file.gallery.url
+          = image_tag reference_project.image.gallery.url
           .image-caption
             .image-caption-text
-              = real_estate.reference_project_caption
+              %h3= reference_project.title
+              -if reference_project.url.present?
+                =link_to(t('reference_projects.project_website_link'), reference_project.url)
+              %p= reference_project.description

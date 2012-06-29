@@ -7,3 +7,11 @@ Fabricator(:reference_project) do
   position Fabricate.sequence
 end
 
+Fabricator(:reference_project_for_sale, :from => :reference_project) do
+  offer RealEstate::OFFER_FOR_SALE
+end
+
+Fabricator(:reference_project_for_rent, :from => :reference_project) do
+  offer RealEstate::OFFER_FOR_RENT
+end
+
