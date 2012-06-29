@@ -1,7 +1,5 @@
 en:
   real_estates:
-    reference_projects:
-      link_title: 'Project'
     search_filter:
       private: 'Residential'
       commercial: 'Commercial'
