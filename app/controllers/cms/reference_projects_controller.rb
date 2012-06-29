@@ -30,7 +30,7 @@ module Cms
       @reference_project = ReferenceProject.new(params[:reference_project])
 
       if @reference_project.save
-        flash[:success] = %(Das Referenzprojekt "#{@reference_project.title}" wurde erfolgreich gespeichert.)
+        flash[:success] = t("flash.actions.create.notice", :resource_name => @reference_project.title)
         redirect_to cms_reference_projects_path(:content_locale => @reference_project.locale)
       else
         render 'new'
@@ -40,7 +40,7 @@ module Cms
     def update
       @reference_project = ReferenceProject.find params[:id]
       if @reference_project.update_attributes(params[:reference_project])
-        flash[:success] = t("cms.reference_projects.update.success")
+        flash[:success] = t("flash.actions.update.notice", :resource_name => @reference_project.title)
         redirect_to cms_reference_projects_path(:content_locale => @reference_project.locale)
       else
         render 'edit'
@@ -50,7 +50,7 @@ module Cms
     def destroy
       @reference_project = ReferenceProject.find params[:id]
       if @reference_project.destroy
-        flash[:success] = t("cms.reference_projects.destroy.success")
+        flash[:success] = t("flash.actions.destroy.notice", :resource_name => @reference_project.title)
       end
       redirect_to cms_reference_projects_path(:content_locale => @reference_project.locale)
     end
