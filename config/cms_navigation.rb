@@ -51,6 +51,7 @@ SimpleNavigation::Configuration.run do |navigation|
     #
     primary.item :dashboard, 'Dashboard', cms_dashboards_path
     primary.item :real_estates, 'Immobilien', cms_real_estates_path, :highlights_on => :subpath
+    primary.item :reference_projects, 'Referenzprojekte', cms_reference_projects_path, :highlights_on => :subpath
     primary.item :news, 'News', cms_news_items_path, :if => Proc.new { can? :manage, NewsItem }, :highlights_on => :subpath
     primary.item :employees, 'Mitarbeiter', cms_employees_path, :if => Proc.new { can? :manage, Employee }, :highlights_on => :subpath
     primary.item :jobs, 'Jobs', cms_jobs_path, :if => Proc.new { can? :manage, Job }, :highlights_on => :subpath
