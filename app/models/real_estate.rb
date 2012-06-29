@@ -30,6 +30,7 @@ class RealEstate
   belongs_to :editor, :class_name => 'Cms::User'
 
   has_many :appointments
+  has_many :reference_projects, :dependent => :nullify
 
   embeds_one :reference, :as => :referencable
   #deprecate :reference # disable for now, because it will always log as long as we have defined embeds_one

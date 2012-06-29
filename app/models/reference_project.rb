@@ -14,6 +14,8 @@ class ReferenceProject
   field :image,       :type => String
   field :position,    :type => Integer
 
+  belongs_to :real_estate
+
   validates :title, :description, :locale, :offer, :image, :presence => true
   validates_length_of :description, maximum: 400
   validates_length_of :title, maximum: 30

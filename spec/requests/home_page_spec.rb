@@ -70,9 +70,24 @@ describe "Homepage" do
           @reference_project_with_url = Fabricate :reference_project_for_rent, :url => 'link_to_project_website'
         end
 
-        it "shows the link in the slider" do
+        it "shows the link to the project page in the slider" do
           visit root_path
           page.should have_css("a[href='link_to_project_website']")
+        end
+      end
+
+      describe "with referenced real estate" do
+        let :real_estate do
+          Fabricate(:residential_building)
+        end
+
+        before do
+          @reference_project_with_url = Fabricate :reference_project_for_rent, :real_estate => real_estate
+        end
+
+        it "shows the link to the real estate in the slider" do
+          visit root_path
+          page.should have_css("a[href='#{real_estate_path real_estate}']")
         end
       end
 

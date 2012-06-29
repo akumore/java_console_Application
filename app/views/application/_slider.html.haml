@@ -7,6 +7,8 @@
           .image-caption
             .image-caption-text
               %h3= reference_project.title
+              -if reference_project.real_estate.present?
+                %p=link_to(t('reference_projects.link_title'), real_estate_path(reference_project.real_estate))
               -if reference_project.url.present?
-                =link_to(t('reference_projects.project_website_link'), reference_project.url)
+                %p=link_to(t('reference_projects.project_website_link'), reference_project.url)
               %p= reference_project.description
