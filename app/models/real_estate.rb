@@ -163,6 +163,10 @@ class RealEstate
     channels.include? HOMEGATE_CHANNEL
   end
 
+  def is_website?
+    channels.include? WEBSITE_CHANNEL
+  end
+
 
   private
   def init_channels
