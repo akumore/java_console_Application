@@ -2,7 +2,7 @@ module Export
   module Homegate
     class Cleanup
 
-      attr_reader :directory
+      attr_reader :entries
 
       def initialize export_dir
         @export_dir = export_dir

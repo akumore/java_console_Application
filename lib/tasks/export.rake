@@ -26,7 +26,7 @@ namespace :export do
     logger.formatter = Logger::Formatter.new
     logger.info "Starting real estate export cleanup rake task"
 
-    Export::Homegate::Cleaner.new.run
+    Export::Homegate::Cleanup.new("#{Rails.root}/tmp/export").run
     logger.info "Finished real estate export cleanup rake task."
   end
 
