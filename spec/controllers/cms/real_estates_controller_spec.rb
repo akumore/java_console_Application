@@ -20,7 +20,7 @@ describe 'Real Estate Wizard' do
 
     describe '#create' do
       it 'redirects to the new address tab' do
-        post :create, :real_estate => Fabricate.attributes_for(:real_estate, :category_id => category.id)
+        put :create, :real_estate => Fabricate.attributes_for(:real_estate, :category_id => category.id)
         response.should redirect_to new_cms_real_estate_address_path(RealEstate.first)
       end
     end
