@@ -159,32 +159,46 @@ td
     line-height: 1.5em
     display: block
 
+.offer-utilization-filters
+  background: $search-background-color
+  padding: 0.5em 40px
+
+  select
+    width: 100%
+    display: block
+    margin: 10px 0px
+
+.select-group
+  +float_left
+  margin: 5px 20px 0 0
+
+.mobile-view
+  display: none
+
 .search-filter-form
   background: $brown
   padding: 0.5em 40px
 
   label
     +float-left
-    margin-right: 15px
-    margin-top: 10px
 
   select
     width: 200px
-    margin-right: 10px
-    float: left
+    margin-left: 15px
 
   input[type=submit]
     +form-submit
 
   .chzn-container-multi
     .chzn-choices
-      margin-top: 7px
       background-color: #e6e6e2
       @extend .arrow-dropdown
 
   .chzn-container
     +float-left
-    margin-right: 20px
+    display: block
+    margin: -3px 0 0 15px
+
     li a
       padding: 0px
 
