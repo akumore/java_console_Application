@@ -23,7 +23,7 @@ module Export
 
       def run
         removable_exports.each do |dir|
-          Dir.rmdir(File.join(@export_dir, dir))
+          FileUtils.rm_rf(File.join(@export_dir, dir))
         end
       end
     end

@@ -14,8 +14,8 @@ describe Export::Homegate::Cleanup do
     it 'removes all removable export directories from disc' do
       cleaner = Export::Homegate::Cleanup.new('tmp/export')
       cleaner.should_receive(:removable_exports).and_return(['2012_02_01', '2012_04_12'])
-      Dir.should_receive(:rmdir).with('tmp/export/2012_02_01')
-      Dir.should_receive(:rmdir).with('tmp/export/2012_04_12')
+      FileUtils.should_receive(:rm_rf).with('tmp/export/2012_02_01')
+      FileUtils.should_receive(:rm_rf).with('tmp/export/2012_04_12')
       cleaner.run
     end
   end
