@@ -1,0 +1,22 @@
+require 'spec_helper'
+
+describe Export::Homegate::Cleanup do
+
+  describe '#removable_exports' do
+    it 'returns a list of export folders older then 5 days' do
+      cleaner = Export::Homegate::Cleanup.new('tmp/export')
+      cleaner.should_receive(:entries).and_return(['.', '..', '2012_02_01', '2012_04_12', '2048_01_09'])
+      cleaner.removable_exports.should == ['2012_02_01', '2012_04_12']
+    end
+  end
+
+  describe '#run' do
+    it 'removes all removable export directories from disc' do
+      cleaner = Export::Homegate::Cleanup.new('tmp/export')
+      cleaner.should_receive(:removable_exports).and_return(['2012_02_01', '2012_04_12'])
+      Dir.should_receive(:rmdir).with('tmp/export/2012_02_01')
+      Dir.should_receive(:rmdir).with('tmp/export/2012_04_12')
+      cleaner.run
+    end
+  end
+end
