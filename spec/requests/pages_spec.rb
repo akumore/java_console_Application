@@ -73,7 +73,7 @@ describe "Pages" do
       end
 
       it "shows a reference projects slider" do
-        Fabricate :published_real_estate, :offer => RealEstate::OFFER_FOR_RENT, :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL], :category => Fabricate(:category)
+        Fabricate :reference_project
         visit "/de/company"
         page.should have_css("#reference-projects .flex-container .flexslider")
         page.should have_css("#reference-projects ul.slides li")

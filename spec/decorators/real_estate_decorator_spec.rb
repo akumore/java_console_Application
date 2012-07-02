@@ -27,7 +27,6 @@ describe RealEstateDecorator do
       :mini_doku_link,
       :floorplan_print_link,
       :project_website_link,
-      :reference_project_caption
     ].each do |accessor|
       it "calling #{accessor} doesnt raise an exception with invalid data" do
         expect { @decorator.send(accessor) }.to_not raise_error

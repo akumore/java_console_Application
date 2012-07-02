@@ -53,12 +53,6 @@ describe "RealEstates" do
       page.should have_css "#real-estate-#{real_estate.id}"
     end
 
-    it "shows published real estates enabled for web channel only" do
-      real_estate.update_attribute :channels, [RealEstate::REFERENCE_PROJECT_CHANNEL]
-      visit real_estates_path
-      page.should_not have_css "#real-estate-#{real_estate.id}"
-    end
-
 
     describe "Shown information about a search results" do
       let :primary_image do
@@ -138,13 +132,7 @@ describe "RealEstates" do
       context "with projects for rent" do
         before :each do
           3.times do
-            Fabricate(:published_real_estate,
-              :offer => RealEstate::OFFER_FOR_RENT,
-              :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
-              :category => Fabricate(:category),
-              :address => Fabricate.build(:address),
-              :images => [Fabricate.build(:media_assets_image, :is_primary => :true)]
-            )
+            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_RENT)
           end
           visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT)
         end
@@ -161,23 +149,16 @@ describe "RealEstates" do
       context "with projects for sale" do
         before :each do
           2.times do
-            Fabricate(:published_real_estate,
-              :offer => RealEstate::OFFER_FOR_SALE,
-              :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
-              :category => Fabricate(:category),
-              :address => Fabricate.build(:address),
-              :images => [Fabricate.build(:media_assets_image, :is_primary => :true)]
-            )
+            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_SALE)
           end
+          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
         end
 
         it "shows the slider container" do
-          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
           page.should have_css(".real_estates .flex-container .flexslider")
         end
 
         it "has 2 slides" do
-          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
           page.should have_css(".real_estates ul.slides li", :count => 2)
         end
       end

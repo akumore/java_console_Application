@@ -192,13 +192,12 @@ describe RealEstate do
       category = Fabricate(:category)
       @website_enabled = Fabricate :real_estate, :channels => [RealEstate::WEBSITE_CHANNEL], :category => category
       @homegate_enabled = Fabricate :real_estate, :channels => [RealEstate::HOMEGATE_CHANNEL, RealEstate::WEBSITE_CHANNEL], :category => category
-      @reference_project = Fabricate :real_estate, :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL, RealEstate::WEBSITE_CHANNEL], :category => category
       @print_enabled = Fabricate :real_estate, :channels => [RealEstate::PRINT_CHANNEL, RealEstate::WEBSITE_CHANNEL], :category => category
       @microsite_enabled = Fabricate :real_estate, :channels => [RealEstate::MICROSITE_CHANNEL], :category => category
     end
 
     it "gets real estates for website" do
-      [@website_enabled, @homegate_enabled, @reference_project, @print_enabled].each do |real_estate|
+      [@website_enabled, @homegate_enabled, @print_enabled].each do |real_estate|
         RealEstate.web_channel.all.should include real_estate
       end
     end
@@ -211,9 +210,6 @@ describe RealEstate do
       RealEstate.microsite.all.should == [@microsite_enabled]
     end
 
-    it "gets reference projects" do
-      RealEstate.reference_projects.all.should == [@reference_project]
-    end
   end
 
 
