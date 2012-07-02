@@ -43,6 +43,7 @@ module Cms
         flash[:success] = t("flash.actions.update.notice", :resource_name => @reference_project.title)
         redirect_to cms_reference_projects_path(:content_locale => @reference_project.locale)
       else
+        @real_estates = RealEstate.all
         render 'edit'
       end
     end
