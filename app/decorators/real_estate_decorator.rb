@@ -59,20 +59,6 @@ class RealEstateDecorator < ApplicationDecorator
     buffer.join(tag('br')).html_safe
   end
 
-  def reference_project_caption
-
-    if address && address.link_url.present?
-      link = real_estate.address.link_url
-    elsif channels.include?(RealEstate::WEBSITE_CHANNEL) && channels.include?(RealEstate::REFERENCE_PROJECT_CHANNEL)
-      link = h.real_estate_path(model)
-    end
-
-    buffer = []
-    buffer << h.content_tag(:h3, real_estate.title)
-    buffer << h.content_tag(:div, link_to(t('real_estates.reference_projects.link_title'), link)) if link.present?
-    buffer.join.html_safe
-  end
-
   def description
     if model.description.present?
       markdown model.description
