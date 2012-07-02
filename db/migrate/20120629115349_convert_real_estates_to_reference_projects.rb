@@ -8,7 +8,7 @@ class ConvertRealEstatesToReferenceProjects < Mongoid::Migration
         puts "Create Reference Project: #{real_estate.title}"
         ReferenceProject.create!(
           :title => truncate(real_estate.title, :length => 35),
-          :description => truncate(description, :length => 400),
+          :description => truncate(description, :length => 500),
           :locale => locale,
           :image => real_estate.images.primary.file,
           :real_estate => real_estate,
