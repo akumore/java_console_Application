@@ -5,9 +5,9 @@ de:
     attributes:
       appointment:
         firstname: 'Vorname'
-        lastname: 'Nachname'
+        lastname: 'Name'
         email:  'E-Mail'
-        phone: 'Telefonnummer'
-        street: 'Strasse und Hausnummer'
+        phone: 'Telefon'
+        street: 'Strasse'
         zipcode: 'PLZ'
         city: 'Ort'

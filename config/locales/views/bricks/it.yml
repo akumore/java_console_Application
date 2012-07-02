@@ -45,3 +45,4 @@ it:
         head_of_subsidiaries: 'Direttore succursali'
         director_of_subsidiary_western_switzerland: 'Direttore succursale Svizzera romanda'
         director_of_subsidiary_southern_switzerland: 'Direttore succursale Ticino'
+        mailto_text: 'E-Mail'

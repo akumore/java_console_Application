@@ -4,6 +4,10 @@ require 'spec_helper'
 describe "Cms::RealEstates" do
   create_category_tree
 
+  before do
+    Fabricate(:row_house_category)
+  end
+
   describe "Visit cms_real_estates path" do
     login_cms_user
 
@@ -230,6 +234,17 @@ describe "Cms::RealEstates" do
         find(:css, '#real_estate_contact_id option[selected]').text.should == 'Henker, Hanna'
       end
     end
+
+    context 'when selecting a row house', :js => true do
+      before do
+        visit edit_cms_real_estate_path(@fabricated_real_estate)
+      end
+
+      it 'shows the building type immediately' do
+        select 'Reihenfamilienhaus', :from => 'Kategorie'
+        page.should have_css('.building-type-container:not(.hidden)')
+      end
+    end
   end
 
 
@@ -281,7 +296,6 @@ describe "Cms::RealEstates" do
       it_should_behave_like "Copying a real estate"
     end
   end
-
 
   describe 'invalid tab' do
     login_cms_user

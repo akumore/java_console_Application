@@ -10,6 +10,7 @@
 #= require jquery.flexslider
 #= require jquery.fancybox
 #= require jquery.placeholder
+#= require jquery.lazyload
 #= require scrollTo
 #= require underscore
 #= require backbone

@@ -6,7 +6,7 @@
       = f.label :category_id
       .controls
         = f.grouped_collection_select :category_id, Category.top_level, :categories, :label, :id, :select_label
-    - if @real_estate.row_house?
+    .building-type-container.hidden{ 'data-dependent_on' => '#real_estate_category_id', 'data-dependent_on_value' => Category.where(:name => 'row_house').first.try(:id) }
       .control-group
         = f.label :building_type
         .controls

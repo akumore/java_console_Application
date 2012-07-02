@@ -1,0 +1,31 @@
+en:
+  handouts:
+    show:
+      for_rent_private: "Rental | Residential"
+      for_rent_commercial: "Rental | Commercial"
+    overview:
+      title: "Object Overview"
+      property: "Real estate"
+      address: "Address"
+      usable_surface_helptext: ""
+      description: "Short description"
+    floorplan:
+      title: "Layout"
+    images:
+      title: "Pictures"
+    description:
+      title: "Description"
+    contact:
+      title: "Contact"
+      position: "Consultancy and Renting"
+      street: "Neuhofstrasse 10"
+      zip: "CH-6340"
+      city: "Baar"
+      phone: "Telephone"
+      mobile: "Mobile"
+      fax: "Fax"
+      www: "www.alfred-mueller.ch"
+      department_names:
+        for_rent: "Consultancy and Renting"
+        for_sale: "Consultancy and Sales" #currently not used, we have handouts for_rent only
+

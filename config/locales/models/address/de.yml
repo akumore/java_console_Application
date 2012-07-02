@@ -14,3 +14,4 @@ de:
         lat: 'Breitengrad'
         lng: 'Längengrad'
         any_reference_key: 'Referenznummer'
+        manual_geocoding: 'Geokoordinaten manuell eintragen'

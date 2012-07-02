@@ -1,0 +1,31 @@
+it:
+  handouts:
+    show:
+      for_rent_private: "Affittare | Abitare"
+      for_rent_commercial: "Affittare | Lavorare"
+    overview:
+      title: "Panoramica dell'oggetto"
+      property: "Immobile"
+      address: "Indirizzo"
+      usable_surface_helptext: ""
+      description: "Breve descrizione"
+    floorplan:
+      title: "Pianta"
+    images:
+      title: "Immagini"
+    description:
+      title: "Descrizione"
+    contact:
+      title: "Contatto"
+      position: "Consulenza e locazione"
+      street: "Centro Monda 3"
+      zip: "CH-6568"
+      city: "Camorino"
+      phone: "Telefono"
+      mobile: "Mobile"
+      fax: "Fax"
+      www: "www.alfred-mueller.ch"
+      department_names:
+        for_rent: "Consulenza e locazione"
+        for_sale: "Consulenza e vendita" #currently not used, we have handouts for_rent only
+

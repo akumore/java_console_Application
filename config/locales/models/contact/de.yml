@@ -5,11 +5,11 @@ de:
     attributes:
       contact:
         firstname: 'Vorname'
-        lastname: 'Nachname'
+        lastname: 'Name'
         address: 'Adresse'
         street: 'Strasse'
         city: 'Ort'
         zip: 'PLZ'
-        email: 'e-Mail Adresse'
+        email: 'E-Mail'
         message: 'Nachricht'
 
