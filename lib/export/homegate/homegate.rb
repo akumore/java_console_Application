@@ -7,5 +7,6 @@ module Export
     autoload :CsvWriter,          'export/homegate/csv_writer'
     autoload :RealEstateDecorator,'export/homegate/real_estate_decorator'
     autoload :Uploader,           'export/homegate/uploader'
+    autoload :Cleanup,            'export/homegate/cleanup'
   end
 end
