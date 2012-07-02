@@ -10,7 +10,7 @@ class RealEstatesController < ApplicationController
 
   def index
     @real_estates = RealEstateDecorator.decorate get_filtered_real_estates(@search_filter)
-    @reference_projects = get_filtered_reference_projects(@search_filter)
+    @reference_projects = ReferenceProjectDecorator.decorate get_filtered_reference_projects(@search_filter)
   end
 
   def show
