@@ -28,7 +28,12 @@ describe HomepageController do
     describe "with locale :en" do
 
       before do
+        I18n.locale = :en
         get :index, :locale => :en
+      end
+
+      after do
+        I18n.locale = :de
       end
 
       it "assigns all english reference projects for sale to @projects_for_sale" do
