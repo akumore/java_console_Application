@@ -1,7 +1,7 @@
 module PagesHelper
 
   def reference_projects
-    ReferenceProject.where(:locale => I18n.locale)
+    ReferenceProjectDecorator.decorate ReferenceProject.where(:locale => I18n.locale)
   end
 
   def reference_project_image_caption_div(reference_project, &block)
