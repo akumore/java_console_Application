@@ -72,13 +72,16 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
       $("html").addClass("animation-start")
 
     # initialize fancybox overlays
-    $(".zoom-overlay").fancybox(
-      closeBtn: true
-      helpers:
-        overlay:
-          css:
-            backgroundColor: '#0A1930'
-    )
+    # (not on touch devices)
+    unless Modernizr.touch
+      $(".zoom-overlay").attr('href', ->
+        $(@).attr('data-zoomed-content')
+      ).fancybox
+        closeBtn: true
+        helpers:
+          overlay:
+            css:
+              backgroundColor: '#0A1930'
 
     #initialize chosen selects, doesn't work smoothly on iOS or touch devices in general
     unless Modernizr.touch

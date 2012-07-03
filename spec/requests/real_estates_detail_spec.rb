@@ -283,12 +283,15 @@ describe "RealEstates" do
       end
 
       it 'zooms the floorplan in an overlay', :js => true do
+        # Modernizr.touch by defaults is set to true for capybara webkit env
+        # Workaround: Set flag to false, then re-initialize Application
+        page.execute_script("Modernizr.touch = false;new AlfredMueller.Routers.Application();")
         find('.flexslider .slides li .zoom-floorplan').click
         page.should have_css(".fancybox-opened img[src='#{@real_estate_with_floorplan.floor_plans.first.file.url}']")
       end
     end
 
-    context 'not having a floorplan', :fp => true do
+    context 'not having a floorplan', :js => true, :fp => true do
       it 'does not show the floorplan link' do
         page.should_not have_link('Grundriss anzeigen')
       end
