@@ -68,10 +68,16 @@ describe "RealEstates" do
       before { MediaAssetUploader.enable_processing = true }
       after { MediaAssetUploader.enable_processing = false }
 
-      it "shows the thumbnail of the primary image" do
+      it "shows the lazy loading thumbnail placeholder" do
         real_estate.images << primary_image
         visit real_estates_path
-        page.should have_css(%(img[src="#{primary_image.file.thumb.url}"]))
+        page.should have_css(%(img[src="/assets/transparent.png"]))
+      end
+
+      it "stores the thumbnail of the primary image for the lazy loading" do
+        real_estate.images << primary_image
+        visit real_estates_path
+        page.should have_css(%(img[data-original="#{primary_image.file.thumb.url}"]))
       end
 
       it "has the json representation for the map coordinates" do
@@ -79,9 +85,9 @@ describe "RealEstates" do
         page.should have_content(real_estate.to_json(:only => :_id, :methods => :coordinates))
       end
 
-      it "shows the placeholder thumbnail if no primary image is set" do
+      it "stores the placeholder thumbnail if no primary image is set for the lazy loading" do
         visit real_estates_path
-        page.should have_css('img[src="/images/fallback/thumb_default.png"]')
+        page.should have_css('img[data-original="/images/fallback/thumb_default.png"]')
       end
 
       it "shows the title" do
