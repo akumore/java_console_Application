@@ -49,6 +49,7 @@ describe "Cms::Users" do
             fill_in 'Passwort', :with => '123456'
             fill_in 'Passwort Bestätigung', :with => '123456'
             select 'Admin', :from => 'Rolle'
+            check 'E-Mails für Verifizierung von Immobilien erhalten'
           end
         end
 

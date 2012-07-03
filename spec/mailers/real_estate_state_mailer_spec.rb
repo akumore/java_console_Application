@@ -38,7 +38,7 @@ describe RealEstateStateMailer do
     end
 
     it 'sends the review mail to all admins' do
-      review_mail.to.should == Cms::User.admins.map(&:email)
+      review_mail.to.should == Cms::User.receiving_review_emails.map(&:email)
     end
 
     it 'includes the title in the subject' do

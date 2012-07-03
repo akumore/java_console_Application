@@ -22,7 +22,10 @@ class Cms::User
   field :role, :type => :String
   validates :role, :presence => true, :inclusion => ROLES
 
-  scope :admins, :where => { :role => :admin }
+  field :wants_review_emails, :type => Boolean
+
+  scope :admins, where(:role => :admin)
+  scope :receiving_review_emails, where(:role => :admin).where(:wants_review_emails => true)
 
   def editor?
     role.to_sym == :editor
