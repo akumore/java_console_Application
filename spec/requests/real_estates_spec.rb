@@ -213,6 +213,16 @@ describe "RealEstates" do
       end
     end
 
+    it "renders the hooks for the mobile optimized search filter" do
+      visit real_estates_path
+      within ".search-filter-container" do
+        page.should have_css ".js-for_rent"
+        page.should have_css ".js-for_sale"
+        page.should have_css ".js-private"
+        page.should have_css ".js-commercial"
+      end
+    end
+
     it "shows non-commercial offers for sale" do
       visit real_estates_path(:utilization=>RealEstate::UTILIZATION_PRIVATE, :offer=>RealEstate::OFFER_FOR_SALE)
       page.should have_selector('table tbody tr', :count => 1)
