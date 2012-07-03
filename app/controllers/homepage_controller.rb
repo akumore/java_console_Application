@@ -1,8 +1,8 @@
 class HomepageController < ApplicationController
 
   def index
-    @projects_for_rent = RealEstateDecorator.decorate RealEstate.reference_projects.where(:offer=>RealEstate::OFFER_FOR_RENT).all
-    @projects_for_sale = RealEstateDecorator.decorate RealEstate.reference_projects.where(:offer=>RealEstate::OFFER_FOR_SALE).all
+    @projects_for_sale = ReferenceProjectDecorator.decorate ReferenceProject.for_sale.where(:locale => I18n.locale)
+    @projects_for_rent = ReferenceProjectDecorator.decorate ReferenceProject.for_rent.where(:locale => I18n.locale)
   end
 
 end

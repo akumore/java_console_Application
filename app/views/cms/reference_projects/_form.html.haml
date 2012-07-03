@@ -1,0 +1,48 @@
+= form_for [:cms, @reference_project], :html => {:multipart => true} do |f|
+  = render 'cms/shared/errors', :model => @reference_project
+
+  %fieldset
+    = f.hidden_field :locale
+    .control-group.mandatory
+      = f.label :title
+      .controls
+        = f.text_field :title, :class => 'span8'
+    .control-group.mandatory
+      = f.label :description
+      .controls
+        = f.text_area :description, :class => 'span8'
+    .control-group.mandatory
+      = f.label :offer
+      .controls
+        %label.radio
+          = f.radio_button :offer, RealEstate::OFFER_FOR_RENT
+          %span= t(".#{RealEstate::OFFER_FOR_RENT}")
+        %label.radio
+          = f.radio_button :offer, RealEstate::OFFER_FOR_SALE
+          %span= t(".#{RealEstate::OFFER_FOR_SALE}")
+    .control-group
+      = f.label :url
+      .controls
+        = f.text_field :url, :class => 'span8'
+    .control-group
+      = f.label :real_estate
+      .controls
+        = f.select :real_estate_id, @real_estates.collect {|p| [ p.title, p.id ]}, { :include_blank => true }
+    .control-group
+      = f.label :image
+      .controls
+        = f.file_field :image
+        %p.help-block
+          = t('.image_help')
+        = f.hidden_field :image_cache
+        - if @reference_project.image.present?
+          .well
+            = image_tag @reference_project.image.preview.url
+
+    .form-actions
+      = f.submit nil, :class => 'btn btn-primary'
+      .pull-right
+        = link_to(cms_reference_projects_path, :class => 'btn small') do
+          %i.icon-list
+          = t('.overview')
+

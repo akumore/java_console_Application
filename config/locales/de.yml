@@ -74,7 +74,4 @@ de:
   company_url: '/de/company'
   knowledge_url: '/de/knowledge'
   contact_url: '/de/contact'
-#  errors:
-#    messages:
-#      extension_white_list_error: "muss ein %{allowed_types} sein"
 

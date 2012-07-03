@@ -10,7 +10,7 @@ class RealEstatesController < ApplicationController
 
   def index
     @real_estates = RealEstateDecorator.decorate get_filtered_real_estates(@search_filter)
-    @reference_projects = RealEstateDecorator.decorate get_filtered_reference_projects(@search_filter)
+    @reference_projects = ReferenceProjectDecorator.decorate get_filtered_reference_projects(@search_filter)
   end
 
   def show
@@ -35,6 +35,6 @@ class RealEstatesController < ApplicationController
 
   def get_filtered_reference_projects search_filter
     offer = search_filter.for_sale? ? RealEstate::OFFER_FOR_SALE : RealEstate::OFFER_FOR_RENT
-    RealEstate.published.web_channel.reference_projects.where(:offer => offer)
+    ReferenceProject.where(:locale => I18n.locale, :offer => offer)
   end
 end

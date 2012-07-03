@@ -298,7 +298,14 @@
   .image-caption-text
     display: block
     float: none
-    padding: 1em $margin-side
+    padding-top: 1em
+    & > *
+      padding: 0 $margin-side
+    .wide &, &
+      width: 100%
+
+  .flex-direction-nav li a
+    top: 30%
 
   .control-group
     label
