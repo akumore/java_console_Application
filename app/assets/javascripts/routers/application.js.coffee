@@ -74,7 +74,9 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     # initialize fancybox overlays
     # (not on touch devices)
     unless Modernizr.touch
-      $(".zoom-overlay").attr('href', -> $(@).attr('data-zoomed-content')).fancybox
+      $(".zoom-overlay").attr('href', ->
+        $(@).attr('data-zoomed-content')
+      ).fancybox
         closeBtn: true
         helpers:
           overlay:
