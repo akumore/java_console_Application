@@ -4,16 +4,16 @@
     .offer-tabs
       %ul
         %li.for_sale-tab{:class=>@search_filter.for_sale? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.for_sale"), real_estates_path(:offer=>SearchFilter::SALE, :utilization=>@search_filter.utilization)
+          = link_to t("real_estates.search_filter.for_sale"), real_estates_path(:offer=>SearchFilter::SALE, :utilization=>@search_filter.utilization), :class => 'js-for_sale'
         %li.for-rent-tab{:class=>@search_filter.for_rent? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.for_rent"), real_estates_path(:offer=>SearchFilter::RENT, :utilization=>@search_filter.utilization)
+          = link_to t("real_estates.search_filter.for_rent"), real_estates_path(:offer=>SearchFilter::RENT, :utilization=>@search_filter.utilization), :class => 'js-for_rent'
 
     .utilization-tabs
       %ul
         %li.non-commercial{:class=>!@search_filter.commercial? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.private"), real_estates_path({:offer=>@search_filter.offer, :utilization=>SearchFilter::NON_COMMERCIAL})
+          = link_to t("real_estates.search_filter.private"), real_estates_path({:offer=>@search_filter.offer, :utilization=>SearchFilter::NON_COMMERCIAL}), :class => 'js-private'
         %li.commercial{:class=>@search_filter.commercial? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.commercial"), real_estates_path({:offer=>@search_filter.offer, :utilization=>SearchFilter::COMMERCIAL})
+          = link_to t("real_estates.search_filter.commercial"), real_estates_path({:offer=>@search_filter.offer, :utilization=>SearchFilter::COMMERCIAL}), :class => 'js-commercial'
 
   = form_for @search_filter, :url=>real_estates_path, :method=>'GET' do |f|
     = f.hidden_field :offer
