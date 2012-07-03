@@ -16,7 +16,8 @@ module MediaAssets
     end
 
     it "returns a zoom link with the corresponding id" do
-      floor_plan_decorator.zoom_link.should =~ /#floorplan-zoomed-#{floor_plan_decorator.id}/
+      floor_plan_decorator.should_receive(:real_estate_floorplan_path).with(floor_plan.real_estate, floor_plan).and_return('link_to_floor_plan')
+      floor_plan_decorator.zoom_link.should =~ /link_to_floor_plan/
     end
 
     context "When additional_description is present" do
