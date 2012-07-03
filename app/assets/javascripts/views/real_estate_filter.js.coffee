@@ -9,5 +9,5 @@ class window.AlfredMueller.Views.RealEstateFilter extends Backbone.View
       @mobileFilterView.find("select").each ->
         $(this).bind "change", ->
           jsHook = ".js-#{$(this).val()}"
-          window.location.href = $(jsHook).attr("href", @el)
+          window.location.href = $(jsHook, @el).attr("href")
           return false
