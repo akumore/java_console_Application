@@ -2,7 +2,7 @@ de:
   cms:
     reference_projects:
       form:
-        image_help: 'Bildgrösse in der Referenzprojektansicht: XXxYY Pixel'
+        image_help: 'Bildgrösse in der Referenzprojektansicht: 1000x500 Pixel'
         for_rent: 'Mieten'
         for_sale: 'Kaufen'
       index:

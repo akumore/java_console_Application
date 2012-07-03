@@ -1,7 +1,7 @@
 class ReferenceProjectImageUploader < BaseUploader
 
   version :preview do
-    process :resize_to_fill => [250,250]
+    process :resize_to_fill => [500,250]
   end
 
   version :gallery do
