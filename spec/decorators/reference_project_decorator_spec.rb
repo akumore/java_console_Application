@@ -20,6 +20,17 @@ describe ReferenceProjectDecorator do
       reference_project.description.stub(:length => 160)
       reference_project_decorator.is_wide_content?.should be_true
     end
+
+    describe 'with no description' do
+
+      let :reference_project do
+        Fabricate :reference_project, :description => nil
+      end
+
+      it 'returns false' do
+        reference_project_decorator.is_wide_content?.should be_false
+      end
+    end
   end
 
 end
