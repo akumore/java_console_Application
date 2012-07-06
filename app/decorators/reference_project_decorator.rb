@@ -5,7 +5,7 @@ class ReferenceProjectDecorator < ApplicationDecorator
   decorates_association :real_estate
 
   def is_wide_content?
-    description.length > 150
+    description.present? && description.length > 150
   end
 
 end

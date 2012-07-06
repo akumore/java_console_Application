@@ -19,17 +19,13 @@ describe ReferenceProject do
       @reference_project.should have(1).error_on(:title)
     end
 
-    it 'requires a description' do
-      @reference_project.should have(1).error_on(:description)
-    end
-
     it 'requires a image' do
       @reference_project.should have(1).error_on(:image)
     end
 
-    it 'has 3 errors' do
+    it 'has 2 errors' do
       @reference_project.valid?
-      @reference_project.errors.should have(3).items
+      @reference_project.errors.should have(2).items
     end
   end
 
