@@ -1,7 +1,5 @@
 fr:
   real_estates:
-    reference_projects:
-      link_title: 'Vers le projet'
     search_filter:
       private: 'Habiter'
       commercial: 'Travailler'

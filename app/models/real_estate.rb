@@ -18,18 +18,18 @@ class RealEstate
   STATE_PUBLISHED = 'published'
   STATE_IN_REVIEW = 'in_review'
 
-  REFERENCE_PROJECT_CHANNEL = 'reference_projects'
   WEBSITE_CHANNEL = 'website'
   HOMEGATE_CHANNEL = 'homegate'
   PRINT_CHANNEL = 'print'
   MICROSITE_CHANNEL = 'microsite'
-  CHANNELS = %W(#{WEBSITE_CHANNEL} #{HOMEGATE_CHANNEL} #{PRINT_CHANNEL} #{REFERENCE_PROJECT_CHANNEL} #{MICROSITE_CHANNEL})
+  CHANNELS = %W(#{WEBSITE_CHANNEL} #{HOMEGATE_CHANNEL} #{PRINT_CHANNEL} #{MICROSITE_CHANNEL})
 
   belongs_to :category
   belongs_to :contact, :class_name => 'Employee'
   belongs_to :editor, :class_name => 'Cms::User'
 
   has_many :appointments
+  has_many :reference_projects, :dependent => :nullify
 
   embeds_one :reference, :as => :referencable
   #deprecate :reference # disable for now, because it will always log as long as we have defined embeds_one
@@ -80,7 +80,6 @@ class RealEstate
   scope :recently_updated, lambda { where( :updated_at.gte => 12.hours.ago ) }
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
   scope :print_channel, :where => { :channels => PRINT_CHANNEL }
-  scope :reference_projects, :where => { :channels => REFERENCE_PROJECT_CHANNEL }
   scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
 
 
@@ -162,6 +161,10 @@ class RealEstate
 
   def is_homegate?
     channels.include? HOMEGATE_CHANNEL
+  end
+
+  def is_website?
+    channels.include? WEBSITE_CHANNEL
   end
 
 

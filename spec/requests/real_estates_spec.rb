@@ -53,12 +53,6 @@ describe "RealEstates" do
       page.should have_css "#real-estate-#{real_estate.id}"
     end
 
-    it "shows published real estates enabled for web channel only" do
-      real_estate.update_attribute :channels, [RealEstate::REFERENCE_PROJECT_CHANNEL]
-      visit real_estates_path
-      page.should_not have_css "#real-estate-#{real_estate.id}"
-    end
-
 
     describe "Shown information about a search results" do
       let :primary_image do
@@ -68,10 +62,16 @@ describe "RealEstates" do
       before { MediaAssetUploader.enable_processing = true }
       after { MediaAssetUploader.enable_processing = false }
 
-      it "shows the thumbnail of the primary image" do
+      it "shows the lazy loading thumbnail placeholder" do
         real_estate.images << primary_image
         visit real_estates_path
-        page.should have_css(%(img[src="#{primary_image.file.thumb.url}"]))
+        page.should have_css(%(img[src="/assets/transparent.png"]))
+      end
+
+      it "stores the thumbnail of the primary image for the lazy loading" do
+        real_estate.images << primary_image
+        visit real_estates_path
+        page.should have_css(%(img[data-original="#{primary_image.file.thumb.url}"]))
       end
 
       it "has the json representation for the map coordinates" do
@@ -79,9 +79,9 @@ describe "RealEstates" do
         page.should have_content(real_estate.to_json(:only => :_id, :methods => :coordinates))
       end
 
-      it "shows the placeholder thumbnail if no primary image is set" do
+      it "stores the placeholder thumbnail if no primary image is set for the lazy loading" do
         visit real_estates_path
-        page.should have_css('img[src="/images/fallback/thumb_default.png"]')
+        page.should have_css('img[data-original="/images/fallback/thumb_default.png"]')
       end
 
       it "shows the title" do
@@ -138,13 +138,7 @@ describe "RealEstates" do
       context "with projects for rent" do
         before :each do
           3.times do
-            Fabricate(:published_real_estate,
-              :offer => RealEstate::OFFER_FOR_RENT,
-              :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
-              :category => Fabricate(:category),
-              :address => Fabricate.build(:address),
-              :images => [Fabricate.build(:media_assets_image, :is_primary => :true)]
-            )
+            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_RENT)
           end
           visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT)
         end
@@ -161,23 +155,16 @@ describe "RealEstates" do
       context "with projects for sale" do
         before :each do
           2.times do
-            Fabricate(:published_real_estate,
-              :offer => RealEstate::OFFER_FOR_SALE,
-              :channels => [RealEstate::REFERENCE_PROJECT_CHANNEL],
-              :category => Fabricate(:category),
-              :address => Fabricate.build(:address),
-              :images => [Fabricate.build(:media_assets_image, :is_primary => :true)]
-            )
+            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_SALE)
           end
+          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
         end
 
         it "shows the slider container" do
-          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
           page.should have_css(".real_estates .flex-container .flexslider")
         end
 
         it "has 2 slides" do
-          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
           page.should have_css(".real_estates ul.slides li", :count => 2)
         end
       end
@@ -223,6 +210,16 @@ describe "RealEstates" do
       within ".search-filter-container" do
         page.should have_css ".offer-tabs"
         page.should have_css ".utilization-tabs"
+      end
+    end
+
+    it "renders the hooks for the mobile optimized search filter" do
+      visit real_estates_path
+      within ".search-filter-container" do
+        page.should have_css ".js-for_rent"
+        page.should have_css ".js-for_sale"
+        page.should have_css ".js-private"
+        page.should have_css ".js-commercial"
       end
     end
 

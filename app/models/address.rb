@@ -55,7 +55,7 @@ class Address
   end
 
   def manually_geocode
-    self.location = [@lng, @lat]
+    self.location = [@lng, @lat] if @lat.presence && @lng.presence
   end
 
   def lat

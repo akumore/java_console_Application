@@ -7,7 +7,7 @@ class RealEstateStateMailer < ActionMailer::Base
     @real_estate = real_estate
 
     mail :subject => "Bitte publizieren: #{real_estate.title}",
-      :to => Cms::User.admins.map(&:email), reply_to: real_estate.editor.email
+      :to => Cms::User.receiving_review_emails.map(&:email), reply_to: real_estate.editor.email
   end
 
   def reject_notification(real_estate, admin)

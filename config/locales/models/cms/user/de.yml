@@ -10,3 +10,4 @@ de:
         role_editor: 'Editor'
         password: 'Passwort'
         password_confirmation: 'Passwort Bestätigung'
+        wants_review_emails: 'E-Mails für Verifizierung von Immobilien erhalten'

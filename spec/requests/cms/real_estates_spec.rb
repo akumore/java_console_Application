@@ -111,12 +111,6 @@ describe "Cms::RealEstates" do
           real_estate.channels.should include RealEstate::WEBSITE_CHANNEL
         end
 
-        it 'enables it as reference project' do
-          check 'Referenzprojekt'
-          click_on 'Immobilie erstellen'
-          real_estate.channels.should include RealEstate::REFERENCE_PROJECT_CHANNEL
-        end
-
         it 'enables it for homegate export' do
           check 'Homegate'
           click_on 'Immobilie erstellen'
@@ -138,9 +132,8 @@ describe "Cms::RealEstates" do
         it 'enables it for multiple channels' do
           check 'Website'
           check 'Homegate'
-          check 'Referenzprojekt'
           click_on 'Immobilie erstellen'
-          [RealEstate::HOMEGATE_CHANNEL, RealEstate::REFERENCE_PROJECT_CHANNEL, RealEstate::WEBSITE_CHANNEL].each do |channel|
+          [RealEstate::HOMEGATE_CHANNEL, RealEstate::WEBSITE_CHANNEL].each do |channel|
             real_estate.channels.should include channel
           end
         end

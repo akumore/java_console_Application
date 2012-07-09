@@ -74,9 +74,11 @@
 
 .image-caption-text
   +float_right
-  width: 280px
+  width: 260px
   color: $dark
-  padding: 1em 0 0 0
+  padding: 1em 1em 0 0
+  .wide &
+    width: 440px
 
   h3
     margin-bottom: 0.25em
@@ -88,6 +90,8 @@
   position: absolute
   left: 0
   top: 0
+  &.wide
+    background: image-url('image-caption-top-wide.png') no-repeat top right
 
 .icon-list
   +no-bullets
