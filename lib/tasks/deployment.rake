@@ -1,6 +1,9 @@
 desc 'run post-deployment tasks'
 
 task :post_deploy do
+  puts 'Migrate DB'
+  Rake::Task["db:migrate"].invoke
+
   puts 'Precompiling assets'
   Rake::Task["assets:precompile"].invoke
 
