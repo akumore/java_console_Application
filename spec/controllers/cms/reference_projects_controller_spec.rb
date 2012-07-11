@@ -60,5 +60,32 @@ describe Cms::ReferenceProjectsController do
     end
 
   end
+
+  describe '#create' do
+    let! :reference_project do
+      Fabricate :reference_project
+    end
+
+    before do
+      ReferenceProject.stub!(:new).and_return(reference_project)
+    end
+
+    describe 'on success' do
+      it 'should redirect to index' do
+        reference_project.stub!(:save).and_return(true)
+        put :create, :reference_project => Fabricate.attributes_for(:reference_project)
+        response.should redirect_to cms_reference_projects_path(:content_locale => I18n.locale)
+      end
+    end
+
+    describe 'on failure' do
+      it "assigns the real_estate list on create errors" do
+        reference_project.stub(:save => false)
+        put :create, :reference_project => Fabricate.attributes_for(:reference_project)
+        assigns(:real_estates).should eq(RealEstate.all)
+      end
+    end
+
+  end
 end
 

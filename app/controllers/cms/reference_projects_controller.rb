@@ -28,11 +28,11 @@ module Cms
 
     def create
       @reference_project = ReferenceProject.new(params[:reference_project])
-
       if @reference_project.save
         flash[:success] = t("flash.actions.create.notice", :resource_name => @reference_project.title)
         redirect_to cms_reference_projects_path(:content_locale => @reference_project.locale)
       else
+        @real_estates = RealEstate.all
         render 'new'
       end
     end
