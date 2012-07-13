@@ -33,4 +33,11 @@ describe ReferenceProjectDecorator do
     end
   end
 
+  describe '#title' do
+    it 'truncates title to 40 chars' do
+      project = Fabricate :reference_project, :title => '01234567801234567899012345678901234567890123456789'
+      decorator = ReferenceProjectDecorator.decorate project
+      decorator.title.should == '0123456780123456789901234567890123456...'
+    end
+  end
 end

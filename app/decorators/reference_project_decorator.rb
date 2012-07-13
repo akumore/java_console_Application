@@ -8,5 +8,9 @@ class ReferenceProjectDecorator < ApplicationDecorator
     description.present? && description.length > 150
   end
 
+  def title
+    truncate(model.title, :length => 40)
+  end
+
 end
 
