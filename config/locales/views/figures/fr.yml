@@ -1,7 +1,7 @@
 fr:
   figures:
     floor: 'Etage'
-    floors: 'étages'
+    floors: 'Etages'
     rooms: 'Nombre pièces'
     surface:
       commercial: 'Surface utile'
@@ -18,6 +18,6 @@ fr:
     surface_value: '%{size} m²'
     ceiling_height_value: '%{size} m'
     floors_value:
-      one: '%{count} Etage'
+      one: '%{count} étage'
       other: '%{count} étages'
 
