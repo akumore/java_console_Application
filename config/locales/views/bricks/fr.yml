@@ -27,7 +27,7 @@ fr:
         vision: 'Vision'
         board_of_directors: "Conseil d'administration"
         managing_board: "Direction de l'entreprise"
-        reference_projects: 'Référence du projet'
+        reference_projects: 'Projets de référence'
         honorary_president: "Président d'honneur"
         president_of_board_of_directors: "Président du Conseil d'administration"
         vice_president_of_board_of_directors: "Vice-président du Conseil d'administration"
@@ -41,6 +41,6 @@ fr:
         head_of_marketing_and_sales: 'Directeur marketing et vente'
         head_development_and_general_contracting: 'Directeur développement et entreprise générale'
         head_of_subsidiaries: 'Directeur des succursales'
-        director_of_subsidiary_western_switzerland: 'Directeur de la succursale de la Romandie'
+        director_of_subsidiary_western_switzerland: 'Directeur de la succursale Suisse romande'
         director_of_subsidiary_southern_switzerland: 'Directeur de la succursale du Tessin'
         mailto_text: 'E-Mail'

@@ -18,7 +18,6 @@ class ReferenceProject
 
   validates :title, :locale, :offer, :image, :presence => true
   validates_length_of :description, maximum: 500
-  validates_length_of :title, maximum: 35
 
   mount_uploader :image, ReferenceProjectImageUploader
 

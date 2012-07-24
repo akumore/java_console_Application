@@ -12,4 +12,9 @@ task :post_deploy do
 
   puts 'Restarting thin servers'
   Rake::Task["thin:restart"].invoke
+
+  if Rails.env.production?
+    puts 'Notifiying campfire'
+    Rake::Task["sc:campfire:notify"].invoke
+  end
 end
