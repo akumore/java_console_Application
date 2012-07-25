@@ -33,7 +33,10 @@ SimpleNavigation::Configuration.run do |navigation|
   # Define the primary navigation
   navigation.items do |primary|
 
-    primary.item :real_estate, t('navigation.main.real_estate'), real_estates_path, :highlights_on => proc { controller.request.path.include?('real_estate') }
+    primary.item :real_estate, t('navigation.main.real_estate'), real_estates_path, :highlights_on => proc { controller.request.path.include?('real_estate') } do |offer|
+      offer.item  t("real_estates.search_filter.for_sale"), t("real_estates.search_filter.for_sale"), real_estates_path(:offer => SearchFilter::SALE, :utilization => RealEstate::UTILIZATION_PRIVATE)
+      offer.item  t("real_estates.search_filter.for_rent"), t("real_estates.search_filter.for_rent"),  real_estates_path(:offer => SearchFilter::RENT, :utilization => RealEstate::UTILIZATION_PRIVATE)
+    end
 
     primary.item :jobs, t('navigation.main.jobs'), t('jobs_url'), :highlights_on => proc { controller.request.path == I18n.t('jobs_url') } do |jobs|
       jobs_subnavigation do |title|
@@ -41,7 +44,7 @@ SimpleNavigation::Configuration.run do |navigation|
       end
 
       jobs.dom_class = 'clearfix'
-    end
+    end 
 
     primary.item :company, t('navigation.main.company'), t('company_url'), :highlights_on => proc { controller.request.path == I18n.t('company_url') } do |company|
       company_subnavigation do |title|
