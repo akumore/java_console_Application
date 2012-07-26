@@ -57,6 +57,8 @@ describe "Pages" do
           page.should have_content "Christoph Müller"
           page.should have_content "Viktor Naumann"
           page.should have_content "Dr. Erich Rüegg"
+          # only email of Christoph Müller is needed here
+          page.should have_link 'E-Mail', :href => "mailto:christoph.mueller@alfred-mueller.ch"
         end
       end
 
@@ -69,6 +71,12 @@ describe "Pages" do
           page.should have_content "Walter Hochreutener"
           page.should have_content "Joe Schmalz"
           page.should have_content "David Spiess"
+          page.should have_link 'E-Mail', :href => "mailto:christoph.mueller@alfred-mueller.ch"
+          page.should have_link 'E-Mail', :href => "mailto:joe.schmalz@alfred-mueller.ch"
+          page.should have_link 'E-Mail', :href => "mailto:michael.mueller@alfred-mueller.ch"
+          page.should have_link 'E-Mail', :href => "mailto:david.spiess@alfred-mueller.ch"
+          page.should have_link 'E-Mail', :href => "mailto:beat.stocker@alfred-mueller.ch"
+          page.should have_link 'E-Mail', :href => "mailto:viktor.naumann@alfred-mueller.ch"
         end
       end
 
