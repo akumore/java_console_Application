@@ -2,12 +2,7 @@
   %h2= t('.title')
 
   %dl
-    - if property_name = real_estate.property_name.presence
-      %dt= t('.property')
-      %dd= property_name
-
     - if real_estate.address.present?
-
       %dt= t('.address')
       %dd= real_estate.address.simple
 
