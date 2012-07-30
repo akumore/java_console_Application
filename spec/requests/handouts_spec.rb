@@ -52,7 +52,6 @@ describe "Handout aka MiniDoku" do
         :information => information,
         :title => 'Demo Objekt',
         :description => 'Lorem Ipsum',
-        :property_name => 'Gartenstadt',
         :floor_plans => [
           Fabricate.build(:media_assets_floor_plan)
         ],
@@ -74,11 +73,6 @@ describe "Handout aka MiniDoku" do
     it 'shows the chapter title' do
       visit real_estate_handout_path(printable_real_estate)
       page.should have_content('Objektübersicht')
-    end
-
-    it 'shows the property name' do
-      visit real_estate_handout_path(printable_real_estate)
-      page.should have_content('Gartenstadt')
     end
 
     it 'shows the address' do

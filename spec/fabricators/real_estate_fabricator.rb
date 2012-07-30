@@ -4,7 +4,6 @@ Fabricator(:real_estate) do
   offer RealEstate::OFFER_FOR_RENT
   channels { [RealEstate::WEBSITE_CHANNEL] }
   title { "A fine real estate property #{Fabricate.sequence}" }
-  property_name 'Garden City'
   description 'Some real estate description...'
   utilization_description 'Commercial, Restaurant'
 end

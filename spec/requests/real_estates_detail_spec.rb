@@ -61,10 +61,6 @@ describe "RealEstates" do
         page.should have_content(real_estate.title)
       end
 
-      it 'shows the property name' do
-        page.should have_content(real_estate.property_name)
-      end
-
       describe 'short infos' do
         it "shows the address" do
           page.within('.short-info') do
