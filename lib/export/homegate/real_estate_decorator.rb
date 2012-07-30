@@ -275,7 +275,7 @@ module Export::Homegate
           # numbers are not linear!
         }
       elsif cat == 'parking'
-        {
+        subcategories = {
           'open_slot'                   => 1,
           'covered_slot'                => 2,
           'single_garage'               => 3,
