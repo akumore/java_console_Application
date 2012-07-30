@@ -65,7 +65,8 @@ describe "Main Navigation" do
 
       visit I18n.t('jobs_url')
 
-      within '.sub-navigation' do
+      # scope within second sub-navigation
+      within all('.sub-navigation')[1] do
         page.should have_link 'Brick-Title 2', :href => "#{I18n.t('jobs_url')}#brick-title-2"
       end
     end
