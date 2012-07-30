@@ -224,4 +224,13 @@ describe Export::Homegate::RealEstateDecorator do
       real_estate_decorator.to_a.should be_all { |value| value.should == 'attribute with newlines'  }
     end
   end
+
+  describe '#object_type' do
+    it 'returns 5 for an underground_slot' do
+      real_estate = Export::Homegate::RealEstateDecorator
+        .decorate(mock_model(RealEstate, :category => mock_model(Category, :name => 'underground_slot')))
+      real_estate.stub!(:top_level_category_name).and_return('parking')
+      real_estate.object_type.should == 5
+    end
+  end
 end
