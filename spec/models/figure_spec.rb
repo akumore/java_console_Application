@@ -34,6 +34,10 @@ describe Figure do
         @figure.should have(1).error_on(:rooms)
       end
 
+      it 'requires a number for floor' do
+        @figure.should have(1).error_on(:floor)
+      end
+
       it 'requires a number for living_surface' do
         @figure.should have(1).error_on(:living_surface)
       end
@@ -88,7 +92,7 @@ describe Figure do
       end
 
       it 'requires a positive or negative floor number' do
-        @figure.should have(1).error_on(:floor)
+        @figure.should have(2).error_on(:floor)
       end
 
       it 'requires usable_surface to be present' do
