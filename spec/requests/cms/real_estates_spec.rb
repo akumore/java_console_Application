@@ -73,7 +73,6 @@ describe "Cms::RealEstates" do
           select 'Muster, Hans', :from => 'Kontaktperson'
 
           fill_in 'Titel', :with => 'My Real Estate'
-          fill_in 'Liegenschaftsname', :with => 'Gartenstadt'
           fill_in 'Beschreibung', :with => 'Some description...'
           fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel'
         end
@@ -148,11 +147,6 @@ describe "Cms::RealEstates" do
           real_estate.title.should == 'My Real Estate'
         end
 
-        it 'saves the property name' do
-          click_on 'Immobilie erstellen'
-          real_estate.property_name.should == 'Gartenstadt'
-        end
-
         it 'saves the description' do
           click_on 'Immobilie erstellen'
           real_estate.description.should == 'Some description...'
@@ -196,7 +190,6 @@ describe "Cms::RealEstates" do
           select 'Henker, Hanna', :from => 'Kontaktperson'
 
           fill_in 'Titel', :with => 'My edited Real Estate'
-          fill_in 'Liegenschaftsname', :with => 'Gartenstadt 2012'
           fill_in 'Beschreibung', :with => 'Some edited description...'
           fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel, Restaurant'
         end
@@ -212,7 +205,6 @@ describe "Cms::RealEstates" do
         @real_estate.channels.should == %w(print)
         @real_estate.title.should == 'My edited Real Estate'
         @real_estate.contact.fullname.should == 'Hanna Henker'
-        @real_estate.property_name.should == 'Gartenstadt 2012'
         @real_estate.description.should == 'Some edited description...'
         @real_estate.utilization_description.should == 'Gewerbe, Hotel, Restaurant'
       end

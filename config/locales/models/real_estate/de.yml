@@ -12,7 +12,6 @@ de:
         offer: 'Angebotstyp'
         channels: 'Ausgabekanäle'
         title: 'Titel'
-        property_name: 'Liegenschaftsname'
         description: 'Beschreibung'
         building_type: 'Haustyp'
         utilization_description: 'Nutzungsarten'

@@ -55,7 +55,6 @@ class RealEstate
   field :offer, :type => String, :default => RealEstate::OFFER_FOR_RENT
   field :channels, :type => Array, :default => [RealEstate::WEBSITE_CHANNEL]
   field :title, :type => String
-  field :property_name, :type => String
   field :description, :type => String
   field :building_type, :type => String
   field :utilization_description, :type => String
