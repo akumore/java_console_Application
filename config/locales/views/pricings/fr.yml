@@ -10,7 +10,7 @@ fr:
         sell: '%{price} / Verkaufspreis'
         sell_m2: '%{price} / Verkaufspreis / m²'
     title: 'Prix'
-    for_sale: 'Kaufpreis'
+    for_sale: 'Prix'
     for_rent_netto: 'Location (sans charges)'
     for_rent_extra: 'Charges'
     for_rent_depot: 'Garantie de loyer'
