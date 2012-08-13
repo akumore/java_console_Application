@@ -13,9 +13,9 @@ it:
     outside_parking_spots_temporary:
       one: 'Parcheggio temporanei all‘esterno'
       other: 'Parcheggi temporanei all‘esterno'
-    distances: 'Presso'
+    distances: 'Nelke vicinanze'
     points_of_interest:
-      public_transport: 'Transporti pubblici %{distance} m'
+      public_transport: 'Trasporti pubblici %{distance} m'
       shopping: 'Negozi %{distance} m'
       kindergarden: 'Asilo %{distance} m'
       elementary_school: 'Scuola elementare %{distance} m'
