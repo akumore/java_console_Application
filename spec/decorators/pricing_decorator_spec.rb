@@ -112,31 +112,31 @@ describe PricingDecorator do
     end
 
     it 'formats the sale price' do
-      @pricing.for_sale.should == "CHF 123'456.00 / Verkaufspreis"
+      @pricing.for_sale.should == "CHF 123'456.00"
     end
 
     it 'formats the inside parking price' do
-      @pricing.inside_parking.should == "CHF 140.00 / Verkaufspreis"
+      @pricing.inside_parking.should == "CHF 140.00"
     end
 
     it 'formats the outside parking price' do
-      @pricing.outside_parking.should == "CHF 150.00 / Verkaufspreis"
+      @pricing.outside_parking.should == "CHF 150.00"
     end
 
     it 'formats the temporary inside parking price' do
-      @pricing.inside_parking_temporary.should == "CHF 160.00 / Verkaufspreis"
+      @pricing.inside_parking_temporary.should == "CHF 160.00"
     end
 
     it 'formats the temporary outside parking price' do
-      @pricing.outside_parking_temporary.should == "CHF 170.00 / Verkaufspreis"
+      @pricing.outside_parking_temporary.should == "CHF 170.00"
     end
 
     it 'formats all parking prices monthly' do
       @pricing.update_attribute :price_unit, 'sell_m2'
-      @pricing.inside_parking.should == "CHF 140.00 / Verkaufspreis"
-      @pricing.outside_parking.should == "CHF 150.00 / Verkaufspreis"
-      @pricing.inside_parking_temporary.should == "CHF 160.00 / Verkaufspreis"
-      @pricing.outside_parking_temporary.should == "CHF 170.00 / Verkaufspreis"
+      @pricing.inside_parking.should == "CHF 140.00"
+      @pricing.outside_parking.should == "CHF 150.00"
+      @pricing.inside_parking_temporary.should == "CHF 160.00"
+      @pricing.outside_parking_temporary.should == "CHF 170.00"
     end
 
     context 'when an estimated price is set' do
