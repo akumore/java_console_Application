@@ -118,7 +118,7 @@ describe "RealEstates" do
 
       it "shows the availability date" do
         visit real_estates_path
-        page.should have_content "Bezug ab #{I18n.l(real_estate.information.available_from)}"
+        page.should have_content "Bezug ab sofort"
       end
 
       it "shows the localized price for sale" do
