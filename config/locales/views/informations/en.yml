@@ -8,6 +8,7 @@ en:
     characteristics: 'Characteristics'
     available_from: 'availability date'
     available_from_compact: 'availability date %{date}'
+    available_immediately: 'sofort'
     maximal_floor_loading: 'Maximum floor load'
     maximal_floor_loading_value: '%{count} kg'
     freight_elevator_carrying_capacity: 'Maximales Gewicht für Warenlift'
