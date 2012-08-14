@@ -18,7 +18,13 @@
               %span= floor_plan.title
             = floor_plan.zoom_link
             = floor_plan.real_estate.north_arrow_overlay
-            = floor_plan.zoomed_div
+            = zoomed_div floor_plan do
+              .toolbar
+                = link_to('close', '#', :class => 'icon-close zoom-close-button')
+                = link_to(t('real_estates.show.print_floorplan'), real_estate_floorplan_path(real_estate, floor_plan, :print => true), :class => 'icon-printer', :target => '_blank')
+              = image_tag floor_plan.file.url
+              = real_estate.north_arrow_overlay
+
         - real_estate.videos.each do |video|
           %li
             %video.sublime{ :preload => 'preload' }
