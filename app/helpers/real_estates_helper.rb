@@ -18,4 +18,10 @@ module RealEstatesHelper
     ]
   end
 
+  def zoomed_div(floorplan, &block)
+    content_tag :div, :class => "floorplan-zoomed", :id => "floorplan-zoomed-#{floorplan.id}" do
+      block.call
+    end
+  end
+
 end

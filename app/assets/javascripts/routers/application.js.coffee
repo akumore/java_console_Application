@@ -81,11 +81,14 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
       $(".zoom-overlay").attr('href', ->
         $(@).attr('data-zoomed-content')
       ).fancybox
-        closeBtn: true
+        closeBtn: false
+        padding: 5
         helpers:
           overlay:
             css:
               backgroundColor: '#0A1930'
+      $(".zoom-close-button").click ->
+        $.fancybox.close()
 
     #initialize chosen selects, doesn't work smoothly on iOS or touch devices in general
     unless Modernizr.touch
