@@ -1,5 +1,4 @@
 class DropPropertyName < Mongoid::Migration
-  extend ActionView::Helpers::TextHelper
 
   def self.up
     RealEstate.collection.update({}, {'$unset' => {:property_name => 1}}, :multi => true)
@@ -7,5 +6,6 @@ class DropPropertyName < Mongoid::Migration
 
   def self.down
   end
+
 end
 
