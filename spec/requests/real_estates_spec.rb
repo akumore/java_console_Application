@@ -304,6 +304,15 @@ describe "RealEstates" do
       page.should_not have_css("tr[id=real-estate-#{@goldau.id}]")
       page.should_not have_css("tr[id=real-estate-#{@adliswil.id}]")
     end
+
+    it 'keeps city field when changing sort order', :js => true do
+      select 'Arth'
+      click_button 'Suchen'
+      select 'Preis'
+
+      page.should have_css("tr[id=real-estate-#{@arth.id}]")
+      page.should_not have_css("tr[id=real-estate-#{@goldau.id}]")
+    end
   end
 
 end
