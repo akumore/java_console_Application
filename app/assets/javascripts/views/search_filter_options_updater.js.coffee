@@ -25,11 +25,9 @@ class window.AlfredMueller.Views.SearchFilterOptionsUpdater extends Backbone.Vie
       @citiesToOptions(@availableCities())
 
   clearCitiesOptions: ->
-#    console.log 'clearing cities options...'
     @citiesSelect.empty()
 
   addCitiesOptions: (options) ->
-#    console.log 'adding cities options: ', options
     for option in options
       $(option).appendTo(@citiesSelect)
 
