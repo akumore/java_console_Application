@@ -15,21 +15,20 @@
         %li.commercial{:class=>@search_filter.commercial? ? "selected" : ""}
           = link_to t("real_estates.search_filter.commercial"), real_estates_path({:offer=>@search_filter.offer, :utilization=>SearchFilter::COMMERCIAL}), :class => 'js-commercial'
 
-  = form_for @search_filter, :url=>real_estates_path, :method=>'GET' do |f|
-    = f.hidden_field :offer
-    = f.hidden_field :utilization
-    .mobile-view.offer-utilization-filters
-      = f.select :offer, offer_select_options
-      = f.select :utilization, utilization_select_options
-    .search-filter-form
-      = f.hidden_field :sort_field
-      = f.hidden_field :sort_order
-      .select-group
-        = f.label :cantons
-        = f.collection_select :cantons, cantons_for_collection_select(@search_filter.available_cantons.sort) , :first, :last, {}, :multiple=>true, :data=>{:placeholder=>t("helpers.select.prompt")}, :class=>'chzn-select'
-        .clear
-      .select-group
-        = f.label :cities
-        = f.select :cities, @search_filter.available_cities.sort, {}, :multiple=>true, :class=>'chzn-select', :data=>{'cantons-cities-map'=>@search_filter.cantons_cities_map, :placeholder=>t("helpers.select.prompt")}
-        .clear
-      = f.submit t "real_estates.search_filter.search"
+  = search_form.hidden_field :offer
+  = search_form.hidden_field :utilization
+  .mobile-view.offer-utilization-filters
+    = search_form.select :offer, offer_select_options
+    = search_form.select :utilization, utilization_select_options
+  .search-filter-form
+    = search_form.hidden_field :sort_field
+    = search_form.hidden_field :sort_order
+    .select-group
+      = search_form.label :cantons
+      = search_form.collection_select :cantons, cantons_for_collection_select(@search_filter.available_cantons.sort) , :first, :last, {}, :multiple=>true, :data=>{:placeholder=>t("helpers.select.prompt")}, :class=>'chzn-select'
+      .clear
+    .select-group
+      = search_form.label :cities
+      = search_form.select :cities, @search_filter.available_cities.sort, {}, :multiple=>true, :class=>'chzn-select', :data=>{'cantons-cities-map'=>@search_filter.cantons_cities_map, :placeholder=>t("helpers.select.prompt")}
+      .clear
+    = search_form.submit t "real_estates.search_filter.search"

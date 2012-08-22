@@ -7,7 +7,8 @@
   - content_for :javascript do
     %script{ :type => "text/javascript", :src => "http://cdn.sublimevideo.net/js/go4z5g30.js" }
 
-= render 'search_filter'
+= form_for @search_filter, :url=>real_estates_path, :method=>'GET' do |search_form|
+  = render 'search_filter', :search_form => search_form
 
 .detail
   .result-nav
