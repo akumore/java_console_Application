@@ -7,7 +7,7 @@ describe RealEstateObserver do
   end
 
   let :real_estate do
-    mock_model(RealEstate, :title => 'Test')
+    RealEstate.new :title => 'Test'
   end
 
   describe '#after_create' do

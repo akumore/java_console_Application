@@ -90,7 +90,7 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def object_documentation_title
-    "Objektdokumentation-#{model.title.parameterize}"
+    model.handout.filename
   end
 
   def application_form_link

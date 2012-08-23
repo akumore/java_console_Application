@@ -166,6 +166,9 @@ class RealEstate
     channels.include? WEBSITE_CHANNEL
   end
 
+  def handout
+    @handout ||= Handout.new(self)
+  end
 
   private
   def init_channels
