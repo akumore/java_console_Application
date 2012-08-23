@@ -118,7 +118,7 @@ describe "RealEstates" do
 
       it "shows the availability date" do
         visit real_estates_path
-        page.should have_content "Bezug ab #{I18n.l(real_estate.information.available_from)}"
+        page.should have_content "Bezug ab sofort"
       end
 
       it "shows the localized price for sale" do
@@ -303,6 +303,15 @@ describe "RealEstates" do
       page.should have_css("tr[id=real-estate-#{@arth.id}]")
       page.should_not have_css("tr[id=real-estate-#{@goldau.id}]")
       page.should_not have_css("tr[id=real-estate-#{@adliswil.id}]")
+    end
+
+    it 'keeps city field when changing sort order', :js => true do
+      select 'Arth'
+      click_button 'Suchen'
+      select 'Preis'
+
+      page.should have_css("tr[id=real-estate-#{@arth.id}]")
+      page.should_not have_css("tr[id=real-estate-#{@goldau.id}]")
     end
   end
 

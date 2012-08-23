@@ -20,17 +20,5 @@ module MediaAssets
       floor_plan_decorator.zoom_link.should =~ /link_to_floor_plan/
     end
 
-    context "When additional_description is present" do
-      context "and the orientation_degrees is set" do
-        it "should render the class tag with the id AND the north arrow tag" do
-          real_estate.additional_description = Fabricate.build(:additional_description, :orientation_degrees => 180)
-          floor_plan_decorator.zoomed_div.should =~ /img.*#{floor_plan.file.url}/
-          floor_plan_decorator.zoomed_div.should =~ /floorplan-zoomed-#{floor_plan_decorator.id}/
-          floor_plan_decorator.zoomed_div.should =~ /north-arrow-container.*img.*src.*180/
-        end
-      end
-
-    end
-
   end
 end

@@ -225,6 +225,14 @@ describe Export::Homegate::RealEstateDecorator do
     end
   end
 
+  describe '#object_description' do
+    it 'retains newlines for homegate by converting them to br-Tags' do
+      real_estate = Export::Homegate::RealEstateDecorator
+        .decorate(mock_model(RealEstate, :description => "It\nbreaks\n\ninto new lines"))
+      real_estate.object_description.should == 'It<br>breaks<br><br>into new lines'
+    end
+  end
+
   describe '#object_type' do
     it 'returns 5 for an underground_slot' do
       real_estate = Export::Homegate::RealEstateDecorator

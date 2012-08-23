@@ -2,14 +2,13 @@
   %tr
     %th{ :colspan => 4 }
       .search-filter-order-form
-        = form_for @search_filter, :url => real_estates_path, :method=> 'GET' do |f|
-          .sort-field
-            .sort-order-dropdown{ 'data-label_text' => t('.sort_field_label') }
-              .label
-              = f.select :sort_field, @search_filter.available_sort_fields.map { |field_name| [t(".search_fields.#{field_name}"), field_name] }
-          .sort-order
-            .sort-order-dropdown
-              .label
-              = f.select :sort_order, @search_filter.available_sort_orders.map { |field_name| [t(".search_orders.#{field_name}"), field_name] }
-          = f.hidden_field :offer
-          = f.hidden_field :utilization
+        .sort-field
+          .sort-order-dropdown{ 'data-label_text' => t('.sort_field_label') }
+            .label
+            = search_form.select :sort_field, @search_filter.available_sort_fields.map { |field_name| [t(".search_fields.#{field_name}"), field_name] }
+        .sort-order
+          .sort-order-dropdown
+            .label
+            = search_form.select :sort_order, @search_filter.available_sort_orders.map { |field_name| [t(".search_orders.#{field_name}"), field_name] }
+        = search_form.hidden_field :offer
+        = search_form.hidden_field :utilization

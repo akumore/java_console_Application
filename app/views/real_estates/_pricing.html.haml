@@ -3,7 +3,7 @@
   .content
     - if pricing.for_sale.present?
       %dl
-        %dt= t('pricings.for_sale')
+        %dt= real_estate.category.label
         %dd
           = pricing.for_sale
 

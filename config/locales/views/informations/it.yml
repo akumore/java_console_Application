@@ -8,6 +8,7 @@ it:
     characteristics: 'Caratteristiche'
     available_from: 'Disponibile dal'
     available_from_compact: 'Disponibile dal %{date}'
+    available_immediately: 'subito'
     maximal_floor_loading: 'Portata utile max. del pavimento.'
     maximal_floor_loading_value: '%{count} kg'
     freight_elevator_carrying_capacity: 'Maximales Gewicht für Warenlift'
