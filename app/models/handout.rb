@@ -11,20 +11,19 @@ class Handout
     "Objektdokumentation-#{real_estate.title.parameterize}"
   end
 
-  def path
-
-  end
-
-  def url
-
-  end
-
   def cache_key(format, locale)
-    Rails.application.routes.url_helpers.real_estate_object_documentation_path(
+    Rails.application.routes.url_helpers.real_estate_handout_path(
       :real_estate_id => real_estate.id,
       :format => format,
-      :name => real_estate.handout.filename,
       :locale => locale
     )
   end
+
+  def to_pdf
+    PDFKit.new(Rails.application.routes.url_helpers.real_estate_handout_url(
+      :locale => I18n.locale,
+      :real_estate_id => @real_estate.id,
+      :format => :html)).to_pdf
+  end
+
 end

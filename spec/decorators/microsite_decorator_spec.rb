@@ -229,7 +229,7 @@ describe MicrositeDecorator do
     it 'returns only the selected attributes' do
       real_estate =  Fabricate :commercial_building, :figure => Fabricate.build(:figure)
         decorated_real_estate = MicrositeDecorator.decorate real_estate
-        decorated_real_estate.stub(:real_estate_object_documentation_path => '', :path_to_url => '')
+        decorated_real_estate.stub(:real_estate_handout_path => '', :path_to_url => '')
         got = ['_id', 'title', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group', 'utilization', 'category', 'chapters', 'floorplans', 'images', 'downloads']
         decorated_real_estate.as_json.keys.should == got
     end

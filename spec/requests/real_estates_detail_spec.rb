@@ -213,9 +213,8 @@ describe "RealEstates" do
           real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
           visit real_estate_path(real_estate)
           page.within('.sidebar') do
-            page.should have_link('Objektdokumentation', :href => real_estate_object_documentation_path(
+            page.should have_link('Objektdokumentation', :href => real_estate_handout_path(
               :real_estate_id => real_estate.id,
-              :name => "Objektdokumentation-#{real_estate.title.parameterize}",
               :format => :pdf
             ))
           end

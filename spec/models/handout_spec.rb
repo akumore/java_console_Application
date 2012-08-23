@@ -9,14 +9,6 @@ describe Handout do
     Handout.new(real_estate)
   end
 
-  it 'has a path' do
-    handout.should respond_to(:path)
-  end
-
-  it 'has an url' do
-    handout.should respond_to(:url)
-  end
-
   it 'has a title' do
     handout.filename.should == 'Objektdokumentation-some-real-estate'
   end
@@ -28,7 +20,17 @@ describe Handout do
 
     it 'returns a key' do
       handout.real_estate.stub!(:id).and_return('123')
-      handout.cache_key(:html, :de).should == "/de/real_estates/123/Objektdokumentation-some-real-estate.html"
+      handout.cache_key(:html, :de).should == "/de/real_estates/123/handout.html"
+    end
+  end
+
+  describe '#to_pdf' do
+    it 'returns rendered pdf file' do
+      host = 'http://host/doc.pdf'
+      expectation = 'yes, this is pdf'
+      handout.should_receive(:real_estate_handout_url).and_return(host)
+      PDFKit.should_receive(:new).with('http://host/doc.pdf').and_return mock(PDFKit, :to_pdf => expectation)
+      handout.to_pdf.should == expectation
     end
   end
 end
