@@ -18,4 +18,13 @@ class Handout
   def url
 
   end
+
+  def cache_key(format, locale)
+    Rails.application.routes.url_helpers.real_estate_object_documentation_path(
+      :real_estate_id => real_estate.id,
+      :format => format,
+      :name => real_estate.handout.filename,
+      :locale => locale
+    )
+  end
 end
