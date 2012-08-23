@@ -4,7 +4,6 @@ class window.AlfredMueller.Views.SearchFilterOptionsUpdater extends Backbone.Vie
     "change #search_filter_cantons" : "updateCities"
 
   initialize: ->
-#    console.log 'SearchFilter initializing...'
     @cantonsSelect = $("#search_filter_cantons")
     @citiesSelect = $("#search_filter_cities")
     @initialCities = @citiesSelect.find("option")
@@ -12,7 +11,6 @@ class window.AlfredMueller.Views.SearchFilterOptionsUpdater extends Backbone.Vie
     @updateCities()
 
   updateCities: =>
-    #console.log 'updateCities called', @remainingOptions()
     @clearCitiesOptions()
     @addCitiesOptions(@remainingOptions())
     @notifyCities()
