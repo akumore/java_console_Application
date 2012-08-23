@@ -67,9 +67,14 @@ describe Export::Homegate::RealEstatePackage do
     end
 
     context 'when the object documentation channel is enabled' do
+
+      before do
+        real_estate.channels = [RealEstate::HOMEGATE_CHANNEL]
+      end
+
       it 'adds the objects documentation as a document' do
         package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
-        package.should_receive(:add_document).exactly(1).times
+        package.should_receive(:add_document).exactly(3).times
         package.package_assets
       end
     end

@@ -25,6 +25,11 @@ module Export
           add_video(video.file)
         end
 
+        puts @real_estate.channels
+        if @real_estate.has_handout?
+          add_document(@real_estate.handout)
+        end
+
         @real_estate.documents.each do |document|
           add_document(document.file)
         end
