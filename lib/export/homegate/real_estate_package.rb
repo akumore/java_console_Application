@@ -25,9 +25,8 @@ module Export
           add_video(video.file)
         end
 
-        puts @real_estate.channels
         if @real_estate.has_handout?
-          add_document(@real_estate.handout)
+          add_handout(@real_estate.handout)
         end
 
         @real_estate.documents.each do |document|
@@ -47,7 +46,7 @@ module Export
       def add_image(file)
         ext   = File.extname(file.path)
         path  = file.path
-        filename = "i_#{@real_estate.id}_#{asset_paths[:images].length + 1}#{ext}"
+        filename = "i_#{@real_estate.id}_#{@images.length + 1}#{ext}"
         target_path = File.join(@packager.path, 'images', filename)
         FileUtils.cp(path, target_path)
         @images << filename
@@ -55,15 +54,25 @@ module Export
 
       def add_video(file)
         ext = File.extname(file.path)
-        filename = "v_#{@real_estate.id}_#{asset_paths[:videos].length + 1}#{ext}"
+        filename = "v_#{@real_estate.id}_#{@videos.length + 1}#{ext}"
         target_path = File.join(@packager.path, 'movies', filename)
         FileUtils.cp(file.path, target_path)
         @videos << filename
       end
 
+      def add_handout(handout)
+        # Check if Rails cache-file is available
+        filename = "d_#{@real_estate.id}_#{@documents.length + 1}.pdf"
+        target_path = File.join(@packager.path, 'doc', filename)
+        File.open(target_path, 'w') do |handout_pdf|
+          handout_pdf << handout.to_pdf()
+        end
+        @documents << filename
+      end
+
       def add_document(file)
         ext = File.extname(file.path)
-        filename = "d_#{@real_estate.id}_#{asset_paths[:documents].length + 1}#{ext}"
+        filename = "d_#{@real_estate.id}_#{@documents.length + 1}#{ext}"
         target_path = File.join(@packager.path, 'doc', filename)
         FileUtils.cp(file.path, target_path)
         @documents << filename
