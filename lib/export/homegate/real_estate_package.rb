@@ -64,9 +64,7 @@ module Export
         # Check if Rails cache-file is available
         filename = "d_#{@real_estate.id}_#{@documents.length + 1}.pdf"
         target_path = File.join(@packager.path, 'doc', filename)
-        File.open(target_path, 'w') do |handout_pdf|
-          handout_pdf << handout.to_pdf()
-        end
+        handout.to_file(target_path)
         @documents << filename
       end
 

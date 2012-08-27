@@ -20,13 +20,21 @@ class Handout
   end
 
   def to_pdf(url_params=ActionMailer::Base.default_url_options)
+    pdf(url_params).to_pdf
+  end
+
+  def to_file(filename, url_params=ActionMailer::Base.default_url_options)
+    pdf(url_params).to_file(filename)
+  end
+
+  def pdf(url_params=ActionMailer::Base.default_url_options)
     url = Rails.application.routes.url_helpers.real_estate_handout_url(
       url_params.merge(
         :locale => I18n.locale,
         :real_estate_id => @real_estate.id,
         :format => :html
       ))
-    PDFKit.new(url).to_pdf
+    PDFKit.new(url)
   end
 
 end
