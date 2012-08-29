@@ -1,10 +1,13 @@
 module Export
   module Homegate
-    class RealEstatePackage
-
+    class RealEstatePackage < Logger::Application
+      include Logging
       attr_accessor :packager
 
       def initialize(real_estate, packager)
+        super "Homegate RealEstate Package"
+        init_logging
+
         @packager = packager
         @real_estate = real_estate
         @images = []
@@ -64,8 +67,10 @@ module Export
         filename = "d_#{@real_estate.id}_#{@documents.length + 1}.pdf"
         target_path = File.join(@packager.path, 'doc', filename)
         if File.exists? handout.path
+          logger.debug "Adding cache file for handout #{handout.path}"
           FileUtils.cp(handout.path, target_path)
         else
+          logger.debug "Creating handout #{handout.path}"
           handout.to_file(target_path)
         end
         @documents << filename
