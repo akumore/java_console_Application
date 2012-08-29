@@ -69,12 +69,12 @@ describe Export::Homegate::RealEstatePackage do
     context 'when the object documentation channel is enabled' do
 
       before do
-        real_estate.channels = [RealEstate::HOMEGATE_CHANNEL]
+        real_estate.channels = [RealEstate::HOMEGATE_CHANNEL, RealEstate::PRINT_CHANNEL]
       end
 
-      it 'adds the objects documentation as a document' do
+      it 'adds the objects documentation' do
         package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
-        package.should_receive(:add_document).exactly(3).times
+        package.should_receive(:add_handout).exactly(1).times
         package.package_assets
       end
     end
@@ -127,6 +127,34 @@ describe Export::Homegate::RealEstatePackage do
       package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
       package.add_document(real_estate.documents.first.file)
       File.exists?(File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf")).should be_true
+    end
+  end
+
+  describe '#add_handout' do
+    it 'remembers the filename for the export' do
+      package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
+      real_estate.handout.should_receive(:to_file)
+      package.add_handout(real_estate.handout)
+      package.asset_paths[:documents].first.should == "d_#{real_estate.id}_1.pdf"
+    end
+
+    context 'when a cache file is present' do
+      it 'copies the cache file' do
+        pdf = real_estate.handout.path
+        package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
+        File.stub!(:exists?).and_return(true)
+        FileUtils.should_receive(:cp).with(pdf, File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf"))
+        real_estate.handout.should_not_receive(:to_file)
+        package.add_handout(real_estate.handout)
+      end
+    end
+
+    context 'when no cache file is present' do
+      it 'creates the pdf in the export folder' do
+        package = Export::Homegate::RealEstatePackage.new(real_estate, packager)
+        real_estate.handout.should_receive(:to_file).with(File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf"))
+        package.add_handout(real_estate.handout)
+      end
     end
   end
 end

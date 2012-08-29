@@ -61,10 +61,13 @@ module Export
       end
 
       def add_handout(handout)
-        # Check if Rails cache-file is available
         filename = "d_#{@real_estate.id}_#{@documents.length + 1}.pdf"
         target_path = File.join(@packager.path, 'doc', filename)
-        handout.to_file(target_path)
+        if File.exists? handout.path
+          FileUtils.cp(handout.path, target_path)
+        else
+          handout.to_file(target_path)
+        end
         @documents << filename
       end
 

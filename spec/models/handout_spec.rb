@@ -26,11 +26,24 @@ describe Handout do
 
   describe '#to_pdf' do
     it 'returns rendered pdf file' do
-      host = 'http://host/doc.pdf'
+      host = 'http://host/doc.html'
       expectation = 'yes, this is pdf'
-      handout.should_receive(:real_estate_handout_url).and_return(host)
-      PDFKit.should_receive(:new).with('http://host/doc.pdf').and_return mock(PDFKit, :to_pdf => expectation)
+      handout.should_receive(:html_url).and_return(host)
+      PDFKit.should_receive(:new).with(host).and_return mock(PDFKit, :to_pdf => expectation)
       handout.to_pdf.should == expectation
+    end
+  end
+
+  describe '#to_file' do
+    it 'saves a pdf file' do
+      host = 'http://host/doc.html'
+      filename = 'my-filename.pdf'
+      pdf_mock = mock(PDFKit)
+
+      handout.should_receive(:html_url).and_return(host)
+      PDFKit.should_receive(:new).with(host).and_return pdf_mock
+      pdf_mock.should_receive(:to_file).with(filename)
+      handout.to_file(filename)
     end
   end
 end
