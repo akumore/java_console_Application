@@ -51,6 +51,7 @@ AlfredMueller::Application.routes.draw do
           get 'footer'
         end
       end
+      match '*name' => 'handouts#deprecated_route', :as => :object_documentation
     end
     resource :job_application, :only => [:new, :create]
     resource :contact, :only => [:new, :create]
