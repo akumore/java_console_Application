@@ -81,16 +81,15 @@ class RealEstateDecorator < ApplicationDecorator
   def mini_doku_link
     link_to(
         t('real_estates.show.description_download'),
-        real_estate_object_documentation_path(
+        real_estate_handout_path(
           :real_estate_id => model.id,
-          :format => :pdf,
-          :name => object_documentation_title),
+          :format => :pdf),
         :class => 'icon-description', :target => '_blank'
     ) if model.has_handout?
   end
 
   def object_documentation_title
-    "Objektdokumentation-#{model.title.parameterize}"
+    model.handout.filename
   end
 
   def application_form_link

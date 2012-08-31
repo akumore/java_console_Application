@@ -52,7 +52,7 @@ describe RealEstateDecorator do
 
   describe '#object_documentation_title' do
     it 'is generated from the title' do
-      real_estate = mock_model(RealEstate, :title => 'My Handout')
+      real_estate = RealEstate.new :title => 'My Handout'
       RealEstateDecorator.new(real_estate).object_documentation_title.should == 'Objektdokumentation-my-handout'
     end
   end

@@ -40,6 +40,73 @@ describe RealEstate do
     end
   end
 
+  describe '#handout' do
+    let :real_estate do
+      RealEstate.new
+    end
+
+    context 'when has_handout? is true' do
+      it 'returns a Handout object' do
+        real_estate.stub!(:has_handout?).and_return(true)
+        real_estate.handout.should be_a(Handout)
+      end
+    end
+
+    context 'when has_handout? is false' do
+      it 'returns a Handout object' do
+        real_estate.stub!(:has_handout?).and_return(false)
+        real_estate.handout.should be_a(Handout)
+      end
+    end
+  end
+
+  describe '#has_handout?' do
+
+    context 'when for rent' do
+      let :real_estate do
+        RealEstate.new(
+          :offer => RealEstate::OFFER_FOR_RENT,
+          :channels => [RealEstate::PRINT_CHANNEL]
+        )
+      end
+
+      context 'when channel is active' do
+        it 'returns a handout' do
+          real_estate.has_handout?.should be_true
+        end
+      end
+
+      context 'when channel is inactive' do
+        it 'returns nil' do
+          real_estate.channels = []
+          real_estate.has_handout?.should be_false
+        end
+      end
+    end
+
+    context 'when for sale' do
+      let :real_estate do
+        RealEstate.new(
+          :offer => RealEstate::OFFER_FOR_SALE,
+          :channels => [RealEstate::PRINT_CHANNEL]
+        )
+      end
+
+      context 'when channel is active' do
+        it 'returns nil' do
+          real_estate.has_handout?.should be_false
+        end
+      end
+
+      context 'when channel is inactive' do
+        it 'returns nil' do
+          real_estate.channels = []
+          real_estate.has_handout?.should be_false
+        end
+      end
+    end
+  end
+
   describe '#row_house?' do
   	context 'with the category set to row_house' do
   		it 'is true' do

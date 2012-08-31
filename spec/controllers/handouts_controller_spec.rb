@@ -18,11 +18,10 @@ describe HandoutsController do
     end
 
     context 'when the real estate is for rent' do
-      before do
-        PDFKit.should_receive(:new).with("http://test.host/de/real_estates/#{real_estate_for_rent.id}/Objektdokumentation-#{real_estate_for_rent.title.parameterize}.html").and_return mock(PDFKit, :to_pdf => 'yes, this is pdf')
-      end
-
       it 'is accessible' do
+        url = "http://test.host/de/real_estates/#{real_estate_for_rent.id}/handout.html"
+        Rails.application.routes.url_helpers.should_receive(:real_estate_handout_url).and_return(url)
+        PDFKit.should_receive(:new).with(url).and_return mock(PDFKit, :to_pdf => 'yes, this is pdf')
         get :show, :real_estate_id => real_estate_for_rent.id, :format => :pdf, :locale => :de
         response.should be_success
       end
