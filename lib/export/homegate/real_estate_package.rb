@@ -1,10 +1,13 @@
 module Export
   module Homegate
-    class RealEstatePackage
-
+    class RealEstatePackage < Logger::Application
+      include Logging
       attr_accessor :packager
 
       def initialize(real_estate, packager)
+        super "Homegate RealEstate Package"
+        init_logging
+
         @packager = packager
         @real_estate = real_estate
         @images = []
@@ -25,6 +28,10 @@ module Export
           add_video(video.file)
         end
 
+        if @real_estate.has_handout?
+          add_handout(@real_estate.handout)
+        end
+
         @real_estate.documents.each do |document|
           add_document(document.file)
         end
@@ -42,7 +49,7 @@ module Export
       def add_image(file)
         ext   = File.extname(file.path)
         path  = file.path
-        filename = "i_#{@real_estate.id}_#{asset_paths[:images].length + 1}#{ext}"
+        filename = "i_#{@real_estate.id}_#{@images.length + 1}#{ext}"
         target_path = File.join(@packager.path, 'images', filename)
         FileUtils.cp(path, target_path)
         @images << filename
@@ -50,15 +57,28 @@ module Export
 
       def add_video(file)
         ext = File.extname(file.path)
-        filename = "v_#{@real_estate.id}_#{asset_paths[:videos].length + 1}#{ext}"
+        filename = "v_#{@real_estate.id}_#{@videos.length + 1}#{ext}"
         target_path = File.join(@packager.path, 'movies', filename)
         FileUtils.cp(file.path, target_path)
         @videos << filename
       end
 
+      def add_handout(handout)
+        filename = "d_#{@real_estate.id}_#{@documents.length + 1}.pdf"
+        target_path = File.join(@packager.path, 'doc', filename)
+        if File.exists? handout.path
+          logger.debug "Adding cache file for handout #{handout.path}"
+          FileUtils.cp(handout.path, target_path)
+        else
+          logger.debug "Creating handout #{handout.path}"
+          handout.to_file(target_path)
+        end
+        @documents << filename
+      end
+
       def add_document(file)
         ext = File.extname(file.path)
-        filename = "d_#{@real_estate.id}_#{asset_paths[:documents].length + 1}#{ext}"
+        filename = "d_#{@real_estate.id}_#{@documents.length + 1}#{ext}"
         target_path = File.join(@packager.path, 'doc', filename)
         FileUtils.cp(file.path, target_path)
         @documents << filename

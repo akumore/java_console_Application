@@ -9,14 +9,20 @@ class HandoutsController < ApplicationController
 
     respond_to do |format|
       format.html { render :show }
-      format.pdf { render :text => PDFKit.new(
-        real_estate_object_documentation_url(
-          :real_estate_id => @real_estate.id,
-          :format => :html,
-          :name => @real_estate.object_documentation_title
-        )
-      ).to_pdf }
+
+      format.pdf do
+        send_data @real_estate.handout.to_pdf,
+          :filename => "#{@real_estate.handout.filename}.pdf",
+          :disposition => 'inline', :type => 'multipart/related'
+      end
     end
+  end
+
+  def deprecated_route
+    redirect_to real_estate_handout_path(
+      :real_estate_id => params[:real_estate_id],
+      :format => :pdf
+    )
   end
 
   def footer

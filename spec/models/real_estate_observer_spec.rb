@@ -7,7 +7,7 @@ describe RealEstateObserver do
   end
 
   let :real_estate do
-    mock_model(RealEstate, :title => 'Test')
+    RealEstate.new :title => 'Test'
   end
 
   describe '#after_create' do
@@ -40,7 +40,7 @@ describe RealEstateObserver do
 
       I18n.available_locales.each do |locale|
         %w(html pdf).each do |format|
-          observer.context.should_receive(:expire_page).with(observer.send :cache_key_for, real_estate, format, locale)
+          observer.context.should_receive(:expire_page).with(real_estate.handout.cache_key(format, locale))
         end
       end
 

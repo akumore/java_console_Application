@@ -119,7 +119,7 @@ class MicrositeDecorator < ApplicationDecorator
     dl = []
     dl << {
             :title => t('real_estates.show.description_download'),
-            :url => path_to_url(real_estate_object_documentation_path(
+            :url => path_to_url(real_estate_handout_path(
               :real_estate_id => model.id,
               :format => :pdf,
               :name => "Objektdokumentation-#{model.title.parameterize}",

@@ -44,12 +44,14 @@ AlfredMueller::Application.routes.draw do
     resources :real_estates, :only => [:index, :show] do
       resources :appointments, :only => [:new, :create]
       resources :floorplans, :only => [:index, :show]
+      # TODO: Implement redirect for legacy deep-links to handouts
+      # e.g.: /real_estates/123/A-Fine-Property.pdf -> /real_estates/123/handout.pdf
       resource :handout, :only => :show do
         member do
           get 'footer'
         end
       end
-      match '*name' => 'handouts#show', :as => :object_documentation
+      match '*name' => 'handouts#deprecated_route', :as => :object_documentation
     end
     resource :job_application, :only => [:new, :create]
     resource :contact, :only => [:new, :create]

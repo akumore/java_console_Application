@@ -525,4 +525,23 @@ describe "Handout aka MiniDoku" do
     end
 
   end
+
+  describe 'Routing' do
+    context 'with an old URL containing the real estate title' do
+      it 'redirects to the handout pdf to prevent mass cachefile generation' do
+        PDFKit.stub!(:new).and_return mock(PDFKit, :to_pdf => 'stuff')
+        visit real_estate_object_documentation_path(
+          :real_estate_id => printable_real_estate,
+          :name => printable_real_estate.handout.filename,
+          :locale => :de,
+          :format => :pdf
+        )
+        current_path.should == real_estate_handout_path(
+          :real_estate_id => printable_real_estate,
+          :locale => :de,
+          :format => :pdf
+        )
+      end
+    end
+  end
 end
