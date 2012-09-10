@@ -8,8 +8,8 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
-Cms::User.create(email: 'admin@screenconcept.ch', password: 'bambus', password_confirmation: 'bambus', :role => 'admin')
-Cms::User.create(email: 'staging@alfred-mueller.ch', password: 'am2012', password_confirmation: 'am2012', :role => 'admin')
+Cms::User.create(email: 'admin@screenconcept.ch', password: 'bambus', password_confirmation: 'bambus', :role => 'admin', :first_name => 'Admin', :last_name => 'Screen Concept' )
+Cms::User.create(email: 'staging@alfred-mueller.ch', password: 'am2012', password_confirmation: 'am2012', :role => 'admin', :first_name => 'Staging', :last_name => 'Alfred Müller' )
 
 module InitialCategories
 
