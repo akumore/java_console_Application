@@ -27,6 +27,7 @@ class RealEstate
   belongs_to :category
   belongs_to :contact, :class_name => 'Employee'
   belongs_to :editor, :class_name => 'Cms::User'
+  belongs_to :creator, :class_name => 'Cms::User'
 
   has_many :appointments
   has_many :reference_projects, :dependent => :nullify
@@ -101,6 +102,7 @@ class RealEstate
     state :in_review do
 
       # editor needed for review notification
+      validates :creator, :presence => true
       validates :editor, :presence => true
       validates *RealEstate.mandatory_for_publishing, :presence=>true,
                 :if=>:state_changed?, # Allows admin to save real estate in_review state
