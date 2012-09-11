@@ -8,7 +8,7 @@
 
 - if @real_estate.editor
   %p.muted
-    = "Zuletzt bearbeitet von #{@real_estate.editor.first_name} #{@real_estate.editor.last_name} #{@real_estate.updated_at.strftime('am %d.%m.%Y um %H:%M')}"
+    = "Zuletzt editiert von #{@real_estate.editor.first_name} #{@real_estate.editor.last_name} #{@real_estate.updated_at.strftime('am %d.%m.%Y um %H:%M')}"
 
 - content_for :real_estate_events do
   .events
