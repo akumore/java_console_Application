@@ -9,6 +9,10 @@ describe 'Real Estate Wizard' do
       Fabricate :category
     end
 
+    let :creator do
+      Fabricate :cms_editor
+    end
+
     let :editor do
       Fabricate :cms_editor
     end
@@ -136,7 +140,7 @@ describe 'Real Estate Wizard' do
 
       %w(editing in_review).each do |state|
         it "allows to destroy real estate in state '#{state}'" do
-          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category), :editor => editor
+          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category), :creator => creator, :editor => editor
 
           delete :destroy, :id => real_estate.id
           response.should redirect_to cms_real_estates_url
@@ -171,7 +175,7 @@ describe 'Real Estate Wizard' do
       end
 
       it "prevents from updating real estate 'in_review'" do
-        real_estate = Fabricate :real_estate, :state => 'in_review', :category => Fabricate(:category), :editor => editor
+        real_estate = Fabricate :real_estate, :state => 'in_review', :category => Fabricate(:category), :creator => creator, :editor => editor
 
         put :update, :id => real_estate.id
         response.should redirect_to [:cms, real_estate]
@@ -188,7 +192,7 @@ describe 'Real Estate Wizard' do
 
       %w(in_review published).each do |state|
         it "doesn't allow to destroy real estate in state '#{state}'" do
-          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category), :editor => Fabricate(:cms_editor)
+          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category), :creator => Fabricate(:cms_editor), :editor => Fabricate(:cms_editor)
 
           delete :destroy, :id => real_estate.id
           response.should redirect_to [:cms, real_estate]

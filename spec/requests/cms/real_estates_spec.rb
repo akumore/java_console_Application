@@ -251,7 +251,7 @@ describe "Cms::RealEstates" do
       end
 
       it "copies to copy 'in_review' real estates" do
-        Fabricate :residential_building, :state => RealEstate::STATE_IN_REVIEW, :editor => Fabricate(:cms_editor)
+        Fabricate :residential_building, :state => RealEstate::STATE_IN_REVIEW, :creator => Fabricate(:cms_editor), :editor => Fabricate(:cms_editor)
         visit cms_real_estates_path
 
         expect {

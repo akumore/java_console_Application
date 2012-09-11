@@ -45,6 +45,8 @@ describe "Cms::Users" do
       describe '#create' do
         before :each do
           within "#new_cms_user" do
+            fill_in 'Vorname', :with => 'Benutzer'
+            fill_in 'Nachname', :with => 'Name'
             fill_in 'E-Mail', :with => 'benutzername@test.ch'
             fill_in 'Passwort', :with => '123456'
             fill_in 'Passwort Bestätigung', :with => '123456'
