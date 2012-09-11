@@ -3,8 +3,12 @@
   = t "mongoid.attributes.real_estate.states.#{@real_estate.state_name}"
 
 - if @real_estate.creator
-  %p
+  %p.muted
     = "Erstellt von #{@real_estate.creator.first_name} #{@real_estate.creator.last_name} #{@real_estate.created_at.strftime('am %d.%m.%Y um %H:%M')}"
+
+- if @real_estate.editor
+  %p.muted
+    = "Zuletzt bearbeitet von #{@real_estate.editor.first_name} #{@real_estate.editor.last_name} #{@real_estate.updated_at.strftime('am %d.%m.%Y um %H:%M')}"
 
 - content_for :real_estate_events do
   .events
