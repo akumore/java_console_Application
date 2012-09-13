@@ -3,19 +3,20 @@ module Export
     class Packager < Logger::Application
       include Logging
 
-      def initialize
-        super "Homegate Packager"
+      def initialize(portal)
+        super "#{portal} Packager"
         init_logging
 
         @time = Time.now
         @date_folder = @time.strftime("%Y_%m_%d")
         @time_folder = @time.strftime("%H_%M")
+        @portal = portal
         create_folders
       end
 
       def package(real_estate)
-        logger.debug "Packaging."
-        Idx301::RealEstatePackage.new(real_estate, self).save
+        logger.info "Packaging."
+        Idx301::RealEstatePackage.new(real_estate, self, @portal).save
       end
 
       def path
@@ -28,7 +29,7 @@ module Export
 
       private
       def create_folders
-        logger.debug "Creating Homegates folder structure"
+        logger.info "Creating external real estate portal folder structure"
         FileUtils.mkdir_p path
         FileUtils.mkdir_p File.join(path, 'data')
         FileUtils.mkdir_p File.join(path, 'images')

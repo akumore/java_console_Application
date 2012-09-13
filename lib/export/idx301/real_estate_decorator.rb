@@ -187,7 +187,8 @@ module Export::Idx301
             :sparefield_3,
             :sparefield_4
 
-    def initialize(real_estate, asset_paths)
+    def initialize(real_estate, portal, asset_paths)
+      @portal = portal
       @asset_paths = asset_paths
       super(real_estate)
     end
@@ -581,7 +582,7 @@ module Export::Idx301
 
     def agency_id
       # str(10) given by homegate (Info: agency_id + ref_property + ref_object + ref_house forms the unique object key)
-      Settings.idx301.homegate.agency_id
+      Settings.idx301.send(@portal).agency_id
     end
 
     def agency_name

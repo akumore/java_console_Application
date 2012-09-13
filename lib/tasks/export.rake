@@ -10,8 +10,10 @@ namespace :export do
 
     dispatcher = Export::Dispatcher.new("Export Dispatcher")
 
-    # register the homegate export with the dispatcher
-    Export::Homegate::Exporter.new(dispatcher)
+    Settings.idx301.each do |portal, portal_config|
+      # register the homegate export with the dispatcher
+      Export::Idx301::Exporter.new(dispatcher, portal)
+    end
 
     # .. register any other custom exporter here
 
@@ -26,7 +28,7 @@ namespace :export do
     logger.formatter = Logger::Formatter.new
     logger.info "Starting real estate export cleanup rake task"
 
-    Export::Homegate::Cleanup.new("#{Rails.root}/tmp/export").run
+    Export::Idx301::Cleanup.new("#{Rails.root}/tmp/export").run
     logger.info "Finished real estate export cleanup rake task."
   end
 

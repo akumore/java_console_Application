@@ -7,16 +7,17 @@ module Export
 
       attr_reader :packager, :config
 
-      def initialize(packager, config)
-        super "External Real Estate Portal FTP Uploader"
+      def initialize(packager, portal)
+        super "#{portal} FTP Uploader"
         init_logging
 
+        @portal   = portal
         @packager = packager
-        @config = config
+        @config   = Settings.idx301.send(portal).ftp
       end
 
       def do_upload!
-        logger.info "Uploading files."
+        logger.info "Uploading files to #{@portal} account."
         connect! do
           files.each { |item| upload item }
         end
@@ -27,13 +28,14 @@ module Export
       def upload(element)
         local_element = element
         remote_element = element.gsub(packager.path, @ftp.pwd)
+        remote_element = remote_element.gsub("#{@portal}_unload.txt", 'unload.txt') if remote_element.include? 'unload.txt'
 
-        logger.debug "Uploading file '#{local_element}' to '#{remote_element}'"
+        logger.info "Uploading file '#{local_element}' to '#{remote_element}' on #{@portal}"
 
         if FileTest.directory?(local_element)
           # check to prevent '550 File exists' error
           #begin
-          #  @ftp.nlst(remote_element).empty?
+          c#  @ftp.nlst(remote_element).empty?
           #rescue Net::FTPPermError => err
           #  binding.pry
           #  if @ftp.last_response_code == 550
@@ -56,12 +58,12 @@ module Export
       end
 
       def connect!
-        logger.debug 'FTP connect'
+        logger.info "FTP connect to #{@portal}"
         @ftp ||= Net::FTP.open(config[:host], config[:username], config[:password])
         @ftp.passive = true
         if block_given?
           yield self
-          logger.debug "FTP disconnect"
+          logger.info "FTP disconnect from #{@portal}"
           @ftp.close
         end
         @ftp

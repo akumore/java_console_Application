@@ -10,7 +10,7 @@ module Export
 
     def run
       exportable_real_estates.each do |real_estate|
-        logger.debug "Adding published real estate #{real_estate.id} as possible export target"
+        logger.info "Adding published real estate #{real_estate.id} as possible export target"
         changed and notify_observers(:add, real_estate)
       end
 
