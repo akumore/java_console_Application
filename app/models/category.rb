@@ -8,6 +8,8 @@ class Category
 
   scope :top_level, where(:parent_id => nil)
 
+  default_scope order_by(:sort_order => :asc)
+
   field :name, :type => String
   field :label, :type => String, :localize => true
   field :sort_order, :type => Integer
