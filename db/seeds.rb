@@ -15,13 +15,13 @@ module InitialCategories
 
   # Top level categories
   {
-    'apartment'   => { :label_translations => { :de => 'Wohnung',           :fr => 'Appartement',         :it => 'Appartamento',        :en => 'Apartment' }},
-    'house'       => { :label_translations => { :de => 'Haus',              :fr => 'Maison',              :it => 'Casa',                :en => 'House' }},
-    'industrial'  => { :label_translations => { :de => 'Gewerbe/Industrie', :fr => 'Commerce/Industrie',  :it => 'Industria/Commercio', :en => 'Industrial Objects' }},
-    'parking'     => { :label_translations => { :de => 'Parkplatz',         :fr => 'Place de parc',       :it => 'Posteggio',           :en => 'Parking space' }},
-    'secondary'   => { :label_translations => { :de => 'Wohnnebenräume',    :fr => 'Pièces annexes',      :it => 'Locale di servizio',  :en => 'Secondary rooms' }},
-    'gastronomy'  => { :label_translations => { :de => 'Gastronomie',       :fr => 'Gastronomie',         :it => 'Gastronomia',         :en => 'Gastronomy' }},
-    'properties'  => { :label_translations => { :de => 'Grundstück',        :fr => 'Terrain',             :it => 'Terreno',             :en => 'Plot' }}
+    'apartment'   => { :sort_order => 1, :label_translations => { :de => 'Wohnung',           :fr => 'Appartement',         :it => 'Appartamento',        :en => 'Apartment' }},
+    'house'       => { :sort_order => 2, :label_translations => { :de => 'Haus',              :fr => 'Maison',              :it => 'Casa',                :en => 'House' }},
+    'industrial'  => { :sort_order => 3, :label_translations => { :de => 'Gewerbe/Industrie', :fr => 'Commerce/Industrie',  :it => 'Industria/Commercio', :en => 'Industrial Objects' }},
+    'parking'     => { :sort_order => 4, :label_translations => { :de => 'Parkplatz',         :fr => 'Place de parc',       :it => 'Posteggio',           :en => 'Parking space' }},
+    'secondary'   => { :sort_order => 5, :label_translations => { :de => 'Wohnnebenräume',    :fr => 'Pièces annexes',      :it => 'Locale di servizio',  :en => 'Secondary rooms' }},
+    'gastronomy'  => { :sort_order => 6, :label_translations => { :de => 'Gastronomie',       :fr => 'Gastronomie',         :it => 'Gastronomia',         :en => 'Gastronomy' }},
+    'properties'  => { :sort_order => 7, :label_translations => { :de => 'Grundstück',        :fr => 'Terrain',             :it => 'Terreno',             :en => 'Plot' }}
   }.each do |key, value|
     category = Category.find_or_create_by(:name => key)
     category.update_attributes(value)
