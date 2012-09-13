@@ -26,7 +26,7 @@ class Cms::RealEstatesController < Cms::SecuredController
 
   def create
     real_estate_params = params[:real_estate]
-    real_estate_params.merge!(:creator => current_user) if current_user.editor?
+    real_estate_params.merge!(:creator => current_user)
 
     @real_estate = RealEstate.new(params[:real_estate])
 
