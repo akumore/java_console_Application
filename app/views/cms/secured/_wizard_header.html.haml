@@ -2,13 +2,25 @@
   = @real_estate.title
   = t "mongoid.attributes.real_estate.states.#{@real_estate.state_name}"
 
-- if @real_estate.creator
+.custom-page-header
   %p.muted
-    = "Erstellt von #{@real_estate.creator.first_name} #{@real_estate.creator.last_name} #{@real_estate.created_at.strftime('am %d.%m.%Y um %H:%M')}"
+    Erstellt von
+    %span.italic-darkgrey
+      - if @real_estate.creator
+        = "#{@real_estate.creator.first_name} #{@real_estate.creator.last_name}"
+      - else
+        Unbekannt
+    = "#{@real_estate.created_at.strftime('am %d.%m.%Y um %H:%M')} Uhr."
 
-- if @real_estate.editor
-  %p.muted
-    = "Zuletzt editiert von #{@real_estate.editor.first_name} #{@real_estate.editor.last_name} #{@real_estate.updated_at.strftime('am %d.%m.%Y um %H:%M')}"
+    %br/
+
+    Zuletzt editiert von
+    %span.italic-darkgrey
+      - if @real_estate.editor
+        = "#{@real_estate.editor.first_name} #{@real_estate.editor.last_name}"
+      - else
+        Unbekannt
+    = "#{@real_estate.updated_at.strftime('am %d.%m.%Y um %H:%M')} Uhr."
 
 - content_for :real_estate_events do
   .events
