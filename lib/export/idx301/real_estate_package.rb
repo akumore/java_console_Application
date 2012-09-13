@@ -1,11 +1,11 @@
 module Export
-  module Homegate
+  module Idx301
     class RealEstatePackage < Logger::Application
       include Logging
       attr_accessor :packager
 
       def initialize(real_estate, packager)
-        super "Homegate RealEstate Package"
+        super "External Real Estate Portal RealEstate Package"
         init_logging
 
         @packager = packager
@@ -38,7 +38,7 @@ module Export
       end
 
       def write
-        writer.write Homegate::RealEstateDecorator.new(@real_estate, asset_paths).to_a
+        writer.write Idx301::RealEstateDecorator.new(@real_estate, asset_paths).to_a
         true
       end
 
@@ -92,7 +92,7 @@ module Export
 
       private
       def writer
-        @writer ||= Homegate::CsvWriter.new(File.join(@packager.path, 'data', 'unload.txt'), 'ab')
+        @writer ||= Idx301::CsvWriter.new(File.join(@packager.path, 'data', 'unload.txt'), 'ab')
       end
 
     end

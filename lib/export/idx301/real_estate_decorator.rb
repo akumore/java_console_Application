@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-module Export::Homegate
+module Export::Idx301
   class RealEstateDecorator < Draper::Base
     decorates :real_estate
     allows  :version,
@@ -199,7 +199,7 @@ module Export::Homegate
 
     def sender_id
       # str(50) Name of the used tool and export versionnumber (eg. Sigmasoft_v2.11, excelsior 21.23, immotools v1.99 ...)
-      'AlfredMuellerWebsite_HomegateExporter'
+      'AlfredMuellerWebsite_Exporter'
     end
 
     def object_category

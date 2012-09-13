@@ -1,14 +1,14 @@
 require 'net/ftp'
 
 module Export
-  module Homegate
+  module Idx301
     class FtpUploader < Logger::Application
       include Logging
 
       attr_reader :packager, :config
 
       def initialize(packager, config)
-        super "Homegate FTP Uploader"
+        super "External Real Estate Portal FTP Uploader"
         init_logging
 
         @packager = packager

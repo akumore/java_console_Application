@@ -1,5 +1,5 @@
 module Export
-  module Homegate
+  module Idx301
     class Exporter < Export::Exporter::Base
 
       attr_accessor :packager
@@ -9,8 +9,8 @@ module Export
         super(dispatcher, "Homegate Export")
 
         logger.info "Initializing and preparing..."
-        @packager = Homegate::Packager.new
-        @uploader = Homegate::FtpUploader.new(@packager, Settings.idx301.homegate.ftp)
+        @packager = Idx301::Packager.new
+        @uploader = Idx301::FtpUploader.new(@packager, Settings.idx301.homegate.ftp)
         @packages = []
       end
 

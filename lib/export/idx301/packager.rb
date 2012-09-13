@@ -1,5 +1,5 @@
 module Export
-  module Homegate
+  module Idx301
     class Packager < Logger::Application
       include Logging
 
@@ -15,7 +15,7 @@ module Export
 
       def package(real_estate)
         logger.debug "Packaging."
-        Homegate::RealEstatePackage.new(real_estate, self).save
+        Idx301::RealEstatePackage.new(real_estate, self).save
       end
 
       def path
