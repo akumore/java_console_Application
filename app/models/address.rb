@@ -23,7 +23,7 @@ class Address
   validates :street, :presence => true
   validates :zip, :presence => true
   validates :canton, :presence => true, :inclusion => CANTONS
-  validates :any_reference_key, :presence => true, :if => :is_homegate?
+  validates :any_reference_key, :presence => true, :if => :export_to_real_estate_portal?
   validates :lat, :lng, :presence => true, :if => :manual_geocoding?
 
   field :location, :type => Array #Keep in mind coordinates are stored in long, lat order internally!! Use to_coordinates always.
@@ -38,7 +38,7 @@ class Address
   attr_protected :location
 
   alias :coordinates :to_coordinates
-  delegate :is_homegate?, :to => :_parent
+  delegate :export_to_real_estate_portal?, :to => :_parent
 
   def address
     [[street, street_number].compact.join(' '), zip, city, canton, country].compact.join(', ')

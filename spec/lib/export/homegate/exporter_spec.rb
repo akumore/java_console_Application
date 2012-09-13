@@ -17,7 +17,7 @@ describe Export::Homegate::Exporter do
     context 'with a real estate suitable for the homegate export' do
       it 'is packaging the real estate' do
         real_estate = mock_model(RealEstate)
-        real_estate.stub(:channels).and_return([RealEstate::HOMEGATE_CHANNEL])
+        real_estate.stub(:channels).and_return([RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL])
         exporter.packager.should_receive(:package).with(real_estate)
         exporter.add(real_estate)
       end

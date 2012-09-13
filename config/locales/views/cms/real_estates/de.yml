@@ -10,7 +10,7 @@ de:
         middle_house: 'Mittelhaus'
         channels:
           website: 'Website'
-          homegate: 'Homegate'
+          external_real_estate_portal: 'Homegate'
           print: 'Objektdokumentation'
           reference_projects: 'Referenzprojekt'
           microsite: Micro-Site

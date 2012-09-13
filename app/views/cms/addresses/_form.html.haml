@@ -30,7 +30,7 @@
       = f.label :link_url
       .controls
         = f.text_field :link_url, :class => 'span8'
-  - if @real_estate.is_homegate?
+  - if @real_estate.export_to_real_estate_portal?
     %fieldset
       %legend= Reference.model_name.human
       .control-group

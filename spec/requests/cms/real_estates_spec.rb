@@ -113,7 +113,7 @@ describe "Cms::RealEstates" do
         it 'enables it for homegate export' do
           check 'Homegate'
           click_on 'Immobilie erstellen'
-          real_estate.channels.should include RealEstate::HOMEGATE_CHANNEL
+          real_estate.channels.should include RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL
         end
 
         it 'enables it for the minidoku' do
@@ -132,7 +132,7 @@ describe "Cms::RealEstates" do
           check 'Website'
           check 'Homegate'
           click_on 'Immobilie erstellen'
-          [RealEstate::HOMEGATE_CHANNEL, RealEstate::WEBSITE_CHANNEL].each do |channel|
+          [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL, RealEstate::WEBSITE_CHANNEL].each do |channel|
             real_estate.channels.should include channel
           end
         end

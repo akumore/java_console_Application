@@ -69,7 +69,7 @@ describe Export::Homegate::RealEstatePackage do
     context 'when the object documentation channel is enabled' do
 
       before do
-        real_estate.channels = [RealEstate::HOMEGATE_CHANNEL, RealEstate::PRINT_CHANNEL]
+        real_estate.channels = [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL, RealEstate::PRINT_CHANNEL]
       end
 
       it 'adds the objects documentation' do

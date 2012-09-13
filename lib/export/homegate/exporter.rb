@@ -26,7 +26,7 @@ module Export
       end
 
       def add(real_estate)
-        if real_estate.channels.include?(RealEstate::HOMEGATE_CHANNEL)
+        if real_estate.channels.include?(RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL)
           logger.debug "Exporting real estate #{real_estate.id}"
           @packages << @packager.package(real_estate)
         end
