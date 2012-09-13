@@ -16,12 +16,12 @@ module InitialCategories
   # Top level categories
   {
     'apartment'   => { :label_translations => { :de => 'Wohnung',           :fr => 'Appartement',         :it => 'Appartamento',        :en => 'Apartment' }},
+    'house'       => { :label_translations => { :de => 'Haus',              :fr => 'Maison',              :it => 'Casa',                :en => 'House' }},
     'industrial'  => { :label_translations => { :de => 'Gewerbe/Industrie', :fr => 'Commerce/Industrie',  :it => 'Industria/Commercio', :en => 'Industrial Objects' }},
     'parking'     => { :label_translations => { :de => 'Parkplatz',         :fr => 'Place de parc',       :it => 'Posteggio',           :en => 'Parking space' }},
     'secondary'   => { :label_translations => { :de => 'Wohnnebenräume',    :fr => 'Pièces annexes',      :it => 'Locale di servizio',  :en => 'Secondary rooms' }},
     'gastronomy'  => { :label_translations => { :de => 'Gastronomie',       :fr => 'Gastronomie',         :it => 'Gastronomia',         :en => 'Gastronomy' }},
-    'properties'  => { :label_translations => { :de => 'Grundstück',        :fr => 'Terrain',             :it => 'Terreno',             :en => 'Plot' }},
-    'house'       => { :label_translations => { :de => 'Haus',              :fr => 'Maison',              :it => 'Casa',                :en => 'House' }}
+    'properties'  => { :label_translations => { :de => 'Grundstück',        :fr => 'Terrain',             :it => 'Terreno',             :en => 'Plot' }}
   }.each do |key, value|
     category = Category.find_or_create_by(:name => key)
     category.update_attributes(value)
