@@ -27,6 +27,11 @@ describe 'Real Estate Wizard' do
         put :create, :real_estate => Fabricate.attributes_for(:real_estate, :category_id => category.id)
         response.should redirect_to new_cms_real_estate_address_path(RealEstate.first)
       end
+
+      it 'assigns a creator' do
+        put :create, :real_estate => Fabricate.attributes_for(:real_estate, :category_id => category.id)
+        controller.instance_variable_get("@real_estate").creator.should == controller.current_user
+      end
     end
 
 
