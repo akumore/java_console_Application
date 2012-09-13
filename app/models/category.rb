@@ -10,6 +10,7 @@ class Category
 
   field :name, :type => String
   field :label, :type => String, :localize => true
+  field :sort_order, :type => Integer
 
   validates :name, :uniqueness => true
 
