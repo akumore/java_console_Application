@@ -10,12 +10,16 @@ describe Export::Idx301::RealEstateDecorator do
   end
   ## end of workaround
 
+  let :portal do
+    'my_portal'
+  end
+
   describe 'an invalid real estate' do
     before :each do
       real_estate = Fabricate(:published_real_estate,
         :category => Fabricate(:category)
       )
-      @decorator = Export::Idx301::RealEstateDecorator.new(real_estate, {
+      @decorator = Export::Idx301::RealEstateDecorator.new(real_estate, portal, {
         :images => [],
         :movies => [],
         :documents => []
@@ -218,6 +222,7 @@ describe Export::Idx301::RealEstateDecorator do
       newline_string = "attribute\n\n\r with \nnewlines\n"
       real_estate_decorator = Export::Idx301::RealEstateDecorator.new(
         mock_model(RealEstate, :title => newline_string, :description => newline_string),
+        portal,
         {}
       )
       real_estate_decorator.stub(:allowed).and_return([:title, :description])
@@ -228,7 +233,11 @@ describe Export::Idx301::RealEstateDecorator do
   describe '#object_description' do
     it 'retains newlines for homegate by converting them to br-Tags' do
       real_estate = Export::Idx301::RealEstateDecorator
-        .decorate(mock_model(RealEstate, :description => "It\nbreaks\n\ninto new lines"))
+        .new(
+          mock_model(RealEstate, :description => "It\nbreaks\n\ninto new lines"),
+          portal,
+          {}
+        )
       real_estate.object_description.should == 'It<br>breaks<br><br>into new lines'
     end
   end
@@ -236,7 +245,11 @@ describe Export::Idx301::RealEstateDecorator do
   describe '#object_type' do
     it 'returns 5 for an underground_slot' do
       real_estate = Export::Idx301::RealEstateDecorator
-        .decorate(mock_model(RealEstate, :category => mock_model(Category, :name => 'underground_slot')))
+        .new(
+          mock_model(RealEstate, :category => mock_model(Category, :name => 'underground_slot')),
+          portal,
+          {}
+        )
       real_estate.stub!(:top_level_category_name).and_return('parking')
       real_estate.object_type.should == 5
     end

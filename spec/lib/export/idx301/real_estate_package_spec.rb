@@ -21,8 +21,12 @@ describe Export::Idx301::RealEstatePackage do
     )
   end
 
+  let :portal do
+    'my_portal'
+  end
+
   let :packager do
-    packager = Export::Idx301::Packager.new
+    packager = Export::Idx301::Packager.new('my_portal')
     packager.stub!(:path).and_return(@tmp_path)
     packager
   end
@@ -32,13 +36,13 @@ describe Export::Idx301::RealEstatePackage do
     after { MediaAssetUploader.enable_processing=false }
 
     it 'packages all assets into their respective folders' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       package.should_receive(:package_assets).once
       package.save
     end
 
-    it 'writes the unload.txt file' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+    it 'writes the unload.txt file for the specified portal' do
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       package.should_receive(:write).once
       package.save
     end
@@ -49,19 +53,19 @@ describe Export::Idx301::RealEstatePackage do
     after { MediaAssetUploader.enable_processing=false }
 
     it 'copies the real estate images into /images' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       package.should_receive(:add_image).exactly(3).times
       package.package_assets
     end
 
     it 'copies the real estate videos into /movies' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       package.should_receive(:add_video).exactly(2).times
       package.package_assets
     end
 
     it 'copies the real estate videos into /documents' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       package.should_receive(:add_document).exactly(2).times
       package.package_assets
     end
@@ -73,7 +77,7 @@ describe Export::Idx301::RealEstatePackage do
       end
 
       it 'adds the objects documentation' do
-        package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+        package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
         package.should_receive(:add_handout).exactly(1).times
         package.package_assets
       end
@@ -81,22 +85,22 @@ describe Export::Idx301::RealEstatePackage do
   end
 
   describe '#write' do
-    it 'creates the unload.txt file' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+    it 'creates the unload.txt file for the specified portal' do
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       package.write
-      File.exists?(File.join(@tmp_path, 'data', 'unload.txt')).should be_true
+      File.exists?(File.join(@tmp_path, 'data', "#{portal}_unload.txt")).should be_true
     end
   end
 
   describe '#add_image' do
     it 'remembers the filename for the export' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       package.add_image(real_estate.images.first.file)
       package.asset_paths[:images].first.should == "i_#{real_estate.id}_1.jpg"
     end
 
     it 'copies the image into /images with a unique filename' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       package.add_image(real_estate.images.first.file)
       File.exists?(File.join(@tmp_path, 'images', "i_#{real_estate.id}_1.jpg")).should be_true
     end
@@ -104,13 +108,13 @@ describe Export::Idx301::RealEstatePackage do
 
   describe '#add_video' do
     it 'remembers the filename for the export' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       package.add_video(real_estate.videos.first.file)
       package.asset_paths[:videos].first.should == "v_#{real_estate.id}_1.mp4"
     end
 
     it 'copies the video into /movies with a unique filename' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       package.add_video(real_estate.videos.first.file)
       File.exists?(File.join(@tmp_path, 'movies', "v_#{real_estate.id}_1.mp4")).should be_true
     end
@@ -118,13 +122,13 @@ describe Export::Idx301::RealEstatePackage do
 
   describe '#add_document' do
     it 'remembers the filename for the export' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       package.add_document(real_estate.documents.first.file)
       package.asset_paths[:documents].first.should == "d_#{real_estate.id}_1.pdf"
     end
 
     it 'copies the document into /docs with a unique filename' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       package.add_document(real_estate.documents.first.file)
       File.exists?(File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf")).should be_true
     end
@@ -132,7 +136,7 @@ describe Export::Idx301::RealEstatePackage do
 
   describe '#add_handout' do
     it 'remembers the filename for the export' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
       real_estate.handout.should_receive(:to_file)
       package.add_handout(real_estate.handout)
       package.asset_paths[:documents].first.should == "d_#{real_estate.id}_1.pdf"
@@ -141,7 +145,7 @@ describe Export::Idx301::RealEstatePackage do
     context 'when a cache file is present' do
       it 'copies the cache file' do
         pdf = real_estate.handout.path
-        package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+        package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
         File.stub!(:exists?).and_return(true)
         FileUtils.should_receive(:cp).with(pdf, File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf"))
         real_estate.handout.should_not_receive(:to_file)
@@ -151,7 +155,7 @@ describe Export::Idx301::RealEstatePackage do
 
     context 'when no cache file is present' do
       it 'creates the pdf in the export folder' do
-        package = Export::Idx301::RealEstatePackage.new(real_estate, packager)
+        package = Export::Idx301::RealEstatePackage.new(real_estate, packager, portal)
         real_estate.handout.should_receive(:to_file).with(File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf"))
         package.add_handout(real_estate.handout)
       end

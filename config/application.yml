@@ -43,6 +43,13 @@ staging:
 
 test:
   <<: *defaults
+  idx301:
+    my_portal:
+      agency_id: 'swag'
+      ftp:
+        host: 'localhost'
+        username: 'swagger'
+        password: 'swaggerbagmovement'
 
 production:
   <<: *defaults

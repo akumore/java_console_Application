@@ -1,17 +1,22 @@
 require 'spec_helper'
 
 describe Export::Idx301::Exporter do
+
+  let :portal do
+    'my_portal'
+  end
+
   describe '#initialize' do
     it 'registers itself as observer' do
       dispatcher = Export::Dispatcher.new
       dispatcher.should_receive(:add_observer)
-      Export::Idx301::Exporter.new(dispatcher)
+      Export::Idx301::Exporter.new(dispatcher, portal)
     end
   end
 
   describe '#add' do
     let :exporter do
-      Export::Idx301::Exporter.new(Export::Dispatcher.new)
+      Export::Idx301::Exporter.new(Export::Dispatcher.new, portal)
     end
 
     context 'with a real estate suitable for the an export to an external real estate portal' do
