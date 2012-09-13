@@ -47,8 +47,34 @@ describe 'Real Estate Wizard' do
         response.should redirect_to edit_cms_real_estate_address_path(@real_estate)
       end
 
-      describe "notifications" do
+      context 'as an admin' do
+        before do
+          @real_estate.editor = editor
+          @real_estate.save
+        end
 
+        it 'remains last edited by the editor' do
+          current_editor = @real_estate.editor
+          put :update, :id => @real_estate.id
+          @real_estate.reload.editor.editor?.should be_true
+        end
+      end
+
+      context 'as an editor' do
+        before do
+          controller.stub!(:current_user).and_return editor
+          @real_estate.editor = editor
+          @real_estate.save
+        end
+
+        it 'is last edited by the editor' do
+          current_editor = @real_estate.reload.editor
+          put :update, :id => @real_estate.id
+          @real_estate.reload.editor.editor?.should be_true
+        end
+      end
+
+      describe "notifications" do
         describe '#review_it' do
           before do
             @real_estate = Fabricate :real_estate, :category => category
