@@ -10,7 +10,7 @@ module Export
 
         logger.info "Initializing and preparing..."
         @packager = Homegate::Packager.new
-        @uploader = Homegate::FtpUploader.new(@packager, Settings.homegate.ftp)
+        @uploader = Homegate::FtpUploader.new(@packager, Settings.idx301.homegate.ftp)
         @packages = []
       end
 

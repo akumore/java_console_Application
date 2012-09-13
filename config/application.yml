@@ -5,43 +5,56 @@
 # e.g. ENV['GOOGLE_ACCOUNT_ID'] || yml[:google_account_id]
 # e.g. ENV['GOOGLE_API_KEY'] || yml[:google_api_key]
 #
+#
+# IDX3.1 exports to: homegate.ch, immoscout24.ch, home.ch, immostreet.ch
+# immostreet.ch does not supply a test account, all others do
+
 defaults: &defaults
   google_account_id: ''
   google_api_key: ''
   google_maps_api_key: 'AIzaSyCNWg9D3wR2T69wlEu6ARAtNdPSgAN-N9w'
-  homegate:
-    agency_id: 'alm'
-    ftp:
-      host: '62.65.135.69'
-      username: 'almtest'
-      password: 'cal31cium'
+  idx301:
+    # homegate
+    homegate:
+      agency_id: 'alm'
+      ftp:
+        host: '62.65.135.69'
+        username: 'almtest'
+        password: 'cal31cium'
+    # immoscout24
+    immoscout24:
+      agency_id: '117874_mueller'
+      ftp:
+        host: 'ftp.immoscout24.ch'
+        username: '117874_mueller'
+        password: '6340baar'
+    home_ch:
+      agency_id: '75680'
+      ftp:
+        host: 'idx.home.ch'
+        username: '75680'
+        password: 'pwd475680'
 
 development:
-  <<: *defaults
-  homegate:
-    agency_id: 'almtest'
-    ftp:
-      host: '62.65.135.69'
-      username: 'almtest'
-      password: 'cal31cium'
-
-test:
   <<: *defaults
 
 staging:
   <<: *defaults
-  homegate:
-    agency_id: 'almtest'
-    ftp:
-      host: '62.65.135.69'
-      username: 'almtest'
-      password: 'cal31cium'
+
+test:
+  <<: *defaults
 
 production:
   <<: *defaults
-  homegate:
-    agency_id: 'alm'
-    ftp:
-      host: 'ftp.homegate.ch'
-      username: 'alm'
-      password: 'neu33hof'
+  idx301:
+    # homegate
+    homegate:
+      agency_id: 'alm'
+      ftp:
+        host: 'ftp.homegate.ch'
+        username: 'alm'
+        password: 'neu33hof'
+    # add immoscout 24
+    # add home.ch
+    # add immostreet.ch
+
