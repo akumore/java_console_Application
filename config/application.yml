@@ -17,6 +17,7 @@ defaults: &defaults
     # homegate
     homegate:
       agency_id: 'alm'
+      sender_id: 'AlfredMuellerWebsite_HomegateExporter'
       ftp:
         host: '62.65.135.69'
         username: 'almtest'
@@ -24,12 +25,14 @@ defaults: &defaults
     # immoscout24
     immoscout24:
       agency_id: '117874_mueller'
+      sender_id: 'AlfredMuellerWebsite_ImmoscoutExporter'
       ftp:
         host: 'ftp.immoscout24.ch'
         username: '117874_mueller'
         password: '6340baar'
     home_ch:
       agency_id: '75680'
+      sender_id: 'AlfredMuellerWebsite_HomechExporter'
       ftp:
         host: 'idx.home.ch'
         username: '75680'
@@ -46,6 +49,7 @@ test:
   idx301:
     my_portal:
       agency_id: 'swag'
+      sender_id: 'AlfredMuellerWebsite_SwagExporter'
       ftp:
         host: 'localhost'
         username: 'swagger'
@@ -57,6 +61,7 @@ production:
     # homegate
     homegate:
       agency_id: 'alm'
+      sender_id: 'AlfredMuellerWebsite_HomegateExporter'
       ftp:
         host: 'ftp.homegate.ch'
         username: 'alm'

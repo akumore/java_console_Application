@@ -200,7 +200,7 @@ module Export::Idx301
 
     def sender_id
       # str(50) Name of the used tool and export versionnumber (eg. Sigmasoft_v2.11, excelsior 21.23, immotools v1.99 ...)
-      'AlfredMuellerWebsite_Exporter'
+      Settings.idx301.send(@portal).sender_id
     end
 
     def object_category
