@@ -1,4 +1,4 @@
-module RequestMacros  
+module RequestMacros
   def login_cms_user
     before(:each) do
       @cms_user = Fabricate(:cms_admin)
@@ -29,7 +29,8 @@ module RequestMacros
     before :each do
       parent_category = Fabricate(:category,
                                 :name => 'parent_category',
-                                :label => 'Parent Category'
+                                :label => 'Parent Category',
+                                :sort_order => 2
     )
 
     Fabricate(:category,
