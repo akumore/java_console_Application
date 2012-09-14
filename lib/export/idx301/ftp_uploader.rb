@@ -35,7 +35,7 @@ module Export
         if FileTest.directory?(local_element)
           # check to prevent '550 File exists' error
           #begin
-          c#  @ftp.nlst(remote_element).empty?
+          #  @ftp.nlst(remote_element).empty?
           #rescue Net::FTPPermError => err
           #  binding.pry
           #  if @ftp.last_response_code == 550

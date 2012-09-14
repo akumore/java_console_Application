@@ -8,17 +8,14 @@ namespace :export do
     logger.formatter = Logger::Formatter.new
     logger.info "Starting real estate export rake task"
 
-    dispatcher = Export::Dispatcher.new("Export Dispatcher")
-
     Settings.idx301.each do |portal, portal_config|
-      # register the homegate export with the dispatcher
-      Export::Idx301::Exporter.new(dispatcher, portal)
+      export = Export::Idx301::Exporter.new(portal)
+      RealEstate.published.each do |real_estate|
+        export.add(real_estate)
+      end
+      export.finish
     end
 
-    # .. register any other custom exporter here
-
-    # ^_^
-    dispatcher.start
     logger.info "Finished real estate export rake task."
   end
 
