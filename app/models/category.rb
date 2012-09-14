@@ -8,7 +8,7 @@ class Category
 
   scope :top_level, where(:parent_id => nil)
 
-  default_scope order_by(:sort_order => :asc)
+  default_scope order_by([{:sort_order => :asc}, {:label => :asc}])
 
   field :name, :type => String
   field :label, :type => String, :localize => true
