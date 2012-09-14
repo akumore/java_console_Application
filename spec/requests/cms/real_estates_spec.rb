@@ -64,6 +64,10 @@ describe "Cms::RealEstates" do
       current_path.should == new_cms_real_estate_path
     end
 
+    it 'shows the categories in the right order' do
+      Category.top_level.first.sort_order.should == 1
+    end
+
     context 'a valid RealEstate' do
       before :each do
         within(".new_real_estate") do
