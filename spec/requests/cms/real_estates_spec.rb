@@ -64,8 +64,8 @@ describe "Cms::RealEstates" do
       current_path.should == new_cms_real_estate_path
     end
 
-    it 'shows the categories in the right order' do
-      Category.top_level.first.sort_order.should == 1
+    it 'contains the right sort order numbers' do
+      Category.top_level.map(&:sort_order).should include(1, 2)
     end
 
     context 'a valid RealEstate' do
