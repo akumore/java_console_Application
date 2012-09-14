@@ -5,7 +5,7 @@
 = form_for [:cms, @real_estate, @information], :url=>cms_real_estate_information_path(@real_estate) do |f|
   = render 'cms/shared/errors', :model => @information
 
-  %fieldset
+  %fieldset.push-checkboxes-down
     .control-group.mandatory
       = f.label :available_from
       .controls
@@ -20,72 +20,72 @@
         .control-group
           = f.label :is_new_building
           .controls
-            %label.checkbox= f.check_box :is_new_building
+            = f.check_box :is_new_building
         .control-group
           = f.label :is_old_building
           .controls
-            %label.checkbox= f.check_box :is_old_building
+            = f.check_box :is_old_building
       .span4
         .control-group
           = f.label :is_minergie_style
           .controls
-            %label.checkbox= f.check_box :is_minergie_style
+            = f.check_box :is_minergie_style
         .control-group
           = f.label :is_minergie_certified
           .controls
-            %label.checkbox= f.check_box :is_minergie_certified
+            = f.check_box :is_minergie_certified
       .span4
         - if @real_estate.property?
           .control-group
             = f.label :is_developed
             .controls
-              %label.checkbox= f.check_box :is_developed
+              = f.check_box :is_developed
         - if @real_estate.apartment? || @real_estate.house?
           .control-group
             = f.label :is_under_building_laws
             .controls
-              %label.checkbox= f.check_box :is_under_building_laws
+              = f.check_box :is_under_building_laws
     - if @real_estate.private_utilization?
       .row
         .span4
           .control-group
             = f.label :has_outlook
             .controls
-              %label.checkbox= f.check_box :has_outlook
+              = f.check_box :has_outlook
           .control-group
             = f.label :has_fireplace
             .controls
-              %label.checkbox= f.check_box :has_fireplace
+              = f.check_box :has_fireplace
           .control-group
             = f.label :has_elevator
             .controls
-              %label.checkbox= f.check_box :has_elevator
+              = f.check_box :has_elevator
           .control-group
             = f.label :has_isdn
             .controls
-              %label.checkbox= f.check_box :has_isdn
+              = f.check_box :has_isdn
         .span4
           .control-group
             = f.label :is_wheelchair_accessible
             .controls
-              %label.checkbox= f.check_box :is_wheelchair_accessible
+              = f.check_box :is_wheelchair_accessible
           .control-group
             = f.label :is_child_friendly
             .controls
-              %label.checkbox= f.check_box :is_child_friendly
+              = f.check_box :is_child_friendly
           .control-group
             = f.label :has_balcony
             .controls
-              %label.checkbox= f.check_box :has_balcony
+              = f.check_box :has_balcony
           .control-group
             = f.label :has_raised_ground_floor
             .controls
-              %label.checkbox= f.check_box :has_raised_ground_floor
+              = f.check_box :has_raised_ground_floor
         .span4
           .control-group
             = f.label :has_swimming_pool
             .controls
-              %label.checkbox= f.check_box :has_swimming_pool
+              = f.check_box :has_swimming_pool
     - if @real_estate.commercial_utilization?
       .row
         .span4
@@ -105,24 +105,24 @@
           .control-group
             = f.label :has_lifting_platform
             .controls
-              %label.checkbox= f.check_box :has_lifting_platform
+              = f.check_box :has_lifting_platform
           .control-group
             = f.label :has_ramp
             .controls
-              %label.checkbox= f.check_box :has_ramp
+              = f.check_box :has_ramp
           .control-group
             = f.label :has_railway_terminal
             .controls
-              %label.checkbox= f.check_box :has_railway_terminal
+              = f.check_box :has_railway_terminal
         .span4
           .control-group
             = f.label :has_water_supply
             .controls
-              %label.checkbox= f.check_box :has_water_supply
+              = f.check_box :has_water_supply
           .control-group
             = f.label :has_sewage_supply
             .controls
-              %label.checkbox= f.check_box :has_sewage_supply
+              = f.check_box :has_sewage_supply
   - if @real_estate.for_rent?
     %fieldset
       %legend= t('.for_rent')
