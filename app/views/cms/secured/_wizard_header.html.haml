@@ -8,7 +8,7 @@
       Erstellt von
       %span.italic-darkgrey
         - if @real_estate.creator
-          = "#{@real_estate.creator.first_name} #{@real_estate.creator.last_name}"
+          = "#{EditorDecorator.decorate(@real_estate.creator).full_name}"
         - else
           Unbekannt
       = "#{@real_estate.created_at.strftime('am %d.%m.%Y um %H:%M')} Uhr."
@@ -18,7 +18,7 @@
       Zuletzt editiert von
       %span.italic-darkgrey
         - if @real_estate.editor
-          = "#{@real_estate.editor.first_name} #{@real_estate.editor.last_name}"
+          = "#{EditorDecorator.decorate(@real_estate.editor).full_name}"
         - else
           Unbekannt
       = "#{@real_estate.updated_at.strftime('am %d.%m.%Y um %H:%M')} Uhr."
