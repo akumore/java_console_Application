@@ -54,14 +54,42 @@ describe 'Real Estate Wizard' do
 
       context 'as an admin' do
         before do
+          controller.stub!(:current_user).and_return admin
           @real_estate.editor = editor
           @real_estate.save
         end
 
-        it 'remains last edited by the editor' do
-          current_editor = @real_estate.editor
+        it 'is last edited by the admin' do
           put :update, :id => @real_estate.id
-          @real_estate.reload.editor.editor?.should be_true
+          @real_estate.reload.editor.admin?.should be_true
+        end
+
+        context 'when the real estate is rejected' do
+          it 'remains last edited by the editor' do
+            put :update, :id => @real_estate.id, :real_estate => { :state_event => 'reject_it' }
+            @real_estate.reload.editor.editor?.should be_true
+          end
+        end
+
+        context 'when the real estate is published' do
+          it 'remains last edited by the editor' do
+            put :update, :id => @real_estate.id, :real_estate => { :state_event => 'publish_it' }
+            @real_estate.reload.editor.editor?.should be_true
+          end
+        end
+
+        context 'when the real estate is unpublished' do
+          it 'remains last edited by the editor' do
+            put :update, :id => @real_estate.id, :real_estate => { :state_event => 'unpublish_it' }
+            @real_estate.reload.editor.editor?.should be_true
+          end
+        end
+
+        context 'when the real estate is to be reviewed' do
+          it 'remains last edited by the editor' do
+            put :update, :id => @real_estate.id, :real_estate => { :state_event => 'review_it' }
+            @real_estate.reload.editor.editor?.should be_true
+          end
         end
       end
 
@@ -73,7 +101,6 @@ describe 'Real Estate Wizard' do
         end
 
         it 'is last edited by the editor' do
-          current_editor = @real_estate.reload.editor
           put :update, :id => @real_estate.id
           @real_estate.reload.editor.editor?.should be_true
         end
