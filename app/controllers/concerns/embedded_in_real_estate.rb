@@ -22,7 +22,8 @@ module Concerns
     end
 
     def save_editor
-      @real_estate.editor = current_user
+      #@real_estate.editor = current_user
+      @real_estate.update_attribute :editor_id, current_user.id
     end
   end
 end
