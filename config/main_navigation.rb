@@ -34,7 +34,7 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
 
     primary.item :real_estate, t('navigation.main.real_estate'), real_estates_path, :highlights_on => proc { controller.request.path.include?('real_estate') } do |offer|
-      offer.item  t("real_estates.search_filter.for_rent"), t("real_estates.search_filter.for_rent"),  real_estates_path(:offer => SearchFilter::RENT, :utilization => RealEstate::UTILIZATION_PRIVATE)
+      offer.item  t("real_estates.search_filter.for_rent"), t("real_estates.search_filter.for_rent"),  real_estates_path(:offer => SearchFilter::RENT, :utilization => RealEstate::UTILIZATION_COMMERICAL)
       offer.item  t("real_estates.search_filter.for_sale"), t("real_estates.search_filter.for_sale"), real_estates_path(:offer => SearchFilter::SALE, :utilization => RealEstate::UTILIZATION_PRIVATE)
     end
 
