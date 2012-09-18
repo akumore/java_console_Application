@@ -64,6 +64,10 @@ describe "Cms::RealEstates" do
       current_path.should == new_cms_real_estate_path
     end
 
+    it 'contains the right sort order numbers' do
+      Category.top_level.map(&:sort_order).should include(1, 2)
+    end
+
     context 'a valid RealEstate' do
       before :each do
         within(".new_real_estate") do

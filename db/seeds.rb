@@ -15,13 +15,13 @@ module InitialCategories
 
   # Top level categories
   {
-    'apartment'   => { :label_translations => { :de => 'Wohnung',           :fr => 'Appartement',         :it => 'Appartamento',        :en => 'Apartment' }},
-    'gastronomy'  => { :label_translations => { :de => 'Gastronomie',       :fr => 'Gastronomie',         :it => 'Gastronomia',         :en => 'Gastronomy' }},
-    'house'       => { :label_translations => { :de => 'Haus',              :fr => 'Maison',              :it => 'Casa',                :en => 'House' }},
-    'industrial'  => { :label_translations => { :de => 'Gewerbe/Industrie', :fr => 'Commerce/Industrie',  :it => 'Industria/Commercio', :en => 'Industrial Objects' }},
-    'parking'     => { :label_translations => { :de => 'Parkplatz',         :fr => 'Place de parc',       :it => 'Posteggio',           :en => 'Parking space' }},
-    'properties'  => { :label_translations => { :de => 'Grundstück',        :fr => 'Terrain',             :it => 'Terreno',             :en => 'Plot' }},
-    'secondary'   => { :label_translations => { :de => 'Wohnnebenräume',    :fr => 'Pièces annexes',      :it => 'Locale di servizio',  :en => 'Secondary rooms' }}
+    'apartment'   => { :sort_order => 1, :label_translations => { :de => 'Wohnung',           :fr => 'Appartement',         :it => 'Appartamento',        :en => 'Apartment' }},
+    'house'       => { :sort_order => 2, :label_translations => { :de => 'Haus',              :fr => 'Maison',              :it => 'Casa',                :en => 'House' }},
+    'industrial'  => { :sort_order => 3, :label_translations => { :de => 'Gewerbe/Industrie', :fr => 'Commerce/Industrie',  :it => 'Industria/Commercio', :en => 'Industrial Objects' }},
+    'parking'     => { :sort_order => 4, :label_translations => { :de => 'Parkplatz',         :fr => 'Place de parc',       :it => 'Posteggio',           :en => 'Parking space' }},
+    'secondary'   => { :sort_order => 5, :label_translations => { :de => 'Wohnnebenräume',    :fr => 'Pièces annexes',      :it => 'Locale di servizio',  :en => 'Secondary rooms' }},
+    'gastronomy'  => { :sort_order => 6, :label_translations => { :de => 'Gastronomie',       :fr => 'Gastronomie',         :it => 'Gastronomia',         :en => 'Gastronomy' }},
+    'properties'  => { :sort_order => 7, :label_translations => { :de => 'Grundstück',        :fr => 'Terrain',             :it => 'Terreno',             :en => 'Plot' }}
   }.each do |key, value|
     category = Category.find_or_create_by(:name => key)
     category.update_attributes(value)
@@ -36,14 +36,14 @@ module InitialCategories
   end
 
   {
-    'flat' =>           { :label_translations => { :de => 'Wohnung',              :fr =>  'Appartement',          :it => 'Appartamento',              :en => 'Apartment' }},
+    'flat' =>           { :label_translations => { :de => 'Wohnung',              :fr => 'Appartement',           :it => 'Appartamento',              :en => 'Apartment' }},
     'duplex' =>         { :label_translations => { :de => 'Maisonette / Duplex',  :fr => 'Duplex',                :it => 'Duplex',                    :en => 'Duplex' }},
-    'attic_flat' =>     { :label_translations => { :de => 'Attikawohnung',        :fr => 'Attique',               :it => 'Attico',                    :en => 'Attic flat' }},
-    'roof_flat' =>      { :label_translations => { :de => 'Dachwohnung',          :fr => 'Dernier étage',         :it => 'Appartamento ultimo piano', :en => 'Roof flat' }},
+    'attic_flat' =>     { :label_translations => { :de => 'Attika-Wohnung',       :fr => 'Attique',               :it => 'Attico',                    :en => 'Attic flat' }},
+    'roof_flat' =>      { :label_translations => { :de => 'Dach-Wohnung',         :fr => 'Dernier étage',         :it => 'Appartamento ultimo piano', :en => 'Roof flat' }},
     'studio' =>         { :label_translations => { :de => 'Studio',               :fr => 'Studio',                :it => 'Monolocale',                :en => 'Studio' }},
     'single_room' =>    { :label_translations => { :de => 'Einzelzimmer',         :fr => 'Chambre',               :it => 'Camera',                    :en => 'Single Room' }},
     'furnished_flat' => { :label_translations => { :de => 'Möbl. Wohnobj.',       :fr => 'Appartement meublé',    :it => 'Appartamento ammobiliato',  :en => 'Furnished flat' }},
-    'terrace_flat' =>   { :label_translations => { :de => 'Terrassenwohnung',     :fr => 'Appartement terrasse',  :it => 'Appart. a terrazza',        :en => 'Terrace flat' }},
+    'terrace_flat' =>   { :label_translations => { :de => 'Terrassen-Wohnung',    :fr => 'Appartement terrasse',  :it => 'Appart. a terrazza',        :en => 'Terrace flat' }},
     'loft' =>           { :label_translations => { :de => 'Loft',                 :fr => 'Loft',                  :it => 'Loft',                      :en => 'Loft' }}
   }.each do |key, value|
     create_sublevel_for('apartment', key, value)
@@ -60,7 +60,7 @@ module InitialCategories
 
   {
     'single_house' =>       { :label_translations => { :de => 'Einfamilienhaus',        :fr => 'Maison',                :it => 'Casa unifamiliare',   :en => 'Single house' }},
-    'row_house' =>          { :label_translations => { :de => 'Reihenfamilienhaus',     :fr => 'Maison jumelle',        :it => 'Casa a schiera',      :en => 'Row house' }},
+    'row_house' =>          { :label_translations => { :de => 'Reiheneinfamilienhaus',  :fr => 'Maison jumelle',        :it => 'Casa a schiera',      :en => 'Row house' }},
     'bifamilar_house' =>    { :label_translations => { :de => 'Doppeleinfamilienhaus',  :fr => 'Maison double',         :it => 'Casa bifamiliare',    :en => 'Bifamiliar house' }},
     'terrace_house' =>      { :label_translations => { :de => 'Terrassenhaus',          :fr => 'Maison terrasse',       :it => 'Casa a terrazza',     :en => 'Terrace house' }},
     'villa' =>              { :label_translations => { :de => 'Villa',                  :fr => 'Villa',                 :it => 'Villa',               :en => 'Villa' }},
@@ -73,7 +73,7 @@ module InitialCategories
 
   {
     'office' =>                       { :label_translations => { :de => 'Büro',                   :fr => 'Bureau',              :it => 'Ufficio',                       :en => 'Office' }},
-    'shop' =>                         { :label_translations => { :de => 'Ladenfläche',            :fr => 'Commerce',            :it => 'Commercio / negozio',           :en => 'Shop' }},
+    'shop' =>                         { :label_translations => { :de => 'Laden',                  :fr => 'Commerce',            :it => 'Commercio / negozio',           :en => 'Shop' }},
     'advertising_area' =>             { :label_translations => { :de => 'Werbefläche',            :fr => 'Exposition',          :it => 'Esposizioni',                   :en => 'Advertising area' }},
     'commercial' =>                   { :label_translations => { :de => 'Gewerbe',                :fr => 'Industrie',           :it => 'Industrie',                     :en => 'Commercial' }},
     'depot' =>                        { :label_translations => { :de => 'Lager',                  :fr => 'Dépôt',               :it => 'Magazzino',                     :en => 'Storage room' }},
@@ -97,13 +97,13 @@ module InitialCategories
   end
 
   {
-    'open_slot'                   => { :label_translations => { :de => 'offener Parkplatz', :fr => 'Place ouverte',             :it => 'Parcheggio all\'aperto',    :en => 'Open slot' }},
-    'covered_slot'                => { :label_translations => { :de => 'Unterstand',        :fr => 'Place couverte',            :it => 'Parcheggio coperto',        :en =>  'Covered slot' }},
-    'single_garage'               => { :label_translations => { :de => 'Einzelgarage',      :fr => 'Garage individuel',         :it => 'Garage singolo',            :en =>  'Single garage' }},
-    'double_garage'               => { :label_translations => { :de => 'Doppelgarage',      :fr => 'Garage double',             :it => 'Garage doppio',             :en => 'Double garage' }},
-    'underground_slot'            => { :label_translations => { :de => 'Tiefgarage',        :fr => 'Place souterraine',         :it => 'Parcheggio sotterraneo',    :en =>  'Underground slot' }},
-    'covered_parking_place_bike'  => { :label_translations => { :de => 'Moto Hallenplatz',  :fr => 'Halle à motos',             :it => 'Posteggio moto in garage',  :en => 'Covered parking place bike' }},
-    'outdoor_parking_place_bike'  => { :label_translations => { :de => 'Moto Aussenplatz',  :fr => 'Place extérieure à motos',  :it => 'Posteggio moto esterno',    :en => 'Outdoor parking place bike' }}
+    'open_slot'                   => { :label_translations => { :de => 'Parkplatz im Freien',              :fr => 'Place ouverte',             :it => 'Parcheggio all\'aperto',    :en => 'Open slot' }},
+    'covered_slot'                => { :label_translations => { :de => 'Parkplatz im Freien überdacht',    :fr => 'Place couverte',            :it => 'Parcheggio coperto',        :en =>  'Covered slot' }},
+    'single_garage'               => { :label_translations => { :de => 'Parkplatz in Fertiggarage',        :fr => 'Garage individuel',         :it => 'Garage singolo',            :en =>  'Single garage' }},
+    'double_garage'               => { :label_translations => { :de => 'Doppelgarage',                     :fr => 'Garage double',             :it => 'Garage doppio',             :en => 'Double garage' }},
+    'underground_slot'            => { :label_translations => { :de => 'Tiefgarage',                       :fr => 'Place souterraine',         :it => 'Parcheggio sotterraneo',    :en =>  'Underground slot' }},
+    'covered_parking_place_bike'  => { :label_translations => { :de => 'Motorrad-PP in Autoeinstellhalle', :fr => 'Halle à motos',             :it => 'Posteggio moto in garage',  :en => 'Covered parking place bike' }},
+    'outdoor_parking_place_bike'  => { :label_translations => { :de => 'Motorrad-PP im Freien überdacht',  :fr => 'Place extérieure à motos',  :it => 'Posteggio moto esterno',    :en => 'Outdoor parking place bike' }}
   }
   .each do |key, value|
     create_sublevel_for('parking', key, value)
