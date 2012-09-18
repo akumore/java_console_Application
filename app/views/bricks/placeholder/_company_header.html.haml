@@ -8,8 +8,6 @@
       %a{ :href => '#managing-board' }=t('.managing_board')
     %li
       %a{ :href => '#subsidiaries' }=t('.subsidiaries')
-    %li
-      %a{ :href => '#reference-projects' }=t('.reference_projects')
 
   .flex-container.hidden#vision.tab-content
     .flexslider
@@ -182,7 +180,3 @@
             %p
               %a{ :href => 'mailto:massimiliano.paganini@alfred-mueller.ch' }
                 =t('.mailto_text')
-
-  - unless reference_projects.empty?
-    #reference-projects.hidden.tab-content.flex-container
-      = render 'slider', :projects => reference_projects
