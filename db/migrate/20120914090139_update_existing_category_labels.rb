@@ -1,6 +1,9 @@
 # encoding: utf-8
 
 class UpdateExistingCategoryLabels < Mongoid::Migration
+  # Just make sure, we got the right locale
+  I18n.locale = :de
+
   def self.up
     if Category.where(:label => 'Attikawohnung').first.present?
       Category.where(:label => 'Attikawohnung').first.update_attribute(:label, 'Attika-Wohnung')
