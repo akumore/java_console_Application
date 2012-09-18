@@ -15,10 +15,6 @@ class UpdateExistingCategoryLabels < Mongoid::Migration
     end
 
     if Category.where(:label => 'Reihenfamilienhaus').first.present?
-      Category.where(:label => 'Reihenfamilienhaus').first.update_attribute(:name, 'Reihenfamilienhaus')
-    end
-
-    if Category.where(:label => 'Reihenfamilienhaus').first.present?
       Category.where(:label => 'Reihenfamilienhaus').first.update_attribute(:name, 'Reiheneinfamilienhaus')
     end
 
