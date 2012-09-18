@@ -3,7 +3,6 @@ require 'spec_helper'
 describe NewsItemsController, "handling GET /news_items.xml" do
 
   before do
-    @request.env["HTTP_ACCEPT"] = "application/xml"
     get :index, :format => :xml, :locale => :de
   end
 
