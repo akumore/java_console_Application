@@ -20,6 +20,10 @@ describe "News", :js => true do
       click_link 'Ältere News anzeigen'
       page.should have_css('.accordion-item', :count => 12)
     end
+
+    it 'shows auto discovery rss link' do
+      page.should have_xpath("//link[contains(@href, 'news_items.xml')]")
+    end
   end
 
 
@@ -74,7 +78,7 @@ describe "News", :js => true do
         news_item.documents << Fabricate.build(:news_item_document)
 
         visit news_items_path(:anchor => "news_item_#{news_item.id}")
-        
+
         page.should have_css("#news_item_#{news_item.id} a.icon-document", :count => 3)
 
         news_item.documents.each do |doc|
@@ -84,3 +88,4 @@ describe "News", :js => true do
     end
   end
 end
+
