@@ -32,5 +32,9 @@ class Pricing
   validates :price_unit, :presence => true, :inclusion => PRICE_UNITS_FOR_SALE, :if => :for_sale?
   validates :price_unit, :presence => true, :inclusion => PRICE_UNITS_FOR_RENT, :if => :for_rent?
 
-  delegate :for_sale?, :for_rent?, :to => :_parent
+  delegate :for_sale?, :for_rent?, :private_utilization?, :to => :_parent
+
+  def for_rent_brutto
+    for_rent_netto.to_i + for_rent_extra.to_i
+  end
 end

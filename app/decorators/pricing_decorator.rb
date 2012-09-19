@@ -8,7 +8,8 @@ class PricingDecorator < ApplicationDecorator
       if model.estimate.present?
         model.estimate
       else
-        formatted_price(model.for_rent_netto)
+        price_value = model.private_utilization? ? model.for_rent_brutto : model.for_rent_netto
+        formatted_price(price_value)
       end
     elsif model.for_sale?
       if model.estimate.present?
@@ -21,7 +22,11 @@ class PricingDecorator < ApplicationDecorator
 
   def price
     if model.for_rent?
-      for_rent_netto
+      if model.private_utilization?
+        for_rent_brutto
+      else
+        for_rent_netto
+      end
     elsif model.for_sale?
       for_sale
     end
@@ -33,6 +38,16 @@ class PricingDecorator < ApplicationDecorator
         model.estimate
       elsif model.for_rent_netto.present?
         formatted(model.for_rent_netto)
+      end
+    end
+  end
+
+  def for_rent_brutto
+    if model.for_rent?
+      if model.estimate.present?
+        model.estimate
+      elsif model.for_rent_brutto.present?
+        formatted(model.for_rent_brutto)
       end
     end
   end
