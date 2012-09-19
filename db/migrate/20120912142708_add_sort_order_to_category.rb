@@ -11,9 +11,9 @@ class AddSortOrderToCategory < Mongoid::Migration
         category.sort_order = 4
       elsif category.name == 'secondary'
         category.sort_order = 5
-      elsif category.name == 'gastronomy'
-        category.sort_order = 6
       elsif category.name == 'properties'
+        category.sort_order = 6
+      elsif category.name == 'gastronomy'
         category.sort_order = 7
       end
 

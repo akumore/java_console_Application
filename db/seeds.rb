@@ -20,8 +20,8 @@ module InitialCategories
     'industrial'  => { :sort_order => 3, :label_translations => { :de => 'Gewerbe/Industrie', :fr => 'Commerce/Industrie',  :it => 'Industria/Commercio', :en => 'Industrial Objects' }},
     'parking'     => { :sort_order => 4, :label_translations => { :de => 'Parkplatz',         :fr => 'Place de parc',       :it => 'Posteggio',           :en => 'Parking space' }},
     'secondary'   => { :sort_order => 5, :label_translations => { :de => 'Wohnnebenräume',    :fr => 'Pièces annexes',      :it => 'Locale di servizio',  :en => 'Secondary rooms' }},
-    'gastronomy'  => { :sort_order => 6, :label_translations => { :de => 'Gastronomie',       :fr => 'Gastronomie',         :it => 'Gastronomia',         :en => 'Gastronomy' }},
-    'properties'  => { :sort_order => 7, :label_translations => { :de => 'Grundstück',        :fr => 'Terrain',             :it => 'Terreno',             :en => 'Plot' }}
+    'properties'  => { :sort_order => 6, :label_translations => { :de => 'Grundstück',        :fr => 'Terrain',             :it => 'Terreno',             :en => 'Plot' }},
+    'gastronomy'  => { :sort_order => 7, :label_translations => { :de => 'Gastronomie',       :fr => 'Gastronomie',         :it => 'Gastronomia',         :en => 'Gastronomy' }}
   }.each do |key, value|
     category = Category.find_or_create_by(:name => key)
     category.update_attributes(value)
