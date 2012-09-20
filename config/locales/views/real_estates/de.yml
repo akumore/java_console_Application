@@ -24,6 +24,7 @@ de:
     show:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Übersicht'
+      prev: 'Vorheriges Projekt'
       next: 'Nächstes Projekt'
       floorplan: 'Grundriss anzeigen'
       print_floorplan: 'Grundriss drucken'

@@ -26,7 +26,8 @@ it:
     show:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Visione d’insieme'
-      next: 'Nächstes Projekt'
+      prev: 'Precedente progetto'
+      next: 'Prossimo progetto'
       floorplan: 'Mostra pianta'
       print_floorplan: 'Stampare la pianta'
       description_download: 'Documentazione oggetto'
