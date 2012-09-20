@@ -6,7 +6,7 @@ class RealEstatePagination
   end
 
   def prev
-    @real_estates[@real_estates.index(@real_estate.id) - 1]
+    @real_estates[@real_estates.index(@real_estate.id) - 1] unless @real_estate.id == @real_estates.first
   end
 
   def next
@@ -21,3 +21,4 @@ class RealEstatePagination
     @real_estate.id != @real_estates.last
   end
 end
+
