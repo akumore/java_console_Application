@@ -122,7 +122,7 @@ module InitialCategories
   {
     'hobby_room' => { :label_translations => { :de => 'Hobbyraum',  :fr => 'Pièce pour les hobbys', :it => 'Locale per hobby', :en => 'Hobby room' }},
     'available' =>  { :label_translations => { :de => 'Disponibel', :fr => 'Versatile',             :it => 'Versatile',        :en => 'Versatile' }},
-    'archives' =>   { :label_translations => { :de => 'Archiv',     :fr => 'Archives',              :it => 'archivio',         :en => 'Archives' }}
+    'archives' =>   { :label_translations => { :de => 'Archiv',     :fr => 'Archives',              :it => 'Archivio',         :en => 'Archives' }}
   }
   .each do |key, value|
     create_sublevel_for('secondary', key, value)
