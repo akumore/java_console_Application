@@ -1,22 +1,10 @@
 # encoding: utf-8
 
 class UpdateExistingCategoryLabels < Mongoid::Migration
-  # Just make sure, we got the right locale
+  # Just make sure we got the right locale
   I18n.locale = :de
 
   def self.up
-    if Category.where(:label => 'Attikawohnung').first.present?
-      Category.where(:label => 'Attikawohnung').first.update_attribute(:label, 'Attika-Wohnung')
-    end
-
-    if Category.where(:label => 'Dachwohnung').first.present?
-      Category.where(:label => 'Dachwohnung').first.update_attribute(:label, 'Dach-Wohnung')
-    end
-
-    if Category.where(:label => 'Terrassenwohnung').first.present?
-      Category.where(:label => 'Terrassenwohnung').first.update_attribute(:label, 'Terrassen-Wohnung')
-    end
-
     if Category.where(:label => 'Reihenfamilienhaus').first.present?
       Category.where(:label => 'Reihenfamilienhaus').first.update_attribute(:label, 'Reiheneinfamilienhaus')
     end
@@ -43,6 +31,30 @@ class UpdateExistingCategoryLabels < Mongoid::Migration
 
     if Category.where(:label => 'Moto Aussenplatz').first.present?
       Category.where(:label => 'Moto Aussenplatz').first.update_attribute(:label, 'Motorrad-PP im Freien überdacht')
+    end
+
+    if Category.where(:label => 'Tiefgarage').first.present?
+      Category.where(:label => 'Tiefgarage').first.update_attribute(:label, 'Parkplatz in Autoeinstellhalle')
+    end
+
+    if Category.where(:label => 'Parkplatz in Fertiggarage').first.present?
+      Category.where(:label => 'Parkplatz in Fertiggarage').first.update_attribute(:label, 'Einzelgarage')
+    end
+
+    unless Category.where(:label => 'Disponibel').first.present? && Category.where(:label => 'Archiv').first.present?
+      def self.create_sublevel_for(top_level_name, sublevel_name, sublevel_labels)
+        top_level = Category.where(:name => top_level_name).first
+        category = Category.find_or_create_by(:name => sublevel_name)
+        category.update_attributes(sublevel_labels.merge(:parent => top_level))
+      end
+
+      {
+        'available' =>  { :label_translations => { :de => 'Disponibel', :fr => 'Versatile',             :it => 'Versatile',        :en => 'Versatile' }},
+        'archives' =>   { :label_translations => { :de => 'Archiv',     :fr => 'Archives',              :it => 'archivio',         :en => 'Archives' }}
+      }
+      .each do |key, value|
+        create_sublevel_for('secondary', key, value)
+      end
     end
   end
 
