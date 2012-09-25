@@ -36,15 +36,15 @@ module InitialCategories
   end
 
   {
-    'flat' =>           { :label_translations => { :de => 'Wohnung',              :fr => 'Appartement',           :it => 'Appartamento',              :en => 'Apartment' }},
-    'duplex' =>         { :label_translations => { :de => 'Maisonette / Duplex',  :fr => 'Duplex',                :it => 'Duplex',                    :en => 'Duplex' }},
-    'attic_flat' =>     { :label_translations => { :de => 'Attika-Wohnung',       :fr => 'Attique',               :it => 'Attico',                    :en => 'Attic flat' }},
-    'roof_flat' =>      { :label_translations => { :de => 'Dach-Wohnung',         :fr => 'Dernier étage',         :it => 'Appartamento ultimo piano', :en => 'Roof flat' }},
-    'studio' =>         { :label_translations => { :de => 'Studio',               :fr => 'Studio',                :it => 'Monolocale',                :en => 'Studio' }},
-    'single_room' =>    { :label_translations => { :de => 'Einzelzimmer',         :fr => 'Chambre',               :it => 'Camera',                    :en => 'Single Room' }},
-    'furnished_flat' => { :label_translations => { :de => 'Möbl. Wohnobj.',       :fr => 'Appartement meublé',    :it => 'Appartamento ammobiliato',  :en => 'Furnished flat' }},
-    'terrace_flat' =>   { :label_translations => { :de => 'Terrassen-Wohnung',    :fr => 'Appartement terrasse',  :it => 'Appart. a terrazza',        :en => 'Terrace flat' }},
-    'loft' =>           { :label_translations => { :de => 'Loft',                 :fr => 'Loft',                  :it => 'Loft',                      :en => 'Loft' }}
+    'flat' =>           { :label_translations => { :de => 'Wohnung',             :fr => 'Appartement',           :it => 'Appartamento',              :en => 'Apartment' }},
+    'duplex' =>         { :label_translations => { :de => 'Maisonette-Wohnung',  :fr => 'Duplex',                :it => 'Duplex',                    :en => 'Duplex' }},
+    'attic_flat' =>     { :label_translations => { :de => 'Attikawohnung',       :fr => 'Attique',               :it => 'Attico',                    :en => 'Attic flat' }},
+    'roof_flat' =>      { :label_translations => { :de => 'Dachwohnung',         :fr => 'Dernier étage',         :it => 'Appartamento ultimo piano', :en => 'Roof flat' }},
+    'studio' =>         { :label_translations => { :de => 'Studio',              :fr => 'Studio',                :it => 'Monolocale',                :en => 'Studio' }},
+    'single_room' =>    { :label_translations => { :de => 'Einzelzimmer',        :fr => 'Chambre',               :it => 'Camera',                    :en => 'Single Room' }},
+    'furnished_flat' => { :label_translations => { :de => 'Möbl. Wohnobjekt',    :fr => 'Appartement meublé',    :it => 'Appartamento ammobiliato',  :en => 'Furnished flat' }},
+    'terrace_flat' =>   { :label_translations => { :de => 'Terrassenwohnung',    :fr => 'Appartement terrasse',  :it => 'Appart. a terrazza',        :en => 'Terrace flat' }},
+    'loft' =>           { :label_translations => { :de => 'Loft',                :fr => 'Loft',                  :it => 'Loft',                      :en => 'Loft' }}
   }.each do |key, value|
     create_sublevel_for('apartment', key, value)
   end
@@ -99,9 +99,9 @@ module InitialCategories
   {
     'open_slot'                   => { :label_translations => { :de => 'Parkplatz im Freien',              :fr => 'Place ouverte',             :it => 'Parcheggio all\'aperto',    :en => 'Open slot' }},
     'covered_slot'                => { :label_translations => { :de => 'Parkplatz im Freien überdacht',    :fr => 'Place couverte',            :it => 'Parcheggio coperto',        :en =>  'Covered slot' }},
-    'single_garage'               => { :label_translations => { :de => 'Parkplatz in Fertiggarage',        :fr => 'Garage individuel',         :it => 'Garage singolo',            :en =>  'Single garage' }},
+    'single_garage'               => { :label_translations => { :de => 'Einzelgarage',                     :fr => 'Garage individuel',         :it => 'Garage singolo',            :en =>  'Single garage' }},
     'double_garage'               => { :label_translations => { :de => 'Doppelgarage',                     :fr => 'Garage double',             :it => 'Garage doppio',             :en => 'Double garage' }},
-    'underground_slot'            => { :label_translations => { :de => 'Tiefgarage',                       :fr => 'Place souterraine',         :it => 'Parcheggio sotterraneo',    :en =>  'Underground slot' }},
+    'underground_slot'            => { :label_translations => { :de => 'Parkplatz in Autoeinstellhalle',   :fr => 'Place souterraine',         :it => 'Parcheggio sotterraneo',    :en =>  'Underground slot' }},
     'covered_parking_place_bike'  => { :label_translations => { :de => 'Motorrad-PP in Autoeinstellhalle', :fr => 'Halle à motos',             :it => 'Posteggio moto in garage',  :en => 'Covered parking place bike' }},
     'outdoor_parking_place_bike'  => { :label_translations => { :de => 'Motorrad-PP im Freien überdacht',  :fr => 'Place extérieure à motos',  :it => 'Posteggio moto esterno',    :en => 'Outdoor parking place bike' }}
   }
@@ -120,7 +120,9 @@ module InitialCategories
   end
 
   {
-    'hobby_room' => { :label_translations => { :de => 'Hobbyraum', :fr => 'Pièce pour les hobbys', :it => 'Locale per hobby', :en => 'Hobby room' }}
+    'hobby_room' => { :label_translations => { :de => 'Hobbyraum',  :fr => 'Pièce pour les hobbys', :it => 'Locale per hobby', :en => 'Hobby room' }},
+    'available' =>  { :label_translations => { :de => 'Disponibel', :fr => 'Versatile',             :it => 'Versatile',        :en => 'Versatile' }},
+    'archives' =>   { :label_translations => { :de => 'Archiv',     :fr => 'Archives',              :it => 'Archivio',         :en => 'Archives' }}
   }
   .each do |key, value|
     create_sublevel_for('secondary', key, value)
