@@ -1,6 +1,6 @@
 = render 'cms/shared/errors', :model => @image
 
-%fieldset
+%fieldset.push-checkboxes-down
   .control-group.mandatory
     = f.label :title
     .controls
@@ -8,8 +8,7 @@
   .control-group
     = f.label :is_primary
     .controls
-      %label.checkbox
-        = f.check_box :is_primary
+      = f.check_box :is_primary
   .control-group.mandatory
     = f.label :file
     .controls

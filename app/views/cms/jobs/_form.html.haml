@@ -2,7 +2,7 @@
   = render 'cms/shared/errors', :model => @job
 
   = f.hidden_field :locale
-  %fieldset
+  %fieldset.push-checkboxes-down
     .control-group
       = f.label :title
       .controls
@@ -14,8 +14,7 @@
     .control-group
       = f.label :is_published
       .controls
-        %label.checkbox
-          = f.check_box :is_published
+        = f.check_box :is_published
     .control-group
       = f.label :job_profile_file
       .controls

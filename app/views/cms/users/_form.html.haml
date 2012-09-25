@@ -1,7 +1,7 @@
 = form_for @user do |f|
   = render 'cms/shared/errors', :model => @user
 
-  %fieldset
+  %fieldset.push-checkboxes-down
     .control-group.mandatory
       = f.label :first_name
       .controls

@@ -5,23 +5,20 @@
 = form_for @infrastructure, :url => cms_real_estate_infrastructure_path(@real_estate) do |f|
   = render 'cms/shared/errors', :model => @infrastructure
 
-  %fieldset
+  %fieldset.push-checkboxes-down
     %legend= t('.parking')
     .control-group
       = f.label :has_parking_spot
       .controls
-        %label.checkbox
-          = f.check_box :has_parking_spot
+        = f.check_box :has_parking_spot
     .control-group
       = f.label :has_roofed_parking_spot
       .controls
-        %label.checkbox
-          = f.check_box :has_roofed_parking_spot
+        = f.check_box :has_roofed_parking_spot
     .control-group
       = f.label :has_garage
       .controls
-        %label.checkbox
-          = f.check_box :has_garage
+        = f.check_box :has_garage
     .control-group
       = f.label :inside_parking_spots
       .controls
