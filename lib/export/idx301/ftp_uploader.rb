@@ -23,6 +23,11 @@ module Export
         end
       end
 
+      def files
+        list = Dir.glob("#{local_base_dir}/**/**").sort
+        list.delete_if { |elem| elem.include?('unload.txt') && !elem.include?("#{@portal}_unload.txt") }
+      end
+
       private
 
       def upload(element)
@@ -47,10 +52,6 @@ module Export
         else
           @ftp.put element, remote_element
         end
-      end
-
-      def files
-        Dir.glob("#{local_base_dir}/**/**").sort
       end
 
       def local_base_dir
