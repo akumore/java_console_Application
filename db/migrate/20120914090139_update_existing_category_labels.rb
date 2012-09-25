@@ -41,19 +41,14 @@ class UpdateExistingCategoryLabels < Mongoid::Migration
       Category.where(:label => 'Parkplatz in Fertiggarage').first.update_attribute(:label, 'Einzelgarage')
     end
 
-    unless Category.where(:label => 'Disponibel').first.present? && Category.where(:label => 'Archiv').first.present?
-      def self.create_sublevel_for(top_level_name, sublevel_name, sublevel_labels)
-        top_level = Category.where(:name => top_level_name).first
-        category = Category.find_or_create_by(:name => sublevel_name)
-        category.update_attributes(sublevel_labels.merge(:parent => top_level))
-      end
-
+    if secondary = Category.where(:name => 'secondary').first
       {
-        'available' =>  { :label_translations => { :de => 'Disponibel', :fr => 'Versatile',             :it => 'Versatile',        :en => 'Versatile' }},
-        'archives' =>   { :label_translations => { :de => 'Archiv',     :fr => 'Archives',              :it => 'archivio',         :en => 'Archives' }}
+        'available' =>  { :label_translations => { :de => 'Disponibel', :fr => 'Versatile',   :it => 'Versatile', :en => 'Versatile' }, :parent => secondary },
+        'archives' =>   { :label_translations => { :de => 'Archiv',     :fr => 'Archives',    :it => 'Archivio',  :en => 'Archives' }, :parent => secondary }
       }
       .each do |key, value|
-        create_sublevel_for('secondary', key, value)
+        category = Category.find_or_create_by(:name => key)
+        category.update_attributes(value)
       end
     end
   end
