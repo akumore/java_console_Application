@@ -168,6 +168,23 @@ describe "RealEstates" do
           page.should have_css(".real_estates ul.slides li", :count => 2)
         end
       end
+
+      context "with projects for rent and private utilization with active commercial utilization filter" do
+        before :each do
+          3.times do
+            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE)
+          end
+          visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_COMMERICAL)
+        end
+
+        it "doesn't show the slider container" do
+          page.should_not have_css(".real_estates .flex-container .flexslider")
+        end
+
+        it "doesn't have 3 slides" do
+          page.should_not have_css(".real_estates ul.slides li", :count => 3)
+        end
+      end
     end
   end
 
