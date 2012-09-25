@@ -138,9 +138,9 @@ describe "RealEstates" do
       context "with projects for rent" do
         before :each do
           3.times do
-            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_RENT)
+            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE)
           end
-          visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT)
+          visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE)
         end
 
         it "shows the slider container" do
@@ -155,9 +155,9 @@ describe "RealEstates" do
       context "with projects for sale" do
         before :each do
           2.times do
-            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_SALE)
+            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_SALE, :utilization => RealEstate::UTILIZATION_PRIVATE)
           end
-          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
+          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE, :utilization => RealEstate::UTILIZATION_PRIVATE)
         end
 
         it "shows the slider container" do
