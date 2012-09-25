@@ -8,7 +8,7 @@
 %link{ :rel => 'apple-touch-icon', :href => '/apple-touch-icon-114x114.png', :sizes => '114x114' }
 
 -# RSS feed link
-= auto_discovery_link_tag(:rss, "#{news_items_path}.xml")
+= auto_discovery_link_tag(:rss, news_items_path(:format => 'xml'))
 
 -# Mobile viewport optimized: j.mp/bplateviewport
 %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" }
