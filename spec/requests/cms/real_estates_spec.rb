@@ -71,7 +71,7 @@ describe "Cms::RealEstates" do
     context 'a valid RealEstate' do
       before :each do
         within(".new_real_estate") do
-          select 'Child Category 1', :from => 'Kategorie'
+          select 'Child Category 1', :from => 'Objekt-Art'
           choose 'Arbeiten'
           choose 'Kaufen'
           select 'Muster, Hans', :from => 'Kontaktperson'
@@ -186,7 +186,7 @@ describe "Cms::RealEstates" do
     context '#update' do
       before :each do
         within(".edit_real_estate") do
-          select 'Child Category 2', :from => 'Kategorie'
+          select 'Child Category 2', :from => 'Objekt-Art'
           choose 'Wohnen'
           choose 'Mieten'
           uncheck 'Website'
@@ -230,7 +230,7 @@ describe "Cms::RealEstates" do
       end
 
       it 'shows the building type immediately' do
-        select 'Reihenfamilienhaus', :from => 'Kategorie'
+        select 'Reiheneinfamilienhaus', :from => 'Objekt-Art'
         page.should have_css('.building-type-container:not(.hidden)')
       end
     end

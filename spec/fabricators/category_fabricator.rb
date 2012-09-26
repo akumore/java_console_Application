@@ -15,7 +15,7 @@ end
 end
 
 Fabricator(:row_house_category, :from => :category) do
-  label 'Reihenfamilienhaus'
+  label 'Reiheneinfamilienhaus'
   name 'row_house'
   parent { Fabricate(:category) }
 end
