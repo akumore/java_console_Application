@@ -24,12 +24,12 @@ defaults: &defaults
         password: 'cal31cium'
     # immoscout24
     immoscout24:
-      agency_id: 'wwe44aem'
+      agency_id: '180571_vision'
       sender_id: 'AlfredMuellerWebsite_ImmoscoutExporter'
       ftp:
-        host: 'ftp.cmp.xm-rz.net'
-        username: 'wwe44aem'
-        password: 'pr7nku53ft'
+        host: 'ftp.immoscout24.ch'
+        username: '180571_vision'
+        password: 'cdzqvxfysy'
     home_ch:
       agency_id: '75680'
       sender_id: 'AlfredMuellerWebsite_HomechExporter'
