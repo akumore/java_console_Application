@@ -3,6 +3,7 @@ module Export
     autoload :Exporter,           'export/idx301/exporter'
     autoload :Packager,           'export/idx301/packager'
     autoload :FtpUploader,        'export/idx301/ftp_uploader'
+    autoload :Target,             'export/idx301/target'
     autoload :RealEstatePackage,  'export/idx301/real_estate_package'
     autoload :CsvWriter,          'export/idx301/csv_writer'
     autoload :RealEstateDecorator,'export/idx301/real_estate_decorator'
