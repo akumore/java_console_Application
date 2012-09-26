@@ -74,4 +74,6 @@ de:
   company_url: '/de/company'
   knowledge_url: '/de/knowledge'
   contact_url: '/de/contact'
+  'true': 'Ja'
+  'false': 'Nein'
 
