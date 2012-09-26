@@ -1,7 +1,15 @@
 = form_for @user do |f|
   = render 'cms/shared/errors', :model => @user
 
-  %fieldset
+  %fieldset.push-checkboxes-down
+    .control-group.mandatory
+      = f.label :first_name
+      .controls
+        = f.text_field :first_name, :class => 'span8'
+    .control-group.mandatory
+      = f.label :last_name
+      .controls
+        = f.text_field :last_name, :class => 'span8'
     .control-group.mandatory
       = f.label :email
       .controls

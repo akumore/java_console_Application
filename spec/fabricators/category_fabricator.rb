@@ -1,8 +1,9 @@
 # encoding: utf-8
 
 Fabricator(:category) do
-	label { "Category #{Fabricate.sequence}" }
-	name { |category| category.label.downcase.parameterize }
+  label { "Category #{Fabricate.sequence}" }
+  name { |category| category.label.downcase.parameterize }
+  sort_order 1
 end
 
 %w(house properties apartment).each do |category_name|
@@ -14,7 +15,7 @@ end
 end
 
 Fabricator(:row_house_category, :from => :category) do
-  label 'Reihenfamilienhaus'
+  label 'Reiheneinfamilienhaus'
   name 'row_house'
   parent { Fabricate(:category) }
 end

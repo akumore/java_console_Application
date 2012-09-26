@@ -64,10 +64,14 @@ describe "Cms::RealEstates" do
       current_path.should == new_cms_real_estate_path
     end
 
+    it 'contains the right sort order numbers' do
+      Category.top_level.map(&:sort_order).should include(1, 2)
+    end
+
     context 'a valid RealEstate' do
       before :each do
         within(".new_real_estate") do
-          select 'Child Category 1', :from => 'Kategorie'
+          select 'Child Category 1', :from => 'Objekt-Art'
           choose 'Arbeiten'
           choose 'Kaufen'
           select 'Muster, Hans', :from => 'Kontaktperson'
@@ -182,7 +186,7 @@ describe "Cms::RealEstates" do
     context '#update' do
       before :each do
         within(".edit_real_estate") do
-          select 'Child Category 2', :from => 'Kategorie'
+          select 'Child Category 2', :from => 'Objekt-Art'
           choose 'Wohnen'
           choose 'Mieten'
           uncheck 'Website'
@@ -226,7 +230,7 @@ describe "Cms::RealEstates" do
       end
 
       it 'shows the building type immediately' do
-        select 'Reihenfamilienhaus', :from => 'Kategorie'
+        select 'Reiheneinfamilienhaus', :from => 'Objekt-Art'
         page.should have_css('.building-type-container:not(.hidden)')
       end
     end
@@ -251,7 +255,7 @@ describe "Cms::RealEstates" do
       end
 
       it "copies to copy 'in_review' real estates" do
-        Fabricate :residential_building, :state => RealEstate::STATE_IN_REVIEW, :editor => Fabricate(:cms_editor)
+        Fabricate :residential_building, :state => RealEstate::STATE_IN_REVIEW, :creator => Fabricate(:cms_editor), :editor => Fabricate(:cms_editor)
         visit cms_real_estates_path
 
         expect {

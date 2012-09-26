@@ -8,9 +8,11 @@
         = link_to(new_cms_user_path, :class => 'btn') do
           %i.icon-plus-sign
           = t('.new')
-      
+
 %table.table.table-bordered.table-striped
   %tr
+    %th= Cms::User.human_attribute_name :first_name
+    %th= Cms::User.human_attribute_name :last_name
     %th= Cms::User.human_attribute_name :email
     %th= Cms::User.human_attribute_name :role
     - if can? :manage, Cms::User
@@ -19,6 +21,8 @@
 
   - @users.each do |user|
     %tr{ :id => "user-#{user.id}" }
+      %td= user.first_name
+      %td= user.last_name
       %td= user.email
       %td= Cms::User.human_attribute_name("role_#{user.role}")
       - if can? :manage, Cms::User

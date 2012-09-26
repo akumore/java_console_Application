@@ -5,7 +5,7 @@
     .control-group.mandatory
       = f.label :category_id
       .controls
-        = f.grouped_collection_select :category_id, Category.top_level, :categories, :label, :id, :select_label
+        = f.grouped_collection_select :category_id, Category.top_level, :categories, :label, :id, :label
     .building-type-container.hidden{ 'data-dependent_on' => '#real_estate_category_id', 'data-dependent_on_value' => Category.where(:name => 'row_house').first.try(:id) }
       .control-group
         = f.label :building_type
@@ -18,27 +18,29 @@
             %span= t(".#{RealEstate::BUILDING_MIDDLE_HOUSE}")
     .control-group.mandatory
       = f.label :offer
-      .controls
-        %label.radio
+      .controls.push-inline-labels-down
+        %label.inline.radio
           = f.radio_button :offer, RealEstate::OFFER_FOR_RENT
           %span= t(".#{RealEstate::OFFER_FOR_RENT}")
-        %label.radio
+      .controls.push-inline-labels-down
+        %label.inline.radio
           = f.radio_button :offer, RealEstate::OFFER_FOR_SALE
           %span= t(".#{RealEstate::OFFER_FOR_SALE}")
     .control-group.mandatory
       = f.label :utilization
-      .controls
-        %label.radio
+      .controls.push-inline-labels-down
+        %label.inline.radio
           = f.radio_button :utilization, RealEstate::UTILIZATION_PRIVATE
           %span= t(".#{RealEstate::UTILIZATION_PRIVATE}")
-        %label.radio
+      .controls.push-inline-labels-down
+        %label.inline.radio
           = f.radio_button :utilization, RealEstate::UTILIZATION_COMMERICAL
           %span= t(".#{RealEstate::UTILIZATION_COMMERICAL}")
     .control-group
       = f.label :channels
-      .controls
-        - RealEstate::CHANNELS.each do |channel|
-          %label.checkbox
+      - RealEstate::CHANNELS.each do |channel|
+        .controls.push-inline-labels-down
+          %label.inline.checkbox
             = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel)
             %span= t(".channels.#{channel}")
   .control-group

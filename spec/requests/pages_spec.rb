@@ -79,13 +79,6 @@ describe "Pages" do
           page.should have_link 'E-Mail', :href => "mailto:viktor.naumann@alfred-mueller.ch"
         end
       end
-
-      it "shows a reference projects slider" do
-        Fabricate :reference_project
-        visit "/de/company"
-        page.should have_css("#reference-projects .flex-container .flexslider")
-        page.should have_css("#reference-projects ul.slides li")
-      end
     end
   end
 

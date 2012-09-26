@@ -5,7 +5,7 @@
 = form_for @pricing, :url => cms_real_estate_pricing_path(@real_estate) do |f|
   = render 'cms/shared/errors', :model => @pricing
 
-  %fieldset
+  %fieldset.push-checkboxes-down
     .control-group.mandatory
       = f.label :price_unit
       .controls
@@ -36,8 +36,7 @@
     .control-group
       = f.label :opted
       .controls
-        %label.checkbox
-          = f.check_box :opted
+        = f.check_box :opted
     - if @real_estate.commercial_utilization?
       .control-group
         = f.label :storage

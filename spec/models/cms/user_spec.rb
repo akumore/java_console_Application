@@ -10,6 +10,14 @@ describe Cms::User do
       @user.should_not be_valid
     end
 
+    it 'requires a first name' do
+      @user.should have(1).error_on(:first_name)
+    end
+
+    it 'requires a last name' do
+      @user.should have(1).error_on(:last_name)
+    end
+
     it 'requires an email' do
       @user.should have(1).error_on(:email)
     end
@@ -24,7 +32,7 @@ describe Cms::User do
 
     it 'has 4 errors' do
       @user.valid?
-      @user.errors.should have(4).items
+      @user.errors.should have(6).items
     end
-  end  
+  end
 end

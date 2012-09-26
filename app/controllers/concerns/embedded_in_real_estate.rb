@@ -5,6 +5,7 @@ module Concerns
     included do
       # Use CanCan loader
       load_resource :real_estate
+      before_filter :save_editor, :only => [:update, :create]
     end
 
     def success_message_for name
@@ -18,6 +19,10 @@ module Concerns
       else
         redirect_to send("new_cms_real_estate_#{name.singularize}_path", @real_estate)
       end
+    end
+
+    def save_editor
+      @real_estate.update_attribute :editor_id, current_user.id
     end
   end
 end

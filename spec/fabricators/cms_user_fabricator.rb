@@ -1,4 +1,6 @@
 Fabricator(:cms_user, :from => 'Cms::User') do
+  first_name 'Test'
+  last_name 'User'
   email { "test#{Fabricate.sequence}@test.com" }
   password '123456'
   role 'admin'

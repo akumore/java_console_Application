@@ -27,7 +27,8 @@ describe Api::RealEstatesController do
           :category => Fabricate(:category),
           :channels => [RealEstate::MICROSITE_CHANNEL],
           :figure => Fabricate.build(:figure),
-          :editor => Fabricate(:cms_editor)
+          :editor => Fabricate(:cms_editor),
+          :creator => Fabricate(:cms_editor)
       end
 
       get  'index', :format=>:json

@@ -25,6 +25,9 @@ class Cms::RealEstatesController < Cms::SecuredController
   end
 
   def create
+    real_estate_params = params[:real_estate]
+    real_estate_params.merge!(:creator => current_user)
+
     @real_estate = RealEstate.new(params[:real_estate])
 
     if @real_estate.save
@@ -36,7 +39,7 @@ class Cms::RealEstatesController < Cms::SecuredController
 
   def update
     real_estate_params = params.fetch(:real_estate, {})
-    real_estate_params.merge!(:editor => current_user) if current_user.editor?
+    real_estate_params.merge!(:editor => current_user) if save_last_editor?(real_estate_params[:state_event])
 
     if @real_estate.update_attributes(real_estate_params)
       notify_users(real_estate_params[:state_event], @real_estate)
@@ -73,12 +76,25 @@ class Cms::RealEstatesController < Cms::SecuredController
 
 
   private
+
   def notify_users(transition, real_estate)
     if transition.present?
       if transition == 'review_it'
         RealEstateStateMailer.review_notification(real_estate).deliver
       elsif transition == 'reject_it'
         RealEstateStateMailer.reject_notification(real_estate, current_user).deliver
+      end
+    end
+  end
+
+  def save_last_editor?(transition)
+    if current_user.editor?
+      true
+    else
+      if transition.present?
+        %w(review_it reject_it publish_it unpublish_it).include?(transition) ? false : true
+      else
+        true
       end
     end
   end

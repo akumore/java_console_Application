@@ -52,7 +52,7 @@
           .controls
             = rf.text_field :unit_key, :class => 'span8'
             %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Reference.human_attribute_name(:unit_key), 'data-content' => t('.help_popover.unit_key') }
-  %fieldset
+  %fieldset.push-checkboxes-down
     %legend= t "mongoid.attributes.address.location"
     .control-group
       = f.label :manual_geocoding

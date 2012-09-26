@@ -18,6 +18,12 @@ class Cms::User
   ## Rememberable
   field :remember_created_at, :type => Time
 
+  # First and last name
+  field :first_name, :type => String
+  field :last_name,  :type => String
+  validates :first_name, :presence => true
+  validates :last_name,  :presence => true
+
   # Role management
   field :role, :type => :String
   validates :role, :presence => true, :inclusion => ROLES

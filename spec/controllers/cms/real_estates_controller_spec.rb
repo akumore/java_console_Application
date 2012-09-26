@@ -9,6 +9,10 @@ describe 'Real Estate Wizard' do
       Fabricate :category
     end
 
+    let :creator do
+      Fabricate :cms_editor
+    end
+
     let :editor do
       Fabricate :cms_editor
     end
@@ -22,6 +26,11 @@ describe 'Real Estate Wizard' do
       it 'redirects to the new address tab' do
         put :create, :real_estate => Fabricate.attributes_for(:real_estate, :category_id => category.id)
         response.should redirect_to new_cms_real_estate_address_path(RealEstate.first)
+      end
+
+      it 'assigns a creator' do
+        put :create, :real_estate => Fabricate.attributes_for(:real_estate, :category_id => category.id)
+        controller.instance_variable_get("@real_estate").creator.should == controller.current_user
       end
     end
 
@@ -43,8 +52,61 @@ describe 'Real Estate Wizard' do
         response.should redirect_to edit_cms_real_estate_address_path(@real_estate)
       end
 
-      describe "notifications" do
+      context 'as an admin' do
+        before do
+          controller.stub!(:current_user).and_return admin
+          @real_estate.editor = editor
+          @real_estate.save
+        end
 
+        it 'is last edited by the admin' do
+          put :update, :id => @real_estate.id
+          @real_estate.reload.editor.admin?.should be_true
+        end
+
+        context 'when the real estate is rejected' do
+          it 'remains last edited by the editor' do
+            put :update, :id => @real_estate.id, :real_estate => { :state_event => 'reject_it' }
+            @real_estate.reload.editor.editor?.should be_true
+          end
+        end
+
+        context 'when the real estate is published' do
+          it 'remains last edited by the editor' do
+            put :update, :id => @real_estate.id, :real_estate => { :state_event => 'publish_it' }
+            @real_estate.reload.editor.editor?.should be_true
+          end
+        end
+
+        context 'when the real estate is unpublished' do
+          it 'remains last edited by the editor' do
+            put :update, :id => @real_estate.id, :real_estate => { :state_event => 'unpublish_it' }
+            @real_estate.reload.editor.editor?.should be_true
+          end
+        end
+
+        context 'when the real estate is to be reviewed' do
+          it 'remains last edited by the editor' do
+            put :update, :id => @real_estate.id, :real_estate => { :state_event => 'review_it' }
+            @real_estate.reload.editor.editor?.should be_true
+          end
+        end
+      end
+
+      context 'as an editor' do
+        before do
+          controller.stub!(:current_user).and_return editor
+          @real_estate.editor = editor
+          @real_estate.save
+        end
+
+        it 'is last edited by the editor' do
+          put :update, :id => @real_estate.id
+          @real_estate.reload.editor.editor?.should be_true
+        end
+      end
+
+      describe "notifications" do
         describe '#review_it' do
           before do
             @real_estate = Fabricate :real_estate, :category => category
@@ -136,7 +198,7 @@ describe 'Real Estate Wizard' do
 
       %w(editing in_review).each do |state|
         it "allows to destroy real estate in state '#{state}'" do
-          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category), :editor => editor
+          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category), :creator => creator, :editor => editor
 
           delete :destroy, :id => real_estate.id
           response.should redirect_to cms_real_estates_url
@@ -171,7 +233,7 @@ describe 'Real Estate Wizard' do
       end
 
       it "prevents from updating real estate 'in_review'" do
-        real_estate = Fabricate :real_estate, :state => 'in_review', :category => Fabricate(:category), :editor => editor
+        real_estate = Fabricate :real_estate, :state => 'in_review', :category => Fabricate(:category), :creator => creator, :editor => editor
 
         put :update, :id => real_estate.id
         response.should redirect_to [:cms, real_estate]
@@ -188,7 +250,7 @@ describe 'Real Estate Wizard' do
 
       %w(in_review published).each do |state|
         it "doesn't allow to destroy real estate in state '#{state}'" do
-          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category), :editor => Fabricate(:cms_editor)
+          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category), :creator => Fabricate(:cms_editor), :editor => Fabricate(:cms_editor)
 
           delete :destroy, :id => real_estate.id
           response.should redirect_to [:cms, real_estate]

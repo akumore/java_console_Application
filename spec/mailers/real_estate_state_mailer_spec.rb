@@ -2,6 +2,10 @@
 require "spec_helper"
 
 describe RealEstateStateMailer do
+  let :creator do
+    Fabricate(:cms_editor)
+  end
+
   let :editor do
     Fabricate(:cms_editor, :email => 'editor@mailerspec.local')
   end
@@ -16,6 +20,7 @@ describe RealEstateStateMailer do
       :reference => Fabricate.build(:reference),
       :contact => Fabricate(:employee),
       :state => RealEstate::STATE_IN_REVIEW,
+      :creator => creator,
       :editor => editor
     )
   end

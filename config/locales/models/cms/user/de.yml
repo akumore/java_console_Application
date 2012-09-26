@@ -4,6 +4,8 @@ de:
       cms/user: 'Benutzer'
     attributes:
       cms/user:
+        first_name: 'Vorname'
+        last_name: 'Nachname'
         email: 'E-Mail'
         role: 'Rolle'
         role_admin: 'Admin'

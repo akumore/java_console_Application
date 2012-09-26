@@ -303,6 +303,7 @@ describe RealEstate do
         :pricing => Fabricate.build(:pricing),
         :information => Fabricate.build(:information),
         :figure => Fabricate.build(:figure),
+        :creator => Fabricate(:cms_editor),
         :editor => Fabricate(:cms_editor)
       real_estate.review_it!
 
@@ -316,6 +317,7 @@ describe RealEstate do
         :pricing => Fabricate.build(:pricing),
         :information => Fabricate.build(:information),
         :figure => Fabricate.build(:figure),
+        :creator => Fabricate(:cms_editor),
         :editor => Fabricate(:cms_editor)
       real_estate.publish_it!
 
@@ -326,6 +328,7 @@ describe RealEstate do
       real_estate = Fabricate :real_estate,
                               :state => 'in_review',
                               :category => category,
+                              :creator => Fabricate(:cms_editor),
                               :editor => Fabricate(:cms_editor)
 
       real_estate.reject_it!
@@ -368,7 +371,7 @@ describe RealEstate do
       end
 
       it "can be saved in state 'in_review' anyway" do
-        r = Fabricate(:real_estate, :category => Fabricate(:category), :editor => Fabricate(:cms_editor))
+        r = Fabricate(:real_estate, :category => Fabricate(:category), :creator => Fabricate(:cms_editor), :editor => Fabricate(:cms_editor))
         r.update_attribute :state, 'in_review'
         r.update_attributes(:title => "Something is changed").should be_true
       end
@@ -382,6 +385,7 @@ describe RealEstate do
         r = Fabricate :real_estate,
                       :state=>'in_review',
                       :category=>Fabricate(:category),
+                      :creator => Fabricate(:cms_editor),
                       :editor => Fabricate(:cms_editor)
         r.reject_it.should be_true
       end
@@ -413,6 +417,7 @@ describe RealEstate do
       end
 
       it "doesn't change over from 'in_review' to 'published'" do
+        @real_estate.creator = Fabricate(:cms_editor)
         @real_estate.editor = Fabricate(:cms_editor)
         @real_estate.review_it.should be_true
         @real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
