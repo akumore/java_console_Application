@@ -4,12 +4,12 @@ module Export
       include Logging
       attr_accessor :packager
 
-      def initialize(real_estate, packager, portal)
-        super "#{portal.capitalize} RealEstate Package"
+      def initialize(real_estate, packager, target)
+        super "#{target.name} RealEstate Package"
         init_logging
 
         @packager = packager
-        @portal = portal
+        @target = target
         @real_estate = real_estate
         @images = []
         @videos = []
@@ -36,12 +36,6 @@ module Export
         @real_estate.documents.each do |document|
           add_document(document.file)
         end
-      end
-
-      def write
-        logger.info "Writing writer.path for #{@portal}"
-        writer.write Idx301::RealEstateDecorator.new(@real_estate, @portal, asset_paths).to_a
-        true
       end
 
       def asset_paths
@@ -86,14 +80,16 @@ module Export
         @documents << filename
       end
 
-      def save
+      def save(unload_file)
         package_assets
-        write
+        logger.info "Writing unload.txt for #{@target.name}"
+        writer(unload_file).write Idx301::RealEstateDecorator.new(@real_estate, @target, asset_paths).to_a
       end
 
       private
-      def writer
-        @writer ||= Idx301::CsvWriter.new(File.join(@packager.path, 'data', "#{@portal}_unload.txt"), 'ab')
+
+      def writer(path)
+        @writer ||= Idx301::CsvWriter.new(path, 'ab')
       end
 
     end

@@ -7,17 +7,16 @@ module Export
 
       attr_reader :packager, :config
 
-      def initialize(packager, portal)
-        super "#{portal} FTP Uploader"
+      def initialize(packager, target)
+        super "#{target.name} FTP Uploader"
         init_logging
 
-        @portal   = portal
+        @target   = target
         @packager = packager
-        @config   = Settings.idx301.send(portal).ftp
       end
 
       def do_upload!
-        logger.info "Uploading files to #{@portal} account."
+        logger.info "Uploading files to #{@target.name} account."
         connect! do
           files.each { |item| upload item }
         end
@@ -25,7 +24,6 @@ module Export
 
       def files
         list = Dir.glob("#{local_base_dir}/**/**").sort
-        list.delete_if { |elem| elem.include?('unload.txt') && !elem.include?("#{@portal}_unload.txt") }
       end
 
       private
@@ -33,22 +31,11 @@ module Export
       def upload(element)
         local_element = element
         remote_element = element.gsub(packager.path, @ftp.pwd)
-        remote_element = remote_element.gsub("#{@portal}_unload.txt", 'unload.txt') if remote_element.include? 'unload.txt'
 
-        logger.info "Uploading file '#{local_element}' to '#{remote_element}' on #{@portal}"
+        logger.info "Uploading file '#{local_element}' to '#{remote_element}' on #{@target.name}"
 
         if FileTest.directory?(local_element)
           # check to prevent '550 File exists' error
-          #begin
-          #  @ftp.nlst(remote_element).empty?
-          #rescue Net::FTPPermError => err
-          #  binding.pry
-          #  if @ftp.last_response_code == 550
-          #    @ftp.mkdir(remote_element)
-          #  else
-          #    raise err
-          #  end
-          #end
         else
           @ftp.put element, remote_element
         end
@@ -59,12 +46,12 @@ module Export
       end
 
       def connect!
-        logger.info "FTP connect to #{@portal}"
-        @ftp ||= Net::FTP.open(config[:host], config[:username], config[:password])
+        logger.info "FTP connect to #{@target.name}"
+        @ftp ||= Net::FTP.open(target.config[:host], target.config[:username], target.config[:password])
         @ftp.passive = true
         if block_given?
           yield self
-          logger.info "FTP disconnect from #{@portal}"
+          logger.info "FTP disconnect from #{@target.name}"
           @ftp.close
         end
         @ftp

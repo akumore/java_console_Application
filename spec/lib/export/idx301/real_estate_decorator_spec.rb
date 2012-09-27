@@ -10,8 +10,8 @@ describe Export::Idx301::RealEstateDecorator do
   end
   ## end of workaround
 
-  let :portal do
-    'my_portal'
+  let :target do
+    Export::Idx301::Target.new 'test', 'test', 'test', {}
   end
 
   describe 'an invalid real estate' do
@@ -19,7 +19,7 @@ describe Export::Idx301::RealEstateDecorator do
       real_estate = Fabricate(:published_real_estate,
         :category => Fabricate(:category)
       )
-      @decorator = Export::Idx301::RealEstateDecorator.new(real_estate, portal, {
+      @decorator = Export::Idx301::RealEstateDecorator.new(real_estate, target, {
         :images => [],
         :movies => [],
         :documents => []
@@ -222,7 +222,7 @@ describe Export::Idx301::RealEstateDecorator do
       newline_string = "attribute\n\n\r with \nnewlines\n"
       real_estate_decorator = Export::Idx301::RealEstateDecorator.new(
         mock_model(RealEstate, :title => newline_string, :description => newline_string),
-        portal,
+        target,
         {}
       )
       real_estate_decorator.stub(:allowed).and_return([:title, :description])
@@ -235,7 +235,7 @@ describe Export::Idx301::RealEstateDecorator do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
           mock_model(RealEstate, :description => "It\nbreaks\n\ninto new lines"),
-          portal,
+          target,
           {}
         )
       real_estate.object_description.should == 'It<br>breaks<br><br>into new lines'
@@ -247,7 +247,7 @@ describe Export::Idx301::RealEstateDecorator do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
           mock_model(RealEstate, :category => mock_model(Category, :name => 'underground_slot')),
-          portal,
+          target,
           {}
         )
       real_estate.stub!(:top_level_category_name).and_return('parking')

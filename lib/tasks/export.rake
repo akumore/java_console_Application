@@ -9,7 +9,7 @@ namespace :export do
     logger.info "Starting real estate export rake task"
 
     Export::Idx301::Target.all.each do |target|
-      export = Export::Idx301::Exporter.new(target.name)
+      export = Export::Idx301::Exporter.new(target)
       RealEstate.published.each do |real_estate|
         export.add(real_estate)
       end

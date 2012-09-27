@@ -187,8 +187,8 @@ module Export::Idx301
             :sparefield_3,
             :sparefield_4
 
-    def initialize(real_estate, portal, asset_paths)
-      @portal = portal
+    def initialize(real_estate, target, asset_paths)
+      @target = target
       @asset_paths = asset_paths
       super(real_estate)
     end
@@ -200,7 +200,7 @@ module Export::Idx301
 
     def sender_id
       # str(50) Name of the used tool and export versionnumber (eg. Sigmasoft_v2.11, excelsior 21.23, immotools v1.99 ...)
-      Settings.idx301.send(@portal).sender_id
+      @target.sender_id
     end
 
     def object_category
@@ -582,7 +582,7 @@ module Export::Idx301
 
     def agency_id
       # str(10) given by homegate (Info: agency_id + ref_property + ref_object + ref_house forms the unique object key)
-      Settings.idx301.send(@portal).agency_id
+      @target.agency_id
     end
 
     def agency_name
