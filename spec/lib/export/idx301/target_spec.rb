@@ -22,4 +22,10 @@ describe Export::Idx301::Target do
       target.config.should == {}
     end
   end
+
+  describe '.all' do
+    it 'returns a list of targets' do
+      Export::Idx301::Target.all.should be_a(Array)
+    end
+  end
 end
