@@ -47,7 +47,7 @@ module Export
 
       def connect!
         logger.info "FTP connect to #{@target.name}"
-        @ftp ||= Net::FTP.open(target.config[:host], target.config[:username], target.config[:password])
+        @ftp ||= Net::FTP.open(@target.config['host'], @target.config['username'], @target.config['password'])
         @ftp.passive = true
         if block_given?
           yield self

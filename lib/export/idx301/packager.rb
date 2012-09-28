@@ -30,7 +30,7 @@ module Export
 
       private
       def create_folders
-        logger.info "Creating external real estate portal folder structure"
+        logger.info "Creating folder structure for #{@target.name}"
         FileUtils.mkdir_p path
         FileUtils.mkdir_p File.join(path, 'data')
         FileUtils.mkdir_p File.join(path, 'images')

@@ -2,7 +2,7 @@ require 'export/export'
 
 namespace :export do
 
-  desc 'Run all exports (so far: homegate)'
+  desc 'Run all exports (homegate, immoscout, home.ch, immostreet)'
   task :build => :environment do
     logger = Logger.new(STDOUT)
     logger.formatter = Logger::Formatter.new
@@ -19,7 +19,7 @@ namespace :export do
     logger.info "Finished real estate export rake task."
   end
 
-  desc 'Run all export cleanups (so far: homegate)'
+  desc 'Run all export cleanups (homegate, immoscout, home.ch, immostreet)'
   task :cleanup => :environment do
     logger = Logger.new(STDOUT)
     logger.formatter = Logger::Formatter.new

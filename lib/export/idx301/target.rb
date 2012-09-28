@@ -24,7 +24,7 @@ module Export
 
       def self.all
         Settings.idx301.map do |name, data|
-          Target.new name, data[:agency_id], data[:sender_id], data[:ftp]
+          Target.new name, data['agency_id'], data['sender_id'], data['ftp']
         end
       end
     end
