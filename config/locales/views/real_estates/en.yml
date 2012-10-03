@@ -26,7 +26,8 @@ en:
     show:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Overview'
-      next: 'Nächstes Projekt'
+      prev: 'Previous project'
+      next: 'Next project'
       floorplan: 'Show Layout'
       print_floorplan: 'Print Layout Plan'
       description_download: 'Documentation'

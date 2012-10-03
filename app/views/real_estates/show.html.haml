@@ -13,9 +13,21 @@
 .detail
   .result-nav
     %ul
-      %li= link_to t('.prev'), real_estate_path(@prev_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-left image-link'
+      %li
+        - if @pagination.prev?
+          = link_to t('.prev'), real_estate_path(@pagination.prev, @search_filter.to_params), :class => 'arrow-tailed-small-left image-link'
+        - else
+          %span.arrow-tailed-small-left.image-link.disabled-link
+            = t('.prev')
+
       %li= link_to t('.overview'), real_estates_path(@search_filter.to_params)
-      %li= link_to t('.next'), real_estate_path(@next_real_estate, @search_filter.to_params), :class => 'arrow-tailed-small-right image-link'
+
+      %li
+        - if @pagination.next?
+          = link_to t('.next'), real_estate_path(@pagination.next, @search_filter.to_params), :class => 'arrow-tailed-small-right image-link'
+        - else
+          %span.arrow-tailed-small-right.image-link.disabled-link
+            = t('.next')
 
   .main-title
     %h1= @real_estate.title
