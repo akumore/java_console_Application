@@ -18,6 +18,9 @@ de:
         address: 'Adresse'
         pricing: 'Preise'
         information: 'Infos'
+        figure: 'Zahlen und Fakten'
+        infrastructure: 'Infrastruktur'
+        additional_description: 'Beschreibungen'
         states:
           published: veröffentlicht
           editing: bearbeiten
