@@ -8,8 +8,6 @@ describe "Cms::ReferenceProject" do
     before do
       3.times { Fabricate(:reference_project) }
       3.times { Fabricate(:reference_project, :locale => 'fr') }
-
-      @reference_project = ReferenceProject.first
       visit cms_reference_projects_path
     end
 
@@ -39,10 +37,11 @@ describe "Cms::ReferenceProject" do
     end
 
     it "takes me to the edit page of a reference_project" do
-      within("#reference_project_#{@reference_project.id}") do
+      reference_project = ReferenceProject.where(:locale => :de).last
+      within("#reference_project_#{reference_project.id}") do
         page.click_link 'Editieren'
       end
-      current_path.should == edit_cms_reference_project_path(@reference_project)
+      current_path.should == edit_cms_reference_project_path(reference_project.id)
     end
 
     it "takes me to the page for creating a new reference project" do
