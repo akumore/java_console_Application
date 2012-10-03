@@ -8,7 +8,7 @@ describe "Cms::Infrastructures" do
   describe '#new' do
     before :each do
       @real_estate = Fabricate(:real_estate,
-        :category => Category.last, 
+        :category => Category.last,
         :reference => Fabricate.build(:reference)
       )
       visit edit_cms_real_estate_path(@real_estate)
@@ -80,7 +80,7 @@ describe "Cms::Infrastructures" do
        it 'shows the infrastructure within the cms' do
          visit cms_real_estate_infrastructure_path real_estate
          [:has_parking_spot,:has_garage].each do |attr|
-           page.should have_content real_estate.infrastructure.send(attr)
+           page.should have_content I18n.t("#{real_estate.infrastructure.send(attr)}")
          end
        end
 
