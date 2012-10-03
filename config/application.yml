@@ -16,7 +16,7 @@ defaults: &defaults
   idx301:
     # homegate
     homegate:
-      agency_id: 'alm'
+      agency_id: 'almtest'
       sender_id: 'AlfredMuellerWebsite_HomegateExporter'
       ftp:
         host: '62.65.135.69'
@@ -56,7 +56,9 @@ test:
         password: 'swaggerbagmovement'
 
 production:
-  <<: *defaults
+  google_account_id: ''
+  google_api_key: ''
+  google_maps_api_key: 'AIzaSyCNWg9D3wR2T69wlEu6ARAtNdPSgAN-N9w'
   idx301:
     # homegate
     homegate:
