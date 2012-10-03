@@ -2,6 +2,7 @@
   +column(10)
   background: $brown
   min-height: 485px
+  +clearfix
 
   .placeholders
     +appointments-placeholder
@@ -21,18 +22,18 @@
       margin: 2.5em 0 1.5em 0
 
   .col
-    +column(3)
+    +column(5)
 
     &.first
-      +column(2.5)
-      +push(1)
+      +column(4.5)
+      +pull(.5)
 
   .alert
     +column(9)
-    +push(1)
 
   .appointment-contact-details
-    padding-left: 1em
+    +column(3)
+    +push(.5)
 
   .field_with_errors
     float: none
@@ -41,11 +42,14 @@
       border: 1px solid red
 
   .contact-form
+    +column(5.5)
+    +push(1)
+
     .controls
       margin-left: 0
 
       .short
-        margin-right: 3%
+        margin-right: 0.35em
         margin-left: 0
         width: 25%
 
@@ -55,3 +59,4 @@
       .field_with_errors
         .short
           margin-right: 1%
+
