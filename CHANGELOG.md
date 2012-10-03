@@ -9,6 +9,7 @@
     * Als Besucher möchte ich für "Mieten/Wohnen" Angebote auf der Angebotsliste den Bruttopreis angezeigt bekommen
     * Als Besucher möchte ich am Ende der Trefferlisten-Pfeilnavigation sehen, dass keine weiteren Angebote angezeigt werden können.
     * Als Editor möchte ich nicht mehr als 50 Zeichen für Bild/Dokument-Bezeichnungen eingeben können
+    * Als Besucher möchte ich die News als RSS Feed abonnieren können
 
 ### v1.6, Released on 2012-09-26
 
