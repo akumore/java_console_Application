@@ -26,14 +26,14 @@
 
     &.first
       +column(4.5)
-      +pull(.5)
+      +pull(.25)
 
   .alert
     +column(9)
 
   .appointment-contact-details
-    +column(3)
-    +push(.5)
+    +column(3.75)
+    +push(0.25)
 
   .field_with_errors
     float: none
@@ -42,7 +42,7 @@
       border: 1px solid red
 
   .contact-form
-    +column(5.5)
+    +column(5)
     +push(1)
 
     .controls
@@ -57,6 +57,10 @@
         width: 55%
 
       .field_with_errors
+
         .short
-          margin-right: 1%
+          margin-right: 0
+
+        .medium-short
+          margin-left: .6em
 
