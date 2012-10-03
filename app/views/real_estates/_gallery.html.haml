@@ -9,7 +9,7 @@
         - real_estate.images.each do |image|
           %li
             = image_tag image.file.gallery.url
-            .flex-caption
+            .flex-caption{ :class => caption_css_class_for_text(image.title) }
               %span= image.title
         - real_estate.floor_plans.each do |floor_plan|
           %li{ 'data-is_floorplan' => 'true' }
