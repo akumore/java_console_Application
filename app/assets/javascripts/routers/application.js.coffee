@@ -16,8 +16,9 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
       new AlfredMueller.Views.VisionSlider(el: $(this))
 
     # initialize map sliders
+    mapSliders = []
     $(".map-slider").each ->
-      new AlfredMueller.Views.MapSlider(el: $(this))
+      mapSliders.push new AlfredMueller.Views.MapSlider(el: $(this))
 
     # init responsive sublime players
     $("video").each ->
@@ -48,6 +49,10 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
           target: $(".gallery .flexslider li[data-is_floorplan=true]:not(.clone)"),
           slider: slider
         )
+      before: (slider) ->
+        # close overlapping sliders on slide change
+        _.each mapSliders, (mapSlider) ->
+          mapSlider.close()
     )
 
     # initialize submenus in main-navigation for non-touch devices
