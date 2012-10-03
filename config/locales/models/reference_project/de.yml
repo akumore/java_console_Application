@@ -1,12 +1,14 @@
 de:
   mongoid:
     models:
-      reference_project: Referenzprojekt
+      reference_project: 'Referenzprojekt'
     attributes:
       reference_project:
-        title: Titel
-        description: Beschreibung
-        image: Bild
-        url: Projektwebseite
-        offer: Angebotstyp
-        real_estate: Immobilie
+        title: 'Titel'
+        description: 'Beschreibung'
+        image: 'Bild'
+        url: 'Projektwebseite'
+        offer: 'Angebotstyp'
+        utilization: 'Gebäudenutzung'
+        real_estate: 'Immobilie'
+

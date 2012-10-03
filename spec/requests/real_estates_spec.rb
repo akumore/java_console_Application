@@ -138,9 +138,9 @@ describe "RealEstates" do
       context "with projects for rent" do
         before :each do
           3.times do
-            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_RENT)
+            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE)
           end
-          visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT)
+          visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE)
         end
 
         it "shows the slider container" do
@@ -155,9 +155,9 @@ describe "RealEstates" do
       context "with projects for sale" do
         before :each do
           2.times do
-            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_SALE)
+            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_SALE, :utilization => RealEstate::UTILIZATION_PRIVATE)
           end
-          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE)
+          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE, :utilization => RealEstate::UTILIZATION_PRIVATE)
         end
 
         it "shows the slider container" do
@@ -166,6 +166,23 @@ describe "RealEstates" do
 
         it "has 2 slides" do
           page.should have_css(".real_estates ul.slides li", :count => 2)
+        end
+      end
+
+      context "with projects for rent and private utilization with active commercial utilization filter" do
+        before :each do
+          3.times do
+            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE)
+          end
+          visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_COMMERICAL)
+        end
+
+        it "doesn't show the slider container" do
+          page.should_not have_css(".real_estates .flex-container .flexslider")
+        end
+
+        it "doesn't have 3 slides" do
+          page.should_not have_css(".real_estates ul.slides li", :count => 3)
         end
       end
     end

@@ -8,6 +8,7 @@ class ReferenceProject
 
   field :title,       :type => String
   field :description, :type => String
+  field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE
   field :offer,       :type => String, :default => RealEstate::OFFER_FOR_RENT
   field :url,         :type => String
   field :locale,      :type => String, :default => 'de'
@@ -16,7 +17,7 @@ class ReferenceProject
 
   belongs_to :real_estate
 
-  validates :title, :locale, :offer, :image, :presence => true
+  validates :title, :locale, :offer, :utilization, :image, :presence => true
   validates_length_of :description, maximum: 500
 
   mount_uploader :image, ReferenceProjectImageUploader

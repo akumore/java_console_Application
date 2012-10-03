@@ -5,6 +5,8 @@ de:
         image_help: 'Bildgrösse in der Referenzprojektansicht: 1000x500 Pixel'
         for_rent: 'Mieten'
         for_sale: 'Kaufen'
+        private: 'Wohnen'
+        commercial: 'Arbeiten'
       index:
         confirm_delete: 'Das Referenzprojekt "%{title}" sicher löschen?'
         new: 'Neues Referenzprojekt erstellen'
