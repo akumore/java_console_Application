@@ -7,6 +7,7 @@ de:
         for_sale: 'Kaufen'
         private: 'Wohnen'
         commercial: 'Arbeiten'
+        overview: 'Zurück zur Übersicht'
       index:
         confirm_delete: 'Das Referenzprojekt "%{title}" sicher löschen?'
         new: 'Neues Referenzprojekt erstellen'

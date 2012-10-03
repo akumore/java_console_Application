@@ -6,6 +6,8 @@ de:
         new: 'Neue News erstellen'
         edit: 'Editieren'
         destroy: 'Löschen'
+      form:
+        overview: 'Zurück zur Übersicht'
       create:
         success: "Newseintrag erfolgreich erstellt"
       update:
