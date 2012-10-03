@@ -12,6 +12,7 @@ module MediaAssets
 
     validates :title, :presence => true
     validates_presence_of :file, :if => :new_record?
+    validates_length_of :title, :maximum => 50
 
     before_create :setup_position
 

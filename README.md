@@ -13,9 +13,16 @@
 Make sure your public key is available on the production server in `/home/usr/alfred_mueller/.ssh/authorized_keys` and
 on the staging server in `/home/usr/amstaging/.ssh/authorized_keys`
 
-* `mmode enable <amstaging|alfred_mueller>`: enable the maintenance mode on the server, so nine does not get bugged
-* `git push <staging|production> <git ref>` push the code
-* `mmode disable <amstaging|alfred_mueller>`: disable the maintenance mode on the server
+## Steps for making a release:
+
+1. Update the changelog, add the implemented stories or describe your bugfix
+2. Merge the development branch into the master branch (**production releases only**)
+3. Create a new tag (**production releases only**)
+4. `mmode enable <amstaging|alfred_mueller>`: enable the maintenance mode on the server, so nine does not get bugged
+5. `git push <staging|production> <git ref>` push the code
+6. `mmode disable <amstaging|alfred_mueller>`: disable the maintenance mode on the server
+
+
 
 # Environments
 

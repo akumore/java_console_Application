@@ -130,7 +130,7 @@ describe "RealEstates" do
       it "shows the localized price for rent" do
         real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
         visit real_estates_path
-        page.should have_content number_to_currency(real_estate.pricing.for_rent_netto, :locale=>'de-CH')
+        page.should have_content number_to_currency(real_estate.pricing.for_rent_brutto, :locale=>'de-CH')
       end
     end
 

@@ -252,10 +252,6 @@ describe "RealEstates" do
       end
     end
 
-    it 'has a link to the next search result' do
-      page.should have_link('Nächstes Projekt')
-    end
-
     it "has a map of the real estate location" do
       page.should have_css(".map", :count => 1)
     end
@@ -336,4 +332,70 @@ describe "RealEstates" do
     end
 
   end
+
+  describe RealEstatePagination do
+    before do
+      real_estate.reload
+    end
+
+    context 'with one real estate' do
+      before do
+        visit real_estate_path(real_estate)
+      end
+
+      it 'does not show a link to the next or previous search result' do
+        page.should_not have_link('Nächstes Projekt')
+        page.should_not have_link('Vorheriges Projekt')
+      end
+    end
+
+    context 'with two real estates' do
+      before do
+        Fabricate :published_real_estate,
+                  :category => category,
+                  :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
+                  :address => Fabricate.build(:address),
+                  :information => Fabricate.build(:information),
+                  :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
+                  :pricing => Fabricate.build(:pricing),
+                  :infrastructure => Fabricate.build(:infrastructure),
+                  :additional_description => Fabricate.build(:additional_description),
+                  :contact => Fabricate(:employee)
+
+        visit real_estate_path(real_estate)
+      end
+
+      it 'shows only the link to the next search result' do
+        page.should have_link('Nächstes Projekt')
+        page.should_not have_link('Vorheriges Projekt')
+      end
+    end
+
+    context 'with three or more real estates' do
+      before do
+        2.times do
+          Fabricate :published_real_estate,
+                    :category => category,
+                    :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
+                    :address => Fabricate.build(:address),
+                    :information => Fabricate.build(:information),
+                    :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
+                    :pricing => Fabricate.build(:pricing),
+                    :infrastructure => Fabricate.build(:infrastructure),
+                    :additional_description => Fabricate.build(:additional_description),
+                    :contact => Fabricate(:employee)
+        end
+
+        visit real_estate_path(real_estate)
+      end
+
+      it 'shows link to the next and previous search result' do
+        click_link 'Nächstes Projekt'
+        page.should have_link('Nächstes Projekt')
+        page.should have_link('Vorheriges Projekt')
+      end
+    end
+  end
+
 end
+

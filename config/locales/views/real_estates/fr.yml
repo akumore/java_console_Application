@@ -26,7 +26,8 @@ fr:
     show:
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Aperçu'
-      next: 'Nächstes Projekt'
+      prev: 'Précédent projet'
+      next: 'Prochain projet'
       floorplan: 'Afficher le plan'
       print_floorplan: 'Imprimer plan'
       description_download: "Documentation de l'objet"

@@ -5,7 +5,7 @@ class AppointmentMailer < ActionMailer::Base
 
   def appointment_notification(appointment)
     @appointment = appointment
-    mail  :subject => "Terminanfrage für '#{appointment.real_estate.title}'", 
+    mail  :subject => "Kontaktanfrage für '#{appointment.real_estate.title}'",
           :reply_to => appointment.email.presence,
           :to => appointment.real_estate.contact.email
   end

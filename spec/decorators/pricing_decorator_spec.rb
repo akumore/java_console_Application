@@ -25,15 +25,19 @@ describe PricingDecorator do
     end
 
     it 'formats the list price' do
-      @pricing.list_price.should == "CHF 2'000.00"
+      @pricing.list_price.should == "CHF 2'200.00"
     end
 
     it 'formats the price' do
-      @pricing.price.should == @pricing.for_rent_netto
+      @pricing.price.should == @pricing.for_rent_brutto
     end
 
     it 'formats the netto rent price' do
       @pricing.for_rent_netto.should == "CHF 2'000.00 / Monat"
+    end
+
+    it 'formats the brutto rent price' do
+      @pricing.for_rent_brutto.should == "CHF 2'200.00 / Monat"
     end
 
     it 'formats the rent extra price' do

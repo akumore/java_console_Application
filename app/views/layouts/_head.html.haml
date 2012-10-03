@@ -7,6 +7,8 @@
 %link{ :rel => 'apple-touch-icon', :href => '/apple-touch-icon-72x72.png', :sizes => '72x72' }
 %link{ :rel => 'apple-touch-icon', :href => '/apple-touch-icon-114x114.png', :sizes => '114x114' }
 
+-# RSS feed link
+= auto_discovery_link_tag(:rss, news_items_path(:format => 'xml'))
 
 -# Mobile viewport optimized: j.mp/bplateviewport
 %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" }
@@ -24,5 +26,19 @@
   Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
   For optimal performance, use a custom Modernizr build: www.modernizr.com/download/
 = javascript_include_tag 'polyfills'
+
+-# Google Analytics Snippet
+:javascript
+  var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-32243467-3']);
+    _gaq.push(['_setDomainName', 'alfred-mueller.ch']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
 
 = csrf_meta_tag
