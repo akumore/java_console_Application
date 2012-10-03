@@ -21,6 +21,6 @@
       %td= employee.fullname
       %td= employee.phone
       %td= employee.email
-      %td= t("departments.#{employee.department}")
+      %td= t("mongoid.attributes.employee.departments.#{employee.department}")
       %td= link_to  t('.destroy'), cms_employee_path(employee), :method => :delete, :confirm => t('.confirm_delete', :title => employee.fullname)
       %td= link_to  t('.edit'), edit_cms_employee_path(employee)
