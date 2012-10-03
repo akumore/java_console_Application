@@ -106,5 +106,38 @@ describe RealEstatePagination do
       end
     end
   end
+
+  context 'without real estates' do
+    subject do
+      RealEstatePagination.new(first, nil)
+    end
+
+    it 'does not fail' do
+      expect { subject.next }.to_not raise_error
+      expect { subject.prev }.to_not raise_error
+      expect { subject.next? }.to_not raise_error
+      expect { subject.prev? }.to_not raise_error
+    end
+  end
+
+  describe '#valid?' do
+    context 'with real estates' do
+      it 'returns true' do
+        RealEstatePagination.new(first, [first.id, last.id]).valid?.should be_true
+      end
+    end
+
+    context 'without real estates' do
+      it 'returns false' do
+        RealEstatePagination.new(first, nil).valid?.should be_false
+      end
+    end
+
+    context 'with a real estate not part of the list' do
+      it 'returns false' do
+        RealEstatePagination.new(first, [second.id, last.id]).valid?.should be_false
+      end
+    end
+  end
 end
 
