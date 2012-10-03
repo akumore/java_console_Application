@@ -63,4 +63,11 @@ describe Pricing do
       end
     end
   end
+
+  describe '#for_rent_brutto' do
+    it 'calculates the gross rent price from the netto and the rent extra' do
+      pricing = Pricing.new(:for_rent_netto => 1020, :for_rent_extra => 120)
+      pricing.for_rent_brutto.should be(1140)
+    end
+  end
 end
