@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Export::Idx301::Packager do
   let :target do
-    Export::Idx301::Target.new 'test', 'test', 'test', {}
+    Export::Idx301::Target.new 'test', 'test', 'test', true, {}
   end
 
   describe '.packager_class_for_target' do

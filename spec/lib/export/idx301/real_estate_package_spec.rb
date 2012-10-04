@@ -22,7 +22,7 @@ describe Export::Idx301::RealEstatePackage do
   end
 
   let :target do
-    Export::Idx301::Target.new 'test', 'test', 'test', {}
+    Export::Idx301::Target.new 'test', 'test', 'test', true, {}
   end
 
   let :packager do
@@ -62,10 +62,21 @@ describe Export::Idx301::RealEstatePackage do
       package.package_assets
     end
 
-    it 'copies the real estate videos into /movies' do
-      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, target)
-      package.should_receive(:add_video).exactly(2).times
-      package.package_assets
+    context 'with video support' do
+      it 'copies the real estate videos into /movies' do
+        package = Export::Idx301::RealEstatePackage.new(real_estate, packager, target)
+        package.should_receive(:add_video).exactly(2).times
+        package.package_assets
+      end
+    end
+
+    context 'without video support' do
+      it 'copies the real estate videos into /movies' do
+        target.stub!(:video_support?).and_return(false)
+        package = Export::Idx301::RealEstatePackage.new(real_estate, packager, target)
+        package.should_not_receive(:add_video)
+        package.package_assets
+      end
     end
 
     it 'copies the real estate videos into /documents' do

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Export::Idx301::Target do
   let :target do
-    Export::Idx301::Target.new 'portal_name', 'abcd', 'portal_exporter', {}
+    Export::Idx301::Target.new 'portal_name', 'abcd', 'portal_exporter', true, {}
   end
 
   describe 'attributes' do
@@ -20,6 +20,12 @@ describe Export::Idx301::Target do
 
     it 'has a config' do
       target.config.should == {}
+    end
+  end
+
+  describe '#video_support?' do
+    it 'should be true' do
+      target.video_support.should be_true
     end
   end
 

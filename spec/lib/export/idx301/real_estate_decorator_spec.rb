@@ -11,7 +11,7 @@ describe Export::Idx301::RealEstateDecorator do
   ## end of workaround
 
   let :target do
-    Export::Idx301::Target.new 'test', 'test', 'test', {}
+    Export::Idx301::Target.new 'test', 'test', 'test', true, {}
   end
 
   describe 'an invalid real estate' do

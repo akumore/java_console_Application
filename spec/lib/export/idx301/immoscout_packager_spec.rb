@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Export::Idx301::ImmoscoutPackager do
   let :target do
-    Export::Idx301::Target.new 'test', 'test', 'test', {}
+    Export::Idx301::Target.new 'test', 'test', 'test', true, {}
   end
 
   describe '#data_path' do

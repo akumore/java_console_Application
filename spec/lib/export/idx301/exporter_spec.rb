@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Export::Idx301::Exporter do
 
   let :target do
-    Export::Idx301::Target.new 'test', 'test', 'test', {}
+    Export::Idx301::Target.new 'test', 'test', 'test', true, {}
   end
 
   let :exporter do

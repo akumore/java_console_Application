@@ -18,6 +18,7 @@ defaults: &defaults
     homegate:
       agency_id: 'almtest'
       sender_id: 'AlfredMuellerWebsite_HomegateExporter'
+      video_support: true
       ftp:
         host: '62.65.135.69'
         username: 'almtest'
@@ -35,6 +36,7 @@ test:
     my_portal:
       agency_id: 'swag'
       sender_id: 'AlfredMuellerWebsite_SwagExporter'
+      video_support: false
       ftp:
         host: 'localhost'
         username: 'swagger'
@@ -49,6 +51,7 @@ production:
     homegate:
       agency_id: 'alm'
       sender_id: 'AlfredMuellerWebsite_HomegateExporter'
+      video_support: true
       ftp:
         host: 'ftp.homegate.ch'
         username: 'alm'
@@ -56,6 +59,7 @@ production:
     home_ch:
       agency_id: '75680'
       sender_id: 'AlfredMuellerWebsite_HomechExporter'
+      video_support: true
       ftp:
         host: 'idx.home.ch'
         username: '75680'
@@ -63,6 +67,7 @@ production:
     immoscout24:
       agency_id: '117874_mueller'
       sender_id: 'AlfredMuellerWebsite_ImmoscoutExporter'
+      video_support: false
       ftp:
         host: 'ftp.immoscout24.ch'
         username: '117874_mueller'

@@ -25,8 +25,10 @@ module Export
           add_image(floor_plan.file.gallery)
         end
 
-        @real_estate.videos.each do |video|
-          add_video(video.file)
+        if @target.video_support?
+          @real_estate.videos.each do |video|
+            add_video(video.file)
+          end
         end
 
         if @real_estate.has_handout?
