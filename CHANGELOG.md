@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### v1.8.3, Release on 2012-10-04
+### v1.8.4, Release on 2012-10-04
 
 * Adjust new FS paths, because home.ch changed them
 
