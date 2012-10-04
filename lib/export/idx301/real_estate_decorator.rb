@@ -436,7 +436,7 @@ module Export::Idx301
 
     def number_of_rooms
       # int(5,1)  number of rooms in object itself
-      model.try(:figure).try(:rooms).presence.to_i
+      model.try(:figure).try(:rooms).presence
     end
 
     def number_of_apartments
