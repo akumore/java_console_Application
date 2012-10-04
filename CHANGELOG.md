@@ -2,6 +2,10 @@
 
 ### v1.8.3, Release on 2012-10-04
 
+* Adjust new FS paths, because home.ch changed them
+
+### v1.8.3, Release on 2012-10-04
+
 * Fixed cache path for handout pdfs
 
 ### v1.8.2, Release on 2012-10-04
