@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### v1.8, Released on 2012-10-XX
+### v1.8, Released on 2012-10-04
 
 * Fixed appointment confirmation page styling
 * New implemented stories:
