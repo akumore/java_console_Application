@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v1.8.1, Release on 2012-10-04
+
+* Fixed export with custom packager for immoscout
+
 ### v1.8, Released on 2012-10-04
 
 * Fixed appointment confirmation page styling
