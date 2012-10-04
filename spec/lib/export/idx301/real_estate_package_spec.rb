@@ -140,7 +140,7 @@ describe Export::Idx301::RealEstatePackage do
 
     context 'when a cache file is present' do
       it 'copies the cache file' do
-        pdf = real_estate.handout.path
+        pdf = File.join(Rails.root, real_estate.handout.path)
         package = Export::Idx301::RealEstatePackage.new(real_estate, packager, target)
         File.stub!(:exists?).and_return(true)
         FileUtils.should_receive(:cp).with(pdf, File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf"))

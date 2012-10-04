@@ -8,7 +8,13 @@ describe Export::Idx301::Packager do
   describe '.packager_class_for_target' do
     context 'when the target is immoscout' do
       it 'returns the immoscout packager' do
-        Export::Idx301::Packager.packager_class_for_target('immoscout').should be(Export::Idx301::ImmoscoutPackager)
+        Export::Idx301::Packager.packager_class_for_target('immoscout24').should be(Export::Idx301::ImmoscoutPackager)
+      end
+    end
+
+    context 'when the target is home.ch' do
+      it 'returns the home_ch packager' do
+        Export::Idx301::Packager.packager_class_for_target('home_ch').should be(Export::Idx301::HomeChPackager)
       end
     end
 

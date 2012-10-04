@@ -15,8 +15,10 @@ module Export
       end
 
       def self.packager_class_for_target target_name
-        if target_name == 'immoscout'
+        if target_name == 'immoscout24'
           Export::Idx301::ImmoscoutPackager
+        elsif target_name == 'home_ch'
+          Export::Idx301::HomeChPackager
         else
           Export::Idx301::Packager
         end
