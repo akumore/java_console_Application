@@ -1,6 +1,6 @@
 module Export
   module Idx301
-    class HomeChPackager < ImmoscoutPackager
+    class HomeChPackager < Packager
 
       # def doc_path
       #   self.path
