@@ -11,7 +11,7 @@ module Export
         init_logging
 
         @target   = target
-        @packager = Idx301::Packager.new(target)
+        @packager = Idx301::Packager.packager_class_for_target(target.name).new(target)
         @uploader = Idx301::FtpUploader.new(@packager, target)
         @packages = []
       end

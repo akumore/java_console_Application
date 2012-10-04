@@ -46,7 +46,7 @@ module Export
         ext   = File.extname(file.path)
         path  = file.path
         filename = "i_#{@real_estate.id}_#{@images.length + 1}#{ext}"
-        target_path = File.join(@packager.path, 'images', filename)
+        target_path = File.join(@packager.image_path, filename)
         FileUtils.cp(path, target_path)
         @images << filename
       end
@@ -54,14 +54,14 @@ module Export
       def add_video(file)
         ext = File.extname(file.path)
         filename = "v_#{@real_estate.id}_#{@videos.length + 1}#{ext}"
-        target_path = File.join(@packager.path, 'movies', filename)
+        target_path = File.join(@packager.movie_path, filename)
         FileUtils.cp(file.path, target_path)
         @videos << filename
       end
 
       def add_handout(handout)
         filename = "d_#{@real_estate.id}_#{@documents.length + 1}.pdf"
-        target_path = File.join(@packager.path, 'doc', filename)
+        target_path = File.join(@packager.doc_path, filename)
         if File.exists? handout.path
           logger.info "Adding cache file for handout #{handout.path}"
           FileUtils.cp(handout.path, target_path)
@@ -75,7 +75,7 @@ module Export
       def add_document(file)
         ext = File.extname(file.path)
         filename = "d_#{@real_estate.id}_#{@documents.length + 1}#{ext}"
-        target_path = File.join(@packager.path, 'doc', filename)
+        target_path = File.join(@packager.doc_path, filename)
         FileUtils.cp(file.path, target_path)
         @documents << filename
       end

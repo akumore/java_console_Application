@@ -2,6 +2,7 @@ module Export
   module Idx301
     autoload :Exporter,           'export/idx301/exporter'
     autoload :Packager,           'export/idx301/packager'
+    autoload :ImmoscoutPackager,  'export/idx301/immoscout_packager'
     autoload :FtpUploader,        'export/idx301/ftp_uploader'
     autoload :Target,             'export/idx301/target'
     autoload :RealEstatePackage,  'export/idx301/real_estate_package'

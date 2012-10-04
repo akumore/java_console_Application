@@ -14,14 +14,41 @@ module Export
         create_folders
       end
 
+      def self.packager_class_for_target target_name
+        if target_name == 'immoscout'
+          Export::Idx301::ImmoscoutPackager
+        else
+          Export::Idx301::Packager
+        end
+      end
+
       def package(real_estate)
         logger.info "Packaging."
-        file = File.join(path, 'data', 'unload.txt')
-        Idx301::RealEstatePackage.new(real_estate, self, @target).save(file)
+        Idx301::RealEstatePackage.new(real_estate, self, @target).save(unload_file)
+      end
+
+      def unload_file
+        File.join(self.data_path, 'unload.txt')
       end
 
       def path
         @path ||= File.join root_path, @date_folder, @time_folder, @target.name
+      end
+
+      def doc_path
+        File.join self.path, 'doc'
+      end
+
+      def data_path
+        File.join self.path, 'data'
+      end
+
+      def image_path
+        File.join self.path, 'images'
+      end
+
+      def movie_path
+        File.join self.path, 'movies'
       end
 
       def root_path
@@ -29,13 +56,14 @@ module Export
       end
 
       private
+
       def create_folders
         logger.info "Creating folder structure for #{@target.name}"
         FileUtils.mkdir_p path
-        FileUtils.mkdir_p File.join(path, 'data')
-        FileUtils.mkdir_p File.join(path, 'images')
-        FileUtils.mkdir_p File.join(path, 'movies')
-        FileUtils.mkdir_p File.join(path, 'doc')
+        FileUtils.mkdir_p self.data_path
+        FileUtils.mkdir_p self.image_path
+        FileUtils.mkdir_p self.movie_path
+        FileUtils.mkdir_p self.doc_path
       end
 
     end
