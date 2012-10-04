@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-module Export::Homegate
+module Export::Idx301
   class RealEstateDecorator < Draper::Base
     decorates :real_estate
     allows  :version,
@@ -187,7 +187,8 @@ module Export::Homegate
             :sparefield_3,
             :sparefield_4
 
-    def initialize(real_estate, asset_paths)
+    def initialize(real_estate, target, asset_paths)
+      @target = target
       @asset_paths = asset_paths
       super(real_estate)
     end
@@ -199,7 +200,7 @@ module Export::Homegate
 
     def sender_id
       # str(50) Name of the used tool and export versionnumber (eg. Sigmasoft_v2.11, excelsior 21.23, immotools v1.99 ...)
-      'AlfredMuellerWebsite_HomegateExporter'
+      @target.sender_id
     end
 
     def object_category
@@ -581,7 +582,7 @@ module Export::Homegate
 
     def agency_id
       # str(10) given by homegate (Info: agency_id + ref_property + ref_object + ref_house forms the unique object key)
-      Settings.homegate.agency_id
+      @target.agency_id
     end
 
     def agency_name

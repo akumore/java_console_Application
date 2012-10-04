@@ -1,7 +1,7 @@
 require 'csv'
 
 module Export
-  module Homegate
+  module Idx301
     class CsvWriter
 
       attr_reader :path, :mode, :options

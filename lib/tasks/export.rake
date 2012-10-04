@@ -2,31 +2,30 @@ require 'export/export'
 
 namespace :export do
 
-  desc 'Run all exports (so far: homegate)'
+  desc 'Run all exports (homegate, immoscout, home.ch, immostreet)'
   task :build => :environment do
     logger = Logger.new(STDOUT)
     logger.formatter = Logger::Formatter.new
     logger.info "Starting real estate export rake task"
 
-    dispatcher = Export::Dispatcher.new("Export Dispatcher")
+    Export::Idx301::Target.all.each do |target|
+      export = Export::Idx301::Exporter.new(target)
+      RealEstate.published.each do |real_estate|
+        export.add(real_estate)
+      end
+      export.finish
+    end
 
-    # register the homegate export with the dispatcher
-    Export::Homegate::Exporter.new(dispatcher)
-
-    # .. register any other custom exporter here
-
-    # ^_^
-    dispatcher.start
     logger.info "Finished real estate export rake task."
   end
 
-  desc 'Run all export cleanups (so far: homegate)'
+  desc 'Run all export cleanups (homegate, immoscout, home.ch, immostreet)'
   task :cleanup => :environment do
     logger = Logger.new(STDOUT)
     logger.formatter = Logger::Formatter.new
     logger.info "Starting real estate export cleanup rake task"
 
-    Export::Homegate::Cleanup.new("#{Rails.root}/tmp/export").run
+    Export::Idx301::Cleanup.new("#{Rails.root}/tmp/export").run
     logger.info "Finished real estate export cleanup rake task."
   end
 

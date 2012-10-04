@@ -19,10 +19,10 @@ class RealEstate
   STATE_IN_REVIEW = 'in_review'
 
   WEBSITE_CHANNEL = 'website'
-  HOMEGATE_CHANNEL = 'homegate'
+  EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL = 'external_real_estate_portal'
   PRINT_CHANNEL = 'print'
   MICROSITE_CHANNEL = 'microsite'
-  CHANNELS = %W(#{WEBSITE_CHANNEL} #{HOMEGATE_CHANNEL} #{PRINT_CHANNEL} #{MICROSITE_CHANNEL})
+  CHANNELS = %W(#{WEBSITE_CHANNEL} #{EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL} #{PRINT_CHANNEL} #{MICROSITE_CHANNEL})
 
   belongs_to :category
   belongs_to :contact, :class_name => 'Employee'
@@ -160,8 +160,8 @@ class RealEstate
     category.parent
   end
 
-  def is_homegate?
-    channels.include? HOMEGATE_CHANNEL
+  def export_to_real_estate_portal?
+    channels.include? EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL
   end
 
   def is_website?

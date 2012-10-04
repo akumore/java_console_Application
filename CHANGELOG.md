@@ -3,6 +3,10 @@
 ### v1.8, Released on 2012-10-XX
 
 * Fixed appointment confirmation page styling
+* New implemented stories:
+    * Als Editor möchte, dass meine Angebote automatisch an www.home.ch exportiert werden
+    * Als Editor möchte, dass meine Angebote automatisch an www.immoscout.ch exportiert werden
+    * Als Editor möchte ich ein Angebot immer gesammelt auf alle Drittwebsites publizieren
 
 ### v1.7, Released on 2012-10-03
 

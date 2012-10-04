@@ -1,5 +1,5 @@
 module Export
-  module Homegate
+  module Idx301
     class Cleanup
 
       attr_reader :entries

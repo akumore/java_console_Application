@@ -1,14 +1,15 @@
 module Export
-  module Homegate
+  module Idx301
     class RealEstatePackage < Logger::Application
       include Logging
       attr_accessor :packager
 
-      def initialize(real_estate, packager)
-        super "Homegate RealEstate Package"
+      def initialize(real_estate, packager, target)
+        super "#{target.name} RealEstate Package"
         init_logging
 
         @packager = packager
+        @target = target
         @real_estate = real_estate
         @images = []
         @videos = []
@@ -37,11 +38,6 @@ module Export
         end
       end
 
-      def write
-        writer.write Homegate::RealEstateDecorator.new(@real_estate, asset_paths).to_a
-        true
-      end
-
       def asset_paths
         { :images => @images, :documents => @documents, :videos => @videos }
       end
@@ -67,10 +63,10 @@ module Export
         filename = "d_#{@real_estate.id}_#{@documents.length + 1}.pdf"
         target_path = File.join(@packager.path, 'doc', filename)
         if File.exists? handout.path
-          logger.debug "Adding cache file for handout #{handout.path}"
+          logger.info "Adding cache file for handout #{handout.path}"
           FileUtils.cp(handout.path, target_path)
         else
-          logger.debug "Creating handout #{handout.path}"
+          logger.info "Creating handout #{handout.path}"
           handout.to_file(target_path)
         end
         @documents << filename
@@ -84,15 +80,16 @@ module Export
         @documents << filename
       end
 
-      def save
+      def save(unload_file)
         package_assets
-        write
+        logger.info "Writing unload.txt for #{@target.name}"
+        writer(unload_file).write Idx301::RealEstateDecorator.new(@real_estate, @target, asset_paths).to_a
       end
 
-
       private
-      def writer
-        @writer ||= Homegate::CsvWriter.new(File.join(@packager.path, 'data', 'unload.txt'), 'ab')
+
+      def writer(path)
+        @writer ||= Idx301::CsvWriter.new(path, 'ab')
       end
 
     end
