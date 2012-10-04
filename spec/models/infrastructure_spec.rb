@@ -36,5 +36,101 @@ describe Infrastructure do
       @infrastructure.valid?
       @infrastructure.errors.should have(4).items
     end
-  end  
+  end
+
+  describe '#has_garage' do
+    it 'aliases #has_garage?' do
+      infrastructure = Infrastructure.new
+      infrastructure.should respond_to(:has_garage?)
+      infrastructure.has_garage.should == infrastructure.has_garage?
+    end
+
+    context 'without inside parking spots and without temp inside parking spots' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :inside_parking_spots_temporary => 0
+        )
+        infrastructure.has_garage.should be_false
+      end
+    end
+
+    context 'without inside parking spots but with temp inside parking spots' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :inside_parking_spots_temporary => 1
+        )
+        infrastructure.has_garage.should be_true
+      end
+    end
+
+    context 'with inside parking spots and with temp inside parking spots' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 1,
+          :inside_parking_spots_temporary => 1
+        )
+        infrastructure.has_garage.should be_true
+      end
+    end
+
+    context 'with inside parking spots but without temp inside parking spots' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 1,
+          :inside_parking_spots_temporary => 0
+        )
+        infrastructure.has_garage.should be_true
+      end
+    end
+  end
+
+  describe '#has_parking_spot' do
+    it 'aliases #has_parking_spot?' do
+      infrastructure = Infrastructure.new
+      infrastructure.should respond_to(:has_parking_spot?)
+      infrastructure.has_parking_spot.should == infrastructure.has_parking_spot?
+    end
+
+    context 'witout outside parking spots and without temp outside parking spots' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :outside_parking_spots => 0,
+          :outside_parking_spots_temporary => 0
+        )
+        infrastructure.has_parking_spot.should be_false
+      end
+    end
+
+    context 'without outside parking spots but with temp outside parking spots' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :outside_parking_spots => 0,
+          :outside_parking_spots_temporary => 1
+        )
+        infrastructure.has_parking_spot.should be_true
+      end
+    end
+
+    context 'with outside parking spots and with temp outside parking spots' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :outside_parking_spots => 1,
+          :outside_parking_spots_temporary => 1
+        )
+        infrastructure.has_parking_spot.should be_true
+      end
+    end
+
+    context 'with outside parking spots but without temp outside parking spots' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :outside_parking_spots => 1,
+          :outside_parking_spots_temporary => 0
+        )
+        infrastructure.has_parking_spot.should be_true
+      end
+    end
+  end
 end
