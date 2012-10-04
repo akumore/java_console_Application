@@ -33,8 +33,9 @@ class RealEstatesController < ApplicationController
     RealEstate.published.web_channel.where(search_filter.to_query_hash).order_by(@search_filter.to_query_order_array).all
   end
 
-  def get_filtered_reference_projects search_filter
+  def get_filtered_reference_projects(search_filter)
     offer = search_filter.for_sale? ? RealEstate::OFFER_FOR_SALE : RealEstate::OFFER_FOR_RENT
-    ReferenceProject.where(:locale => I18n.locale, :offer => offer)
+    utilization = search_filter.commercial? ? RealEstate::UTILIZATION_COMMERICAL : RealEstate::UTILIZATION_PRIVATE
+    ReferenceProject.where(:locale => I18n.locale, :offer => offer, :utilization => utilization)
   end
 end

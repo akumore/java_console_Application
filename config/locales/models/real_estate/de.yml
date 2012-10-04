@@ -18,12 +18,16 @@ de:
         address: 'Adresse'
         pricing: 'Preise'
         information: 'Infos'
+        figure: 'Zahlen und Fakten'
+        infrastructure: 'Infrastruktur'
+        additional_description: 'Beschreibungen'
         states:
-          published: veröffentlicht
-          editing: bearbeiten
-          in_review: verifizieren
+          published: 'veröffentlicht'
+          editing: 'bearbeiten'
+          in_review: 'verifizieren'
         events:
-          publish_it: Publizieren
-          review_it: Verifizieren lassen
-          unpublish_it: Offline schalten
-          reject_it: Zurückweisen
+          publish_it: 'Publizieren'
+          review_it: 'Verifizieren lassen'
+          unpublish_it: 'Offline schalten'
+          reject_it: 'Zurückweisen'
+
