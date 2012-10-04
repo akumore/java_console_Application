@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v1.9, Release on 2012-10-04
+
+* Add possibility to disable the video export for an export target
+
 ### v1.8.4, Release on 2012-10-04
 
 * Adjust new FS paths, because home.ch changed them
