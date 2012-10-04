@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### v1.9.1, Release on 2012-10-04
+
+* Fix idx301 category for unavailable secondary types
+* Fix idx301 integer values
+
 ### v1.9, Release on 2012-10-04
 
 * Add possibility to disable the video export for an export target

@@ -295,7 +295,9 @@ module Export::Idx301
         }
       elsif cat == 'secondary'
         subcategories = {
-          'hobby_room' => 0
+          'hobby_room' => 0,
+          'available'  => 0,
+          'archives'   => 0
         }
       end
 
@@ -343,7 +345,7 @@ module Export::Idx301
 
     def object_state
       #  str(2)  ZH, AG etc.
-      model.try(:address).try(:canton).try(:upcase)
+      model.try(:address).try(:canton).try(:upcase).presence
     end
 
     def object_country
@@ -388,7 +390,7 @@ module Export::Idx301
       end
 
       if model.for_sale?
-        model.try(:pricing).try(:for_sale)
+        model.try(:pricing).try(:for_sale).to_i
       end
     end
 
@@ -429,12 +431,12 @@ module Export::Idx301
 
     def floor
       # int(6)  floor filter see on tab "Floor filter"
-      model.try(:figure).try(:floor).presence
+      model.try(:figure).try(:floor).presence.to_i
     end
 
     def number_of_rooms
       # int(5,1)  number of rooms in object itself
-      model.try(:figure).try(:rooms)
+      model.try(:figure).try(:rooms).presence.to_i
     end
 
     def number_of_apartments
@@ -549,7 +551,7 @@ module Export::Idx301
 
     def movie_filename
       #  str(200)  filename without path, eg: 'movie.avi' - valid movie types = mov, avi, rpm, mpeg, mpg, wmv, mp4, flv (movies must be transfered in directory "movies")
-      @asset_paths[:videos].try(:first)
+      @asset_paths[:videos].try(:first).presence
     end
 
     def movie_title
@@ -563,7 +565,7 @@ module Export::Idx301
 
     def document_filename
       # str(200)  filename w/o path, eg: 'doc.pdf' - valid document types = pdf/rtf/doc (docs must be transfered in directory "docs")
-      @asset_paths[:documents].try(:first)
+      @asset_paths[:documents].try(:first).presence
     end
 
     def document_title
@@ -636,7 +638,7 @@ module Export::Idx301
 
     def agency_email
       #  str(200)  if empty=default e-mailadress of agency will be used - if filled=e-mail will be used for this record only
-      model.try(:contact).try(:email)
+      model.try(:contact).try(:email).presence
     end
 
     def agency_logo
