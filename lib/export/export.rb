@@ -1,6 +1,4 @@
 module Export
-  autoload :Dispatcher, 'export/dispatcher'
-  autoload :Homegate,   'export/homegate/homegate'
-  autoload :Exporter,   'export/exporter/base'
+  autoload :Idx301,     'export/idx301/idx301'
   autoload :Logging,    'export/logging'
 end

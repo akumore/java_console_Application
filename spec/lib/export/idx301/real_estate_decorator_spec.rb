@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Export::Homegate::RealEstateDecorator do
+describe Export::Idx301::RealEstateDecorator do
   ## workaround for issue: https://github.com/jcasimir/draper/issues/60
   include Rails.application.routes.url_helpers
   before :all do
@@ -10,12 +10,16 @@ describe Export::Homegate::RealEstateDecorator do
   end
   ## end of workaround
 
+  let :target do
+    Export::Idx301::Target.new 'test', 'test', 'test', {}
+  end
+
   describe 'an invalid real estate' do
     before :each do
       real_estate = Fabricate(:published_real_estate,
         :category => Fabricate(:category)
       )
-      @decorator = Export::Homegate::RealEstateDecorator.new(real_estate, {
+      @decorator = Export::Idx301::RealEstateDecorator.new(real_estate, target, {
         :images => [],
         :movies => [],
         :documents => []
@@ -216,8 +220,9 @@ describe Export::Homegate::RealEstateDecorator do
   describe '#to_a' do
     it 'has no newlines' do
       newline_string = "attribute\n\n\r with \nnewlines\n"
-      real_estate_decorator = Export::Homegate::RealEstateDecorator.new(
+      real_estate_decorator = Export::Idx301::RealEstateDecorator.new(
         mock_model(RealEstate, :title => newline_string, :description => newline_string),
+        target,
         {}
       )
       real_estate_decorator.stub(:allowed).and_return([:title, :description])
@@ -227,16 +232,24 @@ describe Export::Homegate::RealEstateDecorator do
 
   describe '#object_description' do
     it 'retains newlines for homegate by converting them to br-Tags' do
-      real_estate = Export::Homegate::RealEstateDecorator
-        .decorate(mock_model(RealEstate, :description => "It\nbreaks\n\ninto new lines"))
+      real_estate = Export::Idx301::RealEstateDecorator
+        .new(
+          mock_model(RealEstate, :description => "It\nbreaks\n\ninto new lines"),
+          target,
+          {}
+        )
       real_estate.object_description.should == 'It<br>breaks<br><br>into new lines'
     end
   end
 
   describe '#object_type' do
     it 'returns 5 for an underground_slot' do
-      real_estate = Export::Homegate::RealEstateDecorator
-        .decorate(mock_model(RealEstate, :category => mock_model(Category, :name => 'underground_slot')))
+      real_estate = Export::Idx301::RealEstateDecorator
+        .new(
+          mock_model(RealEstate, :category => mock_model(Category, :name => 'underground_slot')),
+          target,
+          {}
+        )
       real_estate.stub!(:top_level_category_name).and_return('parking')
       real_estate.object_type.should == 5
     end

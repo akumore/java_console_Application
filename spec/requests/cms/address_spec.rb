@@ -118,7 +118,7 @@ describe "Cms::Addresses" do
           :reference => Fabricate.build(:reference)
         ),
         :reference => Fabricate.build(:reference),
-        :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::HOMEGATE_CHANNEL]
+        :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL]
       )
       visit edit_cms_real_estate_path(@real_estate)
       click_on 'Adresse'
