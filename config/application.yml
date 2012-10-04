@@ -22,21 +22,6 @@ defaults: &defaults
         host: '62.65.135.69'
         username: 'almtest'
         password: 'cal31cium'
-    # immoscout24
-    immoscout24:
-      agency_id: '180571_vision'
-      sender_id: 'AlfredMuellerWebsite_ImmoscoutExporter'
-      ftp:
-        host: 'ftp.immoscout24.ch'
-        username: '180571_vision'
-        password: 'cdzqvxfysy'
-    home_ch:
-      agency_id: '75680'
-      sender_id: 'AlfredMuellerWebsite_HomechExporter'
-      ftp:
-        host: 'idx.home.ch'
-        username: '75680'
-        password: 'pwd475680'
 
 development:
   <<: *defaults
@@ -68,7 +53,19 @@ production:
         host: 'ftp.homegate.ch'
         username: 'alm'
         password: 'neu33hof'
-    # add immoscout 24
-    # add home.ch
+    home_ch:
+      agency_id: '75680'
+      sender_id: 'AlfredMuellerWebsite_HomechExporter'
+      ftp:
+        host: 'idx.home.ch'
+        username: '75680'
+        password: 'pwd475680'
+    immoscout24:
+      agency_id: '117874_mueller'
+      sender_id: 'AlfredMuellerWebsite_ImmoscoutExporter'
+      ftp:
+        host: 'ftp.immoscout24.ch'
+        username: '117874_mueller'
+        password: '6340baar'
     # add immostreet.ch
 
