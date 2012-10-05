@@ -7,7 +7,7 @@ fr:
         firstname: 'Prénom'
         lastname: 'Nom'
         email:  'Adresse e-mail'
-        phone: 'Telefon'
+        phone: 'Téléphone'
         street: 'Rue'
         zipcode: 'NPA'
         city: 'Lieu'

@@ -7,7 +7,7 @@ fr:
       title: "Aperçu de l'objet"
       property: "Immeuble"
       address: "Adresse"
-      usable_surface_helptext: "surface après déduction des murs des cages d’escalier et des conduits"
+      usable_surface_helptext: "(surface après déduction des murs des cages d’escalier et des conduits)"
       description: "Description succincte"
     floorplan:
       title: "Plan"

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v1.9.2,
+
+* French text corrections in appointment form and handout usable surface helpt text
+
 ### v1.9.1, Release on 2012-10-04
 
 * Fix idx301 category for unavailable secondary types
