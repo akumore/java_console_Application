@@ -240,6 +240,16 @@ describe Export::Idx301::RealEstateDecorator do
         )
       real_estate.object_description.should == 'It<br>breaks<br><br>into new lines'
     end
+
+    it 'renders asteriks (*) into <li> bullet points' do
+      real_estate = Export::Idx301::RealEstateDecorator
+        .new(
+          mock_model(RealEstate, :description => "I\nhave\n\n* one\n* two\n* three\n\nlist items"),
+          target,
+          {}
+        )
+      real_estate.object_description.should == 'I<br>have<br><br><li>one</li><li>two</li><li>three</li><br>list items'
+    end
   end
 
   describe '#object_type' do

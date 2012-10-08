@@ -377,9 +377,10 @@ module Export::Idx301
     def object_description
       #  str(4000) biggest varchar2(4000) in oracle - split description into two parts if required.
       # The following HTML-Tags can be used: <LI>,</LI>,<BR>, <B>,</B>. All other Tags will be removed.
-      pre_html = model.description.presence.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>')
-      html = RDiscount.new(pre_html).to_html
-      Sanitize.clean(html, :elements => ['b', 'li', 'br']).strip
+      #pre_html = model.description.presence.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>')
+      html = RDiscount.new(model.description.presence).to_html
+      html = Sanitize.clean(html, :elements => ['b', 'li', 'br']).strip
+      html.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>').gsub(/>\s+/, '>').gsub(/\s+</, '<').gsub('</li><br><li>', '</li><li>')
     end
 
     def selling_price
