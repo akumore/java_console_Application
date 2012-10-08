@@ -254,4 +254,64 @@ describe Export::Idx301::RealEstateDecorator do
       real_estate.object_type.should == 5
     end
   end
+
+  describe '#ceiling_height' do
+    context 'for private use' do
+      it 'has a value' do
+        real_estate = Export::Idx301::RealEstateDecorator.new(
+          mock_model(RealEstate,  :commercial_utilization? => false,
+                                  :private_utilization? => true,
+                                  :figure => mock_model(Figure, :ceiling_height => '2.50')
+                                  ),
+          target,
+          {}
+        )
+        real_estate.ceiling_height.should == '2.50'
+      end
+    end
+
+    context 'for commercial use' do
+      it 'is empty' do
+        real_estate = Export::Idx301::RealEstateDecorator.new(
+          mock_model(RealEstate,  :commercial_utilization? => true,
+                                  :private_utilization? => false,
+                                  :figure => mock_model(Figure, :ceiling_height => '2.50')
+                                  ),
+          target,
+          {}
+        )
+        real_estate.ceiling_height.should be_nil
+      end
+    end
+  end
+
+  describe '#hall_height' do
+    context 'for commercial use' do
+      it 'has a value' do
+        real_estate = Export::Idx301::RealEstateDecorator.new(
+          mock_model(RealEstate,  :commercial_utilization? => false,
+                                  :private_utilization? => true,
+                                  :figure => mock_model(Figure, :ceiling_height => '2.50')
+                                  ),
+          target,
+          {}
+        )
+        real_estate.ceiling_height.should == '2.50'
+      end
+    end
+
+    context 'for private use' do
+      it 'is empty' do
+        real_estate = Export::Idx301::RealEstateDecorator.new(
+          mock_model(RealEstate,  :commercial_utilization? => true,
+                                  :private_utilization? => false,
+                                  :figure => mock_model(Figure, :ceiling_height => '2.50')
+                                  ),
+          target,
+          {}
+        )
+        real_estate.ceiling_height.should be_nil
+      end
+    end
+  end
 end

@@ -916,12 +916,12 @@ module Export::Idx301
 
     def ceiling_height
       #  int(10,2) height of room in meters
-      model.try(:figure).try(:ceiling_height).presence
+      model.try(:figure).try(:ceiling_height).presence if model.private_utilization?
     end
 
     def hall_height
       # int(10,2) height of hall in meters
-      model.try(:figure).try(:ceiling_height).presence
+      model.try(:figure).try(:ceiling_height).presence if model.commercial_utilization?
     end
 
     def maximal_floor_loading
