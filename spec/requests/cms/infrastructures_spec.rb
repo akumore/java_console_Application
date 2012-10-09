@@ -22,9 +22,7 @@ describe "Cms::Infrastructures" do
     context 'a valid Infrastructure' do
       before :each do
         within(".new_infrastructure") do
-          check 'Hat Parkplatz'
           check 'Hat überdachten Parkplatz'
-          check 'Hat Garage'
 
           fill_in 'Anzahl Parkplätze im Freien', :with => '2'
           fill_in 'Anzahl Parkplätze in Autoeinstellhalle', :with => '1'
