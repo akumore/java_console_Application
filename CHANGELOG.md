@@ -1,8 +1,15 @@
 # CHANGELOG
 
-### v1.9.2,
+### v1.10, Release on 2012-10-09
 
 * French text corrections in appointment form and handout usable surface helpt text
+* Fix trailing list item not beeing rendered in idx301 export
+* Fix double values for ceiling height / hall height in idx301 export
+* New implemented stories:
+    * Als Editor möchte ich alle CMS Texte auf Deutsch sehen
+    * Als Besucher möchte ich Referenzprojekte unter Immobilienliste gefiltert nach dem aktuellen Nutzungstyp (Wohnen/Arbeiten) sehen
+    * Als Editor soll die Verfügbarkeit von Garage und Parkplätzen aus der Anzahl Parkplätzen automatisiert abgeleitet werden
+    * Als Besucher möchte ich den Grundriss einer Immobilie sehen, nachdem die Kartenansicht geöffnet wurde.
 
 ### v1.9.1, Release on 2012-10-04
 
