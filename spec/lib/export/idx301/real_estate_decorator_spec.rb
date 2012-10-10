@@ -324,4 +324,52 @@ describe Export::Idx301::RealEstateDecorator do
       end
     end
   end
+
+  describe '#rent_net' do
+    context 'with a price' do
+      it 'returns the rounded price' do
+        real_estate = Export::Idx301::RealEstateDecorator.new(
+          mock_model(RealEstate, :pricing => mock_model(Pricing, :for_rent_netto => '2.50')),
+          target,
+          {}
+        )
+        real_estate.rent_net.should be(3)
+      end
+    end
+
+    context 'without a price' do
+      it 'returns nothing and is therefore "by request"' do
+        real_estate = Export::Idx301::RealEstateDecorator.new(
+          mock_model(RealEstate, :pricing => mock_model(Pricing, :for_rent_netto => '')),
+          target,
+          {}
+        )
+        real_estate.rent_net.should be_nil
+      end
+    end
+  end
+
+  describe '#rent_extra' do
+    context 'with a price' do
+      it 'returns the rounded price' do
+        real_estate = Export::Idx301::RealEstateDecorator.new(
+          mock_model(RealEstate, :pricing => mock_model(Pricing, :for_rent_extra => '2.50')),
+          target,
+          {}
+        )
+        real_estate.rent_extra.should be(3)
+      end
+    end
+
+    context 'without a price' do
+      it 'returns nothing and is therefore not available' do
+        real_estate = Export::Idx301::RealEstateDecorator.new(
+          mock_model(RealEstate, :pricing => mock_model(Pricing, :for_rent_extra => '')),
+          target,
+          {}
+        )
+        real_estate.rent_extra.should be_nil
+      end
+    end
+  end
 end
