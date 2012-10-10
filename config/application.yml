@@ -72,5 +72,11 @@ production:
         host: 'ftp.immoscout24.ch'
         username: '117874_mueller'
         password: '6340baar'
-    # add immostreet.ch
-
+    immostreet:
+      agency_id: '6557'
+      sender_id: 'AlfredMuellerWebsite_ImmostreetExporter'
+      video_support: false
+      ftp:
+        host: 'ftp.immostreet.ch'
+        username: 'SC6557'
+        password: '8C7Pbz'

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+### v1.11, Release on 2012-10-10
+
+* Fix backend language beeing changed by locale parameter, must always be :de
+* New implemented stories:
+    * Als Editor möchte, dass meine Angebote automatisch an www.immostreet.ch exportiert werden
+
 ### v1.10, Release on 2012-10-09
 
 * French text corrections in appointment form and handout usable surface helpt text
