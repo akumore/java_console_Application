@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### v1.11.1, Release on 2012-10-10
+
+* Fix rent_net and rent_extra rounding in idx301 export for immostreet
+* Fix internal reference project link to real estate, using offer and utilization in params
+
 ### v1.11, Release on 2012-10-10
 
 * Fix backend language beeing changed by locale parameter, must always be :de
