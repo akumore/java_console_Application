@@ -95,9 +95,21 @@ class RealEstateDecorator < ApplicationDecorator
   def application_form_link
     if model.for_rent?
       link = if model.private_utilization?
-        '/documents/Anmeldeformular-Mieten-Wohnen.pdf'
+        if I18n.locale == :it
+          '/documents/it/Formulario-di-contatto-Affittare-Abitare.pdf'
+        elsif I18n.locale == :fr
+          '/documents/fr/Formulaire-d-Inscription-Louer-Habiter.pdf'
+        else
+          '/documents/de/Anmeldeformular-Mieten-Wohnen.pdf'
+        end
       elsif model.commercial_utilization?
-        '/documents/Anmeldeformular-Mieten-Gewerbe.pdf'
+        if I18n.locale == :it
+          '/documents/it/Formulario-di-contatto-Affittare-Lavorare.pdf'
+        elsif I18n.locale == :fr
+          '/documents/fr/Formulaire-d-Inscription-Louer-Travailler.pdf'
+        else
+          '/documents/de/Anmeldeformular-Mieten-Gewerbe.pdf'
+        end
       end
       link_to(t('real_estates.show.application_form'), link, :class => 'icon-description', :target => '_blank')
     end
