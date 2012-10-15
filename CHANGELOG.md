@@ -1,5 +1,13 @@
 # CHANGELOG
 
+### v1.12, Release on 2012-10-15
+
+* Fix failing homepage slider spec
+* Fix correct selection of active search filter tabs on real estate detail page without url params
+* Fix long image titles in handout over 2 lines
+* New implemented stories:
+    * Als Besucher möchte ich das Anmeldeformular in der richtigen Sprache angezeigt bekommen
+
 ### v1.11.1, Release on 2012-10-10
 
 * Fix rent_net and rent_extra rounding in idx301 export for immostreet
