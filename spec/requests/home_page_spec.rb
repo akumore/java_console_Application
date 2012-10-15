@@ -109,7 +109,7 @@ describe "Homepage" do
 
         it "shows the link to the real estate in the slider" do
           visit root_path
-          page.should have_css("a[href='#{real_estate_path real_estate}']")
+          page.should have_css("a[href='#{real_estate_path real_estate, :offer => 'for_rent', :utilization => 'private'}']")
         end
       end
 
