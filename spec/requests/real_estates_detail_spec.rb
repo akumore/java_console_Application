@@ -225,7 +225,7 @@ describe "RealEstates" do
             real_estate.update_attribute :utilization, RealEstate::UTILIZATION_PRIVATE
             visit real_estate_path(real_estate)
             page.within('.sidebar') do
-              page.should have_link('Anmeldeformular', :href => '/documents/Anmeldeformular-Mieten-Wohnen.pdf')
+              page.should have_link('Anmeldeformular', :href => '/documents/de/Anmeldeformular-Mieten-Wohnen.pdf')
             end
           end
         end
@@ -235,7 +235,7 @@ describe "RealEstates" do
             real_estate.update_attribute :utilization, RealEstate::UTILIZATION_COMMERICAL
             visit real_estate_path(real_estate)
             page.within('.sidebar') do
-              page.should have_link('Anmeldeformular', :href => '/documents/Anmeldeformular-Mieten-Gewerbe.pdf')
+              page.should have_link('Anmeldeformular', :href => '/documents/de/Anmeldeformular-Mieten-Gewerbe.pdf')
             end
           end
         end
@@ -309,7 +309,7 @@ describe "RealEstates" do
       it 'renders the appointment form download link' do
         visit real_estate_path(real_estate)
         page.within('.sidebar') do
-          page.should have_link('Anmeldeformular', :href => '/documents/Anmeldeformular-Mieten-Wohnen.pdf')
+          page.should have_link('Anmeldeformular', :href => '/documents/de/Anmeldeformular-Mieten-Wohnen.pdf')
         end
       end
 
