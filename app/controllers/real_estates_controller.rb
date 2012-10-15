@@ -16,6 +16,8 @@ class RealEstatesController < ApplicationController
 
   def show
     @real_estate = RealEstateDecorator.decorate RealEstate.published.web_channel.find(params[:id])
+    @search_filter.utilization = @real_estate.utilization
+    @search_filter.offer = @real_estate.offer
     real_estates = get_filtered_real_estates(@search_filter).map(&:id)
     @pagination = RealEstatePagination.new(@real_estate, real_estates)
     @appointment = @real_estate.appointments.build
