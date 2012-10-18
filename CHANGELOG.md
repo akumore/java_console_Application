@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v1.12.1, Release on 2012-10-18
+
+* Fix empty appointment mails in languages other than german
+
 ### v1.12, Release on 2012-10-15
 
 * Fix failing homepage slider spec
