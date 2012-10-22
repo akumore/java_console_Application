@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v1.12.2, Release on 2012-10-22
+
+* Fix application form urls in gartenstadt microsite API
+
 ### v1.12.1, Release on 2012-10-18
 
 * Fix empty appointment mails in languages other than german

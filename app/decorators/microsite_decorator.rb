@@ -129,9 +129,9 @@ class MicrositeDecorator < ApplicationDecorator
 
     if model.for_rent?
       link = if model.private_utilization?
-        '/documents/Anmeldeformular-Mieten-Wohnen.pdf'
+        '/documents/de/Anmeldeformular-Mieten-Wohnen.pdf'
       elsif model.commercial_utilization?
-        '/documents/Anmeldeformular-Mieten-Gewerbe.pdf'
+        '/documents/de/Anmeldeformular-Mieten-Gewerbe.pdf'
       end
 
       dl << {
