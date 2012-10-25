@@ -125,15 +125,19 @@
     display: block
 
   td
-    .title
+    .title,
+    .col.first,
+    .col.middle,
+    .col.last
       white-space: normal
       width: auto
+      overflow: auto
+      text-overflow: none
+      word-break: break-word
 
     .col.first,
     .col.middle,
     .col.last
-      width: auto
-      white-space: normal
       margin: 5px 0
 
   .search-filter-order-form
