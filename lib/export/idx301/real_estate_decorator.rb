@@ -387,10 +387,15 @@ module Export::Idx301
       # int(10) round up / selling_price OR rent_net  is mandatory / empty="by request" - if offer_type = RENT: total rent price - if offer_type = SALE: total sellingprice
 
       if model.for_rent?
-        model.try(:pricing).try(:for_rent_netto).presence.to_i + model.try(:pricing).try(:for_rent_extra).presence.to_i
-      end
+        netto = model.try(:pricing).try(:for_rent_netto).presence.to_i
+        extra = model.try(:pricing).try(:for_rent_extra).presence.to_i
 
-      if model.for_sale?
+        if model.for_work_or_storage?
+          netto
+        else
+          netto + extra
+        end
+      elsif model.for_sale?
         model.try(:pricing).try(:for_sale).to_i
       end
     end
