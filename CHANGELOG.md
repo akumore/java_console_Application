@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### v1.13, Release on 2012-10-25
+
+* New implemented stories:
+    * Als Besucher möchte ich eine korrekte Darstellung auf einem Device mit iOS6 sehen
+
 ### v1.12.2, Release on 2012-10-22
 
 * Fix application form urls in gartenstadt microsite API
