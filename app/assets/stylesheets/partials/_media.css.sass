@@ -109,9 +109,8 @@
 
   .search-filter-form
     select
-      margin-left: 30%
+      +float_right
       width: 70%
-      display: block
 
     input[type="submit"]
       width: 100%
@@ -126,15 +125,19 @@
     display: block
 
   td
-    .title
+    .title,
+    .col.first,
+    .col.middle,
+    .col.last
       white-space: normal
       width: auto
+      overflow: auto
+      text-overflow: none
+      word-break: break-word
 
     .col.first,
     .col.middle,
     .col.last
-      width: auto
-      white-space: normal
       margin: 5px 0
 
   .search-filter-order-form
@@ -143,6 +146,10 @@
 
     .sort-order
       border-top: 1px solid #a6a7a6
+
+    .sort-field
+      .sort-order-dropdown
+        border-right: 0px
 
   .detail
     width: 94%
@@ -264,9 +271,15 @@
       li
         display: block
         float: none
+        margin: 0
+
+      a
+        padding-top: 8px
+        padding-bottom: 8px
 
       a:hover, a.active
         height: auto
+        position: inherit
 
     .second-level-navigation
       display: none
@@ -314,7 +327,7 @@
   .image-caption-text
     display: block
     float: none
-    padding-top: 1em
+    padding: 1em 0
     & > *
       padding: 0 $margin-side
     .wide &, &
@@ -413,6 +426,7 @@
     margin-left: 0
 
   .short-info
+    +column(9)
     +push(1)
 
     .info
@@ -449,6 +463,9 @@
   .brick, .brick.accordion-brick
     margin: 1em
     width: 90%
+
+  .contact-box
+    max-width: 660px
 
   .mobile-view
     display: none
@@ -487,6 +504,26 @@
     .title
       white-space: normal
       width: auto
+
+// tablet-portrait only
+@media only screen and (min-width : 600px) and (max-width: 1024px) and (orientation : portrait)
+  .services-slides-container
+    height: 360px
+
+  .appointment
+    .form-actions
+      +float_right
+      +pull(0.5)
+
+    .controls
+      input[type=text].medium-short
+        margin-left: 0
+
+    .contact-form .controls .field_with_errors .medium-short
+      margin-left: 0.2em
+
+    input[type="submit"]
+      margin-top: 5px
 
 // tablet-large
 @media only screen and (min-width : 768px)
