@@ -1,5 +1,12 @@
 # CHANGELOG
 
+### v2.0, Release on 2012-11-05
+
+* First official "Weiterentwicklung" Release, no more support stories
+* New implemented stories:
+    * Als Besucher möchte ich auf Homegate für Angebote im Bereich Arbeiten/Lagern den Nettopreis eines Angebots in der Übersichtsliste sehen
+    * Als Besucher möchte ich auf Homegate für Mietangebote den Bruttopreis sehen
+
 ### v1.13, Release on 2012-10-25
 
 * New implemented stories:
