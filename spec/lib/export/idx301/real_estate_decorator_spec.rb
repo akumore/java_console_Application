@@ -372,4 +372,33 @@ describe Export::Idx301::RealEstateDecorator do
       end
     end
   end
+
+  describe '#selling_price' do
+    context 'for rent' do
+      let :decorated_real_etate do
+        Export::Idx301::RealEstateDecorator.new(
+          mock_model(RealEstate,
+            :for_rent? => true,
+            :pricing => mock_model(Pricing, :for_rent_netto => 200, :for_rent_extra => 100)
+          ),
+          target,
+          {}
+        )
+      end
+
+      context 'when it\'s for work or storage' do
+        it 'returns the netto price' do
+          decorated_real_etate.model.stub(:for_work_or_storage?).and_return(true)
+          decorated_real_etate.selling_price.should == 200
+        end
+      end
+
+      context 'when it\'s for any other use' do
+        it 'returns the price with the added rent extra' do
+          decorated_real_etate.model.stub(:for_work_or_storage?).and_return(false)
+          decorated_real_etate.selling_price.should == 300
+        end
+      end
+    end
+  end
 end

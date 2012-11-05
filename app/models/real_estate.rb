@@ -8,6 +8,8 @@ class RealEstate
   UTILIZATION_PRIVATE = 'private'
   UTILIZATION_COMMERICAL = 'commercial'
 
+  UTILIZATIONS = [UTILIZATION_PRIVATE, UTILIZATION_COMMERICAL]
+
   BUILDING_CORNER_HOUSE = 'corner_house'
   BUILDING_MIDDLE_HOUSE = 'middle_house'
 
@@ -150,6 +152,18 @@ class RealEstate
 
   def private_utilization?
     self.utilization == RealEstate::UTILIZATION_PRIVATE
+  end
+
+  def for_work_or_storage?
+    unless RealEstate::UTILIZATIONS.include? self.utilization
+      raise "Unknown utilization '#{self.utilization}'"
+    end
+
+    if self.utilization == RealEstate::UTILIZATION_COMMERICAL
+      true
+    else
+      false
+    end
   end
 
   def has_handout?
