@@ -6,6 +6,7 @@ Fabricator(:real_estate) do
   title { "A fine real estate property #{Fabricate.sequence}" }
   description 'Some real estate description...'
   utilization_description 'Commercial, Restaurant'
+  office { Fabricate(:office) }
 end
 
 Fabricator(:published_real_estate, :from => :real_estate) do
