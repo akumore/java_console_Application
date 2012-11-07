@@ -4,7 +4,7 @@ class Office
 
   has_many :real_estates
 
-  field :name, :type => String
+  field :label, :type => String
 
-  validates :name, :presence => true
+  validates :label, :presence => true
 end

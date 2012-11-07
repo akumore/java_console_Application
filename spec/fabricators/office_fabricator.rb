@@ -1,3 +1,3 @@
 Fabricator(:office) do
-  name "Camorino, TI"
+  label "Camorino, TI"
 end

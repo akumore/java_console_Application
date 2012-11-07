@@ -5,6 +5,7 @@ de:
     attributes:
       real_estate:
         category_id: 'Objekt-Art'
+        office_id: 'Filiale'
         reference: 'Referenz'
         contact: 'Kontaktperson'
         contact_id: 'Kontaktperson'

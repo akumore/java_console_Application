@@ -34,9 +34,13 @@ describe RealEstate do
       @real_estate.should have(1).error_on(:description)
     end
 
-    it 'has 6 errors' do
+    it 'requires an office' do
+      @real_estate.should have(1).error_on(:office_id)
+    end
+
+    it 'has 7 errors' do
       @real_estate.valid?
-      @real_estate.errors.should have(6).items
+      @real_estate.errors.should have(7).items
     end
   end
 
