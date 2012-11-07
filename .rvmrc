@@ -1,1 +1,1 @@
-rvm --create 1.9.3@alfred_mueller
+rvm --create 1.9.3-p0@alfred_mueller
