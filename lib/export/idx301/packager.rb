@@ -15,7 +15,7 @@ module Export
       end
 
       def self.packager_class_for_provider provider
-        if provider == 'immoscout24'
+        if provider == Provider::IMMOSCOUT
           Export::Idx301::ImmoscoutPackager
         else
           Export::Idx301::Packager
