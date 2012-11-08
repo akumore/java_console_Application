@@ -14,15 +14,16 @@ defaults: &defaults
   google_api_key: ''
   google_maps_api_key: 'AIzaSyCNWg9D3wR2T69wlEu6ARAtNdPSgAN-N9w'
   idx301:
-    # homegate
-    homegate:
+    - provider: 'homegate'
       agency_id: 'almtest'
       sender_id: 'AlfredMuellerWebsite_HomegateExporter'
       video_support: true
-      ftp:
-        host: '62.65.135.69'
-        username: 'almtest'
-        password: 'cal31cium'
+      host: '62.65.135.69'
+      username: 'almtest'
+      password: 'cal31cium'
+      offices:
+        - baar
+
 
 development:
   <<: *defaults
@@ -33,50 +34,119 @@ staging:
 test:
   <<: *defaults
   idx301:
-    my_portal:
+    - provider: 'my_portal'
       agency_id: 'swag'
       sender_id: 'AlfredMuellerWebsite_SwagExporter'
       video_support: false
-      ftp:
-        host: 'localhost'
-        username: 'swagger'
-        password: 'swaggerbagmovement'
+      host: 'localhost'
+      username: 'swagger'
+      password: 'swaggerbagmovement'
+      offices:
+        - camorino
 
 production:
   google_account_id: ''
   google_api_key: ''
   google_maps_api_key: 'AIzaSyCNWg9D3wR2T69wlEu6ARAtNdPSgAN-N9w'
   idx301:
-    # homegate
-    homegate:
+    - provider: 'homegate'
       agency_id: 'alm'
       sender_id: 'AlfredMuellerWebsite_HomegateExporter'
       video_support: true
-      ftp:
-        host: 'ftp.homegate.ch'
-        username: 'alm'
-        password: 'neu33hof'
-    home_ch:
+      host: 'ftp.homegate.ch'
+      username: 'alm'
+      password: 'neu33hof'
+      offices:
+        - baar
+
+    - provider: 'homegate'
+      agency_id: 'almcam'
+      sender_id: 'AlfredMuellerWebsite_HomegateExporter'
+      video_support: true
+      host: 'ftp.homegate.ch'
+      username: 'almcam'
+      password: 'frei77tag'
+      offices:
+        - camorino
+
+    - provider: 'homegate'
+      agency_id: 'almmar'
+      sender_id: 'AlfredMuellerWebsite_HomegateExporter'
+      video_support: true
+      host: 'ftp.homegate.ch'
+      username: 'almmar'
+      password: 'lon99don'
+      offices:
+        - marin
+
+    - provider: 'home_ch'
       agency_id: '75680'
       sender_id: 'AlfredMuellerWebsite_HomechExporter'
       video_support: true
-      ftp:
-        host: 'idx.home.ch'
-        username: '75680'
-        password: 'pwd475680'
-    immoscout24:
+      host: 'idx.home.ch'
+      username: '75680'
+      password: 'pwd475680'
+      offices:
+        - baar
+
+    - provider: 'home_ch'
+      agency_id: '75847'
+      sender_id: 'AlfredMuellerWebsite_HomechExporter'
+      video_support: true
+      host: 'idx.home.ch'
+      username: '75847'
+      password: 'pwd475847'
+      offices:
+        - marin
+
+    - provider: 'home_ch'
+      agency_id: '75848'
+      sender_id: 'AlfredMuellerWebsite_HomechExporter'
+      video_support: true
+      host: 'idx.home.ch'
+      username: '75848'
+      password: 'pwd475848'
+      offices:
+        - camorino
+
+    - provider: 'immoscout24'
       agency_id: '117874_mueller'
       sender_id: 'AlfredMuellerWebsite_ImmoscoutExporter'
       video_support: false
-      ftp:
-        host: 'ftp.immoscout24.ch'
-        username: '117874_mueller'
-        password: '6340baar'
-    immostreet:
+      host: 'ftp.immoscout24.ch'
+      username: '117874_mueller'
+      password: '6340baar'
+      offices:
+        - baar
+        - marin
+        - camorino
+
+    - provider: 'immostreet'
       agency_id: '6557'
       sender_id: 'AlfredMuellerWebsite_ImmostreetExporter'
       video_support: false
-      ftp:
-        host: 'ftp.immostreet.ch'
-        username: 'SC6557'
-        password: '8C7Pbz'
+      host: 'ftp.immostreet.ch'
+      username: 'SC6557'
+      password: '8C7Pbz'
+      offices:
+        - baar
+
+    - provider: 'immostreet'
+      agency_id: '6609'
+      sender_id: 'AlfredMuellerWebsite_ImmostreetExporter'
+      video_support: false
+      host: 'ftp.immostreet.ch'
+      username: 'SC6609'
+      password: 'PrFoNX'
+      offices:
+        - camorino
+
+    - provider: 'immostreet'
+      agency_id: '6568'
+      sender_id: 'AlfredMuellerWebsite_ImmostreetExporter'
+      video_support: false
+      host: 'ftp.immostreet.ch'
+      username: 'SC6568'
+      password: 'vz91LF'
+      offices:
+        - marin
