@@ -20,6 +20,7 @@ class Account
   validates :host, :presence => true
 
   def initialize(data = {})
+    @offices = [] # default offices
     data.each do |key, value|
       send "#{key}=", value if respond_to? "#{key}="
     end
@@ -38,7 +39,7 @@ class Account
   end
 
   def name
-    provider
+    ([provider] + @offices).join("_")
   end
 
   def self.all

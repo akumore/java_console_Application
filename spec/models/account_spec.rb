@@ -78,6 +78,17 @@ describe Account do
     end
   end
 
+  describe '#name' do
+    it 'returns a unique name' do
+      account = Account.new(:provider => 'test', :offices => %w(camorino baar))
+      account.name.should == 'test_camorino_baar'
+    end
+
+    it 'does not fail' do
+      expect { Account.new.name }.to_not raise_error
+    end
+  end
+
   describe '.all' do
     it 'returns a list of all accounts' do
       Account.all.should be_all { |a| a.should be_a(Account) }
