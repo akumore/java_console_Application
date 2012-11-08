@@ -22,6 +22,15 @@ defaults: &defaults
       username: 'almtest'
       password: 'cal31cium'
       offices:
+        - camorino
+    - provider: 'homegate'
+      agency_id: 'almtest'
+      sender_id: 'AlfredMuellerWebsite_HomegateExporter'
+      video_support: true
+      host: '62.65.135.69'
+      username: 'almtest'
+      password: 'cal31cium'
+      offices:
         - baar
 
 
