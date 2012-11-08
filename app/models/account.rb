@@ -33,4 +33,18 @@ class Account
     RealEstate.where(:office_id.in => offices.map(&:id))
   end
 
+  def video_support?
+    video_support
+  end
+
+  def name
+    provider
+  end
+
+  def self.all
+    Settings.idx301.map do |data|
+      Account.new data
+    end
+  end
+
 end

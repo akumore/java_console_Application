@@ -71,4 +71,16 @@ describe Account do
       account.real_estates
     end
   end
+
+  describe '#video_support?' do
+    it 'should be true' do
+      Account.new(:video_support => true).video_support.should be_true
+    end
+  end
+
+  describe '.all' do
+    it 'returns a list of all accounts' do
+      Account.all.should be_all { |a| a.should be_a(Account) }
+    end
+  end
 end
