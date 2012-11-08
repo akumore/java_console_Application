@@ -1,20 +1,16 @@
 class Account
-  include Mongoid::Document
-  include Mongoid::Timestamps
+  include ActiveModel::Validations
 
-  # given that we have a single account for all offices,
-  # we need to have a n-n relation
-  has_and_belongs_to_many :offices
-
-  field :provider, :type => String # => Provider model constants
-  field :agency_id, :type => String
-  field :sender_id, :type => String # should never change once in use
-  field :video_support, :type => Boolean, :default => true # does provider support video?
+  attr_accessor :provider # Provider model constants
+  attr_accessor :agency_id
+  attr_accessor :sender_id # should never change once in use
+  attr_accessor :video_support # does provider support video?
+  attr_accessor :offices # an array of office names
 
   # ftp config
-  field :username, :type => String
-  field :password, :type => String
-  field :host, :type => String
+  attr_accessor :username
+  attr_accessor :password
+  attr_accessor :host
 
   validates :provider, :presence => true
   validates :agency_id, :presence => true
@@ -22,5 +18,19 @@ class Account
   validates :username, :presence => true
   validates :password, :presence => true
   validates :host, :presence => true
+
+  def initialize(data = {})
+    data.each do |key, value|
+      send "#{key}=", value if respond_to? "#{key}="
+    end
+  end
+
+  def offices
+    Office.where(:name => @offices)
+  end
+
+  def real_estates
+    RealEstate.where(:office_id.in => offices.map(&:id))
+  end
 
 end

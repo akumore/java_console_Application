@@ -3,7 +3,6 @@ class Office
   include Mongoid::Timestamps
 
   has_many :real_estates
-  has_and_belongs_to_many :accounts
 
   field :label, :type => String
   field :name, :type => String
