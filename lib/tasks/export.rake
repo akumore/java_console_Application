@@ -8,9 +8,9 @@ namespace :export do
     logger.formatter = Logger::Formatter.new
     logger.info "Starting real estate export rake task"
 
-    Export::Idx301::Target.all.each do |target|
-      export = Export::Idx301::Exporter.new(target)
-      RealEstate.published.each do |real_estate|
+    Account.all.each do |account|
+      export = Export::Idx301::Exporter.new(account)
+      account.real_estates.published.each do |real_estate|
         export.add(real_estate)
       end
       export.finish

@@ -7,16 +7,16 @@ module Export
 
       attr_reader :packager, :config
 
-      def initialize(packager, target)
-        super "#{target.name} FTP Uploader"
+      def initialize(packager, account)
+        super "#{account.name} FTP Uploader"
         init_logging
 
-        @target   = target
+        @account  = account
         @packager = packager
       end
 
       def do_upload!
-        logger.info "Uploading files to #{@target.name} account."
+        logger.info "Uploading files to #{@account.name} account."
         connect! do
           files.each { |item| upload item }
         end
@@ -32,7 +32,7 @@ module Export
         local_element = element
         remote_element = element.gsub(packager.path, @ftp.pwd)
 
-        logger.info "Uploading file '#{local_element}' to '#{remote_element}' on #{@target.name}"
+        logger.info "Uploading file '#{local_element}' to '#{remote_element}' on #{@account.name}"
 
         if FileTest.directory?(local_element)
           # check to prevent '550 File exists' error
@@ -46,12 +46,12 @@ module Export
       end
 
       def connect!
-        logger.info "FTP connect to #{@target.name}"
-        @ftp ||= Net::FTP.open(@target.config['host'], @target.config['username'], @target.config['password'])
+        logger.info "FTP connect to #{@account.name}"
+        @ftp ||= Net::FTP.open(@account.host, @account.username, @account.password)
         @ftp.passive = true
         if block_given?
           yield self
-          logger.info "FTP disconnect from #{@target.name}"
+          logger.info "FTP disconnect from #{@account.name}"
           @ftp.close
         end
         @ftp

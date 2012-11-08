@@ -27,7 +27,7 @@ class Account
   end
 
   def offices
-    Office.where(:name => @offices)
+    Office.where(:name.in => @offices)
   end
 
   def real_estates
