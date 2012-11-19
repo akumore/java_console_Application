@@ -72,7 +72,7 @@ describe "Cms::RealEstates" do
       before :each do
         within(".new_real_estate") do
           select 'Child Category 1', :from => 'Objekt-Art'
-          choose 'Arbeiten'
+          select 'Arbeiten', :from => 'Gebäudenutzung'
           choose 'Kaufen'
           select 'Muster, Hans', :from => 'Kontaktperson'
 
@@ -187,7 +187,7 @@ describe "Cms::RealEstates" do
       before :each do
         within(".edit_real_estate") do
           select 'Child Category 2', :from => 'Objekt-Art'
-          choose 'Wohnen'
+          select 'Wohnen', :from => 'Gebäudenutzung'
           choose 'Mieten'
           uncheck 'Website'
           check 'Objektdokumentation'
