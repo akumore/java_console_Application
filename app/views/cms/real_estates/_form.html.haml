@@ -28,14 +28,8 @@
           %span= t(".#{RealEstate::OFFER_FOR_SALE}")
     .control-group.mandatory
       = f.label :utilization
-      .controls.push-inline-labels-down
-        %label.inline.radio
-          = f.radio_button :utilization, RealEstate::UTILIZATION_PRIVATE
-          %span= t(".#{RealEstate::UTILIZATION_PRIVATE}")
-      .controls.push-inline-labels-down
-        %label.inline.radio
-          = f.radio_button :utilization, RealEstate::UTILIZATION_COMMERICAL
-          %span= t(".#{RealEstate::UTILIZATION_COMMERICAL}")
+      .controls
+        = f.select :utilization, utilization_select_options, :class => 'span8'
     .control-group
       = f.label :channels
       - RealEstate::CHANNELS.each do |channel|
