@@ -3,17 +3,17 @@
   .default-view
     .offer-tabs
       %ul
-        %li.for_sale-tab{:class=>@search_filter.for_sale? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.for_sale"), real_estates_path(:offer=>SearchFilter::SALE, :utilization=>@search_filter.utilization), :class => 'js-for_sale'
-        %li.for-rent-tab{:class=>@search_filter.for_rent? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.for_rent"), real_estates_path(:offer=>SearchFilter::RENT, :utilization=>@search_filter.utilization), :class => 'js-for_rent'
+        %li.for_sale-tab{:class => @search_filter.for_sale? ? "selected" : ""}
+          = link_to t("real_estates.search_filter.for_sale"), real_estates_path(:offer => SearchFilter::SALE, :utilization => @search_filter.utilization), :class => 'js-for_sale'
+        %li.for-rent-tab{:class => @search_filter.for_rent? ? "selected" : ""}
+          = link_to t("real_estates.search_filter.for_rent"), real_estates_path(:offer => SearchFilter::RENT, :utilization => @search_filter.utilization), :class => 'js-for_rent'
 
     .utilization-tabs
       %ul
-        %li.non-commercial{:class=>!@search_filter.commercial? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.private"), real_estates_path({:offer=>@search_filter.offer, :utilization=>SearchFilter::NON_COMMERCIAL}), :class => 'js-private'
-        %li.commercial{:class=>@search_filter.commercial? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.commercial"), real_estates_path({:offer=>@search_filter.offer, :utilization=>SearchFilter::COMMERCIAL}), :class => 'js-commercial'
+        %li.non-commercial{:class => !@search_filter.commercial? ? "selected" : ""}
+          = link_to t("real_estates.search_filter.private"), real_estates_path({:offer => @search_filter.offer, :utilization => SearchFilter::NON_COMMERCIAL}), :class => 'js-private'
+        %li.commercial{:class => @search_filter.commercial? ? "selected" : ""}
+          = link_to t("real_estates.search_filter.commercial"), real_estates_path({:offer => @search_filter.offer, :utilization => SearchFilter::COMMERCIAL}), :class => 'js-commercial'
 
   = search_form.hidden_field :offer
   = search_form.hidden_field :utilization
@@ -25,10 +25,11 @@
     = search_form.hidden_field :sort_order
     .select-group
       = search_form.label :cantons
-      = search_form.collection_select :cantons, cantons_for_collection_select(@search_filter.available_cantons.sort) , :first, :last, {}, :multiple=>true, :data=>{:placeholder=>t("helpers.select.prompt")}, :class=>'chzn-select'
+      = search_form.collection_select :cantons, cantons_for_collection_select(@search_filter.available_cantons.sort) , :first, :last, {}, :multiple => true, :data => {:placeholder => t("helpers.select.prompt")}, :class => 'chzn-select'
       .clear
     .select-group
       = search_form.label :cities
-      = search_form.select :cities, @search_filter.available_cities.sort, {}, :multiple=>true, :class=>'chzn-select', :data=>{'cantons-cities-map'=>@search_filter.cantons_cities_map, :placeholder=>t("helpers.select.prompt")}
+      = search_form.select :cities, @search_filter.available_cities.sort, {}, :multiple => true, :class => 'chzn-select', :data => {'cantons-cities-map' => @search_filter.cantons_cities_map, :placeholder => t("helpers.select.prompt")}
       .clear
     = search_form.submit t "real_estates.search_filter.search"
+
