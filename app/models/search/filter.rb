@@ -69,8 +69,8 @@ module Search
     def default_utilization(utilization)
       if utilization == Utilization::LIVING && RealEstate.living.count > 0
         Utilization::LIVING
-      elsif utilization == Utilization::WOKRING && RealEstate.working.count > 0
-        Utilization::WOKRING
+      elsif utilization == Utilization::WORKING && RealEstate.working.count > 0
+        Utilization::WORKING
       elsif utilization == Utilization::STORAGE && RealEstate.storage.count > 0
         Utilization::STORAGE
       elsif utilization == Utilization::PARKING && RealEstate.parking.count > 0
