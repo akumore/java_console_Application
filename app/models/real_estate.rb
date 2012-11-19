@@ -1,22 +1,25 @@
 require 'copy_real_estate'
 
 class RealEstate
+  include Offer::Accessors
+  include Utilization::Accessors
+
   include Mongoid::Document
   include Mongoid::Timestamps
   extend CopyRealEstate
 
-  UTILIZATION_PRIVATE = 'private'
-  UTILIZATION_COMMERICAL = 'commercial'
-  UTILIZATION_STORAGE = 'storage'
-  UTILIZATION_PARKING = 'parking'
+  UTILIZATION_PRIVATE = Utilization::LIVING
+  UTILIZATION_COMMERICAL = Utilization::WORKING
+  UTILIZATION_STORAGE = Utilization::STORAGE
+  UTILIZATION_PARKING = Utilization::PARKING
 
-  UTILIZATIONS = [UTILIZATION_PRIVATE, UTILIZATION_COMMERICAL, UTILIZATION_STORAGE, UTILIZATION_PARKING]
+  UTILIZATIONS = Utilization.all
 
   BUILDING_CORNER_HOUSE = 'corner_house'
   BUILDING_MIDDLE_HOUSE = 'middle_house'
 
-  OFFER_FOR_RENT = 'for_rent'
-  OFFER_FOR_SALE = 'for_sale'
+  OFFER_FOR_RENT = Offer::RENT
+  OFFER_FOR_SALE = Offer::SALE
 
   STATE_EDITING = 'editing'
   STATE_PUBLISHED = 'published'
@@ -140,14 +143,6 @@ class RealEstate
     end
   end
 
-  def for_sale?
-    self.offer == RealEstate::OFFER_FOR_SALE
-  end
-
-  def for_rent?
-    self.offer == RealEstate::OFFER_FOR_RENT
-  end
-
   def commercial_utilization?
     self.utilization == RealEstate::UTILIZATION_COMMERICAL
   end
@@ -157,11 +152,11 @@ class RealEstate
   end
 
   def storage_utilization?
-    self.utilization == RealEstate::UTILIZATION_STORAGE
+    self.utilization == Utilization::STORAGE
   end
 
   def parking_utilization?
-    self.utilization == RealEstate::UTILIZATION_PARKING
+    self.utilization == Utilization::PARKING
   end
 
   def for_work_or_storage?
