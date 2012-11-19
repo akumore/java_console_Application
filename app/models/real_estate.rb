@@ -7,8 +7,10 @@ class RealEstate
 
   UTILIZATION_PRIVATE = 'private'
   UTILIZATION_COMMERICAL = 'commercial'
+  UTILIZATION_STORAGE = 'storage'
+  UTILIZATION_PARKING = 'parking'
 
-  UTILIZATIONS = [UTILIZATION_PRIVATE, UTILIZATION_COMMERICAL]
+  UTILIZATIONS = [UTILIZATION_PRIVATE, UTILIZATION_COMMERICAL, UTILIZATION_STORAGE, UTILIZATION_PARKING]
 
   BUILDING_CORNER_HOUSE = 'corner_house'
   BUILDING_MIDDLE_HOUSE = 'middle_house'
@@ -152,6 +154,14 @@ class RealEstate
 
   def private_utilization?
     self.utilization == RealEstate::UTILIZATION_PRIVATE
+  end
+
+  def storage_utilization?
+    self.utilization == RealEstate::UTILIZATION_STORAGE
+  end
+
+  def parking_utilization?
+    self.utilization == RealEstate::UTILIZATION_PARKING
   end
 
   def for_work_or_storage?
