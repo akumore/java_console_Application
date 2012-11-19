@@ -9,8 +9,10 @@
       %h3= t ".rent"
     .link-box
       %ul
-        %li= link_to t(".living"), real_estates_path(:offer=>'for_rent', :utilization=>'private')
-        %li= link_to t(".working"), real_estates_path(:offer=>'for_rent', :utilization=>'commercial')
+        %li= link_to t(".living"), real_estates_path(:offer => 'for_rent', :utilization => 'private')
+        %li= link_to t(".working"), real_estates_path(:offer => 'for_rent', :utilization => 'commercial')
+        %li= link_to t(".storage"), real_estates_path(:offer => 'for_rent', :utilization => 'storage')
+        %li= link_to t(".parking"), real_estates_path(:offer => 'for_rent', :utilization => 'parking')
     - unless @projects_for_rent.empty?
       = render 'slider', :projects => @projects_for_rent
 
@@ -19,8 +21,10 @@
       %h3= t ".sale"
     .link-box
       %ul
-        %li= link_to t(".living"), real_estates_path(:offer=>'for_sale', :utilization=>'private')
-        %li= link_to t(".working"), real_estates_path(:offer=>'for_sale', :utilization=>'commercial')
+        %li= link_to t(".living"), real_estates_path(:offer => 'for_sale', :utilization => 'private')
+        %li= link_to t(".working"), real_estates_path(:offer => 'for_sale', :utilization => 'commercial')
+        %li= link_to t(".storage"), real_estates_path(:offer => 'for_sale', :utilization => 'storage')
+        %li= link_to t(".parking"), real_estates_path(:offer => 'for_sale', :utilization => 'parking')
     - unless @projects_for_sale.empty?
       = render 'slider', :projects => @projects_for_sale
 
@@ -33,3 +37,4 @@
         .image-caption-text
           %h3= t '.build_title'
           %div= link_to t('.build_link'), "#{t('company_url')}#dienstleistungen"
+
