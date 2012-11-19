@@ -14,7 +14,9 @@ module RealEstatesHelper
   def utilization_select_options
     [
       [t("real_estates.search_filter.private"), RealEstate::UTILIZATION_PRIVATE],
-      [t("real_estates.search_filter.commercial"), RealEstate::UTILIZATION_COMMERICAL]
+      [t("real_estates.search_filter.commercial"), RealEstate::UTILIZATION_COMMERICAL],
+      [t("real_estates.search_filter.storage"), RealEstate::UTILIZATION_STORAGE],
+      [t("real_estates.search_filter.parking"), RealEstate::UTILIZATION_PARKING]
     ]
   end
 
