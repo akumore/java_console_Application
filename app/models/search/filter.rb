@@ -16,7 +16,7 @@ module Search
       end
     end
 
-    attr_accessor :offer, :utilization, :cantons, :cities, :sort_field, :sort_order
+    attr_accessor :offer, :utilization, :cantons, :cities, :sort_fields, :sort_field, :sort_orders, :sort_order
     attr_reader :cantons_cities_map
 
     delegate :available_cantons, :available_cities, :to => :cantons_cities_map
@@ -35,6 +35,7 @@ module Search
       @sort_fields = SortFields.new(utilization)
       @sort_field = @sort_fields.fields.include?(sort_field) ? sort_field : Defaults.new(utilization).sort_field
 
+      @sort_orders = %w(asc desc)
       @sort_order = %w(asc desc).include?(sort_order) ? sort_order : 'desc'
     end
 
