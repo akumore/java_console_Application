@@ -22,15 +22,65 @@ describe Search::Filter do
     Search::Filter.new.sort_order.should == 'desc'
   end
 
-  context 'for commercial utilization' do
-    it 'defaults to search_field usable_surface' do
-      Search::Filter.new(:utilization => RealEstate::UTILIZATION_COMMERICAL).sort_field.should == 'usable_surface'
-    end
-  end
+  describe 'default utilization sort field' do
+    context 'with existing real estates' do
+      let :real_estate do
+        RealEstate.new
+      end
 
-  context 'for private utilization' do
-    it 'defaults to search_field rooms' do
-      Search::Filter.new(:utilization => RealEstate::UTILIZATION_PRIVATE).sort_field.should == 'rooms'
+      context 'for commercial utilization' do
+        it 'defaults to search_field usable_surface' do
+          RealEstate.stub(:working).and_return([real_estate])
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_COMMERICAL).sort_field.should == 'usable_surface'
+        end
+      end
+
+      context 'for private utilization' do
+        it 'defaults to search_field rooms' do
+          RealEstate.stub(:living).and_return([real_estate])
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_PRIVATE).sort_field.should == 'rooms'
+        end
+      end
+
+      context 'for storage utilization' do
+        it 'defaults to search_field rooms' do
+          RealEstate.stub(:storage).and_return([real_estate])
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_STORAGE).sort_field.should == 'rooms'
+        end
+      end
+
+      context 'for parking utilization' do
+        it 'defaults to search_field rooms' do
+          RealEstate.stub(:parking).and_return([real_estate])
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_PARKING).sort_field.should == 'rooms'
+        end
+      end
+    end
+
+    context 'without real estates' do
+      context 'for commercial utilization' do
+        it 'defaults to search_field usable_surface' do
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_COMMERICAL).sort_field.should == 'rooms'
+        end
+      end
+
+      context 'for private utilization' do
+        it 'defaults to search_field rooms' do
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_PRIVATE).sort_field.should == 'rooms'
+        end
+      end
+
+      context 'for storage utilization' do
+        it 'defaults to search_field rooms' do
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_STORAGE).sort_field.should == 'rooms'
+        end
+      end
+
+      context 'for parking utilization' do
+        it 'defaults to search_field rooms' do
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_PARKING).sort_field.should == 'rooms'
+        end
+      end
     end
   end
 
