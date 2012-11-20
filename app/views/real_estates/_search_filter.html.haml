@@ -10,10 +10,17 @@
 
     .utilization-tabs
       %ul
-        %li.non-commercial{:class => !@search_filter.commercial? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.private"), real_estates_path({:offer => @search_filter.offer, :utilization => SearchFilter::NON_COMMERCIAL}), :class => 'js-private'
-        %li.commercial{:class => @search_filter.commercial? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.commercial"), real_estates_path({:offer => @search_filter.offer, :utilization => SearchFilter::COMMERCIAL}), :class => 'js-commercial'
+        %li.living{:class => @search_filter.living? ? "selected" : ""}
+          = link_to t("real_estates.search_filter.living"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::LIVING}), :class => 'js-living'
+
+        %li.working{:class => @search_filter.working? ? "selected" : ""}
+          = link_to t("real_estates.search_filter.working"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::WORKING}), :class => 'js-working'
+
+        %li.storage{:class => @search_filter.storing? ? "selected" : ""}
+          = link_to t("real_estates.search_filter.storage"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::STORAGE}), :class => 'js-storage'
+
+        %li.parking{:class => @search_filter.parking? ? "selected" : ""}
+          = link_to t("real_estates.search_filter.parking"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::PARKING}), :class => 'js-parking'
 
   = search_form.hidden_field :offer
   = search_form.hidden_field :utilization
