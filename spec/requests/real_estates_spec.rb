@@ -192,33 +192,36 @@ describe "RealEstates" do
   describe "Search-Filtering of real estates by offer and utilization" do
     before do
       @non_commercial_for_sale = Fabricate :published_real_estate,
-                                           :utilization=>RealEstate::UTILIZATION_PRIVATE,
-                                           :offer=>RealEstate::OFFER_FOR_SALE,
-                                           :category=>Fabricate(:category),
-                                           :address=>Fabricate.build(:address),
-                                           :figure=>Fabricate.build(:figure),
-                                           :pricing=>Fabricate.build(:pricing_for_sale)
+                                           :utilization => RealEstate::UTILIZATION_PRIVATE,
+                                           :offer => RealEstate::OFFER_FOR_SALE,
+                                           :category => Fabricate(:category),
+                                           :address => Fabricate.build(:address),
+                                           :figure => Fabricate.build(:figure),
+                                           :pricing => Fabricate.build(:pricing_for_sale)
+
       @commercial_for_sale = Fabricate :published_real_estate,
-                                       :utilization=>RealEstate::UTILIZATION_COMMERICAL,
-                                       :offer=>RealEstate::OFFER_FOR_SALE,
-                                       :category=>Fabricate(:category),
-                                       :address=>Fabricate.build(:address),
-                                       :figure=>Fabricate.build(:figure),
-                                       :pricing=>Fabricate.build(:pricing_for_sale)
+                                       :utilization => RealEstate::UTILIZATION_COMMERICAL,
+                                       :offer => RealEstate::OFFER_FOR_SALE,
+                                       :category => Fabricate(:category),
+                                       :address => Fabricate.build(:address),
+                                       :figure => Fabricate.build(:figure),
+                                       :pricing => Fabricate.build(:pricing_for_sale)
+
       @non_commercial_for_rent = Fabricate :published_real_estate,
-                                           :utilization=>RealEstate::UTILIZATION_PRIVATE,
-                                           :offer=>RealEstate::OFFER_FOR_RENT,
-                                           :category=>Fabricate(:category),
-                                           :address=>Fabricate.build(:address),
-                                           :figure=>Fabricate.build(:figure),
-                                           :pricing=>Fabricate.build(:pricing_for_rent)
+                                           :utilization => RealEstate::UTILIZATION_PRIVATE,
+                                           :offer => RealEstate::OFFER_FOR_RENT,
+                                           :category => Fabricate(:category),
+                                           :address => Fabricate.build(:address),
+                                           :figure => Fabricate.build(:figure),
+                                           :pricing => Fabricate.build(:pricing_for_rent)
+
       @commercial_for_rent = Fabricate :published_real_estate,
-                                       :utilization=>RealEstate::UTILIZATION_COMMERICAL,
-                                       :offer=>RealEstate::OFFER_FOR_RENT,
-                                       :category=>Fabricate(:category),
-                                       :address=>Fabricate.build(:address),
-                                       :figure=>Fabricate.build(:figure),
-                                       :pricing=>Fabricate.build(:pricing_for_rent)
+                                       :utilization => RealEstate::UTILIZATION_COMMERICAL,
+                                       :offer => RealEstate::OFFER_FOR_RENT,
+                                       :category => Fabricate(:category),
+                                       :address => Fabricate.build(:address),
+                                       :figure => Fabricate.build(:figure),
+                                       :pricing => Fabricate.build(:pricing_for_rent)
     end
 
     it "renders the search filter" do
