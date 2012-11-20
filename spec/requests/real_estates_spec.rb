@@ -170,10 +170,15 @@ describe "RealEstates" do
       end
 
       context "with projects for rent and private utilization with active commercial utilization filter" do
+        let :real_estate do
+          RealEstate.new
+        end
+
         before :each do
           3.times do
             Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE)
           end
+          RealEstate.stub(:working).and_return([real_estate])
           visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_COMMERICAL)
         end
 
