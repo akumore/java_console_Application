@@ -1,8 +1,8 @@
 de:
   real_estates:
     search_filter:
-      private: 'Wohnen'
-      commercial: 'Arbeiten'
+      living: 'Wohnen'
+      working: 'Arbeiten'
       storage: 'Lagern'
       parking: 'Parkieren'
       for_sale: 'Kaufen'

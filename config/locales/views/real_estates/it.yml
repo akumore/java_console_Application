@@ -1,8 +1,8 @@
 it:
   real_estates:
     search_filter:
-      private: 'Abitare'
-      commercial: 'Lavorare'
+      living: 'Abitare'
+      working: 'Lavorare'
       for_sale: 'Acquistare'
       for_rent: 'Affittare'
       search: 'Cercare'

@@ -1,8 +1,8 @@
 fr:
   real_estates:
     search_filter:
-      private: 'Habiter'
-      commercial: 'Travailler'
+      living: 'Habiter'
+      working: 'Travailler'
       for_sale: 'Acheter'
       for_rent: 'Louer'
       search: 'Chercher'

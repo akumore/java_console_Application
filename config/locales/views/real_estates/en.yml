@@ -1,8 +1,8 @@
 en:
   real_estates:
     search_filter:
-      private: 'Residential'
-      commercial: 'Commercial'
+      living: 'Residential'
+      working: 'Commercial'
       for_sale: 'Buy'
       for_rent: 'Rental'
       search: 'Search'
