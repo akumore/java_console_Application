@@ -92,7 +92,7 @@ class RealEstate
   # Utilization scopes
   scope :living, :where => { :utilization => UTILIZATION_PRIVATE }
   scope :working, :where => { :utilization => UTILIZATION_COMMERICAL }
-  scope :storage, :where => { :utilization => UTILIZATION_STORAGE }
+  scope :storing, :where => { :utilization => UTILIZATION_STORAGE }
   scope :parking, :where => { :utilization => UTILIZATION_PARKING }
 
   class << self

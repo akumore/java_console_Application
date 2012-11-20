@@ -418,19 +418,19 @@ describe "RealEstates" do
       end
 
       it 'renders the private tab active' do
-        page.should have_css('.utilization-tabs .non-commercial.selected')
+        page.should have_css('.utilization-tabs .living.selected')
       end
     end
 
     context 'for a commercial for sale real estate' do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
-          :utilization=>RealEstate::UTILIZATION_COMMERICAL,
-          :offer=>RealEstate::OFFER_FOR_SALE,
-          :category=>Fabricate(:category),
-          :address=>Fabricate.build(:address),
-          :figure=>Fabricate.build(:figure),
-          :pricing=>Fabricate.build(:pricing_for_sale)
+          :utilization => RealEstate::UTILIZATION_COMMERICAL,
+          :offer => RealEstate::OFFER_FOR_SALE,
+          :category => Fabricate(:category),
+          :address => Fabricate.build(:address),
+          :figure => Fabricate.build(:figure),
+          :pricing => Fabricate.build(:pricing_for_sale)
       end
 
       before do
@@ -442,19 +442,19 @@ describe "RealEstates" do
       end
 
       it 'renders the commercial tab active' do
-        page.should have_css('.utilization-tabs .commercial.selected')
+        page.should have_css('.utilization-tabs .working.selected')
       end
     end
 
     context 'for a private for rent real estate' do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
-          :utilization=>RealEstate::UTILIZATION_PRIVATE,
-          :offer=>RealEstate::OFFER_FOR_RENT,
-          :category=>Fabricate(:category),
-          :address=>Fabricate.build(:address),
-          :figure=>Fabricate.build(:figure),
-          :pricing=>Fabricate.build(:pricing_for_rent)
+          :utilization => RealEstate::UTILIZATION_PRIVATE,
+          :offer => RealEstate::OFFER_FOR_RENT,
+          :category => Fabricate(:category),
+          :address => Fabricate.build(:address),
+          :figure => Fabricate.build(:figure),
+          :pricing => Fabricate.build(:pricing_for_rent)
       end
 
       before do
@@ -466,19 +466,19 @@ describe "RealEstates" do
       end
 
       it 'renders the private tab active' do
-        page.should have_css('.utilization-tabs .non-commercial.selected')
+        page.should have_css('.utilization-tabs .living.selected')
       end
     end
 
     context 'for a commercial for rent real estate' do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
-         :utilization=>RealEstate::UTILIZATION_COMMERICAL,
-         :offer=>RealEstate::OFFER_FOR_RENT,
-         :category=>Fabricate(:category),
-         :address=>Fabricate.build(:address),
-         :figure=>Fabricate.build(:figure),
-         :pricing=>Fabricate.build(:pricing_for_rent)
+         :utilization => RealEstate::UTILIZATION_COMMERICAL,
+         :offer => RealEstate::OFFER_FOR_RENT,
+         :category => Fabricate(:category),
+         :address => Fabricate.build(:address),
+         :figure => Fabricate.build(:figure),
+         :pricing => Fabricate.build(:pricing_for_rent)
       end
 
       before do
@@ -490,7 +490,7 @@ describe "RealEstates" do
       end
 
       it 'renders the commercial tab active' do
-        page.should have_css('.utilization-tabs .commercial.selected')
+        page.should have_css('.utilization-tabs .working.selected')
       end
     end
   end

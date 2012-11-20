@@ -16,8 +16,8 @@
         %li.working{:class => @search_filter.working? ? "selected" : ""}
           = link_to t("real_estates.search_filter.working"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::WORKING}), :class => 'js-working'
 
-        %li.storage{:class => @search_filter.storing? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.storage"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::STORAGE}), :class => 'js-storage'
+        %li.storing{:class => @search_filter.storing? ? "selected" : ""}
+          = link_to t("real_estates.search_filter.storing"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::STORAGE}), :class => 'js-storing'
 
         %li.parking{:class => @search_filter.parking? ? "selected" : ""}
           = link_to t("real_estates.search_filter.parking"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::PARKING}), :class => 'js-parking'
@@ -39,4 +39,3 @@
       = search_form.select :cities, @search_filter.available_cities.sort, {}, :multiple => true, :class => 'chzn-select', :data => {'cantons-cities-map' => @search_filter.cantons_cities_map, :placeholder => t("helpers.select.prompt")}
       .clear
     = search_form.submit t "real_estates.search_filter.search"
-

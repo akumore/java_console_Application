@@ -3,7 +3,7 @@ de:
     search_filter:
       living: 'Wohnen'
       working: 'Arbeiten'
-      storage: 'Lagern'
+      storing: 'Lagern'
       parking: 'Parkieren'
       for_sale: 'Kaufen'
       for_rent: 'Mieten'
