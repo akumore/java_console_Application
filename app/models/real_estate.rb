@@ -90,10 +90,10 @@ class RealEstate
   scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
 
   # Utilization scopes
-  scope :living, :where => { :channels => UTILIZATION_PRIVATE }
-  scope :working, :where => { :channels => UTILIZATION_COMMERICAL }
-  scope :storage, :where => { :channels => UTILIZATION_STORAGE }
-  scope :parking, :where => { :channels => UTILIZATION_PARKING }
+  scope :living, :where => { :utilization => UTILIZATION_PRIVATE }
+  scope :working, :where => { :utilization => UTILIZATION_COMMERICAL }
+  scope :storage, :where => { :utilization => UTILIZATION_STORAGE }
+  scope :parking, :where => { :utilization => UTILIZATION_PARKING }
 
   class << self
     extend ActiveSupport::Memoizable
