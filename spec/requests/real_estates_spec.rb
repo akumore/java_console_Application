@@ -245,8 +245,6 @@ describe "RealEstates" do
         page.should have_css ".js-for_sale"
         page.should have_css ".js-living"
         page.should have_css ".js-working"
-        page.should have_css ".js-storing"
-        page.should have_css ".js-parking"
       end
     end
 
