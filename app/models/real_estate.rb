@@ -95,6 +95,10 @@ class RealEstate
   scope :storing, :where => { :utilization => UTILIZATION_STORAGE }
   scope :parking, :where => { :utilization => UTILIZATION_PARKING }
 
+  # Offer scopes
+  scope :for_rent, :where => { :offer => OFFER_FOR_RENT }
+  scope :for_sale, :where => { :offer => OFFER_FOR_SALE }
+
   class << self
     extend ActiveSupport::Memoizable
 
