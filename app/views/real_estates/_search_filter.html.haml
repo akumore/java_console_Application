@@ -10,17 +10,21 @@
 
     .utilization-tabs
       %ul
-        %li.living{:class => @search_filter.living? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.living"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::LIVING}), :class => 'js-living'
+        - if @real_estates.living.present? && @real_estates.living.count > 0
+          %li.living{:class => @search_filter.living? ? "selected" : ""}
+            = link_to t("real_estates.search_filter.living"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::LIVING}), :class => 'js-living'
 
-        %li.working{:class => @search_filter.working? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.working"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::WORKING}), :class => 'js-working'
+        - if @real_estates.working.present? && @real_estates.working.count > 0
+          %li.working{:class => @search_filter.working? ? "selected" : ""}
+            = link_to t("real_estates.search_filter.working"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::WORKING}), :class => 'js-working'
 
-        %li.storing{:class => @search_filter.storing? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.storing"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::STORAGE}), :class => 'js-storing'
+        - if @real_estates.storing.present? && @real_estates.storing.count > 0
+          %li.storing{:class => @search_filter.storing? ? "selected" : ""}
+            = link_to t("real_estates.search_filter.storing"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::STORAGE}), :class => 'js-storing'
 
-        %li.parking{:class => @search_filter.parking? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.parking"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::PARKING}), :class => 'js-parking'
+        - if @real_estates.parking.present? && @real_estates.parking.count > 0
+          %li.parking{:class => @search_filter.parking? ? "selected" : ""}
+            = link_to t("real_estates.search_filter.parking"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::PARKING}), :class => 'js-parking'
 
   = search_form.hidden_field :offer
   = search_form.hidden_field :utilization
