@@ -30,28 +30,28 @@ describe Search::Filter do
 
       context 'for commercial utilization' do
         it 'defaults to search_field usable_surface' do
-          RealEstate.stub(:working).and_return([real_estate])
+          RealEstate.stub_chain(:for_rent, :working).and_return([real_estate])
           Search::Filter.new(:utilization => RealEstate::UTILIZATION_COMMERICAL).sort_field.should == 'usable_surface'
         end
       end
 
       context 'for private utilization' do
         it 'defaults to search_field rooms' do
-          RealEstate.stub(:living).and_return([real_estate])
+          RealEstate.stub_chain(:for_rent, :living).and_return([real_estate])
           Search::Filter.new(:utilization => RealEstate::UTILIZATION_PRIVATE).sort_field.should == 'rooms'
         end
       end
 
       context 'for storage utilization' do
         it 'defaults to search_field rooms' do
-          RealEstate.stub(:storage).and_return([real_estate])
+          RealEstate.stub_chain(:for_rent, :storing).and_return([real_estate])
           Search::Filter.new(:utilization => RealEstate::UTILIZATION_STORAGE).sort_field.should == 'rooms'
         end
       end
 
       context 'for parking utilization' do
         it 'defaults to search_field rooms' do
-          RealEstate.stub(:parking).and_return([real_estate])
+          RealEstate.stub_chain(:for_rent, :parking).and_return([real_estate])
           Search::Filter.new(:utilization => RealEstate::UTILIZATION_PARKING).sort_field.should == 'rooms'
         end
       end
