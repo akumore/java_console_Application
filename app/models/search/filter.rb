@@ -68,21 +68,35 @@ module Search
     private
 
     def default_utilization(utilization)
-      if utilization == Utilization::LIVING && RealEstate.living.count > 0
-        Utilization::LIVING
-      elsif utilization == Utilization::WORKING && RealEstate.working.count > 0
-        Utilization::WORKING
-      elsif utilization == Utilization::STORAGE && RealEstate.storing.count > 0
-        Utilization::STORAGE
-      elsif utilization == Utilization::PARKING && RealEstate.parking.count > 0
-        Utilization::PARKING
+      if offer == Offer::RENT
+        if utilization == Utilization::LIVING && RealEstate.published.for_rent.living.count > 0
+          Utilization::LIVING
+        elsif utilization == Utilization::WORKING && RealEstate.published.for_rent.working.count > 0
+          Utilization::WORKING
+        elsif utilization == Utilization::STORAGE && RealEstate.published.for_rent.storing.count > 0
+          Utilization::STORAGE
+        elsif utilization == Utilization::PARKING && RealEstate.published.for_rent.parking.count > 0
+          Utilization::PARKING
+        else
+          Utilization::LIVING
+        end
       else
-        Utilization::LIVING
+        if utilization == Utilization::LIVING && RealEstate.published.for_sale.living.count > 0
+          Utilization::LIVING
+        elsif utilization == Utilization::WORKING && RealEstate.published.for_sale.working.count > 0
+          Utilization::WORKING
+        elsif utilization == Utilization::STORAGE && RealEstate.published.for_sale.storing.count > 0
+          Utilization::STORAGE
+        elsif utilization == Utilization::PARKING && RealEstate.published.for_sale.parking.count > 0
+          Utilization::PARKING
+        else
+          Utilization::LIVING
+        end
       end
     end
 
     def init_cantons_cities_map
-      addresses = RealEstate.published.web_channel.where(:offer=>offer, :utilization=>utilization).map(&:address).compact
+      addresses = RealEstate.published.web_channel.where(:offer => offer, :utilization => utilization).map(&:address).compact
       addresses.inject(CantonsCitiesMap.new) do |map, address|
         canton = address.canton.downcase
         map[canton] ||= []
