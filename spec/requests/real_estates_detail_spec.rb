@@ -401,12 +401,12 @@ describe "RealEstates" do
     context 'for a private for sale real estate' do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
-          :utilization=>RealEstate::UTILIZATION_PRIVATE,
-          :offer=>RealEstate::OFFER_FOR_SALE,
-          :category=>Fabricate(:category),
-          :address=>Fabricate.build(:address),
-          :figure=>Fabricate.build(:figure),
-          :pricing=>Fabricate.build(:pricing_for_sale)
+          :utilization => RealEstate::UTILIZATION_PRIVATE,
+          :offer => RealEstate::OFFER_FOR_SALE,
+          :category => Fabricate(:category),
+          :address => Fabricate.build(:address),
+          :figure => Fabricate.build(:figure),
+          :pricing => Fabricate.build(:pricing_for_sale)
       end
 
       before do
@@ -496,4 +496,3 @@ describe "RealEstates" do
   end
 
 end
-
