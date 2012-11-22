@@ -180,6 +180,7 @@ td
   display: none
 
 .search-filter-form
+  border-top: 1px solid #fff
   background: $brown
   padding: 0.5em 40px
 
@@ -264,28 +265,70 @@ td
         line-height: 1em
         vertical-align: middle
 
-.offer-tabs
+.offer-tabs, .utilization-tabs
+  margin: 20px 0
+
   ul
-    +horizontal-list(false, right)
+    text-align: center
+    list-style: none
+    margin: 0
     font-size: 14px
+    position: relative
 
-    li
-      background: $search-background-color
+    &:before
+      z-index: 1
 
-    .selected
-      background: $browny
+    &:after
+      position: absolute
+      border-bottom: 1px solid $search-filter-border-dark
+      bottom: 0
+      left: 0
+      content: ''
+      width: 100%
+      z-index: 1
+
+  li
+    background: $search-background-color
+    border: 1px solid $search-filter-border-dark
+    display: inline-block
+    position: relative
+    z-index: 0
+    margin: 0 -2px
+
+    &:first-child
+      border-right-width: 0
+
+    a
+      padding: 7px 40px
+
+  .selected
+    background: $browny
+    border-bottom-color: $browny
+    z-index: 2
 
 .utilization-tabs
-  background: $browny
+  margin-bottom: 0
+
   ul
-    +horizontal-list(false)
-    font-size: 14px
+    text-align: left
 
-    li
-      background: $browny
+  li
+    margin: 0 3px
 
-    .selected
-      background: $brown
+    &:first-child
+      margin-left: 0
+      border-right-width: 1px
+
+      &.selected
+        border-left-width: 0
+
+  .selected
+    border-bottom-color: $brown
+    background-color: $brown
+    bottom: -1px
+
+    a
+      padding-top: 8px
 
 .zoom-floorplan
   background: image-url("arrows/arrow-zoom.png") no-repeat
