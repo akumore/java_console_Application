@@ -39,6 +39,10 @@ describe "Homepage" do
         @reference_project_for_rent = Fabricate :reference_project_for_rent
       end
 
+      let :real_estate do
+        RealEstate.new
+      end
+
       after do
         MediaAssetUploader.enable_processing = false
       end
@@ -51,7 +55,17 @@ describe "Homepage" do
       end
 
       it "links to the search" do
+        RealEstate.stub_chain(:for_rent, :working).and_return([real_estate])
+        RealEstate.stub_chain(:for_rent, :living).and_return([real_estate])
+        RealEstate.stub_chain(:for_rent, :storing).and_return([real_estate])
+        RealEstate.stub_chain(:for_rent, :parking).and_return([real_estate])
+        RealEstate.stub_chain(:for_sale, :working).and_return([real_estate])
+        RealEstate.stub_chain(:for_sale, :living).and_return([real_estate])
+        RealEstate.stub_chain(:for_sale, :storing).and_return([real_estate])
+        RealEstate.stub_chain(:for_sale, :parking).and_return([real_estate])
+
         visit root_path
+
         within(".rent-slide") do
           page.should have_css("a[href='#{real_estates_path(:offer => 'for_rent', :utilization => 'private')}']")
           page.should have_css("a[href='#{real_estates_path(:offer => 'for_rent', :utilization => 'commercial')}']")
@@ -122,6 +136,10 @@ describe "Homepage" do
         @reference_project_for_sale = Fabricate :reference_project_for_sale
       end
 
+      let :real_estate do
+        RealEstate.new
+      end
+
       after do
         MediaAssetUploader.enable_processing = false
       end
@@ -134,7 +152,17 @@ describe "Homepage" do
       end
 
       it "links to the search" do
+        RealEstate.stub_chain(:for_rent, :working).and_return([real_estate])
+        RealEstate.stub_chain(:for_rent, :living).and_return([real_estate])
+        RealEstate.stub_chain(:for_rent, :storing).and_return([real_estate])
+        RealEstate.stub_chain(:for_rent, :parking).and_return([real_estate])
+        RealEstate.stub_chain(:for_sale, :working).and_return([real_estate])
+        RealEstate.stub_chain(:for_sale, :living).and_return([real_estate])
+        RealEstate.stub_chain(:for_sale, :storing).and_return([real_estate])
+        RealEstate.stub_chain(:for_sale, :parking).and_return([real_estate])
+
         visit root_path
+
         within(".sale-slide") do
           page.should have_css("a[href='#{real_estates_path(:offer => 'for_sale', :utilization => 'private')}']")
           page.should have_css("a[href='#{real_estates_path(:offer => 'for_sale', :utilization => 'commercial')}']")
