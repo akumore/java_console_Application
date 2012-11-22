@@ -86,6 +86,15 @@ class RealEstate
   scope :print_channel, :where => { :channels => PRINT_CHANNEL }
   scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
 
+  # Utilization scopes
+  scope :living, :where => { :utilization => UTILIZATION_PRIVATE }
+  scope :working, :where => { :utilization => UTILIZATION_COMMERICAL }
+  scope :storing, :where => { :utilization => UTILIZATION_STORAGE }
+  scope :parking, :where => { :utilization => UTILIZATION_PARKING }
+
+  # Offer scopes
+  scope :for_rent, :where => { :offer => OFFER_FOR_RENT }
+  scope :for_sale, :where => { :offer => OFFER_FOR_SALE }
 
   class << self
     extend ActiveSupport::Memoizable
