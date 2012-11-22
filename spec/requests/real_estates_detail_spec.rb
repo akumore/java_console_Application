@@ -418,7 +418,7 @@ describe "RealEstates" do
       end
 
       it 'renders the private tab active' do
-        page.should have_css('.utilization-tabs .non-commercial.selected')
+        page.should have_css('.utilization-tabs .living.selected')
       end
     end
 
@@ -442,7 +442,7 @@ describe "RealEstates" do
       end
 
       it 'renders the commercial tab active' do
-        page.should have_css('.utilization-tabs .commercial.selected')
+        page.should have_css('.utilization-tabs .working.selected')
       end
     end
 
@@ -466,7 +466,7 @@ describe "RealEstates" do
       end
 
       it 'renders the private tab active' do
-        page.should have_css('.utilization-tabs .non-commercial.selected')
+        page.should have_css('.utilization-tabs .living.selected')
       end
     end
 
@@ -490,7 +490,7 @@ describe "RealEstates" do
       end
 
       it 'renders the commercial tab active' do
-        page.should have_css('.utilization-tabs .commercial.selected')
+        page.should have_css('.utilization-tabs .working.selected')
       end
     end
   end

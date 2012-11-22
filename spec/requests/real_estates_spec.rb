@@ -235,8 +235,8 @@ describe "RealEstates" do
       within ".search-filter-container" do
         page.should have_css ".js-for_rent"
         page.should have_css ".js-for_sale"
-        page.should have_css ".js-private"
-        page.should have_css ".js-commercial"
+        page.should have_css ".js-living"
+        page.should have_css ".js-working"
       end
     end
 
