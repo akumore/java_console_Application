@@ -9,8 +9,18 @@
       %h3= t ".rent"
     .link-box
       %ul
-        %li= link_to t(".living"), real_estates_path(:offer=>'for_rent', :utilization=>'private')
-        %li= link_to t(".working"), real_estates_path(:offer=>'for_rent', :utilization=>'commercial')
+        - if @real_estates.for_rent.living.count > 0
+          %li= link_to t(".living"), real_estates_path(:offer => 'for_rent', :utilization => 'private')
+
+        - if @real_estates.for_rent.working.count > 0
+          %li= link_to t(".working"), real_estates_path(:offer => 'for_rent', :utilization => 'commercial')
+
+        - if @real_estates.for_rent.storing.count > 0
+          %li= link_to t(".storing"), real_estates_path(:offer => 'for_rent', :utilization => 'storage')
+
+        - if @real_estates.for_rent.parking.count > 0
+          %li= link_to t(".parking"), real_estates_path(:offer => 'for_rent', :utilization => 'parking')
+
     - unless @projects_for_rent.empty?
       = render 'slider', :projects => @projects_for_rent
 
@@ -19,8 +29,17 @@
       %h3= t ".sale"
     .link-box
       %ul
-        %li= link_to t(".living"), real_estates_path(:offer=>'for_sale', :utilization=>'private')
-        %li= link_to t(".working"), real_estates_path(:offer=>'for_sale', :utilization=>'commercial')
+        - if @real_estates.for_sale.living.count > 0
+          %li= link_to t(".living"), real_estates_path(:offer => 'for_sale', :utilization => 'private')
+
+        - if @real_estates.for_sale.working.count > 0
+          %li= link_to t(".working"), real_estates_path(:offer => 'for_sale', :utilization => 'commercial')
+
+        - if @real_estates.for_sale.storing.count > 0
+          %li= link_to t(".storing"), real_estates_path(:offer => 'for_sale', :utilization => 'storage')
+
+        - if @real_estates.for_sale.parking.count > 0
+          %li= link_to t(".parking"), real_estates_path(:offer => 'for_sale', :utilization => 'parking')
     - unless @projects_for_sale.empty?
       = render 'slider', :projects => @projects_for_sale
 
