@@ -52,6 +52,22 @@ class SearchFilter < OpenStruct
     utilization == COMMERCIAL
   end
 
+  def living?
+    utilization == RealEstate::UTILIZATION_PRIVATE
+  end
+
+  def working?
+    utilization == RealEstate::UTILIZATION_COMMERICAL
+  end
+
+  def storing?
+    utilization == RealEstate::UTILIZATION_STORAGE
+  end
+
+  def parking?
+    utilization == RealEstate::UTILIZATION_PARKING
+  end
+
   def to_params
     {
       :offer => offer,
