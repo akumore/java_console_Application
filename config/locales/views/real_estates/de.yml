@@ -3,6 +3,10 @@ de:
     search_filter:
       private: 'Wohnen'
       commercial: 'Arbeiten'
+      living: 'Wohnen'
+      working: 'Arbeiten'
+      storing: 'Lagern'
+      parking: 'Parkieren'
       for_sale: 'Kaufen'
       for_rent: 'Mieten'
       search: 'Suchen'
