@@ -2,21 +2,15 @@
   width: 75%
   margin: 1em 0
 
-  &.accordion-brick
-    margin: 3em 0
-
   &.download-brick
     margin: 0.5em 0
     a
       line-height: 1.4em
 
 .content
-  ul, ol
+  ol
     margin-left: 1.5em
 
-  li
-    list-style: disc
-    margin: 0.5em 0
 
   ol
     li
@@ -28,6 +22,12 @@
 
     li
       +no-bullet
+
+.brick
+  .content
+    li
+      background: image-url('list-point.png') no-repeat
+      padding-left: 1.5em
 
 .section
   margin: 2em 0
