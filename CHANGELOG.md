@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.1 ...
+  * Update text styling for h3, lists etc in content bricks
+
 ### v2.0, Release on 2012-11-05
 
 * First official "Weiterentwicklung" Release, no more support stories
