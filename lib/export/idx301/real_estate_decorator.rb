@@ -379,6 +379,10 @@ module Export::Idx301
       # The following HTML-Tags can be used: <LI>,</LI>,<BR>, <B>,</B>. All other Tags will be removed.
       #pre_html = model.description.presence.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>')
       html = RDiscount.new(model.description.presence).to_html
+      html.gsub!(/\<\/h1>\n/, '</h1>') if html.match(/\<\/h1>\n/)
+      html.gsub!(/\<\/h2>\n/, '</h2>') if html.match(/\<\/h2>\n/)
+      html.gsub!(/\<\/h3>\n/, '</h3>') if html.match(/\<\/h3>\n/)
+      html.gsub!(/\<\/h4>\n/, '</h4>') if html.match(/\<\/h4>\n/)
       html = Sanitize.clean(html, :elements => ['b', 'li', 'br']).strip
       html.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>').gsub(/>\s+/, '>').gsub(/\s+</, '<').gsub('</li><br><li>', '</li><li>')
     end

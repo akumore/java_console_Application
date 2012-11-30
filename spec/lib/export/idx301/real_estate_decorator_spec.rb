@@ -250,6 +250,16 @@ describe Export::Idx301::RealEstateDecorator do
         )
       real_estate.object_description.should == 'I<br>have<br><br><li>one</li><li>two</li><li>three</li><br>list items'
     end
+
+    it 'remove double break after heading' do
+      real_estate = Export::Idx301::RealEstateDecorator
+        .new(
+          mock_model(RealEstate, :description => "### Vorteile\r\n* Maisonette-Wohnung\r\n* Bad und Waschturm\r\n\r\nAutoeinstellhalle kann dazugemietet werden."),
+          target,
+          {}
+        )
+      real_estate.object_description.should == "Vorteile<br><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li><br>Autoeinstellhalle kann dazugemietet werden."
+    end
   end
 
   describe '#object_type' do
