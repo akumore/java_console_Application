@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Development on 2012-11-30
+
+* Include titles for assets (images and floor plans) in exporter
+
 ### v2.1, Release on 2012-11-30
   * Update text styling for h3, lists etc in content bricks
 
