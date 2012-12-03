@@ -12,16 +12,19 @@ module Export
         @target = target
         @real_estate = real_estate
         @images = []
+        @image_titles = []
         @videos = []
         @documents = []
       end
 
       def package_assets
         @real_estate.images.each do |image|
+          add_image_title(image.title)
           add_image(image.file.gallery)
         end
 
         @real_estate.floor_plans.each do |floor_plan|
+          add_image_title(floor_plan.title)
           add_image(floor_plan.file.gallery)
         end
 
@@ -40,8 +43,8 @@ module Export
         end
       end
 
-      def asset_paths
-        { :images => @images, :documents => @documents, :videos => @videos }
+      def asset_information
+        { :images => @images, :image_titles => @image_titles, :documents => @documents, :videos => @videos }
       end
 
       def add_image(file)
@@ -51,6 +54,10 @@ module Export
         target_path = File.join(@packager.image_path, filename)
         FileUtils.cp(path, target_path)
         @images << filename
+      end
+
+      def add_image_title(title)
+        @image_titles << title
       end
 
       def add_video(file)
@@ -86,7 +93,7 @@ module Export
       def save(unload_file)
         package_assets
         logger.info "Writing unload.txt for #{@target.name}"
-        writer(unload_file).write Idx301::RealEstateDecorator.new(@real_estate, @target, asset_paths).to_a
+        writer(unload_file).write Idx301::RealEstateDecorator.new(@real_estate, @target, asset_information).to_a
       end
 
       private

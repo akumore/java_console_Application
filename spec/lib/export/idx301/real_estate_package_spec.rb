@@ -103,7 +103,7 @@ describe Export::Idx301::RealEstatePackage do
     it 'remembers the filename for the export' do
       package = Export::Idx301::RealEstatePackage.new(real_estate, packager, target)
       package.add_image(real_estate.images.first.file)
-      package.asset_paths[:images].first.should == "i_#{real_estate.id}_1.jpg"
+      package.asset_information[:images].first.should == "i_#{real_estate.id}_1.jpg"
     end
 
     it 'copies the image into /images with a unique filename' do
@@ -113,11 +113,19 @@ describe Export::Idx301::RealEstatePackage do
     end
   end
 
+  describe '#add_image_title' do
+    it 'remembers the image title for the export' do
+      package = Export::Idx301::RealEstatePackage.new(real_estate, packager, target)
+      package.add_image_title(real_estate.images.first.title)
+      package.asset_information[:image_titles].first.should == real_estate.images.first.title
+    end
+  end
+
   describe '#add_video' do
     it 'remembers the filename for the export' do
       package = Export::Idx301::RealEstatePackage.new(real_estate, packager, target)
       package.add_video(real_estate.videos.first.file)
-      package.asset_paths[:videos].first.should == "v_#{real_estate.id}_1.mp4"
+      package.asset_information[:videos].first.should == "v_#{real_estate.id}_1.mp4"
     end
 
     it 'copies the video into /movies with a unique filename' do
@@ -131,7 +139,7 @@ describe Export::Idx301::RealEstatePackage do
     it 'remembers the filename for the export' do
       package = Export::Idx301::RealEstatePackage.new(real_estate, packager, target)
       package.add_document(real_estate.documents.first.file)
-      package.asset_paths[:documents].first.should == "d_#{real_estate.id}_1.pdf"
+      package.asset_information[:documents].first.should == "d_#{real_estate.id}_1.pdf"
     end
 
     it 'copies the document into /docs with a unique filename' do
@@ -146,7 +154,7 @@ describe Export::Idx301::RealEstatePackage do
       package = Export::Idx301::RealEstatePackage.new(real_estate, packager, target)
       real_estate.handout.should_receive(:to_file)
       package.add_handout(real_estate.handout)
-      package.asset_paths[:documents].first.should == "d_#{real_estate.id}_1.pdf"
+      package.asset_information[:documents].first.should == "d_#{real_estate.id}_1.pdf"
     end
 
     context 'when a cache file is present' do

@@ -187,9 +187,9 @@ module Export::Idx301
             :sparefield_3,
             :sparefield_4
 
-    def initialize(real_estate, target, asset_paths)
+    def initialize(real_estate, target, asset_information)
       @target = target
-      @asset_paths = asset_paths
+      @asset_information = asset_information
       super(real_estate)
     end
 
@@ -563,7 +563,7 @@ module Export::Idx301
 
     def movie_filename
       #  str(200)  filename without path, eg: 'movie.avi' - valid movie types = mov, avi, rpm, mpeg, mpg, wmv, mp4, flv (movies must be transfered in directory "movies")
-      @asset_paths[:videos].try(:first).presence
+      @asset_information[:videos].try(:first).presence
     end
 
     def movie_title
@@ -577,7 +577,7 @@ module Export::Idx301
 
     def document_filename
       # str(200)  filename w/o path, eg: 'doc.pdf' - valid document types = pdf/rtf/doc (docs must be transfered in directory "docs")
-      @asset_paths[:documents].try(:first).presence
+      @asset_information[:documents].try(:first).presence
     end
 
     def document_title
@@ -687,132 +687,132 @@ module Export::Idx301
 
     def picture_1_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][0] rescue nil
+      @asset_information[:images][0] rescue nil
     end
 
     def picture_2_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][1] rescue nil
+      @asset_information[:images][1] rescue nil
     end
 
     def picture_3_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][2] rescue nil
+      @asset_information[:images][2] rescue nil
     end
 
     def picture_4_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][3] rescue nil
+      @asset_information[:images][3] rescue nil
     end
 
     def picture_5_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][4] rescue nil
+      @asset_information[:images][4] rescue nil
     end
 
     def picture_6_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][5] rescue nil
+      @asset_information[:images][5] rescue nil
     end
 
     def picture_7_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][6] rescue nil
+      @asset_information[:images][6] rescue nil
     end
 
     def picture_8_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][7] rescue nil
+      @asset_information[:images][7] rescue nil
     end
 
     def picture_9_filename
       #  str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][8] rescue nil
+      @asset_information[:images][8] rescue nil
     end
 
     def picture_10_filename
       # str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][9] rescue nil
+      @asset_information[:images][9] rescue nil
     end
 
     def picture_11_filename
       # str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][10] rescue nil
+      @asset_information[:images][10] rescue nil
     end
 
     def picture_12_filename
       # str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][11] rescue nil
+      @asset_information[:images][11] rescue nil
     end
 
     def picture_13_filename
       # str(200)  filename without path, eg: 'pic.jpg' - valid picture types = jpg/jpeg/gif (pictures must be transfered in directory "images")
-      @asset_paths[:images][12] rescue nil
+      @asset_information[:images][12] rescue nil
     end
 
     def picture_1_title
       # str(200)  title of picture
-      model.images.to_a[0].title rescue nil
+      @asset_information[:image_titles][0] rescue nil
     end
 
     def picture_2_title
       # str(200)  title of picture
-      model.images.to_a[1].title rescue nil
+      @asset_information[:image_titles][1] rescue nil
     end
 
     def picture_3_title
       # str(200)  title of picture
-      model.images.to_a[2].title rescue nil
+      @asset_information[:image_titles][2] rescue nil
     end
 
     def picture_4_title
       # str(200)  title of picture
-      model.images.to_a[3].title rescue nil
+      @asset_information[:image_titles][3] rescue nil
     end
 
     def picture_5_title
       # str(200)  title of picture
-      model.images.to_a[4].title rescue nil
+      @asset_information[:image_titles][4] rescue nil
     end
 
     def picture_6_title
       # str(200)  title of picture
-      model.images.to_a[5].title rescue nil
+      @asset_information[:image_titles][5] rescue nil
     end
 
     def picture_7_title
       # str(200)  title of picture
-      model.images.to_a[6].title rescue nil
+      @asset_information[:image_titles][6] rescue nil
     end
 
     def picture_8_title
       # str(200)  title of picture
-      model.images.to_a[7].title rescue nil
+      @asset_information[:image_titles][7] rescue nil
     end
 
     def picture_9_title
       # str(200)  title of picture
-      model.images.to_a[8].title rescue nil
+      @asset_information[:image_titles][8] rescue nil
     end
 
     def picture_10_title
       #  str(200)  title of picture
-      model.images.to_a[9].title rescue nil
+      @asset_information[:image_titles][9] rescue nil
     end
 
     def picture_11_title
       #  str(200)  title of picture
-      model.images.to_a[10].title rescue nil
+      @asset_information[:image_titles][10] rescue nil
     end
 
     def picture_12_title
       #  str(200)  title of picture
-      model.images.to_a[11].title rescue nil
+      @asset_information[:image_titles][11] rescue nil
     end
 
     def picture_13_title
       #  str(200)  title of picture
-      model.images.to_a[12].title rescue nil
+      @asset_information[:image_titles][12] rescue nil
     end
 
     def picture_1_description
