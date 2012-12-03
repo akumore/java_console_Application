@@ -9,7 +9,7 @@
     .container.clearfix
       .search-results
         %table
-          - if @real_estates.count > 0
+          - if @search_filter.sortable? && @real_estates.count > 0
             = render 'search_filter_order', { :search_form => search_form }
           %tbody
             - @real_estates.each do |real_estate|
