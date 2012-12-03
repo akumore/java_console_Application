@@ -119,4 +119,34 @@ describe SearchFilter do
       @filter.to_query_order_array == ['price', 'asc']
     end
   end
+
+  describe '#sortable?' do
+    context 'when the utilization is parking' do
+      it 'returns false' do
+        sf = SearchFilter.new(:utilization => RealEstate::UTILIZATION_PARKING)
+        sf.sortable?.should be_false
+      end
+    end
+
+    context 'when the utilization is living' do
+      it 'returns true' do
+        sf = SearchFilter.new(:utilization => RealEstate::UTILIZATION_PRIVATE)
+        sf.sortable?.should be_true
+      end
+    end
+
+    context 'when the utilization is storing' do
+      it 'returns true' do
+        sf = SearchFilter.new(:utilization => RealEstate::UTILIZATION_COMMERICAL)
+        sf.sortable?.should be_true
+      end
+    end
+
+    context 'when the utilization is c' do
+      it 'returns true' do
+        sf = SearchFilter.new(:utilization => RealEstate::UTILIZATION_STORAGE)
+        sf.sortable?.should be_true
+      end
+    end
+  end
 end

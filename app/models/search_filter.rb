@@ -102,6 +102,10 @@ class SearchFilter < OpenStruct
     [actual_sort_field(sort_field), sort_order]
   end
 
+  def sortable?
+    utilization != RealEstate::UTILIZATION_PARKING
+  end
+
   private
   def init_cantons_cities_map
     addresses = RealEstate.published.web_channel.where(:offer=>offer, :utilization=>utilization).map(&:address).compact
