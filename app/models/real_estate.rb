@@ -68,7 +68,7 @@ class RealEstate
   validates :category_id, :presence => true
   validates :utilization, :presence => true
   validates :offer, :presence => true
-  validates :title, :presence => true
+  validates :title, :presence => true, :unless => :parking_utilization?
   validates :description, :presence => true
 
   after_initialize :init_channels
@@ -163,6 +163,14 @@ class RealEstate
 
   def private_utilization?
     self.utilization == RealEstate::UTILIZATION_PRIVATE
+  end
+
+  def storage_utilization?
+    self.utilization == RealEstate::UTILIZATION_STORAGE
+  end
+
+  def parking_utilization?
+    self.utilization == RealEstate::UTILIZATION_PARKING
   end
 
   def for_work_or_storage?
