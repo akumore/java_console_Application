@@ -43,7 +43,7 @@
       = f.select :contact_id, Employee.all.order([:lastname, :asc]).map { |e| [e.fullname_reversed, e.id]}, :prompt => 'Kontaktperson auswählen', :class => 'span8'
   %fieldset
     %legend Titel und Beschreibungen
-    .control-group.mandatory
+    .control-group{ :class => "#{@real_estate.parking_utilization? ? '' : 'mandatory'}" }
       = f.label :title
       .controls
         = f.text_field :title, :class => 'span8'
