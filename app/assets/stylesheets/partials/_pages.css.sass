@@ -7,10 +7,14 @@
     a
       line-height: 1.4em
 
-.content
-  ol
-    margin-left: 1.5em
+  .content
+    ul
+      li
+        list-style: disc
 
+.content
+  ol, ul
+    margin-left: 1.5em
 
   ol
     li
@@ -23,11 +27,6 @@
     li
       +no-bullet
 
-.brick
-  .content
-    li
-      background: image-url('list-point.png') no-repeat
-      padding-left: 1.5em
 
 .section
   margin: 2em 0
