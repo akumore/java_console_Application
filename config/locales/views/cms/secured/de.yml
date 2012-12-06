@@ -1,0 +1,5 @@
+de:
+  cms:
+    secured:
+      wizard_header:
+        preview_button: 'Vorschau'
