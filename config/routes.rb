@@ -13,6 +13,10 @@ AlfredMueller::Application.routes.draw do
       post :sort, :on => :collection
     end
 
+    namespace :preview do
+      resources :real_estates, :only => :show
+    end
+
     resources :real_estates do
       get :copy, :on => :member
       resource :address
