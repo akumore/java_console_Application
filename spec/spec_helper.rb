@@ -43,6 +43,7 @@ RSpec.configure do |config|
   config.include MockGeocoder
   config.include Delorean
   config.include ExporterFileSystemHelpers
+  config.extend ExhibitMacros
 
   config.after(:each) do
     Mongoid.database.collections.each do |collection|
