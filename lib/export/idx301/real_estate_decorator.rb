@@ -412,8 +412,10 @@ module Export::Idx301
 
     def rent_extra
       #  int(10) round up
-      extra = model.try(:pricing).try(:for_rent_extra).presence
-      extra.present? ? BigDecimal.new(extra).ceil.to_i : nil
+      unless model.for_work_or_storage?
+        extra = model.try(:pricing).try(:for_rent_extra).presence
+        extra.present? ? BigDecimal.new(extra).ceil.to_i : nil
+      end
     end
 
     def price_unit
