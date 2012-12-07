@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe RealEstateExhibit do
   let :context do
-    mock(Object)
+    ''
   end
 
   describe '.create' do
@@ -29,8 +29,9 @@ describe RealEstateExhibit do
 
   describe '#render' do
     it 'delegates to the context' do
-      exhibit = RealEstateExhibit.new(mock(Object), context)
-      context.should_receive(:render).with('my_partial', :locals => { :mandatory => false })
+      model = Object.new
+      exhibit = RealEstateExhibit.new(model, context)
+      context.should_receive(:render).with(:partial => 'my_partial', :locals => { :mandatory => false, :model => model })
       exhibit.render('my_partial', :mandatory => false)
     end
   end
