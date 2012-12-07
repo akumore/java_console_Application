@@ -1,5 +1,8 @@
 # CHANGELOG
 
+# features/no_netto_price_for_external
+* Change external export to not include rent extra for working/storing real estates
+
 ### v2.1.2 on 2012-12-05
 * Fix: revert list styles to basic bullets
 
