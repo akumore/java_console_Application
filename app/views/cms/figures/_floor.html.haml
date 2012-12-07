@@ -1,0 +1,5 @@
+.control-group{ :class => (@real_estate.commercial_utilization? ? :mandatory : nil) }
+  = form.label :floor
+  .controls
+    = form.text_field :floor, :class => 'span4'
+    %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:floor), 'data-content' => t('.help_popover.floor') }
