@@ -8,13 +8,13 @@ class Cms::FiguresController < Cms::SecuredController
     redirect_to cms_real_estate_figure_path(@real_estate), :alert => exception.message
   end
 
-
   def new
-    @figure = Figure.new
-    respond_with @figure
   end
 
   def edit
+  end
+
+  def show
   end
 
   def create
@@ -31,9 +31,6 @@ class Cms::FiguresController < Cms::SecuredController
     else
       render 'edit'
     end
-  end
-
-  def show
   end
 
 end
