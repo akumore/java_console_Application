@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.2 on 2012-12-10
+* New implemented stories:
+  * Als Editor möchte ich eine Vorschau eines erstellten Angebots sehen können
+
 ### v2.1.2 on 2012-12-05
 * Fix: revert list styles to basic bullets
 
