@@ -361,9 +361,20 @@ describe Export::Idx301::RealEstateDecorator do
 
   describe '#rent_extra' do
     context 'with a price' do
+      context 'for working and storing' do
+        it 'returns nothing and is therefore not available' do
+          real_estate = Export::Idx301::RealEstateDecorator.new(
+            mock_model(RealEstate, :for_work_or_storage? => true, :pricing => mock_model(Pricing, :for_rent_extra => '2.50')),
+            account,
+            {}
+          )
+          real_estate.rent_extra.should be_nil
+        end
+      end
+
       it 'returns the rounded price' do
         real_estate = Export::Idx301::RealEstateDecorator.new(
-          mock_model(RealEstate, :pricing => mock_model(Pricing, :for_rent_extra => '2.50')),
+          mock_model(RealEstate, :for_work_or_storage? => false, :pricing => mock_model(Pricing, :for_rent_extra => '2.50')),
           account,
           {}
         )
@@ -374,7 +385,7 @@ describe Export::Idx301::RealEstateDecorator do
     context 'without a price' do
       it 'returns nothing and is therefore not available' do
         real_estate = Export::Idx301::RealEstateDecorator.new(
-          mock_model(RealEstate, :pricing => mock_model(Pricing, :for_rent_extra => '')),
+          mock_model(RealEstate, :for_work_or_storage? => false, :pricing => mock_model(Pricing, :for_rent_extra => '')),
           account,
           {}
         )
