@@ -3,6 +3,7 @@
 ### v2.2 on 2012-12-10
 * New implemented stories:
   * Als Editor möchte ich eine Vorschau eines erstellten Angebots sehen können
+  * Als Editor der Filialen TI und NI möchte ich Immobilien auf einen filialeigenen Homegate Account publizieren können
 
 ### v2.1.2 on 2012-12-05
 * Fix: revert list styles to basic bullets

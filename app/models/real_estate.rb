@@ -27,6 +27,7 @@ class RealEstate
   CHANNELS = %W(#{WEBSITE_CHANNEL} #{EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL} #{PRINT_CHANNEL} #{MICROSITE_CHANNEL})
 
   belongs_to :category
+  belongs_to :office
   belongs_to :contact, :class_name => 'Employee'
   belongs_to :editor, :class_name => 'Cms::User'
   belongs_to :creator, :class_name => 'Cms::User'
@@ -68,6 +69,7 @@ class RealEstate
   validates :offer, :presence => true
   validates :title, :presence => true
   validates :description, :presence => true
+  validates :office_id, :presence => true
 
   after_initialize :init_channels
   after_validation :set_category_label

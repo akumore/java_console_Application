@@ -1,0 +1,7 @@
+de:
+  mongoid:
+    models:
+      office: 'Filiale'
+    attributes:
+      office:
+        label: 'Name'
