@@ -1,5 +1,5 @@
 - content_for :title do
-  = @real_estate.title
+  = RealEstateDecorator.decorate(@real_estate).title
   = t "mongoid.attributes.real_estate.states.#{@real_estate.state_name}"
 
 - content_for :real_estate_editor_info do

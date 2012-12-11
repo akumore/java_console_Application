@@ -10,6 +10,27 @@ class RealEstateDecorator < ApplicationDecorator
   decorates_association :infrastructure
   decorates_association :floor_plans
 
+  def initialize(*args)
+    super(*args)
+    if for_rent? && private_utilization?
+      self.extend Rent::LivingDecorator
+    elsif for_rent? && commercial_utilization?
+      self.extend Rent::WorkingDecorator
+    elsif for_rent? && storage_utilization?
+      self.extend Rent::StoringDecorator
+    elsif for_rent? && parking_utilization?
+      self.extend Rent::ParkingDecorator
+    elsif for_sale? && private_utilization?
+      self.extend Rent::LivingDecorator
+    elsif for_sale? && commercial_utilization?
+      self.extend Rent::WorkingDecorator
+    elsif for_sale? && storage_utilization?
+      self.extend Rent::StoringDecorator
+    elsif for_sale? && parking_utilization?
+      self.extend Rent::ParkingDecorator
+    end
+  end
+
   def google_maps_address
     [
       address.try(:street).presence, address.try(:street_number).presence,

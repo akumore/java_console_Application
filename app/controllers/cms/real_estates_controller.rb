@@ -7,12 +7,12 @@ class Cms::RealEstatesController < Cms::SecuredController
 
 
   def index
-    @real_estates = RealEstate.all
+    @real_estates = RealEstateDecorator.decorate(RealEstate.all)
     respond_with @real_estates
   end
 
   def show
-    @real_estate = RealEstate.find(params[:id])
+    @real_estate = RealEstateDecorator.decorate(RealEstate.find(params[:id]))
     respond_with @real_estate
   end
 
