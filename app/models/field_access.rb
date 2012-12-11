@@ -12,11 +12,28 @@ class FieldAccess
   end
 
   def accessible?(model, field)
-    !(@blacklist.include?(key_for(model, field)))
+    found = if @blacklist.include?(key_for(model, field))
+      true
+    elsif @blacklist.include?(any_offer_key_for(model, field))
+      true
+    elsif @blacklist.include?(any_utilization_key_for(model, field))
+      true
+    else
+      false
+    end
+    !found
   end
 
   def key_for(model, field)
     [@offer, @utilization, model.class.name.underscore, field].join('.')
+  end
+
+  def any_offer_key_for(model, field)
+    ['*', @utilization, model.class.name.underscore, field].join('.')
+  end
+
+  def any_utilization_key_for(model, field)
+    [@offer, '*', model.class.name.underscore, field].join('.')
   end
 
   private
