@@ -15,7 +15,7 @@ describe "Cms::RealEstates" do
       @category = Fabricate :category, :name=>'single_house', :label=>'Einfamilienhaus'
       @reference = Reference.new
       @address = Fabricate.build(:address)
-      @real_estate = Fabricate :real_estate, :category=>@category, :reference=>@reference, :address => @address
+      @real_estate = Fabricate :real_estate, :category => @category, :reference => @reference, :address => @address
       visit cms_real_estates_path
     end
 
@@ -57,6 +57,7 @@ describe "Cms::RealEstates" do
 
     before :each do
       Fabricate(:employee, :firstname => 'Hans', :lastname => 'Muster')
+      Fabricate(:office)
       visit new_cms_real_estate_path
     end
 
@@ -73,6 +74,7 @@ describe "Cms::RealEstates" do
         within(".new_real_estate") do
           select 'Child Category 1', :from => 'Objekt-Art'
           select 'Arbeiten', :from => 'Gebäudenutzung'
+          select 'Camorino, TI', :from => 'Filiale'
           choose 'Kaufen'
           select 'Muster, Hans', :from => 'Kontaktperson'
 

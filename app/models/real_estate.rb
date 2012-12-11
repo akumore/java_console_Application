@@ -32,6 +32,7 @@ class RealEstate
   CHANNELS = %W(#{WEBSITE_CHANNEL} #{EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL} #{PRINT_CHANNEL} #{MICROSITE_CHANNEL})
 
   belongs_to :category
+  belongs_to :office
   belongs_to :contact, :class_name => 'Employee'
   belongs_to :editor, :class_name => 'Cms::User'
   belongs_to :creator, :class_name => 'Cms::User'
@@ -61,7 +62,7 @@ class RealEstate
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE
   field :offer, :type => String, :default => RealEstate::OFFER_FOR_RENT
-  field :channels, :type => Array, :default => [RealEstate::WEBSITE_CHANNEL]
+  field :channels, :type => Array
   field :title, :type => String
   field :description, :type => String
   field :building_type, :type => String
@@ -73,6 +74,7 @@ class RealEstate
   validates :offer, :presence => true
   validates :title, :presence => true, :unless => :parking_utilization?
   validates :description, :presence => true
+  validates :office_id, :presence => true
 
   after_initialize :init_channels
   after_validation :set_category_label

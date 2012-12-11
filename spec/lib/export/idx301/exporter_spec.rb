@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe Export::Idx301::Exporter do
 
-  let :target do
-    Export::Idx301::Target.new 'test', 'test', 'test', true, {}
+  let :account do
+    Account.new(:provider => 'tester')
   end
 
   let :exporter do
-    Export::Idx301::Exporter.new target
+    Export::Idx301::Exporter.new account
   end
 
   describe '#add' do

@@ -187,8 +187,8 @@ module Export::Idx301
             :sparefield_3,
             :sparefield_4
 
-    def initialize(real_estate, target, asset_information)
-      @target = target
+    def initialize(real_estate, account, asset_information)
+      @account = account
       @asset_information = asset_information
       super(real_estate)
     end
@@ -200,7 +200,7 @@ module Export::Idx301
 
     def sender_id
       # str(50) Name of the used tool and export versionnumber (eg. Sigmasoft_v2.11, excelsior 21.23, immotools v1.99 ...)
-      @target.sender_id
+      @account.sender_id
     end
 
     def object_category
@@ -412,8 +412,10 @@ module Export::Idx301
 
     def rent_extra
       #  int(10) round up
-      extra = model.try(:pricing).try(:for_rent_extra).presence
-      extra.present? ? BigDecimal.new(extra).ceil.to_i : nil
+      unless model.for_work_or_storage?
+        extra = model.try(:pricing).try(:for_rent_extra).presence
+        extra.present? ? BigDecimal.new(extra).ceil.to_i : nil
+      end
     end
 
     def price_unit
@@ -596,7 +598,7 @@ module Export::Idx301
 
     def agency_id
       # str(10) given by homegate (Info: agency_id + ref_property + ref_object + ref_house forms the unique object key)
-      @target.agency_id
+      @account.agency_id
     end
 
     def agency_name

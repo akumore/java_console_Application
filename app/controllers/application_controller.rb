@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     {:locale => I18n.locale}
   end
 
+  def self.default_url_options(options={})
+    options.merge({ :locale => I18n.locale })
+  end
+
   def stored_location_for(resource_or_scope)
     nil
   end

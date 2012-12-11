@@ -1,52 +1,52 @@
 .accordion-item
-  .title= t('pricings.title')
+  .title= t('pricings.title') if pricing
   .content
-    - if pricing.for_sale.present?
+    - if pricing && pricing.for_sale.present?
       %dl
         %dt= real_estate.category.label
         %dd
           = pricing.for_sale
 
-    - if pricing.for_rent_netto.present?
+    - if pricing && pricing.for_rent_netto.present?
       %dl
         %dt= t('pricings.for_rent_netto')
         %dd
           = pricing.for_rent_netto
 
-    - if pricing.for_rent_extra.present?
+    - if pricing && pricing.for_rent_extra.present?
       %dl
         %dt= t('pricings.for_rent_extra')
         %dd
           = pricing.for_rent_extra
 
-    - if pricing.for_rent_depot.present?
+    - if pricing && pricing.for_rent_depot.present?
       %dl
         %dt= t('pricings.for_rent_depot')
         %dd= pricing.for_rent_depot
 
-    - if pricing.inside_parking.present?
+    - if pricing && pricing.inside_parking.present?
       %dl
         %dt= t('pricings.inside_parking')
         %dd
           = pricing.inside_parking
 
-    - if pricing.inside_parking_temporary.present?
+    - if pricing && pricing.inside_parking_temporary.present?
       %dl
         %dt= t('pricings.inside_parking_temporary')
         %dd
           = pricing.inside_parking_temporary
 
-    - if pricing.outside_parking.present?
+    - if pricing && pricing.outside_parking.present?
       %dl
         %dt= t('pricings.outside_parking')
         %dd
           = pricing.outside_parking
 
-    - if pricing.outside_parking_temporary.present?
+    - if pricing && pricing.outside_parking_temporary.present?
       %dl
         %dt= t('pricings.outside_parking_temporary')
         %dd
           = pricing.outside_parking_temporary
 
-    - if pricing.opted?
+    - if pricing && pricing.opted?
       %p= t('pricings.without_vat')

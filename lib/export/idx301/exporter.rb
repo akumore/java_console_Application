@@ -6,13 +6,13 @@ module Export
       attr_accessor :packager
       attr_accessor :uploader
 
-      def initialize(target)
-        super "Initializing and preparing export for #{target.name}..."
+      def initialize(account)
+        super "Initializing and preparing export for #{account.name}..."
         init_logging
 
-        @target   = target
-        @packager = Idx301::Packager.packager_class_for_target(target.name).new(target)
-        @uploader = Idx301::FtpUploader.new(@packager, target)
+        @account   = account
+        @packager = Idx301::Packager.packager_class_for_provider(account.provider).new(account)
+        @uploader = Idx301::FtpUploader.new(@packager, account)
         @packages = []
       end
 
@@ -31,7 +31,7 @@ module Export
       def finish
         begin
           @uploader.do_upload!
-          logger.info "Published #{@packages.size} real estates on #{@target.name}."
+          logger.info "Published #{@packages.size} real estates on #{@account.name}."
         rescue => err
           logger.warn "#{err.class} raised on action 'finish', exception message was:\n#{err.message}"
           logger.info err.backtrace.join("\n")

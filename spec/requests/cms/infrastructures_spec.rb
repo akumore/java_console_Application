@@ -65,28 +65,25 @@ describe "Cms::Infrastructures" do
     end
   end
 
-
   describe '#show' do
-       let :real_estate do
-         Fabricate :real_estate, :category => Fabricate(:category), :infrastructure => Fabricate.build(:infrastructure)
-       end
-
-       let :real_estate_without_infrastructure do
-         Fabricate :real_estate, :category => Fabricate(:category)
-       end
-
-       it 'shows the infrastructure within the cms' do
-         visit cms_real_estate_infrastructure_path real_estate
-         [:has_parking_spot,:has_garage].each do |attr|
-           page.should have_content I18n.t("#{real_estate.infrastructure.send(attr)}")
-         end
-       end
-
-       it 'shows a message if no infrastructure exist' do
-         visit cms_real_estate_infrastructure_path real_estate_without_infrastructure
-         page.should have_content "Für diese Immobilie wurde keine Infrastruktur hinterlegt."
-       end
-
+    let :real_estate do
+      Fabricate :real_estate, :category => Fabricate(:category), :infrastructure => Fabricate.build(:infrastructure)
     end
 
+    let :real_estate_without_infrastructure do
+      Fabricate :real_estate, :category => Fabricate(:category)
+    end
+
+    it 'shows the infrastructure within the cms' do
+      visit cms_real_estate_infrastructure_path real_estate
+      [:has_parking_spot,:has_garage].each do |attr|
+        page.should have_content I18n.t("#{real_estate.infrastructure.send(attr)}")
+      end
+    end
+
+    it 'shows a message if no infrastructure exist' do
+      visit cms_real_estate_infrastructure_path real_estate_without_infrastructure
+      page.should have_content "Für diese Immobilie wurde keine Infrastruktur hinterlegt."
+    end
+  end
 end

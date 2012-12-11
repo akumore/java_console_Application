@@ -10,8 +10,8 @@ describe Export::Idx301::RealEstateDecorator do
   end
   ## end of workaround
 
-  let :target do
-    Export::Idx301::Target.new 'test', 'test', 'test', true, {}
+  let :account do
+    Account.new(:provider => 'test')
   end
 
   describe 'an invalid real estate' do
@@ -19,7 +19,7 @@ describe Export::Idx301::RealEstateDecorator do
       real_estate = Fabricate(:published_real_estate,
         :category => Fabricate(:category)
       )
-      @decorator = Export::Idx301::RealEstateDecorator.new(real_estate, target, {
+      @decorator = Export::Idx301::RealEstateDecorator.new(real_estate, account, {
         :images => [],
         :movies => [],
         :documents => []
@@ -222,7 +222,7 @@ describe Export::Idx301::RealEstateDecorator do
       newline_string = "attribute\n\n\r with \nnewlines\n"
       real_estate_decorator = Export::Idx301::RealEstateDecorator.new(
         mock_model(RealEstate, :title => newline_string, :description => newline_string),
-        target,
+        account,
         {}
       )
       real_estate_decorator.stub(:allowed).and_return([:title, :description])
@@ -235,7 +235,7 @@ describe Export::Idx301::RealEstateDecorator do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
           mock_model(RealEstate, :description => "It\nbreaks\n\ninto new lines"),
-          target,
+          account,
           {}
         )
       real_estate.object_description.should == 'It<br>breaks<br><br>into new lines'
@@ -245,7 +245,7 @@ describe Export::Idx301::RealEstateDecorator do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
           mock_model(RealEstate, :description => "I\nhave\n\n* one\n* two\n* three\n\nlist items"),
-          target,
+          account,
           {}
         )
       real_estate.object_description.should == 'I<br>have<br><br><li>one</li><li>two</li><li>three</li><br>list items'
@@ -255,7 +255,7 @@ describe Export::Idx301::RealEstateDecorator do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
           mock_model(RealEstate, :description => "### Vorteile\r\n* Maisonette-Wohnung\r\n* Bad und Waschturm\r\n\r\nAutoeinstellhalle kann dazugemietet werden."),
-          target,
+          account,
           {}
         )
       real_estate.object_description.should == "Vorteile<br><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li><br>Autoeinstellhalle kann dazugemietet werden."
@@ -267,7 +267,7 @@ describe Export::Idx301::RealEstateDecorator do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
           mock_model(RealEstate, :category => mock_model(Category, :name => 'underground_slot')),
-          target,
+          account,
           {}
         )
       real_estate.stub!(:top_level_category_name).and_return('parking')
@@ -283,7 +283,7 @@ describe Export::Idx301::RealEstateDecorator do
                                   :private_utilization? => true,
                                   :figure => mock_model(Figure, :ceiling_height => '2.50')
                                   ),
-          target,
+          account,
           {}
         )
         real_estate.ceiling_height.should == '2.50'
@@ -297,7 +297,7 @@ describe Export::Idx301::RealEstateDecorator do
                                   :private_utilization? => false,
                                   :figure => mock_model(Figure, :ceiling_height => '2.50')
                                   ),
-          target,
+          account,
           {}
         )
         real_estate.ceiling_height.should be_nil
@@ -313,7 +313,7 @@ describe Export::Idx301::RealEstateDecorator do
                                   :private_utilization? => true,
                                   :figure => mock_model(Figure, :ceiling_height => '2.50')
                                   ),
-          target,
+          account,
           {}
         )
         real_estate.ceiling_height.should == '2.50'
@@ -327,7 +327,7 @@ describe Export::Idx301::RealEstateDecorator do
                                   :private_utilization? => false,
                                   :figure => mock_model(Figure, :ceiling_height => '2.50')
                                   ),
-          target,
+          account,
           {}
         )
         real_estate.ceiling_height.should be_nil
@@ -340,7 +340,7 @@ describe Export::Idx301::RealEstateDecorator do
       it 'returns the rounded price' do
         real_estate = Export::Idx301::RealEstateDecorator.new(
           mock_model(RealEstate, :pricing => mock_model(Pricing, :for_rent_netto => '2.50')),
-          target,
+          account,
           {}
         )
         real_estate.rent_net.should be(3)
@@ -351,7 +351,7 @@ describe Export::Idx301::RealEstateDecorator do
       it 'returns nothing and is therefore "by request"' do
         real_estate = Export::Idx301::RealEstateDecorator.new(
           mock_model(RealEstate, :pricing => mock_model(Pricing, :for_rent_netto => '')),
-          target,
+          account,
           {}
         )
         real_estate.rent_net.should be_nil
@@ -361,10 +361,21 @@ describe Export::Idx301::RealEstateDecorator do
 
   describe '#rent_extra' do
     context 'with a price' do
+      context 'for working and storing' do
+        it 'returns nothing and is therefore not available' do
+          real_estate = Export::Idx301::RealEstateDecorator.new(
+            mock_model(RealEstate, :for_work_or_storage? => true, :pricing => mock_model(Pricing, :for_rent_extra => '2.50')),
+            account,
+            {}
+          )
+          real_estate.rent_extra.should be_nil
+        end
+      end
+
       it 'returns the rounded price' do
         real_estate = Export::Idx301::RealEstateDecorator.new(
-          mock_model(RealEstate, :pricing => mock_model(Pricing, :for_rent_extra => '2.50')),
-          target,
+          mock_model(RealEstate, :for_work_or_storage? => false, :pricing => mock_model(Pricing, :for_rent_extra => '2.50')),
+          account,
           {}
         )
         real_estate.rent_extra.should be(3)
@@ -374,8 +385,8 @@ describe Export::Idx301::RealEstateDecorator do
     context 'without a price' do
       it 'returns nothing and is therefore not available' do
         real_estate = Export::Idx301::RealEstateDecorator.new(
-          mock_model(RealEstate, :pricing => mock_model(Pricing, :for_rent_extra => '')),
-          target,
+          mock_model(RealEstate, :for_work_or_storage? => false, :pricing => mock_model(Pricing, :for_rent_extra => '')),
+          account,
           {}
         )
         real_estate.rent_extra.should be_nil
@@ -391,7 +402,7 @@ describe Export::Idx301::RealEstateDecorator do
             :for_rent? => true,
             :pricing => mock_model(Pricing, :for_rent_netto => 200, :for_rent_extra => 100)
           ),
-          target,
+          account,
           {}
         )
       end

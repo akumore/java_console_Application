@@ -128,6 +128,12 @@ module InitialCategories
     create_sublevel_for('secondary', key, value)
   end
 
+  module InitialOffices
+    Office.find_or_create_by(:name => 'baar').update_attribute :label, 'Baar, ZG'
+    Office.find_or_create_by(:name => 'camorino').update_attribute :label, 'Camorino, TI'
+    Office.find_or_create_by(:name => 'marin').update_attribute :label, 'Marin, NE'
+  end
+
   if Rails.env.development? || Rails.env.staging?
     module Examples
       module InitSomeRealEstates
@@ -135,6 +141,7 @@ module InitialCategories
         #lorenzhof_images = Dir.glob("#{Rails.root}/db/seeds/real_estates/Lorenzhof-Cham/*.png")
 
         r = RealEstate.find_or_create_by(:title => 'SC Sample Object 1')
+        r.office = Office.first
         r.state = RealEstate::STATE_EDITING
         r.utilization = RealEstate::UTILIZATION_PRIVATE
         r.offer = RealEstate::OFFER_FOR_RENT
@@ -147,7 +154,7 @@ module InitialCategories
         r.pricing = Pricing.new(:price_unit => Pricing::PRICE_UNITS.first, :for_rent_netto => 2380, :for_rent_extra => 380)
         r.figure = Figure.new(:floor => 3, :living_surface => 186)
         r.information = Information.new(:available_from => Date.parse('2012-01-21'))
-        r.infrastructure = Infrastructure.new(:has_parking_spot => true)
+        r.infrastructure = Infrastructure.new
         r.description = "Beschreibung 1!!!"
         r.additional_description = AdditionalDescription.new
         r.images = gartenstadt_images.map { |img_path|
@@ -161,6 +168,7 @@ module InitialCategories
 
         4.times do |t|
           r = RealEstate.find_or_create_by(:title => "Sample Object #{t}")
+          r.office = Office.first
           r.state = RealEstate::STATE_EDITING
           r.utilization = RealEstate::UTILIZATION_PRIVATE
           r.offer = RealEstate::OFFER_FOR_RENT
@@ -173,7 +181,7 @@ module InitialCategories
           r.category = Category.where(:name => 'flat').first
           r.pricing = Pricing.new(:price_unit => Pricing::PRICE_UNITS.first, :for_rent_netto => 2380, :for_rent_extra => 380)
           r.figure = Figure.new(:floor => 3, :living_surface => 186)
-          r.infrastructure = Infrastructure.new(:has_parking_spot => true)
+          r.infrastructure = Infrastructure.new
           r.description = "Beschreibung 1"
           r.additional_description = AdditionalDescription.new
           r.save!
