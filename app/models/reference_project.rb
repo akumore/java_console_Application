@@ -1,6 +1,7 @@
 class ReferenceProject
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Offer::Accessors
 
   default_scope asc(:position)
   scope :for_rent, where(:offer => Offer::RENT)
@@ -18,21 +19,14 @@ class ReferenceProject
   belongs_to :real_estate
 
   validates :title, :locale, :offer, :utilization, :image, :presence => true
-  validates_length_of :description, maximum: 500
+  validates_length_of :description, :maximum => 500
 
   mount_uploader :image, ReferenceProjectImageUploader
 
   before_create :setup_position
 
-  def for_sale?
-    self.offer == Offer::SALE
-  end
-
-  def for_rent?
-    self.offer == Offer::RENT
-  end
-
   private
+
   def setup_position
     self.position = ReferenceProject.max(:position) || 0 + 1
   end
