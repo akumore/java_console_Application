@@ -2,11 +2,11 @@ module Utilization
 
   LIVING  = 'private'
   WORKING = 'commercial'
-  STORAGE = 'storage'
+  STORING = 'storage'
   PARKING = 'parking'
 
   def self.all
-    [LIVING, WORKING, STORAGE, PARKING]
+    [LIVING, WORKING, STORING, PARKING]
   end
 
   module Accessors
@@ -27,7 +27,7 @@ module Utilization
     end
 
     def storing?
-      utilization == STORAGE
+      utilization == STORING
     end
 
     def parking?

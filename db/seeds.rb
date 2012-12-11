@@ -143,7 +143,7 @@ module InitialCategories
         r = RealEstate.find_or_create_by(:title => 'SC Sample Object 1')
         r.office = Office.first
         r.state = RealEstate::STATE_EDITING
-        r.utilization = RealEstate::UTILIZATION_PRIVATE
+        r.utilization = Utilization::LIVING
         r.offer = RealEstate::OFFER_FOR_RENT
         r.channels = [RealEstate::CHANNELS.first]
         r.address = Address.new(:canton => 'ag',
@@ -170,7 +170,7 @@ module InitialCategories
           r = RealEstate.find_or_create_by(:title => "Sample Object #{t}")
           r.office = Office.first
           r.state = RealEstate::STATE_EDITING
-          r.utilization = RealEstate::UTILIZATION_PRIVATE
+          r.utilization = Utilization::LIVING
           r.offer = RealEstate::OFFER_FOR_RENT
           r.channels = [RealEstate::CHANNELS.first]
           r.address = Address.new(:canton => 'ag',

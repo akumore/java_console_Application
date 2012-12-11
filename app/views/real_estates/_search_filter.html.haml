@@ -20,7 +20,7 @@
 
         - if @real_estates.storing.present? && @real_estates.storing.count > 0
           %li.storing{:class => @search_filter.storing? ? "selected" : ""}
-            = link_to t("real_estates.search_filter.storing"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::STORAGE}), :class => 'js-storing'
+            = link_to t("real_estates.search_filter.storing"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::STORING}), :class => 'js-storing'
 
         - if @real_estates.parking.present? && @real_estates.parking.count > 0
           %li.parking{:class => @search_filter.parking? ? "selected" : ""}

@@ -1,6 +1,6 @@
 Fabricator(:real_estate) do
   state RealEstate::STATE_EDITING
-  utilization RealEstate::UTILIZATION_PRIVATE
+  utilization Utilization::LIVING
   offer RealEstate::OFFER_FOR_RENT
   channels { [RealEstate::WEBSITE_CHANNEL] }
   title { "A fine real estate property #{Fabricate.sequence}" }
@@ -16,7 +16,7 @@ end
 Fabricator(:residential_building, :from => :real_estate) do
   category { Fabricate(:category) }
   offer RealEstate::OFFER_FOR_RENT
-  utilization RealEstate::UTILIZATION_PRIVATE
+  utilization Utilization::LIVING
   state RealEstate::STATE_PUBLISHED
   channels [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
 end
@@ -24,7 +24,7 @@ end
 Fabricator(:commercial_building, :from => :real_estate) do
   category { Fabricate(:category) }
   offer RealEstate::OFFER_FOR_RENT
-  utilization RealEstate::UTILIZATION_COMMERICAL
+  utilization Utilization::WORKING
   state RealEstate::STATE_PUBLISHED
   channels [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
 end

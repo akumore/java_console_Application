@@ -6,17 +6,17 @@ module RealEstatesHelper
 
   def offer_select_options
     [
-      [t("real_estates.search_filter.for_rent"), RealEstate::OFFER_FOR_RENT],
-      [t("real_estates.search_filter.for_sale"), RealEstate::OFFER_FOR_SALE]
+      [t("real_estates.search_filter.for_rent"), Offer::RENT],
+      [t("real_estates.search_filter.for_sale"), Offer::SALE]
     ]
   end
 
   def utilization_select_options
     [
-      [t("real_estates.search_filter.living"), RealEstate::UTILIZATION_PRIVATE],
-      [t("real_estates.search_filter.working"), RealEstate::UTILIZATION_COMMERICAL],
-      [t("real_estates.search_filter.storing"), RealEstate::UTILIZATION_STORAGE],
-      [t("real_estates.search_filter.parking"), RealEstate::UTILIZATION_PARKING]
+      [t("real_estates.search_filter.living"), Utilization::LIVING],
+      [t("real_estates.search_filter.working"), Utilization::WORKING],
+      [t("real_estates.search_filter.storing"), Utilization::STORING],
+      [t("real_estates.search_filter.parking"), Utilization::PARKING]
     ]
   end
 

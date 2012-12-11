@@ -102,7 +102,7 @@ describe "Cms::RealEstates" do
 
         it 'saves the utilization type' do
           click_on 'Immobilie erstellen'
-          real_estate.utilization.should == RealEstate::UTILIZATION_COMMERICAL
+          real_estate.utilization.should == Utilization::WORKING
         end
 
         it 'saves the offer type' do
@@ -206,7 +206,7 @@ describe "Cms::RealEstates" do
       it 'has updated the edited attributes' do
         @real_estate = RealEstate.find(@fabricated_real_estate.id)
         @real_estate.category.label.should == 'Child Category 2'
-        @real_estate.utilization.should == RealEstate::UTILIZATION_PRIVATE
+        @real_estate.utilization.should == Utilization::LIVING
         @real_estate.offer.should == RealEstate::OFFER_FOR_RENT
         @real_estate.channels.should == %w(print)
         @real_estate.title.should == 'My edited Real Estate'

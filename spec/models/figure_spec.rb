@@ -5,7 +5,7 @@ describe Figure do
     context 'for private utilization' do
       before :each do
         @real_estate = Fabricate.build(:real_estate,
-          :utilization => RealEstate::UTILIZATION_PRIVATE,
+          :utilization => Utilization::LIVING,
           :figure => Figure.new(
             :rooms => '2-3.5',
             :floor => 'EG',
@@ -62,7 +62,7 @@ describe Figure do
     context 'for commercial utilization' do
       before :each do
         @real_estate = Fabricate.build(:real_estate,
-          :utilization => RealEstate::UTILIZATION_COMMERICAL,
+          :utilization => Utilization::WORKING,
           :figure => Figure.new(
             :rooms => '2-3.5',
             :floor => 'EG',

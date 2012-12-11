@@ -101,7 +101,7 @@ describe "Handout aka MiniDoku" do
 
       it "shows the usable surface if utilization is 'commercial'" do
         printable_real_estate.figure = Fabricate.build(:figure, :usable_surface => 400)
-        printable_real_estate.update_attribute(:utilization, RealEstate::UTILIZATION_COMMERICAL)
+        printable_real_estate.update_attribute(:utilization, Utilization::WORKING)
 
         visit real_estate_handout_path(printable_real_estate)
         page.should have_content('Nutzfläche 400 m²')
@@ -313,7 +313,7 @@ describe "Handout aka MiniDoku" do
 
     context 'real estate for commercial utilization' do
       before do
-        printable_real_estate.update_attribute :utilization, RealEstate::UTILIZATION_COMMERICAL
+        printable_real_estate.update_attribute :utilization, Utilization::WORKING
         visit real_estate_handout_path printable_real_estate
       end
 

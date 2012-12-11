@@ -8,7 +8,7 @@ class ReferenceProject
 
   field :title,       :type => String
   field :description, :type => String
-  field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE
+  field :utilization, :type => String, :default => Utilization::LIVING
   field :offer,       :type => String, :default => RealEstate::OFFER_FOR_RENT
   field :url,         :type => String
   field :locale,      :type => String, :default => 'de'

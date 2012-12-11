@@ -222,7 +222,7 @@ describe "RealEstates" do
 
         context 'for living' do
           it 'has a link for the application form pdf' do
-            real_estate.update_attribute :utilization, RealEstate::UTILIZATION_PRIVATE
+            real_estate.update_attribute :utilization, Utilization::LIVING
             visit real_estate_path(real_estate)
             page.within('.sidebar') do
               page.should have_link('Anmeldeformular', :href => '/documents/de/Anmeldeformular-Mieten-Wohnen.pdf')
@@ -232,7 +232,7 @@ describe "RealEstates" do
 
         context 'for working' do
           it 'has a link for the application form pdf' do
-            real_estate.update_attribute :utilization, RealEstate::UTILIZATION_COMMERICAL
+            real_estate.update_attribute :utilization, Utilization::WORKING
             visit real_estate_path(real_estate)
             page.within('.sidebar') do
               page.should have_link('Anmeldeformular', :href => '/documents/de/Anmeldeformular-Mieten-Gewerbe.pdf')
@@ -401,7 +401,7 @@ describe "RealEstates" do
     context 'for a private for sale real estate' do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
-          :utilization => RealEstate::UTILIZATION_PRIVATE,
+          :utilization => Utilization::LIVING,
           :offer => RealEstate::OFFER_FOR_SALE,
           :category => Fabricate(:category),
           :address => Fabricate.build(:address),
@@ -425,7 +425,7 @@ describe "RealEstates" do
     context 'for a commercial for sale real estate' do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
-          :utilization => RealEstate::UTILIZATION_COMMERICAL,
+          :utilization => Utilization::WORKING,
           :offer => RealEstate::OFFER_FOR_SALE,
           :category => Fabricate(:category),
           :address => Fabricate.build(:address),
@@ -449,7 +449,7 @@ describe "RealEstates" do
     context 'for a private for rent real estate' do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
-          :utilization => RealEstate::UTILIZATION_PRIVATE,
+          :utilization => Utilization::LIVING,
           :offer => RealEstate::OFFER_FOR_RENT,
           :category => Fabricate(:category),
           :address => Fabricate.build(:address),
@@ -473,7 +473,7 @@ describe "RealEstates" do
     context 'for a commercial for rent real estate' do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
-         :utilization => RealEstate::UTILIZATION_COMMERICAL,
+         :utilization => Utilization::WORKING,
          :offer => RealEstate::OFFER_FOR_RENT,
          :category => Fabricate(:category),
          :address => Fabricate.build(:address),

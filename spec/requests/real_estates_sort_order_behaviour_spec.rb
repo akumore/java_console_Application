@@ -11,7 +11,7 @@ describe 'Sort order behaviour' do
 
   let :living_real_estate do
     Fabricate :published_real_estate,
-              :utilization=>RealEstate::UTILIZATION_PRIVATE,
+              :utilization=>Utilization::LIVING,
               :category => category,
               :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
               :address => Fabricate.build(:address),
@@ -25,7 +25,7 @@ describe 'Sort order behaviour' do
 
   let :working_real_estate do
     Fabricate :published_real_estate,
-              :utilization=>RealEstate::UTILIZATION_COMMERICAL,
+              :utilization=>Utilization::WORKING,
               :category => category,
               :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
               :address => Fabricate.build(:address),
@@ -44,14 +44,14 @@ describe 'Sort order behaviour' do
   describe 'Default sort order params' do
     context "with utilization 'private'" do
       it "sets the default sort_field to 'usable surface'" do
-        visit real_estates_path(:utilization => RealEstate::UTILIZATION_PRIVATE, :offer => RealEstate::OFFER_FOR_RENT)
+        visit real_estates_path(:utilization => Utilization::LIVING, :offer => RealEstate::OFFER_FOR_RENT)
         find_field('search_filter_sort_field').find('option[selected]').text.should == 'Zimmer'
       end
     end
 
     context "with utilization 'commercial'" do
       it "sets the default sort_field to 'rooms'" do
-        visit real_estates_path(:utilization => RealEstate::UTILIZATION_COMMERICAL, :offer => RealEstate::OFFER_FOR_RENT)
+        visit real_estates_path(:utilization => Utilization::WORKING, :offer => RealEstate::OFFER_FOR_RENT)
         find_field('search_filter_sort_field').find('option[selected]').text.should == 'm²'
       end
     end
@@ -59,7 +59,7 @@ describe 'Sort order behaviour' do
 
   describe 'Sort-ordering of real estates by sort_field' do
     before do
-      visit real_estates_path(:utilization => RealEstate::UTILIZATION_PRIVATE, :offer => RealEstate::OFFER_FOR_RENT)
+      visit real_estates_path(:utilization => Utilization::LIVING, :offer => RealEstate::OFFER_FOR_RENT)
       select 'Preis', :from => 'search_filter_sort_field'
       click_button 'Suchen'
     end

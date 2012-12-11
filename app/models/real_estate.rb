@@ -8,13 +8,6 @@ class RealEstate
   include Mongoid::Timestamps
   extend CopyRealEstate
 
-  UTILIZATION_PRIVATE = Utilization::LIVING
-  UTILIZATION_COMMERICAL = Utilization::WORKING
-  UTILIZATION_STORAGE = Utilization::STORAGE
-  UTILIZATION_PARKING = Utilization::PARKING
-
-  UTILIZATIONS = Utilization.all
-
   BUILDING_CORNER_HOUSE = 'corner_house'
   BUILDING_MIDDLE_HOUSE = 'middle_house'
 
@@ -60,7 +53,7 @@ class RealEstate
   accepts_nested_attributes_for :documents
 
   field :state, :type => String, :default => RealEstate::STATE_EDITING
-  field :utilization, :type => String, :default => RealEstate::UTILIZATION_PRIVATE
+  field :utilization, :type => String, :default => Utilization::LIVING
   field :offer, :type => String, :default => RealEstate::OFFER_FOR_RENT
   field :channels, :type => Array
   field :title, :type => String
@@ -92,10 +85,10 @@ class RealEstate
   scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
 
   # Utilization scopes
-  scope :living, :where => { :utilization => UTILIZATION_PRIVATE }
-  scope :working, :where => { :utilization => UTILIZATION_COMMERICAL }
-  scope :storing, :where => { :utilization => UTILIZATION_STORAGE }
-  scope :parking, :where => { :utilization => UTILIZATION_PARKING }
+  scope :living, :where => { :utilization =>  Utilization::LIVING }
+  scope :working, :where => { :utilization => Utilization::WORKING }
+  scope :storing, :where => { :utilization => Utilization::STORING }
+  scope :parking, :where => { :utilization => Utilization::PARKING }
 
   # Offer scopes
   scope :for_rent, :where => { :offer => OFFER_FOR_RENT }
@@ -163,7 +156,7 @@ class RealEstate
   end
 
   def storage_utilization?
-    self.utilization == Utilization::STORAGE
+    self.utilization == Utilization::STORING
   end
 
   def parking_utilization?
@@ -171,11 +164,11 @@ class RealEstate
   end
 
   def for_work_or_storage?
-    unless RealEstate::UTILIZATIONS.include? self.utilization
+    unless Utilization.all.include? self.utilization
       raise "Unknown utilization '#{self.utilization}'"
     end
 
-    if self.utilization == RealEstate::UTILIZATION_COMMERICAL
+    if self.utilization == Utilization::WORKING
       true
     else
       false

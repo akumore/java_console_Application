@@ -21,11 +21,11 @@
       = f.label :utilization
       .controls
         %label.radio
-          = f.radio_button :utilization, RealEstate::UTILIZATION_PRIVATE
-          %span= t(".#{RealEstate::UTILIZATION_PRIVATE}")
+          = f.radio_button :utilization, Utilization::LIVING
+          %span= t(".#{Utilization::LIVING}")
         %label.radio
-          = f.radio_button :utilization, RealEstate::UTILIZATION_COMMERICAL
-          %span= t(".#{RealEstate::UTILIZATION_COMMERICAL}")
+          = f.radio_button :utilization, Utilization::WORKING
+          %span= t(".#{Utilization::WORKING}")
     .control-group
       = f.label :description
       .controls

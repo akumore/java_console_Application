@@ -77,8 +77,8 @@ module Search
           Utilization::LIVING
         elsif utilization == Utilization::WORKING && RealEstate.published.for_rent.working.count > 0
           Utilization::WORKING
-        elsif utilization == Utilization::STORAGE && RealEstate.published.for_rent.storing.count > 0
-          Utilization::STORAGE
+        elsif utilization == Utilization::STORING && RealEstate.published.for_rent.storing.count > 0
+          Utilization::STORING
         elsif utilization == Utilization::PARKING && RealEstate.published.for_rent.parking.count > 0
           Utilization::PARKING
         else
@@ -89,8 +89,8 @@ module Search
           Utilization::LIVING
         elsif utilization == Utilization::WORKING && RealEstate.published.for_sale.working.count > 0
           Utilization::WORKING
-        elsif utilization == Utilization::STORAGE && RealEstate.published.for_sale.storing.count > 0
-          Utilization::STORAGE
+        elsif utilization == Utilization::STORING && RealEstate.published.for_sale.storing.count > 0
+          Utilization::STORING
         elsif utilization == Utilization::PARKING && RealEstate.published.for_sale.parking.count > 0
           Utilization::PARKING
         else

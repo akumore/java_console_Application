@@ -7,7 +7,7 @@ describe InfrastructureDecorator do
   before :each do
     @real_estate = Fabricate(:published_real_estate,
       :category => Fabricate(:category),
-      :utilization => RealEstate::UTILIZATION_PRIVATE,
+      :utilization => Utilization::LIVING,
       :infrastructure => Fabricate.build(:infrastructure)
     )
 

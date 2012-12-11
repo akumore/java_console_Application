@@ -7,7 +7,7 @@ describe FigureDecorator do
   before :each do
     @real_estate = Fabricate(:published_real_estate,
       :category => Fabricate(:category),
-      :utilization => RealEstate::UTILIZATION_PRIVATE,
+      :utilization => Utilization::LIVING,
       :figure => Fabricate.build(:figure,
         :floor => 2,
         :floor_estimate => '',
@@ -110,7 +110,7 @@ describe FigureDecorator do
     before :each do
       @real_estate = Fabricate(:published_real_estate,
         :category => Fabricate(:category),
-        :utilization => RealEstate::UTILIZATION_PRIVATE,
+        :utilization => Utilization::LIVING,
         :figure => Fabricate.build(:figure,
           :living_surface => 153,
           :usable_surface => 120
@@ -138,7 +138,7 @@ describe FigureDecorator do
     before :each do
       @real_estate = Fabricate(:published_real_estate,
         :category => Fabricate(:category),
-        :utilization => RealEstate::UTILIZATION_COMMERICAL,
+        :utilization => Utilization::WORKING,
         :figure => Fabricate.build(:figure,
           :living_surface => 153,
           :usable_surface => 120

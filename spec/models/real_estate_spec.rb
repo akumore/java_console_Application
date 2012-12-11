@@ -144,7 +144,7 @@ describe RealEstate do
   describe '#for_work_or_storage?' do
     context 'when the utilization is commercial' do
       it 'returns true' do
-        real_estate = RealEstate.new(:utilization => RealEstate::UTILIZATION_COMMERICAL)
+        real_estate = RealEstate.new(:utilization => Utilization::WORKING)
         real_estate.for_work_or_storage?.should be_true
       end
     end
@@ -152,14 +152,14 @@ describe RealEstate do
     context 'when the utilization is storage' do
       it 'returns true' do
         pending 'add check for storage type'
-        #real_estate = RealEstate.new(:utilization => RealEstate::UTILIZATION_STORAGE)
+        #real_estate = RealEstate.new(:utilization => Utilization::STORING)
         real_estate.for_work_or_storage?.should be_true
       end
     end
 
     context 'when the utilization is private' do
       it 'returns false' do
-        real_estate = RealEstate.new(:utilization => RealEstate::UTILIZATION_PRIVATE)
+        real_estate = RealEstate.new(:utilization => Utilization::LIVING)
         real_estate.for_work_or_storage?.should be_false
       end
     end

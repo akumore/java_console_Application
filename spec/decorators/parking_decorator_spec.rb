@@ -12,7 +12,7 @@ describe Rent::ParkingDecorator do
 
   describe 'initialization of a decorator' do
     let :parking_real_estate do
-      Fabricate(:commercial_building, :utilization => RealEstate::UTILIZATION_PARKING )
+      Fabricate(:commercial_building, :utilization => Utilization::PARKING )
     end
 
     describe 'with single real estate' do

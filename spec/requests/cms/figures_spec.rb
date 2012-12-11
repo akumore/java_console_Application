@@ -9,7 +9,7 @@ describe "Cms::Figures" do
     describe '#new' do
       before :each do
         @real_estate = Fabricate(:real_estate,
-          :utilization => RealEstate::UTILIZATION_PRIVATE,
+          :utilization => Utilization::LIVING,
           :category => Category.last,
           :reference => Fabricate.build(:reference)
         )
@@ -89,7 +89,7 @@ describe "Cms::Figures" do
     describe '#new' do
       before :each do
         @real_estate = Fabricate(:real_estate,
-          :utilization => RealEstate::UTILIZATION_COMMERICAL,
+          :utilization => Utilization::WORKING,
           :category => Category.last,
           :reference => Fabricate.build(:reference)
         )

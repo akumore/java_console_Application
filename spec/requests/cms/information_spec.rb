@@ -44,7 +44,7 @@ describe "Cms Information" do
       before :each do
         @real_estate = Fabricate(:real_estate,
           :category => Fabricate(:category),
-          :utilization => RealEstate::UTILIZATION_PRIVATE
+          :utilization => Utilization::LIVING
         )
         visit new_cms_real_estate_information_path(@real_estate)
       end
@@ -104,7 +104,7 @@ describe "Cms Information" do
       before :each do
         @real_estate = Fabricate(:real_estate,
           :category => Fabricate(:category),
-          :utilization => RealEstate::UTILIZATION_COMMERICAL
+          :utilization => Utilization::WORKING
           )
         visit new_cms_real_estate_information_path(@real_estate)
       end
@@ -202,7 +202,7 @@ describe "Cms Information" do
                                                                    :number_of_restrooms => 0
                                      ),
                                      :category => Fabricate(:category),
-                                     :utilization => RealEstate::UTILIZATION_COMMERICAL
+                                     :utilization => Utilization::WORKING
                               )
       @information = @real_estate.information
     end

@@ -1,7 +1,7 @@
 class SetDefaultReferenceProjectUtilization < Mongoid::Migration
   def self.up
     ReferenceProject.all.each do |rp|
-      rp.update_attribute :utilization, RealEstate::UTILIZATION_PRIVATE
+      rp.update_attribute :utilization, Utilization::LIVING
     end
   end
 
