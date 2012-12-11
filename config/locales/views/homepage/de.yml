@@ -6,7 +6,7 @@ de:
       build: 'Bauen'
       living: 'Wohnen'
       working: 'Arbeiten'
-      storing: 'Lagern'
+      storage: 'Lagern'
       parking: 'Parkieren'
       build_title: 'Damit ihr Bauprojekt gelingt'
       build_link: 'Unsere Dienstleistungen'

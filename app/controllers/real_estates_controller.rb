@@ -21,6 +21,7 @@ class RealEstatesController < ApplicationController
     real_estates = get_filtered_real_estates(@search_filter).map(&:id)
     @pagination = RealEstatePagination.new(@real_estate, real_estates)
     @appointment = @real_estate.appointments.build
+    @real_estates = RealEstateDecorator.decorate get_filtered_real_estates(@search_filter)
   end
 
   private
@@ -28,7 +29,7 @@ class RealEstatesController < ApplicationController
   def set_search_filter
     filter_params = (params[:search_filter] || {}).reverse_merge(:offer => params[:offer], :utilization => params[:utilization],
                                                                  :cantons => params[:cantons], :cities => params[:cities])
-    @search_filter = SearchFilter.new(filter_params)
+    @search_filter = Search::Filter.new(filter_params)
   end
 
   def get_filtered_real_estates(search_filter)

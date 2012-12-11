@@ -5,10 +5,10 @@
         .sort-field
           .sort-order-dropdown{ 'data-label_text' => t('.sort_field_label') }
             .label
-            = search_form.select :sort_field, @search_filter.available_sort_fields.map { |field_name| [t(".search_fields.#{field_name}"), field_name] }
+            = search_form.select :sort_field, @search_filter.sort_fields.fields.map { |field_name| [t(".search_fields.#{field_name}"), field_name] }
         .sort-order
           .sort-order-dropdown
             .label
-            = search_form.select :sort_order, @search_filter.available_sort_orders.map { |field_name| [t(".search_orders.#{field_name}"), field_name] }
+            = search_form.select :sort_order, @search_filter.sort_orders.map { |field_name| [t(".search_orders.#{field_name}"), field_name] }
         = search_form.hidden_field :offer
         = search_form.hidden_field :utilization

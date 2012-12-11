@@ -1,36 +1,86 @@
 require 'spec_helper'
 
-describe SearchFilter do
+describe Search::Filter do
 
   it 'defaults to offer type RENT' do
-    SearchFilter.new.offer.should == RealEstate::OFFER_FOR_RENT
+    Search::Filter.new.offer.should == RealEstate::OFFER_FOR_RENT
   end
 
   it 'defaults to utilization type NON_COMMERCIAL' do
-    SearchFilter.new.utilization.should == RealEstate::UTILIZATION_PRIVATE
+    Search::Filter.new.utilization.should == RealEstate::UTILIZATION_PRIVATE
   end
 
   it 'defaults to empty array if no cities submitted' do
-    SearchFilter.new.cities.should be_empty
+    Search::Filter.new.cities.should be_empty
   end
 
   it 'defaults to empty array if no cantons submitted' do
-    SearchFilter.new.cantons.should be_empty
+    Search::Filter.new.cantons.should be_empty
   end
 
   it 'defaults to descending sort order' do
-    SearchFilter.new.sort_order.should == 'desc'
+    Search::Filter.new.sort_order.should == 'desc'
   end
 
-  context 'for commercial utilization' do
-    it 'defaults to search_field usable_surface' do
-      SearchFilter.new(:utilization => RealEstate::UTILIZATION_COMMERICAL).sort_field.should == 'usable_surface'
+  describe 'default utilization sort field' do
+    context 'with existing real estates' do
+      let :real_estate do
+        RealEstate.new
+      end
+
+      context 'for commercial utilization' do
+        it 'defaults to search_field usable_surface' do
+          RealEstate.stub_chain(:for_rent, :working).and_return([real_estate])
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_COMMERICAL).sort_field.should == 'usable_surface'
+        end
+      end
+
+      context 'for private utilization' do
+        it 'defaults to search_field rooms' do
+          RealEstate.stub_chain(:for_rent, :living).and_return([real_estate])
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_PRIVATE).sort_field.should == 'rooms'
+        end
+      end
+
+      context 'for storage utilization' do
+        it 'defaults to search_field rooms' do
+          RealEstate.stub_chain(:for_rent, :storing).and_return([real_estate])
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_STORAGE).sort_field.should == 'rooms'
+        end
+      end
+
+      context 'for parking utilization' do
+        it 'defaults to search_field rooms' do
+          RealEstate.stub_chain(:for_rent, :parking).and_return([real_estate])
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_PARKING).sort_field.should == 'rooms'
+        end
+      end
     end
-  end
 
-  context 'for private utilization' do
-    it 'defaults to search_field rooms' do
-      SearchFilter.new(:utilization => RealEstate::UTILIZATION_PRIVATE).sort_field.should == 'rooms'
+    context 'without real estates' do
+      context 'for commercial utilization' do
+        it 'defaults to search_field usable_surface' do
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_COMMERICAL).sort_field.should == 'rooms'
+        end
+      end
+
+      context 'for private utilization' do
+        it 'defaults to search_field rooms' do
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_PRIVATE).sort_field.should == 'rooms'
+        end
+      end
+
+      context 'for storage utilization' do
+        it 'defaults to search_field rooms' do
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_STORAGE).sort_field.should == 'rooms'
+        end
+      end
+
+      context 'for parking utilization' do
+        it 'defaults to search_field rooms' do
+          Search::Filter.new(:utilization => RealEstate::UTILIZATION_PARKING).sort_field.should == 'rooms'
+        end
+      end
     end
   end
 
@@ -51,7 +101,7 @@ describe SearchFilter do
 
     let :filter do
       # Using late initialization of this filter within tests
-      SearchFilter.new(:offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE)
+      Search::Filter.new(:offer => RealEstate::OFFER_FOR_RENT, :utilization => RealEstate::UTILIZATION_PRIVATE)
     end
 
     it 'filters real estate by offer and utilization' do
@@ -92,7 +142,7 @@ describe SearchFilter do
 
   describe 'Converting filter' do
     before do
-      @filter = SearchFilter.new(
+      @filter = Search::Filter.new(
         :offer => RealEstate::OFFER_FOR_RENT,
         :utilization => RealEstate::UTILIZATION_PRIVATE,
         :cities => ['Arth', 'Fahrwangen'],
@@ -123,28 +173,28 @@ describe SearchFilter do
   describe '#sortable?' do
     context 'when the utilization is parking' do
       it 'returns false' do
-        sf = SearchFilter.new(:utilization => RealEstate::UTILIZATION_PARKING)
+        sf = Search::Filter.new(:utilization => Utilization::PARKING)
         sf.sortable?.should be_false
       end
     end
 
     context 'when the utilization is living' do
       it 'returns true' do
-        sf = SearchFilter.new(:utilization => RealEstate::UTILIZATION_PRIVATE)
+        sf = Search::Filter.new(:utilization => Utilization::LIVING)
         sf.sortable?.should be_true
       end
     end
 
     context 'when the utilization is storing' do
       it 'returns true' do
-        sf = SearchFilter.new(:utilization => RealEstate::UTILIZATION_COMMERICAL)
+        sf = Search::Filter.new(:utilization => Utilization::WORKING)
         sf.sortable?.should be_true
       end
     end
 
     context 'when the utilization is c' do
       it 'returns true' do
-        sf = SearchFilter.new(:utilization => RealEstate::UTILIZATION_STORAGE)
+        sf = Search::Filter.new(:utilization => Utilization::STORAGE)
         sf.sortable?.should be_true
       end
     end

@@ -40,6 +40,7 @@
 
         - if @real_estates.for_sale.parking.count > 0
           %li= link_to t(".parking"), real_estates_path(:offer => 'for_sale', :utilization => 'parking')
+
     - unless @projects_for_sale.empty?
       = render 'slider', :projects => @projects_for_sale
 
@@ -52,3 +53,4 @@
         .image-caption-text
           %h3= t '.build_title'
           %div= link_to t('.build_link'), "#{t('company_url')}#dienstleistungen"
+

@@ -3,24 +3,28 @@
   .default-view
     .offer-tabs
       %ul
-        %li.for_sale-tab{:class=>@search_filter.for_sale? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.for_sale"), real_estates_path(:offer=>SearchFilter::SALE, :utilization=>@search_filter.utilization), :class => 'js-for_sale'
-        %li.for-rent-tab{:class=>@search_filter.for_rent? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.for_rent"), real_estates_path(:offer=>SearchFilter::RENT, :utilization=>@search_filter.utilization), :class => 'js-for_rent'
+        %li.for_sale-tab{:class => @search_filter.for_sale? ? "selected" : ""}
+          = link_to t("real_estates.search_filter.for_sale"), real_estates_path(:offer => Offer::SALE, :utilization => @search_filter.utilization), :class => 'js-for_sale'
+        %li.for-rent-tab{:class => @search_filter.for_rent? ? "selected" : ""}
+          = link_to t("real_estates.search_filter.for_rent"), real_estates_path(:offer => Offer::RENT, :utilization => @search_filter.utilization), :class => 'js-for_rent'
 
     .utilization-tabs
       %ul
-        %li.living{:class => @search_filter.living? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.living"), real_estates_path({:offer => @search_filter.offer, :utilization => RealEstate::UTILIZATION_PRIVATE}), :class => 'js-living'
+        - if @real_estates.living.present? && @real_estates.living.count > 0
+          %li.living{:class => @search_filter.living? ? "selected" : ""}
+            = link_to t("real_estates.search_filter.living"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::LIVING}), :class => 'js-living'
 
-        %li.working{:class => @search_filter.working? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.working"), real_estates_path({:offer => @search_filter.offer, :utilization => RealEstate::UTILIZATION_COMMERICAL}), :class => 'js-working'
+        - if @real_estates.working.present? && @real_estates.working.count > 0
+          %li.working{:class => @search_filter.working? ? "selected" : ""}
+            = link_to t("real_estates.search_filter.working"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::WORKING}), :class => 'js-working'
 
-        %li.storing{:class => @search_filter.storing? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.storing"), real_estates_path({:offer => @search_filter.offer, :utilization => RealEstate::UTILIZATION_STORAGE}), :class => 'js-storing'
+        - if @real_estates.storing.present? && @real_estates.storing.count > 0
+          %li.storing{:class => @search_filter.storing? ? "selected" : ""}
+            = link_to t("real_estates.search_filter.storing"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::STORAGE}), :class => 'js-storing'
 
-        %li.parking{:class => @search_filter.parking? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.parking"), real_estates_path({:offer => @search_filter.offer, :utilization => RealEstate::UTILIZATION_PARKING}), :class => 'js-parking'
+        - if @real_estates.parking.present? && @real_estates.parking.count > 0
+          %li.parking{:class => @search_filter.parking? ? "selected" : ""}
+            = link_to t("real_estates.search_filter.parking"), real_estates_path({:offer => @search_filter.offer, :utilization => Utilization::PARKING}), :class => 'js-parking'
 
   = search_form.hidden_field :offer
   = search_form.hidden_field :utilization
@@ -32,10 +36,10 @@
     = search_form.hidden_field :sort_order
     .select-group
       = search_form.label :cantons
-      = search_form.collection_select :cantons, cantons_for_collection_select(@search_filter.available_cantons.sort) , :first, :last, {}, :multiple=>true, :data=>{:placeholder=>t("helpers.select.prompt")}, :class=>'chzn-select'
+      = search_form.collection_select :cantons, cantons_for_collection_select(@search_filter.available_cantons.sort) , :first, :last, {}, :multiple => true, :data => {:placeholder => t("helpers.select.prompt")}, :class => 'chzn-select'
       .clear
     .select-group
       = search_form.label :cities
-      = search_form.select :cities, @search_filter.available_cities.sort, {}, :multiple=>true, :class=>'chzn-select', :data=>{'cantons-cities-map'=>@search_filter.cantons_cities_map, :placeholder=>t("helpers.select.prompt")}
+      = search_form.select :cities, @search_filter.available_cities.sort, {}, :multiple => true, :class => 'chzn-select', :data => {'cantons-cities-map' => @search_filter.cantons_cities_map, :placeholder => t("helpers.select.prompt")}
       .clear
     = search_form.submit t "real_estates.search_filter.search"
