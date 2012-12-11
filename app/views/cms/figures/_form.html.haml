@@ -2,15 +2,13 @@
 
 = render_navigation :context => :real_estate
 
-= form_for @figure, :url => cms_real_estate_figure_path(@real_estate) do |f|
+= exhibit_form_for @figure do |f, figure|
+
   = render 'cms/shared/errors', :model => @figure
 
   %fieldset
-    .control-group{ :class => (@real_estate.commercial_utilization? ? :mandatory : nil) }
-      = f.label :floor
-      .controls
-        = f.text_field :floor, :class => 'span4'
-        %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:floor), 'data-content' => t('.help_popover.floor') }
+    = figure.render_floor_input
+
     .control-group
       = f.label :floor_estimate
       .controls

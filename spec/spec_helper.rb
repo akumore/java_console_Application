@@ -3,6 +3,7 @@ ENV["RAILS_ENV"] = 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'rspec/mocks'
 
 # Load homegate export in order to get tests running TODO: move this into a better place
 require 'export/export'
@@ -42,6 +43,7 @@ RSpec.configure do |config|
   config.include MockGeocoder
   config.include Delorean
   config.include ExporterFileSystemHelpers
+  config.extend ExhibitMacros
 
   config.after(:each) do
     Mongoid.database.collections.each do |collection|
@@ -50,6 +52,12 @@ RSpec.configure do |config|
   end
 end
 
+RSpec::Mocks.configuration do |config|
+  config.add_stub_and_should_receive_to(SimpleDelegator)
+end
+
+# fixes .should_receive on objects using the delegator (SimpleDelegator)
+# https://github.com/rspec/rspec-mocks/pull/116
 
 # prepare monkey patch to set default locale for ALL spec but not within the Cms
 class ActionView::TestCase::TestController
