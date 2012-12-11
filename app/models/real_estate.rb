@@ -11,9 +11,6 @@ class RealEstate
   BUILDING_CORNER_HOUSE = 'corner_house'
   BUILDING_MIDDLE_HOUSE = 'middle_house'
 
-  OFFER_FOR_RENT = Offer::RENT
-  OFFER_FOR_SALE = Offer::SALE
-
   STATE_EDITING = 'editing'
   STATE_PUBLISHED = 'published'
   STATE_IN_REVIEW = 'in_review'
@@ -54,7 +51,7 @@ class RealEstate
 
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => Utilization::LIVING
-  field :offer, :type => String, :default => RealEstate::OFFER_FOR_RENT
+  field :offer, :type => String, :default => Offer::RENT
   field :channels, :type => Array
   field :title, :type => String
   field :description, :type => String
@@ -91,8 +88,8 @@ class RealEstate
   scope :parking, :where => { :utilization => Utilization::PARKING }
 
   # Offer scopes
-  scope :for_rent, :where => { :offer => OFFER_FOR_RENT }
-  scope :for_sale, :where => { :offer => OFFER_FOR_SALE }
+  scope :for_rent, :where => { :offer => Offer::RENT }
+  scope :for_sale, :where => { :offer => Offer::SALE }
 
   class << self
     extend ActiveSupport::Memoizable

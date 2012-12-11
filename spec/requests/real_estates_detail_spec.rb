@@ -137,7 +137,7 @@ describe "RealEstates" do
 
         context 'when the real estate is for rent' do
           before :each do
-            real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
+            real_estate.update_attribute :offer, Offer::RENT
             visit real_estate_path(real_estate)
           end
 
@@ -161,7 +161,7 @@ describe "RealEstates" do
       describe 'prices' do
         context 'when the real estate is for rent' do
           before :each do
-            real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
+            real_estate.update_attribute :offer, Offer::RENT
             real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
             visit real_estate_path(real_estate)
           end
@@ -173,7 +173,7 @@ describe "RealEstates" do
 
         context 'when the real estate is for sale' do
           before :each do
-            real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
+            real_estate.update_attribute :offer, Offer::SALE
             visit real_estate_path(real_estate)
           end
 
@@ -209,7 +209,7 @@ describe "RealEstates" do
 
       context 'when the real estate is for rent' do
         it 'has a link to the mini doku' do
-          real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
+          real_estate.update_attribute :offer, Offer::RENT
           real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
           visit real_estate_path(real_estate)
           page.within('.sidebar') do
@@ -243,7 +243,7 @@ describe "RealEstates" do
 
       context 'when the real estate is for sale' do
         it 'has no link to the mini doku' do
-          real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
+          real_estate.update_attribute :offer, Offer::SALE
           visit real_estate_path(real_estate)
           page.within('.sidebar') do
             page.should_not have_link('Objektbeschrieb')
@@ -402,7 +402,7 @@ describe "RealEstates" do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
           :utilization => Utilization::LIVING,
-          :offer => RealEstate::OFFER_FOR_SALE,
+          :offer => Offer::SALE,
           :category => Fabricate(:category),
           :address => Fabricate.build(:address),
           :figure => Fabricate.build(:figure),
@@ -426,7 +426,7 @@ describe "RealEstates" do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
           :utilization => Utilization::WORKING,
-          :offer => RealEstate::OFFER_FOR_SALE,
+          :offer => Offer::SALE,
           :category => Fabricate(:category),
           :address => Fabricate.build(:address),
           :figure => Fabricate.build(:figure),
@@ -450,7 +450,7 @@ describe "RealEstates" do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
           :utilization => Utilization::LIVING,
-          :offer => RealEstate::OFFER_FOR_RENT,
+          :offer => Offer::RENT,
           :category => Fabricate(:category),
           :address => Fabricate.build(:address),
           :figure => Fabricate.build(:figure),
@@ -474,7 +474,7 @@ describe "RealEstates" do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
          :utilization => Utilization::WORKING,
-         :offer => RealEstate::OFFER_FOR_RENT,
+         :offer => Offer::RENT,
          :category => Fabricate(:category),
          :address => Fabricate.build(:address),
          :figure => Fabricate.build(:figure),

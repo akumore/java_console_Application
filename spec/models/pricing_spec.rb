@@ -13,7 +13,7 @@ describe Pricing do
 
     context 'for rent' do
       before :each do
-        @real_estate.offer = RealEstate::OFFER_FOR_RENT
+        @real_estate.offer = Offer::RENT
       end
 
       it 'requires a price unit' do
@@ -41,7 +41,7 @@ describe Pricing do
 
     context 'for sale' do
       before :each do
-        @real_estate.offer = RealEstate::OFFER_FOR_SALE
+        @real_estate.offer = Offer::SALE
       end
 
       it 'does require a price_unit' do

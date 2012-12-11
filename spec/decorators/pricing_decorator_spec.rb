@@ -7,7 +7,7 @@ describe PricingDecorator do
     before :each do
       @real_estate = Fabricate(:published_real_estate,
         :category => Fabricate(:category),
-        :offer => RealEstate::OFFER_FOR_RENT,
+        :offer => Offer::RENT,
         :pricing => Fabricate.build(:pricing,
           :price_unit => 'monthly',
           :for_rent_netto => 2000,
@@ -92,7 +92,7 @@ describe PricingDecorator do
     before :each do
       @real_estate = Fabricate(:published_real_estate,
         :category => Fabricate(:category),
-        :offer => RealEstate::OFFER_FOR_SALE,
+        :offer => Offer::SALE,
         :pricing => Fabricate.build(:pricing,
           :for_sale => 123456,
           :price_unit => 'sell',

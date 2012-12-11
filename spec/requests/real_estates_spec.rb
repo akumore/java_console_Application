@@ -122,13 +122,13 @@ describe "RealEstates" do
       end
 
       it "shows the localized price for sale" do
-        real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
-        visit real_estates_path(:offer=>RealEstate::OFFER_FOR_SALE)
+        real_estate.update_attribute :offer, Offer::SALE
+        visit real_estates_path(:offer=>Offer::SALE)
         page.should have_content number_to_currency(real_estate.pricing.for_sale, :locale=>'de-CH')
       end
 
       it "shows the localized price for rent" do
-        real_estate.update_attribute :offer, RealEstate::OFFER_FOR_RENT
+        real_estate.update_attribute :offer, Offer::RENT
         visit real_estates_path
         page.should have_content number_to_currency(real_estate.pricing.for_rent_brutto, :locale=>'de-CH')
       end
@@ -138,9 +138,9 @@ describe "RealEstates" do
       context "with projects for rent" do
         before :each do
           3.times do
-            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_RENT, :utilization => Utilization::LIVING)
+            Fabricate(:reference_project, :offer => Offer::RENT, :utilization => Utilization::LIVING)
           end
-          visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT, :utilization => Utilization::LIVING)
+          visit real_estates_path(:offer => Offer::RENT, :utilization => Utilization::LIVING)
         end
 
         it "shows the slider container" do
@@ -155,9 +155,9 @@ describe "RealEstates" do
       context "with projects for sale" do
         before :each do
           2.times do
-            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_SALE, :utilization => Utilization::LIVING)
+            Fabricate(:reference_project, :offer => Offer::SALE, :utilization => Utilization::LIVING)
           end
-          visit real_estates_path(:offer => RealEstate::OFFER_FOR_SALE, :utilization => Utilization::LIVING)
+          visit real_estates_path(:offer => Offer::SALE, :utilization => Utilization::LIVING)
         end
 
         it "shows the slider container" do
@@ -176,10 +176,10 @@ describe "RealEstates" do
 
         before :each do
           3.times do
-            Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_RENT, :utilization => Utilization::LIVING)
+            Fabricate(:reference_project, :offer => Offer::RENT, :utilization => Utilization::LIVING)
           end
           RealEstate.stub_chain(:for_rent, :working).and_return([real_estate])
-          visit real_estates_path(:offer => RealEstate::OFFER_FOR_RENT, :utilization => Utilization::WORKING)
+          visit real_estates_path(:offer => Offer::RENT, :utilization => Utilization::WORKING)
         end
 
         it "doesn't show the slider container" do
@@ -198,7 +198,7 @@ describe "RealEstates" do
     before do
       @non_commercial_for_sale = Fabricate :published_real_estate,
                                            :utilization => Utilization::LIVING,
-                                           :offer => RealEstate::OFFER_FOR_SALE,
+                                           :offer => Offer::SALE,
                                            :category => Fabricate(:category),
                                            :address => Fabricate.build(:address),
                                            :figure => Fabricate.build(:figure),
@@ -206,7 +206,7 @@ describe "RealEstates" do
 
       @commercial_for_sale = Fabricate :published_real_estate,
                                        :utilization => Utilization::WORKING,
-                                       :offer => RealEstate::OFFER_FOR_SALE,
+                                       :offer => Offer::SALE,
                                        :category => Fabricate(:category),
                                        :address => Fabricate.build(:address),
                                        :figure => Fabricate.build(:figure),
@@ -214,7 +214,7 @@ describe "RealEstates" do
 
       @non_commercial_for_rent = Fabricate :published_real_estate,
                                            :utilization => Utilization::LIVING,
-                                           :offer => RealEstate::OFFER_FOR_RENT,
+                                           :offer => Offer::RENT,
                                            :category => Fabricate(:category),
                                            :address => Fabricate.build(:address),
                                            :figure => Fabricate.build(:figure),
@@ -222,7 +222,7 @@ describe "RealEstates" do
 
       @commercial_for_rent = Fabricate :published_real_estate,
                                        :utilization => Utilization::WORKING,
-                                       :offer => RealEstate::OFFER_FOR_RENT,
+                                       :offer => Offer::RENT,
                                        :category => Fabricate(:category),
                                        :address => Fabricate.build(:address),
                                        :figure => Fabricate.build(:figure),
@@ -249,25 +249,25 @@ describe "RealEstates" do
     end
 
     it "shows non-commercial offers for sale" do
-      visit real_estates_path(:utilization => Utilization::LIVING, :offer => RealEstate::OFFER_FOR_SALE)
+      visit real_estates_path(:utilization => Utilization::LIVING, :offer => Offer::SALE)
       page.should have_selector('table tbody tr', :count => 1)
       page.should have_css("tr[id=real-estate-#{@non_commercial_for_sale.id}]")
     end
 
     it "shows non-commercial offers for rent" do
-      visit real_estates_path(:utilization => Utilization::LIVING, :offer => RealEstate::OFFER_FOR_RENT)
+      visit real_estates_path(:utilization => Utilization::LIVING, :offer => Offer::RENT)
       page.should have_selector('table tbody tr', :count => 1)
       page.should have_css("tr[id=real-estate-#{@non_commercial_for_rent.id}]")
     end
 
     it "shows commercial offers for sale" do
-      visit real_estates_path(:utilization => Utilization::WORKING, :offer => RealEstate::OFFER_FOR_SALE)
+      visit real_estates_path(:utilization => Utilization::WORKING, :offer => Offer::SALE)
       page.should have_selector('table tbody tr', :count => 1)
       page.should have_css("tr[id=real-estate-#{@commercial_for_sale.id}]")
     end
 
     it "shows commercial offers for rent" do
-      visit real_estates_path(:utilization => Utilization::WORKING, :offer => RealEstate::OFFER_FOR_RENT)
+      visit real_estates_path(:utilization => Utilization::WORKING, :offer => Offer::RENT)
       page.should have_selector('table tbody tr', :count => 1)
       page.should have_css("tr[id=real-estate-#{@commercial_for_rent.id}]")
     end
@@ -279,7 +279,7 @@ describe "RealEstates" do
         end
 
         it "filters out all real estates because there is no match" do
-          visit real_estates_path(:utilization => Utilization::WORKING, :offer => RealEstate::OFFER_FOR_RENT)
+          visit real_estates_path(:utilization => Utilization::WORKING, :offer => Offer::RENT)
           page.should have_css("tr[id=real-estate-#{@non_commercial_for_rent.id}]")
         end
       end
@@ -290,7 +290,7 @@ describe "RealEstates" do
     before do
       @arth = Fabricate :published_real_estate,
                         :utilization => Utilization::LIVING,
-                        :offer => RealEstate::OFFER_FOR_RENT,
+                        :offer => Offer::RENT,
                         :category => Fabricate(:category),
                         :address => Fabricate.build(:address, :canton => 'sz', :city => 'Arth'),
                         :figure => Fabricate.build(:figure),
@@ -298,20 +298,20 @@ describe "RealEstates" do
 
       @goldau = Fabricate :published_real_estate,
                           :utilization => Utilization::LIVING,
-                          :offer => RealEstate::OFFER_FOR_RENT,
+                          :offer => Offer::RENT,
                           :category => Fabricate(:category),
                           :address => Fabricate.build(:address, :canton => 'sz', :city => 'Goldau'),
                           :figure => Fabricate.build(:figure),
                           :pricing => Fabricate.build(:pricing)
       @adliswil = Fabricate :published_real_estate,
                             :utilization => Utilization::LIVING,
-                            :offer => RealEstate::OFFER_FOR_RENT,
+                            :offer => Offer::RENT,
                             :category => Fabricate(:category),
                             :address => Fabricate.build(:address, :canton => 'zh', :city => 'Adliswil'),
                             :figure => Fabricate.build(:figure),
                             :pricing => Fabricate.build(:pricing)
 
-      visit real_estates_path(:utilization => Utilization::LIVING, :offer => RealEstate::OFFER_FOR_RENT)
+      visit real_estates_path(:utilization => Utilization::LIVING, :offer => Offer::RENT)
 
       page.should have_css("tr[id=real-estate-#{@arth.id}]")
       page.should have_css("tr[id=real-estate-#{@goldau.id}]")

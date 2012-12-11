@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Search::Filter do
 
   it 'defaults to offer type RENT' do
-    Search::Filter.new.offer.should == RealEstate::OFFER_FOR_RENT
+    Search::Filter.new.offer.should == Offer::RENT
   end
 
   it 'defaults to utilization type NON_COMMERCIAL' do
@@ -87,13 +87,13 @@ describe Search::Filter do
   describe 'Canton-City-Map' do
     before do
       @arth = Fabricate :published_real_estate,
-                        :offer => RealEstate::OFFER_FOR_RENT,
+                        :offer => Offer::RENT,
                         :utilization => Utilization::LIVING,
                         :address => Fabricate.build(:address, :canton => 'sz', :city => 'Arth'),
                         :category => Fabricate(:category)
 
       @fahrwangen = Fabricate :published_real_estate,
-                              :offer => RealEstate::OFFER_FOR_SALE,
+                              :offer => Offer::SALE,
                               :utilization => Utilization::LIVING,
                               :address => Fabricate.build(:address, :canton => 'ag', :city => 'Fahrwangen'),
                               :category => Fabricate(:category)
@@ -101,7 +101,7 @@ describe Search::Filter do
 
     let :filter do
       # Using late initialization of this filter within tests
-      Search::Filter.new(:offer => RealEstate::OFFER_FOR_RENT, :utilization => Utilization::LIVING)
+      Search::Filter.new(:offer => Offer::RENT, :utilization => Utilization::LIVING)
     end
 
     it 'filters real estate by offer and utilization' do
@@ -117,7 +117,7 @@ describe Search::Filter do
     end
 
     it 'groups cities by canton' do
-      @fahrwangen.update_attribute :offer, RealEstate::OFFER_FOR_RENT
+      @fahrwangen.update_attribute :offer, Offer::RENT
       filter.cantons_cities_map.should == {'sz' => ['Arth'], 'ag' => ['Fahrwangen']}
     end
 
@@ -125,14 +125,14 @@ describe Search::Filter do
       # excluded because of state 'editing'
       unpublished = Fabricate :real_estate,
                               :state => 'editing',
-                              :offer => RealEstate::OFFER_FOR_RENT,
+                              :offer => Offer::RENT,
                               :utilization => Utilization::LIVING,
                               :channels => [RealEstate::WEBSITE_CHANNEL],
                               :address => Fabricate.build(:address, :canton => 'zg', :city => 'Steinhausen'),
                               :category => Fabricate(:category)
       # excluded because of channel
       @arth.update_attribute :channels, []
-      @fahrwangen.update_attribute :offer, RealEstate::OFFER_FOR_RENT
+      @fahrwangen.update_attribute :offer, Offer::RENT
 
       filter.available_cantons.should == [@fahrwangen.address.canton]
       filter.available_cities.should == [@fahrwangen.address.city]
@@ -143,7 +143,7 @@ describe Search::Filter do
   describe 'Converting filter' do
     before do
       @filter = Search::Filter.new(
-        :offer => RealEstate::OFFER_FOR_RENT,
+        :offer => Offer::RENT,
         :utilization => Utilization::LIVING,
         :cities => ['Arth', 'Fahrwangen'],
         :sort_field => 'price',
@@ -153,14 +153,14 @@ describe Search::Filter do
 
     it 'converts filter state into a (params) hash' do
       @filter.to_params.should == {:cities => ['Arth', 'Fahrwangen'], :cantons => [],
-                                   :offer => RealEstate::OFFER_FOR_RENT, :utilization => Utilization::LIVING,
+                                   :offer => Offer::RENT, :utilization => Utilization::LIVING,
                                    :sort_field => 'price',
                                    :sort_order => 'asc'
                                  }
     end
 
     it 'converts filter state into hash that can be used for querying database' do
-      @filter.to_query_hash.should == {:offer => RealEstate::OFFER_FOR_RENT, :utilization => Utilization::LIVING,
+      @filter.to_query_hash.should == {:offer => Offer::RENT, :utilization => Utilization::LIVING,
                                        'address.city' => {"$in" => ['Arth', 'Fahrwangen']}
       }
     end

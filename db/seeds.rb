@@ -144,7 +144,7 @@ module InitialCategories
         r.office = Office.first
         r.state = RealEstate::STATE_EDITING
         r.utilization = Utilization::LIVING
-        r.offer = RealEstate::OFFER_FOR_RENT
+        r.offer = Offer::RENT
         r.channels = [RealEstate::CHANNELS.first]
         r.address = Address.new(:canton => 'ag',
                                 :city => 'Fahrwangen', :street => 'Bahnhofstrasse', :street_number => '18', :zip => '1234',
@@ -171,7 +171,7 @@ module InitialCategories
           r.office = Office.first
           r.state = RealEstate::STATE_EDITING
           r.utilization = Utilization::LIVING
-          r.offer = RealEstate::OFFER_FOR_RENT
+          r.offer = Offer::RENT
           r.channels = [RealEstate::CHANNELS.first]
           r.address = Address.new(:canton => 'ag',
                                   :city => 'Fahrwangen', :street => 'Bahnhofstrasse', :street_number => '18', :zip => '1234',

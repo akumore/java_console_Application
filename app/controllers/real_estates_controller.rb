@@ -38,7 +38,7 @@ class RealEstatesController < ApplicationController
   end
 
   def get_filtered_reference_projects(search_filter)
-    offer = search_filter.for_sale? ? RealEstate::OFFER_FOR_SALE : RealEstate::OFFER_FOR_RENT
+    offer = search_filter.for_sale? ? Offer::SALE : Offer::RENT
     utilization = search_filter.commercial? ? Utilization::WORKING : Utilization::LIVING
     ReferenceProject.where(:locale => I18n.locale, :offer => offer, :utilization => utilization)
   end

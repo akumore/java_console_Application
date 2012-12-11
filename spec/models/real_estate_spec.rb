@@ -69,7 +69,7 @@ describe RealEstate do
     context 'when for rent' do
       let :real_estate do
         RealEstate.new(
-          :offer => RealEstate::OFFER_FOR_RENT,
+          :offer => Offer::RENT,
           :channels => [RealEstate::PRINT_CHANNEL]
         )
       end
@@ -91,7 +91,7 @@ describe RealEstate do
     context 'when for sale' do
       let :real_estate do
         RealEstate.new(
-          :offer => RealEstate::OFFER_FOR_SALE,
+          :offer => Offer::SALE,
           :channels => [RealEstate::PRINT_CHANNEL]
         )
       end
@@ -421,7 +421,7 @@ describe RealEstate do
     context "Sub-model becomes invalid because of real estate changed" do #e.g. changing the offer type will cause an invalid pricing model
       # e.g. changing the offer type will cause an invalid pricing model
       before do
-        @real_estate = Fabricate :real_estate, :offer => RealEstate::OFFER_FOR_RENT,
+        @real_estate = Fabricate :real_estate, :offer => Offer::RENT,
                                   :category => Fabricate(:category),
                                   :address => Fabricate.build(:address),
                                   :pricing => Fabricate.build(:pricing, :for_sale=>nil),
@@ -430,14 +430,14 @@ describe RealEstate do
       end
 
       it "doesn't change over from 'editing' to 'in_review'" do
-        @real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
+        @real_estate.update_attribute :offer, Offer::SALE
 
         @real_estate.review_it.should be_false
         @real_estate.errors.should include :pricing
       end
 
       it "doesn't change over from 'editing' to 'published'" do
-        @real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
+        @real_estate.update_attribute :offer, Offer::SALE
 
         @real_estate.publish_it.should be_false
         @real_estate.errors.should include :pricing
@@ -447,7 +447,7 @@ describe RealEstate do
         @real_estate.creator = Fabricate(:cms_editor)
         @real_estate.editor = Fabricate(:cms_editor)
         @real_estate.review_it.should be_true
-        @real_estate.update_attribute :offer, RealEstate::OFFER_FOR_SALE
+        @real_estate.update_attribute :offer, Offer::SALE
 
         @real_estate.publish_it.should be_false
       end

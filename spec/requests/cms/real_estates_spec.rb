@@ -107,7 +107,7 @@ describe "Cms::RealEstates" do
 
         it 'saves the offer type' do
           click_on 'Immobilie erstellen'
-          real_estate.offer.should == RealEstate::OFFER_FOR_SALE
+          real_estate.offer.should == Offer::SALE
         end
 
         it 'enables it for the website' do
@@ -207,7 +207,7 @@ describe "Cms::RealEstates" do
         @real_estate = RealEstate.find(@fabricated_real_estate.id)
         @real_estate.category.label.should == 'Child Category 2'
         @real_estate.utilization.should == Utilization::LIVING
-        @real_estate.offer.should == RealEstate::OFFER_FOR_RENT
+        @real_estate.offer.should == Offer::RENT
         @real_estate.channels.should == %w(print)
         @real_estate.title.should == 'My edited Real Estate'
         @real_estate.contact.fullname.should == 'Hanna Henker'

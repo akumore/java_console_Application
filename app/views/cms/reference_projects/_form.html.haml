@@ -11,12 +11,12 @@
       = f.label :offer
       .controls
         %label.inline.radio
-          = f.radio_button :offer, RealEstate::OFFER_FOR_RENT
-          %span= t(".#{RealEstate::OFFER_FOR_RENT}")
+          = f.radio_button :offer, Offer::RENT
+          %span= t(".#{Offer::RENT}")
       .controls
         %label.inline.radio
-          = f.radio_button :offer, RealEstate::OFFER_FOR_SALE
-          %span= t(".#{RealEstate::OFFER_FOR_SALE}")
+          = f.radio_button :offer, Offer::SALE
+          %span= t(".#{Offer::SALE}")
     .control-group.mandatory
       = f.label :utilization
       .controls

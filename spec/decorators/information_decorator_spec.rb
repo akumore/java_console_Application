@@ -6,7 +6,7 @@ describe InformationDecorator do
   before :each do
     @real_estate = Fabricate(:published_real_estate,
       :category => Fabricate(:category),
-      :offer => RealEstate::OFFER_FOR_RENT,
+      :offer => Offer::RENT,
       :information => Fabricate.build(:information,
         :display_estimated_available_from => 'Mai 2012',
         :has_balcony => true,

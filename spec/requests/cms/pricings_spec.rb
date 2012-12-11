@@ -11,7 +11,7 @@ describe "Cms::Pricings" do
         before :each do
           @real_estate = Fabricate(:real_estate,
             :utilization => Utilization::LIVING,
-            :offer => RealEstate::OFFER_FOR_RENT,
+            :offer => Offer::RENT,
             :category => Category.last,
             :reference => Fabricate.build(:reference)
           )
@@ -93,7 +93,7 @@ describe "Cms::Pricings" do
         before :each do
           @real_estate = Fabricate(:real_estate,
             :utilization => Utilization::LIVING,
-            :offer => RealEstate::OFFER_FOR_SALE,
+            :offer => Offer::SALE,
             :category => Category.last,
             :reference => Fabricate.build(:reference)
           )
@@ -181,7 +181,7 @@ describe "Cms::Pricings" do
         before :each do
           @real_estate = Fabricate(:real_estate,
             :utilization => Utilization::WORKING,
-            :offer => RealEstate::OFFER_FOR_RENT,
+            :offer => Offer::RENT,
             :category => Category.last,
             :reference => Fabricate.build(:reference)
           )
@@ -260,7 +260,7 @@ describe "Cms::Pricings" do
         before :each do
           @real_estate = Fabricate(:real_estate,
             :utilization => Utilization::WORKING,
-            :offer => RealEstate::OFFER_FOR_SALE,
+            :offer => Offer::SALE,
             :category => Category.last,
             :reference => Fabricate.build(:reference)
           )

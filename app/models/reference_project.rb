@@ -3,13 +3,13 @@ class ReferenceProject
   include Mongoid::Timestamps
 
   default_scope asc(:position)
-  scope :for_rent, where(:offer => RealEstate::OFFER_FOR_RENT)
-  scope :for_sale, where(:offer => RealEstate::OFFER_FOR_SALE)
+  scope :for_rent, where(:offer => Offer::RENT)
+  scope :for_sale, where(:offer => Offer::SALE)
 
   field :title,       :type => String
   field :description, :type => String
   field :utilization, :type => String, :default => Utilization::LIVING
-  field :offer,       :type => String, :default => RealEstate::OFFER_FOR_RENT
+  field :offer,       :type => String, :default => Offer::RENT
   field :url,         :type => String
   field :locale,      :type => String, :default => 'de'
   field :image,       :type => String
@@ -25,11 +25,11 @@ class ReferenceProject
   before_create :setup_position
 
   def for_sale?
-    self.offer == RealEstate::OFFER_FOR_SALE
+    self.offer == Offer::SALE
   end
 
   def for_rent?
-    self.offer == RealEstate::OFFER_FOR_RENT
+    self.offer == Offer::RENT
   end
 
   private

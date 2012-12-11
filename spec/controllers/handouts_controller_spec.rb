@@ -3,11 +3,11 @@ require 'spec_helper'
 
 describe HandoutsController do
   let :real_estate_for_sale do
-    Fabricate :published_real_estate, :category => Fabricate(:category), :offer =>  RealEstate::OFFER_FOR_SALE, :channels => [RealEstate::PRINT_CHANNEL]
+    Fabricate :published_real_estate, :category => Fabricate(:category), :offer =>  Offer::SALE, :channels => [RealEstate::PRINT_CHANNEL]
   end
 
   let :real_estate_for_rent do
-    Fabricate :published_real_estate, :category => Fabricate(:category), :offer =>  RealEstate::OFFER_FOR_RENT, :channels => [RealEstate::PRINT_CHANNEL]
+    Fabricate :published_real_estate, :category => Fabricate(:category), :offer =>  Offer::RENT, :channels => [RealEstate::PRINT_CHANNEL]
   end
 
   describe 'minidoku/handout' do
