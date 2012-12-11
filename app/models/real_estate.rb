@@ -144,23 +144,7 @@ class RealEstate
     end
   end
 
-  def commercial_utilization?
-    self.utilization == Utilization::WORKING
-  end
-
-  def private_utilization?
-    self.utilization == Utilization::LIVING
-  end
-
-  def storage_utilization?
-    self.utilization == Utilization::STORING
-  end
-
-  def parking_utilization?
-    self.utilization == Utilization::PARKING
-  end
-
-  def for_work_or_storage?
+  def working_or_storing?
     unless Utilization.all.include? self.utilization
       raise "Unknown utilization '#{self.utilization}'"
     end
@@ -171,6 +155,12 @@ class RealEstate
       false
     end
   end
+
+  alias_method :commercial_utilization?, :working?
+  alias_method :private_utilization?, :living?
+  alias_method :storage_utilization?, :storing?
+  alias_method :parking_utilization?, :parking?
+  alias_method :for_work_or_storage?, :working_or_storing?
 
   def has_handout?
     for_rent? && channels.include?(RealEstate::PRINT_CHANNEL)
