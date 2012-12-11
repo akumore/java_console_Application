@@ -3,10 +3,10 @@
   .default-view
     .offer-tabs
       %ul
-        %li.for_sale-tab{:class => @search_filter.for_sale? ? "selected" : ""}
-          = link_to t("real_estates.search_filter.for_sale"), real_estates_path(:offer => Offer::SALE, :utilization => @search_filter.utilization), :class => 'js-for_sale'
         %li.for-rent-tab{:class => @search_filter.for_rent? ? "selected" : ""}
           = link_to t("real_estates.search_filter.for_rent"), real_estates_path(:offer => Offer::RENT, :utilization => @search_filter.utilization), :class => 'js-for_rent'
+        %li.for_sale-tab{:class => @search_filter.for_sale? ? "selected" : ""}
+          = link_to t("real_estates.search_filter.for_sale"), real_estates_path(:offer => Offer::SALE, :utilization => @search_filter.utilization), :class => 'js-for_sale'
 
     .utilization-tabs
       %ul
