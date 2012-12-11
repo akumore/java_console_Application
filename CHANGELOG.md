@@ -1,5 +1,17 @@
 # CHANGELOG
 
+### v2.1.2 on 2012-12-05
+* Fix: revert list styles to basic bullets
+
+### v2.1.1 on 2012-12-03
+
+* Fix: Include titles for assets (images and floor plans) in exporter
+* Fix: Sort options in real estate list are now persisted when returning to the list from a detail page
+* Fix: Removed double line breaks after titles in the homegate description
+
+### v2.1, Release on 2012-11-30
+* Update text styling for h3, lists etc in content bricks
+
 ### v2.0, Release on 2012-11-05
 
 * First official "Weiterentwicklung" Release, no more support stories

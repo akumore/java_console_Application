@@ -2,21 +2,19 @@
   width: 75%
   margin: 1em 0
 
-  &.accordion-brick
-    margin: 3em 0
-
   &.download-brick
     margin: 0.5em 0
     a
       line-height: 1.4em
 
-.content
-  ul, ol
-    margin-left: 1.5em
+  .content
+    ul
+      li
+        list-style: disc
 
-  li
-    list-style: disc
-    margin: 0.5em 0
+.content
+  ol, ul
+    margin-left: 1.5em
 
   ol
     li
@@ -28,6 +26,7 @@
 
     li
       +no-bullet
+
 
 .section
   margin: 2em 0

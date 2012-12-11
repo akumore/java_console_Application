@@ -28,7 +28,8 @@ class RealEstatesController < ApplicationController
 
   def set_search_filter
     filter_params = (params[:search_filter] || {}).reverse_merge(:offer => params[:offer], :utilization => params[:utilization],
-                                                                 :cantons => params[:cantons], :cities => params[:cities])
+                                                                 :cantons => params[:cantons], :cities => params[:cities],
+                                                                 :sort_order => params[:sort_order], :sort_field => params[:sort_field])
     @search_filter = Search::Filter.new(filter_params)
   end
 
