@@ -57,28 +57,28 @@ class FieldAccess
   def self.cms_blacklist
     %w(
        *.working.figure.rooms
-       *.working.figure.rooms_estimate
-       *.working.figure.living_surface
-       *.working.figure.living_surface_estimate
-       *.storing.figure.rooms
-       *.storing.figure.rooms_estimate
-       *.storing.figure.living_surface
-       *.storing.figure.living_surface_estimate
        *.parking.figure.rooms
+       *.storing.figure.rooms
+       *.working.figure.rooms_estimate
+       *.storing.figure.rooms_estimate
        *.parking.figure.rooms_estimate
+       *.working.figure.living_surface
+       *.storing.figure.living_surface
        *.parking.figure.living_surface
+       *.working.figure.living_surface_estimate
+       *.storing.figure.living_surface_estimate
        *.parking.figure.living_surface_estimate
        *.living.figure.usable_surface
-       *.living.figure.usable_surface_estimate
-       *.living.figure.storage_surface
-       *.living.figure.ceiling_height
        *.storing.figure.usable_surface
-       *.storing.figure.usable_surface_estimate
-       *.storing.figure.storage_surface
-       *.storing.figure.ceiling_height
        *.parking.figure.usable_surface
-       *.parking.figure.usable_surface_estimate
+       *.living.figure.storage_surface
+       *.storing.figure.storage_surface
        *.parking.figure.storage_surface
+       *.living.figure.usable_surface_estimate
+       *.storing.figure.usable_surface_estimate
+       *.parking.figure.usable_surface_estimate
+       *.living.figure.ceiling_height
+       *.storing.figure.ceiling_height
        *.parking.figure.ceiling_height
     )
   end
