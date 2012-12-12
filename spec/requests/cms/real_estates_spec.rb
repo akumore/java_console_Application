@@ -236,8 +236,117 @@ describe "Cms::RealEstates" do
         page.should have_css('.building-type-container:not(.hidden)')
       end
     end
-  end
 
+    context 'when the parking utilization is selected', :parking => true do
+      before do
+        select 'Parkieren', :from => 'Gebäudenutzung'
+        click_on 'Immobilie speichern'
+      end
+
+      it 'shows the base data tab' do
+        within('.nav-tabs') do
+          page.should have_link('Stammdaten')
+        end
+      end
+
+      it 'shows the address tab' do
+        within('.nav-tabs') do
+          page.should have_link('Adresse')
+        end
+      end
+
+      it 'shows the infos tab' do
+        within('.nav-tabs') do
+          page.should have_link('Infos')
+        end
+      end
+
+      it 'shows the pricing tab' do
+        within('.nav-tabs') do
+          page.should have_link('Preise')
+        end
+      end
+
+      it 'does not show the figures tab' do
+        within('.nav-tabs') do
+          page.should_not have_link('Zahlen und Fakten')
+        end
+      end
+
+      it 'does not show the infrastructure tab' do
+        within('.nav-tabs') do
+          page.should_not have_link('Infrastruktur')
+        end
+      end
+
+      it 'does not show the description tab' do
+        within('.nav-tabs') do
+          page.should_not have_link('Beschreibungen')
+        end
+      end
+
+      it 'shows the images tab' do
+        within('.nav-tabs') do
+          page.should have_link('Bilder & Dokumente')
+        end
+      end
+    end
+
+    context 'when the living utilization is selected', :parking => true do
+      before do
+        select 'Wohnen', :from => 'Gebäudenutzung'
+        click_on 'Immobilie speichern'
+      end
+
+      it 'shows the base data tab' do
+        within('.nav-tabs') do
+          page.should have_link('Stammdaten')
+        end
+      end
+
+      it 'shows the address tab' do
+        within('.nav-tabs') do
+          page.should have_link('Adresse')
+        end
+      end
+
+      it 'shows the infos tab' do
+        within('.nav-tabs') do
+          page.should have_link('Infos')
+        end
+      end
+
+      it 'shows the pricing tab' do
+        within('.nav-tabs') do
+          page.should have_link('Preise')
+        end
+      end
+
+      it 'shows the figures tab' do
+        within('.nav-tabs') do
+          page.should have_link('Zahlen und Fakten')
+        end
+      end
+
+      it 'shows the infrastructure tab' do
+        within('.nav-tabs') do
+          page.should have_link('Infrastruktur')
+        end
+      end
+
+      it 'shows the description tab' do
+        within('.nav-tabs') do
+          page.should have_link('Beschreibungen')
+        end
+      end
+
+      it 'shows the images tab' do
+        within('.nav-tabs') do
+          page.should have_link('Bilder & Dokumente')
+        end
+      end
+    end
+  end
 
   describe "#copy" do
     shared_examples_for "Copying a real estate" do
