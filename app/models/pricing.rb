@@ -2,8 +2,8 @@ class Pricing
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  PRICE_UNITS_FOR_RENT = %w(monthly yearly weekly daily year_m2)
-  PRICE_UNITS_FOR_SALE = %w(sell sell_m2)
+  PRICE_UNITS_FOR_RENT = PriceUnit.for_rent
+  PRICE_UNITS_FOR_SALE = PriceUnit.for_sale
   PRICE_UNITS = PRICE_UNITS_FOR_RENT + PRICE_UNITS_FOR_SALE
 
   embedded_in :real_estate
@@ -31,6 +31,9 @@ class Pricing
 
   validates :price_unit, :presence => true, :inclusion => PRICE_UNITS_FOR_SALE, :if => :for_sale?
   validates :price_unit, :presence => true, :inclusion => PRICE_UNITS_FOR_RENT, :if => :for_rent?
+  validates :price_unit, :presence => true, :inclusion => { :in => lambda { |pricing|
+    PriceUnit.all_by_offer_and_utilization(pricing._parent.offer, pricing._parent.utilization)
+   }}, :if => :parking?
 
   delegate :for_sale?, :for_rent?, :private_utilization?, :to => :_parent
 
