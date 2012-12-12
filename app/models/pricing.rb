@@ -35,7 +35,7 @@ class Pricing
     PriceUnit.all_by_offer_and_utilization(pricing._parent.offer, pricing._parent.utilization)
    }}, :if => :parking?
 
-  delegate :for_sale?, :for_rent?, :private_utilization?, :to => :_parent
+  delegate :for_sale?, :for_rent?, :private_utilization?, :parking?, :to => :_parent
 
   def for_rent_brutto
     for_rent_netto.to_i + for_rent_extra.to_i

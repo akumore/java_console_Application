@@ -9,7 +9,7 @@
     .control-group.mandatory
       = f.label :price_unit
       .controls
-        = f.select :price_unit, (@real_estate.for_sale? ? Pricing::PRICE_UNITS_FOR_SALE : Pricing::PRICE_UNITS_FOR_RENT).map { |c| [t(".#{c}"), c] }, :include_blank => 'Preiseinheit auswählen'
+        = f.select :price_unit, (PriceUnit.all_by_offer_and_utilization(@real_estate.offer, @real_estate.utilization)).map { |c| [t(".#{c}"), c] }, :include_blank => 'Preiseinheit auswählen'
     - if @real_estate.for_rent?
       .control-group.mandatory
         = f.label :for_rent_netto
