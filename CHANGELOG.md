@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### features/new_boardmembers
+### v2.3 on 2012-12-13
 * Add new board members: A. Bult, I. Hardegger, U. Moser, T. Rüppel
 
 ### v2.2 on 2012-12-10
