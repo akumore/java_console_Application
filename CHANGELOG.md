@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.3 on 2012-12-13
+* Add new board members: A. Bult, I. Hardegger, U. Moser, T. Rüppel
+
 ### v2.2 on 2012-12-10
 * New implemented stories:
     * Als Editor möchte ich eine Vorschau eines erstellten Angebots sehen können
