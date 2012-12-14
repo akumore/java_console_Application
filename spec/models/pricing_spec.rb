@@ -1,65 +1,93 @@
 require 'spec_helper'
 
 describe Pricing do
-  describe 'initialize without any attributes' do
-    before :each do
-      @real_estate = Fabricate.build(:real_estate, :pricing => Pricing.new, :category => Fabricate(:category))
-      @pricing = @real_estate.pricing
+  describe '#initialize' do
+    let :pricing do
+      p = Pricing.new
+      p.stub(:for_rent?).and_return(true)
+      p.stub(:for_sale?).and_return(false)
+      p.stub(:parking?).and_return(false)
+      p
     end
 
-    it 'does not pass validations' do
-      @pricing.should_not be_valid
-    end
-
-    context 'for rent' do
-      before :each do
-        @real_estate.offer = Offer::RENT
+    context 'without values' do
+      it 'does not pass validations' do
+        pricing.should_not be_valid
       end
 
-      it 'requires a price unit' do
-        @pricing.should have(2).error_on(:price_unit)
+      context 'for rent' do
+        it 'requires a price unit' do
+          pricing.should have(2).error_on(:price_unit)
+        end
+
+        it 'requires a "rent" price unit ' do
+          pricing.price_unit = 'anything'
+          pricing.should have(1).error_on(:price_unit)
+        end
+
+        it 'requires a netto rent price' do
+          pricing.should have(2).error_on(:for_rent_netto)
+        end
+
+        it 'requires the rent extras' do
+          pricing.should have(2).error_on(:for_rent_extra)
+        end
+
+        it 'has 6 errors' do
+          pricing.valid?
+          pricing.errors.should have(6).items
+        end
+
+        context 'parking' do
+          before do
+            pricing.stub(:parking?).and_return(true)
+            pricing.stub_chain(:_parent, :offer).and_return(Offer::RENT)
+            pricing.stub_chain(:_parent, :utilization).and_return(Utilization::PARKING)
+          end
+
+          it 'must be monthly' do
+            pricing.price_unit = 'daily'
+            pricing.should have(1).error_on(:price_unit)
+          end
+        end
       end
 
-      it 'requires a "rent" price unit ' do
-        @pricing.update_attribute :price_unit, Pricing::PRICE_UNITS_FOR_SALE.first
-        @pricing.should have(1).error_on(:price_unit)
-      end
+      context 'for sale' do
+        before do
+          pricing.stub(:for_rent?).and_return(false)
+          pricing.stub(:for_sale?).and_return(true)
+        end
 
-      it 'requires a netto rent price' do
-        @pricing.should have(2).error_on(:for_rent_netto)
-      end
+        it 'does require a price_unit' do
+          pricing.should have(2).error_on(:price_unit)
+        end
 
-      it 'requires the rent extras' do
-        @pricing.should have(2).error_on(:for_rent_extra)
-      end
+        it 'requires a "sell" price unit ' do
+          pricing.price_unit = 'something_invalid'
+          pricing.should have(1).error_on(:price_unit)
+        end
 
-      it 'has 6 errors' do
-        @pricing.valid?
-        @pricing.errors.should have(6).items
-      end
-    end
+        it 'requires a sale price' do
+          pricing.should have(2).error_on(:for_sale)
+        end
 
-    context 'for sale' do
-      before :each do
-        @real_estate.offer = Offer::SALE
-      end
+        it 'has 4 errors' do
+          pricing.valid?
+          pricing.errors.should have(4).items
+        end
 
-      it 'does require a price_unit' do
-        @pricing.should have(2).error_on(:price_unit)
-      end
+        context 'parking' do
+          before do
+            pricing.stub(:parking?).and_return(true)
+            pricing.stub_chain(:_parent, :offer).and_return(Offer::SALE)
+            pricing.stub_chain(:_parent, :utilization).and_return(Utilization::PARKING)
+          end
 
-      it 'requires a "sell" price unit ' do
-        @pricing.update_attribute :price_unit, Pricing::PRICE_UNITS_FOR_RENT.first
-        @pricing.should have(1).error_on(:price_unit)
-      end
-
-      it 'requires a sale price' do
-        @pricing.should have(2).error_on(:for_sale)
-      end
-
-      it 'has 4 errors' do
-        @pricing.valid?
-        @pricing.errors.should have(4).items
+          it 'must be selling price' do
+            pricing.price_unit = 'sell_m2'
+            pricing.should have(1).error_on(:price_unit)
+          end
+        end
       end
     end
   end

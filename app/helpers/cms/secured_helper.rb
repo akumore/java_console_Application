@@ -23,6 +23,10 @@ module Cms
       end
     end
 
+    def accessible?(attribute)
+      @field_access.accessible?(controller.editing_model, attribute)
+    end
+
     def exhibit_form_for(model, &block)
       form_for model, :url => send("cms_real_estate_#{model.class.name.singularize.underscore}_path", @real_estate) do |form|
         model = RealEstateExhibit.create(model, :rent, :living).new(model, self, :form => form)
