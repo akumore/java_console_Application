@@ -45,20 +45,22 @@
     = f.label :contact_id
     .controls
       = f.select :contact_id, Employee.all.order([:lastname, :asc]).map { |e| [e.fullname_reversed, e.id]}, :prompt => 'Kontaktperson auswählen', :class => 'span8'
-  %fieldset
-    %legend Titel und Beschreibungen
-    .control-group{ :class => "#{@real_estate.parking_utilization? ? '' : 'mandatory'}" }
-      = f.label :title
-      .controls
-        = f.text_field :title, :class => 'span8'
-    .control-group.mandatory
-      = f.label :description
-      .controls
-        = f.text_area :description, :class => 'span8'
-    .control-group
-      = f.label :utilization_description
-      .controls
-        = f.text_area :utilization_description, :class => 'span8 short'
+
+  - if accessible?(:title_and_description)
+    %fieldset
+      %legend Titel und Beschreibungen
+      .control-group{ :class => "#{@real_estate.parking_utilization? ? '' : 'mandatory'}" }
+        = f.label :title
+        .controls
+          = f.text_field :title, :class => 'span8'
+      .control-group.mandatory
+        = f.label :description
+        .controls
+          = f.text_area :description, :class => 'span8'
+      .control-group
+        = f.label :utilization_description
+        .controls
+          = f.text_area :utilization_description, :class => 'span8 short'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

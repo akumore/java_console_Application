@@ -82,6 +82,7 @@ class FieldAccess
        *.parking.figure.ceiling_height
        *.parking.pricing.for_rent_depot
        *.parking.pricing.parking_spots_prices_group
+       *.parking.real_estate.title_and_description
     )
   end
 end
