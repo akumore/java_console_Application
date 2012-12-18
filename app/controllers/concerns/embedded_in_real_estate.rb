@@ -6,7 +6,6 @@ module Concerns
       # Use CanCan loader
       load_resource :real_estate
       before_filter :save_editor, :only => [:update, :create]
-      before_filter :set_field_access
     end
 
     def success_message_for name
@@ -31,8 +30,8 @@ module Concerns
       instance_variable_get("@#{model_name}")
     end
 
-    def set_field_access
-      @field_access = FieldAccess.new(@real_estate.offer, @real_estate.utilization, FieldAccess.cms_blacklist)
+    def field_access
+      @field_access ||= FieldAccess.new(@real_estate.offer, @real_estate.utilization, FieldAccess.cms_blacklist)
     end
   end
 end

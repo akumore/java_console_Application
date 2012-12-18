@@ -5,7 +5,6 @@ class Cms::RealEstatesController < Cms::SecuredController
     redirect_to [:cms, @real_estate], :alert => exception.message
   end
 
-
   def index
     @real_estates = RealEstateDecorator.decorate(RealEstate.all)
     respond_with @real_estates
@@ -74,6 +73,13 @@ class Cms::RealEstatesController < Cms::SecuredController
     redirect_to edit_cms_real_estate_path(@copy_of_real_estate)
   end
 
+  def editing_model
+    @real_estate
+  end
+
+  def field_access
+    @field_access ||= FieldAccess.new(@real_estate.offer, @real_estate.utilization, FieldAccess.cms_blacklist)
+  end
 
   private
 

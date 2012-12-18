@@ -24,7 +24,7 @@ module Cms
     end
 
     def accessible?(attribute)
-      @field_access.accessible?(controller.editing_model, attribute)
+      controller.field_access.accessible?(controller.editing_model, attribute)
     end
 
     def exhibit_form_for(model, &block)
