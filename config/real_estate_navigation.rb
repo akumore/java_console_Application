@@ -30,7 +30,7 @@ SimpleNavigation::Configuration.run do |navigation|
         path = "#{action}_cms_real_estate_#{submodel}_path"
         primary.item submodel, t("navigation.cms.real_estates_navigation.#{submodel}"), send(path, @real_estate),
                      :class => "#{highlight_invalid_tab(submodel)} #{mark_mandatory_tab(submodel)}",
-                     :highlights_on => Regexp.new("#{submodel}")
+                     :highlights_on => Regexp.new("#{submodel}"), :unless => Proc.new { %w(figure infrastructure additional_description).include?(submodel.to_s) && @real_estate.parking? }
       end
 
     else
