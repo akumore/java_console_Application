@@ -83,6 +83,8 @@ class FieldAccess
        *.parking.pricing.for_rent_depot
        *.parking.pricing.parking_spots_prices_group
        *.parking.real_estate.title_and_description
+       sale.*.information.rent_info
+       rent.parking.information.rent_info
     )
   end
 end

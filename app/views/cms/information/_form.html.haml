@@ -15,36 +15,37 @@
       .controls
         = f.text_field :display_estimated_available_from
         %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Information.human_attribute_name(:display_estimated_available_from), 'data-content' => t('.help_popover.display_estimated_available_from') }
-    .row
-      .span4
-        .control-group
-          = f.label :is_new_building
-          .controls
-            = f.check_box :is_new_building
-        .control-group
-          = f.label :is_old_building
-          .controls
-            = f.check_box :is_old_building
-      .span4
-        .control-group
-          = f.label :is_minergie_style
-          .controls
-            = f.check_box :is_minergie_style
-        .control-group
-          = f.label :is_minergie_certified
-          .controls
-            = f.check_box :is_minergie_certified
-      .span4
-        - if @real_estate.property?
+    -  unless @real_estate.parking?
+      .row
+        .span4
           .control-group
-            = f.label :is_developed
+            = f.label :is_new_building
             .controls
-              = f.check_box :is_developed
-        - if @real_estate.apartment? || @real_estate.house?
+              = f.check_box :is_new_building
           .control-group
-            = f.label :is_under_building_laws
+            = f.label :is_old_building
             .controls
-              = f.check_box :is_under_building_laws
+              = f.check_box :is_old_building
+        .span4
+          .control-group
+            = f.label :is_minergie_style
+            .controls
+              = f.check_box :is_minergie_style
+          .control-group
+            = f.label :is_minergie_certified
+            .controls
+              = f.check_box :is_minergie_certified
+        .span4
+          - if @real_estate.property?
+            .control-group
+              = f.label :is_developed
+              .controls
+                = f.check_box :is_developed
+          - if @real_estate.apartment? || @real_estate.house?
+            .control-group
+              = f.label :is_under_building_laws
+              .controls
+                = f.check_box :is_under_building_laws
     - if @real_estate.private_utilization?
       .row
         .span4
@@ -123,7 +124,7 @@
             = f.label :has_sewage_supply
             .controls
               = f.check_box :has_sewage_supply
-  - if @real_estate.for_rent?
+  - if accessible?(:rent_info)
     %fieldset
       %legend= t('.for_rent')
       .control-group
