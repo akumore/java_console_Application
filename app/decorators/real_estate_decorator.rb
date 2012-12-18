@@ -12,22 +12,26 @@ class RealEstateDecorator < ApplicationDecorator
 
   def initialize(*args)
     super(*args)
-    if for_rent? && private_utilization?
-      self.extend Rent::LivingDecorator
-    elsif for_rent? && commercial_utilization?
-      self.extend Rent::WorkingDecorator
-    elsif for_rent? && storage_utilization?
-      self.extend Rent::StoringDecorator
-    elsif for_rent? && parking_utilization?
-      self.extend Rent::ParkingDecorator
-    elsif for_sale? && private_utilization?
-      self.extend Rent::LivingDecorator
-    elsif for_sale? && commercial_utilization?
-      self.extend Rent::WorkingDecorator
-    elsif for_sale? && storage_utilization?
-      self.extend Rent::StoringDecorator
-    elsif for_sale? && parking_utilization?
-      self.extend Rent::ParkingDecorator
+    if for_rent?
+      if living?
+        self.extend Rent::LivingDecorator
+      elsif working?
+        self.extend Rent::WorkingDecorator
+      elsif storing?
+        self.extend Rent::StoringDecorator
+      elsif parking?
+        self.extend Rent::ParkingDecorator
+      end
+    elsif for_sale?
+      if living?
+        self.extend Rent::LivingDecorator
+      elsif working?
+        self.extend Rent::WorkingDecorator
+      elsif storing?
+        self.extend Rent::StoringDecorator
+      elsif parking?
+        self.extend Rent::ParkingDecorator
+      end
     end
   end
 
@@ -179,23 +183,16 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def thumbnail
-    if parking_utilization?
-      image = if model.category.name == 'open_slot' # Parkplatz im Freien
-                'parking_thumbnails/open_slot.jpg'
-              elsif model.category.name == 'covered_slot' # Parkplatz im Freien überdacht
-                'parking_thumbnails/covered_slot.jpg'
-              elsif model.category.name == 'single_garage' # Einzelgarage
-                'parking_thumbnails/covered_slot.jpg'
-              elsif model.category.name == 'double_garage' # Doppelgarage
-                'parking_thumbnails/covered_slot.jpg'
-              elsif model.category.name == 'underground_slot' # Parkplatz in Autoeinstellhalle
-                'parking_thumbnails/covered_slot.jpg'
-              elsif model.category.name == 'covered_parking_place_bike' # Motorrad-PP in Autoeinstellhalle
-                'parking_thumbnails/covered_slot_bike.jpg'
-              elsif model.category.name == 'outdoor_parking_place_bike' # Motorrad-PP im Freien überdacht
-                'parking_thumbnails/covered_slot_bike.jpg'
-              end
-      image_path(image)
+    if parking?
+      image_path({
+              'open_slot'                   => 'parking_thumbnails/open_slot.jpg',
+              'covered_slot'                => 'parking_thumbnails/covered_slot.jpg',
+              'single_garage'               => 'parking_thumbnails/covered_slot.jpg',
+              'double_garage'               => 'parking_thumbnails/covered_slot.jpg',
+              'underground_slot'            => 'parking_thumbnails/covered_slot.jpg',
+              'covered_parking_place_bike'  => 'parking_thumbnails/covered_slot_bike.jpg',
+              'outdoor_parking_place_bike'  => 'parking_thumbnails/covered_slot_bike.jpg'
+            }.fetch(category.name))
     else
       images.primary.file.thumb.url
     end

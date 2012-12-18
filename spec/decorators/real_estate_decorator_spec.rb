@@ -50,6 +50,33 @@ describe RealEstateDecorator do
     end
   end
 
+  describe '#thumbnail', :thumb => true do
+    let :decorated_real_estate do
+      r = RealEstateDecorator.decorate(mock_model(RealEstate,
+                                       :for_rent? => false,
+                                       :for_sale? => true,
+                                       :living? => true,
+                                       :working? => false,
+                                       :parking? => false,
+                                       :storing? => false
+                                       ))
+      r.stub_chain(:images, :primary, :file, :thumb, :url).and_return('assets/my_image.jpg')
+      r
+    end
+
+    it 'returns the thumbnail of the first image' do
+      decorated_real_estate.thumbnail.should == 'assets/my_image.jpg'
+    end
+
+    context 'parking utilization' do
+      it 'returns the icon thumbnail' do
+        decorated_real_estate.stub(:parking?).and_return(true)
+        decorated_real_estate.stub_chain(:category, :name).and_return('open_slot')
+        decorated_real_estate.thumbnail.should == '/assets/parking_thumbnails/open_slot.jpg'
+      end
+    end
+  end
+
   describe '#object_documentation_title' do
     it 'is generated from the title' do
       real_estate = RealEstate.new :title => 'My Handout'
