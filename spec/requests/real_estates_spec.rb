@@ -205,7 +205,6 @@ describe "RealEstates" do
       end
 
       it 'shows the parking thumbnail' do
-        save_and_open_page
         page.should have_css(%(img[data-original="#{RealEstateDecorator.decorate(real_estate).thumbnail}"]))
       end
     end
