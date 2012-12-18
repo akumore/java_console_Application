@@ -32,6 +32,10 @@ describe "RealEstates" do
               :contact => Fabricate(:employee)
   end
 
+  let :parking_category do
+    Fabricate(:parking_category)
+  end
+
   describe "Visit real estate index path" do
     before do
       @real_estates = [real_estate, unpublished_real_estate]
@@ -189,6 +193,20 @@ describe "RealEstates" do
         it "doesn't have 3 slides" do
           page.should_not have_css(".real_estates ul.slides li", :count => 3)
         end
+      end
+    end
+
+    context 'in the parking category' do
+      before do
+        real_estate.update_attributes(:category => parking_category,
+                                      :utilization => Utilization::PARKING)
+        visit real_estates_path
+        click_on 'Parkieren'
+      end
+
+      it 'shows the parking thumbnail' do
+        save_and_open_page
+        page.should have_css(%(img[data-original="#{RealEstateDecorator.decorate(real_estate).thumbnail}"]))
       end
     end
   end

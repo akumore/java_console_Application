@@ -19,3 +19,9 @@ Fabricator(:row_house_category, :from => :category) do
   name 'row_house'
   parent { Fabricate(:category) }
 end
+
+Fabricator(:parking_category, :from => :category) do
+  label 'Parkplatz im Freien'
+  name 'open_slot'
+  parent { Fabricate(:category) }
+end

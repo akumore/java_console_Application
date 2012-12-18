@@ -178,4 +178,27 @@ class RealEstateDecorator < ApplicationDecorator
     end
   end
 
+  def thumbnail
+    if parking_utilization?
+      image = if model.category.name == 'open_slot' # Parkplatz im Freien
+                'parking_thumbnails/open_slot.jpg'
+              elsif model.category.name == 'covered_slot' # Parkplatz im Freien überdacht
+                'parking_thumbnails/covered_slot.jpg'
+              elsif model.category.name == 'single_garage' # Einzelgarage
+                'parking_thumbnails/covered_slot.jpg'
+              elsif model.category.name == 'double_garage' # Doppelgarage
+                'parking_thumbnails/covered_slot.jpg'
+              elsif model.category.name == 'underground_slot' # Parkplatz in Autoeinstellhalle
+                'parking_thumbnails/covered_slot.jpg'
+              elsif model.category.name == 'covered_parking_place_bike' # Motorrad-PP in Autoeinstellhalle
+                'parking_thumbnails/covered_slot_bike.jpg'
+              elsif model.category.name == 'outdoor_parking_place_bike' # Motorrad-PP im Freien überdacht
+                'parking_thumbnails/covered_slot_bike.jpg'
+              end
+      image_path(image)
+    else
+      images.primary.file.thumb.url
+    end
+  end
+
 end
