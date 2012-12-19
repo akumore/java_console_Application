@@ -14,10 +14,14 @@ module Concerns
 
     def redirect_to_step(name)
       flash[:success] = success_message_for(controller_name)
-      if @real_estate.send(name).present?
-        redirect_to send("edit_cms_real_estate_#{name.singularize}_path", @real_estate)
+      if name == 'media_assets'
+        redirect_to cms_real_estate_media_assets_path(@real_estate)
       else
-        redirect_to send("new_cms_real_estate_#{name.singularize}_path", @real_estate)
+        if @real_estate.send(name).present?
+          redirect_to send("edit_cms_real_estate_#{name.singularize}_path", @real_estate)
+        else
+          redirect_to send("new_cms_real_estate_#{name.singularize}_path", @real_estate)
+        end
       end
     end
 
