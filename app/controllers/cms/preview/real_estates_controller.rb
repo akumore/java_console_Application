@@ -9,6 +9,7 @@ class Cms::Preview::RealEstatesController < RealEstatesController
     real_estates = get_filtered_real_estates(@search_filter).map(&:id)
     @pagination = RealEstatePagination.new(@real_estate, real_estates)
     @appointment = @real_estate.appointments.build
+    @real_estates = RealEstateDecorator.decorate get_filtered_real_estates(@search_filter)
   end
 end
 
