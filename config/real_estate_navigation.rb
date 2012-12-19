@@ -30,7 +30,7 @@ SimpleNavigation::Configuration.run do |navigation|
         path = "#{action}_cms_real_estate_#{submodel}_path"
         primary.item submodel, t("navigation.cms.real_estates_navigation.#{submodel}"), send(path, @real_estate),
                      :class => "#{highlight_invalid_tab(submodel)} #{mark_mandatory_tab(submodel)}",
-                     :highlights_on => Regexp.new("#{submodel}"), :unless => Proc.new { %w(figure infrastructure additional_description).include?(submodel.to_s) && @real_estate.parking? }
+                     :highlights_on => Regexp.new("#{submodel}"), :if => Proc.new { @real_estate.to_model_access.accessible?(submodel) }
       end
 
     else
@@ -39,9 +39,9 @@ SimpleNavigation::Configuration.run do |navigation|
       primary.item :address, 'Adresse', cms_real_estate_address_path(@real_estate)
       primary.item :information, 'Infos', cms_real_estate_information_path(@real_estate)
       primary.item :pricing, 'Preise', cms_real_estate_pricing_path(@real_estate)
-      primary.item :figure, 'Zahlen und Fakten', cms_real_estate_figure_path(@real_estate)
-      primary.item :infrastructure, 'Infrastruktur', cms_real_estate_infrastructure_path(@real_estate)
-      primary.item :additional_description, 'Beschreibungen', cms_real_estate_additional_description_path(@real_estate)
+      primary.item :figure, 'Zahlen und Fakten', cms_real_estate_figure_path(@real_estate), :if => Proc.new { @real_estate.to_model_access.accessible?(:figure) }
+      primary.item :infrastructure, 'Infrastruktur', cms_real_estate_infrastructure_path(@real_estate), :if => Proc.new { @real_estate.to_model_access.accessible?(:infrastructure) }
+      primary.item :additional_description, 'Beschreibungen', cms_real_estate_additional_description_path(@real_estate), :if => Proc.new { @real_estate.to_model_access.accessible?(:additional_description) }
 
     end
 
