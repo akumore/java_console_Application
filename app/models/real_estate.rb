@@ -182,6 +182,10 @@ class RealEstate
     @handout ||= Handout.new(self)
   end
 
+  def to_model_access
+    ModelAccess.new(offer, utilization, ModelAccess.cms_blacklist)
+  end
+
   private
   def init_channels
     self.channels ||= []

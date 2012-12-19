@@ -454,4 +454,11 @@ describe RealEstate do
     end
   end
 
+  describe '#to_model_access' do
+    it 'returns a model access instance' do
+      real_estate = RealEstate.new(:offer => Offer::SALE, :utilization => Utilization::LIVING)
+      real_estate.to_model_access.should be_a(ModelAccess)
+    end
+  end
+
 end
