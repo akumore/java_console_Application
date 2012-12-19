@@ -10,27 +10,39 @@ describe 'Real Estate Wizard' do
       Fabricate.attributes_for(:pricing)
     end
 
-
     describe '#create' do
-      before do
-        @real_estate = Fabricate :real_estate, :category => Fabricate(:category)
+      context 'with parking utilization' do
+        before do
+          @real_estate = Fabricate :real_estate, :category => Fabricate(:category), :utilization => Utilization::PARKING
+        end
+
+        it 'redirects to the media assets tab' do
+          post :create, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
+          response.should redirect_to cms_real_estate_media_assets_path(@real_estate)
+          flash[:success].should_not be_nil
+        end
       end
 
-      it 'redirects to the new figures tab without an existing figure' do
-        post :create, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
-        response.should redirect_to new_cms_real_estate_figure_path(@real_estate)
-        flash[:success].should_not be_nil
-      end
+      context 'with living, working or storing utilization' do
+        before do
+          @real_estate = Fabricate :real_estate, :category => Fabricate(:category)
+        end
 
-      it 'redirects to the edit figures tab with an existing figures' do
-        @real_estate.figure = Fabricate.build :figure
+        it 'redirects to the new figures tab without an existing figure' do
+          post :create, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
+          response.should redirect_to new_cms_real_estate_figure_path(@real_estate)
+          flash[:success].should_not be_nil
+        end
 
-        post :create, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
-        response.should redirect_to edit_cms_real_estate_figure_path(@real_estate)
-        flash[:success].should_not be_nil
+        it 'redirects to the edit figures tab with an existing figures' do
+          @real_estate.figure = Fabricate.build :figure
+
+          post :create, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
+          response.should redirect_to edit_cms_real_estate_figure_path(@real_estate)
+          flash[:success].should_not be_nil
+        end
       end
     end
-
 
     describe '#update' do
       before do
