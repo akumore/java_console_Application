@@ -25,6 +25,10 @@ module Concerns
       end
     end
 
+    def next_step_after(name)
+      TabList.new(@real_estate).next_step(name)
+    end
+
     def save_editor
       @real_estate.update_attribute :editor_id, current_user.id
     end
