@@ -19,7 +19,7 @@ class Cms::FiguresController < Cms::SecuredController
 
   def create
     if @figure.save
-      redirect_to_step('infrastructure')
+      redirect_to_step(next_step_after('figure'))
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class Cms::FiguresController < Cms::SecuredController
 
   def update
     if @figure.update_attributes(params[:figure])
-      redirect_to_step('infrastructure')
+      redirect_to_step(next_step_after('figure'))
     else
       render 'edit'
     end

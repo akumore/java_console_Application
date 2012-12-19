@@ -18,7 +18,7 @@ class Cms::InformationController < Cms::SecuredController
 
   def create
     if @information.save
-      redirect_to_step('pricing')
+      redirect_to_step(next_step_after('information'))
     else
       render 'new'
     end
@@ -26,13 +26,13 @@ class Cms::InformationController < Cms::SecuredController
 
   def update
     if @information.update_attributes(params[:information])
-      redirect_to_step('pricing')
+      redirect_to_step(next_step_after('information'))
     else
       render 'edit'
-    end    
+    end
   end
 
   def show
   end
-  
+
 end
