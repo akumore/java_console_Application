@@ -192,7 +192,7 @@ class RealEstateDecorator < ApplicationDecorator
               'underground_slot'            => 'parking_thumbnails/covered_slot.jpg',
               'covered_parking_place_bike'  => 'parking_thumbnails/covered_slot_bike.jpg',
               'outdoor_parking_place_bike'  => 'parking_thumbnails/covered_slot_bike.jpg'
-            }.fetch(category.name))
+            }.fetch(category.name, 'open_slot'))
     else
       images.primary.file.thumb.url
     end
