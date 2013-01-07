@@ -4,6 +4,8 @@ de:
       form:
         private: 'Wohnen'
         commercial: 'Arbeiten'
+        parking: 'Parkieren'
+        storage: 'Lagern'
         for_rent: 'Mieten'
         for_sale: 'Kaufen'
         corner_house: 'Eckhaus'
@@ -32,6 +34,8 @@ de:
         for_sale: 'Kaufen'
         private: 'Wohnen'
         commercial: 'Arbeiten'
+        parking: 'Parkieren'
+        storage: 'Lagern'
         editing: 'In Bearbeitung'
         published: 'Veröffentlicht'
         in_review: 'Zu Verifizieren'
