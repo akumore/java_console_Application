@@ -19,7 +19,7 @@ class Cms::PricingsController < Cms::SecuredController
 
   def create
     if @pricing.save
-      redirect_to_step('figure')
+      redirect_to_step(next_step_after('pricing'))
     else
       render 'new'
     end
@@ -27,7 +27,7 @@ class Cms::PricingsController < Cms::SecuredController
 
   def update
     if @pricing.update_attributes(params[:pricing])
-      redirect_to_step('figure')
+      redirect_to_step(next_step_after('pricing'))
     else
       render 'edit'
     end

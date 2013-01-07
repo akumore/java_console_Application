@@ -21,7 +21,7 @@ class Cms::AddressesController < Cms::SecuredController
     @address.real_estate = @real_estate
 
     if @address.save
-      redirect_to_step('information')
+      redirect_to_step(next_step_after('address'))
     else
       render 'new'
     end
@@ -29,13 +29,13 @@ class Cms::AddressesController < Cms::SecuredController
 
   def update
     if @address.update_attributes(params[:address])
-      redirect_to_step('information')
+      redirect_to_step(next_step_after('address'))
     else
       render 'edit'
-    end    
+    end
   end
-  
+
   def show
   end
-  
+
 end
