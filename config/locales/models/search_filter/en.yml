@@ -1,9 +1,9 @@
 en:
   activemodel:
     models:
-      search_filter: 'Suchfilter'
+      search/filter: 'Suchfilter'
     attributes:
-      search_filter:
+      search/filter:
         cantons: 'Canton'
         cities: 'City'
         offer: 'Angebotstyp'
