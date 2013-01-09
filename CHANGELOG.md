@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.3.1 on 2013-01-09
+* Fix: update rails to 3.1.10 for params parsing vulnerability
+
 ### v2.3 on 2012-12-13
 * Add new board members: A. Bult, I. Hardegger, U. Moser, T. Rüppel
 
