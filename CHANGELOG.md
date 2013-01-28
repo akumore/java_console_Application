@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.3.2 on 2013-01-28
+* Fix: apply new immoscout accounts to config
+* Fix: add address to office and include in external real estate export
+
 ### v2.3.1 on 2013-01-09
 * Fix: update rails to 3.1.10 for params parsing vulnerability
 
