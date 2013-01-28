@@ -407,14 +407,14 @@ module Export::Idx301
     def rent_net
       #  int(10) round up / selling_price OR rent_net  is mandatory / empty="by request"
       rent = model.try(:pricing).try(:for_rent_netto).presence
-      rent.present? ? BigDecimal.new(rent).ceil.to_i : nil
+      rent.present? ? BigDecimal.new(rent.to_s).ceil.to_i : nil
     end
 
     def rent_extra
       #  int(10) round up
       unless model.for_work_or_storage?
         extra = model.try(:pricing).try(:for_rent_extra).presence
-        extra.present? ? BigDecimal.new(extra).ceil.to_i : nil
+        extra.present? ? BigDecimal.new(extra.to_s).ceil.to_i : nil
       end
     end
 
