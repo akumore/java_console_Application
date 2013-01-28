@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.3.3 on 2013-01-28
+* Fix: rounding error exception in export when using big decimals
+
 ### v2.3.2 on 2013-01-28
 * Fix: apply new immoscout accounts to config
 * Fix: add address to office and include in external real estate export
