@@ -8,4 +8,6 @@ fr:
       working: 'Travailler'
       build_title: 'Pour que votre projet de construction soit une réussite'
       build_link: 'Nos prestations'
-
+      project_development: 'Projektentwicklung'
+      new_building: 'Neubau'
+      rebuilding: 'Umbau'

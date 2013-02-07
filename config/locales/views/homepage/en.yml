@@ -8,4 +8,6 @@ en:
       working: 'Commercial'
       build_title: 'Damit ihr Bauprojekt gelingt'
       build_link: 'Our services'
-
+      project_development: 'Projektentwicklung'
+      new_building: 'Neubau'
+      rebuilding: 'Umbau'
