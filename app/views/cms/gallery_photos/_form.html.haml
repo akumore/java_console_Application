@@ -1,0 +1,20 @@
+= form_for [:cms, @gallery_photo], :html => { :multipart => true } do |f|
+  = render 'cms/shared/errors', :model => @gallery_photo
+
+  %fieldset.push-checkboxes-down
+    .control-group
+      = f.label :title
+      .controls
+        = f.text_field :title, :class => 'span8'
+    .control-group
+      = f.label :image
+      .controls
+        = f.file_field :image
+        = f.hidden_field :image_cache
+
+        - if @gallery_photo.image.present?
+          .well
+            = image_tag @gallery_photo.image.contact.url
+
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
