@@ -1,0 +1,14 @@
+de:
+  cms:
+    gallery_photos:
+      index:
+        new: 'Neues Foto erfassen'
+        edit: 'Editieren'
+        confirm_delete: 'Das Foto %{title} wirklich löschen?'
+        destroy: 'Löschen'
+      create:
+        success: 'Foto erfolgreich angelegt'
+      update:
+        success: 'Foto erfolgreich aktualisiert'
+      destroy:
+        success: 'Foto erfolgreich gelöscht'
