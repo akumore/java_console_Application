@@ -6,12 +6,14 @@ class ReferenceProjectDecorator < ApplicationDecorator
   decorates_association :real_estate
 
   def is_wide_content?
-    if model.has_attribute?(:descirption)
-      description.present? && description.length > 150
-    end
+    description.present? && description.length > 150
   end
 
   def title
     truncate(model.title, :length => 40)
+  end
+
+  def gallery_photo?
+    model.instance_of?(GalleryPhoto)
   end
 end
