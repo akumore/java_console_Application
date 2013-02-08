@@ -7,8 +7,13 @@
           = reference_project_image_caption_div reference_project do
             .image-caption-text
               %h3= reference_project.title
-              -if reference_project.real_estate.present? and reference_project.real_estate.published? and reference_project.real_estate.is_website?
-                %p=link_to(t('reference_projects.link_title'), real_estate_path(reference_project.real_estate, :offer => reference_project.real_estate.offer, :utilization => reference_project.real_estate.utilization))
-              -if reference_project.url.present?
-                %p=link_to(t('reference_projects.project_website_link'), reference_project.url)
-              %p= reference_project.description
+              - if reference_project.has_attribute?(:real_estate)
+                -if reference_project.real_estate.present? and reference_project.real_estate.published? and reference_project.real_estate.is_website?
+                  %p=link_to(t('reference_projects.link_title'), real_estate_path(reference_project.real_estate, :offer => reference_project.real_estate.offer, :utilization => reference_project.real_estate.utilization))
+
+              - if reference_project.has_attribute?(:url)
+                -if reference_project.url.present?
+                  %p=link_to(t('reference_projects.project_website_link'), reference_project.url)
+
+              - if reference_project.has_attribute?(:description)
+                %p= reference_project.description

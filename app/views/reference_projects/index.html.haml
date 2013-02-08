@@ -1,0 +1,5 @@
+.search-container.clearfix
+  .container.clearfix
+    - unless @gallery_photos.empty?
+      .container.reference-projects-slider
+        = render 'slider', :projects => @gallery_photos
