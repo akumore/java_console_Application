@@ -63,6 +63,7 @@ AlfredMueller::Application.routes.draw do
     resource :job_application, :only => [:new, :create]
     resource :contact, :only => [:new, :create]
     resources :news_items, :only => :index
+    resources :reference_projects, :only => :index
   end
 
   scope ':locale' do
