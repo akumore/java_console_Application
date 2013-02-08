@@ -2,3 +2,8 @@ de:
   reference_projects:
     link_title: 'Zum Projekt'
     project_website_link: 'Zur Projektwebseite'
+    section:
+      residental_building: 'Wohnhäuser'
+      business_building: 'Geschäftshäuser'
+      public_building: 'öffentliche Bauten'
+      rebuilding: 'Umbauten'

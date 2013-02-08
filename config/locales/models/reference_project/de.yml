@@ -9,6 +9,7 @@ de:
         image: 'Bild'
         url: 'Projektwebseite'
         offer: 'Angebotstyp'
+        section: 'Bereich'
         utilization: 'Gebäudenutzung'
         real_estate: 'Immobilie'
 
