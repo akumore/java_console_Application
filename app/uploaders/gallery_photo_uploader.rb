@@ -7,8 +7,12 @@ class GalleryPhotoUploader < BaseUploader
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  version :contact do
-    process :resize_to_fill => [1000, 500]
+  version :preview do
+    process :resize_to_fill => [500,250]
+  end
+
+  version :gallery do
+    process :resize_to_fill => [1000,500]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
