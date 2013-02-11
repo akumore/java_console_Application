@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ReferenceProject do
 
   let :valid_reference_project do
-    ReferenceProject.create(:title => 'title', :description => 'description', :image => File.open("#{Rails.root}/spec/support/test_files/image.jpg"))
+    ReferenceProject.create(:title => 'title', :description => 'description', :section => ReferenceProjectSection::RESIDENTIAL_BUILDING, :image => File.open("#{Rails.root}/spec/support/test_files/image.jpg"))
   end
 
   describe 'initialize without any attributes' do
@@ -23,9 +23,13 @@ describe ReferenceProject do
       @reference_project.should have(1).error_on(:image)
     end
 
-    it 'has 2 errors' do
+    it 'requires a section' do
+      @reference_project.should have(1).error_on(:section)
+    end
+
+    it 'has 3 errors' do
       @reference_project.valid?
-      @reference_project.errors.should have(2).items
+      @reference_project.errors.should have(3).items
     end
   end
 
