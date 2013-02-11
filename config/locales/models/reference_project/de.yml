@@ -8,6 +8,7 @@ de:
         description: 'Beschreibung'
         image: 'Bild'
         url: 'Projektwebseite'
+        attachment: 'Dokument'
         offer: 'Angebotstyp'
         section: 'Bereich'
         utilization: 'Gebäudenutzung'
