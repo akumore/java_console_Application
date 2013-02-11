@@ -50,6 +50,20 @@
         = f.select :real_estate_id, @real_estates.collect {|p| [ p.title, p.id ]}, { :include_blank => true }
 
     .control-group
+      = f.label :attachment
+      .controls
+        = f.file_field :attachment
+
+        .well
+          = f.hidden_field :attachment_cache
+          - if @reference_project.attachment.present?
+            %p
+              = link_to t('.show_attachment'), @reference_project.attachment.url, :target => '_blank'
+            %label.inline
+              = f.check_box :remove_attachment
+              %span= t('.remove_attachment')
+
+    .control-group
       = f.label :image
       .controls
         = f.file_field :image
