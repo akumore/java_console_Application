@@ -3,7 +3,13 @@ require 'spec_helper'
 describe ReferenceProject do
 
   let :valid_reference_project do
-    ReferenceProject.create(:title => 'title', :description => 'description', :section => ReferenceProjectSection::RESIDENTIAL_BUILDING, :image => File.open("#{Rails.root}/spec/support/test_files/image.jpg"))
+    ReferenceProject.create(:title => 'title',
+                            :description => 'description',
+                            :construction_info => 'Construction Info',
+                            :section => ReferenceProjectSection::RESIDENTIAL_BUILDING,
+                            :attachment => File.open("#{Rails.root}/spec/support/test_files/document.pdf"),
+                            :image => File.open("#{Rails.root}/spec/support/test_files/image.jpg")
+                           )
   end
 
   describe 'initialize without any attributes' do
