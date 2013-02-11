@@ -13,6 +13,7 @@ class ReferenceProject
   field :section,     :type => String
   field :url,         :type => String
   field :locale,      :type => String, :default => 'de'
+  field :attachment,  :type => String
   field :image,       :type => String
   field :position,    :type => Integer
 
@@ -22,6 +23,7 @@ class ReferenceProject
   validates_length_of :description, maximum: 500
 
   mount_uploader :image, ReferenceProjectImageUploader
+  mount_uploader :attachment, ReferenceProjectAttachmentUploader
 
   before_create :setup_position
 
@@ -37,5 +39,4 @@ class ReferenceProject
   def setup_position
     self.position = ReferenceProject.max(:position) || 0 + 1
   end
-
 end
