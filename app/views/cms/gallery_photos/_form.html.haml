@@ -14,7 +14,7 @@
 
         - if @gallery_photo.image.present?
           .well
-            = image_tag @gallery_photo.image.contact.url
+            = image_tag @gallery_photo.image.preview.url
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
