@@ -1,8 +1,10 @@
-.reference-projects-container
-  = render 'reference_project', :reference_projects => @reference_projects
+- unless @reference_projects.empty?
+  .reference-projects-container
+    = render 'reference_project', :reference_projects => @reference_projects
 
-  .load-more
-    = link_to t('reference_projects.index.load_more'), reference_projects_path, :remote => true
+    - if @reference_projects.size > 4
+      .load-more
+        = link_to t('reference_projects.index.load_more'), reference_projects_path, :remote => true
 
 - unless @gallery_photos.empty?
   .search-container.clearfix
