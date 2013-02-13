@@ -4,3 +4,4 @@ it:
     project_website_link: 'Alla pagina web'
     index:
       documentation_link: 'Dokumentation'
+      load_more: 'Mehr anzeigen'
