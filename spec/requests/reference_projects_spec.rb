@@ -48,7 +48,7 @@ describe ReferenceProject do
       end
 
       it "shows no gallery photos slider" do
-        page.should_not have_selector('gallery-photos-slider')
+        page.should_not have_selector('.gallery-photos-slider')
       end
     end
   end
