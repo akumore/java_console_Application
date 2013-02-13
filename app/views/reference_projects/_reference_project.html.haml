@@ -1,0 +1,13 @@
+- reference_projects.in_groups_of(2, false).each do |reference_project_group|
+  .row
+    - reference_project_group.each do |reference_project|
+      .reference-project
+        = image_tag reference_project.image.gallery.url
+        .reference-project-description
+          %h4= reference_project.title
+
+          - if reference_project.construction_info.present?
+            %p= reference_project.construction_info
+
+          - if reference_project.attachment.present?
+            = link_to t('reference_projects.index.documentation_link'), reference_project.attachment.url, :class => 'icon icon-pdf', :target => '_blank'
