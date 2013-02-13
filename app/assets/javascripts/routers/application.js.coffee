@@ -60,7 +60,7 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
       $(".sub-navigation").each ->
         new AlfredMueller.Views.Subnavigation(el: $(this))
 
-    $(".reference-projects-slider .flexslider, .services-slides-container .flexslider, .job-profile-slides-container .flexslider").flexslider(
+    $(".reference-projects-slider .flexslider, .services-slides-container .flexslider, .job-profile-slides-container .flexslider, .gallery-photos-slider .flexslider").flexslider(
       directionNav: true,
       controlNav: false,
       slideshow: false,
