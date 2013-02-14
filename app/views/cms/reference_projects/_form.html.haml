@@ -59,9 +59,9 @@
       .controls
         = f.file_field :attachment
 
-        .well
-          = f.hidden_field :attachment_cache
-          - if @reference_project.attachment.present?
+        - if @reference_project.attachment.present?
+          .well
+            = f.hidden_field :attachment_cache
             %p
               = link_to t('.show_attachment'), @reference_project.attachment.url, :target => '_blank'
             %label.inline
