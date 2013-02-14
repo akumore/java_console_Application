@@ -46,17 +46,22 @@
     .controls
       = f.select :contact_id, Employee.all.order([:lastname, :asc]).map { |e| [e.fullname_reversed, e.id]}, :prompt => 'Kontaktperson auswählen', :class => 'span8'
 
-  - if accessible?(:title_and_description)
-    %fieldset
+  %fieldset
+    - if accessible?(:title)
       %legend Titel und Beschreibungen
-      .control-group{ :class => "#{@real_estate.parking_utilization? ? '' : 'mandatory'}" }
+    - else
+      %legend Beschreibungen
+    - if accessible?(:title)
+      .control-group{ :class => "#{@real_estate.parking? ? '' : 'mandatory'}" }
         = f.label :title
         .controls
           = f.text_field :title, :class => 'span8'
-      .control-group.mandatory
+    - if accessible?(:description)
+      .control-group{ :class => "#{@real_estate.parking? ? '' : 'mandatory'}" }
         = f.label :description
         .controls
           = f.text_area :description, :class => 'span8'
+    - if accessible?(:utilization_description)
       .control-group
         = f.label :utilization_description
         .controls

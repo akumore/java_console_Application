@@ -44,6 +44,7 @@ class RealEstate
   embeds_many :floor_plans, :class_name => 'MediaAssets::FloorPlan', :cascade_callbacks => true
   embeds_many :videos, :class_name => 'MediaAssets::Video', :cascade_callbacks => true
   embeds_many :documents, :class_name => 'MediaAssets::Document', :cascade_callbacks => true
+
   accepts_nested_attributes_for :images
   accepts_nested_attributes_for :floor_plans
   accepts_nested_attributes_for :videos
@@ -62,8 +63,8 @@ class RealEstate
   validates :category_id, :presence => true
   validates :utilization, :presence => true
   validates :offer, :presence => true
-  validates :title, :presence => true, :unless => :parking_utilization?
-  validates :description, :presence => true
+  validates :title, :presence => true, :unless => :parking?
+  validates :description, :presence => true, :unless => :parking?
   validates :office_id, :presence => true
 
   after_initialize :init_channels

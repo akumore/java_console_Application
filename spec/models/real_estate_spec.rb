@@ -42,6 +42,20 @@ describe RealEstate do
       @real_estate.valid?
       @real_estate.errors.should have(7).items
     end
+
+    context 'when having a parking utilization' do
+      before do
+        @real_estate.stub(:utilization).and_return(Utilization::PARKING)
+      end
+
+      it 'doesnt require a description' do
+        @real_estate.should_not have(1).error_on(:description)
+      end
+
+      it 'doesnt require a title' do
+        @real_estate.should_not have(1).error_on(:description)
+      end
+    end
   end
 
   describe '#handout' do
@@ -460,5 +474,4 @@ describe RealEstate do
       real_estate.to_model_access.should be_a(ModelAccess)
     end
   end
-
 end
