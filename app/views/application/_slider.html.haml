@@ -8,11 +8,12 @@
             .image-caption-text
               %h3= reference_project.title
 
-              - unless reference_project.gallery_photo?
-                -if reference_project.real_estate.present? and reference_project.real_estate.published? and reference_project.real_estate.is_website?
+              - if reference_project.respond_to?(:real_estate)
+                - if reference_project.real_estate.present? && reference_project.real_estate.published? && reference_project.real_estate.is_website?
                   %p=link_to(t('reference_projects.link_title'), real_estate_path(reference_project.real_estate, :offer => reference_project.real_estate.offer, :utilization => reference_project.real_estate.utilization))
 
-                -if reference_project.url.present?
+                - if reference_project.url.present?
                   %p=link_to(t('reference_projects.project_website_link'), reference_project.url)
 
-                %p= reference_project.description
+                - if reference_project.description.present?
+                  %p= reference_project.description
