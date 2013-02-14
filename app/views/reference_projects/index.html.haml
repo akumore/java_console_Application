@@ -4,7 +4,7 @@
 
     - if @reference_projects.size > 4
       .load-more
-        = link_to t('reference_projects.index.load_more'), reference_projects_path, :remote => true
+        = link_to t('pages.show.more'), reference_projects_path, :remote => true, :class => 'more'
 
 - unless @gallery_photos.empty?
   .search-container.clearfix
