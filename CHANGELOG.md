@@ -1,5 +1,35 @@
 # CHANGELOG
 
+### v2.4.0 on 2013-02-14
+* Add new parking & storage utilization
+* New implemented stories:
+  #### 1 Lagern als zusätzliche Gebäudenutzungen
+
+  * Als Editor möchte ich Immobilien der Gebäudenutzung "Lagern" zuweisen
+
+  #### 2 Parkieren als zusätzliche Gebäudenutzungen
+
+  * Als Editor möchte ich Immobilien der Gebäudenutzung "Parkieren" zuweisen
+  * Als Besucher möchte ich die Parkplatzangebote nicht sortieren können
+  * Als Editor soll der Titel für Parkplatzangebote automatisch aus der Objekt-Art generiert werden
+  * Als Besucher möchte ich für Parkplatzangebote ein spezifisches Symbolbild nach Objekt-Art sehen
+  * Als Editor möchte ich nur die Preise für Parkplätze eingeben im Nutzungstyp "Parkieren"
+  * Als Editor möchte ich das Geschoss in den Immobilieninfos nicht für einen Parkplatz angeben müssen
+  * Als Editor möchte ich den Geschossbereich in den Immobilieninfos nicht für einen Parkplatz angeben müssen
+  * Als Editor möchte ich bei Immobilien der Gebäudenutzung "Parkieren" nur benötigte Felder sehen
+
+  #### 3 Ausbau für die zusätzlichen Gebäudenutzungen "Lagern" und "Parkieren"
+
+  * Als Besucher möchte ich die Tabs "Wohnen", "Arbeiten", "Lagern", "Parkieren" nur im im Starseiten-Slider sehen, wenn es entsprechende Angebote gibt
+  * **ToDo:** Übersetzungen
+
+  #### 4 Angebotsliste auf der Webseite
+
+  * Als Besucher möchte ich eine vereinfachte Sortierung der Angebotsliste "Wohnen" erhalten
+  * Als Besucher möchte ich eine übersichtlichere Angebotsliste sehen können.
+  * Als Besucher möchte ich die Tabs "Wohnen", "Arbeiten", "Lagern", "Parkieren" nur sehen, wenn es entsprechende Angebote gibt
+  * Als Besucher möchte ich besser zwischen den Bereichen Wohnen, Arbeiten, Lagern und Parkieren unterscheiden können
+
 ### v2.3.1 on 2013-01-09
 * Fix: update rails to 3.1.10 for params parsing vulnerability
 
