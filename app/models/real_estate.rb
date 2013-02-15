@@ -96,6 +96,14 @@ class RealEstate
     %w(address pricing figure information)
   end
 
+  def validate_figure_in_editing_state?
+    state_changed? && !parking?
+  end
+
+  def validate_figure_in_published_state?
+    !parking?
+  end
+
   state_machine :state, :initial => :editing do
 
     state :editing
@@ -109,13 +117,13 @@ class RealEstate
       # :unless => :new_record? # ...otherwise the fabricator can't create real estates 'in_review', any idea?
       validates :address, :presence => true, :if => :state_changed?, :unless => :new_record?
       validates :pricing, :presence => true, :if => :state_changed?, :unless => :new_record?
-      validates :figure, :presence => true, :if => :state_changed?, :unless => :new_record?
+      validates :figure, :presence => true, :if => :validate_figure_in_editing_state?, :unless => :new_record?
       validates :information, :presence => true, :if => :state_changed?, :unless => :new_record?
 
       # :if => :state_changed? # Allows admin to save real estate in_review state
       validates_associated :address, :if => :state_changed?
       validates_associated :pricing, :if => :state_changed?
-      validates_associated :figure, :if => :state_changed?
+      validates_associated :figure, :if => :validate_figure_in_editing_state?
       validates_associated :information, :if => :state_changed?
     end
 
@@ -123,12 +131,12 @@ class RealEstate
       # :unless=>:new_record? # ...otherwise the fabricator can't create real estates in 'published' state, any idea?
       validates :address, :presence => true, :unless => :new_record?
       validates :pricing, :presence => true, :unless => :new_record?
-      validates :figure, :presence => true, :unless => :new_record?
+      validates :figure, :presence => true, :if => :validate_figure_in_published_state?, :unless => :new_record?
       validates :information, :presence => true, :unless => :new_record?
 
       validates_associated :address
       validates_associated :pricing
-      validates_associated :figure
+      validates_associated :figure, :if => :validate_figure_in_published_state?
       validates_associated :information
     end
 

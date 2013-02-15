@@ -474,4 +474,43 @@ describe RealEstate do
       real_estate.to_model_access.should be_a(ModelAccess)
     end
   end
+
+  describe '#validate_figure_in_editing_state?' do
+    let :real_estate do
+      RealEstate.new.tap do |r|
+        r.stub(:parking).and_return(false)
+        r.stub(:state_changed?).and_return(true)
+      end
+    end
+
+    it 'returns true' do
+      real_estate.validate_figure_in_editing_state?.should be_true
+    end
+
+    context 'when having the parking utilization' do
+      it 'returns false' do
+        real_estate.stub(:parking?).and_return(true)
+        real_estate.validate_figure_in_editing_state?.should be_false
+      end
+    end
+  end
+
+  describe '#validate_figure_in_published_state?' do
+    let :real_estate do
+      RealEstate.new.tap do |r|
+        r.stub(:parking).and_return(false)
+      end
+    end
+
+    it 'returns true' do
+      real_estate.validate_figure_in_published_state?.should be_true
+    end
+
+    context 'when having the parking utilization' do
+      it 'returns false' do
+        real_estate.stub(:parking?).and_return(true)
+        real_estate.validate_figure_in_published_state?.should be_false
+      end
+    end
+  end
 end
