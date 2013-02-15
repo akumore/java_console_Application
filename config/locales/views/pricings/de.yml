@@ -21,7 +21,7 @@ de:
         year_m2: '%{price} / m² / Jahr'
         sell: '%{price}'
         sell_m2: '%{price} / m²'
-    title: 'Preise'
+    title: 'Preise/Bezug'
     for_rent_netto: 'Miete (ohne Nebenkosten)'
     for_rent_extra: 'Nebenkosten'
     for_rent_depot: 'Mietzinsdepot'

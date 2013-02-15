@@ -9,7 +9,7 @@ fr:
         year_m2: '%{price} / m² / annuel'
         sell: '%{price}'
         sell_m2: '%{price} / m²'
-    title: 'Prix'
+    title: 'Prix/Disponible'
     for_rent_netto: 'Location (sans charges)'
     for_rent_extra: 'Charges'
     for_rent_depot: 'Garantie de loyer'
