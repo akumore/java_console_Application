@@ -24,7 +24,7 @@
                     %br
                     = real_estate.address.compressed_city
                   .col.middle
-                    - if real_estate.utilization == Utilization::PARKING
+                    - if real_estate.parking?
                       %br
                     - else
                       - if real_estate.figure.try(:rooms).present?

@@ -20,6 +20,7 @@ class AddressDecorator < ApplicationDecorator
   end
 
   def compressed_city
+    # without zip
     [model.city, model.canton.upcase].compact.join ' '
   end
 end

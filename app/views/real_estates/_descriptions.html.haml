@@ -1,10 +1,10 @@
 .accordion-item
   .title= t('additional_descriptions.title')
   .content
-    - if @real_estate.description.present?
+    - if real_estate.description.present?
       = markdown real_estate.description
 
-    - if additional_description.present? && real_estate.utilization != Utilization::PARKING
+    - if additional_description.present? && !real_estate.parking?
 
       - if additional_description.location.present?
         %h3= t('additional_descriptions.location')
