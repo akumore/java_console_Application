@@ -474,4 +474,59 @@ describe RealEstate do
       real_estate.to_model_access.should be_a(ModelAccess)
     end
   end
+
+  describe '#any_descriptions?' do
+    let :real_estate do
+      RealEstate.new(:description => 'stuff',
+                     :additional_description => AdditionalDescription.new(:location => 'Location description',
+                                                                           :interior => 'Interior description')
+                    )
+    end
+
+    context 'when description is given' do
+      it 'returns true' do
+        real_estate.any_descriptions?.should be_true
+      end
+    end
+
+    context 'when additional descriptions are given' do
+      it 'returns true' do
+        real_estate.any_descriptions?.should be_true
+      end
+
+      context 'when no main description is given' do
+        it 'returns true' do
+          real_estate.stub(:description).and_return('')
+          real_estate.any_descriptions?.should be_true
+        end
+      end
+
+      context 'when parking without main description' do
+        it 'returns false' do
+          real_estate.stub(:description).and_return('')
+          real_estate.stub(:parking?).and_return(true)
+          real_estate.any_descriptions?.should be_false
+        end
+      end
+    end
+
+    context 'when parking' do
+      before do
+        real_estate.stub(:parking?).and_return(true)
+      end
+
+      context 'when having a description' do
+        it 'returns true' do
+          real_estate.any_descriptions?.should be_true
+        end
+      end
+
+      context 'when having no description' do
+        it 'returns false' do
+          real_estate.stub(:description).and_return('')
+          real_estate.any_descriptions?.should be_false
+        end
+      end
+    end
+  end
 end

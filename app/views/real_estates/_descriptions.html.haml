@@ -1,7 +1,8 @@
 .accordion-item
   .title= t('additional_descriptions.title')
   .content
-    = markdown real_estate.description
+    - if @real_estate.description.present?
+      = markdown real_estate.description
 
     - if additional_description.present? && real_estate.utilization != Utilization::PARKING
 

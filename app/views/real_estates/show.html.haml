@@ -49,7 +49,7 @@
 
   .description
     .accordion.accordion-classical{ 'data-open_first' => 1 }
-      - if @real_estate.description.present?
+      - if @real_estate.any_descriptions?
         = render 'descriptions', :real_estate => @real_estate, :additional_description => @real_estate.additional_description
 
       - if @real_estate.information.present? || @real_estate.figure.present?
