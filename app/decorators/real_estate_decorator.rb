@@ -118,7 +118,7 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def application_form_link
-    if model.for_rent?
+    if model.for_rent? && model.utilization != Utilization::PARKING
       link = if model.private_utilization?
         if I18n.locale == :it
           '/documents/it/Formulario-di-contatto-Affittare-Abitare.pdf'
