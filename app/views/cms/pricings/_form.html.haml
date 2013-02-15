@@ -19,7 +19,7 @@
         = f.label :for_rent_netto
         .controls
           = f.text_field :for_rent_netto, :class => 'span8'
-      .control-group.mandatory
+      .control-group{ :class => (@pricing.for_rent_extra_is_mandatory? ? 'mandatory' : '') }
         = f.label :for_rent_extra
         .controls
           = f.text_field :for_rent_extra, :class => 'span8'

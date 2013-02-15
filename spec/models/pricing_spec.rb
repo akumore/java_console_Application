@@ -98,4 +98,35 @@ describe Pricing do
       pricing.for_rent_brutto.should be(1140)
     end
   end
+
+  describe '#for_rent_extra_is_mandatory?' do
+    let :pricing do
+      Pricing.new.tap do |p|
+        p.stub(:parking?).and_return(false)
+        p.stub(:for_rent?).and_return(false)
+        p.stub(:for_sale?).and_return(true)
+      end
+    end
+
+    context 'when for sale' do
+      it 'returns false' do
+        pricing.for_rent_extra_is_mandatory?.should be_false
+      end
+    end
+
+    context 'when for rent' do
+      it 'returns true' do
+        pricing.stub(:for_rent?).and_return(true)
+        pricing.stub(:for_sale?).and_return(false)
+        pricing.for_rent_extra_is_mandatory?.should be_true
+      end
+
+      context 'when for parking' do
+        it 'returns false' do
+          pricing.stub(:parking?).and_return(true)
+          pricing.for_rent_extra_is_mandatory?.should be_false
+        end
+      end
+    end
+  end
 end

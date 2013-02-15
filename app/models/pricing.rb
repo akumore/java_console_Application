@@ -19,7 +19,8 @@ class Pricing
   field :opted, :type => Boolean # Optiert, entscheidet ob MwST angezeigt wird
 
   validates :for_rent_netto, :presence => true, :numericality => true, :if => :for_rent?
-  validates :for_rent_extra, :presence => true, :numericality => true, :if => :for_rent?
+  validates :for_rent_extra, :presence => true, :if => :for_rent_extra_is_mandatory?
+  validates :for_rent_extra, :numericality => true, :if => :for_rent?
   validates :for_sale, :presence => true, :numericality => true, :if => :for_sale?
 
   validates :inside_parking, :outside_parking, :inside_parking_temporary,
@@ -41,5 +42,9 @@ class Pricing
 
   def allowed_price_units
     PriceUnit.all_by_offer_and_utilization(_parent.offer, _parent.utilization)
+  end
+
+  def for_rent_extra_is_mandatory?
+    for_rent? && !parking?
   end
 end

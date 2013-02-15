@@ -8,10 +8,7 @@ class Cms::PricingsController < Cms::SecuredController
     redirect_to cms_real_estate_pricing_path(@real_estate), :alert => exception.message
   end
 
-
   def new
-    @pricing = Pricing.new
-    respond_with @pricing
   end
 
   def edit
