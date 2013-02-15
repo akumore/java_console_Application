@@ -93,9 +93,9 @@ describe "RealEstates" do
         page.should have_content real_estate.title
       end
 
-      it "shows the category" do
+      it "does not show the category" do
         visit real_estates_path
-        page.should have_content real_estate.category.label
+        page.should_not have_content real_estate.category.label
       end
 
       it "shows the address" do
