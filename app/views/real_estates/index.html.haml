@@ -34,11 +34,9 @@
                         = real_estate.figure.floor
                   .col.last
                     = real_estate.pricing.list_price
+                    %br
                     - if real_estate.information.present?
                       = real_estate.information.available_from_compact
-                      %br
-                    - if real_estate.figure.try(:surface).present?
-                      = real_estate.figure.surface
                   .clear
 
 
