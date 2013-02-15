@@ -1,11 +1,12 @@
 # CHANGELOG
 
-### v2.4.0 on 2013-02-14
+### features/new_storage_and_parking_utilization
 * Add new parking & storage utilization
 * New implemented stories:
   #### 1 Lagern als zusätzliche Gebäudenutzungen
 
   * Als Editor möchte ich Immobilien der Gebäudenutzung "Lagern" zuweisen
+  * Als Besucher und Leser möchte ich nur die relevanten Infos sehen für Angebote des Nutzungstyps "Lagern"
 
   #### 2 Parkieren als zusätzliche Gebäudenutzungen
 
