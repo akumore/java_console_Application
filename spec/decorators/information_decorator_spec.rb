@@ -21,7 +21,7 @@ describe InformationDecorator do
 
   context 'with an estimate avilability date' do
     it 'has the formatted availability date' do
-      @information.available_from_compact.should == 'Bezug ab Mai 2012'
+      @information.available_from_compact.should == 'ab Mai 2012'
     end
 
     it 'has the pure availability date' do
@@ -36,7 +36,7 @@ describe InformationDecorator do
 
     it 'has the formatted availability date' do
       @real_estate.information.stub!(:available_from).and_return(Date.parse('20.05.2030'))
-      @information.available_from_compact.should == 'Bezug ab 20.05.2030'
+      @information.available_from_compact.should == 'ab 20.05.2030'
     end
 
     it 'has the pure availability date' do

@@ -49,12 +49,13 @@
 
   .description
     .accordion.accordion-classical{ 'data-open_first' => 1 }
-      = render 'descriptions', :real_estate => @real_estate, :additional_description => @real_estate.additional_description
+      - if @real_estate.any_descriptions?
+        = render 'descriptions', :real_estate => @real_estate, :additional_description => @real_estate.additional_description
 
       - if @real_estate.information.present? || @real_estate.figure.present?
         = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
 
-      = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
+      = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing, :information => @real_estate.information
 
       - if @real_estate.infrastructure.present?
         = render 'infrastructure', :real_estate => @real_estate, :infrastructure => @real_estate.infrastructure

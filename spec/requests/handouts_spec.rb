@@ -233,7 +233,7 @@ describe "Handout aka MiniDoku" do
     end
 
     it 'shows the availability date' do
-      page.should have_content 'Bezug ab'
+      page.should have_content 'Bezug'
       page.should have_content 'Mitte Mai'
     end
 

@@ -29,5 +29,4 @@ module RealEstatesHelper
   def caption_css_class_for_text(text)
     text.length > 25 ? 'flex-caption wide' : 'flex-caption'
   end
-
 end

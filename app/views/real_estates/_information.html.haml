@@ -1,11 +1,6 @@
 .accordion-item
   .title= t('information.title')
   .content
-    - if information && information.available_from.present?
-      %dl
-        %dt= t('information.available_from')
-        %dd= information.available_from
-
     - if figure && real_estate.private_utilization?
       - if figure.floor.present?
         %dt= t('figures.floor')

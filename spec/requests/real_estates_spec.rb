@@ -93,9 +93,9 @@ describe "RealEstates" do
         page.should have_content real_estate.title
       end
 
-      it "shows the category" do
+      it "does not show the category" do
         visit real_estates_path
-        page.should have_content real_estate.category.label
+        page.should_not have_content real_estate.category.label
       end
 
       it "shows the address" do
@@ -115,14 +115,14 @@ describe "RealEstates" do
         page.should have_content "#{real_estate.figure.floor}. Obergeschoss"
       end
 
-      it "shows the size of the living area" do
+      it "does not show the size of the living area" do
         visit real_estates_path
-        page.should have_content real_estate.figure.living_surface
+        page.should_not have_content real_estate.figure.living_surface
       end
 
       it "shows the availability date" do
         visit real_estates_path
-        page.should have_content "Bezug ab sofort"
+        page.should have_content "ab sofort"
       end
 
       it "shows the localized price for sale" do

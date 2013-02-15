@@ -199,6 +199,18 @@ class RealEstate
     ModelAccess.new(offer, utilization, ModelAccess.cms_blacklist)
   end
 
+  def any_descriptions?
+    if parking?
+      description.present?
+    else
+      description.present? ||
+      additional_description.location.present? ||
+      additional_description.interior.present? ||
+      additional_description.offer.present? ||
+      additional_description.infrastructure.present?
+    end
+  end
+
   private
   def init_channels
     self.channels ||= []
@@ -207,5 +219,4 @@ class RealEstate
   def set_category_label
     self.category_label_translations = self.category.label_translations if category.present?
   end
-
 end
