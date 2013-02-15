@@ -52,8 +52,8 @@ class RealEstateDecorator < ApplicationDecorator
     buffer = []
     buffer << utilization_description
 
-    if model.pricing.present?
-      buffer << pricing.price if pricing.price.present?
+    if figure.present?
+      buffer << figure.rooms if figure.rooms.present?
     end
 
     buffer.join(tag('br')).html_safe
@@ -63,7 +63,7 @@ class RealEstateDecorator < ApplicationDecorator
     buffer = []
 
     if figure.present?
-      buffer << figure.rooms if figure.rooms.present?
+      buffer << figure.surface if figure.surface.present?
       buffer << figure.floor if figure.floor.present?
     end
 
@@ -73,8 +73,8 @@ class RealEstateDecorator < ApplicationDecorator
   def short_info_size
     buffer = []
 
-    if figure.present?
-      buffer << figure.surface if figure.surface.present?
+    if model.pricing.present?
+      buffer << pricing.price if pricing.price.present?
     end
 
     if information.try(:available_from_compact).present?

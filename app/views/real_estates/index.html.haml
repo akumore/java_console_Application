@@ -20,20 +20,20 @@
                   .title
                     = real_estate.title
                   .col.first
-                    = real_estate.category.label
-                    %br
                     = real_estate.address.street
                     %br
-                    = real_estate.address.extended_city
+                    = real_estate.address.compressed_city
                   .col.middle
-                    = real_estate.pricing.list_price
-                    %br
-                    - if real_estate.figure.try(:rooms).present?
-                      = real_estate.figure.rooms
+                    - if real_estate.utilization == Utilization::PARKING
                       %br
-                    - if real_estate.figure.try(:floor).present?
-                      = real_estate.figure.floor
+                    - else
+                      - if real_estate.figure.try(:rooms).present?
+                        = real_estate.figure.rooms
+                        %br
+                      - if real_estate.figure.try(:floor).present?
+                        = real_estate.figure.floor
                   .col.last
+                    = real_estate.pricing.list_price
                     - if real_estate.information.present?
                       = real_estate.information.available_from_compact
                       %br
