@@ -5,7 +5,9 @@ module Search
 
     def initialize(utilization)
       @fields = {
-        Utilization::LIVING => %w(rooms price available_from category)
+        Utilization::LIVING => %w(rooms price available_from category),
+        Utilization::STORING => %w(usable_surface floor available_from),
+        Utilization::PARKING => %w()
         # add more cases here
       }.fetch(utilization.presence, %w(usable_surface floor price available_from))
     end
