@@ -30,9 +30,6 @@ class Information
   field :has_sewage_supply, :type => Boolean
   field :is_developed, :type => Boolean
   field :is_under_building_laws, :type => Boolean
-  field :minimum_rental_period, :type => String
-  field :notice_dates, :type => String
-  field :notice_period, :type => String
 
   validates_numericality_of :freight_elevator_carrying_capacity, :number_of_restrooms, :maximal_floor_loading, :greater_than_or_equal_to=>0, :allow_nil=>true
   validates :available_from, :presence => true
