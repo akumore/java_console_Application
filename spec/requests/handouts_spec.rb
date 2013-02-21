@@ -168,28 +168,12 @@ describe "Handout aka MiniDoku" do
         page.should have_content 'CHF 100.00 / Monat'
       end
 
-      it "shows the price of the temporary inside parking lot if available" do
-        @pricing.update_attribute :inside_parking_temporary, 50
-        visit real_estate_handout_path(@real_estate)
-
-        page.should have_content 'Parkplatz in Autoeinstellhalle temporär'
-        page.should have_content 'CHF 50.00 / Monat'
-      end
-
       it "shows the price of the outside parking lot if available" do
         @pricing.update_attribute :outside_parking, 80
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz im Freien'
         page.should have_content 'CHF 80.00 / Monat'
-      end
-
-      it "shows the price of the temporary outside parking lot if available" do
-        @pricing.update_attribute :outside_parking_temporary, 20
-        visit real_estate_handout_path(@real_estate)
-
-        page.should have_content 'Parkplatz im Freien temporär'
-        page.should have_content 'CHF 20.00 / Monat'
       end
 
       it "shows the rent depot price" do

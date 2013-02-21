@@ -56,26 +56,44 @@
           = f.text_field :extra_storage, :class => 'span8'
 
     - if accessible?(:parking_spots_prices_group)
-      %fieldset.inside-parking
-        %legend Parkplatzpreise in Auto-Einstellhalle
+      %fieldset.parking-spots-prices-group
+        %legend Mietzins für Parkplätze
+
         .control-group
-          = f.label :inside_parking
+          = f.label :double_garage
           .controls
-            = f.text_field :inside_parking, :class => 'span8'
+            = f.text_field :double_garage
+
         .control-group
-          = f.label :inside_parking_temporary
+          = f.label :single_garage
           .controls
-            = f.text_field :inside_parking_temporary, :class => 'span8'
-      %fieldset.outside-parking
-        %legend Parkplatzpreise draussen
+            = f.text_field :single_garage
+
+        .control-group
+          = f.label :outdoor_bike
+          .controls
+            = f.text_field :outdoor_bike
+
+        .control-group
+          = f.label :covered_bike
+          .controls
+            = f.text_field :covered_bike
+
         .control-group
           = f.label :outside_parking
           .controls
-            = f.text_field :outside_parking, :class => 'span8'
+            = f.text_field :outside_parking
+
         .control-group
-          = f.label :outside_parking_temporary
+          = f.label :covered_slot
           .controls
-            = f.text_field :outside_parking_temporary, :class => 'span8'
+            = f.text_field :covered_slot
+
+        .control-group
+          = f.label :inside_parking
+          .controls
+            = f.text_field :inside_parking
+
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

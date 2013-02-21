@@ -14,8 +14,6 @@ describe PricingDecorator do
           :for_rent_extra => 200,
           :inside_parking => 140,
           :outside_parking => 150,
-          :inside_parking_temporary => 160,
-          :outside_parking_temporary => 170,
           :for_rent_depot => 2000,
           :estimate => ''
         )
@@ -52,14 +50,6 @@ describe PricingDecorator do
       @pricing.outside_parking.should == "CHF 150.00 / Monat"
     end
 
-    it 'formats the temporary inside parking price' do
-      @pricing.inside_parking_temporary.should == "CHF 160.00 / Monat"
-    end
-
-    it 'formats the temporary outside parking price' do
-      @pricing.outside_parking_temporary.should == "CHF 170.00 / Monat"
-    end
-
     it 'formats the rent depot' do
       @pricing.for_rent_depot.should == "CHF 2'000.00"
     end
@@ -68,8 +58,6 @@ describe PricingDecorator do
       @pricing.update_attribute :price_unit, 'year_m2'
       @pricing.inside_parking.should == "CHF 140.00 / Monat"
       @pricing.outside_parking.should == "CHF 150.00 / Monat"
-      @pricing.inside_parking_temporary.should == "CHF 160.00 / Monat"
-      @pricing.outside_parking_temporary.should == "CHF 170.00 / Monat"
     end
 
     context 'when an estimated price is set' do
@@ -98,8 +86,6 @@ describe PricingDecorator do
           :price_unit => 'sell',
           :inside_parking => 140,
           :outside_parking => 150,
-          :inside_parking_temporary => 160,
-          :outside_parking_temporary => 170,
           :estimate => ''
         )
       )
@@ -127,20 +113,10 @@ describe PricingDecorator do
       @pricing.outside_parking.should == "CHF 150.00"
     end
 
-    it 'formats the temporary inside parking price' do
-      @pricing.inside_parking_temporary.should == "CHF 160.00"
-    end
-
-    it 'formats the temporary outside parking price' do
-      @pricing.outside_parking_temporary.should == "CHF 170.00"
-    end
-
     it 'formats all parking prices monthly' do
       @pricing.update_attribute :price_unit, 'sell_m2'
       @pricing.inside_parking.should == "CHF 140.00"
       @pricing.outside_parking.should == "CHF 150.00"
-      @pricing.inside_parking_temporary.should == "CHF 160.00"
-      @pricing.outside_parking_temporary.should == "CHF 170.00"
     end
 
     context 'when an estimated price is set' do

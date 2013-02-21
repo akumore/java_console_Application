@@ -9,22 +9,34 @@ class Pricing
   field :for_rent_depot, :type => Integer
   field :for_sale, :type => Integer # Kaufpreis
   field :price_unit, :type => String # Pro Woche, Jahr, Monat, Einmalig
-  field :inside_parking, :type => Integer # Pro Parkplatz in Autoeinstellhalle
-  field :outside_parking, :type => Integer # Pro Parkplatz nicht überdacht
-  field :inside_parking_temporary, :type => Integer # Pro Parkplatz in Autoeinstellhalle temporär
-  field :outside_parking_temporary, :type => Integer # Pro Parkplatz nicht überdacht temporär
   field :storage, :type => Integer # Lagerkosten
   field :extra_storage, :type => Integer # Nebenkosten Lager
   field :estimate, :type => String # Geschätz, z.B. 200-500.-
   field :opted, :type => Boolean # Optiert, entscheidet ob MwST angezeigt wird
+
+  # Mietzins für Parkplätze
+  field :double_garage, :type => Integer # Doppelgarage
+  field :single_garage, :type => Integer # Einzelgarage
+  field :outdoor_bike, :type => Integer # Motorrad-Parkplatz im Freien überdacht
+  field :covered_bike, :type => Integer # Motorrad-Parkplatz in Autoeinstellhalle
+  field :outside_parking, :type => Integer # Parkplatz im Freien
+  field :covered_slot, :type => Integer # Parkplatz im Freien überdacht
+  field :inside_parking, :type => Integer # Parkplatz in Autoeinstellhalle
 
   validates :for_rent_netto, :presence => true, :numericality => true, :if => :for_rent?
   validates :for_rent_extra, :presence => true, :if => :for_rent_extra_is_mandatory?
   validates :for_rent_extra, :numericality => true, :if => :for_rent?
   validates :for_sale, :presence => true, :numericality => true, :if => :for_sale?
 
-  validates :inside_parking, :outside_parking, :inside_parking_temporary,
-            :outside_parking_temporary, :storage, :extra_storage, :numericality => true, :allow_blank => true
+  validates :storage,
+            :extra_storage,
+            :double_garage,
+            :single_garage,
+            :outdoor_bike,
+            :covered_bike,
+            :outside_parking,
+            :covered_slot,
+            :inside_parking, :numericality => true, :allow_blank => true
 
   validates :price_unit, :presence => true, :inclusion => PriceUnit.for_sale, :if => :for_sale?
   validates :price_unit, :presence => true, :inclusion => PriceUnit.for_rent, :if => :for_rent?

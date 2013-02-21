@@ -43,14 +43,14 @@ describe "Cms::Pricings" do
               fill_in 'Mietzinsdepot', :with => '4500'
               select 'pro Monat', :from => 'Preiseinheit'
 
-              within('.inside-parking') do
-                fill_in 'Permanent', :with => '140'
-                fill_in 'Temporär', :with => '100'
-              end
-
-              within('.outside-parking') do
-                fill_in 'Permanent', :with => '160'
-                fill_in 'Temporär', :with => '80'
+              within('.parking-spots-prices-group') do
+                fill_in 'Parkplatz in Autoeinstellhalle', :with => '140'
+                fill_in 'Parkplatz im Freien', :with => '160'
+                fill_in 'Doppelgarage', :with => '200'
+                fill_in 'Einzelgarage', :with => '150'
+                fill_in 'Motorrad-Parkplatz im Freien überdacht', :with => '120'
+                fill_in 'Motorrad-Parkplatz in Autoeinstellhalle', :with => '145'
+                fill_in 'Parkplatz im Freien überdacht', :with => '155'
               end
 
               fill_in 'Ungefährer Preis', :with => '1500 - 2000.-'
@@ -78,8 +78,11 @@ describe "Cms::Pricings" do
               @pricing.price_unit.should ==  'monthly'
               @pricing.inside_parking.should == 140
               @pricing.outside_parking.should == 160
-              @pricing.inside_parking_temporary.should == 100
-              @pricing.outside_parking_temporary.should == 80
+              @pricing.double_garage.should == 200
+              @pricing.single_garage.should == 150
+              @pricing.outdoor_bike.should == 120
+              @pricing.covered_bike.should == 145
+              @pricing.covered_slot.should == 155
               @pricing.estimate.should == '1500 - 2000.-'
               @pricing.opted.should be_true
             end
@@ -131,14 +134,14 @@ describe "Cms::Pricings" do
               fill_in 'Kaufpreis', :with => '100000'
               select 'Verkaufspreis', :from => 'Preiseinheit'
 
-              within('.inside-parking') do
-                fill_in 'Permanent', :with => '50000'
-                fill_in 'Temporär', :with => '1000'
-              end
-
-              within('.outside-parking') do
-                fill_in 'Permanent', :with => '10000'
-                fill_in 'Temporär', :with => '800'
+              within('.parking-spots-prices-group') do
+                fill_in 'Parkplatz in Autoeinstellhalle', :with => '50000'
+                fill_in 'Parkplatz im Freien', :with => '10000'
+                fill_in 'Doppelgarage', :with => '20000'
+                fill_in 'Einzelgarage', :with => '15000'
+                fill_in 'Motorrad-Parkplatz im Freien überdacht', :with => '11000'
+                fill_in 'Motorrad-Parkplatz in Autoeinstellhalle', :with => '14000'
+                fill_in 'Parkplatz im Freien überdacht', :with => '12000'
               end
 
               fill_in 'Ungefährer Preis', :with => '10000 - 200000.-'
@@ -164,8 +167,11 @@ describe "Cms::Pricings" do
               @pricing.price_unit.should == 'sell'
               @pricing.inside_parking.should == 50000
               @pricing.outside_parking.should == 10000
-              @pricing.inside_parking_temporary.should == 1000
-              @pricing.outside_parking_temporary.should == 800
+              @pricing.double_garage.should == 20000
+              @pricing.single_garage.should == 15000
+              @pricing.outdoor_bike.should == 11000
+              @pricing.covered_bike.should == 14000
+              @pricing.covered_slot.should == 12000
               @pricing.estimate.should == '10000 - 200000.-'
               @pricing.opted.should be_true
             end
@@ -205,14 +211,14 @@ describe "Cms::Pricings" do
               fill_in 'Mietzinsdepot', :with => '6000'
               select 'pro Jahr', :from => 'Preiseinheit'
 
-              within('.inside-parking') do
-                fill_in 'Permanent', :with => '200'
-                fill_in 'Temporär', :with => '90'
-              end
-
-              within('.outside-parking') do
-                fill_in 'Permanent', :with => '150'
-                fill_in 'Temporär', :with => '100'
+              within('.parking-spots-prices-group') do
+                fill_in 'Parkplatz in Autoeinstellhalle', :with => '200'
+                fill_in 'Parkplatz im Freien', :with => '150'
+                fill_in 'Doppelgarage', :with => '300'
+                fill_in 'Einzelgarage', :with => '250'
+                fill_in 'Motorrad-Parkplatz im Freien überdacht', :with => '220'
+                fill_in 'Motorrad-Parkplatz in Autoeinstellhalle', :with => '230'
+                fill_in 'Parkplatz im Freien überdacht', :with => '205'
               end
 
               fill_in 'Lagerpreis', :with => '200'
@@ -243,8 +249,11 @@ describe "Cms::Pricings" do
               @pricing.price_unit.should ==  'yearly'
               @pricing.inside_parking.should == 200
               @pricing.outside_parking.should == 150
-              @pricing.inside_parking_temporary.should == 90
-              @pricing.outside_parking_temporary.should == 100
+              @pricing.double_garage.should == 300
+              @pricing.single_garage.should == 250
+              @pricing.outdoor_bike.should == 220
+              @pricing.covered_bike.should == 230
+              @pricing.covered_slot.should == 205
               @pricing.storage.should == 200
               @pricing.extra_storage.should == 50
               @pricing.estimate.should == '2500 - 2500.-'
@@ -290,14 +299,14 @@ describe "Cms::Pricings" do
               fill_in 'Kaufpreis', :with => '200000'
               select 'Verkaufspreis', :from => 'Preiseinheit'
 
-              within('.inside-parking') do
-                fill_in 'Permanent', :with => '40000'
-                fill_in 'Temporär', :with => '2000'
-              end
-
-              within('.outside-parking') do
-                fill_in 'Permanent', :with => '15000'
-                fill_in 'Temporär', :with => '1200'
+              within('.parking-spots-prices-group') do
+                fill_in 'Parkplatz in Autoeinstellhalle', :with => '40000'
+                fill_in 'Parkplatz im Freien', :with => '15000'
+                fill_in 'Doppelgarage', :with => '45000'
+                fill_in 'Einzelgarage', :with => '30000'
+                fill_in 'Motorrad-Parkplatz im Freien überdacht', :with => '25000'
+                fill_in 'Motorrad-Parkplatz in Autoeinstellhalle', :with => '27000'
+                fill_in 'Parkplatz im Freien überdacht', :with => '29000'
               end
 
               fill_in 'Lagerpreis', :with => '100000'
@@ -326,8 +335,11 @@ describe "Cms::Pricings" do
               @pricing.price_unit.should == 'sell'
               @pricing.inside_parking.should == 40000
               @pricing.outside_parking.should == 15000
-              @pricing.inside_parking_temporary.should == 2000
-              @pricing.outside_parking_temporary.should == 1200
+              @pricing.double_garage.should == 45000
+              @pricing.single_garage.should == 30000
+              @pricing.outdoor_bike.should == 25000
+              @pricing.covered_bike.should == 27000
+              @pricing.covered_slot.should == 29000
               @pricing.estimate.should == '150000 - 1800000.-'
               @pricing.storage.should == 100000
               @pricing.extra_storage == 2000
