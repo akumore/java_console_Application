@@ -76,14 +76,6 @@ class PricingDecorator < ApplicationDecorator
     formatted(model.outside_parking, parking_price_unit) if model.outside_parking.present?
   end
 
-  def inside_parking_temporary
-    formatted(model.inside_parking_temporary, parking_price_unit) if model.inside_parking_temporary.present?
-  end
-
-  def outside_parking_temporary
-    formatted(model.outside_parking_temporary, parking_price_unit) if model.outside_parking_temporary.present?
-  end
-
   def for_rent_depot
     if model.for_rent? && model.for_rent_depot.present?
       formatted_price(model.for_rent_depot)
@@ -114,16 +106,8 @@ class PricingDecorator < ApplicationDecorator
       content << { :key => t('pricings.inside_parking'), :value => inside_parking }
     end
 
-    if inside_parking_temporary.present?
-      content << { :key => t('pricings.inside_parking_temporary'), :value => inside_parking_temporary }
-    end
-
     if outside_parking.present?
       content << { :key => t('pricings.outside_parking'), :value => outside_parking }
-    end
-
-    if outside_parking_temporary.present?
-      content << { :key => t('pricings.outside_parking_temporary'), :value => outside_parking_temporary }
     end
 
     if opted?

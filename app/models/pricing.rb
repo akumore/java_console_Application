@@ -13,8 +13,6 @@ class Pricing
   field :extra_storage, :type => Integer # Nebenkosten Lager
   field :estimate, :type => String # Geschätz, z.B. 200-500.-
   field :opted, :type => Boolean # Optiert, entscheidet ob MwST angezeigt wird
-  field :inside_parking_temporary, :type => Integer # Pro Parkplatz in Autoeinstellhalle temporär
-  field :outside_parking_temporary, :type => Integer # Pro Parkplatz nicht überdacht temporär
 
   # Mietzins für Parkplätze
   field :rental_price_double_garage, :type => Integer # Doppelgarage

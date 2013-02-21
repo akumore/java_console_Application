@@ -9,8 +9,6 @@ de:
         for_rent_depot: 'Mietzinsdepot'
         for_sale: 'Kaufpreis'
         price_unit: 'Preiseinheit'
-        inside_parking_temporary: 'Temporär'
-        outside_parking_temporary: 'Temporär'
         storage: 'Lagerpreis'
         extra_storage: 'Lager Nebenkosten'
         estimate: 'Ungefährer Preis'
