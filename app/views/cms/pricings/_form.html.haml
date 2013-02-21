@@ -56,25 +56,43 @@
 
     - if accessible?(:parking_spots_prices_group)
       %fieldset.inside-parking
-        %legend Parkplatzpreise in Auto-Einstellhalle
+        %legend Mietzins für Parkplätze
+
         .control-group
-          = f.label :inside_parking
+          = f.label :rental_price_double_garage
           .controls
-            = f.text_field :inside_parking, :class => 'span8'
+            = f.text_field :rental_price_double_garage
+
         .control-group
-          = f.label :inside_parking_temporary
+          = f.label :rental_price_single_garage
           .controls
-            = f.text_field :inside_parking_temporary, :class => 'span8'
-      %fieldset.outside-parking
-        %legend Parkplatzpreise draussen
+            = f.text_field :rental_price_single_garage
+
         .control-group
-          = f.label :outside_parking
+          = f.label :rental_price_outdoor_bike
           .controls
-            = f.text_field :outside_parking, :class => 'span8'
+            = f.text_field :rental_price_outdoor_bike
+
         .control-group
-          = f.label :outside_parking_temporary
+          = f.label :rental_price_covered_bike
           .controls
-            = f.text_field :outside_parking_temporary, :class => 'span8'
+            = f.text_field :rental_price_covered_bike
+
+        .control-group
+          = f.label :rental_price_open_slot
+          .controls
+            = f.text_field :rental_price_open_slot
+
+        .control-group
+          = f.label :rental_price_covered_slot
+          .controls
+            = f.text_field :rental_price_covered_slot
+
+        .control-group
+          = f.label :rental_price_underground_slot
+          .controls
+            = f.text_field :rental_price_underground_slot
+
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'
