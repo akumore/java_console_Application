@@ -7,6 +7,7 @@
 
   * Als Editor möchte ich Immobilien der Gebäudenutzung "Lagern" zuweisen
   * Als Besucher und Leser möchte ich nur die relevanten Infos sehen für Angebote des Nutzungstyps "Lagern"
+  * Als Editor möchte ich bei Immobilien der Gebäudenutzung "Lagern" nur benötigte Felder sehen
 
   #### 2 Parkieren als zusätzliche Gebäudenutzungen
 
