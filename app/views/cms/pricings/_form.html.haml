@@ -44,11 +44,12 @@
       = f.label :opted
       .controls
         = f.check_box :opted
-    - if @real_estate.commercial_utilization?
+    - if accessible?(:storage)
       .control-group
         = f.label :storage
         .controls
           = f.text_field :storage, :class => 'span8'
+    - if accessible?(:extra_storage)
       .control-group
         = f.label :extra_storage
         .controls
