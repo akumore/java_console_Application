@@ -21,18 +21,3 @@
       %dl
         %dt= t('information.freight_elevator_carrying_capacity')
         %dd= information.freight_elevator_carrying_capacity
-
-  - if minimum_rental_period = information.minimum_rental_period.presence
-    %dl
-      %dt= t('information.minimum_rental_period')
-      %dd= minimum_rental_period
-
-  - if notice_dates = information.notice_dates.presence
-    %dl
-      %dt= t('information.notice_dates')
-      %dd= notice_dates
-
-  - if notice_period = information.notice_period.presence
-    %dl
-      %dt= t('information.notice_period')
-      %dd= notice_period

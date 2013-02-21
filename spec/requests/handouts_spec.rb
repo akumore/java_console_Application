@@ -27,10 +27,7 @@ describe "Handout aka MiniDoku" do
                     :has_railway_terminal => true,
                     :has_water_supply => true,
                     :has_sewage_supply => true,
-                    :number_of_restrooms => 3,
-                    :minimum_rental_period => '1 Jahr',
-                    :notice_dates => 'September, März',
-                    :notice_period => '3 Monate'
+                    :number_of_restrooms => 3
                    )
   end
 
@@ -240,21 +237,6 @@ describe "Handout aka MiniDoku" do
 
     it 'shows if it is under building laws' do
       pending 'figure out what this is supposed to do'
-    end
-
-    it 'shows the min rent time' do
-      page.should have_content 'Mindestmietdauer'
-      page.should have_content '1 Jahr'
-    end
-
-    it 'shows the notice dates' do
-      page.should have_content 'Kündigungstermine'
-      page.should have_content 'September, März'
-    end
-
-    it 'shows the notice period' do
-      page.should have_content 'Kündigungsfrist'
-      page.should have_content '3 Monate'
     end
 
     context 'real estate for private utilization' do

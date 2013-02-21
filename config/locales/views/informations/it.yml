@@ -32,7 +32,3 @@ it:
     railway_terminal: 'Raccordo ferroviario'
     water_supply: 'Allacciamento acqua'
     sewage_supply: 'Allacciamento acqua di scarico'
-    minimum_rental_period: 'Durata locazione minima'
-    notice_dates: 'Termini di disdetta'
-    notice_period: 'Scadenza disdetta'
-

@@ -32,7 +32,3 @@ en:
     railway_terminal: 'railway connection'
     water_supply: 'water connection'
     sewage_supply: 'sewage connection'
-    minimum_rental_period: 'Minimum term of lease'
-    notice_dates: 'Date of Termination of Lease'
-    notice_period: 'Period of Notice'
-

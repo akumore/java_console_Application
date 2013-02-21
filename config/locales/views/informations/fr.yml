@@ -32,7 +32,3 @@ fr:
     railway_terminal: 'Desserte ferroviaire'
     water_supply: 'Raccordement eaux claires'
     sewage_supply: 'Raccordement eaux usées'
-    minimum_rental_period: 'Durée de location minimale'
-    notice_dates: 'Terme de résiliation'
-    notice_period: 'Délai de résiliation'
-

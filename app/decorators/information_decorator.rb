@@ -119,21 +119,6 @@ class InformationDecorator < ApplicationDecorator
       content << { :key => t('information.characteristics'), :value => characteristics.join(', ') }
     end
 
-    if real_estate.for_rent?
-
-      if minimum_rental_period.present?
-        content << { :key => t('information.minimum_rental_period'), :value => minimum_rental_period }
-      end
-
-      if notice_dates.present?
-       content << { :key => t('information.notice_dates'), :value => notice_dates }
-      end
-
-      if notice_period.present?
-       content << { :key => t('information.notice_period'), :value => notice_period }
-      end
-    end
-
     if real_estate.commercial_utilization?
       if maximal_floor_loading.present?
         content << { :key => t('information.maximal_floor_loading'), :value => maximal_floor_loading }
