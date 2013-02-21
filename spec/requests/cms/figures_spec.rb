@@ -41,7 +41,7 @@ describe "Cms::Figures" do
         before :each do
           within(".new_figure") do
             fill_in 'Geschoss', :with => '-1'
-            fill_in 'Geschoss ungefähr', :with => 'UG. - 2.OG'
+            fill_in 'Geschossbereich', :with => 'UG. - 2.OG'
             fill_in 'Anzahl Zimmer', :with => '3.5'
             fill_in 'Anzahl Zimmer ungefähr', :with => '3 - 3.5 Zimmer'
             fill_in 'Wohnfläche', :with => '124.6'
@@ -121,7 +121,7 @@ describe "Cms::Figures" do
         before :each do
           within(".new_figure") do
             fill_in 'Geschoss', :with => '-1'
-            fill_in 'Geschoss ungefähr', :with => 'UG. - 2.OG'
+            fill_in 'Geschossbereich', :with => 'UG. - 2.OG'
             fill_in 'Grundstückfläche', :with => '400.5'
             fill_in 'Grundstückfläche ungefähr', :with => '40.3 - 120 m2'
             fill_in 'Nutzfläche', :with => '200.6'

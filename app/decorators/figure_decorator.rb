@@ -4,18 +4,20 @@ class FigureDecorator < ApplicationDecorator
   decorates :figure
 
   def surface_label
-    if model.commercial_utilization?
-      t "figures.surface.commercial"
-    else
+    if model.living?
       t "figures.surface.private"
+    else
+      t "figures.surface.commercial"
     end
   end
 
   def surface
-    value = if model.commercial_utilization?
+    value = if model.working?
       usable_surface
-    elsif model.private_utilization?
+    elsif model.living?
       living_surface
+    else
+      usable_surface
     end
   end
 

@@ -29,25 +29,31 @@ class Figure
   validates :living_surface,
             :numericality => true,
             :allow_blank => true,
-            :if => :private_utilization?
+            :if => :living?
 
   # fields which must be numeric, but only if commercial
   validates :ceiling_height, :storage_surface,
             :numericality => true,
             :allow_blank => true,
-            :if => :commercial_utilization?
+            :if => :working?
 
   # fields which must be present and numeric, but only if private
   validates :rooms,
             :presence => true,
             :numericality => true,
-            :if => :private_utilization?
+            :if => :living?
 
   # fields which must be present and numeric, but only if commercial
   validates :floor, :usable_surface,
             :presence => true,
             :numericality => true,
-            :if => :commercial_utilization?
+            :if => :working?
+
+  validates :usable_surface,
+            :presence => true,
+            :numericality => true,
+            :if => :storing?
 
   delegate :commercial_utilization?, :private_utilization?, :to => :_parent
+  delegate :working?, :living?, :parking?, :storing?, :to => :_parent
 end
