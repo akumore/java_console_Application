@@ -55,7 +55,7 @@
           = f.text_field :extra_storage, :class => 'span8'
 
     - if accessible?(:parking_spots_prices_group)
-      %fieldset.inside-parking
+      %fieldset.parking-spots-prices-group
         %legend Mietzins für Parkplätze
 
         .control-group
@@ -79,9 +79,9 @@
             = f.text_field :rental_price_covered_bike
 
         .control-group
-          = f.label :rental_price_open_slot
+          = f.label :outside_parking
           .controls
-            = f.text_field :rental_price_open_slot
+            = f.text_field :outside_parking
 
         .control-group
           = f.label :rental_price_covered_slot
@@ -89,9 +89,9 @@
             = f.text_field :rental_price_covered_slot
 
         .control-group
-          = f.label :rental_price_underground_slot
+          = f.label :inside_parking
           .controls
-            = f.text_field :rental_price_underground_slot
+            = f.text_field :inside_parking
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

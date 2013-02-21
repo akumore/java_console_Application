@@ -13,15 +13,17 @@ class Pricing
   field :extra_storage, :type => Integer # Nebenkosten Lager
   field :estimate, :type => String # Geschätz, z.B. 200-500.-
   field :opted, :type => Boolean # Optiert, entscheidet ob MwST angezeigt wird
+  field :inside_parking_temporary, :type => Integer # Pro Parkplatz in Autoeinstellhalle temporär
+  field :outside_parking_temporary, :type => Integer # Pro Parkplatz nicht überdacht temporär
 
   # Mietzins für Parkplätze
   field :rental_price_double_garage, :type => Integer # Doppelgarage
   field :rental_price_single_garage, :type => Integer # Einzelgarage
   field :rental_price_outdoor_bike, :type => Integer # Motorrad-Parkplatz im Freien überdacht
   field :rental_price_covered_bike, :type => Integer # Motorrad-Parkplatz in Autoeinstellhalle
-  field :rental_price_open_slot, :type => Integer # Parkplatz im Freien
+  field :outside_parking, :type => Integer # Parkplatz im Freien
   field :rental_price_covered_slot, :type => Integer # Parkplatz im Freien überdacht
-  field :rental_price_underground_slot, :type => Integer # Parkplatz in Autoeinstellhalle
+  field :inside_parking, :type => Integer # Parkplatz in Autoeinstellhalle
 
   validates :for_rent_netto, :presence => true, :numericality => true, :if => :for_rent?
   validates :for_rent_extra, :presence => true, :if => :for_rent_extra_is_mandatory?
@@ -34,9 +36,9 @@ class Pricing
             :rental_price_single_garage,
             :rental_price_outdoor_bike,
             :rental_price_covered_bike,
-            :rental_price_open_slot,
+            :outside_parking,
             :rental_price_covered_slot,
-            :rental_price_underground_slot, :numericality => true, :allow_blank => true
+            :inside_parking, :numericality => true, :allow_blank => true
 
   validates :price_unit, :presence => true, :inclusion => PriceUnit.for_sale, :if => :for_sale?
   validates :price_unit, :presence => true, :inclusion => PriceUnit.for_rent, :if => :for_rent?
