@@ -24,23 +24,11 @@
       %dd
         = pricing.inside_parking
 
-  - if pricing.inside_parking_temporary.present?
-    %dl
-      %dt= t('pricings.inside_parking_temporary')
-      %dd
-        = pricing.inside_parking_temporary
-
   - if pricing.outside_parking.present?
     %dl
       %dt= t('pricings.outside_parking')
       %dd
         = pricing.outside_parking
-
-  - if pricing.outside_parking_temporary.present?
-    %dl
-      %dt= t('pricings.outside_parking_temporary')
-      %dd
-        = pricing.outside_parking_temporary
 
   - if pricing.opted?
     .disclaimer= t('pricings.without_vat')
