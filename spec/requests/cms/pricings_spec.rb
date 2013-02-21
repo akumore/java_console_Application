@@ -78,11 +78,11 @@ describe "Cms::Pricings" do
               @pricing.price_unit.should ==  'monthly'
               @pricing.inside_parking.should == 140
               @pricing.outside_parking.should == 160
-              @pricing.rental_price_double_garage.should == 200
-              @pricing.rental_price_single_garage.should == 150
-              @pricing.rental_price_outdoor_bike.should == 120
-              @pricing.rental_price_covered_bike.should == 145
-              @pricing.rental_price_covered_slot.should == 155
+              @pricing.double_garage.should == 200
+              @pricing.single_garage.should == 150
+              @pricing.outdoor_bike.should == 120
+              @pricing.covered_bike.should == 145
+              @pricing.covered_slot.should == 155
               @pricing.estimate.should == '1500 - 2000.-'
               @pricing.opted.should be_true
             end
@@ -167,11 +167,11 @@ describe "Cms::Pricings" do
               @pricing.price_unit.should == 'sell'
               @pricing.inside_parking.should == 50000
               @pricing.outside_parking.should == 10000
-              @pricing.rental_price_double_garage.should == 20000
-              @pricing.rental_price_single_garage.should == 15000
-              @pricing.rental_price_outdoor_bike.should == 11000
-              @pricing.rental_price_covered_bike.should == 14000
-              @pricing.rental_price_covered_slot.should == 12000
+              @pricing.double_garage.should == 20000
+              @pricing.single_garage.should == 15000
+              @pricing.outdoor_bike.should == 11000
+              @pricing.covered_bike.should == 14000
+              @pricing.covered_slot.should == 12000
               @pricing.estimate.should == '10000 - 200000.-'
               @pricing.opted.should be_true
             end
@@ -249,11 +249,11 @@ describe "Cms::Pricings" do
               @pricing.price_unit.should ==  'yearly'
               @pricing.inside_parking.should == 200
               @pricing.outside_parking.should == 150
-              @pricing.rental_price_double_garage.should == 300
-              @pricing.rental_price_single_garage.should == 250
-              @pricing.rental_price_outdoor_bike.should == 220
-              @pricing.rental_price_covered_bike.should == 230
-              @pricing.rental_price_covered_slot.should == 205
+              @pricing.double_garage.should == 300
+              @pricing.single_garage.should == 250
+              @pricing.outdoor_bike.should == 220
+              @pricing.covered_bike.should == 230
+              @pricing.covered_slot.should == 205
               @pricing.storage.should == 200
               @pricing.extra_storage.should == 50
               @pricing.estimate.should == '2500 - 2500.-'
@@ -335,11 +335,11 @@ describe "Cms::Pricings" do
               @pricing.price_unit.should == 'sell'
               @pricing.inside_parking.should == 40000
               @pricing.outside_parking.should == 15000
-              @pricing.rental_price_double_garage.should == 45000
-              @pricing.rental_price_single_garage.should == 30000
-              @pricing.rental_price_outdoor_bike.should == 25000
-              @pricing.rental_price_covered_bike.should == 27000
-              @pricing.rental_price_covered_slot.should == 29000
+              @pricing.double_garage.should == 45000
+              @pricing.single_garage.should == 30000
+              @pricing.outdoor_bike.should == 25000
+              @pricing.covered_bike.should == 27000
+              @pricing.covered_slot.should == 29000
               @pricing.estimate.should == '150000 - 1800000.-'
               @pricing.storage.should == 100000
               @pricing.extra_storage == 2000

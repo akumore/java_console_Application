@@ -15,12 +15,12 @@ class Pricing
   field :opted, :type => Boolean # Optiert, entscheidet ob MwST angezeigt wird
 
   # Mietzins für Parkplätze
-  field :rental_price_double_garage, :type => Integer # Doppelgarage
-  field :rental_price_single_garage, :type => Integer # Einzelgarage
-  field :rental_price_outdoor_bike, :type => Integer # Motorrad-Parkplatz im Freien überdacht
-  field :rental_price_covered_bike, :type => Integer # Motorrad-Parkplatz in Autoeinstellhalle
+  field :double_garage, :type => Integer # Doppelgarage
+  field :single_garage, :type => Integer # Einzelgarage
+  field :outdoor_bike, :type => Integer # Motorrad-Parkplatz im Freien überdacht
+  field :covered_bike, :type => Integer # Motorrad-Parkplatz in Autoeinstellhalle
   field :outside_parking, :type => Integer # Parkplatz im Freien
-  field :rental_price_covered_slot, :type => Integer # Parkplatz im Freien überdacht
+  field :covered_slot, :type => Integer # Parkplatz im Freien überdacht
   field :inside_parking, :type => Integer # Parkplatz in Autoeinstellhalle
 
   validates :for_rent_netto, :presence => true, :numericality => true, :if => :for_rent?
@@ -30,12 +30,12 @@ class Pricing
 
   validates :storage,
             :extra_storage,
-            :rental_price_double_garage,
-            :rental_price_single_garage,
-            :rental_price_outdoor_bike,
-            :rental_price_covered_bike,
+            :double_garage,
+            :single_garage,
+            :outdoor_bike,
+            :covered_bike,
             :outside_parking,
-            :rental_price_covered_slot,
+            :covered_slot,
             :inside_parking, :numericality => true, :allow_blank => true
 
   validates :price_unit, :presence => true, :inclusion => PriceUnit.for_sale, :if => :for_sale?

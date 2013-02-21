@@ -5,6 +5,11 @@ Fabricator(:pricing) do
   price_unit 'monthly'
   inside_parking 140
   outside_parking 120
+  double_garage 100
+  single_garage 120
+  outdoor_bike 130
+  covered_bike 140
+  covered_slot 150
   storage 1600
   extra_storage 120
 end
