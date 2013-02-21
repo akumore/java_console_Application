@@ -51,23 +51,6 @@
         %dt= t('information.characteristics')
         %dd= information.characteristics.join(', ')
 
-    - if information && real_estate.for_rent?
-
-      - if information && information.minimum_rental_period.present?
-        %dl
-          %dt= t('information.minimum_rental_period')
-          %dd= information.minimum_rental_period
-
-      - if information && information.notice_dates.present?
-        %dl
-          %dt= t('information.notice_dates')
-          %dd= information.notice_dates
-
-      - if information && information.notice_period.present?
-        %dl
-          %dt= t('information.notice_period')
-          %dd= information.notice_period
-
     - if information && real_estate.commercial_utilization?
 
       - if information.maximal_floor_loading.present?

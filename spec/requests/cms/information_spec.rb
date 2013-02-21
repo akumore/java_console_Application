@@ -33,10 +33,7 @@ describe "Cms Information" do
                                                 :has_water_supply=>true,
                                                 :has_sewage_supply=>true,
                                                 :is_developed=>true,
-                                                :is_under_building_laws=>true,
-                                                :minimum_rental_period => '1 Jahr',
-                                                :notice_dates => 'März, Juni, Oktober',
-                                                :notice_period => '3 Monate'
+                                                :is_under_building_laws=>true
                                               )
     end
 
@@ -56,9 +53,6 @@ describe "Cms Information" do
         select '2012', :from => 'information_available_from_1i'
 
         fill_in 'Etwa verfügbar ab', :with => @template_information.display_estimated_available_from
-        fill_in 'Mindestmietdauer', :with => @template_information.minimum_rental_period
-        fill_in 'Kündigungstermine', :with => @template_information.notice_dates
-        fill_in 'Kündigungsfrist', :with => @template_information.notice_period
 
         ['Aussicht', 'Cheminée', 'Lift', 'ISDN-Anschluss', 'Rollstuhltauglich', 'Kinderfreundlich', 'Balkon',
          'Hochparterre', 'Neubau', 'Altbau', 'Swimmingpool', 'Minergie Bauweise', 'Minergie zertifiziert'].each do |checkbox|
@@ -70,9 +64,6 @@ describe "Cms Information" do
         @real_estate.reload
         information = @real_estate.information
 
-        information.minimum_rental_period == @template_information.minimum_rental_period
-        information.notice_dates == @template_information.notice_dates
-        information.notice_period == @template_information.notice_period
         information.has_outlook.should == @template_information.has_outlook
         information.has_fireplace.should == @template_information.has_fireplace
         information.has_elevator.should == @template_information.has_elevator
@@ -117,9 +108,6 @@ describe "Cms Information" do
 
         fill_in 'Etwa verfügbar ab', :with => @template_information.display_estimated_available_from
         fill_in "Anzahl WC's", :with => @template_information.number_of_restrooms
-        fill_in 'Mindestmietdauer', :with => @template_information.minimum_rental_period
-        fill_in 'Kündigungstermine', :with => @template_information.notice_dates
-        fill_in 'Kündigungsfrist', :with => @template_information.notice_period
 
         ['Neubau', 'Altbau', 'Minergie Bauweise', 'Minergie zertifiziert', 'Anfahrrampe',
          'Hebebühne', 'Bahnanschluss', 'Wasseranschluss', 'Abwasseranschluss'].each do |checkbox|
@@ -131,9 +119,6 @@ describe "Cms Information" do
         @real_estate.reload
         information = @real_estate.information
 
-        information.minimum_rental_period == @template_information.minimum_rental_period
-        information.notice_dates == @template_information.notice_dates
-        information.notice_period == @template_information.notice_period
         information.is_new_building.should == @template_information.is_new_building
         information.is_old_building.should == @template_information.is_old_building
         information.is_minergie_style.should == @template_information.is_minergie_style
@@ -249,7 +234,5 @@ describe "Cms Information" do
        visit cms_real_estate_information_path real_estate_without_information
        page.should have_content "Für diese Immobilie wurden keine Infos hinterlegt."
      end
-
   end
-
 end

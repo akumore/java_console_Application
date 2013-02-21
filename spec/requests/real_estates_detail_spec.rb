@@ -133,31 +133,6 @@ describe "RealEstates" do
         end
       end
 
-      describe 'information' do
-
-        context 'when the real estate is for rent' do
-          before :each do
-            real_estate.update_attribute :offer, Offer::RENT
-            visit real_estate_path(real_estate)
-          end
-
-          it 'shows the min rent time' do
-            page.should have_content 'Mindestmietdauer'
-            page.should have_content '1 Jahr'
-          end
-
-          it 'shows the notice dates' do
-            page.should have_content 'Kündigungstermine'
-            page.should have_content 'September, Oktober'
-          end
-
-          it 'shows the notice period' do
-            page.should have_content 'Kündigungsfrist'
-            page.should have_content '3 Monate'
-          end
-        end
-      end
-
       describe 'prices' do
         context 'when the real estate is for rent' do
           before :each do
