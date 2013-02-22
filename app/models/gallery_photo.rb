@@ -14,6 +14,10 @@ class GalleryPhoto
 
   before_create :setup_position
 
+  def slider_image
+    image
+  end
+
   private
   def setup_position
     self.position = GalleryPhoto.max(:position).to_i + 1

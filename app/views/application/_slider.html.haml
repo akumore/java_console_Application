@@ -3,7 +3,7 @@
     %ul.slides
       - projects.each do |reference_project|
         %li
-          = image_tag reference_project.image.gallery.url
+          = image_tag reference_project.slider_image.gallery.url
           = reference_project_image_caption_div reference_project do
             .image-caption-text
               %h3= reference_project.title
