@@ -13,5 +13,4 @@ class NewsItemImageUploader < BaseUploader
   def extension_white_list
     ExtensionWhiteList.new %w(jpg jpeg png)
   end
-
 end
