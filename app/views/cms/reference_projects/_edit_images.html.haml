@@ -8,6 +8,7 @@
           %th{ :width => '5%' }
           %th{ 'width' => '85%' } Bilder
           %th{ :width => '10%' } Löschen
+
       %tbody
         = f.fields_for :images do |image_form|
           = render 'attachment_errors', :model => image_form.object
@@ -18,7 +19,7 @@
                 %i.icon-align-justify
                 = image_form.hidden_field :position
               %td{ 'width' => '85%' }
-                = image_tag image_form.object.file.thumb.url
+                = image_tag image_form.object.image.thumb.url
               %td{ :width => '10%' }
                 = image_form.check_box :_destroy
 
@@ -26,5 +27,5 @@
         %tr
           %td
           %td{:colspan => 2}
-            = f.fields_for :images, NewsItemImage.new do |image_form|
-              = image_form.file_field :file
+            = f.fields_for :images, ReferenceProjectImage.new do |image_form|
+              = image_form.file_field :image

@@ -68,16 +68,18 @@
               = f.check_box :remove_attachment
               %span= t('.remove_attachment')
 
-    .control-group
-      = f.label :image
-      .controls
-        = f.file_field :image
-        %p.help-block
-          = t('.image_help')
-        = f.hidden_field :image_cache
-        - if @reference_project.image.present?
-          .well
-            = image_tag @reference_project.image.preview.url
+    - if @reference_project.persisted?
+
+      = render "edit_images", :f => f
+
+    - else
+      %fieldset
+        %legend Bilder
+        = f.fields_for :images do |image_form|
+          .control-group
+            = image_form.label :image
+            .controls
+              = image_form.file_field :image
 
     .form-actions
       = f.submit nil, :class => 'btn btn-primary'
