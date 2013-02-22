@@ -11,4 +11,8 @@ class ReferenceProjectDecorator < ApplicationDecorator
   def title
     truncate(model.title, :length => 40)
   end
+
+  def slider_image
+    image
+  end
 end
