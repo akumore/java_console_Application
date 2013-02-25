@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.3.4 on 2013-02-25
+* Hotfix: Add David Hossli as a new member of the managing board
+
 ### v2.3.3 on 2013-01-28
 * Fix: rounding error exception in export when using big decimals
 
