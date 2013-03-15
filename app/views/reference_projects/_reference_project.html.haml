@@ -2,7 +2,16 @@
   .row
     - reference_project_group.each do |reference_project|
       .reference-project
-        = image_tag reference_project.image.gallery.url
+        - if reference_project.images.size > 1
+          .reference-project-images-slider
+            .flex-container
+              .flexslider
+                %ul.slides
+                  - reference_project.images.each do |reference_project_image|
+                    %li
+                      = image_tag reference_project_image.image.gallery.url
+        - else
+          = image_tag reference_project.image.gallery.url
         .reference-project-description
           %h4= reference_project.title
 
