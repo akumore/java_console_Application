@@ -40,7 +40,7 @@ class ReferenceProject
   end
 
   def slider_image
-    self.images.first.url
+    self.images.first.image
   end
 
   private
