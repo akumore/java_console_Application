@@ -3,7 +3,7 @@ class ReferenceProjectImage
   include Mongoid::Timestamps
 
   embedded_in :reference_project, :inverse_of => :images
-  default_scope asc(:postion)
+  default_scope asc(:position)
 
   mount_uploader :image, ReferenceProjectImageUploader
 
