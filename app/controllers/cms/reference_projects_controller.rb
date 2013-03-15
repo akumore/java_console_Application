@@ -55,5 +55,16 @@ module Cms
       end
       redirect_to cms_reference_projects_path(:content_locale => @reference_project.locale)
     end
+
+    def sort
+      if params[:reference_projects].present?
+        params[:reference_projects].each do |id_position_map|
+          id_position_map.each do |id, position|
+            ReferenceProject.find(id).update_attributes!(:position => position[:position].to_i)
+          end
+        end
+      end
+      render :nothing => true
+    end
   end
 end
