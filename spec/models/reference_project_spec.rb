@@ -8,7 +8,7 @@ describe ReferenceProject do
                             :construction_info => 'Construction Info',
                             :section => ReferenceProjectSection::RESIDENTIAL_BUILDING,
                             :attachment => File.open("#{Rails.root}/spec/support/test_files/document.pdf"),
-                            :image => File.open("#{Rails.root}/spec/support/test_files/image.jpg")
+                            :images => [Fabricate.build(:reference_project_image)]
                            )
   end
 
@@ -29,8 +29,8 @@ describe ReferenceProject do
       invalid_reference_project.should have(1).error_on(:title)
     end
 
-    it 'requires a image' do
-      invalid_reference_project.should have(1).error_on(:image)
+    it 'requires images' do
+      invalid_reference_project.should have(1).error_on(:images)
     end
 
     it 'requires a section' do

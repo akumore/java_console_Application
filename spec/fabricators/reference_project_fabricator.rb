@@ -3,7 +3,7 @@ Fabricator(:reference_project) do
   description 'Some reference project description...'
   offer RealEstate::OFFER_FOR_RENT
   section ReferenceProjectSection::RESIDENTIAL_BUILDING
-  image File.open("#{Rails.root}/spec/support/test_files/image.jpg")
+  images { [Fabricate.build(:reference_project_image)] }
   locale :de
   position Fabricate.sequence
 end
