@@ -24,6 +24,7 @@ module Cms
     def new
       @reference_project = ReferenceProject.new(:locale => content_locale)
       @real_estates = RealEstate.all
+      build_images!(@reference_project)
     end
 
     def create
@@ -65,6 +66,15 @@ module Cms
         end
       end
       render :nothing => true
+    end
+
+    private
+    def build_images!(reference_project)
+      min_number_of_elements = 1
+      min_number_of_elements.times do
+        reference_project.images.build if reference_project.images.size < min_number_of_elements
+      end
+      reference_project
     end
   end
 end
