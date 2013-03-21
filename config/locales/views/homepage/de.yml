@@ -6,5 +6,6 @@ de:
       build: 'Bauen'
       living: 'Wohnen'
       working: 'Arbeiten'
-      build_title: 'Damit ihr Bauprojekt gelingt'
-      build_link: 'Unsere Dienstleistungen'
+      project_development: 'Projektentwicklung'
+      new_building: 'Neubau'
+      rebuilding: 'Umbau'

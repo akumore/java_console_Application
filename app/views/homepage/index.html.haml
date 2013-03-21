@@ -4,7 +4,7 @@
   %meta{ :name => "keywords", :content => "Land, Grundstücke, Immobilien, bauen, mieten, kaufen, vermieten, Immobilienverwaltung, umbauen und renovieren" }
 
 .services-slides-container
-  .rent-slide.open.active
+  .rent-slide
     .rent-handle.handle
       %h3= t ".rent"
     .link-box
@@ -24,12 +24,13 @@
     - unless @projects_for_sale.empty?
       = render 'slider', :projects => @projects_for_sale
 
-  .build-slide
+  .build-slide.open.active
     .build-handle.handle
       %h3= t ".build"
+    .link-box
+      %ul
+        %li= link_to t(".project_development"), "#{t('company_url')}#project_development"
+        %li= link_to t(".new_building"), "#{t('company_url')}#new_building"
+        %li= link_to t(".rebuilding"), "#{t('company_url')}#rebuilding"
     .flex-container
       = image_tag "construction.jpg"
-      .image-caption
-        .image-caption-text
-          %h3= t '.build_title'
-          %div= link_to t('.build_link'), "#{t('company_url')}#dienstleistungen"
