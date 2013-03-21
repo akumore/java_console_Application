@@ -3,29 +3,44 @@
     %br
   .span8
     %table.table.table-bordered.images-table.sortable
-      %thead
-        %tr
-          %th{ :width => '5%' }
-          %th{ 'width' => '85%' } Bilder
-          %th{ :width => '10%' } Löschen
 
-      %tbody
-        = f.fields_for :images do |image_form|
-          = render 'attachment_errors', :model => image_form.object
+      - if @reference_project.persisted?
+        %thead
+          %tr
+            %th{ :width => '5%' }
+            %th{ :width => '85%' } Bilder
+            %th{ :width => '10%' } Löschen
 
-          - unless image_form.object.errors.any?
-            %tr.draggable-row{:id => "image-#{image_form.object.id}"}
-              %td.drag-handle{ :width => '5%' }
-                %i.icon-align-justify
-                = image_form.hidden_field :position
-              %td{ 'width' => '85%' }
-                = image_tag image_form.object.image.thumb.url
-              %td{ :width => '10%' }
-                = image_form.check_box :_destroy
+        %tbody
+          = f.fields_for :images do |image_form|
+            = render 'attachment_errors', :model => image_form.object
 
-      %tbody
-        %tr
-          %td
-          %td{:colspan => 2}
-            = f.fields_for :images, ReferenceProjectImage.new do |image_form|
-              = image_form.file_field :image
+            - unless image_form.object.errors.any?
+              %tr.draggable-row{ :id => "image-#{image_form.object.id}" }
+                %td.drag-handle{ :width => '5%' }
+                  %i.icon-align-justify
+                  = image_form.hidden_field :position
+                %td{ :width => '85%' }
+                  = image_tag image_form.object.image.thumb.url
+                %td{ :width => '10%' }
+                  = image_form.check_box :_destroy
+
+        %tbody
+          %tr
+            %td
+            %td{ :colspan => 2 }
+              = f.fields_for :images, ReferenceProjectImage.new do |image_form|
+                = image_form.file_field :image
+
+      - else
+        %thead
+          %tr
+            %th{ :width => '5%' }
+            %th{ :colspan => 2, :width => '85%' } Bilder
+
+        %tbody
+          %tr
+            %td
+            %td{ :colspan => 2 }
+              = f.fields_for :images, ReferenceProjectImage.new do |image_form|
+                = image_form.file_field :image
