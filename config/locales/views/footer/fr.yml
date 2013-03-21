@@ -7,6 +7,9 @@ fr:
         address_html: 'Alfred Müller SA<br />Av. des Champs-Montants 10a<br />CH-2074 Marin'
         phone_html: 'Téléphone +41 32 756 92 92<br>Fax +41 32 756 92 99'
         directions: 'Plan d‘accès'
+      forum_title: Forum
+      forum_content: Unser Magazin für Sie
+      take_me_to_forum_magazine: Zum Magazin
       we_want_you: Nous recherchons
       discover_alfred_mueller: Découvrez Alfred Müller AG en tant qu’employeur attractif.
       take_me_to_the_jobs: Vers les offres d’emploi
@@ -19,4 +22,3 @@ fr:
       compost_and_nuclear_plant_in_region_zug: L’installation de compostage et de courant bio dans la région
       take_me_to_allmig_website: Visitez le site web de Allmig
       memberships: Membres
-
