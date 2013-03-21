@@ -9,6 +9,9 @@ AlfredMueller::Application.routes.draw do
   namespace :cms do
     resource :dashboards
     resources :news_items, :except => :show
+    resources :gallery_photos, :except => :show do
+      post :sort, :on => :collection
+    end
     resources :reference_projects, :except => :show do
       post :sort, :on => :collection
     end
@@ -60,6 +63,7 @@ AlfredMueller::Application.routes.draw do
     resource :job_application, :only => [:new, :create]
     resource :contact, :only => [:new, :create]
     resources :news_items, :only => :index
+    resources :reference_projects, :only => :index
   end
 
   scope ':locale' do

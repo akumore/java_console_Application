@@ -2,3 +2,5 @@ fr:
   reference_projects:
     link_title: 'Vers le projet'
     project_website_link: 'Vers le site internet du projet'
+    index:
+      documentation_link: 'Documentation'

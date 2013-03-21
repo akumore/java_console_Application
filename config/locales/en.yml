@@ -8,7 +8,7 @@ en:
       jobs: 'Careers'
       company: 'Our company'
       news: 'News and updates'
-      knowledge: 'Useful information'
+      reference_projects: 'References'
     meta:
       contact: 'Contact'
     cms:
@@ -72,7 +72,6 @@ en:
         alert: "%{resource_name} konnte nicht gelöscht werden."
   jobs_url: '/en/jobs'
   company_url: '/en/company'
-  knowledge_url: '/en/knowledge'
   contact_url: '/en/contact'
 #  errors:
 #    messages:

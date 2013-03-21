@@ -55,7 +55,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     primary.item :news, t('navigation.main.news'), news_items_path, :highlights_on => proc { controller.request.path == news_items_path }
-    primary.item :knowledge, t('navigation.main.knowledge'), t('knowledge_url'), :highlights_on => proc { controller.request.path == I18n.t('knowledge_url') }
+    primary.item :reference_projects, t('navigation.main.reference_projects'), reference_projects_path, :highlights_on => proc { controller.request.path == reference_projects_path }
 
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu

@@ -1,0 +1,12 @@
+- unless @reference_projects.empty?
+  .reference-projects-container
+    = render 'reference_project', :reference_projects => @reference_projects
+
+    - if @reference_projects.size > 4
+      .load-more
+        = link_to t('pages.show.more'), reference_projects_path, :remote => true, :class => 'more'
+
+- unless @gallery_photos.empty?
+  .search-container.clearfix
+    .container.gallery-photos-slider
+      = render 'slider', :projects => @gallery_photos

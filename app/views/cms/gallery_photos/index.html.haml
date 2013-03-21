@@ -1,0 +1,44 @@
+- content_for :title do
+  Erfasste Fotos
+
+.row
+  .pull-right.padded
+    = link_to(new_cms_gallery_photo_path(:content_locale => content_locale), :class => 'btn') do
+      %i.icon-plus-sign
+      = t('.new')
+
+- if @gallery_photos.empty?
+  .span4.offset4
+    %h3.small
+      Keine Einträge vorhanden
+- else
+  = form_for :gallery_photos, :model => @gallery_photos, :url => sort_cms_gallery_photos_path, :remote => true, :html => { :class => :autosubmit } do |form|
+    %table.table.table-bordered.table-striped.gallery-photos.gallery-photos-sortable{ :id => 'gallery-photo' }
+      %thead
+        %tr
+          %th
+          %th= GalleryPhoto.human_attribute_name :title
+          %th
+          %th
+
+      %tbody
+        - @gallery_photos.each do |gallery_photo|
+          %tr.gallery-photo.draggable-row{ :id => "gallery_photo_#{gallery_photo.id}" }
+            %td.drag-handle{ :width => '5%' }
+              %i.icon-align-justify
+              = form.fields_for :[], gallery_photo do |gallery_photo_fields|
+                = gallery_photo_fields.hidden_field :position, :class => 'position'
+            %td= gallery_photo.title
+            %td= link_to  t('.destroy'), cms_gallery_photo_path(gallery_photo), :method => :delete, :confirm => t('.confirm_delete', :title => gallery_photo.title)
+            %td= link_to  t('.edit'), edit_cms_gallery_photo_path(gallery_photo)
+
+  - content_for :javascripts do
+    :coffeescript
+      $ ->
+        $("table.gallery-photos-sortable tbody").sortable
+          handle: ".drag-handle"
+          update: (event, ui) ->
+            tr = $(event.target).closest('tr.gallery-photo')
+            tr.closest('table').find(".draggable-row").each (idx, elem) ->
+              $(@).find(".position").val(idx+1)
+            tr.closest('form.autosubmit').submit()

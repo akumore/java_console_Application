@@ -8,7 +8,7 @@ de:
       jobs: 'Jobs'
       company: 'Unternehmen'
       news: 'Aktuell'
-      knowledge: 'Wissenswertes'
+      reference_projects: 'Referenzen'
     meta:
       contact: 'Kontakt'
     cms:
@@ -72,7 +72,6 @@ de:
         alert: "%{resource_name} konnte nicht gelöscht werden."
   jobs_url: '/de/jobs'
   company_url: '/de/company'
-  knowledge_url: '/de/knowledge'
   contact_url: '/de/contact'
   'true': 'Ja'
   'false': 'Nein'

@@ -1,0 +1,8 @@
+de:
+  mongoid:
+    models:
+      gallery_photo: Foto
+    attributes:
+      gallery_photo:
+        title: 'Titel'
+        image: 'Foto'

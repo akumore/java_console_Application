@@ -6,9 +6,11 @@ de:
       reference_project:
         title: 'Titel'
         description: 'Beschreibung'
+        construction_info: 'Bauzeit'
         image: 'Bild'
         url: 'Projektwebseite'
+        attachment: 'Dokument'
         offer: 'Angebotstyp'
+        section: 'Bereich'
         utilization: 'Gebäudenutzung'
         real_estate: 'Immobilie'
-

@@ -7,6 +7,7 @@
       = f.label :title
       .controls
         = f.text_field :title, :class => 'span8'
+
     .control-group.mandatory
       = f.label :offer
       .controls
@@ -17,6 +18,7 @@
         %label.inline.radio
           = f.radio_button :offer, RealEstate::OFFER_FOR_SALE
           %span= t(".#{RealEstate::OFFER_FOR_SALE}")
+
     .control-group.mandatory
       = f.label :utilization
       .controls
@@ -26,18 +28,46 @@
         %label.radio
           = f.radio_button :utilization, RealEstate::UTILIZATION_COMMERICAL
           %span= t(".#{RealEstate::UTILIZATION_COMMERICAL}")
+
+    .control-group.mandatory
+      = f.label :section
+      .controls
+        = f.select :section, reference_project_sections
+
     .control-group
       = f.label :description
       .controls
         = f.text_area :description, :class => 'span8'
+
+    .control-group
+      = f.label :construction_info
+      .controls
+        = f.text_field :construction_info, :class => 'span8'
+
     .control-group
       = f.label :url
       .controls
         = f.text_field :url, :class => 'span8'
+
     .control-group
       = f.label :real_estate
       .controls
         = f.select :real_estate_id, @real_estates.collect {|p| [ p.title, p.id ]}, { :include_blank => true }
+
+    .control-group
+      = f.label :attachment
+      .controls
+        = f.file_field :attachment
+
+        - if @reference_project.attachment.present?
+          .well
+            = f.hidden_field :attachment_cache
+            %p
+              = link_to t('.show_attachment'), @reference_project.attachment.url, :target => '_blank'
+            %label.inline
+              = f.check_box :remove_attachment
+              %span= t('.remove_attachment')
+
     .control-group
       = f.label :image
       .controls

@@ -3,29 +3,43 @@ require 'spec_helper'
 describe ReferenceProject do
 
   let :valid_reference_project do
-    ReferenceProject.create(:title => 'title', :description => 'description', :image => File.open("#{Rails.root}/spec/support/test_files/image.jpg"))
+    ReferenceProject.create(:title => 'title',
+                            :description => 'description',
+                            :construction_info => 'Construction Info',
+                            :section => ReferenceProjectSection::RESIDENTIAL_BUILDING,
+                            :attachment => File.open("#{Rails.root}/spec/support/test_files/document.pdf"),
+                            :image => File.open("#{Rails.root}/spec/support/test_files/image.jpg")
+                           )
+  end
+
+  let :invalid_reference_project do
+    ReferenceProject.new
   end
 
   describe 'initialize without any attributes' do
     before :each do
-      @reference_project = ReferenceProject.new()
+      invalid_reference_project = ReferenceProject.new()
     end
 
     it 'does not pass validations' do
-      @reference_project.should_not be_valid
+      invalid_reference_project.should_not be_valid
     end
 
     it 'requires a title' do
-      @reference_project.should have(1).error_on(:title)
+      invalid_reference_project.should have(1).error_on(:title)
     end
 
     it 'requires a image' do
-      @reference_project.should have(1).error_on(:image)
+      invalid_reference_project.should have(1).error_on(:image)
     end
 
-    it 'has 2 errors' do
-      @reference_project.valid?
-      @reference_project.errors.should have(2).items
+    it 'requires a section' do
+      invalid_reference_project.should have(1).error_on(:section)
+    end
+
+    it 'has 3 errors' do
+      invalid_reference_project.valid?
+      invalid_reference_project.errors.should have(3).items
     end
   end
 
