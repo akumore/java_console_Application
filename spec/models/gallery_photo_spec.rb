@@ -23,4 +23,14 @@ describe GalleryPhoto do
       gallery_photo.errors.should have(2).items
     end
   end
+
+  describe '#slider_image' do
+    let :gallery_photo do
+      Fabricate.build(:gallery_photo)
+    end
+
+    it 'returns image' do
+      gallery_photo.slider_image.should == gallery_photo.image
+    end
+  end
 end
