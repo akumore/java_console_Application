@@ -3,13 +3,7 @@ require 'spec_helper'
 describe ReferenceProject do
 
   let :valid_reference_project do
-    ReferenceProject.create(:title => 'title',
-                            :description => 'description',
-                            :construction_info => 'Construction Info',
-                            :section => ReferenceProjectSection::RESIDENTIAL_BUILDING,
-                            :attachment => File.open("#{Rails.root}/spec/support/test_files/document.pdf"),
-                            :image => File.open("#{Rails.root}/spec/support/test_files/image.jpg")
-                           )
+    Fabricate(:reference_project)
   end
 
   let :invalid_reference_project do
@@ -17,10 +11,6 @@ describe ReferenceProject do
   end
 
   describe 'initialize without any attributes' do
-    before :each do
-      invalid_reference_project = ReferenceProject.new()
-    end
-
     it 'does not pass validations' do
       invalid_reference_project.should_not be_valid
     end
@@ -29,8 +19,8 @@ describe ReferenceProject do
       invalid_reference_project.should have(1).error_on(:title)
     end
 
-    it 'requires a image' do
-      invalid_reference_project.should have(1).error_on(:image)
+    it 'requires images' do
+      invalid_reference_project.should have(1).error_on(:images)
     end
 
     it 'requires a section' do
@@ -62,6 +52,12 @@ describe ReferenceProject do
       valid_reference_project.save!
       real_estate.destroy
       valid_reference_project.real_estate.should be_nil
+    end
+  end
+
+  describe '#slider_image' do
+    it 'should return first image from images array' do
+      valid_reference_project.slider_image.should == valid_reference_project.images.first.image
     end
   end
 end

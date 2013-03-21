@@ -1,6 +1,10 @@
 class ReferenceProject
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::MultiParameterAttributes
+
+  accepts_nested_attributes_for :images, :allow_destroy => true, :reject_if => :all_blank
+  embeds_many :images, :class_name => "ReferenceProjectImage", cascade_callbacks: true
 
   default_scope asc(:position)
   scope :for_rent, where(:offer => RealEstate::OFFER_FOR_RENT)
@@ -15,18 +19,23 @@ class ReferenceProject
   field :url,               :type => String
   field :locale,            :type => String, :default => 'de'
   field :attachment,        :type => String
-  field :image,             :type => String
   field :position,          :type => Integer
 
   belongs_to :real_estate
 
-  validates :title, :locale, :offer, :utilization, :section, :image, :presence => true
+  validates :title, :locale, :offer, :utilization, :section, :images, :presence => true
   validates_length_of :description, maximum: 500
 
-  mount_uploader :image, ReferenceProjectImageUploader
   mount_uploader :attachment, ReferenceProjectAttachmentUploader
+  mount_uploader :image, ReferenceProjectImageUploader
 
   before_create :setup_position
+
+  # Section scopes
+  scope :residental_buildings, :where => { :section =>  ReferenceProjectSection::RESIDENTIAL_BUILDING }
+  scope :business_buildings, :where => { :section =>  ReferenceProjectSection::BUSINESS_BUILDING }
+  scope :public_buildings, :where => { :section =>  ReferenceProjectSection::PUBLIC_BUILDING }
+  scope :rebuildings, :where => { :section =>  ReferenceProjectSection::REBUILDING }
 
   def for_sale?
     self.offer == RealEstate::OFFER_FOR_SALE
@@ -34,6 +43,10 @@ class ReferenceProject
 
   def for_rent?
     self.offer == RealEstate::OFFER_FOR_RENT
+  end
+
+  def slider_image
+    self.images.first.image
   end
 
   private
