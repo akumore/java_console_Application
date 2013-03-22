@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.3.5 on 2013-03-22
+* Hotfix: Change images for Christoph Müller, David Hossli and Thomas Rüppel
+
 ### v2.3.4 on 2013-02-25
 * Hotfix: Add David Hossli as a new member of the managing board
 
