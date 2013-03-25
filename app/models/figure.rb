@@ -44,15 +44,15 @@ class Figure
             :if => :living?
 
   # fields which must be present and numeric, but only if commercial
-  validates :floor, :usable_surface,
-            :presence => true,
-            :numericality => true,
-            :if => :working?
-
   validates :usable_surface,
             :presence => true,
             :numericality => true,
-            :if => :storing?
+            :if => :working? || :storing?
+
+  validates :floor,
+            :presence => true,
+            :numericality => true,
+            :unless => :parking?
 
   delegate :commercial_utilization?, :private_utilization?, :to => :_parent
   delegate :working?, :living?, :parking?, :storing?, :to => :_parent

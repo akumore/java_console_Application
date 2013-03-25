@@ -9,7 +9,7 @@
   %fieldset
 
     - if accessible?(:floor)
-      .control-group{ :class => (@real_estate.commercial_utilization? ? :mandatory : nil) }
+      .control-group{ :class => (@real_estate.working? || @real_estate.living? || @real_estate.storing? ? :mandatory : nil) }
         = f.label :floor
         .controls
           = f.text_field :floor, :class => 'span4'
