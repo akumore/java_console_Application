@@ -6,6 +6,7 @@ fr:
       build: 'Construire'
       living: 'Habiter'
       working: 'Travailler'
+      storing: 'Stockage'
+      parking: 'Stationnement'
       build_title: 'Pour que votre projet de construction soit une réussite'
       build_link: 'Nos prestations'
-
