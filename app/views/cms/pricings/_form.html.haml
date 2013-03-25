@@ -60,24 +60,9 @@
         %legend Mietzins für Parkplätze
 
         .control-group
-          = f.label :double_garage
+          = f.label :inside_parking
           .controls
-            = f.text_field :double_garage
-
-        .control-group
-          = f.label :single_garage
-          .controls
-            = f.text_field :single_garage
-
-        .control-group
-          = f.label :outdoor_bike
-          .controls
-            = f.text_field :outdoor_bike
-
-        .control-group
-          = f.label :covered_bike
-          .controls
-            = f.text_field :covered_bike
+            = f.text_field :inside_parking
 
         .control-group
           = f.label :outside_parking
@@ -90,9 +75,24 @@
             = f.text_field :covered_slot
 
         .control-group
-          = f.label :inside_parking
+          = f.label :covered_bike
           .controls
-            = f.text_field :inside_parking
+            = f.text_field :covered_bike
+
+        .control-group
+          = f.label :outdoor_bike
+          .controls
+            = f.text_field :outdoor_bike
+
+        .control-group
+          = f.label :single_garage
+          .controls
+            = f.text_field :single_garage
+
+        .control-group
+          = f.label :double_garage
+          .controls
+            = f.text_field :double_garage
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
