@@ -87,7 +87,8 @@
             = f.label :has_swimming_pool
             .controls
               = f.check_box :has_swimming_pool
-    - if @real_estate.commercial_utilization?
+
+    - if @real_estate.working? || @real_estate.storing?
       .row
         .span4
           .control-group
