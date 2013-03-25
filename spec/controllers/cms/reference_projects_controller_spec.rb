@@ -1,24 +1,29 @@
 # encoding: utf-8
 require 'spec_helper'
 
-
 describe Cms::ReferenceProjectsController do
-  login_cms_user
-
-  let :first do
-    Fabricate :reference_project, :position => 1
+  before do
+    sign_in(Fabricate(:cms_admin))
   end
 
-  let :second do
-    Fabricate :reference_project, :position => 2
-  end
+  describe 'let' do
+    let :first do
+      Fabricate :reference_project, :position => 1
+    end
 
-  let :third do
-    Fabricate :reference_project, :position => 3
+    let :second do
+      Fabricate :reference_project, :position => 2
+    end
+
+    let :third do
+      Fabricate :reference_project, :position => 3
+    end
+    binding.pry
   end
 
   describe '#edit' do
     it 'assigns the needed variables' do
+      binding.pry
       get :edit, :id => first.id
       assigns(:real_estates).should eq(RealEstate.all)
       assigns(:reference_project).should eq(first)

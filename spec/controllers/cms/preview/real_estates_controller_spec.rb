@@ -5,7 +5,9 @@ describe Cms::Preview::RealEstatesController do
 
   describe 'GET #show' do
     context 'as a cms user' do
-      login_cms_user
+      before do
+        sign_in(Fabricate(:cms_admin))
+      end
 
       context 'with a simple real estate' do
         let :real_estate do

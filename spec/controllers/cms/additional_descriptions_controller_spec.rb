@@ -2,7 +2,10 @@
 require 'spec_helper'
 
 describe 'Real Estate Wizard' do
-  login_cms_user
+  before do
+    sign_in(Fabricate(:cms_admin))
+  end
+
   disable_sweep!
 
   describe Cms::AdditionalDescriptionsController do
