@@ -44,13 +44,13 @@ describe "Cms::Pricings" do
               select 'pro Monat', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
-                fill_in 'Parkplatz in Autoeinstellhalle', :with => '140'
-                fill_in 'Parkplatz im Freien', :with => '160'
-                fill_in 'Doppelgarage', :with => '200'
-                fill_in 'Einzelgarage', :with => '150'
-                fill_in 'Motorrad-Parkplatz im Freien überdacht', :with => '120'
-                fill_in 'Motorrad-Parkplatz in Autoeinstellhalle', :with => '145'
-                fill_in 'Parkplatz im Freien überdacht', :with => '155'
+                fill_in 'pricing_inside_parking', :with => '140'
+                fill_in 'pricing_outside_parking', :with => '160'
+                fill_in 'pricing_double_garage', :with => '200'
+                fill_in 'pricing_single_garage', :with => '150'
+                fill_in 'pricing_outdoor_bike', :with => '120'
+                fill_in 'pricing_covered_bike', :with => '145'
+                fill_in 'pricing_covered_slot', :with => '155'
               end
 
               fill_in 'Ungefährer Preis', :with => '1500 - 2000.-'
@@ -135,13 +135,13 @@ describe "Cms::Pricings" do
               select 'Verkaufspreis', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
-                fill_in 'Parkplatz in Autoeinstellhalle', :with => '50000'
-                fill_in 'Parkplatz im Freien', :with => '10000'
-                fill_in 'Doppelgarage', :with => '20000'
-                fill_in 'Einzelgarage', :with => '15000'
-                fill_in 'Motorrad-Parkplatz im Freien überdacht', :with => '11000'
-                fill_in 'Motorrad-Parkplatz in Autoeinstellhalle', :with => '14000'
-                fill_in 'Parkplatz im Freien überdacht', :with => '12000'
+                fill_in 'pricing_inside_parking', :with => '50000'
+                fill_in 'pricing_outside_parking', :with => '10000'
+                fill_in 'pricing_double_garage', :with => '20000'
+                fill_in 'pricing_single_garage', :with => '15000'
+                fill_in 'pricing_outdoor_bike', :with => '11000'
+                fill_in 'pricing_covered_bike', :with => '14000'
+                fill_in 'pricing_covered_slot', :with => '12000'
               end
 
               fill_in 'Ungefährer Preis', :with => '10000 - 200000.-'
@@ -212,13 +212,13 @@ describe "Cms::Pricings" do
               select 'pro Jahr', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
-                fill_in 'Parkplatz in Autoeinstellhalle', :with => '200'
-                fill_in 'Parkplatz im Freien', :with => '150'
-                fill_in 'Doppelgarage', :with => '300'
-                fill_in 'Einzelgarage', :with => '250'
-                fill_in 'Motorrad-Parkplatz im Freien überdacht', :with => '220'
-                fill_in 'Motorrad-Parkplatz in Autoeinstellhalle', :with => '230'
-                fill_in 'Parkplatz im Freien überdacht', :with => '205'
+                fill_in 'pricing_inside_parking', :with => '200'
+                fill_in 'pricing_outside_parking', :with => '150'
+                fill_in 'pricing_double_garage', :with => '300'
+                fill_in 'pricing_single_garage', :with => '250'
+                fill_in 'pricing_outdoor_bike', :with => '220'
+                fill_in 'pricing_covered_bike', :with => '230'
+                fill_in 'pricing_covered_slot', :with => '205'
               end
 
               fill_in 'Lagerpreis', :with => '200'
@@ -300,13 +300,13 @@ describe "Cms::Pricings" do
               select 'Verkaufspreis', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
-                fill_in 'Parkplatz in Autoeinstellhalle', :with => '40000'
-                fill_in 'Parkplatz im Freien', :with => '15000'
-                fill_in 'Doppelgarage', :with => '45000'
-                fill_in 'Einzelgarage', :with => '30000'
-                fill_in 'Motorrad-Parkplatz im Freien überdacht', :with => '25000'
-                fill_in 'Motorrad-Parkplatz in Autoeinstellhalle', :with => '27000'
-                fill_in 'Parkplatz im Freien überdacht', :with => '29000'
+                fill_in 'pricing_inside_parking', :with => '40000'
+                fill_in 'pricing_outside_parking', :with => '15000'
+                fill_in 'pricing_double_garage', :with => '45000'
+                fill_in 'pricing_single_garage', :with => '30000'
+                fill_in 'pricing_outdoor_bike', :with => '25000'
+                fill_in 'pricing_covered_bike', :with => '27000'
+                fill_in 'pricing_covered_slot', :with => '29000'
               end
 
               fill_in 'Lagerpreis', :with => '100000'

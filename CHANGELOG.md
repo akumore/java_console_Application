@@ -1,36 +1,17 @@
 # CHANGELOG
 
-### features/new_storage_and_parking_utilization
-* Add new parking & storage utilization
-* New implemented stories:
-  #### 1 Lagern als zusätzliche Gebäudenutzungen
+### v2.3.5 on 2013-03-22
+* Hotfix: Change images for Christoph Müller, David Hossli and Thomas Rüppel
 
-  * Als Editor möchte ich Immobilien der Gebäudenutzung "Lagern" zuweisen
-  * Als Besucher und Leser möchte ich nur die relevanten Infos sehen für Angebote des Nutzungstyps "Lagern"
-  * Als Editor möchte ich bei Immobilien der Gebäudenutzung "Lagern" nur benötigte Felder sehen
+### v2.3.4 on 2013-02-25
+* Hotfix: Add David Hossli as a new member of the managing board
 
-  #### 2 Parkieren als zusätzliche Gebäudenutzungen
+### v2.3.3 on 2013-01-28
+* Fix: rounding error exception in export when using big decimals
 
-  * Als Editor möchte ich Immobilien der Gebäudenutzung "Parkieren" zuweisen
-  * Als Besucher möchte ich die Parkplatzangebote nicht sortieren können
-  * Als Editor soll der Titel für Parkplatzangebote automatisch aus der Objekt-Art generiert werden
-  * Als Besucher möchte ich für Parkplatzangebote ein spezifisches Symbolbild nach Objekt-Art sehen
-  * Als Editor möchte ich nur die Preise für Parkplätze eingeben im Nutzungstyp "Parkieren"
-  * Als Editor möchte ich das Geschoss in den Immobilieninfos nicht für einen Parkplatz angeben müssen
-  * Als Editor möchte ich den Geschossbereich in den Immobilieninfos nicht für einen Parkplatz angeben müssen
-  * Als Editor möchte ich bei Immobilien der Gebäudenutzung "Parkieren" nur benötigte Felder sehen
-
-  #### 3 Ausbau für die zusätzlichen Gebäudenutzungen "Lagern" und "Parkieren"
-
-  * Als Besucher möchte ich die Tabs "Wohnen", "Arbeiten", "Lagern", "Parkieren" nur im im Starseiten-Slider sehen, wenn es entsprechende Angebote gibt
-  * **ToDo:** Übersetzungen
-
-  #### 4 Angebotsliste auf der Webseite
-
-  * Als Besucher möchte ich eine vereinfachte Sortierung der Angebotsliste "Wohnen" erhalten
-  * Als Besucher möchte ich eine übersichtlichere Angebotsliste sehen können.
-  * Als Besucher möchte ich die Tabs "Wohnen", "Arbeiten", "Lagern", "Parkieren" nur sehen, wenn es entsprechende Angebote gibt
-  * Als Besucher möchte ich besser zwischen den Bereichen Wohnen, Arbeiten, Lagern und Parkieren unterscheiden können
+### v2.3.2 on 2013-01-28
+* Fix: apply new immoscout accounts to config
+* Fix: add address to office and include in external real estate export
 
 ### v2.3.1 on 2013-01-09
 * Fix: update rails to 3.1.10 for params parsing vulnerability

@@ -45,13 +45,13 @@ describe "Cms::Users" do
       describe '#create' do
         before :each do
           within "#new_cms_user" do
-            fill_in 'Vorname', :with => 'Benutzer'
-            fill_in 'Nachname', :with => 'Name'
-            fill_in 'E-Mail', :with => 'benutzername@test.ch'
-            fill_in 'Passwort', :with => '123456'
-            fill_in 'Passwort Bestätigung', :with => '123456'
-            select 'Admin', :from => 'Rolle'
-            check 'E-Mails für Verifizierung von Immobilien erhalten'
+            fill_in 'cms_user_first_name', :with => 'Benutzer'
+            fill_in 'cms_user_last_name', :with => 'Name'
+            fill_in 'cms_user_email', :with => 'benutzername@test.ch'
+            fill_in 'cms_user_password', :with => '123456'
+            fill_in 'cms_user_password_confirmation', :with => '123456'
+            select 'Admin', :from => 'cms_user_role'
+            check 'cms_user_wants_review_emails'
           end
         end
 

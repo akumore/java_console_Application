@@ -32,13 +32,13 @@ describe "Floorplans for printing" do
     end
 
     it 'does not open the print dialogue' do
-      page.should_not have_content('window.print')
+      page.html.should_not have_content('window.print')
     end
 
     describe "with print parameter" do
       it 'opens the print dialogue' do
         visit real_estate_floorplans_path(real_estate, :print => true)
-        page.should have_content('window.print')
+        page.html.should have_content('window.print')
       end
     end
   end

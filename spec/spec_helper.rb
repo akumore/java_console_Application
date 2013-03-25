@@ -8,13 +8,9 @@ require 'rspec/mocks'
 # Load homegate export in order to get tests running TODO: move this into a better place
 require 'export/export'
 
-
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-
-
-
 
 Capybara.javascript_driver = :webkit
 
@@ -36,10 +32,11 @@ RSpec.configure do |config|
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
   config.include Devise::TestHelpers, :type => :controller
+  config.include ControllerHelpers, :type => :controller
   config.extend ControllerMacros, :type => :controller
   config.extend DefaultUrlOptionsHelper
-  config.extend RequestMacros, :type => :request
-  config.include ActionView::Helpers::NumberHelper, :type => :request
+  config.extend RequestMacros
+  config.include ActionView::Helpers::NumberHelper
   config.include MockGeocoder
   config.include Delorean
   config.include ExporterFileSystemHelpers

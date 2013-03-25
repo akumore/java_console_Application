@@ -80,7 +80,7 @@ describe "RealEstates" do
 
       it "has the json representation for the map coordinates" do
         visit real_estates_path
-        page.should have_content(real_estate.to_json(:only => :_id, :methods => :coordinates))
+        page.html.should have_content(real_estate.to_json(:only => :_id, :methods => :coordinates))
       end
 
       it "stores the placeholder thumbnail if no primary image is set for the lazy loading" do

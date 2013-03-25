@@ -407,14 +407,14 @@ module Export::Idx301
     def rent_net
       #  int(10) round up / selling_price OR rent_net  is mandatory / empty="by request"
       rent = model.try(:pricing).try(:for_rent_netto).presence
-      rent.present? ? BigDecimal.new(rent).ceil.to_i : nil
+      rent.present? ? BigDecimal.new(rent.to_s).ceil.to_i : nil
     end
 
     def rent_extra
       #  int(10) round up
       unless model.for_work_or_storage?
         extra = model.try(:pricing).try(:for_rent_extra).presence
-        extra.present? ? BigDecimal.new(extra).ceil.to_i : nil
+        extra.present? ? BigDecimal.new(extra.to_s).ceil.to_i : nil
       end
     end
 
@@ -603,7 +603,7 @@ module Export::Idx301
 
     def agency_name
       # str(200)
-      'Alfred Müller AG'
+      model.office.company_label
     end
 
     def agency_name_2
@@ -617,17 +617,17 @@ module Export::Idx301
 
     def agency_street
       # str(200)
-      'Neuhofstrasse 10'
+      model.office.street
     end
 
     def agency_zip
       #  str(200)  blank allowed for pool agencies
-      '6340'
+      model.office.zip
     end
 
     def agency_city
       # str(200)
-      'Baar'
+      model.office.city
     end
 
     def agency_country
@@ -637,7 +637,7 @@ module Export::Idx301
 
     def agency_phone
       #  str(200)
-      model.try(:contact).try(:phone).presence || '+41 41 767 02 02'
+      model.try(:contact).try(:phone).presence || model.office.phone
     end
 
     def agency_mobile
@@ -647,7 +647,7 @@ module Export::Idx301
 
     def agency_fax
       #  str(200)
-      model.try(:contact).try(:fax).presence || '+41 41 767 02 00'
+      model.try(:contact).try(:fax).presence || model.office.fax
     end
 
     def agency_email

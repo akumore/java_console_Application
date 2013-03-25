@@ -370,6 +370,7 @@ describe Export::Idx301::RealEstateDecorator do
           )
           real_estate.rent_extra.should be_nil
         end
+
       end
 
       it 'returns the rounded price' do
@@ -418,6 +419,75 @@ describe Export::Idx301::RealEstateDecorator do
         it 'returns the price with the added rent extra' do
           decorated_real_etate.model.stub(:for_work_or_storage?).and_return(false)
           decorated_real_etate.selling_price.should == 300
+        end
+      end
+    end
+  end
+
+  describe 'agency adress' do
+    let :decorator do
+      d = Export::Idx301::RealEstateDecorator.new(mock_model(RealEstate), account, {})
+      d.model.stub(:office).and_return(mock_model(Office, :company_label => 'Migros',
+                                 :street => 'Am See 12',
+                                 :zip => '12345',
+                                 :city => 'Basel',
+                                 :phone => '123',
+                                 :fax => '321'))
+      d
+    end
+
+    describe '#agency_name' do
+      it 'returns the offices name' do
+        decorator.agency_name.should == 'Migros'
+      end
+    end
+
+    describe '#agency_street' do
+      it 'returns the offices street' do
+        decorator.agency_street.should == 'Am See 12'
+      end
+    end
+
+    describe '#agency_zip' do
+      it 'returns the offices zip' do
+        decorator.agency_zip.should == '12345'
+      end
+    end
+
+    describe '#agency_city' do
+      it 'returns the offices city' do
+        decorator.agency_city.should == 'Basel'
+      end
+    end
+
+    describe '#agency_phone' do
+      context 'when a contact phone is present' do
+        it 'returns the contacts phone number' do
+          decorator.model.stub_chain(:contact, :phone).and_return('987')
+          decorator.agency_phone.should == '987'
+        end
+      end
+
+      context 'when the contact phone is not present' do
+        it 'returns the offices phone number' do
+          decorator.model.stub_chain(:contact, :phone).and_return('')
+          decorator.agency_phone.should == '123'
+        end
+      end
+    end
+
+    describe '#agency_fax' do
+      context 'when a contact fax is present' do
+        it 'returns the contacts fax number' do
+          decorator.model.stub_chain(:contact, :fax).and_return('789')
+          decorator.agency_fax.should == '789'
+        end
+      end
+
+      context 'when the contacts fax is not present' do
+        it 'returns the offices fax number' do
+          decorator.model.stub_chain(:contact, :fax).and_return('')
+          decorator.agency_fax.should == '321'
         end
       end
     end

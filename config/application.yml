@@ -127,7 +127,25 @@ production:
       password: '6340baar'
       offices:
         - baar
+
+    - provider: 'immoscout24'
+      agency_id: '233060'
+      sender_id: 'AlfredMuellerWebsite_ImmoscoutExporter'
+      video_support: false
+      host: 'ftp.immoscout24.ch'
+      username: 'kxbdn75f'
+      password: 'udo5xucd64'
+      offices:
         - marin
+
+    - provider: 'immoscout24'
+      agency_id: '340091'
+      sender_id: 'AlfredMuellerWebsite_ImmoscoutExporter'
+      video_support: false
+      host: 'ftp.immoscout24.ch'
+      username: 'vr3selg3'
+      password: '8y4clo77dh'
+      offices:
         - camorino
 
     - provider: 'immostreet'

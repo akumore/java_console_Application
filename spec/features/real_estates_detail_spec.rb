@@ -258,7 +258,7 @@ describe "RealEstates" do
         # Modernizr.touch by defaults is set to true for capybara webkit env
         # Workaround: Set flag to false, then re-initialize Application
         page.execute_script("Modernizr.touch = false;new AlfredMueller.Routers.Application();")
-        find('.flexslider .slides li .zoom-floorplan').click
+        first('.flexslider .slides li .zoom-floorplan').click
         page.should have_css(".fancybox-opened img[src='#{@real_estate_with_floorplan.floor_plans.first.file.url}']")
       end
     end
