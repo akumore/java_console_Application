@@ -40,17 +40,17 @@ describe "Cms::Figures" do
       context 'a valid Figure' do
         before :each do
           within(".new_figure") do
-            fill_in 'Geschoss', :with => '-1'
-            fill_in 'Geschoss ungefähr', :with => 'UG. - 2.OG'
-            fill_in 'Anzahl Zimmer', :with => '3.5'
-            fill_in 'Anzahl Zimmer ungefähr', :with => '3 - 3.5 Zimmer'
-            fill_in 'Wohnfläche', :with => '124.6'
-            fill_in 'Wohnfläche ungefähr', :with => '124.6 - 130.4m2'
-            fill_in 'Grundstückfläche', :with => '400.5'
-            fill_in 'Grundstückfläche ungefähr', :with => '124.5 - 123m2'
-            fill_in 'Anzahl Geschosse', :with => 3
-            fill_in 'Renovationsjahr', :with => 1997
-            fill_in 'Baujahr', :with => 1956
+            fill_in 'figure_floor', :with => '-1'
+            fill_in 'figure_floor_estimate', :with => 'UG. - 2.OG'
+            fill_in 'figure_rooms', :with => '3.5'
+            fill_in 'figure_rooms_estimate', :with => '3 - 3.5 Zimmer'
+            fill_in 'figure_living_surface', :with => '124.6'
+            fill_in 'figure_living_surface_estimate', :with => '124.6 - 130.4m2'
+            fill_in 'figure_property_surface', :with => '400.5'
+            fill_in 'figure_property_surface_estimate', :with => '124.5 - 123m2'
+            fill_in 'figure_floors', :with => 3
+            fill_in 'figure_renovated_on', :with => 1997
+            fill_in 'figure_built_on', :with => 1956
           end
         end
 
@@ -120,17 +120,17 @@ describe "Cms::Figures" do
       context 'a valid Figure' do
         before :each do
           within(".new_figure") do
-            fill_in 'Geschoss', :with => '-1'
-            fill_in 'Geschoss ungefähr', :with => 'UG. - 2.OG'
-            fill_in 'Grundstückfläche', :with => '400.5'
-            fill_in 'Grundstückfläche ungefähr', :with => '40.3 - 120 m2'
-            fill_in 'Nutzfläche', :with => '200.6'
-            fill_in 'Nutzfläche ungefähr', :with => '200.6 - 200.7 m2'
-            fill_in 'Lagerfläche', :with => '150'
-            fill_in 'Raumhöhe', :with => '2.6'
-            fill_in 'Anzahl Geschosse', :with => 3
-            fill_in 'Renovationsjahr', :with => 1997
-            fill_in 'Baujahr', :with => 1956
+            fill_in 'figure_floor', :with => '-1'
+            fill_in 'figure_floor_estimate', :with => 'UG. - 2.OG'
+            fill_in 'figure_property_surface', :with => '400.5'
+            fill_in 'figure_property_surface_estimate', :with => '40.3 - 120 m2'
+            fill_in 'figure_usable_surface', :with => '200.6'
+            fill_in 'figure_usable_surface_estimate', :with => '200.6 - 200.7 m2'
+            fill_in 'figure_storage_surface', :with => '150'
+            fill_in 'figure_ceiling_height', :with => '2.6'
+            fill_in 'figure_floors', :with => 3
+            fill_in 'figure_renovated_on', :with => 1997
+            fill_in 'figure_built_on', :with => 1956
           end
         end
 

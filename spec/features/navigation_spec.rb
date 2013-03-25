@@ -37,14 +37,14 @@ describe "Main Navigation" do
     describe "offer subnavigation" do
       it "links to the offers for rent/commercial" do
         visit root_path(:locale => lang)
-        within '.sub-navigation' do
+        within all('.sub-navigation')[0] do
           page.should have_link I18n.t('real_estates.search_filter.for_rent'), :href => "/#{lang}/real_estates?offer=for_rent&utilization=commercial"
         end
       end
 
       it "links to the offers for sale/private" do
         visit root_path(:locale => lang)
-        within '.sub-navigation' do
+        within all('.sub-navigation')[0] do
           page.should have_link I18n.t('real_estates.search_filter.for_sale'), :href => "/#{lang}/real_estates?offer=for_sale&utilization=private"
         end
       end

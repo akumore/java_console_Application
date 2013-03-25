@@ -121,8 +121,8 @@ describe "Cms::Bricks" do
       context 'creating' do
         before :each do
           within('.new_brick_text') do
-            fill_in 'Text', :with => 'Mein Text'
-            fill_in 'Mehr lesen Text', :with => 'Mein mehr lesen Text'
+            fill_in 'brick_text_text', :with => 'Mein Text'
+            fill_in 'brick_text_more_text', :with => 'Mein mehr lesen Text'
           end
         end
 
@@ -147,8 +147,8 @@ describe "Cms::Bricks" do
       context 'updating ' do
         before :each do
           within('.edit_brick_text') do
-            fill_in 'Text', :with => 'Anderer Text'
-            fill_in 'Mehr lesen Text', :with => 'Anderer mehr lesen Text'
+            fill_in 'brick_text_text', :with => 'Anderer Text'
+            fill_in 'brick_text_more_text', :with => 'Anderer mehr lesen Text'
           end
         end
 
