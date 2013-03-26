@@ -57,7 +57,10 @@
 
     - if accessible?(:parking_spots_prices_group)
       %fieldset.parking-spots-prices-group
-        %legend Mietzins für Parkplätze
+        - if @real_estate.for_sale?
+          %legend Kaufpreis für Parkplätze
+        - else
+          %legend Mietzins für Parkplätze
 
         .control-group
           = f.label :inside_parking

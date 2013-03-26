@@ -35,6 +35,10 @@ describe "Cms::Pricings" do
           page.should_not have_css('#pricing_extra_storage')
         end
 
+        it 'shows right parking spots pricing group title' do
+          page.should have_content('Mietzins für Parkplätze')
+        end
+
         context 'a valid Pricing' do
           before :each do
             within(".new_pricing") do
@@ -126,6 +130,10 @@ describe "Cms::Pricings" do
 
         it 'does not show the extra_storage price input' do
           page.should_not have_css('#pricing_extra_storage')
+        end
+
+        it 'shows right parking spots pricing group title' do
+          page.should have_content('Kaufpreis für Parkplätze')
         end
 
         context 'a valid Pricing' do
