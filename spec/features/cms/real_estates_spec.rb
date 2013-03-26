@@ -273,9 +273,9 @@ describe "Cms::RealEstates" do
         end
       end
 
-      it 'does not show the infrastructure tab' do
+      it 'shows the infrastructure tab' do
         within('.nav-tabs') do
-          page.should_not have_link('Infrastruktur')
+          page.should have_link('Infrastruktur')
         end
       end
 

@@ -18,9 +18,9 @@ describe 'Real Estate Wizard' do
           @real_estate = Fabricate :real_estate, :category => Fabricate(:category), :utilization => Utilization::PARKING
         end
 
-        it 'redirects to the media assets tab' do
+        it 'redirects to the infrastructure tab' do
           post :create, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
-          response.should redirect_to cms_real_estate_media_assets_path(@real_estate)
+          response.should redirect_to new_cms_real_estate_infrastructure_path(@real_estate)
           flash[:success].should_not be_nil
         end
       end

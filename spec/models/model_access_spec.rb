@@ -69,8 +69,8 @@ describe ModelAccess do
       end
 
       describe 'infrastructure' do
-        it 'is not accessible' do
-          model_access.accessible?(:infrastructure).should be_false
+        it 'is accessible' do
+          model_access.accessible?(:infrastructure).should be_true
         end
       end
 

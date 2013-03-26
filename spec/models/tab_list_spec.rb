@@ -21,9 +21,9 @@ describe TabList do
     end
 
     context "with a parking real estate in 'pricing' tab" do
-      it "returns 'media_assets'" do
+      it "returns 'infrastructure'" do
         tab_list = TabList.new(parking_real_estate)
-        tab_list.next_step('pricing').should == 'media_assets'
+        tab_list.next_step('pricing').should == 'infrastructure'
       end
     end
   end
