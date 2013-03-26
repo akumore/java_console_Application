@@ -15,17 +15,19 @@
           %dt= figure.surface_label
           %dd= figure.surface
 
-    - if figure && real_estate.commercial_utilization?
+    - if figure && real_estate.working?
       - if figure.property_surface.present?
         %dl
           %dt= t('figures.property_surface')
           %dd= figure.property_surface
 
+    - if figure && real_estate.working? || real_estate.storing?
       - if figure.ceiling_height.present?
         %dl
           %dt= t('figures.ceiling_height')
           %dd= figure.ceiling_height
 
+    - if figure && real_estate.working?
       - if figure.storage_surface.present?
         %dl
           %dt= t('figures.storage_surface')
