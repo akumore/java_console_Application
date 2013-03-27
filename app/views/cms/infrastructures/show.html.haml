@@ -27,14 +27,29 @@
       = @infrastructure.outside_parking_spots
       &nbsp;
 
-    %dt= t "mongoid.attributes.infrastructure.inside_parking_spots_temporary"
+    %dt= t "mongoid.attributes.infrastructure.covered_slot"
     %dd
-      = @infrastructure.inside_parking_spots_temporary
+      = @infrastructure.covered_slot
       &nbsp;
 
-    %dt= t "mongoid.attributes.infrastructure.outside_parking_spots_temporary"
+    %dt= t "mongoid.attributes.infrastructure.covered_bike"
     %dd
-      = @infrastructure.outside_parking_spots_temporary
+      = @infrastructure.covered_bike
+      &nbsp;
+
+    %dt= t "mongoid.attributes.infrastructure.outdoor_bike"
+    %dd
+      = @infrastructure.outdoor_bike
+      &nbsp;
+
+    %dt= t "mongoid.attributes.infrastructure.single_garage"
+    %dd
+      = @infrastructure.single_garage
+      &nbsp;
+
+    %dt= t "mongoid.attributes.infrastructure.double_garage"
+    %dd
+      = @infrastructure.double_garage
       &nbsp;
 
   %br

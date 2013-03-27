@@ -11,15 +11,30 @@
         %dt= t('infrastructures.outside_parking_spots', :count => infrastructure.outside_parking_spots)
         %dd= infrastructure.outside_parking_spots
 
-    - if infrastructure.inside_parking_spots_temporary.present?
+    - if infrastructure.covered_slot.present?
       %dl
-        %dt= t('infrastructures.inside_parking_spots_temporary', :count => infrastructure.inside_parking_spots_temporary)
-        %dd= infrastructure.inside_parking_spots_temporary
+        %dt= t('infrastructures.covered_slot', :count => infrastructure.covered_slot)
+        %dd= infrastructure.covered_slot
 
-    - if infrastructure.outside_parking_spots_temporary.present?
+    - if infrastructure.covered_bike.present?
       %dl
-        %dt= t('infrastructures.outside_parking_spots_temporary', :count => infrastructure.outside_parking_spots_temporary)
-        %dd= infrastructure.outside_parking_spots_temporary
+        %dt= t('infrastructures.covered_bike', :count => infrastructure.covered_bike)
+        %dd= infrastructure.covered_bike
+
+    - if infrastructure.outdoor_bike.present?
+      %dl
+        %dt= t('infrastructures.outdoor_bike', :count => infrastructure.outdoor_bike)
+        %dd= infrastructure.outdoor_bike
+
+    - if infrastructure.single_garage.present?
+      %dl
+        %dt= t('infrastructures.single_garage', :count => infrastructure.single_garage)
+        %dd= infrastructure.single_garage
+
+    - if infrastructure.double_garage.present?
+      %dl
+        %dt= t('infrastructures.double_garage', :count => infrastructure.double_garage)
+        %dd= infrastructure.double_garage
 
     - if infrastructure.distances.any?
       %dl

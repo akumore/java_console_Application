@@ -19,17 +19,38 @@ class InfrastructureDecorator < ApplicationDecorator
       }
     end
 
-    if infrastructure.inside_parking_spots_temporary.present?
+    if infrastructure.covered_slot.present?
       content << {
-        :key => t('infrastructures.inside_parking_spots_temporary', :count => infrastructure.inside_parking_spots_temporary),
-        :value => infrastructure.inside_parking_spots_temporary
+        :key => t('infrastructures.covered_slot', :count => infrastructure.covered_slot),
+        :value => infrastructure.covered_slot
       }
     end
 
-    if infrastructure.outside_parking_spots_temporary.present?
+    if infrastructure.covered_bike.present?
       content << {
-        :key => t('infrastructures.outside_parking_spots_temporary', :count => infrastructure.outside_parking_spots_temporary),
-        :value => infrastructure.outside_parking_spots_temporary
+        :key => t('infrastructures.covered_bike', :count => infrastructure.covered_bike),
+        :value => infrastructure.covered_bike
+      }
+    end
+
+    if infrastructure.outdoor_bike.present?
+      content << {
+        :key => t('infrastructures.outdoor_bike', :count => infrastructure.outdoor_bike),
+        :value => infrastructure.outdoor_bike
+      }
+    end
+
+    if infrastructure.single_garage.present?
+      content << {
+        :key => t('infrastructures.single_garage', :count => infrastructure.single_garage),
+        :value => infrastructure.single_garage
+      }
+    end
+
+    if infrastructure.double_garage.present?
+      content << {
+        :key => t('infrastructures.double_garage', :count => infrastructure.double_garage),
+        :value => infrastructure.double_garage
       }
     end
 

@@ -9,13 +9,21 @@ class Infrastructure
   accepts_nested_attributes_for :points_of_interest, :reject_if => proc { |attributes| attributes['distance'].blank? }
 
   field :has_roofed_parking_spot, :type => Boolean
-  field :inside_parking_spots, :type => Integer
-  field :outside_parking_spots, :type => Integer
-  field :inside_parking_spots_temporary, :type => Integer
-  field :outside_parking_spots_temporary, :type => Integer
+  field :inside_parking_spots, :type => Integer # Parkplatz in Autoeinstellhalle
+  field :outside_parking_spots, :type => Integer # Parkplatz im Freien
+  field :covered_slot, :type => Integer # Parkplatz im Freien überdacht
+  field :covered_bike, :type => Integer # Motorrad-Parkplatz in Autoeinstellhalle
+  field :outdoor_bike, :type => Integer # Motorrad-Parkplatz im Freien überdacht
+  field :single_garage, :type => Integer # Einzelgarage
+  field :double_garage, :type => Integer # Doppelgarage
 
-  validates :inside_parking_spots, :outside_parking_spots, :inside_parking_spots_temporary,
-            :outside_parking_spots_temporary, :numericality => true, :allow_blank => true
+  validates :inside_parking_spots,
+            :outside_parking_spots,
+            :covered_slot,
+            :covered_bike,
+            :outdoor_bike,
+            :single_garage,
+            :double_garage, :numericality => true, :allow_blank => true
 
   def build_points_of_interest(real_estate)
     real_estate.parking? ? build_parking_points_of_interest : build_all_points_of_interest
@@ -34,7 +42,7 @@ class Infrastructure
   end
 
   def has_garage
-    self.inside_parking_spots.to_i > 0 || self.inside_parking_spots_temporary.to_i > 0
+    self.inside_parking_spots.to_i > 0
   end
 
   def has_garage?
@@ -42,7 +50,7 @@ class Infrastructure
   end
 
   def has_parking_spot
-    self.outside_parking_spots.to_i > 0 || self.outside_parking_spots_temporary.to_i > 0
+    self.outside_parking_spots.to_i > 0
   end
 
   def has_parking_spot?
