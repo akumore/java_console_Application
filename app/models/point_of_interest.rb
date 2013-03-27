@@ -4,6 +4,7 @@ class PointOfInterest
 
   TYPES = %w(public_transport shopping kindergarden elementary_school high_school highway_access)
   PARKING_TYPES = %w(public_transport highway_access)
+  STORING_TYPES = %w(kindergarden elementary_school high_school)
 
   embedded_in :infrastructure
 

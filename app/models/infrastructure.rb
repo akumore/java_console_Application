@@ -26,7 +26,13 @@ class Infrastructure
             :double_garage, :numericality => true, :allow_blank => true
 
   def build_points_of_interest(real_estate)
-    real_estate.parking? ? build_parking_points_of_interest : build_all_points_of_interest
+    if real_estate.parking?
+      build_parking_points_of_interest
+    elsif real_estate.storing?
+      build_storing_points_of_interest
+    else
+      build_all_points_of_interest
+    end
   end
 
   def build_all_points_of_interest
@@ -37,6 +43,12 @@ class Infrastructure
 
   def build_parking_points_of_interest
     PointOfInterest::PARKING_TYPES.each do |name|
+      self.points_of_interest.find_or_initialize_by :name => name
+    end
+  end
+
+  def build_storing_points_of_interest
+    PointOfInterest::STORING_TYPES.each do |name|
       self.points_of_interest.find_or_initialize_by :name => name
     end
   end

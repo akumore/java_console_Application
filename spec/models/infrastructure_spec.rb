@@ -121,6 +121,13 @@ describe Infrastructure do
       end
     end
 
+    context "with storing utilization" do
+      it "returns #{PointOfInterest::STORING_TYPES}" do
+        @real_estate.update_attributes(:utilization => Utilization::STORING)
+        @infrastructure.build_points_of_interest(@real_estate).should == PointOfInterest::STORING_TYPES
+      end
+    end
+
     context 'with every ohter utilization' do
       it "returns #{PointOfInterest::TYPES}" do
         @real_estate.update_attributes(:utilization => Utilization::LIVING)
