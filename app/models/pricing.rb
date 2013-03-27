@@ -15,13 +15,13 @@ class Pricing
   field :opted, :type => Boolean # Optiert, entscheidet ob MwST angezeigt wird
 
   # Mietzins für Parkplätze
-  field :double_garage, :type => Integer # Doppelgarage
-  field :single_garage, :type => Integer # Einzelgarage
-  field :outdoor_bike, :type => Integer # Motorrad-Parkplatz im Freien überdacht
-  field :covered_bike, :type => Integer # Motorrad-Parkplatz in Autoeinstellhalle
+  field :inside_parking, :type => Integer # Parkplatz in Autoeinstellhalle
   field :outside_parking, :type => Integer # Parkplatz im Freien
   field :covered_slot, :type => Integer # Parkplatz im Freien überdacht
-  field :inside_parking, :type => Integer # Parkplatz in Autoeinstellhalle
+  field :covered_bike, :type => Integer # Motorrad-Parkplatz in Autoeinstellhalle
+  field :outdoor_bike, :type => Integer # Motorrad-Parkplatz im Freien überdacht
+  field :single_garage, :type => Integer # Einzelgarage
+  field :double_garage, :type => Integer # Doppelgarage
 
   validates :for_rent_netto, :presence => true, :numericality => true, :if => :for_rent?
   validates :for_rent_extra, :presence => true, :if => :for_rent_extra_is_mandatory?
