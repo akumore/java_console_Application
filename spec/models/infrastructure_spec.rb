@@ -116,15 +116,15 @@ describe Infrastructure do
     end
 
     context 'with parking utilization' do
-      it "returns #{PointOfInterest::PARKING_TYPES}" do
-        @infrastructure.build_points_of_interest(@real_estate).should == PointOfInterest::PARKING_TYPES
+      it "returns #{PointOfInterest::PARKING_STORING_TYPES}" do
+        @infrastructure.build_points_of_interest(@real_estate).should == PointOfInterest::PARKING_STORING_TYPES
       end
     end
 
     context "with storing utilization" do
-      it "returns #{PointOfInterest::STORING_TYPES}" do
+      it "returns #{PointOfInterest::PARKING_STORING_TYPES}" do
         @real_estate.update_attributes(:utilization => Utilization::STORING)
-        @infrastructure.build_points_of_interest(@real_estate).should == PointOfInterest::STORING_TYPES
+        @infrastructure.build_points_of_interest(@real_estate).should == PointOfInterest::PARKING_STORING_TYPES
       end
     end
 
