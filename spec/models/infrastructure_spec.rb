@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe Infrastructure do
@@ -6,8 +7,11 @@ describe Infrastructure do
       @real_estate = Fabricate.build(:real_estate, :infrastructure => Infrastructure.new(
           :inside_parking_spots => 'eins',
           :outside_parking_spots => 'zwei',
-          :inside_parking_spots_temporary => 'drei',
-          :outside_parking_spots_temporary => 'vier'
+          :covered_slot => 'drei',
+          :covered_bike => 'vier',
+          :outdoor_bike => 'fünf',
+          :single_garage => 'sechs',
+          :double_garage => 'sieben'
         ), :category => Fabricate(:category))
       @infrastructure = @real_estate.infrastructure
     end
@@ -24,17 +28,29 @@ describe Infrastructure do
       @infrastructure.should have(1).error_on(:outside_parking_spots)
     end
 
-    it 'requires a number for the inside_parking_spots_temporary' do
-      @infrastructure.should have(1).error_on(:inside_parking_spots_temporary)
+    it 'requires a number for the covered_slot' do
+      @infrastructure.should have(1).error_on(:covered_slot)
     end
 
-    it 'requires a number for the outside_parking_spots_temporary' do
-      @infrastructure.should have(1).error_on(:outside_parking_spots_temporary)
+    it 'requires a number for the covered_bike' do
+      @infrastructure.should have(1).error_on(:covered_bike)
+    end
+
+    it 'requires a number for the outdoor_bike' do
+      @infrastructure.should have(1).error_on(:outdoor_bike)
+    end
+
+    it 'requires a number for the single_garage' do
+      @infrastructure.should have(1).error_on(:single_garage)
+    end
+
+    it 'requires a number for the double_garage' do
+      @infrastructure.should have(1).error_on(:double_garage)
     end
 
     it 'has 4 errors' do
       @infrastructure.valid?
-      @infrastructure.errors.should have(4).items
+      @infrastructure.errors.should have(7).items
     end
   end
 
@@ -45,41 +61,19 @@ describe Infrastructure do
       infrastructure.has_garage.should == infrastructure.has_garage?
     end
 
-    context 'without inside parking spots and without temp inside parking spots' do
+    context 'without inside parking spots' do
       it 'returns false' do
         infrastructure = Infrastructure.new(
-          :inside_parking_spots => 0,
-          :inside_parking_spots_temporary => 0
+          :inside_parking_spots => 0
         )
         infrastructure.has_garage.should be_false
       end
     end
 
-    context 'without inside parking spots but with temp inside parking spots' do
+    context 'with inside parking spots' do
       it 'returns true' do
         infrastructure = Infrastructure.new(
-          :inside_parking_spots => 0,
-          :inside_parking_spots_temporary => 1
-        )
-        infrastructure.has_garage.should be_true
-      end
-    end
-
-    context 'with inside parking spots and with temp inside parking spots' do
-      it 'returns true' do
-        infrastructure = Infrastructure.new(
-          :inside_parking_spots => 1,
-          :inside_parking_spots_temporary => 1
-        )
-        infrastructure.has_garage.should be_true
-      end
-    end
-
-    context 'with inside parking spots but without temp inside parking spots' do
-      it 'returns true' do
-        infrastructure = Infrastructure.new(
-          :inside_parking_spots => 1,
-          :inside_parking_spots_temporary => 0
+          :inside_parking_spots => 1
         )
         infrastructure.has_garage.should be_true
       end
@@ -93,41 +87,19 @@ describe Infrastructure do
       infrastructure.has_parking_spot.should == infrastructure.has_parking_spot?
     end
 
-    context 'witout outside parking spots and without temp outside parking spots' do
+    context 'witout outside parking spots' do
       it 'returns false' do
         infrastructure = Infrastructure.new(
-          :outside_parking_spots => 0,
-          :outside_parking_spots_temporary => 0
+          :outside_parking_spots => 0
         )
         infrastructure.has_parking_spot.should be_false
       end
     end
 
-    context 'without outside parking spots but with temp outside parking spots' do
+    context 'with outside parking spots' do
       it 'returns true' do
         infrastructure = Infrastructure.new(
-          :outside_parking_spots => 0,
-          :outside_parking_spots_temporary => 1
-        )
-        infrastructure.has_parking_spot.should be_true
-      end
-    end
-
-    context 'with outside parking spots and with temp outside parking spots' do
-      it 'returns true' do
-        infrastructure = Infrastructure.new(
-          :outside_parking_spots => 1,
-          :outside_parking_spots_temporary => 1
-        )
-        infrastructure.has_parking_spot.should be_true
-      end
-    end
-
-    context 'with outside parking spots but without temp outside parking spots' do
-      it 'returns true' do
-        infrastructure = Infrastructure.new(
-          :outside_parking_spots => 1,
-          :outside_parking_spots_temporary => 0
+          :outside_parking_spots => 1
         )
         infrastructure.has_parking_spot.should be_true
       end
@@ -138,9 +110,7 @@ describe Infrastructure do
     before do
       @real_estate = Fabricate.build(:real_estate, :utilization => Utilization::PARKING, :infrastructure => Infrastructure.new(
           :inside_parking_spots => 'eins',
-          :outside_parking_spots => 'zwei',
-          :inside_parking_spots_temporary => 'drei',
-          :outside_parking_spots_temporary => 'vier'
+          :outside_parking_spots => 'zwei'
         ), :category => Fabricate(:category))
       @infrastructure = @real_estate.infrastructure
     end

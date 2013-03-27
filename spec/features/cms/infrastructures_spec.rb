@@ -24,11 +24,13 @@ describe "Cms::Infrastructures" do
         within(".new_infrastructure") do
           check 'Hat überdachten Parkplatz'
 
-          fill_in 'Anzahl Parkplätze im Freien', :with => '2'
           fill_in 'Anzahl Parkplätze in Autoeinstellhalle', :with => '1'
-
-          fill_in 'Anzahl temporäre Parkplätze im Freien', :with => '1'
-          fill_in 'Anzahl temporäre Parkplätze in Autoeinstellhalle', :with => '1'
+          fill_in 'Anzahl Parkplätze im Freien', :with => '2'
+          fill_in 'Anzahl Parkplätze im Freien überdacht', :with => '3'
+          fill_in 'Anzahl Motorrad-Parkplätze in Autoeinstellhalle', :with => '4'
+          fill_in 'Anzahl Motorrad-Parkplätze im Freien überdacht', :with => '5'
+          fill_in 'Anzahl Einzelgaragen', :with => '6'
+          fill_in 'Anzahl Doppelgaragen', :with => '7'
 
           fill_in 'Öffentlicher Verkehr', :with => '200'
           fill_in 'Einkaufen', :with => '100'
@@ -52,10 +54,13 @@ describe "Cms::Infrastructures" do
           @infrastructure.has_parking_spot.should be_true
           @infrastructure.has_roofed_parking_spot.should be_true
           @infrastructure.has_garage.should be_true
-          @infrastructure.outside_parking_spots.should == 2
           @infrastructure.inside_parking_spots.should == 1
-          @infrastructure.outside_parking_spots_temporary.should == 1
-          @infrastructure.inside_parking_spots_temporary.should == 1
+          @infrastructure.outside_parking_spots.should == 2
+          @infrastructure.covered_slot.should == 3
+          @infrastructure.covered_bike.should == 4
+          @infrastructure.outdoor_bike.should == 5
+          @infrastructure.single_garage.should == 6
+          @infrastructure.double_garage.should == 7
         end
 
         it 'has addded two points of interest' do
