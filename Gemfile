@@ -51,7 +51,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
-  gem 'capybara-webkit'
+  gem 'capybara-webkit', '0.12.1'
   gem 'fabrication'
   gem 'guard'
   gem 'guard-rspectacle'
