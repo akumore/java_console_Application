@@ -11,12 +11,12 @@ class Cms::InfrastructuresController < Cms::SecuredController
 
   def new
     @infrastructure = Infrastructure.new
-    @infrastructure.build_all_points_of_interest
+    @infrastructure.build_points_of_interest(@real_estate)
     respond_with @infrastructure
   end
 
   def edit
-    @infrastructure.build_all_points_of_interest
+    @infrastructure.build_points_of_interest(@real_estate)
   end
 
   def create

@@ -17,8 +17,18 @@ class Infrastructure
   validates :inside_parking_spots, :outside_parking_spots, :inside_parking_spots_temporary,
             :outside_parking_spots_temporary, :numericality => true, :allow_blank => true
 
+  def build_points_of_interest(real_estate)
+    real_estate.parking? ? build_parking_points_of_interest : build_all_points_of_interest
+  end
+
   def build_all_points_of_interest
     PointOfInterest::TYPES.each do |name|
+      self.points_of_interest.find_or_initialize_by :name => name
+    end
+  end
+
+  def build_parking_points_of_interest
+    PointOfInterest::PARKING_TYPES.each do |name|
       self.points_of_interest.find_or_initialize_by :name => name
     end
   end
