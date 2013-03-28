@@ -54,6 +54,134 @@ describe Infrastructure do
     end
   end
 
+  describe '#has_roofed_parking_spot' do
+    it 'aliases #has_roofed_parking_spot?' do
+      infrastructure = Infrastructure.new
+      infrastructure.should respond_to(:has_roofed_parking_spot?)
+      infrastructure.has_garage.should == infrastructure.has_roofed_parking_spot?
+    end
+
+    context 'without any parking spots' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_roofed_parking_spot.should be_false
+      end
+    end
+
+    context 'with inside parking spots' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 1,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_roofed_parking_spot.should be_true
+      end
+    end
+
+    context 'with outside parking spots' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 1,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_roofed_parking_spot.should be_false
+      end
+    end
+
+    context 'with covered slots' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 1,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_roofed_parking_spot.should be_true
+      end
+    end
+
+    context 'with covered bike slots' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 1,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_roofed_parking_spot.should be_true
+      end
+    end
+
+    context 'with outdoor bike slots' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 1,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_roofed_parking_spot.should be_true
+      end
+    end
+
+    context 'with a single garage' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 1,
+          :double_garage => 0
+        )
+        infrastructure.has_roofed_parking_spot.should be_true
+      end
+    end
+
+    context 'with a double garage' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 1
+        )
+        infrastructure.has_roofed_parking_spot.should be_true
+      end
+    end
+  end
+
   describe '#has_garage' do
     it 'aliases #has_garage?' do
       infrastructure = Infrastructure.new
@@ -61,10 +189,16 @@ describe Infrastructure do
       infrastructure.has_garage.should == infrastructure.has_garage?
     end
 
-    context 'without inside parking spots' do
+    context 'without any parking spots' do
       it 'returns false' do
         infrastructure = Infrastructure.new(
-          :inside_parking_spots => 0
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
         )
         infrastructure.has_garage.should be_false
       end
@@ -73,7 +207,103 @@ describe Infrastructure do
     context 'with inside parking spots' do
       it 'returns true' do
         infrastructure = Infrastructure.new(
-          :inside_parking_spots => 1
+          :inside_parking_spots => 1,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_garage.should be_true
+      end
+    end
+
+    context 'with outside parking spots' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 1,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_garage.should be_false
+      end
+    end
+
+    context 'with covered slots' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 1,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_garage.should be_false
+      end
+    end
+
+    context 'with covered bike slots' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 1,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_garage.should be_true
+      end
+    end
+
+    context 'with outdoor bike slots' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 1,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_garage.should be_false
+      end
+    end
+
+    context 'with a single garage' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 1,
+          :double_garage => 0
+        )
+        infrastructure.has_garage.should be_true
+      end
+    end
+
+    context 'with a double garage' do
+      it 'returns true' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 1
         )
         infrastructure.has_garage.should be_true
       end
@@ -87,10 +317,31 @@ describe Infrastructure do
       infrastructure.has_parking_spot.should == infrastructure.has_parking_spot?
     end
 
-    context 'witout outside parking spots' do
+    context 'without any parking spots' do
       it 'returns false' do
         infrastructure = Infrastructure.new(
-          :outside_parking_spots => 0
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_parking_spot.should be_false
+      end
+    end
+
+    context 'with inside parking spots' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 1,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
         )
         infrastructure.has_parking_spot.should be_false
       end
@@ -99,9 +350,90 @@ describe Infrastructure do
     context 'with outside parking spots' do
       it 'returns true' do
         infrastructure = Infrastructure.new(
-          :outside_parking_spots => 1
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 1,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
         )
         infrastructure.has_parking_spot.should be_true
+      end
+    end
+
+    context 'with covered slots' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 1,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_parking_spot.should be_false
+      end
+    end
+
+    context 'with covered bike slots' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 1,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_parking_spot.should be_false
+      end
+    end
+
+    context 'with outdoor bike slots' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 1,
+          :single_garage => 0,
+          :double_garage => 0
+        )
+        infrastructure.has_parking_spot.should be_false
+      end
+    end
+
+    context 'with a single garage' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 1,
+          :double_garage => 0
+        )
+        infrastructure.has_parking_spot.should be_false
+      end
+    end
+
+    context 'with a double garage' do
+      it 'returns false' do
+        infrastructure = Infrastructure.new(
+          :inside_parking_spots => 0,
+          :outside_parking_spots => 0,
+          :covered_slot => 0,
+          :covered_bike => 0,
+          :outdoor_bike => 0,
+          :single_garage => 0,
+          :double_garage => 1
+        )
+        infrastructure.has_parking_spot.should be_false
       end
     end
   end

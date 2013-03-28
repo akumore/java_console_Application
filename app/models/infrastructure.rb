@@ -45,7 +45,12 @@ class Infrastructure
   end
 
   def has_roofed_parking_spot
-    self.inside_parking_spots.to_i > 0
+    self.inside_parking_spots.to_i > 0 ||
+    self.covered_slot.to_i > 0 ||
+    self.covered_bike.to_i > 0 ||
+    self.outdoor_bike.to_i > 0 ||
+    self.single_garage.to_i > 0 ||
+    self.double_garage.to_i > 0
   end
 
   def has_roofed_parking_spot?
@@ -53,7 +58,10 @@ class Infrastructure
   end
 
   def has_garage
-    self.inside_parking_spots.to_i > 0
+    self.inside_parking_spots.to_i > 0 ||
+    self.covered_bike.to_i > 0 ||
+    self.single_garage.to_i > 0 ||
+    self.double_garage.to_i > 0
   end
 
   def has_garage?
