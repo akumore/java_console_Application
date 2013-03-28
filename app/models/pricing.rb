@@ -25,10 +25,10 @@ class Pricing
 
   validates :for_rent_netto, :presence => true, :numericality => true, :if => :for_rent?
   validates :for_rent_extra, :presence => true, :if => :for_rent_extra_is_mandatory?
-  validates :for_rent_extra, :numericality => true, :if => :for_rent?
   validates :for_sale, :presence => true, :numericality => true, :if => :for_sale?
 
-  validates :storage,
+  validates :for_rent_extra,
+            :storage,
             :extra_storage,
             :double_garage,
             :single_garage,
