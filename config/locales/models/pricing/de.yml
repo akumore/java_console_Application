@@ -5,6 +5,7 @@ de:
     attributes:
       pricing:
         for_rent_netto: 'Netto Miete'
+        for_rent_netto_parking: 'Mietzins'
         for_rent_extra: 'Mietnebenkosten'
         for_rent_depot: 'Mietzinsdepot'
         for_sale: 'Kaufpreis'

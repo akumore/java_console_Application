@@ -16,7 +16,7 @@
           %span.input-to-text= t(".#{PriceUnit.all_by_offer_and_utilization(@real_estate.offer, @real_estate.utilization).first}")
     - if @real_estate.for_rent?
       .control-group.mandatory
-        = f.label :for_rent_netto
+        = f.label :for_rent_netto, @real_estate.parking? ? t('mongoid.attributes.pricing.for_rent_netto_parking') : t('mongoid.attributes.pricing.for_rent_netto')
         .controls
           = f.text_field :for_rent_netto, :class => 'span8'
       .control-group{ :class => (@pricing.for_rent_extra_is_mandatory? ? 'mandatory' : '') }

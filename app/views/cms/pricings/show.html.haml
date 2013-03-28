@@ -11,7 +11,7 @@
       &nbsp;
 
   - if @real_estate.for_rent?
-    %dt= t "mongoid.attributes.pricing.for_rent_netto"
+    %dt= @real_estate.parking? ? t("mongoid.attributes.pricing.for_rent_netto_parking") : t("mongoid.attributes.pricing.for_rent_netto")
     %dd
       = number_to_currency @pricing.for_rent_netto, :locale => 'de-CH'
       &nbsp;
