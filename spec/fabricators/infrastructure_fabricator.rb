@@ -1,5 +1,4 @@
 Fabricator(:infrastructure) do
-  has_roofed_parking_spot false
   inside_parking_spots 1
   outside_parking_spots 1
   covered_slot 1

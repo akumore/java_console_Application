@@ -8,11 +8,6 @@
   %fieldset.push-checkboxes-down
     %legend= t('.parking')
     .control-group
-      = f.label :has_roofed_parking_spot
-      .controls
-        = f.check_box :has_roofed_parking_spot
-
-    .control-group
       = f.label :inside_parking_spots
       .controls
         = f.text_field :inside_parking_spots, :class => 'span8'

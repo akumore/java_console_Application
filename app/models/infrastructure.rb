@@ -8,7 +8,6 @@ class Infrastructure
 
   accepts_nested_attributes_for :points_of_interest, :reject_if => proc { |attributes| attributes['distance'].blank? }
 
-  field :has_roofed_parking_spot, :type => Boolean
   field :inside_parking_spots, :type => Integer # Parkplatz in Autoeinstellhalle
   field :outside_parking_spots, :type => Integer # Parkplatz im Freien
   field :covered_slot, :type => Integer # Parkplatz im Freien überdacht
@@ -43,6 +42,14 @@ class Infrastructure
     PointOfInterest::PARKING_STORING_TYPES.each do |name|
       self.points_of_interest.find_or_initialize_by :name => name
     end
+  end
+
+  def has_roofed_parking_spot
+    self.inside_parking_spots.to_i > 0
+  end
+
+  def has_roofed_parking_spot?
+    has_roofed_parking_spot
   end
 
   def has_garage
