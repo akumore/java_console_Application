@@ -195,6 +195,16 @@ describe "RealEstates" do
           end
         end
 
+        context 'for parking' do
+          it "doesn't have a link to the mini doku" do
+            real_estate.update_attribute :utilization, Utilization::PARKING
+            visit real_estate_path(real_estate)
+            page.within('.sidebar') do
+              page.should_not have_link('Objektdokumentation')
+            end
+          end
+        end
+
         context 'for living' do
           it 'has a link for the application form pdf' do
             real_estate.update_attribute :utilization, Utilization::LIVING

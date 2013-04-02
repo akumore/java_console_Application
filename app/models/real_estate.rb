@@ -176,7 +176,7 @@ class RealEstate
   alias_method :for_work_or_storage?, :working_or_storing?
 
   def has_handout?
-    for_rent? && channels.include?(RealEstate::PRINT_CHANNEL)
+    for_rent? && channels.include?(RealEstate::PRINT_CHANNEL) && !parking?
   end
 
   def top_level_category
