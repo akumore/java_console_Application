@@ -30,12 +30,12 @@ describe Pricing do
         end
 
         it 'requires the rent extras' do
-          pricing.should have(2).error_on(:for_rent_extra)
+          pricing.should have(1).error_on(:for_rent_extra)
         end
 
         it 'has 6 errors' do
           pricing.valid?
-          pricing.errors.should have(6).items
+          pricing.errors.should have(5).items
         end
 
         context 'parking' do
