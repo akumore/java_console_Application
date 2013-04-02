@@ -1,7 +1,7 @@
 .accordion-item
   .title= t('information.title')
   .content
-    - if figure && real_estate.private_utilization?
+    - if figure && real_estate.living?
       - if figure.floor.present?
         %dt= t('figures.floor')
         %dd= figure.floor
@@ -53,7 +53,7 @@
         %dt= t('information.characteristics')
         %dd= information.characteristics.join(', ')
 
-    - if information && real_estate.commercial_utilization?
+    - if information && real_estate.working?
 
       - if information.maximal_floor_loading.present?
         %dl
