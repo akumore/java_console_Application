@@ -28,3 +28,8 @@ de:
     without_vat: 'Alle Preise ohne Mehrwertsteuer'
     inside_parking: 'Parkplatz in Autoeinstellhalle'
     outside_parking: 'Parkplatz im Freien'
+    covered_slot: 'Parkplatz im Freien überdacht'
+    covered_bike: 'Motorrad-Parkplatz in Autoeinstellhalle'
+    outdoor_bike: 'Motorrad-Parkplatz im Freien überdacht'
+    single_garage: 'Einzelgarage'
+    double_garage: 'Doppelgarage'
