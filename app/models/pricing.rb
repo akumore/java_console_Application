@@ -30,13 +30,13 @@ class Pricing
   validates :for_rent_extra,
             :storage,
             :extra_storage,
-            :double_garage,
-            :single_garage,
-            :outdoor_bike,
-            :covered_bike,
+            :inside_parking,
             :outside_parking,
             :covered_slot,
-            :inside_parking, :numericality => true, :allow_blank => true
+            :covered_bike,
+            :outdoor_bike,
+            :single_garage,
+            :double_garage, :numericality => true, :allow_blank => true
 
   validates :price_unit, :presence => true, :inclusion => PriceUnit.for_sale, :if => :for_sale?
   validates :price_unit, :presence => true, :inclusion => PriceUnit.for_rent, :if => :for_rent?
