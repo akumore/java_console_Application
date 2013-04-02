@@ -26,16 +26,21 @@
     = [ [:firstname, :lastname].map {|attr| @real_estate.contact.try(attr)}.compact.join(" "), [:phone, :email].map {|attr| @real_estate.contact.try(attr)}.compact.join(", ")].join(", ")
     &nbsp;
 
-%legend Titel und Beschreibungen
+- if accessible?(:title)
+  %legend Titel und Beschreibungen
+- else
+  %legend Beschreibungen
 
 %dl.dl-horizontal
-  %dt= t "mongoid.attributes.real_estate.title"
-  %dd= @real_estate.title
+  - if accessible?(:title)
+    %dt= t "mongoid.attributes.real_estate.title"
+    %dd= @real_estate.title
 
   %dt= t "mongoid.attributes.real_estate.description"
   %dd= @real_estate.description
 
-  %dt= t "mongoid.attributes.real_estate.utilization_description"
-  %dd
-    = @real_estate.utilization_description.presence
-    &nbsp;
+  - if accessible?(:utilization_description)
+    %dt= t "mongoid.attributes.real_estate.utilization_description"
+    %dd
+      = @real_estate.utilization_description.presence
+      &nbsp;

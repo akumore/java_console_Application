@@ -74,7 +74,11 @@ class Cms::RealEstatesController < Cms::SecuredController
   end
 
   def editing_model
-    @real_estate
+    if @real_estate.respond_to?(:model)
+      @real_estate.model
+    else
+      @real_estate
+    end
   end
 
   def field_access
