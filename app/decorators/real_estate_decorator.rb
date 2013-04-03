@@ -44,25 +44,25 @@ class RealEstateDecorator < ApplicationDecorator
     ].join(' ')
   end
 
-  def short_info_address
+  def short_info_first
     [address.try(:street).presence, address.try(:extended_city).presence].join(tag('br')).html_safe
   end
 
-  def short_info_price
+  def short_info_second
     buffer = []
-    buffer << utilization_description
 
+    buffer << utilization_description if utilization_description.present? && living? || working? || storing?
     if figure.present?
-      buffer << figure.rooms if figure.rooms.present?
+      buffer << figure.rooms if figure.rooms.present? && living?
     end
 
     buffer.join(tag('br')).html_safe
   end
 
-  def short_info_figure
+  def short_info_third
     buffer = []
 
-    if figure.present?
+    if figure.present? && !parking?
       buffer << figure.surface if figure.surface.present?
       buffer << figure.floor if figure.floor.present?
     end
@@ -70,7 +70,7 @@ class RealEstateDecorator < ApplicationDecorator
     buffer.join(tag('br')).html_safe
   end
 
-  def short_info_size
+  def short_info_fourth
     buffer = []
 
     if model.pricing.present?
