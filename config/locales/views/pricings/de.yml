@@ -26,6 +26,8 @@ de:
     for_rent_extra: 'Nebenkosten'
     for_rent_depot: 'Mietzinsdepot'
     without_vat: 'Alle Preise ohne Mehrwertsteuer'
+    storage: 'Lagerpreis'
+    extra_storage: 'Lager Nebenkosten'
     inside_parking: 'Parkplatz in Autoeinstellhalle'
     outside_parking: 'Parkplatz im Freien'
     covered_slot: 'Parkplatz im Freien überdacht'

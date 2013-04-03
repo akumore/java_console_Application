@@ -13,6 +13,16 @@
       %dd
         = pricing.for_rent_extra
 
+  - if pricing.storage.present?
+    %dl
+      %dt= t('pricings.storage')
+      %dd= pricing.storage
+
+  - if pricing.extra_storage.present?
+    %dl
+      %dt= t('pricings.extra_storage')
+      %dd= pricing.extra_storage
+
   - if pricing.for_rent_depot.present?
     %dl
       %dt= t('pricings.for_rent_depot')

@@ -68,6 +68,14 @@ class PricingDecorator < ApplicationDecorator
     end
   end
 
+  def storage
+    formatted(model.storage, parking_price_unit) if model.storage.present?
+  end
+
+  def extra_storage
+    formatted(model.extra_storage, parking_price_unit) if model.extra_storage.present?
+  end
+
   def inside_parking
     formatted(model.inside_parking, parking_price_unit) if model.inside_parking.present?
   end
