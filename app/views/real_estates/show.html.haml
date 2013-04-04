@@ -35,13 +35,13 @@
   .clear
   .short-info
     .info.first
-      -#= @real_estate.short_info_first
+      = @real_estate.short_info_first
     .info
-      -#= @real_estate.short_info_second
+      = @real_estate.short_info_second
     .info
-      -#= @real_estate.short_info_third
+      = @real_estate.short_info_third
     .info
-      -#= @real_estate.short_info_fourth
+      = @real_estate.short_info_fourth
     .clear
 
   .gallery
@@ -52,7 +52,6 @@
       - if @real_estate.any_descriptions?
         = render 'descriptions', :real_estate => @real_estate, :additional_description => @real_estate.additional_description
 
-      - binding.pry
       - if @real_estate.any_information? && !@real_estate.parking?
         = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
 
