@@ -211,27 +211,6 @@ class RealEstate
     end
   end
 
-  def any_information?
-    if living?
-      figure.floor.present? ||
-      figure.rooms.present? ||
-      figure.surface.present?
-    elsif working?
-      figure.property_surface.present? ||
-      figure.storage_surface.present? ||
-      information.maximal_floor_loading.present? ||
-      information.freight_elevator_carrying_capacity.present?
-    elsif working? || storing?
-      working? || storing?
-    elsif living? || working? || storing? || parking?
-      figure.floors.present? ||
-      figure.renovated_on.present? ||
-      figure.built_on.present? ||
-      figure.built_on.present? ||
-      information.characteristics.any?
-    end
-  end
-
   private
   def init_channels
     self.channels ||= []

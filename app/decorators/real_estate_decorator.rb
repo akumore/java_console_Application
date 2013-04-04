@@ -198,4 +198,53 @@ class RealEstateDecorator < ApplicationDecorator
     end
   end
 
+  def any_information?
+    if parking?
+      general_information? || parking_information?
+    elsif living?
+      general_information? || living_information?
+    elsif working?
+      general_information? || working_information?
+    elsif storing?
+      general_information? || storing_information?
+    end
+  end
+
+  def general_information?
+    if figure.present?
+      figure.floors.present? ||
+      figure.renovated_on.present? ||
+      figure.built_on.present? ||
+      figure.built_on.present?
+    elsif information.present?
+      information.characteristics.any?
+    end
+  end
+
+  def parking_information?
+    false
+  end
+
+  def living_information?
+    if figure.present?
+      figure.floor.present? ||
+      figure.rooms.present? ||
+      figure.surface.present?
+    end
+  end
+
+  def working_information?
+    if figure.present?
+      figure.property_surface.present? ||
+      figure.storage_surface.present? ||
+      figure.ceiling_height.present?
+    elsif information.present?
+      information.maximal_floor_loading.present? ||
+      information.freight_elevator_carrying_capacity.present?
+    end
+  end
+
+  def storing_information?
+    figure.ceiling_height.present?
+  end
 end
