@@ -17,10 +17,10 @@ describe RealEstateDecorator do
     end
 
     [
-      :short_info_first,
-      :short_info_second,
-      :short_info_third,
-      :short_info_fourth,
+      :short_info_detail_first,
+      :short_info_detail_second,
+      :short_info_detail_third,
+      :short_info_detail_fourth,
       :additional_description,
       :utilization_description,
       :seo_description,
