@@ -56,13 +56,9 @@ class RealEstateDecorator < ApplicationDecorator
   def short_info_second
     buffer = []
 
-    if parking?
-      buffer << tag('br')
-    end
+    buffer << tag('br') if parking?
 
-    if figure.try(:rooms).present? && living?
-      buffer << figure.rooms
-    end
+    buffer << figure.rooms if figure.try(:rooms).present? && living?
 
     if figure.present?
       buffer << figure.surface if figure.surface.present? && working? || storing?
@@ -75,9 +71,7 @@ class RealEstateDecorator < ApplicationDecorator
   def short_info_third
     buffer = []
 
-    if living? || parking?
-      buffer << pricing.list_price
-    end
+    buffer << pricing.list_price if living? || parking?
 
     buffer << utilization_description if utilization_description.present? && working? || storing?
 
@@ -96,6 +90,7 @@ class RealEstateDecorator < ApplicationDecorator
     buffer = []
 
     buffer << utilization_description if utilization_description.present? && living? || working? || storing?
+
     if figure.present?
       buffer << figure.rooms if figure.rooms.present? && living?
     end
