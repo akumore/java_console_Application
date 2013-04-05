@@ -19,24 +19,16 @@
                 %td
                   .title
                     = real_estate.title
+
                   .col.first
-                    = real_estate.address.street
-                    %br
-                    = real_estate.address.compressed_city
+                    = real_estate.short_info_first
+
                   .col.middle
-                    - if real_estate.parking?
-                      %br
-                    - else
-                      - if real_estate.figure.try(:rooms).present?
-                        = real_estate.figure.rooms
-                        %br
-                      - if real_estate.figure.try(:floor).present?
-                        = real_estate.figure.floor
+                    = real_estate.short_info_second
+
                   .col.last
-                    = real_estate.pricing.list_price
-                    %br
-                    - if real_estate.information.present?
-                      = real_estate.information.available_from_compact
+                    = real_estate.short_info_third
+
                   .clear
 
 

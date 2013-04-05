@@ -45,10 +45,54 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def short_info_first
-    [address.try(:street).presence, address.try(:extended_city).presence].join(tag('br')).html_safe
+    buffer = []
+
+    buffer << address.street
+    buffer << address.compressed_city
+
+    buffer.join(tag('br')).html_safe
   end
 
   def short_info_second
+    buffer = []
+
+    if parking?
+      buffer << tag('br')
+    end
+
+    if figure.try(:rooms).present? && living?
+      buffer << figure.rooms
+    end
+
+    if figure.present?
+      buffer << figure.surface if figure.surface.present? && working? || storing?
+      buffer << figure.floor if figure.floor.present? && !parking?
+    end
+
+    buffer.join(tag('br')).html_safe
+  end
+
+  def short_info_third
+    buffer = []
+
+    if living? || parking?
+      buffer << pricing.list_price
+    end
+
+    buffer << utilization_description if utilization_description.present? && working? || storing?
+
+    if information.present?
+      buffer << information.available_from_compact
+    end
+
+    buffer.join(tag('br')).html_safe
+  end
+
+  def short_info_detail_first
+    [address.try(:street).presence, address.try(:extended_city).presence].join(tag('br')).html_safe
+  end
+
+  def short_info_detail_second
     buffer = []
 
     buffer << utilization_description if utilization_description.present? && living? || working? || storing?
@@ -59,7 +103,7 @@ class RealEstateDecorator < ApplicationDecorator
     buffer.join(tag('br')).html_safe
   end
 
-  def short_info_third
+  def short_info_detail_third
     buffer = []
 
     if figure.present? && !parking?
@@ -70,7 +114,7 @@ class RealEstateDecorator < ApplicationDecorator
     buffer.join(tag('br')).html_safe
   end
 
-  def short_info_fourth
+  def short_info_detail_fourth
     buffer = []
 
     if model.pricing.present?
