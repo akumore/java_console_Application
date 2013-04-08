@@ -16,6 +16,8 @@
           %span= t(".#{Offer::RENT}")
       .controls
         %label.inline.radio
+          = f.radio_button :offer, Offer::SALE
+          %span= t(".#{Offer::SALE}")
 
     .control-group.mandatory
       = f.label :utilization
