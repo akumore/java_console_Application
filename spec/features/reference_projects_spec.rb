@@ -13,7 +13,7 @@ describe ReferenceProject do
     context 'with 5 existing reference projects' do
       before do
         5.times do
-          Fabricate(:reference_project, :offer => RealEstate::OFFER_FOR_SALE, :utilization => RealEstate::UTILIZATION_PRIVATE)
+          Fabricate(:reference_project, :offer => Offer::SALE, :utilization => Utilization::LIVING)
         end
         visit reference_projects_path
       end
