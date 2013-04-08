@@ -123,17 +123,17 @@
   width: 80%
   background: white
 
+  &.open + .sale-slide
+    left: 80%
+
 .sale-slide
   position: absolute
   height: 100%
   width: 80%
-  left: 80%
+  left: 10%
   +single-transition('left')
   border-left: solid white
   background: white
-
-  &.open
-    left: 10%
 
 .build-slide
   position: absolute
@@ -143,6 +143,7 @@
   +single-transition('left')
   border-left: solid white
   background: white
+
   &.open
     left: 20%
 

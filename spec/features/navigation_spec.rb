@@ -19,7 +19,6 @@ describe 'Language Navigation' do
       end
     end
   end
-
 end
 
 
@@ -85,10 +84,10 @@ describe "Main Navigation" do
       end
     end
 
-    it "links to the content page 'knowledge'" do
+    it "links to the reference projects" do
       visit root_path(:locale => lang)
       within '.main-navigation' do
-        page.should have_link I18n.t('navigation.main.knowledge'), :href => "/#{lang}/knowledge"
+        page.should have_link I18n.t('navigation.main.reference_projects'), :href => reference_projects_path(:locale => lang)
       end
     end
   end

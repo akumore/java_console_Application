@@ -1,7 +1,7 @@
 class ReferenceProjectImageUploader < BaseUploader
 
-  version :preview do
-    process :resize_to_fill => [500,250]
+  version :thumb do
+    process :resize_to_fill => [100,100]
   end
 
   version :gallery do
@@ -13,5 +13,4 @@ class ReferenceProjectImageUploader < BaseUploader
   def extension_white_list
     ExtensionWhiteList.new %w(jpg jpeg png)
   end
-
 end

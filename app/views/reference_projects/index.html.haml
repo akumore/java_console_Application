@@ -1,0 +1,15 @@
+= form_for @search_filter, :url => reference_projects_path, :method => 'GET' do |search_form|
+  = render 'search_filter', { :search_form => search_form }
+
+- unless @reference_projects.empty?
+  .reference-projects-container
+    = render 'reference_project', :reference_projects => @reference_projects
+
+    - if @reference_projects.size > 4
+      .load-more
+        = link_to t('pages.show.more'), reference_projects_path(:section => @search_filter.section), :remote => true, :class => 'more'
+
+- unless @gallery_photos.empty?
+  .search-container.clearfix
+    .container.gallery-photos-slider
+      = render 'slider', :projects => @gallery_photos

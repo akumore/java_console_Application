@@ -10,3 +10,6 @@ it:
       parking: 'Parcheggiare'
       build_title: 'Per un buon esito del progetto di costruzione'
       build_link: 'Le nostre prestazioni'
+      project_development: 'Sviluppo progetti'
+      new_building: 'Nuova costruzione'
+      rebuilding: 'Ristrutturazione'

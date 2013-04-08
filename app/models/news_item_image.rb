@@ -7,8 +7,8 @@ class NewsItemImage
 
   mount_uploader :file,  NewsItemImageUploader
 
-  field :file, :type=>String
-  field :position, :type=>Integer
+  field :file, :type => String
+  field :position, :type => Integer
 
   before_create :setup_position
 
@@ -16,5 +16,4 @@ class NewsItemImage
   def setup_position
     self.position = news_item.images.max(:position) + 1
   end
-
 end

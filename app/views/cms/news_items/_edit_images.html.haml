@@ -13,7 +13,7 @@
           = render 'attachment_errors', :model => image_form.object
 
           - unless image_form.object.errors.any?
-            %tr.draggable-row{:id=>"image-#{image_form.object.id}"}
+            %tr.draggable-row{:id => "image-#{image_form.object.id}"}
               %td.drag-handle{ :width => '5%' }
                 %i.icon-align-justify
                 = image_form.hidden_field :position
@@ -25,6 +25,6 @@
       %tbody
         %tr
           %td
-          %td{:colspan=>2}
+          %td{:colspan => 2}
             = f.fields_for :images, NewsItemImage.new do |image_form|
               = image_form.file_field :file

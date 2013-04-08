@@ -7,6 +7,9 @@ de:
         address_html: 'Alfred Müller AG<br>Neuhofstrasse 10<br>CH-6340 Baar'
         phone_html: 'Telefon +41 41 767 02 02<br>Fax +41 41 767 02 00'
         directions: 'Anfahrtsplan'
+      forum_title: Forum
+      forum_content: Unser Magazin für Sie
+      take_me_to_forum_magazine: Zum Magazin
       we_want_you: Wir suchen Sie
       discover_alfred_mueller: Entdecken Sie die Alfred Müller AG als attraktive Arbeitgeberin
       take_me_to_the_jobs: Zur Jobseite
@@ -19,4 +22,3 @@ de:
       compost_and_nuclear_plant_in_region_zug: Die Kompostier- und Biostromanlage in der Region Zug
       take_me_to_allmig_website: Zur Allmig Webseite
       memberships: Mitgliedschaften
-

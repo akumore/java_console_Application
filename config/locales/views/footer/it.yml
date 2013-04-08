@@ -7,6 +7,9 @@ it:
         address_html: 'Alfred Müller SA<br />Centro Monda 3<br />CH-6568 Camorino'
         phone_html: 'Telefono +41 91 858 25 94<br>Fax +41 91 858 25 54'
         directions: 'Tragitto'
+      forum_title: Forum
+      forum_content: La nostra rivista per voi
+      take_me_to_forum_magazine: Per la rivista
       we_want_you: La cerchiamo
       discover_alfred_mueller: Scopra la Alfred Müller AG quale datore di lavoro attrattivo
       take_me_to_the_jobs: Alle offerte d‘impiego
@@ -19,4 +22,3 @@ it:
       compost_and_nuclear_plant_in_region_zug: L’impianto di compostaggio e produzione di bio-energia della regione
       take_me_to_allmig_website: Visita il sito Allmig
       memberships: Associazioni
-

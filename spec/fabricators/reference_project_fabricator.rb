@@ -2,7 +2,8 @@ Fabricator(:reference_project) do
   title { "A fine reference project #{Fabricate.sequence}" }
   description 'Some reference project description...'
   offer Offer::RENT
-  image File.open("#{Rails.root}/spec/support/test_files/image.jpg")
+  section ReferenceProjectSection::RESIDENTIAL_BUILDING
+  images { [Fabricate.build(:reference_project_image)] }
   locale :de
   position Fabricate.sequence
 end

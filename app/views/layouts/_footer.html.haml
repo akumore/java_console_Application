@@ -11,6 +11,12 @@
 
 .footer-teasers
   %div
+    %h5= t ".forum_title"
+    %dl
+      %dt= t ".forum_content"
+      %dd= link_to t(".take_me_to_forum_magazine"), "#{t('company_url')}"
+
+  %div
     %h5= t ".we_are_here_for_you"
     %dl
       %dt= t ".we_are_here_for_you_content"
