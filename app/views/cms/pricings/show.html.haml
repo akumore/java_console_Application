@@ -35,12 +35,13 @@
     %dt= t "mongoid.attributes.pricing.opted"
     %dd= t "#{@pricing.opted}"
 
-  - if @real_estate.commercial_utilization?
+  - if accessible?(:extra_storage)
     %dt= t "mongoid.attributes.pricing.storage"
     %dd
       = number_to_currency @pricing.storage, :locale => 'de-CH'
       &nbsp;
 
+  - if accessible?(:extra_storage)
     %dt= t "mongoid.attributes.pricing.extra_storage"
     %dd
       = number_to_currency @pricing.extra_storage, :locale => 'de-CH'

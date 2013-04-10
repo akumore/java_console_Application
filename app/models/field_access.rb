@@ -78,10 +78,8 @@ class FieldAccess
        *.parking.figure.usable_surface_estimate
        *.living.figure.ceiling_height
        *.parking.figure.ceiling_height
-       *.living.pricing.storage
        *.parking.pricing.storage
        *.storing.pricing.storage
-       *.living.pricing.extra_storage
        *.parking.pricing.extra_storage
        *.storing.pricing.extra_storage
        *.parking.pricing.for_rent_depot

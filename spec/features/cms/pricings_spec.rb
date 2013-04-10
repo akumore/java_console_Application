@@ -28,11 +28,11 @@ describe "Cms::Pricings" do
         end
 
         it 'does not show the storage price input' do
-          page.should_not have_css('#pricing_storage')
+          page.should have_css('#pricing_storage')
         end
 
         it 'does not show the extra_storage price input' do
-          page.should_not have_css('#pricing_extra_storage')
+          page.should have_css('#pricing_extra_storage')
         end
 
         it 'shows right parking spots pricing group title' do
@@ -125,11 +125,11 @@ describe "Cms::Pricings" do
         end
 
         it 'does not show the storage price input' do
-          page.should_not have_css('#pricing_storage')
+          page.should have_css('#pricing_storage')
         end
 
         it 'does not show the extra_storage price input' do
-          page.should_not have_css('#pricing_extra_storage')
+          page.should have_css('#pricing_extra_storage')
         end
 
         it 'shows right parking spots pricing group title' do
