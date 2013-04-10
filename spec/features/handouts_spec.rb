@@ -44,7 +44,15 @@ describe "Handout aka MiniDoku" do
   let :printable_real_estate do
     Fabricate(:residential_building,
         :address => Fabricate.build(:address, :street => 'Musterstrasse', :street_number => '1', :zip => '8400', :city => 'Hausen'),
-        :figure => Fabricate.build(:figure, :floor => 3, :floor_estimate => '', :rooms => '3.5', :living_surface => 120, :living_surface_estimate => ''),
+        :figure => Fabricate.build(:figure,
+                                   :floor => 3,
+                                   :floor_estimate => '',
+                                   :rooms => '3.5',
+                                   :living_surface => 120,
+                                   :living_surface_estimate => '',
+                                   :storage_surface => 10,
+                                   :storage_surface_estimate => 20
+                                  ),
         :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'monthly'),
         :information => information,
         :title => 'Demo Objekt',
@@ -113,6 +121,52 @@ describe "Handout aka MiniDoku" do
     it 'shows the description' do
       visit real_estate_handout_path(printable_real_estate)
       page.should have_content('Lorem Ipsum')
+    end
+  end
+
+  describe 'Chapter Real Estate information' do
+    context 'with working utilization' do
+      before do
+        printable_real_estate.update_attribute :utilization, Utilization::WORKING
+        visit real_estate_handout_path(printable_real_estate)
+      end
+
+      it 'shows the storage surface' do
+        page.should have_content('Lagerfläche 20 m²')
+      end
+    end
+
+    context 'with living utilization' do
+      before do
+        printable_real_estate.update_attribute :utilization, Utilization::LIVING
+        visit real_estate_handout_path(printable_real_estate)
+      end
+
+      it 'shows the storage surface' do
+        page.should have_content('Lagerfläche 20 m²')
+      end
+    end
+
+    context 'with storing utilization' do
+      before do
+        printable_real_estate.update_attribute :utilization, Utilization::STORING
+        visit real_estate_handout_path(printable_real_estate)
+      end
+
+      it "doesn't show the storage surface" do
+        page.should_not have_content('Lagerfläche 20 m²')
+      end
+    end
+
+    context 'with parking utilization' do
+      before do
+        printable_real_estate.update_attribute :utilization, Utilization::PARKING
+        visit real_estate_handout_path(printable_real_estate)
+      end
+
+      it "doesn't show the storage surface" do
+        page.should_not have_content('Lagerfläche 20 m²')
+      end
     end
   end
 

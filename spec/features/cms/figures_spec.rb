@@ -21,8 +21,8 @@ describe "Cms::Figures" do
         current_path.should == new_cms_real_estate_figure_path(@real_estate)
       end
 
-      it 'does not show the storage surface input' do
-        page.should_not have_css('#figure_storage_surface')
+      it 'does show the storage surface input' do
+        page.should have_css('#figure_storage_surface')
       end
 
       it 'does not show the usage surface input' do
