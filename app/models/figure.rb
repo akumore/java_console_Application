@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Figure
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -8,8 +10,12 @@ class Figure
   field :floor_estimate, :type => String # 1-5 Stock
   field :rooms, :type => String #
   field :rooms_estimate, :type => String # 3-5 Zimmer
+
   field :living_surface, :type => Integer
   field :living_surface_estimate, :type => String # 50-80 Quadratmeter
+  # Spezifikation Wohnfläche
+  field :specification_living_surface, :type => String,
+                                       :default => 'Fläche exklusive Fassaden-, Treppenhaus-, Wohnungstrennwände, Leitungsschächte und Balkon/Terrasse. Fläche inklusive Innenwände.'
   field :property_surface, :type => String # Grundstückfläche
   field :property_surface_estimate, :type => String # Grundstückfläche ungefähr
   field :usable_surface, :type => Integer # Nutzfläche

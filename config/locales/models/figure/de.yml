@@ -10,6 +10,7 @@ de:
         rooms_estimate: 'Anzahl Zimmer ungefähr'
         living_surface: 'Wohnfläche in m²'
         living_surface_estimate: 'Wohnfläche ungefähr'
+        specification_living_surface: 'Spezifikation Wohnfläche'
         property_surface: 'Grundstückfläche in m²'
         property_surface_estimate: 'Grundstückfläche ungefähr'
         usable_surface: 'Nutzfläche in m²'

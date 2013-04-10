@@ -50,6 +50,7 @@ describe "Handout aka MiniDoku" do
                                    :rooms => '3.5',
                                    :living_surface => 120,
                                    :living_surface_estimate => '',
+                                   :specification_living_surface => 'Test one two three',
                                    :storage_surface => 10,
                                    :storage_surface_estimate => 20
                                   ),
@@ -113,9 +114,9 @@ describe "Handout aka MiniDoku" do
       end
     end
 
-    it 'shows the helptext for the usable surface' do
+    it 'shows the specification living surface' do
       visit real_estate_handout_path(printable_real_estate)
-      page.should have_content I18n.t('handouts.overview.usable_surface_helptext')
+      page.should have_content('Test one two three')
     end
 
     it 'shows the description' do
