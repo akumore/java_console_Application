@@ -81,6 +81,11 @@
         .controls
           = f.text_field :storage_surface, :class => 'span4'
 
+      .control-group
+        = f.label :storage_surface_estimate
+        .controls
+          = f.text_field :storage_surface_estimate, :class => 'span4'
+
     - if accessible?(:ceiling_height)
       .control-group
         = f.label :ceiling_height

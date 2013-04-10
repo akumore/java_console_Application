@@ -15,6 +15,7 @@ class Figure
   field :usable_surface, :type => Integer # Nutzfläche
   field :usable_surface_estimate, :type => String # Nutzfläche ungefähr
   field :storage_surface, :type => String # Lagerfläche
+  field :storage_surface_estimate, :type => String # Lagerfläche ungefähr
   field :ceiling_height, :type => String # Raumhöhe
   field :floors, :type => Integer # Anzahl Stockwerke
   field :renovated_on, :type => Integer # Renovationsjahr
@@ -31,11 +32,17 @@ class Figure
             :allow_blank => true,
             :if => :living?
 
-  # fields which must be numeric, but only if commercial
-  validates :ceiling_height, :storage_surface,
+  # ceiling_height must be numeric, but only if commercial
+  validates :ceiling_height,
             :numericality => true,
             :allow_blank => true,
             :if => :working?
+
+  # storage surface must be numeric, but only if working or living
+  validates :storage_surface,
+            :numericality => true,
+            :allow_blank => true,
+            :if => :working? || :living?
 
   # fields which must be present and numeric, but only if private
   validates :rooms,

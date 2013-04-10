@@ -70,7 +70,11 @@ class FigureDecorator < ApplicationDecorator
 
   def storage_surface
     # Lagerfläche
-    t('figures.surface_value', :size => model.storage_surface) if model.storage_surface.present?
+    if model.storage_surface_estimate.present?
+      t('figures.surface_value', :size => model.storage_surface_estimate)
+    elsif model.storage_surface.present?
+      t('figures.surface_value', :size => model.storage_surface)
+    end
   end
 
   def ceiling_height

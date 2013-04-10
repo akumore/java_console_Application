@@ -15,7 +15,7 @@
     %dd
       = @figure.floor_estimate
       &nbsp;
-    - if @real_estate.private_utilization?
+    - if @real_estate.living?
       %dt= t "mongoid.attributes.figure.rooms"
       %dd
         = @figure.rooms
@@ -41,15 +41,21 @@
       = @figure.property_surface
       &nbsp;
 
-    - if @real_estate.commercial_utilization?
+    - if @real_estate.working?
       %dt= t "mongoid.attributes.figure.usable_surface"
       %dd
         = @figure.usable_surface
         &nbsp;
 
+    - if @real_estate.working? || @real_estate.living?
       %dt= t "mongoid.attributes.figure.storage_surface"
       %dd
         = @figure.storage_surface
+        &nbsp;
+
+      %dt= t "mongoid.attributes.figure.storage_surface_estimate"
+      %dd
+        = @figure.storage_surface_estimate
         &nbsp;
 
       %dt= t "mongoid.attributes.figure.ceiling_height"

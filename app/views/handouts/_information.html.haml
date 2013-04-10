@@ -21,3 +21,9 @@
       %dl
         %dt= t('information.freight_elevator_carrying_capacity')
         %dd= information.freight_elevator_carrying_capacity
+
+  - if real_estate.working? || real_estate.living?
+    - if figure.storage_surface.present?
+      %dl
+        %dt= t('figures.storage_surface')
+        %dd= figure.storage_surface
