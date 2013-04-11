@@ -20,6 +20,16 @@ class Figure
   field :property_surface_estimate, :type => String # Grundstückfläche ungefähr
   field :usable_surface, :type => Integer # Nutzfläche
   field :usable_surface_estimate, :type => String # Nutzfläche ungefähr
+
+  # Spezifikation Bruttonutzfläche
+  field :specification_usable_surface_toilet, :type => Boolean
+  field :specification_usable_surface, :type => String,
+                                       :default => 'Fläche exklusive Aussen-, Treppenhauswände und Leitungsschächte. Trennwände zwischen den Mietern sind hälftig enthalten.'
+  field :specification_usable_surface_with_toilet, :type => String,
+                                                   :default => 'Fläche exklusive Fassaden-, Treppenhauswände, Leitungsschächte und Balkon/Terrasse. Trennwände zwischen den Mietern sind hälftig und gemeinsame WC-Anlagen anteilsmässig enthalten.'
+  field :specification_usable_surface_without_toilet, :type => String,
+                                                      :default => 'Fläche exklusive Fassaden-, Treppenhauswände, Leitungsschächte und Balkon/Terrasse. Trennwände zwischen den Mietern sind hälftig enthalten.'
+
   field :storage_surface, :type => String # Lagerfläche
   field :storage_surface_estimate, :type => String # Lagerfläche ungefähr
   field :ceiling_height, :type => String # Raumhöhe

@@ -15,6 +15,7 @@ de:
         property_surface_estimate: 'Grundstückfläche ungefähr'
         usable_surface: 'Nutzfläche in m²'
         usable_surface_estimate: 'Nutzfläche ungefähr'
+        specification_usable_surface: 'Spezifikation Bruttonutzfläche'
         storage_surface: 'Lagerfläche in m²'
         storage_surface_estimate: 'Lagerfläche ungefähr'
         ceiling_height: 'Raumhöhe in Meter'

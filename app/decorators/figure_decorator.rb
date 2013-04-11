@@ -21,6 +21,20 @@ class FigureDecorator < ApplicationDecorator
     end
   end
 
+  def specification_surface
+    if model.working?
+      if model.specification_usable_surface_toilet?
+        model.specification_usable_surface_with_toilet
+      else
+        model.specification_usable_surface_without_toilet
+      end
+    elsif model.living?
+      model.specification_living_surface
+    elsif model.storing?
+      model.specification_usable_surface
+    end
+  end
+
   def floor
     if model.floor_estimate.present?
       model.floor_estimate

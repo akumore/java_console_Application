@@ -75,6 +75,8 @@ class FieldAccess
        *.storing.figure.property_surface_estimate
        *.living.figure.usable_surface
        *.parking.figure.usable_surface
+       *.living.figure.specification_usable_surface
+       *.parking.figure.specification_usable_surface
        *.storing.figure.storage_surface
        *.parking.figure.storage_surface
        *.living.figure.usable_surface_estimate
