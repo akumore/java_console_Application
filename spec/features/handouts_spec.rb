@@ -114,11 +114,6 @@ describe "Handout aka MiniDoku" do
       end
     end
 
-    it 'shows the specification living surface' do
-      visit real_estate_handout_path(printable_real_estate)
-      page.should have_content('Test one two three')
-    end
-
     it 'shows the description' do
       visit real_estate_handout_path(printable_real_estate)
       page.should have_content('Lorem Ipsum')
@@ -135,6 +130,30 @@ describe "Handout aka MiniDoku" do
       it 'shows the storage surface' do
         page.should have_content('Lagerfläche 20 m²')
       end
+
+      context 'with toilet specification' do
+        before do
+          printable_real_estate.figure.update_attributes(:specification_usable_surface_toilet => true, :specification_usable_surface_with_toilet => 'Mit Toilette')
+          visit real_estate_handout_path(printable_real_estate)
+        end
+
+        it 'shows the usable surface specification with toilet' do
+          printable_real_estate.figure.specification_usable_surface_toilet?.should be_true
+          page.should have_content('Mit Toilette')
+        end
+      end
+
+      context 'without toilet specification' do
+        before do
+          printable_real_estate.figure.update_attributes(:specification_usable_surface_toilet => false, :specification_usable_surface_without_toilet => 'Ohne Toilette')
+          visit real_estate_handout_path(printable_real_estate)
+        end
+
+        it 'shows the usable surface specification without toilet' do
+          printable_real_estate.figure.specification_usable_surface_toilet?.should be_false
+          page.should have_content('Ohne Toilette')
+        end
+      end
     end
 
     context 'with living utilization' do
@@ -146,6 +165,11 @@ describe "Handout aka MiniDoku" do
       it 'shows the storage surface' do
         page.should have_content('Lagerfläche 20 m²')
       end
+
+      it 'shows the specification to living surface' do
+        visit real_estate_handout_path(printable_real_estate)
+        page.should have_content('Test one two three')
+      end
     end
 
     context 'with storing utilization' do
@@ -156,6 +180,12 @@ describe "Handout aka MiniDoku" do
 
       it "doesn't show the storage surface" do
         page.should_not have_content('Lagerfläche 20 m²')
+      end
+
+      it 'shows the specification to storing surface' do
+        printable_real_estate.figure.update_attribute :specification_usable_surface, 'Spezifikation zur Lagerfläche'
+        visit real_estate_handout_path(printable_real_estate)
+        page.should have_content('Spezifikation zur Lagerfläche')
       end
     end
 
