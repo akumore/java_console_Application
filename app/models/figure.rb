@@ -4,6 +4,11 @@ class Figure
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  SPECIFICATION_LIVING_SURFACE_TEXT = 'Fläche exklusive Fassaden-, Treppenhaus-, Wohnungstrennwände, Leitungsschächte und Balkon/Terrasse. Fläche inklusive Innenwände.'
+  SPECIFICATION_USABLE_SURFACE_TEXT = 'Fläche exklusive Aussen-, Treppenhauswände und Leitungsschächte. Trennwände zwischen den Mietern sind hälftig enthalten.'
+  SPECIFICATION_USABLE_SURFACE_WITH_TOILET_TEXT = 'Fläche exklusive Fassaden-, Treppenhauswände, Leitungsschächte und Balkon/Terrasse. Trennwände zwischen den Mietern sind hälftig und gemeinsame WC-Anlagen anteilsmässig enthalten.'
+  SPECIFICATION_USABLE_SURFACE_WITHOUT_TOILET_TEXT = 'Fläche exklusive Fassaden-, Treppenhauswände, Leitungsschächte und Balkon/Terrasse. Trennwände zwischen den Mietern sind hälftig enthalten.'
+
   embedded_in :real_estate
 
   field :floor, :type => Integer
@@ -13,9 +18,7 @@ class Figure
 
   field :living_surface, :type => Integer
   field :living_surface_estimate, :type => String # 50-80 Quadratmeter
-  # Spezifikation Wohnfläche
-  field :specification_living_surface, :type => String,
-                                       :default => 'Fläche exklusive Fassaden-, Treppenhaus-, Wohnungstrennwände, Leitungsschächte und Balkon/Terrasse. Fläche inklusive Innenwände.'
+  field :specification_living_surface, :type => String, :default => SPECIFICATION_LIVING_SURFACE_TEXT # Spezifikation Wohnfläche
   field :property_surface, :type => String # Grundstückfläche
   field :property_surface_estimate, :type => String # Grundstückfläche ungefähr
   field :usable_surface, :type => Integer # Nutzfläche
@@ -23,12 +26,9 @@ class Figure
 
   # Spezifikation Bruttonutzfläche
   field :specification_usable_surface_toilet, :type => Boolean
-  field :specification_usable_surface, :type => String,
-                                       :default => 'Fläche exklusive Aussen-, Treppenhauswände und Leitungsschächte. Trennwände zwischen den Mietern sind hälftig enthalten.'
-  field :specification_usable_surface_with_toilet, :type => String,
-                                                   :default => 'Fläche exklusive Fassaden-, Treppenhauswände, Leitungsschächte und Balkon/Terrasse. Trennwände zwischen den Mietern sind hälftig und gemeinsame WC-Anlagen anteilsmässig enthalten.'
-  field :specification_usable_surface_without_toilet, :type => String,
-                                                      :default => 'Fläche exklusive Fassaden-, Treppenhauswände, Leitungsschächte und Balkon/Terrasse. Trennwände zwischen den Mietern sind hälftig enthalten.'
+  field :specification_usable_surface, :type => String, :default => SPECIFICATION_USABLE_SURFACE_TEXT
+  field :specification_usable_surface_with_toilet, :type => String, :default => SPECIFICATION_USABLE_SURFACE_WITH_TOILET_TEXT
+  field :specification_usable_surface_without_toilet, :type => String, :default => SPECIFICATION_USABLE_SURFACE_WITHOUT_TOILET_TEXT
 
   field :storage_surface, :type => String # Lagerfläche
   field :storage_surface_estimate, :type => String # Lagerfläche ungefähr
