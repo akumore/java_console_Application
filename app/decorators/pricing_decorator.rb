@@ -84,6 +84,26 @@ class PricingDecorator < ApplicationDecorator
     formatted(model.outside_parking, parking_price_unit) if model.outside_parking.present?
   end
 
+  def covered_slot
+    formatted(model.covered_slot, parking_price_unit) if model.covered_slot.present?
+  end
+
+  def covered_bike
+    formatted(model.covered_bike, parking_price_unit) if model.covered_bike.present?
+  end
+
+  def outdoor_bike
+    formatted(model.outdoor_bike, parking_price_unit) if model.outdoor_bike.present?
+  end
+
+  def single_garage
+    formatted(model.single_garage, parking_price_unit) if model.single_garage.present?
+  end
+
+  def double_garage
+    formatted(model.double_garage, parking_price_unit) if model.double_garage.present?
+  end
+
   def for_rent_depot
     if model.for_rent? && model.for_rent_depot.present?
       formatted_price(model.for_rent_depot)
