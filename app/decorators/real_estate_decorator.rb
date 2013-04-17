@@ -249,17 +249,6 @@ class RealEstateDecorator < ApplicationDecorator
     end
   end
 
-  def any_infrastructures?
-    infrastructure.inside_parking_spots.present? ||
-    infrastructure.outside_parking_spots.present? ||
-    infrastructure.covered_slot.present? ||
-    infrastructure.covered_bike.present? ||
-    infrastructure.outdoor_bike.present? ||
-    infrastructure.single_garage.present? ||
-    infrastructure.double_garage.present? ||
-    infrastructure.distances.any?
-  end
-
   def general_information?
     if figure.present?
       figure.floors.present? ||
@@ -296,5 +285,18 @@ class RealEstateDecorator < ApplicationDecorator
 
   def storing_information?
     figure.ceiling_height.present?
+  end
+
+  def any_infrastructures?
+    if infrastructure.present?
+      infrastructure.inside_parking_spots.present? ||
+      infrastructure.outside_parking_spots.present? ||
+      infrastructure.covered_slot.present? ||
+      infrastructure.covered_bike.present? ||
+      infrastructure.outdoor_bike.present? ||
+      infrastructure.single_garage.present? ||
+      infrastructure.double_garage.present? ||
+      infrastructure.distances.any?
+    end
   end
 end
