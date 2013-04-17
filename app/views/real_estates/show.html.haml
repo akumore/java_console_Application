@@ -57,7 +57,7 @@
 
       = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing, :information => @real_estate.information
 
-      - if @real_estate.infrastructure.present?
+      - if @real_estate.any_infrastructures?
         = render 'infrastructure', :real_estate => @real_estate, :infrastructure => @real_estate.infrastructure
 
       - if @real_estate.contact.present?
