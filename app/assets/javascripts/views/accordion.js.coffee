@@ -28,7 +28,7 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
       @closeItem($(elem))
 
     if window.location.hash
-      elem = $(window.location.hash)
+      elem = $(window.location.hash).closest('.accordion-item')
       @openItem(elem) if elem.find(".title").length > 0
     else if @el.data('open_first')
       elem = @el.find(".accordion-item:first-child")

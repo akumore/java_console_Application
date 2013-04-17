@@ -1,4 +1,4 @@
 .accordion-item
-  .title= brick.title
+  .title= brick.title.html_safe
   .content
     = markdown(brick.text)
