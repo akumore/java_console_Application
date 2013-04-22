@@ -87,8 +87,6 @@ class FieldAccess
        *.storing.pricing.storage
        *.parking.pricing.extra_storage
        *.storing.pricing.extra_storage
-       *.parking.pricing.for_rent_depot
-       *.storing.pricing.for_rent_depot
        *.parking.pricing.parking_spots_prices_group
        *.parking.real_estate.title
        *.parking.real_estate.utilization_description

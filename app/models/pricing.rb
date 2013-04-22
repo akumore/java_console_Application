@@ -6,7 +6,6 @@ class Pricing
 
   field :for_rent_netto, :type => Integer
   field :for_rent_extra, :type => Integer # Nebenkosten
-  field :for_rent_depot, :type => Integer
   field :for_sale, :type => Integer # Kaufpreis
   field :price_unit, :type => String # Pro Woche, Jahr, Monat, Einmalig
   field :storage, :type => Integer # Lagerkosten

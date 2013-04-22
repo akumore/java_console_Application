@@ -104,12 +104,6 @@ class PricingDecorator < ApplicationDecorator
     formatted(model.double_garage, parking_price_unit) if model.double_garage.present?
   end
 
-  def for_rent_depot
-    if model.for_rent? && model.for_rent_depot.present?
-      formatted_price(model.for_rent_depot)
-    end
-  end
-
   def chapter
     content = []
     content_html = ''
@@ -124,10 +118,6 @@ class PricingDecorator < ApplicationDecorator
 
     if for_rent_extra.present?
       content << { :key => t('pricings.for_rent_extra'), :value => for_rent_extra }
-    end
-
-    if for_rent_depot.present?
-      content << { :key => t('pricings.for_rent_depot'), :value => for_rent_depot }
     end
 
     if inside_parking.present?

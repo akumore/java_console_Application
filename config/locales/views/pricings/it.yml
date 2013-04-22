@@ -12,7 +12,6 @@ it:
     title: 'Prezzi/Disponibile'
     for_rent_netto: 'Locazione (senza spese accessorie)'
     for_rent_extra: 'Spese accessorie'
-    for_rent_depot: 'Deposito garanzia affitto'
     without_vat: 'Tutti i prezzi senza IVA'
     inside_parking: 'Parcheggio in autorimessa'
     inside_parking_temporary: 'Parcheggio temporanei in autorimessa'

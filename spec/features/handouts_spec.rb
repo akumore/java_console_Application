@@ -257,18 +257,12 @@ describe "Handout aka MiniDoku" do
         page.should have_content 'Parkplatz im Freien'
         page.should have_content 'CHF 80.00 / Monat'
       end
-
-      it "shows the rent depot price" do
-        visit real_estate_handout_path(@real_estate)
-        page.should have_content 'Mietzinsdepot'
-        page.should have_content 'CHF 4\'000.00'
-      end
     end
 
 
     context "Real Estate, private, for rent" do
       before do
-        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :for_rent_depot => 4000, :price_unit => 'monthly'
+        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'monthly'
         @real_estate = Fabricate :residential_building, :pricing => @pricing
       end
 
@@ -279,7 +273,7 @@ describe "Handout aka MiniDoku" do
 
     context "Real Estate, commercial, for rent" do
       before do
-        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :for_rent_depot => 4000, :price_unit => 'monthly', :opted => false
+        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'monthly', :opted => false
         @real_estate = Fabricate :commercial_building, :pricing => @pricing
       end
 

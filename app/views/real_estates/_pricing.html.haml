@@ -19,11 +19,6 @@
         %dd
           = pricing.for_rent_extra
 
-    - if pricing && pricing.for_rent_depot.present?
-      %dl
-        %dt= t('pricings.for_rent_depot')
-        %dd= pricing.for_rent_depot
-
     - if pricing && pricing.storage.present?
       %dl
         %dt= t('pricings.storage')

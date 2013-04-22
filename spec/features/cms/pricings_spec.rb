@@ -44,7 +44,6 @@ describe "Cms::Pricings" do
             within(".new_pricing") do
               fill_in 'Netto Miete', :with => '1500'
               fill_in 'Mietnebenkosten', :with => '50'
-              fill_in 'Mietzinsdepot', :with => '4500'
               select 'pro Monat', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
@@ -78,7 +77,6 @@ describe "Cms::Pricings" do
             it 'has saved the provided attributes' do
               @pricing.for_rent_netto.should == 1500
               @pricing.for_rent_extra.should == 50
-              @pricing.for_rent_depot.should == 4500
               @pricing.price_unit.should ==  'monthly'
               @pricing.inside_parking.should == 140
               @pricing.outside_parking.should == 160
@@ -216,7 +214,6 @@ describe "Cms::Pricings" do
             within(".new_pricing") do
               fill_in 'Netto Miete', :with => '2300'
               fill_in 'Mietnebenkosten', :with => '150'
-              fill_in 'Mietzinsdepot', :with => '6000'
               select 'pro Jahr', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
@@ -253,7 +250,6 @@ describe "Cms::Pricings" do
             it 'has saved the provided attributes' do
               @pricing.for_rent_netto.should == 2300
               @pricing.for_rent_extra.should == 150
-              @pricing.for_rent_depot.should == 6000
               @pricing.price_unit.should ==  'yearly'
               @pricing.inside_parking.should == 200
               @pricing.outside_parking.should == 150

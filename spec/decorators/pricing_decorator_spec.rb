@@ -14,7 +14,6 @@ describe PricingDecorator do
           :for_rent_extra => 200,
           :inside_parking => 140,
           :outside_parking => 150,
-          :for_rent_depot => 2000,
           :estimate => ''
         )
       )
@@ -48,10 +47,6 @@ describe PricingDecorator do
 
     it 'formats the outside parking price' do
       @pricing.outside_parking.should == "CHF 150.00 / Monat"
-    end
-
-    it 'formats the rent depot' do
-      @pricing.for_rent_depot.should == "CHF 2'000.00"
     end
 
     it 'formats all parking prices monthly' do
