@@ -123,9 +123,6 @@
   width: 80%
   background: white
 
-  &.open + .sale-slide
-    left: 80%
-
 .sale-slide
   position: absolute
   height: 100%
@@ -149,6 +146,10 @@
 
   img
     width: 100%
+
+.rent-slide-container-is-open
+  .sale-slide
+    left: 80%
 
 .vision-slider
   .flexslider

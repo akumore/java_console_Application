@@ -26,12 +26,14 @@ class window.AlfredMueller.Views.SliderWithFlexControl extends AlfredMueller.Vie
       @showFlexSliderControls()
       @showLinkBox()
       @el.addClass('active')
+      @el.parent().addClass(@el.attr('id') + '-is-open')
     super
 
   close: ->
     @hideFlexSliderControls()
     @hideLinkBox()
     @el.removeClass('active')
+    @el.parent().removeClass(@el.attr('id') + '-is-open')
     super
 
   showFlexSliderControls: (animationDuration = 1000) ->
