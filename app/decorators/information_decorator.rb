@@ -29,7 +29,7 @@ class InformationDecorator < ApplicationDecorator
     buffer << t('information.minergie_style') if model.is_minergie_style?
     buffer << t('information.minergie_certified') if model.is_minergie_certified?
 
-    if model.private_utilization?
+    if model.living?
       buffer << t('information.view') if model.has_outlook?
       buffer << t('information.fireplace') if model.has_fireplace?
       buffer << t('information.elevator') if model.has_elevator?
@@ -39,7 +39,7 @@ class InformationDecorator < ApplicationDecorator
       buffer << t('information.balcony') if model.has_balcony?
       buffer << t('information.raised_ground_floor') if model.has_raised_ground_floor?
       buffer << t('information.swimmingpool') if model.has_swimming_pool?
-    elsif model.commercial_utilization?
+    elsif model.working? || model.storing?
       if model.number_of_restrooms.to_i > 0
         buffer << t('information.number_of_restrooms', :count => model.number_of_restrooms)
       end
@@ -75,7 +75,7 @@ class InformationDecorator < ApplicationDecorator
     end
 
     figure = FigureDecorator.decorate real_estate.figure
-    if figure && real_estate.private_utilization?
+    if figure && real_estate.living?
       if figure.floor.present?
         content << { :key => t('figures.floor'), :value => figure.floor }
       end
@@ -89,7 +89,7 @@ class InformationDecorator < ApplicationDecorator
       end
     end
 
-    if figure && real_estate.commercial_utilization?
+    if figure && real_estate.working?
       if figure.property_surface.present?
         content << { :key => t('figures.property_surface'),:value => figure.property_surface }
       end
@@ -119,7 +119,7 @@ class InformationDecorator < ApplicationDecorator
       content << { :key => t('information.characteristics'), :value => characteristics.join(', ') }
     end
 
-    if real_estate.commercial_utilization?
+    if real_estate.working?
       if maximal_floor_loading.present?
         content << { :key => t('information.maximal_floor_loading'), :value => maximal_floor_loading }
       end

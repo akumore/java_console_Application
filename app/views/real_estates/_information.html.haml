@@ -53,7 +53,7 @@
         %dt= t('information.characteristics')
         %dd= information.characteristics.join(', ')
 
-    - if information && real_estate.working?
+    - if information && real_estate.working? || real_estate.storing?
 
       - if information.maximal_floor_loading.present?
         %dl
