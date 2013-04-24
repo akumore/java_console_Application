@@ -3,6 +3,8 @@ en:
     show:
       for_rent_private: "Rental | Residential"
       for_rent_commercial: "Rental | Commercial"
+      for_rent_storage: "Rental | Storage"
+      for_rent_parking: "Rental | Parking"
     overview:
       title: "Object Overview"
       property: "Real estate"

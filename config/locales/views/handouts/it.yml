@@ -3,6 +3,8 @@ it:
     show:
       for_rent_private: "Affittare | Abitare"
       for_rent_commercial: "Affittare | Lavorare"
+      for_rent_storage: "Affittare | Immagazzinare"
+      for_rent_parking: "Affittare | Parcheggiare"
     overview:
       title: "Panoramica dell'oggetto"
       property: "Immobile"

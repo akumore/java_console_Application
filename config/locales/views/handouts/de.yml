@@ -3,6 +3,8 @@ de:
     show:
       for_rent_private: "Miete | Wohnen"
       for_rent_commercial: "Miete | Arbeiten"
+      for_rent_storage: "Miete | Lagern"
+      for_rent_parking: "Miete | Parkieren"
     overview:
       title: "Objektübersicht"
       property: "Liegenschaft"
