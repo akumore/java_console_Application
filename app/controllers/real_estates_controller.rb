@@ -11,6 +11,7 @@ class RealEstatesController < ApplicationController
 
   def index
     @real_estates = RealEstateDecorator.decorate get_filtered_real_estates(@search_filter)
+    @filtered_offer_utilization_real_estates = get_filtered_offer_utilization_real_estates(@search_filter)
     @reference_projects = ReferenceProjectDecorator.decorate get_filtered_reference_projects(@search_filter)
   end
 
@@ -21,7 +22,7 @@ class RealEstatesController < ApplicationController
     real_estates = get_filtered_real_estates(@search_filter).map(&:id)
     @pagination = RealEstatePagination.new(@real_estate, real_estates)
     @appointment = @real_estate.appointments.build
-    @real_estates = RealEstateDecorator.decorate get_filtered_real_estates(@search_filter)
+    @filtered_offer_utilization_real_estates = get_filtered_offer_utilization_real_estates(@search_filter)
   end
 
   private
@@ -35,6 +36,10 @@ class RealEstatesController < ApplicationController
 
   def get_filtered_real_estates(search_filter)
     RealEstate.published.web_channel.where(search_filter.to_query_hash).order_by(@search_filter.to_query_order_array).all
+  end
+
+  def get_filtered_offer_utilization_real_estates(search_filter)
+    RealEstate.published.web_channel.where(:offer => search_filter.offer, :utilization => search_filter.utilization)
   end
 
   def get_filtered_reference_projects(search_filter)
