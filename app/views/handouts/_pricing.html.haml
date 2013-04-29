@@ -3,7 +3,9 @@
 
   - if pricing.for_rent_netto.present?
     %dl
-      %dt= t('pricings.for_rent_netto')
+      %dt
+        = real_estate.category.label
+        = t('pricings.for_rent_netto')
       %dd
         = pricing.for_rent_netto
 

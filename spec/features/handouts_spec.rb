@@ -257,6 +257,13 @@ describe "Handout aka MiniDoku" do
         page.should have_content 'Parkplatz im Freien'
         page.should have_content 'CHF 80.00 / Monat'
       end
+
+      it 'shows the real estate category in front of the sale price' do
+        visit real_estate_handout_path(@real_estate)
+        within '.chapter.pricing' do
+          page.should have_content(@real_estate.category.label)
+        end
+      end
     end
 
 
