@@ -22,7 +22,7 @@ de:
         sell: '%{price}'
         sell_m2: '%{price} / m²'
     title: 'Preise/Bezug'
-    for_rent_netto: 'Miete (ohne Nebenkosten)'
+    for_rent_netto: '(ohne Nebenkosten)'
     for_rent_extra: 'Nebenkosten'
     without_vat: 'Alle Preise ohne Mehrwertsteuer'
     storage: 'Lagerpreis'

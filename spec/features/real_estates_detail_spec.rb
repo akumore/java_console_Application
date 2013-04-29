@@ -144,6 +144,12 @@ describe "RealEstates" do
           it "shows the localized price for rent" do
             page.should have_content number_to_currency(real_estate.pricing.for_rent_netto, :locale=>'de-CH')
           end
+
+          it 'shows the real estate category in front of the sale price' do
+            within '.description' do
+              page.should have_content(real_estate.category.label)
+            end
+          end
         end
 
         context 'when the real estate is for sale' do

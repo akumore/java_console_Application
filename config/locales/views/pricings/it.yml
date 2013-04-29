@@ -10,7 +10,7 @@ it:
         sell: '%{price}'
         sell_m2: '%{price} / m²'
     title: 'Prezzi/Disponibile'
-    for_rent_netto: 'Locazione (senza spese accessorie)'
+    for_rent_netto: '(senza spese accessorie)'
     for_rent_extra: 'Spese accessorie'
     without_vat: 'Tutti i prezzi senza IVA'
     inside_parking: 'Parcheggio in autorimessa'

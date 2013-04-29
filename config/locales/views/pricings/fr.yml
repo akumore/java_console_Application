@@ -10,7 +10,7 @@ fr:
         sell: '%{price}'
         sell_m2: '%{price} / m²'
     title: 'Prix/Disponible'
-    for_rent_netto: 'Location (sans charges)'
+    for_rent_netto: '(sans charges)'
     for_rent_extra: 'Charges'
     without_vat: 'Prix sans TVA'
     inside_parking: 'Place de parc dans parking souterrain'
