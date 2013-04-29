@@ -19,7 +19,7 @@ class PriceUnit
     end
 
     def for_rent
-      %w(monthly yearly weekly daily year_m2)
+      %w(monthly year_m2 yearly weekly daily)
     end
 
     def for_sale

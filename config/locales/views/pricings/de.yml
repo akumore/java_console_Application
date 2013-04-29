@@ -6,9 +6,9 @@ de:
         yearly: 'pro Jahr'
         weekly: 'pro Woche'
         daily: 'pro Tag'
-        year_m2: 'm² / pro Jahr'
-        sell: 'Verkaufspreis'
-        sell_m2: 'Verkaufspreis / m²'
+        year_m2: 'pro m² / Jahr'
+        sell: 'Kaufpreis'
+        sell_m2: 'Kaufpreis / m²'
         help_popover:
             estimate: 'Freitextfeld, z.B. ab CHF 2100.00 / Monat, CHF 150.00 – 250.00 / m² / Jahr oder Preis auf Anfrage'
   pricings:

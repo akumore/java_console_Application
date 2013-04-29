@@ -5,7 +5,7 @@ describe PriceUnit do
     context 'for rent' do
       it 'returns all price units' do
         all = PriceUnit.all_by_offer_and_utilization(Offer::RENT, Utilization::WORKING)
-        all.should == %w(monthly yearly weekly daily year_m2)
+        all.should == %w(monthly year_m2 yearly weekly daily)
       end
 
       context 'for parking' do

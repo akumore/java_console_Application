@@ -138,7 +138,7 @@ describe "Cms::Pricings" do
           before :each do
             within(".new_pricing") do
               fill_in 'Kaufpreis', :with => '100000'
-              select 'Verkaufspreis', :from => 'Preiseinheit'
+              select 'Kaufpreis', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
                 fill_in 'pricing_inside_parking', :with => '50000'
@@ -301,7 +301,7 @@ describe "Cms::Pricings" do
           before :each do
             within(".new_pricing") do
               fill_in 'Kaufpreis', :with => '200000'
-              select 'Verkaufspreis', :from => 'Preiseinheit'
+              select 'Kaufpreis', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
                 fill_in 'pricing_inside_parking', :with => '40000'
