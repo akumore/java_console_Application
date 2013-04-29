@@ -31,7 +31,7 @@ describe 'Cms::Preview::RealEstates' do
               :contact => Fabricate(:employee)
   end
 
-  describe 'visit preview of a real estate' do
+  describe 'preview in cms' do
     login_cms_user
 
     context 'with an unpublished real estate' do
@@ -63,6 +63,18 @@ describe 'Cms::Preview::RealEstates' do
         page.should_not have_link 'Vorschau', :href => '#'
         page.should_not have_css '.preview-button.btn.disabled'
       end
+    end
+  end
+
+  describe 'preview in frontend' do
+    login_cms_user
+
+    before do
+      visit cms_preview_real_estate_path(real_estate)
+    end
+
+    it 'shows the preview' do
+      page.should have_css '.main-title', :text => real_estate.title
     end
   end
 end
