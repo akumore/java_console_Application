@@ -11,7 +11,7 @@ en:
         sell_m2: '%{price} / m²'
     title: 'Prices/Availability'
     for_rent_netto: '(without additional costs)'
-    for_rent_extra: 'Rent'
+    additional_costs: 'Rent'
     without_vat: 'All prices without value added tax'
     inside_parking: 'Car park in garage'
     inside_parking_temporary: 'Temporary car park in garage'

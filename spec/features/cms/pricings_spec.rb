@@ -43,7 +43,7 @@ describe "Cms::Pricings" do
           before :each do
             within(".new_pricing") do
               fill_in 'Netto Miete', :with => '1500'
-              fill_in 'Mietnebenkosten', :with => '50'
+              fill_in 'Nebenkosten', :with => '50'
               select 'pro Monat', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
@@ -76,7 +76,7 @@ describe "Cms::Pricings" do
 
             it 'has saved the provided attributes' do
               @pricing.for_rent_netto.should == 1500
-              @pricing.for_rent_extra.should == 50
+              @pricing.additional_costs.should == 50
               @pricing.price_unit.should ==  'monthly'
               @pricing.inside_parking.should == 140
               @pricing.outside_parking.should == 160
@@ -118,8 +118,8 @@ describe "Cms::Pricings" do
           page.should_not have_css('#pricing_for_rent')
         end
 
-        it 'does not show the rent extra price input' do
-          page.should_not have_css('#pricing_for_rent_extra')
+        it 'does show the additional costs price input' do
+          page.should have_css('#pricing_additional_costs')
         end
 
         it 'shows the storage price input' do
@@ -213,7 +213,7 @@ describe "Cms::Pricings" do
           before :each do
             within(".new_pricing") do
               fill_in 'Netto Miete', :with => '2300'
-              fill_in 'Mietnebenkosten', :with => '150'
+              fill_in 'Nebenkosten', :with => '150'
               select 'pro Jahr', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
@@ -249,7 +249,7 @@ describe "Cms::Pricings" do
 
             it 'has saved the provided attributes' do
               @pricing.for_rent_netto.should == 2300
-              @pricing.for_rent_extra.should == 150
+              @pricing.additional_costs.should == 150
               @pricing.price_unit.should ==  'yearly'
               @pricing.inside_parking.should == 200
               @pricing.outside_parking.should == 150
@@ -293,14 +293,15 @@ describe "Cms::Pricings" do
           page.should_not have_css('#pricing_for_rent')
         end
 
-        it 'does not show the rent extra price input' do
-          page.should_not have_css('#pricing_for_rent_extra')
+        it 'does show the additional costs price input' do
+          page.should have_css('#pricing_additional_costs')
         end
 
         context 'a valid Pricing' do
           before :each do
             within(".new_pricing") do
               fill_in 'Kaufpreis', :with => '200000'
+              fill_in 'Nebenkosten', :with => '150'
               select 'Kaufpreis', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
@@ -336,6 +337,7 @@ describe "Cms::Pricings" do
 
             it 'has saved the provided attributes' do
               @pricing.for_sale.should == 200000
+              @pricing.additional_costs.should == 150
               @pricing.price_unit.should == 'sell'
               @pricing.inside_parking.should == 40000
               @pricing.outside_parking.should == 15000
