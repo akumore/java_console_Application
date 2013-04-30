@@ -11,7 +11,7 @@ class Pricing
   field :storage, :type => Integer # Lagerkosten
   field :extra_storage, :type => Integer # Nebenkosten Lager
   field :estimate, :type => String # Geschätz, z.B. 200-500.-
-  field :opted, :type => Boolean # Optiert, entscheidet ob MwST angezeigt wird
+  field :opted, :type => Boolean, :default => false # Optiert, entscheidet ob MwST angezeigt wird
 
   # Mietzins für Parkplätze
   field :inside_parking, :type => Integer # Parkplatz in Autoeinstellhalle
