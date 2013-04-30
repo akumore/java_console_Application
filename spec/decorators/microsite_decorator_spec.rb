@@ -31,7 +31,7 @@ describe MicrositeDecorator do
 
     it 'returns the net rent price without extras' do
       real_estate =  Fabricate :residential_building,
-        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 2500, :for_rent_extra => 200)
+        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 2500)
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.price.should == 'CHF 2\'500.00 / Monat'
     end
