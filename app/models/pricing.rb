@@ -5,7 +5,7 @@ class Pricing
   embedded_in :real_estate
 
   field :for_rent_netto, :type => Integer
-  field :for_rent_extra, :type => Integer # Nebenkosten
+  field :additional_costs, :type => Integer # Nebenkosten
   field :for_sale, :type => Integer # Kaufpreis
   field :price_unit, :type => String # Pro Woche, Jahr, Monat, Einmalig
   field :storage, :type => Integer # Lagerkosten
@@ -23,10 +23,10 @@ class Pricing
   field :double_garage, :type => Integer # Doppelgarage
 
   validates :for_rent_netto, :presence => true, :numericality => true, :if => :for_rent?
-  validates :for_rent_extra, :presence => true, :if => :for_rent_extra_is_mandatory?
+  validates :additional_costs, :presence => true, :if => :additional_costs_is_mandatory?
   validates :for_sale, :presence => true, :numericality => true, :if => :for_sale?
 
-  validates :for_rent_extra,
+  validates :additional_costs,
             :storage,
             :extra_storage,
             :inside_parking,
@@ -48,14 +48,14 @@ class Pricing
   delegate :for_sale?, :for_rent?, :private_utilization?, :parking?, :to => :_parent
 
   def for_rent_brutto
-    for_rent_netto.to_i + for_rent_extra.to_i
+    for_rent_netto.to_i + additional_costs.to_i
   end
 
   def allowed_price_units
     PriceUnit.all_by_offer_and_utilization(_parent.offer, _parent.utilization)
   end
 
-  def for_rent_extra_is_mandatory?
+  def additional_costs_is_mandatory?
     for_rent? && !parking?
   end
 end

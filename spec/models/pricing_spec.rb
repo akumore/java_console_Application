@@ -29,8 +29,8 @@ describe Pricing do
           pricing.should have(2).error_on(:for_rent_netto)
         end
 
-        it 'requires the rent extras' do
-          pricing.should have(1).error_on(:for_rent_extra)
+        it 'requires the additional costs' do
+          pricing.should have(1).error_on(:additional_costs)
         end
 
         it 'has 6 errors' do
@@ -93,13 +93,13 @@ describe Pricing do
   end
 
   describe '#for_rent_brutto' do
-    it 'calculates the gross rent price from the netto and the rent extra' do
-      pricing = Pricing.new(:for_rent_netto => 1020, :for_rent_extra => 120)
+    it 'calculates the gross rent price from the netto and the additional costs' do
+      pricing = Pricing.new(:for_rent_netto => 1020, :additional_costs => 120)
       pricing.for_rent_brutto.should be(1140)
     end
   end
 
-  describe '#for_rent_extra_is_mandatory?' do
+  describe '#additional_costs_is_mandatory?' do
     let :pricing do
       Pricing.new.tap do |p|
         p.stub(:parking?).and_return(false)
@@ -110,7 +110,7 @@ describe Pricing do
 
     context 'when for sale' do
       it 'returns false' do
-        pricing.for_rent_extra_is_mandatory?.should be_false
+        pricing.additional_costs_is_mandatory?.should be_false
       end
     end
 
@@ -118,13 +118,13 @@ describe Pricing do
       it 'returns true' do
         pricing.stub(:for_rent?).and_return(true)
         pricing.stub(:for_sale?).and_return(false)
-        pricing.for_rent_extra_is_mandatory?.should be_true
+        pricing.additional_costs_is_mandatory?.should be_true
       end
 
       context 'when for parking' do
         it 'returns false' do
           pricing.stub(:parking?).and_return(true)
-          pricing.for_rent_extra_is_mandatory?.should be_false
+          pricing.additional_costs_is_mandatory?.should be_false
         end
       end
     end
