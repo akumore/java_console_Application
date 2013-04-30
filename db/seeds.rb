@@ -151,7 +151,7 @@ module InitialCategories
                                 :reference => Reference.new(:property_key => 'SC P 1', :building_key => 'SC B 1', :unit_key => 'SC U 1')
         )
         r.category = Category.where(:name => 'flat').first
-        r.pricing = Pricing.new(:price_unit => PriceUnit.for_rent.first, :for_rent_netto => 2380, :for_rent_extra => 380)
+        r.pricing = Pricing.new(:price_unit => PriceUnit.for_rent.first, :for_rent_netto => 2380, :additional_costs => 380)
         r.figure = Figure.new(:floor => 3, :living_surface => 186)
         r.information = Information.new(:available_from => Date.parse('2012-01-21'))
         r.infrastructure = Infrastructure.new
@@ -179,7 +179,7 @@ module InitialCategories
           )
           r.information = Information.new(:available_from => Date.parse('2012-01-01'))
           r.category = Category.where(:name => 'flat').first
-          r.pricing = Pricing.new(:price_unit => PriceUnit.for_rent.first, :for_rent_netto => 2380, :for_rent_extra => 380)
+          r.pricing = Pricing.new(:price_unit => PriceUnit.for_rent.first, :for_rent_netto => 2380, :additional_costs => 380)
           r.figure = Figure.new(:floor => 3, :living_surface => 186)
           r.infrastructure = Infrastructure.new
           r.description = "Beschreibung 1"
