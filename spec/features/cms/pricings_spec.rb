@@ -91,6 +91,27 @@ describe "Cms::Pricings" do
           end
         end
       end
+
+      describe '#show' do
+        let :real_estate do
+          Fabricate :published_real_estate, :category => Fabricate(:category), :pricing => Fabricate.build(:pricing)
+        end
+
+        it 'shows the price within the cms' do
+          visit cms_real_estate_pricing_path real_estate
+          [
+            :for_rent_netto,
+            :additional_costs,
+            :estimate,
+            :storage,
+            :extra_storage
+          ].each do |attr|
+            attr_name = Pricing.human_attribute_name(attr)
+            expected_text = number_to_currency(real_estate.pricing.send(attr), :locale => 'de-CH')
+            find(:xpath, "//dl/dt[contains(string(), '#{attr_name}')]/following-sibling::dd").should have_content(expected_text)
+          end
+        end
+      end
     end
 
     context 'for sale' do

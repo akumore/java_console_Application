@@ -16,24 +16,24 @@
       = number_to_currency @pricing.for_rent_netto, :locale => 'de-CH'
       &nbsp;
 
-    %dt= t "mongoid.attributes.pricing.for_rent_extra"
-    %dd
-      = number_to_currency @pricing.for_rent_extra, :locale => 'de-CH'
-      &nbsp;
-
   - if @real_estate.for_sale?
     %dt= t "mongoid.attributes.pricing.for_sale"
     %dd
       = number_to_currency @pricing.for_sale, :locale => 'de-CH'
       &nbsp;
 
+    %dt= t "mongoid.attributes.pricing.opted"
+    %dd= t "#{@pricing.opted}"
+
     %dt= t "mongoid.attributes.pricing.estimate"
     %dd
       = @pricing.estimate
       &nbsp;
 
-    %dt= t "mongoid.attributes.pricing.opted"
-    %dd= t "#{@pricing.opted}"
+  %dt= t "mongoid.attributes.pricing.additional_costs"
+  %dd
+    = number_to_currency @pricing.additional_costs, :locale => 'de-CH'
+    &nbsp;
 
   - if accessible?(:extra_storage)
     %dt= t "mongoid.attributes.pricing.storage"
