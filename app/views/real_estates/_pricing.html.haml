@@ -15,11 +15,11 @@
         %dd
           = pricing.for_rent_netto
 
-    - if pricing && pricing.for_rent_extra.present?
+    - if pricing && pricing.additional_costs.present?
       %dl
-        %dt= t('pricings.for_rent_extra')
+        %dt= t('pricings.additional_costs')
         %dd
-          = pricing.for_rent_extra
+          = pricing.additional_costs
 
     - if pricing && pricing.storage.present?
       %dl
