@@ -2,7 +2,6 @@ Fabricator(:pricing) do
   for_rent_netto 1520
   for_sale 1300000
   additional_costs 100
-  estimate 10
   price_unit 'monthly'
   inside_parking 140
   outside_parking 120

@@ -96,7 +96,7 @@ describe "Cms::Pricings" do
         let :real_estate do
           Fabricate :published_real_estate,
             :category => Fabricate(:category),
-            :pricing => Fabricate.build(:pricing_for_rent)
+            :pricing => Fabricate.build(:pricing_for_rent, :estimate => 10)
         end
 
         it 'shows the prices within the cms' do
