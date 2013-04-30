@@ -94,20 +94,22 @@ describe "Cms::Pricings" do
 
       describe '#show' do
         let :real_estate do
-          Fabricate :published_real_estate, :category => Fabricate(:category), :pricing => Fabricate.build(:pricing)
+          Fabricate :published_real_estate,
+            :category => Fabricate(:category),
+            :pricing => Fabricate.build(:pricing_for_rent)
         end
 
-        it 'shows the price within the cms' do
+        it 'shows the prices within the cms' do
           visit cms_real_estate_pricing_path real_estate
-          [
-            :for_rent_netto,
-            :additional_costs,
-            :estimate,
-            :storage,
-            :extra_storage
-          ].each do |attr|
+          {
+            :price_unit       => I18n.t("cms.pricings.form.#{real_estate.pricing.price_unit}"),
+            :for_rent_netto   => number_to_currency(real_estate.pricing.for_rent_netto, :locale => 'de-CH'),
+            :estimate         => real_estate.pricing.estimate,
+            :additional_costs => number_to_currency(real_estate.pricing.additional_costs, :locale => 'de-CH'),
+            :storage          => number_to_currency(real_estate.pricing.storage, :locale => 'de-CH'),
+            :extra_storage    => number_to_currency(real_estate.pricing.extra_storage, :locale => 'de-CH')
+          }.each do |attr, expected_text|
             attr_name = Pricing.human_attribute_name(attr)
-            expected_text = number_to_currency(real_estate.pricing.send(attr), :locale => 'de-CH')
             find(:xpath, "//dl/dt[contains(string(), '#{attr_name}')]/following-sibling::dd").should have_content(expected_text)
           end
         end
@@ -202,6 +204,30 @@ describe "Cms::Pricings" do
               @pricing.estimate.should == '10000 - 200000.-'
               @pricing.opted.should be_true
             end
+          end
+        end
+      end
+
+      describe '#show' do
+        let :real_estate do
+          Fabricate :published_real_estate,
+            :offer => Offer::SALE,
+            :category => Fabricate(:category),
+            :pricing => Fabricate.build(:pricing_for_sale)
+        end
+
+        it 'shows the prices within the cms' do
+          visit cms_real_estate_pricing_path real_estate
+          {
+            :for_sale         => number_to_currency(real_estate.pricing.for_sale, :locale         => 'de-CH'),
+            :opted            => I18n.t("#{real_estate.pricing.opted}"),
+            :estimate         => real_estate.pricing.estimate,
+            :additional_costs => number_to_currency(real_estate.pricing.additional_costs, :locale => 'de-CH'),
+            :storage          => number_to_currency(real_estate.pricing.storage, :locale          => 'de-CH'),
+            :extra_storage    => number_to_currency(real_estate.pricing.extra_storage, :locale    => 'de-CH')
+          }.each do |attr, expected_text|
+            attr_name = Pricing.human_attribute_name(attr)
+            find(:xpath, "//dl/dt[contains(string(), '#{attr_name}')]/following-sibling::dd").should have_content(expected_text)
           end
         end
       end
