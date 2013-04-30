@@ -62,9 +62,9 @@ class PricingDecorator < ApplicationDecorator
     end
   end
 
-  def for_rent_extra
-    if model.for_rent_extra.present? && model.for_rent?
-      formatted(model.for_rent_extra)
+  def additional_costs
+    if model.additional_costs.present? && !model.parking?
+      formatted(model.additional_costs)
     end
   end
 
@@ -116,8 +116,8 @@ class PricingDecorator < ApplicationDecorator
       content << { :key => t('pricings.for_rent_netto'), :value => for_rent_netto }
     end
 
-    if for_rent_extra.present?
-      content << { :key => t('pricings.for_rent_extra'), :value => for_rent_extra }
+    if additional_costs.present?
+      content << { :key => t('pricings.additional_costs'), :value => additional_costs }
     end
 
     if inside_parking.present?

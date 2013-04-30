@@ -11,7 +11,7 @@ describe PricingDecorator do
         :pricing => Fabricate.build(:pricing,
           :price_unit => 'monthly',
           :for_rent_netto => 2000,
-          :for_rent_extra => 200,
+          :additional_costs => 200,
           :inside_parking => 140,
           :outside_parking => 150,
           :estimate => ''
@@ -38,7 +38,7 @@ describe PricingDecorator do
     end
 
     it 'formats the rent extra price' do
-      @pricing.for_rent_extra.should == "CHF 200.00 / Monat"
+      @pricing.additional_costs.should == "CHF 200.00 / Monat"
     end
 
     it 'formats the inside parking price' do
@@ -78,6 +78,7 @@ describe PricingDecorator do
         :offer => Offer::SALE,
         :pricing => Fabricate.build(:pricing,
           :for_sale => 123456,
+          :additional_costs => 6789,
           :price_unit => 'sell',
           :inside_parking => 140,
           :outside_parking => 150,
@@ -98,6 +99,10 @@ describe PricingDecorator do
 
     it 'formats the sale price' do
       @pricing.for_sale.should == "CHF 123'456.00"
+    end
+
+    it 'formats the additional costs' do
+      @pricing.additional_costs.should == "CHF 6'789.00"
     end
 
     it 'formats the inside parking price' do
