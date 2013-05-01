@@ -60,6 +60,9 @@ In order for RVM to work with the whenever gem, we have to write a `.rvmrc` with
 
 # Pitfalls
 
+## Idx301 Exporter
+* Supported fields for Idx301 exporter are listed in `lib/export/documentation/idx-format-v301_v015.xlsx`
+
 ## PDF Generation
 
 * Thin is freezing when generating PDFs using PDFKit. As an workaround we have to run Thin in threaded mode.
