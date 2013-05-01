@@ -158,7 +158,7 @@ describe Pricing do
         end
 
         it 'requires a monthly netto rent price' do
-          square_meter_per_year_pricing.should have(1).error_on(:for_rent_netto_monthly)
+          square_meter_per_year_pricing.should have(2).error_on(:for_rent_netto_monthly)
         end
 
         it 'requires the monthly additional costs' do
@@ -176,7 +176,7 @@ describe Pricing do
         end
 
         it 'requires a monthly netto rent price' do
-          square_meter_per_year_pricing.should have(1).error_on(:for_rent_netto_monthly)
+          square_meter_per_year_pricing.should have(2).error_on(:for_rent_netto_monthly)
         end
 
         it 'requires the monthly additional costs' do
@@ -194,7 +194,7 @@ describe Pricing do
         end
 
         it 'requires a monthly netto rent price' do
-          square_meter_per_year_pricing.should have(1).error_on(:for_rent_netto_monthly)
+          square_meter_per_year_pricing.should have(2).error_on(:for_rent_netto_monthly)
         end
 
         it 'requires the monthly additional costs' do
@@ -212,7 +212,7 @@ describe Pricing do
         end
 
         it 'requires a monthly netto rent price' do
-          square_meter_per_year_pricing.should have(1).error_on(:for_rent_netto_monthly)
+          square_meter_per_year_pricing.should have(2).error_on(:for_rent_netto_monthly)
         end
 
         it 'requires not the monthly additional costs' do

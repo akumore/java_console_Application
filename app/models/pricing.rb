@@ -43,8 +43,6 @@ class Pricing
             :outdoor_bike,
             :single_garage,
             :double_garage,
-            :for_rent_netto_monthly,
-            :additional_costs_monthly,
             :storage_monthly,
             :extra_storage_monthly,
             :estimate_monthly, :numericality => true, :allow_blank => true
@@ -57,7 +55,7 @@ class Pricing
                           },
                          :if => :parking?
 
-  validates :for_rent_netto_monthly,   :presence => true, :if => :for_rent? && :price_unit_is_per_square_meter_per_year?
+  validates :for_rent_netto_monthly,   :presence => true, :numericality => true, :if => :for_rent? && :price_unit_is_per_square_meter_per_year?
   validates :additional_costs_monthly, :presence => true, :if => :for_rent? && :price_unit_is_per_square_meter_per_year?, :unless => :parking?
 
   delegate :for_sale?,
