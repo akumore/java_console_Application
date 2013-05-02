@@ -90,6 +90,13 @@ describe "Cms::Pricings" do
             end
           end
         end
+
+        context 'when selecting per square meter per month price unit', :js => true do
+          it 'shows the monthly prices container' do
+            select 'pro m² / Jahr', :from => 'Preiseinheit'
+            page.should have_css('.monthly-prices-container:not(.hidden)')
+          end
+        end
       end
 
       describe '#show' do
