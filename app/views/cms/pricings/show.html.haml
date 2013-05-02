@@ -48,36 +48,38 @@
         %dd
           = number_to_currency @pricing.extra_storage, :locale => 'de-CH'
           &nbsp;
-  .span5
-    %dl.dl-horizontal.dl-shrinked
-      &nbsp;
 
-      %dt= t("mongoid.attributes.pricing.monthly")
-      %dd
-        = number_to_currency @pricing.for_rent_netto_monthly, :locale => 'de-CH'
+  - if @pricing.price_unit_is_per_square_meter_per_year?
+    .span5.monthly-prices-container
+      %dl.dl-horizontal.dl-shrinked
         &nbsp;
 
-      %dt= t "mongoid.attributes.pricing.monthly"
-      %dd
-        = @pricing.estimate_monthly
-        &nbsp;
-
-      %dt= t "mongoid.attributes.pricing.monthly"
-      %dd
-        = number_to_currency @pricing.additional_costs_monthly, :locale => 'de-CH'
-        &nbsp;
-
-      - if accessible?(:extra_storage)
-        %dt= t "mongoid.attributes.pricing.monthly"
-        %dd
-          = number_to_currency @pricing.storage_monthly, :locale => 'de-CH'
+        %dt= t("mongoid.attributes.pricing.monthly")
+        %dd.for-rent-netto-monthly
+          = number_to_currency @pricing.for_rent_netto_monthly, :locale => 'de-CH'
           &nbsp;
 
-      - if accessible?(:extra_storage)
         %dt= t "mongoid.attributes.pricing.monthly"
-        %dd
-          = number_to_currency @pricing.extra_storage_monthly, :locale => 'de-CH'
+        %dd.estimate-monthly
+          = @pricing.estimate_monthly
           &nbsp;
+
+        %dt= t "mongoid.attributes.pricing.monthly"
+        %dd.additional-costs-monthly
+          = number_to_currency @pricing.additional_costs_monthly, :locale => 'de-CH'
+          &nbsp;
+
+        - if accessible?(:extra_storage)
+          %dt= t "mongoid.attributes.pricing.monthly"
+          %dd.storage-monthly
+            = number_to_currency @pricing.storage_monthly, :locale => 'de-CH'
+            &nbsp;
+
+        - if accessible?(:extra_storage)
+          %dt= t "mongoid.attributes.pricing.monthly"
+          %dd.extra-storage-monthly
+            = number_to_currency @pricing.extra_storage_monthly, :locale => 'de-CH'
+            &nbsp;
 
 - if accessible?(:parking_spots_prices_group)
   %fieldset.parking-spots-prices-group
