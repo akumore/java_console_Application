@@ -89,12 +89,53 @@ describe "Cms::Pricings" do
               @pricing.opted.should be_true
             end
           end
-        end
 
-        context 'when selecting per square meter per month price unit', :js => true do
-          it 'shows the monthly prices container' do
-            select 'pro m² / Jahr', :from => 'Preiseinheit'
-            page.should have_css('.monthly-prices-container:not(.hidden)')
+          context 'when selecting per square meter per month price unit' do
+            context 'when javascript is enabled', :js => true do
+              before :each do
+                select 'pro m² / Jahr', :from => 'Preiseinheit'
+              end
+
+              it 'shows the monthly prices container' do
+                page.should have_css('.monthly-prices-container:not(.hidden)')
+              end
+            end
+
+            context 'when javascript is not enabled' do
+              context 'a valid monthly pricing' do
+                before :each do
+                  select 'pro m² / Jahr', :from => 'Preiseinheit'
+                  fill_in 'Netto Miete', :with => '565'
+                  fill_in 'Nebenkosten', :with => '566'
+                  within('.monthly-prices-container') do
+                    fill_in 'pricing_for_rent_netto_monthly', :with => '567'
+                    fill_in 'pricing_estimate_monthly', :with => '568'
+                    fill_in 'pricing_additional_costs_monthly', :with => '569'
+                  end
+                end
+
+                it 'saves a new monthly year_m2 Pricing' do
+                  click_on 'Preise erstellen'
+                  @real_estate.reload
+                  @real_estate.pricing.should be_a(Pricing)
+                end
+
+                context '#create' do
+                  before :each do
+                    click_on 'Preise erstellen'
+                    @real_estate.reload
+                    @pricing = @real_estate.pricing
+                  end
+
+                  it 'has saved the provided monthly year_m2 attributes' do
+                    @pricing.for_rent_netto_monthly.should == 567
+                    @pricing.estimate_monthly.should == '568'
+                    @pricing.additional_costs_monthly.should == 569
+                    @pricing.price_unit.should ==  'year_m2'
+                  end
+                end
+              end
+            end
           end
         end
       end
@@ -119,6 +160,14 @@ describe "Cms::Pricings" do
             attr_name = Pricing.human_attribute_name(attr)
             find(:xpath, "//dl/dt[contains(string(), '#{attr_name}')]/following-sibling::dd").should have_content(expected_text)
           end
+        end
+
+        it 'shows the per month prices container' do
+          real_estate.pricing.update_attributes(:price_unit => 'year_m2', :for_rent_netto_monthly => 123, :additional_costs_monthly => 456)
+          visit cms_real_estate_pricing_path real_estate
+          page.should have_css('.monthly-prices-container')
+          find('.for-rent-netto-monthly').should have_content(123)
+          find('.additional-costs-monthly').should have_content(456)
         end
       end
     end
