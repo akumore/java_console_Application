@@ -58,37 +58,34 @@
               = f.text_field :extra_storage
 
       .span6.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
-        - if @real_estate.for_rent?
-          .control-group
-            &nbsp;
+        .control-group.control-group-spacer
 
-          .control-group.mandatory
-            = f.label :for_rent_netto_monthly, @real_estate.parking? ? t('mongoid.attributes.pricing.for_rent_netto_parking_monthly') : t('mongoid.attributes.pricing.for_rent_netto_monthly')
-            .controls
-              = f.text_field :for_rent_netto_monthly
+        .control-group.mandatory
+          = f.label :for_rent_netto_monthly, t('mongoid.attributes.pricing.monthly')
+          .controls
+            = f.text_field :for_rent_netto_monthly
 
         .control-group
-          = f.label :estimate_monthly
+          = f.label :estimate_monthly, t('mongoid.attributes.pricing.monthly')
           .controls
             = f.text_field :estimate_monthly
 
         .control-group{ :class => (@pricing.additional_costs_is_mandatory? ? 'mandatory' : '') }
-          = f.label :additional_costs_monthly
+          = f.label :additional_costs_monthly, t('mongoid.attributes.pricing.monthly')
           .controls
             = f.text_field :additional_costs_monthly
 
-        .control-group
-          &nbsp;
+        .control-group.control-group-spacer
 
         - if accessible?(:storage)
           .control-group
-            = f.label :storage_monthly
+            = f.label :storage_monthly, t('mongoid.attributes.pricing.monthly')
             .controls
               = f.text_field :storage_monthly
 
         - if accessible?(:extra_storage)
           .control-group
-            = f.label :extra_storage_monthly
+            = f.label :extra_storage_monthly, t('mongoid.attributes.pricing.monthly')
             .controls
               = f.text_field :extra_storage_monthly
 

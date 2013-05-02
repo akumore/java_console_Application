@@ -18,6 +18,7 @@ de:
         extra_storage_monthly: 'Lager Nebenkosten pro Monat'
         estimate: 'Ungefährer Preis'
         estimate_monthly: 'Ungefährer Preis pro Monat'
+        monthly: 'pro Monat'
         opted: 'Optiert'
         double_garage: 'Doppelgarage'
         single_garage: 'Einzelgarage'
