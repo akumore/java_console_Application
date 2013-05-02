@@ -3,49 +3,81 @@
 = render_navigation :context => :real_estate
 
 
-%dl.dl-horizontal
-  - if @real_estate.for_rent?
-    %dt= t "mongoid.attributes.pricing.price_unit"
-    %dd
-      = t("cms.pricings.form.#{@pricing.price_unit}")
+.row
+  .span5
+    %dl.dl-horizontal
+      - if @real_estate.for_rent?
+        %dt= t "mongoid.attributes.pricing.price_unit"
+        %dd
+          = t("cms.pricings.form.#{@pricing.price_unit}")
+          &nbsp;
+
+      - if @real_estate.for_rent?
+        %dt= @real_estate.parking? ? t("mongoid.attributes.pricing.for_rent_netto_parking") : t("mongoid.attributes.pricing.for_rent_netto")
+        %dd
+          = number_to_currency @pricing.for_rent_netto, :locale => 'de-CH'
+          &nbsp;
+
+      - if @real_estate.for_sale?
+        %dt= t "mongoid.attributes.pricing.for_sale"
+        %dd
+          = number_to_currency @pricing.for_sale, :locale => 'de-CH'
+          &nbsp;
+
+        %dt= t "mongoid.attributes.pricing.opted"
+        %dd= t "#{@pricing.opted}"
+
+      %dt= t "mongoid.attributes.pricing.estimate"
+      %dd
+        = @pricing.estimate
+        &nbsp;
+
+      %dt= t "mongoid.attributes.pricing.additional_costs"
+      %dd
+        = number_to_currency @pricing.additional_costs, :locale => 'de-CH'
+        &nbsp;
+
+      - if accessible?(:extra_storage)
+        %dt= t "mongoid.attributes.pricing.storage"
+        %dd
+          = number_to_currency @pricing.storage, :locale => 'de-CH'
+          &nbsp;
+
+      - if accessible?(:extra_storage)
+        %dt= t "mongoid.attributes.pricing.extra_storage"
+        %dd
+          = number_to_currency @pricing.extra_storage, :locale => 'de-CH'
+          &nbsp;
+  .span5
+    %dl.dl-horizontal.dl-shrinked
       &nbsp;
 
-  - if @real_estate.for_rent?
-    %dt= @real_estate.parking? ? t("mongoid.attributes.pricing.for_rent_netto_parking") : t("mongoid.attributes.pricing.for_rent_netto")
-    %dd
-      = number_to_currency @pricing.for_rent_netto, :locale => 'de-CH'
-      &nbsp;
+      %dt= t("mongoid.attributes.pricing.monthly")
+      %dd
+        = number_to_currency @pricing.for_rent_netto_monthly, :locale => 'de-CH'
+        &nbsp;
 
-  - if @real_estate.for_sale?
-    %dt= t "mongoid.attributes.pricing.for_sale"
-    %dd
-      = number_to_currency @pricing.for_sale, :locale => 'de-CH'
-      &nbsp;
+      %dt= t "mongoid.attributes.pricing.monthly"
+      %dd
+        = @pricing.estimate_monthly
+        &nbsp;
 
-    %dt= t "mongoid.attributes.pricing.opted"
-    %dd= t "#{@pricing.opted}"
+      %dt= t "mongoid.attributes.pricing.monthly"
+      %dd
+        = number_to_currency @pricing.additional_costs_monthly, :locale => 'de-CH'
+        &nbsp;
 
-  %dt= t "mongoid.attributes.pricing.estimate"
-  %dd
-    = @pricing.estimate
-    &nbsp;
+      - if accessible?(:extra_storage)
+        %dt= t "mongoid.attributes.pricing.monthly"
+        %dd
+          = number_to_currency @pricing.storage_monthly, :locale => 'de-CH'
+          &nbsp;
 
-  %dt= t "mongoid.attributes.pricing.additional_costs"
-  %dd
-    = number_to_currency @pricing.additional_costs, :locale => 'de-CH'
-    &nbsp;
-
-  - if accessible?(:extra_storage)
-    %dt= t "mongoid.attributes.pricing.storage"
-    %dd
-      = number_to_currency @pricing.storage, :locale => 'de-CH'
-      &nbsp;
-
-  - if accessible?(:extra_storage)
-    %dt= t "mongoid.attributes.pricing.extra_storage"
-    %dd
-      = number_to_currency @pricing.extra_storage, :locale => 'de-CH'
-      &nbsp;
+      - if accessible?(:extra_storage)
+        %dt= t "mongoid.attributes.pricing.monthly"
+        %dd
+          = number_to_currency @pricing.extra_storage_monthly, :locale => 'de-CH'
+          &nbsp;
 
 - if accessible?(:parking_spots_prices_group)
   %fieldset.parking-spots-prices-group
