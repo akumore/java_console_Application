@@ -148,7 +148,7 @@ class PricingDecorator < ApplicationDecorator
   end
 
   def formatted_price price
-    number_to_currency(price, :locale => 'de-CH')
+    number_to_currency(price, :locale => 'de-CH', :format => "%n %u")
   end
 
   def parking_price_unit
