@@ -145,6 +145,10 @@ class PricingDecorator < ApplicationDecorator
     t("pricings.decorator.price_units.#{price_unit}")
   end
 
+  def formatted_value(price)
+    number_to_human(price, :locale => 'de-CH', :strip_insignificant_zeros => false, :significant => false, :precision => 2)
+  end
+
   private
 
   def formatted(price, price_unit = nil)
