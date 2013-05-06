@@ -14,13 +14,13 @@ de:
   pricings:
     decorator:
       price_units:
-        monthly: '%{price}/Mt.'
-        yearly: '%{price}/J.'
-        weekly: '%{price}/Wo.'
-        daily: '%{price}/Tag'
-        year_m2: '%{price}/m²/J.'
-        sell: '%{price}'
-        sell_m2: '%{price}/m²'
+        monthly: 'CHF/Mt.'
+        yearly:  'CHF/J.'
+        weekly:  'CHF/Wo.'
+        daily:   'CHF/Tag'
+        year_m2: 'CHF/m²/J.'
+        sell:    'CHF'
+        sell_m2: 'CHF/m²'
     title: 'Preise/Bezug'
     for_rent_netto: '(ohne Nebenkosten)'
     additional_costs: 'Nebenkosten'
