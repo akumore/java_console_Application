@@ -129,8 +129,25 @@ td
     @extend .title-font-bold
 
   dd
+    +clearfix
     padding: 0.25em 0
     margin-left: 215px
+
+  .value, .currency
+    +float_left
+
+    &.shrinked
+      width: 70px
+
+  .value
+    display: block
+    width: 120px
+    text-align: right
+    padding-right: .25em
+
+  .currency
+    display: block
+    width: 80px
 
 .sidebar
   +column(3, 10)
