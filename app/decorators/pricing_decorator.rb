@@ -140,6 +140,11 @@ class PricingDecorator < ApplicationDecorator
     }
   end
 
+  def currency_price_unit
+    price_unit ||= model.price_unit
+    t("pricings.decorator.price_units.#{price_unit}")
+  end
+
   private
 
   def formatted(price, price_unit = nil)
