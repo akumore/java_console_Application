@@ -9,13 +9,13 @@ class PricingDecorator < ApplicationDecorator
         model.estimate
       else
         price_value = model.private_utilization? ? model.for_rent_brutto : model.for_rent_netto
-        formatted_price(price_value)
+        formatted(price_value)
       end
     elsif model.for_sale?
       if model.estimate.present?
         model.estimate
       else
-        formatted_price(model.for_sale)
+        formatted(model.for_sale)
       end
     end
   end
@@ -69,39 +69,39 @@ class PricingDecorator < ApplicationDecorator
   end
 
   def storage
-    formatted(model.storage, parking_price_unit) if model.storage.present?
+    formatted(model.storage) if model.storage.present?
   end
 
   def extra_storage
-    formatted(model.extra_storage, parking_price_unit) if model.extra_storage.present?
+    formatted(model.extra_storage) if model.extra_storage.present?
   end
 
   def inside_parking
-    formatted(model.inside_parking, parking_price_unit) if model.inside_parking.present?
+    formatted(model.inside_parking) if model.inside_parking.present?
   end
 
   def outside_parking
-    formatted(model.outside_parking, parking_price_unit) if model.outside_parking.present?
+    formatted(model.outside_parking) if model.outside_parking.present?
   end
 
   def covered_slot
-    formatted(model.covered_slot, parking_price_unit) if model.covered_slot.present?
+    formatted(model.covered_slot) if model.covered_slot.present?
   end
 
   def covered_bike
-    formatted(model.covered_bike, parking_price_unit) if model.covered_bike.present?
+    formatted(model.covered_bike) if model.covered_bike.present?
   end
 
   def outdoor_bike
-    formatted(model.outdoor_bike, parking_price_unit) if model.outdoor_bike.present?
+    formatted(model.outdoor_bike) if model.outdoor_bike.present?
   end
 
   def single_garage
-    formatted(model.single_garage, parking_price_unit) if model.single_garage.present?
+    formatted(model.single_garage) if model.single_garage.present?
   end
 
   def double_garage
-    formatted(model.double_garage, parking_price_unit) if model.double_garage.present?
+    formatted(model.double_garage) if model.double_garage.present?
   end
 
   def chapter
@@ -145,26 +145,17 @@ class PricingDecorator < ApplicationDecorator
     t("pricings.decorator.price_units.#{price_unit}")
   end
 
-  def formatted_value(price)
-    number_to_human(price, :locale => 'de-CH', :strip_insignificant_zeros => false, :significant => false, :precision => 2)
+  def parking_price_unit
+    if model.for_sale?
+      t("pricings.decorator.price_units.sell")
+    else
+      t("pricings.decorator.price_units.monthly")
+    end
   end
 
   private
 
-  def formatted(price, price_unit = nil)
-    price_unit ||= model.price_unit
-    t("pricings.decorator.price_units.#{price_unit}", :price => formatted_price(price))
-  end
-
-  def formatted_price price
-    number_to_currency(price, :locale => 'de-CH', :format => "%n %u")
-  end
-
-  def parking_price_unit
-    if model.for_sale?
-      'sell'
-    else
-      'monthly'
-    end
+  def formatted(price)
+    number_to_currency(price, :locale => 'de-CH', :format => "%n&nbsp;".html_safe)
   end
 end

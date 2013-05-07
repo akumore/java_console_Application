@@ -13,65 +13,78 @@
           = real_estate.category.label
           = t('pricings.for_rent_netto')
         %dd
-          = pricing.for_rent_netto
+          %span.value= pricing.for_rent_netto
+          %span.currency= pricing.currency_price_unit
 
     - if pricing && pricing.additional_costs.present?
       %dl
         %dt= t('pricings.additional_costs')
         %dd
-          = pricing.additional_costs
+          %span.value= pricing.additional_costs
+          %span.currency= pricing.currency_price_unit
 
     - if pricing && pricing.storage.present?
       %dl
         %dt= t('pricings.storage')
-        %dd= pricing.storage
+        %dd
+          %span.value= pricing.storage
+          %span.currency= pricing.currency_price_unit
 
     - if pricing && pricing.extra_storage.present?
       %dl
         %dt= t('pricings.extra_storage')
-        %dd= pricing.extra_storage
+        %dd
+          %span.value= pricing.extra_storage
+          %span.currency= pricing.currency_price_unit
 
     - if pricing && pricing.inside_parking.present?
       %dl
         %dt= t('pricings.inside_parking')
         %dd
-          = pricing.inside_parking
+          %span.value= pricing.inside_parking
+          %span.currency= pricing.parking_price_unit
 
     - if pricing && pricing.outside_parking.present?
       %dl
         %dt= t('pricings.outside_parking')
         %dd
-          = pricing.outside_parking
+          %span.value= pricing.outside_parking
+          %span.currency= pricing.parking_price_unit
 
     - if pricing && pricing.covered_slot.present?
       %dl
         %dt= t('pricings.covered_slot')
         %dd
-          = pricing.covered_slot
+          %span.value= pricing.covered_slot
+          %span.currency= pricing.parking_price_unit
 
     - if pricing && pricing.covered_bike.present?
       %dl
         %dt= t('pricings.covered_bike')
         %dd
-          = pricing.covered_bike
+          %span.value= pricing.covered_bike
+          %span.currency= pricing.parking_price_unit
 
     - if pricing && pricing.outdoor_bike.present?
       %dl
         %dt= t('pricings.outdoor_bike')
         %dd
-          = pricing.outdoor_bike
+          %span.value= pricing.outdoor_bike
+          %span.currency= pricing.parking_price_unit
 
     - if pricing && pricing.single_garage.present?
       %dl
         %dt= t('pricings.single_garage')
         %dd
-          = pricing.single_garage
+          %span.value= pricing.single_garage
+          %span.currency= pricing.parking_price_unit
 
     - if pricing && pricing.double_garage.present?
       %dl
         %dt= t('pricings.double_garage')
         %dd
-          = pricing.double_garage
+          %span.value= pricing.double_garage
+          %span.currency= pricing.parking_price_unit
 
     - if pricing && pricing.opted?
       %p= t('pricings.without_vat')
