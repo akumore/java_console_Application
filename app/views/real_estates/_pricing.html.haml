@@ -5,7 +5,7 @@
     -#
     -# ToDo: Use this method also in handouts
     -#
-    - pricing.pricing_fields.each do |pricing_field|
+    - Pricing::PRICING_FIELDS.each do |pricing_field|
       = pricing.render_pricing_field(pricing_field)
 
     - if pricing && pricing.opted?

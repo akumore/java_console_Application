@@ -2,6 +2,34 @@ class Pricing
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  #
+  # Fields are used for _pricing partial of a real estate
+  #
+  PRICING_FIELDS = [
+    :for_sale,
+    :for_rent_netto,
+    :additional_costs,
+    :storage,
+    :extra_storage,
+    :inside_parking,
+    :outside_parking,
+    :covered_slot,
+    :covered_bike,
+    :outdoor_bike,
+    :single_garage,
+    :double_garage
+  ]
+
+  PARKING_PRICING_FIELDS = [
+    :inside_parking,
+    :outside_parking,
+    :covered_slot,
+    :covered_bike,
+    :outdoor_bike,
+    :single_garage,
+    :double_garage
+  ]
+
   embedded_in :real_estate
 
   field :for_rent_netto,   :type => Integer

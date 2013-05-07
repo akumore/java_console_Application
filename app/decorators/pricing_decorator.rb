@@ -3,38 +3,6 @@ class PricingDecorator < ApplicationDecorator
 
   decorates :pricing
 
-  #
-  # Fields are used for _pricing partial of a real estate
-  #
-  def pricing_fields
-    [
-      :for_sale,
-      :for_rent_netto,
-      :additional_costs,
-      :storage,
-      :extra_storage,
-      :inside_parking,
-      :outside_parking,
-      :covered_slot,
-      :covered_bike,
-      :outdoor_bike,
-      :single_garage,
-      :double_garage
-    ]
-  end
-
-  def parking_pricing_fields
-    [
-      :inside_parking,
-      :outside_parking,
-      :covered_slot,
-      :covered_bike,
-      :outdoor_bike,
-      :single_garage,
-      :double_garage
-    ]
-  end
-
   def list_price
     if model.for_rent?
       if model.estimate.present?
@@ -201,7 +169,7 @@ class PricingDecorator < ApplicationDecorator
         self.send(pricing_field)
       end)
       concat(content_tag(:span, :class => 'currency') do
-        if parking_pricing_fields.include?(pricing_field)
+        if Pricing::PARKING_PRICING_FIELDS.include?(pricing_field)
           parking_price_unit
         elsif pricing_field != :for_sale
           currency_price_unit
