@@ -140,9 +140,82 @@ class PricingDecorator < ApplicationDecorator
     }
   end
 
+  def pricing_fields
+    [
+      :for_sale,
+      :for_rent_netto,
+      :additional_costs,
+      :storage,
+      :extra_storage,
+      :inside_parking,
+      :outside_parking,
+      :covered_slot,
+      :covered_bike,
+      :outdoor_bike,
+      :single_garage,
+      :double_garage
+    ]
+  end
+
+  def parking_pricing_fields
+    [
+      :inside_parking,
+      :outside_parking,
+      :covered_slot,
+      :covered_bike,
+      :outdoor_bike,
+      :single_garage,
+      :double_garage
+    ]
+  end
+
+  def render_pricing_field(pricing_field)
+    if pricing && self.send(pricing_field).present?
+      content_tag(:dl, render_definition_list(pricing_field))
+    end
+  end
+
+  def render_definition_list(pricing_field)
+    render_definition_title(pricing_field) + render_definition_description(pricing_field)
+  end
+
+  def render_definition_title(pricing_field)
+    content_tag(:dt) do
+      if pricing_field == :for_rent_netto
+        self._parent.category.label + " " +
+        t("pricings.#{pricing_field}")
+      elsif pricing_field == :for_sale
+        self._parent.category.label
+      else
+        t("pricings.#{pricing_field}")
+      end
+    end
+  end
+
+  def render_definition_description(pricing_field)
+    content_tag(:dd) do
+      concat(content_tag(:span, :class => 'value') do
+        self.send(pricing_field)
+      end)
+      concat(content_tag(:span, :class => 'currency') do
+        if parking_pricing_fields.include?(pricing_field)
+          parking_price_unit
+        elsif pricing_field != :for_sale
+          currency_price_unit
+        end
+      end)
+    end
+  end
+
   def currency_price_unit
     price_unit ||= model.price_unit
     t("pricings.decorator.price_units.#{price_unit}")
+  end
+
+  private
+
+  def formatted(price)
+    number_to_currency(price, :locale => 'de-CH', :format => "%n&nbsp;".html_safe)
   end
 
   def parking_price_unit
@@ -151,11 +224,5 @@ class PricingDecorator < ApplicationDecorator
     else
       t("pricings.decorator.price_units.monthly")
     end
-  end
-
-  private
-
-  def formatted(price)
-    number_to_currency(price, :locale => 'de-CH', :format => "%n&nbsp;".html_safe)
   end
 end
