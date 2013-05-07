@@ -215,17 +215,17 @@ class PricingDecorator < ApplicationDecorator
     t("pricings.decorator.price_units.#{price_unit}")
   end
 
-  private
-
-  def formatted(price)
-    number_to_currency(price, :locale => 'de-CH', :format => "%n&nbsp;".html_safe)
-  end
-
   def parking_price_unit
     if model.for_sale?
       t("pricings.decorator.price_units.sell")
     else
       t("pricings.decorator.price_units.monthly")
     end
+  end
+
+  private
+
+  def formatted(price)
+    number_to_currency(price, :locale => 'de-CH', :format => "%n&nbsp;".html_safe)
   end
 end
