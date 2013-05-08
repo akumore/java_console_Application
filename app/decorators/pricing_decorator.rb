@@ -9,13 +9,13 @@ class PricingDecorator < ApplicationDecorator
         model.estimate
       else
         price_value = model.private_utilization? ? model.for_rent_brutto : model.for_rent_netto
-        formatted_number_with_currency(price_value)
+        formatted_price_with_currency(price_value)
       end
     elsif model.for_sale?
       if model.estimate.present?
         model.estimate
       else
-        formatted_number_with_currency(model.for_sale)
+        formatted_price_with_currency(model.for_sale)
       end
     end
   end
@@ -25,7 +25,7 @@ class PricingDecorator < ApplicationDecorator
       if model.estimate.present?
         model.estimate
       elsif model.for_rent_netto.present?
-        formatted_number(model.for_rent_netto)
+        formatted_price(model.for_rent_netto)
       end
     end
   end
@@ -35,7 +35,7 @@ class PricingDecorator < ApplicationDecorator
       if model.estimate.present?
         model.estimate
       elsif model.for_rent_brutto.present?
-        formatted_number(model.for_rent_brutto)
+        formatted_price(model.for_rent_brutto)
       end
     end
   end
@@ -45,51 +45,51 @@ class PricingDecorator < ApplicationDecorator
       if model.estimate.present?
         model.estimate
       elsif model.for_sale.present?
-        formatted_number(model.for_sale)
+        formatted_price(model.for_sale)
       end
     end
   end
 
   def additional_costs
     if model.additional_costs.present? && !model.parking?
-      formatted_number(model.additional_costs)
+      formatted_price(model.additional_costs)
     end
   end
 
   def storage
-    formatted_number(model.storage) if model.storage.present?
+    formatted_price(model.storage) if model.storage.present?
   end
 
   def extra_storage
-    formatted_number(model.extra_storage) if model.extra_storage.present?
+    formatted_price(model.extra_storage) if model.extra_storage.present?
   end
 
   def inside_parking
-    formatted_number(model.inside_parking) if model.inside_parking.present?
+    formatted_price(model.inside_parking) if model.inside_parking.present?
   end
 
   def outside_parking
-    formatted_number(model.outside_parking) if model.outside_parking.present?
+    formatted_price(model.outside_parking) if model.outside_parking.present?
   end
 
   def covered_slot
-    formatted_number(model.covered_slot) if model.covered_slot.present?
+    formatted_price(model.covered_slot) if model.covered_slot.present?
   end
 
   def covered_bike
-    formatted_number(model.covered_bike) if model.covered_bike.present?
+    formatted_price(model.covered_bike) if model.covered_bike.present?
   end
 
   def outdoor_bike
-    formatted_number(model.outdoor_bike) if model.outdoor_bike.present?
+    formatted_price(model.outdoor_bike) if model.outdoor_bike.present?
   end
 
   def single_garage
-    formatted_number(model.single_garage) if model.single_garage.present?
+    formatted_price(model.single_garage) if model.single_garage.present?
   end
 
   def double_garage
-    formatted_number(model.double_garage) if model.double_garage.present?
+    formatted_price(model.double_garage) if model.double_garage.present?
   end
 
   def chapter
@@ -184,11 +184,11 @@ class PricingDecorator < ApplicationDecorator
 
   private
 
-  def formatted_number(price)
+  def formatted_price(price)
     number_to_currency(price, :locale => 'de-CH', :format => "%n")
   end
 
-  def formatted_number_with_currency(price)
+  def formatted_price_with_currency(price)
     number_to_currency(price, :locale => 'de-CH', :format => "%n %u")
   end
 end
