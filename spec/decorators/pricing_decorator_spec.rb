@@ -134,4 +134,46 @@ describe PricingDecorator do
       end
     end
   end
+
+  describe '#render_price_tags' do
+    let :pricing do
+      PricingDecorator.new(stub(:pricing))
+    end
+
+    it 'returns the value element' do
+      pricing.render_price_tags('100', 'CHF/J.').should == "<span class=\"value\">100</span>&nbsp;<span class=\"currency\">CHF/J.</span>"
+    end
+  end
+
+  describe '#price_unit' do
+    let :pricing do
+      PricingDecorator.new(stub(:pricing, :price_unit => 'yearly'))
+    end
+
+    context 'with a sale parking field' do
+      it 'returns localized sell price unit' do
+        pricing.pricing.stub!(:for_sale?).and_return true
+        pricing.price_unit(:double_garage).should == 'CHF'
+      end
+    end
+
+    context 'with a rent parking field' do
+      it 'returns localized sell price unit' do
+        pricing.pricing.stub!(:for_sale?).and_return false
+        pricing.price_unit(:double_garage).should == 'CHF/Mt.'
+      end
+    end
+
+    context 'with no pricing field' do
+      it 'returns the localized price unit' do
+        pricing.price_unit.should == 'CHF/J.'
+      end
+    end
+
+    context 'with a normal pricing field' do
+      it 'returns the localized price unit' do
+        pricing.price_unit.should == 'CHF/J.'
+      end
+    end
+  end
 end
