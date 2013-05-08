@@ -102,6 +102,22 @@ strong, b
     line-height: 1.35em
     @extend .pbi-avoid
 
+  .value, .currency
+    +float_left
+
+    &.shrinked
+      width: 70px
+
+  .value
+    display: block
+    width: 120px
+    text-align: right
+
+  .currency
+    display: block
+    width: 80px
+    padding-left: .25em
+
   .disclaimer
     margin-top: 10px
     font-size: small
