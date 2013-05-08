@@ -142,7 +142,8 @@ describe "RealEstates" do
           end
 
           it "shows the localized price for rent" do
-            page.should have_content number_to_currency(real_estate.pricing.for_rent_netto, :locale=>'de-CH')
+            page.should have_selector("span.value", :text => "1'520.00")
+            page.should have_selector("span.currency", :text => "CHF/Mt.")
           end
 
           it 'shows the real estate category in front of the sale price' do
@@ -159,7 +160,8 @@ describe "RealEstates" do
           end
 
           it "shows the localized price for sale" do
-            page.should have_content number_to_currency(real_estate.pricing.for_sale, :locale=>'de-CH')
+            page.should have_selector("span.value", :text => "1'300'000.00")
+            page.should have_selector("span.currency", :text => "CHF")
           end
 
           it 'shows the real estate category in front of the sale price' do
