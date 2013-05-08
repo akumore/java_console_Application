@@ -2,24 +2,11 @@ class Pricing
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  embedded_in :real_estate
+
   #
   # Fields are used for _pricing partial of a real estate
   #
-  PRICING_FIELDS = [
-    :for_sale,
-    :for_rent_netto,
-    :additional_costs,
-    :storage,
-    :extra_storage,
-    :inside_parking,
-    :outside_parking,
-    :covered_slot,
-    :covered_bike,
-    :outdoor_bike,
-    :single_garage,
-    :double_garage
-  ]
-
   PARKING_PRICING_FIELDS = [
     :inside_parking,
     :outside_parking,
@@ -30,7 +17,14 @@ class Pricing
     :double_garage
   ]
 
-  embedded_in :real_estate
+  PRICING_FIELDS = [
+    :for_sale,
+    :for_rent_netto,
+    :additional_costs,
+    :storage,
+    :extra_storage,
+    *PARKING_PRICING_FIELDS
+  ]
 
   field :for_rent_netto,   :type => Integer
   field :additional_costs, :type => Integer # Nebenkosten
