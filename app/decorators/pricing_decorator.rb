@@ -167,6 +167,8 @@ class PricingDecorator < ApplicationDecorator
   def price_unit(pricing_field=nil)
     if Pricing::PARKING_PRICING_FIELDS.include?(pricing_field)
       parking_price_unit
+    elsif model.estimate.present?
+      ''
     else
       t("pricings.decorator.price_units.#{model.price_unit}")
     end
