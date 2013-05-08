@@ -2,6 +2,34 @@ class Pricing
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  #
+  # Fields are used for _pricing partial of a real estate
+  #
+  PRICING_FIELDS = [
+    :for_sale,
+    :for_rent_netto,
+    :additional_costs,
+    :storage,
+    :extra_storage,
+    :inside_parking,
+    :outside_parking,
+    :covered_slot,
+    :covered_bike,
+    :outdoor_bike,
+    :single_garage,
+    :double_garage
+  ]
+
+  PARKING_PRICING_FIELDS = [
+    :inside_parking,
+    :outside_parking,
+    :covered_slot,
+    :covered_bike,
+    :outdoor_bike,
+    :single_garage,
+    :double_garage
+  ]
+
   embedded_in :real_estate
 
   field :for_rent_netto,   :type => Integer
@@ -13,14 +41,18 @@ class Pricing
   field :estimate,         :type => String  # Geschätz, z.B. 200-500.-
   field :opted,            :type => Boolean, :default => false # Optiert, entscheidet ob MwST angezeigt wird
 
+  #
   # Preisfelder in zweiter Spalte, wenn PriceUnit => year_m2
+  #
   field :for_rent_netto_monthly,   :type => Integer
   field :additional_costs_monthly, :type => Integer # Nebenkosten pro Monat
   field :storage_monthly,          :type => Integer # Lagerkosten pro Monat
   field :extra_storage_monthly,    :type => Integer # Nebenkosten Lager pro Monat
   field :estimate_monthly,         :type => String  # Geschätz, z.B. 200-500.- pro Monat
 
+  #
   # Mietzins für Parkplätze
+  #
   field :inside_parking,  :type => Integer # Parkplatz in Autoeinstellhalle
   field :outside_parking, :type => Integer # Parkplatz im Freien
   field :covered_slot,    :type => Integer # Parkplatz im Freien überdacht
@@ -29,7 +61,9 @@ class Pricing
   field :single_garage,   :type => Integer # Einzelgarage
   field :double_garage,   :type => Integer # Doppelgarage
 
+  #
   # Mietzins für Parkplätze (monthly)
+  #
   field :inside_parking_monthly,  :type => Integer
   field :outside_parking_monthly, :type => Integer
   field :covered_slot_monthly,    :type => Integer

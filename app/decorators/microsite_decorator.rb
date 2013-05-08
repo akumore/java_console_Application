@@ -67,7 +67,11 @@ class MicrositeDecorator < ApplicationDecorator
   end
 
   def price
-    PricingDecorator.decorate(real_estate.pricing).for_rent_netto if real_estate.pricing.present?
+    if real_estate.pricing.present?
+      price_value = PricingDecorator.decorate(real_estate.pricing).for_rent_netto if real_estate.pricing.present?
+      price_unit = PricingDecorator.decorate(real_estate.pricing).price_unit
+      "#{price_value} #{price_unit}"
+    end
   end
 
   def group

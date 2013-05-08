@@ -223,7 +223,8 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content I18n.t('pricings.for_rent_netto')
-        page.should have_content "CHF 1'999.00 / Monat"
+        page.should have_selector("span.value", :text => "1'999.00")
+        page.should have_selector("span.currency", :text => "CHF/Mt.")
       end
 
       it "shows 'without VAT message' if 'opted'" do
@@ -236,7 +237,8 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content I18n.t('pricings.additional_costs')
-        page.should have_content "CHF 99.00 / Monat"
+        page.should have_selector("span.value", :text => "99.00")
+        page.should have_selector("span.currency", :text => "CHF/Mt.")
       end
 
       it "shows the price of the inside parking lot if available" do
@@ -247,7 +249,8 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz in Autoeinstellhalle'
-        page.should have_content 'CHF 100.00 / Monat'
+        page.should have_selector("span.value", :text => "100.00")
+        page.should have_selector("span.currency", :text => "CHF/Mt.")
       end
 
       it "shows the price of the outside parking lot if available" do
@@ -255,7 +258,8 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz im Freien'
-        page.should have_content 'CHF 80.00 / Monat'
+        page.should have_selector("span.value", :text => "80.00")
+        page.should have_selector("span.currency", :text => "CHF/Mt.")
       end
 
       it 'shows the real estate category in front of the sale price' do
