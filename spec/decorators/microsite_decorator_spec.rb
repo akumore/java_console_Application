@@ -21,7 +21,7 @@ describe MicrositeDecorator do
       real_estate =  Fabricate :residential_building,
         :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 2500)
       decorated_real_estate = MicrositeDecorator.decorate real_estate
-      decorated_real_estate.price.should == '2\'500.00 CHF/Mt.'
+      decorated_real_estate.price.should == '2 500.00 CHF/Mt.'
     end
   end
 
@@ -31,7 +31,7 @@ describe MicrositeDecorator do
       real_estate =  Fabricate :residential_building,
         :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 2500)
       decorated_real_estate = MicrositeDecorator.decorate real_estate
-      decorated_real_estate.price.should == '2\'500.00 CHF/Mt.'
+      decorated_real_estate.price.should == '2 500.00 CHF/Mt.'
     end
 
     it 'returns nil if no pricing is specified' do

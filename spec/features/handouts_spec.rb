@@ -223,7 +223,7 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content I18n.t('pricings.for_rent_netto')
-        page.should have_selector("span.value", :text => "1'999.00")
+        page.should have_selector("span.value", :text => "1 999.00")
         page.should have_selector("span.currency", :text => "CHF/Mt.")
       end
 

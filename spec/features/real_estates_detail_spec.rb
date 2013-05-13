@@ -142,7 +142,7 @@ describe "RealEstates" do
           end
 
           it "shows the localized price for rent" do
-            page.should have_selector("span.value", :text => "1'520.00")
+            page.should have_selector("span.value", :text => "1 520.00")
             page.should have_selector("span.currency", :text => "CHF/Mt.")
           end
 
@@ -160,7 +160,7 @@ describe "RealEstates" do
           end
 
           it "shows the localized price for sale" do
-            page.should have_selector("span.value", :text => "1'300'000.00")
+            page.should have_selector("span.value", :text => "1.3 Mio.")
             page.should have_selector("span.currency", :text => "CHF")
           end
 

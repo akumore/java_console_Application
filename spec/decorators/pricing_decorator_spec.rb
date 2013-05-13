@@ -22,15 +22,15 @@ describe PricingDecorator do
     end
 
     it 'formats the list price' do
-      @pricing.list_price.should == "2'200.00 CHF"
+      @pricing.list_price.should == "2 200.00 CHF"
     end
 
     it 'formats the netto rent price' do
-      @pricing.for_rent_netto.should == "2'000.00"
+      @pricing.for_rent_netto.should == "2 000.00"
     end
 
     it 'formats the brutto rent price' do
-      @pricing.for_rent_brutto.should == "2'200.00"
+      @pricing.for_rent_brutto.should == "2 200.00"
     end
 
     it 'formats the rent extra price' do
@@ -86,15 +86,15 @@ describe PricingDecorator do
     end
 
     it 'formats the list price' do
-      @pricing.list_price.should == "123'456.00 CHF"
+      @pricing.list_price.should == "123 456.00 CHF"
     end
 
     it 'formats the sale price' do
-      @pricing.for_sale.should == "123'456.00"
+      @pricing.for_sale.should == "123 456.00"
     end
 
     it 'formats the additional costs' do
-      @pricing.additional_costs.should == "6'789.00"
+      @pricing.additional_costs.should == "6 789.00"
     end
 
     it 'formats the inside parking price' do
