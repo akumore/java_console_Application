@@ -3,3 +3,7 @@ de-CH:
     currency:
       format:
         unit: 'CHF'
+    human:
+      decimal_units:
+        units:
+          million: 'Mio.'

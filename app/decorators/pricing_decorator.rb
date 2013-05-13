@@ -164,10 +164,10 @@ class PricingDecorator < ApplicationDecorator
     ].join().html_safe
   end
 
-  def price_unit(pricing_field=nil)
+  def price_unit(pricing_field = nil)
     if Pricing::PARKING_PRICING_FIELDS.include?(pricing_field)
       parking_price_unit
-    elsif model.estimate.present?
+    elsif model.estimate.present? && [:for_rent_netto, :for_sale].include?(pricing_field)
       ''
     else
       t("pricings.decorator.price_units.#{model.price_unit}")
@@ -182,13 +182,39 @@ class PricingDecorator < ApplicationDecorator
     end
   end
 
-  private
+  def more_than_seven_digits?(price)
+    price.is_a? Numeric and price >= 1000000
+  end
 
   def formatted_price(price)
-    number_to_currency(price, :locale => 'de-CH', :format => "%n")
+    number_to_currency(
+      humanize_million_price(price),
+      :locale => 'de-CH',
+      :format => "%n",
+      :delimiter => ' '
+    )
   end
 
   def formatted_price_with_currency(price)
-    number_to_currency(price, :locale => 'de-CH', :format => "%n %u")
+    number_to_currency(
+      humanize_million_price(price),
+      :locale => 'de-CH',
+      :format => "%n %u",
+      :delimiter => ' '
+    )
+  end
+
+  def humanize_million_price(price)
+    if more_than_seven_digits?(price)
+      number_to_human(
+        price,
+        :significant => false,
+        :significant_digits => 2,
+        :precision => 2,
+        :locale => 'de-CH'
+      )
+    else
+      price
+    end
   end
 end
