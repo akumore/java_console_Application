@@ -182,7 +182,6 @@ class PricingDecorator < ApplicationDecorator
     end
   end
 
-  private
 
   def formatted_price(price)
     greater_than_a_million?(price) ? price = humanize_million_price(price) : price

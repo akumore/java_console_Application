@@ -175,4 +175,57 @@ describe PricingDecorator do
       end
     end
   end
+
+  describe '#formatted_price' do
+    let :price do
+      PricingDecorator.new Pricing.new
+    end
+
+    it 'returns the correct price' do
+      price.formatted_price('one hundred millions').should == 'one hundred millions'
+      price.formatted_price(1).should == '1.00'
+      price.formatted_price(999999).should == '999 999.00'
+      price.formatted_price(1000000).should == '1 Mio.'
+      price.formatted_price(1000000000).should == '1 Milliarde'
+      price.formatted_price(0).should == '0.00'
+    end
+  end
+
+  describe '#formatted_price_with_currency' do
+    let :price do
+      PricingDecorator.new Pricing.new
+    end
+
+    it 'returns the correct price' do
+      price.formatted_price_with_currency(1).should == '1.00 CHF'
+      price.formatted_price_with_currency(999999).should == '999 999.00 CHF'
+      price.formatted_price_with_currency(1000000).should == '1 Mio. CHF'
+      price.formatted_price_with_currency(1000000000).should == '1 Milliarde CHF'
+      price.formatted_price_with_currency(0).should == '0.00 CHF'
+    end
+  end
+
+  describe '#more_than_seven_digits?' do
+    let :price do
+      PricingDecorator.new Pricing.new
+    end
+
+    context 'when number has more than seven digits' do
+      it 'returns true' do
+        price.more_than_seven_digits?(1000000).should be_true
+      end
+    end
+
+    context 'when number has less than seven digits' do
+      it 'returns false' do
+        price.more_than_seven_digits?(999999).should be_false
+      end
+    end
+
+    context 'when number is a string (estimate)' do
+      it 'returns false' do
+        price.more_than_seven_digits?('300 mio').should be_false
+      end
+    end
+  end
 end
