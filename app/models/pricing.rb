@@ -5,12 +5,7 @@ class Pricing
   #
   # Fields are used for _pricing partial of a real estate
   #
-  PRICING_FIELDS = [
-    :for_sale,
-    :for_rent_netto,
-    :additional_costs,
-    :storage,
-    :extra_storage,
+  PARKING_PRICING_FIELDS = [
     :inside_parking,
     :outside_parking,
     :covered_slot,
@@ -20,14 +15,13 @@ class Pricing
     :double_garage
   ]
 
-  PARKING_PRICING_FIELDS = [
-    :inside_parking,
-    :outside_parking,
-    :covered_slot,
-    :covered_bike,
-    :outdoor_bike,
-    :single_garage,
-    :double_garage
+  PRICING_FIELDS = [
+    :for_sale,
+    :for_rent_netto,
+    :additional_costs,
+    :storage,
+    :extra_storage,
+    *PARKING_PRICING_FIELDS
   ]
 
   embedded_in :real_estate

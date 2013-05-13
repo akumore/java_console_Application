@@ -164,10 +164,10 @@ class PricingDecorator < ApplicationDecorator
     ].join().html_safe
   end
 
-  def price_unit(pricing_field=nil)
+  def price_unit(pricing_field = nil)
     if Pricing::PARKING_PRICING_FIELDS.include?(pricing_field)
       parking_price_unit
-    elsif model.estimate.present?
+    elsif model.estimate.present? && [:for_rent_netto, :for_sale].include?(pricing_field)
       ''
     else
       t("pricings.decorator.price_units.#{model.price_unit}")

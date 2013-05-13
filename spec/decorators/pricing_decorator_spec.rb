@@ -169,9 +169,19 @@ describe PricingDecorator do
     end
 
     context 'with a text in estimate field' do
-      it 'returns no price unit' do
+      before :each do
         pricing.pricing.stub(:estimate).and_return('YEAH!')
-        pricing.price_unit.should == ''
+      end
+
+      it 'returns the localized price unit' do
+        pricing.price_unit(:additional_costs).should == 'CHF/J.'
+        pricing.price_unit(:storage).should == 'CHF/J.'
+        pricing.price_unit(:extra_storage).should == 'CHF/J.'
+      end
+
+      it 'returns the price unit for all other price fields' do
+        pricing.price_unit(:for_rent_netto).should == ''
+        pricing.price_unit(:for_sale).should == ''
       end
     end
   end
