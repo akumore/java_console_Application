@@ -185,16 +185,20 @@ class PricingDecorator < ApplicationDecorator
   private
 
   def formatted_price(price)
-    if price.to_s.split('.').first.size > 6
-      price = number_to_human(price, :significant => false, :significant_digits => 2, :precision => 2, :locale => 'de-CH')
-    end
+    greater_than_a_million?(price) ? price = humanize_million_price(price) : price
     number_to_currency(price, :locale => 'de-CH', :format => "%n", :delimiter => ' ')
   end
 
   def formatted_price_with_currency(price)
-    if price.to_s.split('.').first.size > 6
-      price = number_to_human(price, :significant => false, :significant_digits => 2, :precision => 2, :locale => 'de-CH')
-    end
+    greater_than_a_million?(price) ? price = humanize_million_price(price) : price
     number_to_currency(price, :locale => 'de-CH', :format => "%n %u", :delimiter => ' ')
+  end
+
+  def greater_than_a_million?(price)
+    price.to_s.split('.').first.size > 6
+  end
+
+  def humanize_million_price(price)
+    number_to_human(price, :significant => false, :significant_digits => 2, :precision => 2, :locale => 'de-CH')
   end
 end
