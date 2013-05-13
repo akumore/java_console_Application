@@ -11,4 +11,5 @@
     - if information && information.available_from.present?
       %dl
         %dt= t('information.available_from')
-        %dd= information.available_from_compact
+        %dd
+          %span.value= information.available_from_compact
