@@ -182,22 +182,39 @@ class PricingDecorator < ApplicationDecorator
     end
   end
 
+  def more_than_seven_digits?(price)
+    price.is_a? Numeric and price >= 1000000
+  end
 
   def formatted_price(price)
-    greater_than_a_million?(price) ? price = humanize_million_price(price) : price
-    number_to_currency(price, :locale => 'de-CH', :format => "%n", :delimiter => ' ')
+    number_to_currency(
+      humanize_million_price(price),
+      :locale => 'de-CH',
+      :format => "%n",
+      :delimiter => ' '
+    )
   end
 
   def formatted_price_with_currency(price)
-    greater_than_a_million?(price) ? price = humanize_million_price(price) : price
-    number_to_currency(price, :locale => 'de-CH', :format => "%n %u", :delimiter => ' ')
-  end
-
-  def greater_than_a_million?(price)
-    price.to_s.split('.').first.size > 6
+    number_to_currency(
+      humanize_million_price(price),
+      :locale => 'de-CH',
+      :format => "%n %u",
+      :delimiter => ' '
+    )
   end
 
   def humanize_million_price(price)
-    number_to_human(price, :significant => false, :significant_digits => 2, :precision => 2, :locale => 'de-CH')
+    if more_than_seven_digits?(price)
+      number_to_human(
+        price,
+        :significant => false,
+        :significant_digits => 2,
+        :precision => 2,
+        :locale => 'de-CH'
+      )
+    else
+      price
+    end
   end
 end
