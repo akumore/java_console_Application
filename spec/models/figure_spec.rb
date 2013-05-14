@@ -1,6 +1,45 @@
 require 'spec_helper'
 
 describe Figure do
+  describe 'initialize without any attributes' do
+    before :each do
+      @real_estate = Fabricate.build(:real_estate, :figure => Figure.new, :category => Fabricate(:category))
+      @figure = @real_estate.figure
+    end
+
+    it 'does not pass validations' do
+      @figure.should_not be_valid
+    end
+
+    context 'for living utilization' do
+      before :each do
+        @real_estate.utilization = RealEstate::UTILIZATION_PRIVATE
+      end
+
+      it 'requires a floor' do
+        @figure.should have(2).error_on(:floor)
+      end
+
+      it 'requires rooms' do
+        @figure.should have(2).error_on(:rooms)
+      end
+    end
+
+    context 'for working utilization' do
+      before :each do
+        @real_estate.utilization = RealEstate::UTILIZATION_COMMERICAL
+      end
+
+      it 'requires a floor' do
+        @figure.should have(2).error_on(:floor)
+      end
+
+      it 'requires a usable surface' do
+        @figure.should have(2).error_on(:usable_surface)
+      end
+    end
+  end
+
   describe 'initialize with invalid attributes' do
     context 'for private utilization' do
       before :each do
@@ -35,7 +74,7 @@ describe Figure do
       end
 
       it 'requires a number for floor' do
-        @figure.should have(1).error_on(:floor)
+        @figure.should have(2).error_on(:floor)
       end
 
       it 'requires a number for living_surface' do
