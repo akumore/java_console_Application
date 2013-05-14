@@ -49,6 +49,7 @@ class Figure
             :numericality => true,
             :if => :commercial_utilization?
 
+  # floor must be present in any utilization
   validates :floor,
             :presence => true,
             :numericality => true
