@@ -44,10 +44,14 @@ class Figure
             :if => :private_utilization?
 
   # fields which must be present and numeric, but only if commercial
-  validates :floor, :usable_surface,
+  validates :usable_surface,
             :presence => true,
             :numericality => true,
             :if => :commercial_utilization?
+
+  validates :floor,
+            :presence => true,
+            :numericality => true
 
   delegate :commercial_utilization?, :private_utilization?, :to => :_parent
 end
