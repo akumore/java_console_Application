@@ -140,4 +140,8 @@ class Pricing
   def price_unit_is_per_square_meter_per_year?
     price_unit == PriceUnit.per_square_meter_per_year
   end
+
+  def supports_monthly_prices?
+    price_unit_is_per_square_meter_per_year?
+  end
 end
