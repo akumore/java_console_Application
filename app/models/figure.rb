@@ -21,7 +21,7 @@ class Figure
   field :built_on, :type => Integer # Baujahr
 
   # fields which must be numeric
-  validates :property_surface, :floors, :floor, :renovated_on, :built_on,
+  validates :property_surface, :floors, :renovated_on, :built_on,
             :numericality => true,
             :allow_blank => true
 
