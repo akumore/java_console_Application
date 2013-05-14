@@ -92,6 +92,29 @@ class PricingDecorator < ApplicationDecorator
     formatted_price(model.double_garage) if model.double_garage.present?
   end
 
+  #
+  # Monthly pricing fields need to be formatted too
+  #
+  def for_rent_netto_monthly
+    formatted_price(model.for_rent_netto_monthly) if model.for_rent_netto_monthly.present?
+  end
+
+  def additional_costs_monthly
+    formatted_price(model.additional_costs_monthly) if model.additional_costs_monthly.present?
+  end
+
+  def storage_monthly
+    formatted_price(model.storage_monthly) if model.storage_monthly.present?
+  end
+
+  def extra_storage_monthly
+    formatted_price(model.extra_storage_monthly) if model.extra_storage_monthly.present?
+  end
+
+  def estimate_monthly
+    formatted_price(model.estimate_monthly) if model.estimate_monthly.present?
+  end
+
   def chapter
     content = []
     content_html = ''
