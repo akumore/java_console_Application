@@ -65,13 +65,13 @@ describe "Pages" do
       it "shows the managing directors" do
         visit "/de/company"
         within "#managing-board" do
-          page.should have_content "Christoph Müller"
+          page.should have_content "David Hossli"
           page.should have_content "Michael Müller"
           page.should have_content "Viktor Naumann"
           page.should have_content "Walter Hochreutener"
           page.should have_content "Joe Schmalz"
           page.should have_content "David Spiess"
-          page.should have_link 'E-Mail', :href => "mailto:christoph.mueller@alfred-mueller.ch"
+          page.should have_link 'E-Mail', :href => "mailto:david.hossli@alfred-mueller.ch"
           page.should have_link 'E-Mail', :href => "mailto:joe.schmalz@alfred-mueller.ch"
           page.should have_link 'E-Mail', :href => "mailto:michael.mueller@alfred-mueller.ch"
           page.should have_link 'E-Mail', :href => "mailto:david.spiess@alfred-mueller.ch"

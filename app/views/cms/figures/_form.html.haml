@@ -6,7 +6,7 @@
   = render 'cms/shared/errors', :model => @figure
 
   %fieldset
-    .control-group{ :class => (@real_estate.commercial_utilization? ? :mandatory : nil) }
+    .control-group.mandatory
       = f.label :floor
       .controls
         = f.text_field :floor, :class => 'span4'
