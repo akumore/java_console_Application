@@ -178,7 +178,9 @@ class PricingDecorator < ApplicationDecorator
     content_tag(:dd) do
       concat render_price_tags(self.send(pricing_field), price_unit(pricing_field))
       monthly_field = "#{pricing_field}_monthly".to_sym
-      if respond_to?(monthly_field) and send(monthly_field).present?
+      if respond_to?(monthly_field) and
+        send(monthly_field).present? and
+        model.supports_monthly_prices?
         concat render_price_tags(send(monthly_field), price_unit(monthly_field))
       end
     end
