@@ -154,7 +154,7 @@ class PricingDecorator < ApplicationDecorator
   def render_definition_description(pricing_field)
     content_tag(:dd) do
       concat render_price_tags(self.send(pricing_field), price_unit(pricing_field))
-      monthly_field = "#{pricing_field}_monthly"
+      monthly_field = "#{pricing_field}_monthly".to_sym
       if respond_to?(monthly_field) and send(monthly_field).present?
         concat render_price_tags(send(monthly_field), price_unit(monthly_field))
       end
@@ -173,6 +173,8 @@ class PricingDecorator < ApplicationDecorator
       parking_price_unit
     elsif model.estimate.present? && [:for_rent_netto, :for_sale].include?(pricing_field)
       ''
+    elsif Pricing::MONTHLY_PRICING_FIELDS.include?(pricing_field)
+      t("pricings.decorator.price_units.monthly")
     else
       t("pricings.decorator.price_units.#{model.price_unit}")
     end
