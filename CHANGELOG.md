@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.3.6 on 2013-05-14
+* Hotfix: Floor field of Figure model is now mandatory in any of the utilizations
+* Cherrypick rake task for printing invalid real estates
+
 ### v2.3.5 on 2013-03-22
 * Hotfix: Change images for Christoph Müller, David Hossli and Thomas Rüppel
 

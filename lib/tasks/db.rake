@@ -15,5 +15,4 @@ namespace :db do
 
     sh ['mongodump', host_option, database_option, user_option, password_option, dir_option].compact.join(" ")
   end
-
 end

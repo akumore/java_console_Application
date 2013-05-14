@@ -7,9 +7,8 @@
   = render 'cms/shared/errors', :model => @figure
 
   %fieldset
-
     - if accessible?(:floor)
-      .control-group{ :class => (@real_estate.working? || @real_estate.living? || @real_estate.storing? ? :mandatory : nil) }
+      .control-group{ :class => (@real_estate.parking? ? nil : :mandatory) }
         = f.label :floor
         .controls
           = f.text_field :floor, :class => 'span4'
