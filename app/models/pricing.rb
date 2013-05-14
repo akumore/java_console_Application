@@ -26,6 +26,14 @@ class Pricing
     *PARKING_PRICING_FIELDS
   ]
 
+  MONTHLY_PRICING_FIELDS = [
+    :for_rent_netto_monthly,
+    :additional_costs_monthly,
+    :storage_monthly,
+    :extra_storage_monthly,
+    :estimate_monthly
+  ]
+
   field :for_rent_netto,   :type => Integer
   field :additional_costs, :type => Integer # Nebenkosten
   field :for_sale,         :type => Integer # Kaufpreis
@@ -131,5 +139,9 @@ class Pricing
 
   def price_unit_is_per_square_meter_per_year?
     price_unit == PriceUnit.per_square_meter_per_year
+  end
+
+  def supports_monthly_prices?
+    price_unit_is_per_square_meter_per_year?
   end
 end

@@ -268,6 +268,26 @@ describe "Handout aka MiniDoku" do
           page.should have_content(@real_estate.category.label)
         end
       end
+
+      context "for rent and with price unit 'year_m2'" do
+        before :each do
+          @real_estate.update_attribute(:offer, Offer::RENT)
+          @pricing.update_attribute(:price_unit, 'year_m2')
+          @pricing.update_attribute(:for_rent_netto_monthly, '50')
+          @pricing.update_attribute(:additional_costs_monthly, '5')
+          visit real_estate_handout_path(@real_estate)
+        end
+
+        it "shows the monthly prices for 'for_rent_netto_monthly'" do
+          page.should have_selector("span.value", :text => "50")
+          page.should have_selector("span.currency", :text => "CHF/Mt.")
+        end
+
+        it "shows the monthly prices for 'additional_costs_monthly'" do
+          page.should have_selector("span.value", :text => "5")
+          page.should have_selector("span.currency", :text => "CHF/Mt.")
+        end
+      end
     end
 
 

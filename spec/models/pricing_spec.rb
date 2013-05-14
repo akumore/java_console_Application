@@ -221,4 +221,36 @@ describe Pricing do
       end
     end
   end
+
+  describe '#price_unit_is_per_square_meter_per_year?' do
+    let :pricing do
+      Pricing.new
+    end
+
+    it "returns true when price unit is 'year_m2'" do
+      pricing.price_unit = 'year_m2'
+      pricing.price_unit_is_per_square_meter_per_year?.should be_true
+    end
+
+    it "returns false when price unit is not 'year_m2'" do
+      pricing.price_unit = 'yearly'
+      pricing.price_unit_is_per_square_meter_per_year?.should be_false
+    end
+  end
+
+  describe '#supports_monthly_prices?' do
+    let :pricing do
+      Pricing.new
+    end
+
+    it "returns true when price unit is 'year_m2'" do
+      pricing.price_unit = 'year_m2'
+      pricing.supports_monthly_prices?.should be_true
+    end
+
+    it "returns false when price unit is not 'year_m2'" do
+      pricing.price_unit = 'yearly'
+      pricing.supports_monthly_prices?.should be_false
+    end
+  end
 end

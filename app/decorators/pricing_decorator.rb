@@ -92,6 +92,29 @@ class PricingDecorator < ApplicationDecorator
     formatted_price(model.double_garage) if model.double_garage.present?
   end
 
+  #
+  # Monthly pricing fields need to be formatted too
+  #
+  def for_rent_netto_monthly
+    formatted_price(model.for_rent_netto_monthly) if model.for_rent_netto_monthly.present?
+  end
+
+  def additional_costs_monthly
+    formatted_price(model.additional_costs_monthly) if model.additional_costs_monthly.present?
+  end
+
+  def storage_monthly
+    formatted_price(model.storage_monthly) if model.storage_monthly.present?
+  end
+
+  def extra_storage_monthly
+    formatted_price(model.extra_storage_monthly) if model.extra_storage_monthly.present?
+  end
+
+  def estimate_monthly
+    formatted_price(model.estimate_monthly) if model.estimate_monthly.present?
+  end
+
   def chapter
     content = []
     content_html = ''
@@ -153,7 +176,13 @@ class PricingDecorator < ApplicationDecorator
 
   def render_definition_description(pricing_field)
     content_tag(:dd) do
-      render_price_tags(self.send(pricing_field), price_unit(pricing_field))
+      concat render_price_tags(self.send(pricing_field), price_unit(pricing_field))
+      monthly_field = "#{pricing_field}_monthly".to_sym
+      if respond_to?(monthly_field) and
+        send(monthly_field).present? and
+        model.supports_monthly_prices?
+        concat render_price_tags(send(monthly_field), price_unit(monthly_field))
+      end
     end
   end
 
@@ -169,6 +198,8 @@ class PricingDecorator < ApplicationDecorator
       parking_price_unit
     elsif model.estimate.present? && [:for_rent_netto, :for_sale].include?(pricing_field)
       ''
+    elsif Pricing::MONTHLY_PRICING_FIELDS.include?(pricing_field)
+      t("pricings.decorator.price_units.monthly")
     else
       t("pricings.decorator.price_units.#{model.price_unit}")
     end

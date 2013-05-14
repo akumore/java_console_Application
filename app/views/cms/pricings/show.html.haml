@@ -44,7 +44,7 @@
       %dl.dl-horizontal
         %dt= t "mongoid.attributes.pricing.estimate"
         %dd
-        = @pricing.estimate
+          = @pricing.estimate
 
     - if @pricing.price_unit_is_per_square_meter_per_year?
       .span5.monthly-prices-container
