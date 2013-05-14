@@ -27,7 +27,7 @@
           %dt= t('figures.ceiling_height')
           %dd= figure.ceiling_height
 
-    - if figure && real_estate.working?
+    - if figure && real_estate.working? || real_estate.living?
       - if figure.storage_surface.present?
         %dl
           %dt= t('figures.storage_surface')

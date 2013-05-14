@@ -2,7 +2,7 @@
   .flexslider
     %ul.slides
       - projects.each do |reference_project|
-        - unless reference_project.images.empty?
+        - if reference_project.slider_image.present?
           %li
             = image_tag reference_project.slider_image.gallery.url
             = reference_project_image_caption_div reference_project do

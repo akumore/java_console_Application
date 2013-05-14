@@ -68,21 +68,23 @@ class FieldAccess
        *.working.figure.living_surface_estimate
        *.storing.figure.living_surface_estimate
        *.parking.figure.living_surface_estimate
+       *.working.figure.specification_living_surface
+       *.storing.figure.specification_living_surface
+       *.parking.figure.specification_living_surface
        *.storing.figure.property_surface
        *.storing.figure.property_surface_estimate
        *.living.figure.usable_surface
        *.parking.figure.usable_surface
-       *.living.figure.storage_surface
+       *.living.figure.specification_usable_surface
+       *.parking.figure.specification_usable_surface
        *.storing.figure.storage_surface
        *.parking.figure.storage_surface
        *.living.figure.usable_surface_estimate
        *.parking.figure.usable_surface_estimate
        *.living.figure.ceiling_height
        *.parking.figure.ceiling_height
-       *.living.pricing.storage
        *.parking.pricing.storage
        *.storing.pricing.storage
-       *.living.pricing.extra_storage
        *.parking.pricing.extra_storage
        *.storing.pricing.extra_storage
        *.parking.pricing.for_rent_depot
