@@ -168,6 +168,12 @@ describe PricingDecorator do
       end
     end
 
+    context 'with a monthly pricing field' do
+      it 'returns the localized price unit' do
+        pricing.price_unit(:for_rent_netto_monthly).should == 'CHF/Mt.'
+      end
+    end
+
     context 'with a text in estimate field' do
       before :each do
         pricing.pricing.stub(:estimate).and_return('YEAH!')
