@@ -13,7 +13,7 @@ describe Figure do
 
     context 'for living utilization' do
       before :each do
-        @real_estate.utilization = RealEstate::UTILIZATION_PRIVATE
+        @real_estate.utilization = Utilization::LIVING
       end
 
       it 'requires a floor' do
@@ -27,7 +27,7 @@ describe Figure do
 
     context 'for working utilization' do
       before :each do
-        @real_estate.utilization = RealEstate::UTILIZATION_COMMERICAL
+        @real_estate.utilization = Utilization::WORKING
       end
 
       it 'requires a floor' do
@@ -74,7 +74,7 @@ describe Figure do
       end
 
       it 'requires a number for floor' do
-        @figure.should have(2).error_on(:floor)
+        @figure.should have(1).error_on(:floor)
       end
 
       it 'requires a number for living_surface' do
