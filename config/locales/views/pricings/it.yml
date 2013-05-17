@@ -2,13 +2,13 @@ it:
   pricings:
     decorator:
       price_units:
-        monthly: '%{price} / Mensile'
-        yearly: '%{price} / Annuale'
-        weekly: '%{price} / Settimanale'
-        daily: '%{price} / Tag'
-        year_m2: '%{price} / m² / Annuale'
-        sell: '%{price}'
-        sell_m2: '%{price} / m²'
+        monthly: 'CHF/mese'
+        yearly:  'CHF/anno'
+        weekly:  'CHF/settimana'
+        daily:   'CHF/giorno'
+        year_m2: 'CHF/m²/anno'
+        sell:    'CHF'
+        sell_m2: 'CHF/m²'
     title: 'Prezzi/Disponibile'
     for_rent_netto: '(senza spese accessorie)'
     additional_costs: 'Spese accessorie'

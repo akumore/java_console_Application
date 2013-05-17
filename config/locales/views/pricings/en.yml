@@ -2,13 +2,13 @@ en:
   pricings:
     decorator:
       price_units:
-        monthly: '%{price} / Monthly'
-        yearly: '%{price} / Annual'
-        weekly: '%{price} / Weekly'
-        daily: '%{price} / Day'
-        year_m2: '%{price} / m² / Annual'
-        sell: '%{price}'
-        sell_m2: '%{price} / m²'
+        monthly: 'CHF/month'
+        yearly:  'CHF/year'
+        weekly:  'CHF/week'
+        daily:   'CHF/day'
+        year_m2: 'CHF/m²/year'
+        sell:    'CHF'
+        sell_m2: 'CHF/m²'
     title: 'Prices/Availability'
     for_rent_netto: '(without additional costs)'
     additional_costs: 'Rent'
