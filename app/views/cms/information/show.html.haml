@@ -44,6 +44,10 @@
           %dt= t "mongoid.attributes.information.is_under_building_laws"
           %dd= t "#{@information.is_under_building_laws?}"
 
+      %dl.dl-horizontal
+        %dt= t "mongoid.attributes.information.has_cable_tv"
+        %dd= t "#{@information.has_cable_tv?}"
+
   - if @real_estate.private_utilization?
     .row
       .span4
