@@ -7,12 +7,6 @@ it:
     outside_parking_spots:
       one: 'Parcheggio all‘esterno'
       other: 'Parcheggi all‘esterno'
-    inside_parking_spots_temporary:
-      one: 'Parcheggio temporanei in autorimessa'
-      other: 'Parcheggi temporanei in autorimessa'
-    outside_parking_spots_temporary:
-      one: 'Parcheggio temporanei all‘esterno'
-      other: 'Parcheggi temporanei all‘esterno'
     distances: 'Nelle vicinanze'
     points_of_interest:
       public_transport: 'Trasporti pubblici %{distance} m'
@@ -21,4 +15,3 @@ it:
       elementary_school: 'Scuola elementare %{distance} m'
       high_school: 'Scuole superiori %{distance} m'
       highway_access: 'Autostrada %{distance} m'
-
