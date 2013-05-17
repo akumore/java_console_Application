@@ -28,6 +28,7 @@ class InformationDecorator < ApplicationDecorator
     buffer << t('information.old_building') if model.is_old_building?
     buffer << t('information.minergie_style') if model.is_minergie_style?
     buffer << t('information.minergie_certified') if model.is_minergie_certified?
+    buffer << t('information.cable_tv') if model.has_cable_tv?
 
     if model.living?
       buffer << t('information.view') if model.has_outlook?
