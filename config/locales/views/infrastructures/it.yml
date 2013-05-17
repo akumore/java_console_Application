@@ -7,6 +7,21 @@ it:
     outside_parking_spots:
       one: 'Parcheggio all‘esterno'
       other: 'Parcheggi all‘esterno'
+    covered_slot:
+      one: 'Posteggio esterno coperto'
+      other: 'Posteggi esterni coperti'
+    covered_bike:
+      one: 'Posteggio moto in autorimessa'
+      other: 'Posteggi moto in autorimessa'
+    outdoor_bike:
+      one: 'Posteggio moto esterno coperto'
+      other: 'Posteggi moto esterni coperti'
+    single_garage:
+      one: 'Garage singolo'
+      other: 'Garage singoli'
+    double_garage:
+      one: 'Garage doppio'
+      other: 'Garage doppi'
     distances: 'Nelle vicinanze'
     points_of_interest:
       public_transport: 'Trasporti pubblici %{distance} m'
