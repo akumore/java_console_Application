@@ -18,3 +18,8 @@ it:
     extra_storage: 'Magazzino, spese accessorie'
     inside_parking: 'Parcheggio in autorimessa'
     outside_parking: 'Parcheggio all‘esterno'
+    covered_slot: 'Posteggio esterno coperto'
+    covered_bike: 'Posteggio moto in autorimessa'
+    outdoor_bike: 'Posteggio moto esterno coperto'
+    single_garage: 'Garage singolo'
+    double_garage: 'Garage doppio'

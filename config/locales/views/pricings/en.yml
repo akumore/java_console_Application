@@ -18,3 +18,8 @@ en:
     extra_storage: 'Storage space, common charges'
     inside_parking: 'Car park in garage'
     outside_parking: 'Car park outside'
+    covered_slot: 'Outdoor car park, covered'
+    covered_bike: 'Motorbike parking place in garage'
+    outdoor_bike: 'Outdoor motorbike parking place, covered'
+    single_garage: 'Single garage'
+    double_garage: 'Double garage'
