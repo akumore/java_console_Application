@@ -14,5 +14,7 @@ en:
     for_rent_extra: 'Rent'
     for_rent_depot: 'Deposit'
     without_vat: 'All Prices without value added tax'
+    storage: 'Storage space, price'
+    extra_storage: 'Storage space, common charges'
     inside_parking: 'Car park in garage'
     outside_parking: 'Car park outside'
