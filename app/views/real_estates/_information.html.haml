@@ -48,7 +48,7 @@
         %dt= t('figures.built_on')
         %dd= figure.built_on
 
-    - if information && information.characteristics.any?
+    - if information && information.characteristics.any? && !real_estate.parking?
       %dl
         %dt= t('information.characteristics')
         %dd= information.characteristics.join(', ')
