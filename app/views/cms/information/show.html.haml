@@ -83,7 +83,7 @@
           %dt= t "mongoid.attributes.information.has_swimming_pool"
           %dd= t "#{@information.has_swimming_pool?}"
 
-  - if @real_estate.working?
+  - if @real_estate.working? || @real_estate.storing?
     .row
       .span4
         %dl.dl-horizontal
