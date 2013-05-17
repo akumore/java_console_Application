@@ -187,7 +187,7 @@ describe Search::Filter do
       end
     end
 
-    context 'when the utilization is storing' do
+    context 'when the utilization is working' do
       it 'returns true' do
         sf = Search::Filter.new
         sf.stub!(:utilization).and_return(Utilization::WORKING)
@@ -195,7 +195,7 @@ describe Search::Filter do
       end
     end
 
-    context 'when the utilization is c' do
+    context 'when the utilization is storing' do
       it 'returns true' do
         sf = Search::Filter.new
         sf.stub!(:utilization).and_return(Utilization::STORING)
