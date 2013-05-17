@@ -15,7 +15,4 @@ en:
     for_rent_depot: 'Deposit'
     without_vat: 'All Prices without value added tax'
     inside_parking: 'Car park in garage'
-    inside_parking_temporary: 'Temporary car park in garage'
     outside_parking: 'Car park outside'
-    outside_parking_temporary: 'Temporary car park outside'
-

@@ -15,6 +15,4 @@ fr:
     for_rent_depot: 'Garantie de loyer'
     without_vat: 'Prix sans TVA'
     inside_parking: 'Place de parc dans parking souterrain'
-    inside_parking_temporary: 'Place de parc temporaires dans parking souterrain'
     outside_parking: 'Place de parc à l‘extérieur'
-    outside_parking_temporary: 'Place de parc temporaires à l‘extérieur'

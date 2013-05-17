@@ -15,7 +15,4 @@ it:
     for_rent_depot: 'Deposito garanzia affitto'
     without_vat: 'Tutti i prezzi senza IVA'
     inside_parking: 'Parcheggio in autorimessa'
-    inside_parking_temporary: 'Parcheggio temporanei in autorimessa'
     outside_parking: 'Parcheggio all‘esterno'
-    outside_parking_temporary: 'Parcheggio temporanei all‘esterno'
-
