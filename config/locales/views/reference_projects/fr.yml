@@ -4,8 +4,10 @@ fr:
     project_website_link: 'Vers le site internet du projet'
     section:
       residential_building: 'Maisons d’habitation'
+      residential_commercial_building: 'Maisons d’habitation et immeubles commerciaux'
       business_building: 'Immeubles commerciaux'
-      public_building: 'Edifices publics'
+      trade_industrial_building: 'Bâtiments industriels et artisanaux'
+      special_building: 'Constructions spéciales'
       rebuilding: 'Transformations'
     index:
       documentation_link: 'Documentation'
