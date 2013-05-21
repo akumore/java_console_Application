@@ -4,9 +4,9 @@ namespace :db do
   task :validate_real_estates => :environment do
     RealEstate.all.reject { |r| r.valid? }.each do |real_estate|
       if Rails.env.production?
-        puts "http://www.alfred-mueller.ch/cms/real_estate/#{real_estate.id}"
+        puts "http://www.alfred-mueller.ch/cms/real_estates/#{real_estate.id}"
       elsif Rails.env.staging?
-        puts "http://staging.alfredmueller.screenconcept.ch//cms/real_estate/#{real_estate.id}"
+        puts "http://staging.alfredmueller.screenconcept.ch/cms/real_estates/#{real_estate.id}"
       end
     end
   end
