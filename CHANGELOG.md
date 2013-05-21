@@ -1,5 +1,15 @@
 # CHANGELOG
 
+### v2.4.0 on 2013-05-21
+* Feature 1 - Lagern als zusätzliche Gebäudenutzungen
+* Feature 2 - Parkieren als zusätzliche Gebäudenutzungen
+* Feature 3 - Ausbau für die zusätzlichen Gebäudenutzungen "Lagern" und "Parkieren"
+* Feature 4 - Angebotsliste auf der Webseite
+* Feature 8 - Erweiterte Angaben zur Nutz-, Wohn- und Lagerflächen
+* Feature 28 - Erweiterung Bauen
+* Feature 29 - Seite "Referenzen"
+* Feature 30 - Neuverortung "Forum"-Magazin
+
 ### v2.3.6 on 2013-05-14
 * Hotfix: Floor field of Figure model is now mandatory in any of the utilizations
 * Cherrypick rake task for printing invalid real estates
