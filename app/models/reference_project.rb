@@ -34,9 +34,11 @@ class ReferenceProject
   before_create :setup_position
 
   # Section scopes
-  scope :residental_buildings, :where => { :section =>  ReferenceProjectSection::RESIDENTIAL_BUILDING }
+  scope :residential_buildings, :where => { :section =>  ReferenceProjectSection::RESIDENTIAL_BUILDING }
+  scope :residential_commercial_buildings, :where => { :section =>  ReferenceProjectSection::RESIDENTIAL_BUILDING }
   scope :business_buildings, :where => { :section =>  ReferenceProjectSection::BUSINESS_BUILDING }
-  scope :public_buildings, :where => { :section =>  ReferenceProjectSection::PUBLIC_BUILDING }
+  scope :trade_industrial_buildings, :where => { :section =>  ReferenceProjectSection::TRADE_INDUSTRIAL_BUILDING }
+  scope :special_buildings, :where => { :section =>  ReferenceProjectSection::SPECIAL_BUILDING }
   scope :rebuildings, :where => { :section =>  ReferenceProjectSection::REBUILDING }
 
   def for_sale?

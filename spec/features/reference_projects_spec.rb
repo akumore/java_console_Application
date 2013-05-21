@@ -57,8 +57,11 @@ describe ReferenceProject do
   describe 'section tab navigation' do
     before do
       Fabricate(:reference_project, :section => ReferenceProjectSection::RESIDENTIAL_BUILDING)
+      Fabricate(:reference_project, :section => ReferenceProjectSection::RESIDENTIAL_COMMERCIAL_BUILDING)
       Fabricate(:reference_project, :section => ReferenceProjectSection::BUSINESS_BUILDING)
-      Fabricate(:reference_project, :section => ReferenceProjectSection::PUBLIC_BUILDING)
+      Fabricate(:reference_project, :section => ReferenceProjectSection::TRADE_INDUSTRIAL_BUILDING)
+      Fabricate(:reference_project, :section => ReferenceProjectSection::SPECIAL_BUILDING)
+      Fabricate(:reference_project, :section => ReferenceProjectSection::REBUILDING)
       visit reference_projects_path
     end
 
@@ -66,8 +69,8 @@ describe ReferenceProject do
       page.should have_css('.search-filter-container')
     end
 
-    it "shows three tabs for 'residential buildings', 'business buildings' and 'public buildings'" do
-      page.should have_css('.offer-tabs li', :count => 3)
+    it "shows tab navigation for all sections" do
+      page.should have_css('.offer-tabs li', :count => 6)
     end
   end
 end
