@@ -10,11 +10,12 @@
       = footer_news_item_link news_item
 
 .footer-teasers
-  %div
-    %h5= t ".forum_title"
-    %dl
-      %dt= t ".forum_content"
-      %dd= link_to t(".take_me_to_forum_magazine"), "#{t('company_url')}"
+  - unless I18n.locale == :en
+    %div
+      %h5= t ".forum_title"
+      %dl
+        %dt= t ".forum_content"
+        %dd= link_to t(".take_me_to_forum_magazine"), "#{t('.forum_url')}"
 
   %div
     %h5= t ".we_are_here_for_you"
