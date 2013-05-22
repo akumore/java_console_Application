@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.4.1 on 2013-05-22
+* Fix footer link for magazine
+
 ### v2.4.0 on 2013-05-21
 * Feature 1 - Lagern als zusätzliche Gebäudenutzungen
 * Feature 2 - Parkieren als zusätzliche Gebäudenutzungen
