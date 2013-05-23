@@ -151,6 +151,30 @@ describe "RealEstates" do
               page.should have_content(real_estate.category.label)
             end
           end
+
+          describe '#opted' do
+            context 'when opted is true' do
+              before :each do
+                real_estate.pricing.update_attribute(:opted, true)
+                visit real_estate_path(real_estate)
+              end
+
+              it "shows VAT message" do
+                page.should have_content "Alle Preise ohne Mehrwertsteuer"
+              end
+            end
+
+            context 'when opted is false' do
+              before :each do
+                real_estate.pricing.update_attribute(:opted, false)
+                visit real_estate_path(real_estate)
+              end
+
+              it "does not show VAT message" do
+                page.should_not have_content "Alle Preise ohne Mehrwertsteuer"
+              end
+            end
+          end
         end
 
         context 'when the real estate is for sale' do
@@ -167,6 +191,30 @@ describe "RealEstates" do
           it 'shows the real estate category in front of the sale price' do
             within '.description' do
               page.should have_content(real_estate.category.label)
+            end
+          end
+
+          describe '#opted' do
+            context 'when opted is true' do
+              before :each do
+                real_estate.pricing.update_attribute(:opted, true)
+                visit real_estate_path(real_estate)
+              end
+
+              it "shows VAT message" do
+                page.should have_content "Alle Preise ohne Mehrwertsteuer"
+              end
+            end
+
+            context 'when opted is false' do
+              before :each do
+                real_estate.pricing.update_attribute(:opted, false)
+                visit real_estate_path(real_estate)
+              end
+
+              it "does not show VAT message" do
+                page.should_not have_content "Alle Preise ohne Mehrwertsteuer"
+              end
             end
           end
         end
