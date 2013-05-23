@@ -98,90 +98,40 @@
             %legend Mietzins für Parkplätze
 
     %fieldset.parking-spots-prices-group
-      .row
-        .span6
-          .control-group
-            = f.label :inside_parking
-            .controls
-              = f.text_field :inside_parking
-        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
-          .control-group
-            = f.label :inside_parking_monthly, t('mongoid.attributes.pricing.monthly')
-            .controls
-              = f.text_field :inside_parking_monthly
+      .control-group
+        = f.label :inside_parking
+        .controls
+          = f.text_field :inside_parking
 
-      .row
-        .span6
-          .control-group
-            = f.label :outside_parking
-            .controls
-              = f.text_field :outside_parking
-        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
-          .control-group
-            = f.label :outside_parking_monthly, t('mongoid.attributes.pricing.monthly')
-            .controls
-              = f.text_field :outside_parking_monthly
+      .control-group
+        = f.label :outside_parking
+        .controls
+          = f.text_field :outside_parking
 
-      .row
-        .span6
-          .control-group
-            = f.label :covered_slot
-            .controls
-              = f.text_field :covered_slot
-        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
-          .control-group
-            = f.label :covered_slot_monthly, t('mongoid.attributes.pricing.monthly')
-            .controls
-              = f.text_field :covered_slot_monthly
+      .control-group
+        = f.label :covered_slot
+        .controls
+          = f.text_field :covered_slot
 
+      .control-group
+        = f.label :covered_bike
+        .controls
+          = f.text_field :covered_bike
 
-      .row
-        .span6
-          .control-group
-            = f.label :covered_bike
-            .controls
-              = f.text_field :covered_bike
-        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
-          .control-group
-            = f.label :covered_bike_monthly, t('mongoid.attributes.pricing.monthly')
-            .controls
-              = f.text_field :covered_bike_monthly
+      .control-group
+        = f.label :outdoor_bike
+        .controls
+          = f.text_field :outdoor_bike
 
-      .row
-        .span6
-          .control-group
-            = f.label :outdoor_bike
-            .controls
-              = f.text_field :outdoor_bike
-        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
-          .control-group
-            = f.label :outdoor_bike_monthly, t('mongoid.attributes.pricing.monthly')
-            .controls
-              = f.text_field :outdoor_bike_monthly
+      .control-group
+        = f.label :single_garage
+        .controls
+          = f.text_field :single_garage
 
-      .row
-        .span6
-          .control-group
-            = f.label :single_garage
-            .controls
-              = f.text_field :single_garage
-        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
-          .control-group
-            = f.label :single_garage_monthly, t('mongoid.attributes.pricing.monthly')
-            .controls
-              = f.text_field :single_garage_monthly
-
-      .row
-        .span6
-          .control-group
-            = f.label :double_garage
-            .controls
-              = f.text_field :double_garage
-        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
-          .control-group
-            = f.label :double_garage_monthly, t('mongoid.attributes.pricing.monthly')
-            .controls
-              = f.text_field :double_garage_monthly
+      .control-group
+        = f.label :double_garage
+        .controls
+          = f.text_field :double_garage
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

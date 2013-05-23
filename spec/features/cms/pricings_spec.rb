@@ -112,14 +112,6 @@ describe "Cms::Pricings" do
                   fill_in 'pricing_estimate_monthly', :with => '568'
                   fill_in 'pricing_additional_costs_monthly', :with => '569'
                 end
-
-                fill_in 'pricing_inside_parking_monthly', :with => '568'
-                fill_in 'pricing_outside_parking_monthly', :with => '569'
-                fill_in 'pricing_covered_slot_monthly', :with => '570'
-                fill_in 'pricing_covered_bike_monthly', :with => '571'
-                fill_in 'pricing_outdoor_bike_monthly', :with => '572'
-                fill_in 'pricing_single_garage_monthly', :with => '572'
-                fill_in 'pricing_double_garage_monthly', :with => '573'
               end
 
               it 'saves a new monthly year_m2 Pricing' do
@@ -141,16 +133,6 @@ describe "Cms::Pricings" do
                   @pricing.additional_costs_monthly.should == 569
                   @pricing.price_unit.should ==  'year_m2'
                 end
-
-                it 'has saved the provided monthly parking year_m2 attributes' do
-                  @pricing.inside_parking_monthly.should == 568
-                  @pricing.outside_parking_monthly.should == 569
-                  @pricing.covered_slot_monthly.should == 570
-                  @pricing.covered_bike_monthly.should == 571
-                  @pricing.outdoor_bike_monthly.should == 572
-                  @pricing.single_garage_monthly.should == 572
-                  @pricing.double_garage_monthly.should == 573
-                end
               end
             end
           end
@@ -164,8 +146,7 @@ describe "Cms::Pricings" do
             :pricing => Fabricate.build(
               :pricing_for_rent,
               :estimate => 10,
-              :inside_parking => 123,
-              :inside_parking_monthly => 234
+              :inside_parking => 123
             )
         end
 
