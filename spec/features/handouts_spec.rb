@@ -279,13 +279,13 @@ describe "Handout aka MiniDoku" do
         end
 
         it "shows the monthly prices for 'for_rent_netto_monthly'" do
-          page.should have_selector("span.value", :text => "50")
-          page.should have_selector("span.currency", :text => "CHF/Mt.")
+          page.should have_selector("span.value-monthly", :text => "50")
+          page.should have_selector("span.currency-monthly", :text => "CHF/Mt.")
         end
 
         it "shows the monthly prices for 'additional_costs_monthly'" do
-          page.should have_selector("span.value", :text => "5")
-          page.should have_selector("span.currency", :text => "CHF/Mt.")
+          page.should have_selector("span.value-monthly", :text => "5")
+          page.should have_selector("span.currency-monthly", :text => "CHF/Mt.")
         end
       end
     end
