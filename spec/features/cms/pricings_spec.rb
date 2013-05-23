@@ -93,7 +93,7 @@ describe "Cms::Pricings" do
           context 'when selecting per square meter per month price unit' do
             context 'when javascript is enabled', :js => true do
               before :each do
-                select 'pro m² / Jahr', :from => 'Preiseinheit'
+                select 'pro m²/Jahr', :from => 'Preiseinheit'
               end
 
               it 'shows the monthly prices container' do
@@ -103,7 +103,7 @@ describe "Cms::Pricings" do
 
             context 'a valid monthly pricing' do
               before :each do
-                select 'pro m² / Jahr', :from => 'Preiseinheit'
+                select 'pro m²/Jahr', :from => 'Preiseinheit'
                 fill_in 'Netto Miete', :with => '565'
                 fill_in 'Nebenkosten', :with => '566'
 
