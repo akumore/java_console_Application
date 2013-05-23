@@ -153,7 +153,6 @@ describe "RealEstates" do
           end
 
           it "shows the additional costs" do
-            binding.pry
             page.should have_content("Nebenkosten")
             page.should have_selector("span.value", :text => "100.00")
             page.should have_selector("span.currency", :text => "CHF/Mt.")
