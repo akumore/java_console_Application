@@ -2,90 +2,217 @@
 
 = render_navigation :context => :real_estate
 
-
-%dl.dl-horizontal
+.pricing-general
   - if @real_estate.for_rent?
-    %dt= t "mongoid.attributes.pricing.price_unit"
-    %dd
-      = t("cms.pricings.form.#{@pricing.price_unit}")
-      &nbsp;
+    .row
+      .span5
+        %dl.dl-horizontal
+          %dt= t "mongoid.attributes.pricing.price_unit"
+          %dd
+            = t("cms.pricings.form.#{@pricing.price_unit}")
 
   - if @real_estate.for_rent?
-    %dt= @real_estate.parking? ? t("mongoid.attributes.pricing.for_rent_netto_parking") : t("mongoid.attributes.pricing.for_rent_netto")
-    %dd
-      = number_to_currency @pricing.for_rent_netto, :locale => 'de-CH'
-      &nbsp;
+    .row
+      .span5
+        %dl.dl-horizontal
+          %dt= @real_estate.parking? ? t("mongoid.attributes.pricing.for_rent_netto_parking") : t("mongoid.attributes.pricing.for_rent_netto")
+          %dd
+            = number_to_currency @pricing.for_rent_netto, :locale => 'de-CH'
 
-    %dt= t "mongoid.attributes.pricing.for_rent_extra"
-    %dd
-      = number_to_currency @pricing.for_rent_extra, :locale => 'de-CH'
-      &nbsp;
+      - if @pricing.price_unit_is_per_square_meter_per_year?
+        .span5.monthly-prices-container
+          %dl.dl-horizontal.dl-shrinked
+            %dt= t("mongoid.attributes.pricing.monthly")
+            %dd.for-rent-netto-monthly
+              = number_to_currency @pricing.for_rent_netto_monthly, :locale => 'de-CH'
 
   - if @real_estate.for_sale?
-    %dt= t "mongoid.attributes.pricing.for_sale"
-    %dd
-      = number_to_currency @pricing.for_sale, :locale => 'de-CH'
-      &nbsp;
+    .row
+      .span5
+        %dl.dl-horizontal
+          %dt= t "mongoid.attributes.pricing.for_sale"
+          %dd= number_to_currency @pricing.for_sale, :locale => 'de-CH'
 
-    %dt= t "mongoid.attributes.pricing.estimate"
-    %dd
-      = @pricing.estimate
-      &nbsp;
+  .row
+    .span5
+      %dl.dl-horizontal
+        %dt= t "mongoid.attributes.pricing.opted"
+        %dd= t "#{@pricing.opted}"
 
-    %dt= t "mongoid.attributes.pricing.opted"
-    %dd= t "#{@pricing.opted}"
+  .row
+    .span5
+      %dl.dl-horizontal
+        %dt= t "mongoid.attributes.pricing.estimate"
+        %dd
+          = @pricing.estimate
 
-  - if accessible?(:extra_storage)
-    %dt= t "mongoid.attributes.pricing.storage"
-    %dd
-      = number_to_currency @pricing.storage, :locale => 'de-CH'
-      &nbsp;
+    - if @pricing.price_unit_is_per_square_meter_per_year?
+      .span5.monthly-prices-container
+        %dl.dl-horizontal.dl-shrinked
+          %dd.estimate-monthly= @pricing.estimate_monthly
+          %dt= t "mongoid.attributes.pricing.monthly"
 
-  - if accessible?(:extra_storage)
-    %dt= t "mongoid.attributes.pricing.extra_storage"
-    %dd
-      = number_to_currency @pricing.extra_storage, :locale => 'de-CH'
-      &nbsp;
+  .row
+    .span5
+      %dl.dl-horizontal
+        %dt= t "mongoid.attributes.pricing.additional_costs"
+        %dd
+          = number_to_currency @pricing.additional_costs, :locale => 'de-CH'
 
-- if accessible?(:parking_spots_prices_group)
-  %fieldset.parking-spots-prices-group
+    - if @pricing.price_unit_is_per_square_meter_per_year?
+      .span5.monthly-prices-container
+        %dl.dl-horizontal.dl-shrinked
+          %dt= t "mongoid.attributes.pricing.monthly"
+          %dd.additional-costs-monthly
+            = number_to_currency @pricing.additional_costs_monthly, :locale => 'de-CH'
+
+  .row
+    .span5
+      %dl.dl-horizontal
+        - if accessible?(:extra_storage)
+          %dt= t "mongoid.attributes.pricing.storage"
+          %dd= number_to_currency @pricing.storage, :locale => 'de-CH'
+
+    - if @pricing.price_unit_is_per_square_meter_per_year?
+      .span5.monthly-prices-container
+        %dl.dl-horizontal.dl-shrinked
+          - if accessible?(:storage)
+            %dt= t "mongoid.attributes.pricing.monthly"
+            %dd.storage-monthly
+              = number_to_currency @pricing.storage_monthly, :locale => 'de-CH'
+
+  .row
+    .span5
+      %dl.dl-horizontal
+        - if accessible?(:extra_storage)
+          %dt= t "mongoid.attributes.pricing.extra_storage"
+          %dd
+            = number_to_currency @pricing.extra_storage, :locale => 'de-CH'
+
+    - if @pricing.price_unit_is_per_square_meter_per_year?
+      .span5.monthly-prices-container
+        %dl.dl-horizontal.dl-shrinked
+          - if accessible?(:extra_storage)
+            %dt= t "mongoid.attributes.pricing.monthly"
+            %dd.extra-storage-monthly
+              = number_to_currency @pricing.extra_storage_monthly, :locale => 'de-CH'
+
+.pricing-parking
+  - if accessible?(:parking_spots_prices_group)
     - if @real_estate.for_sale?
       %legend Kaufpreis für Parkplätze
     - else
       %legend Mietzins für Parkplätze
 
-    %dl.dl-horizontal
-      %dt= t "mongoid.attributes.pricing.inside_parking"
-      %dd
-        = number_to_currency @pricing.inside_parking, :locale => 'de-CH'
-        &nbsp;
+    %fieldset.parking-spots-prices-group
+      .row
+        .span5
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.pricing.inside_parking"
+            %dd
+              = number_to_currency @pricing.inside_parking, :locale => 'de-CH'
+              &nbsp;
+        - if @pricing.price_unit_is_per_square_meter_per_year?
+          .span5
+            %dl.dl-horizontal.dl-shrinked
+              %fieldset.parking-spots-prices-group
+                %dt= t("mongoid.attributes.pricing.monthly")
+                %dd
+                  = number_to_currency @pricing.inside_parking, :locale => 'de-CH'
+                  &nbsp;
 
-      %dt= t "mongoid.attributes.pricing.outside_parking"
-      %dd
-        = number_to_currency @pricing.outside_parking, :locale => 'de-CH'
-        &nbsp;
+      .row
+        .span5
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.pricing.outside_parking"
+            %dd
+              = number_to_currency @pricing.outside_parking, :locale => 'de-CH'
+              &nbsp;
+        - if @pricing.price_unit_is_per_square_meter_per_year?
+          .span5
+            %dl.dl-horizontal.dl-shrinked
+              %fieldset.parking-spots-prices-group
+                %dt= t("mongoid.attributes.pricing.monthly")
+                %dd
+                  = number_to_currency @pricing.outside_parking, :locale => 'de-CH'
+                  &nbsp;
 
-      %dt= t "mongoid.attributes.pricing.covered_slot"
-      %dd
-        = @pricing.covered_slot
-        &nbsp;
+      .row
+        .span5
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.pricing.covered_slot"
+            %dd
+              = number_to_currency @pricing.covered_slot, :locale => 'de-CH'
+              &nbsp;
+        - if @pricing.price_unit_is_per_square_meter_per_year?
+          .span5
+            %dl.dl-horizontal.dl-shrinked
+              %fieldset.parking-spots-prices-group
+                %dt= t("mongoid.attributes.pricing.monthly")
+                %dd
+                  = number_to_currency @pricing.covered_slot, :locale => 'de-CH'
+                  &nbsp;
 
-      %dt= t "mongoid.attributes.pricing.covered_bike"
-      %dd
-        = @pricing.covered_bike
-        &nbsp;
+      .row
+        .span5
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.pricing.covered_bike"
+            %dd
+              = number_to_currency @pricing.covered_bike, :locale => 'de-CH'
+              &nbsp;
+        - if @pricing.price_unit_is_per_square_meter_per_year?
+          .span5
+            %dl.dl-horizontal.dl-shrinked
+              %fieldset.parking-spots-prices-group
+                %dt= t("mongoid.attributes.pricing.monthly")
+                %dd
+                  = number_to_currency @pricing.covered_bike, :locale => 'de-CH'
+                  &nbsp;
 
-      %dt= t "mongoid.attributes.pricing.outdoor_bike"
-      %dd
-        = @pricing.outdoor_bike
-        &nbsp;
+      .row
+        .span5
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.pricing.outdoor_bike"
+            %dd
+              = number_to_currency @pricing.outdoor_bike, :locale => 'de-CH'
+              &nbsp;
+        - if @pricing.price_unit_is_per_square_meter_per_year?
+          .span5
+            %dl.dl-horizontal.dl-shrinked
+              %fieldset.parking-spots-prices-group
+                %dt= t("mongoid.attributes.pricing.monthly")
+                %dd
+                  = number_to_currency @pricing.outdoor_bike, :locale => 'de-CH'
+                  &nbsp;
 
-      %dt= t "mongoid.attributes.pricing.single_garage"
-      %dd
-        = @pricing.single_garage
-        &nbsp;
+      .row
+        .span5
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.pricing.single_garage"
+            %dd
+              = number_to_currency @pricing.single_garage, :locale => 'de-CH'
+              &nbsp;
+        - if @pricing.price_unit_is_per_square_meter_per_year?
+          .span5
+            %dl.dl-horizontal.dl-shrinked
+              %fieldset.parking-spots-prices-group
+                %dt= t("mongoid.attributes.pricing.monthly")
+                %dd
+                  = number_to_currency @pricing.single_garage, :locale => 'de-CH'
+                  &nbsp;
 
-      %dt= t "mongoid.attributes.pricing.double_garage"
-      %dd
-        = @pricing.double_garage
-        &nbsp;
+      .row
+        .span5
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.pricing.double_garage"
+            %dd
+              = number_to_currency @pricing.double_garage, :locale => 'de-CH'
+              &nbsp;
+        - if @pricing.price_unit_is_per_square_meter_per_year?
+          .span5
+            %dl.dl-horizontal.dl-shrinked
+              %fieldset.parking-spots-prices-group
+                %dt= t("mongoid.attributes.pricing.monthly")
+                %dd
+                  = number_to_currency @pricing.double_garage, :locale => 'de-CH'
+                  &nbsp;

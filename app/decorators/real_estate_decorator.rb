@@ -113,7 +113,7 @@ class RealEstateDecorator < ApplicationDecorator
     buffer = []
 
     if model.pricing.present?
-      buffer << pricing.price if pricing.price.present?
+      buffer << pricing.list_price if pricing.list_price.present?
     end
 
     if information.try(:available_from_compact).present?

@@ -392,7 +392,7 @@ module Export::Idx301
 
       if model.for_rent?
         netto = model.try(:pricing).try(:for_rent_netto).presence.to_i
-        extra = model.try(:pricing).try(:for_rent_extra).presence.to_i
+        extra = model.try(:pricing).try(:additional_costs).presence.to_i
 
         if model.for_work_or_storage?
           netto
@@ -413,7 +413,7 @@ module Export::Idx301
     def rent_extra
       #  int(10) round up
       unless model.for_work_or_storage?
-        extra = model.try(:pricing).try(:for_rent_extra).presence
+        extra = model.try(:pricing).try(:additional_costs).presence
         extra.present? ? BigDecimal.new(extra.to_s).ceil.to_i : nil
       end
     end

@@ -1,71 +1,8 @@
 .chapter.pricing.pbi-avoid
   %h2= t('pricings.title')
 
-  - if pricing.for_rent_netto.present?
-    %dl
-      %dt
-        = real_estate.category.label
-        = t('pricings.for_rent_netto')
-      %dd
-        = pricing.for_rent_netto
-
-  - if pricing.for_rent_extra.present?
-    %dl
-      %dt= t('pricings.for_rent_extra')
-      %dd
-        = pricing.for_rent_extra
-
-  - if pricing.storage.present?
-    %dl
-      %dt= t('pricings.storage')
-      %dd= pricing.storage
-
-  - if pricing.extra_storage.present?
-    %dl
-      %dt= t('pricings.extra_storage')
-      %dd= pricing.extra_storage
-
-  - if pricing.inside_parking.present?
-    %dl
-      %dt= t('pricings.inside_parking')
-      %dd
-        = pricing.inside_parking
-
-  - if pricing.outside_parking.present?
-    %dl
-      %dt= t('pricings.outside_parking')
-      %dd
-        = pricing.outside_parking
-
-  - if pricing && pricing.covered_slot.present?
-    %dl
-      %dt= t('pricings.covered_slot')
-      %dd
-        = pricing.covered_slot
-
-  - if pricing && pricing.covered_bike.present?
-    %dl
-      %dt= t('pricings.covered_bike')
-      %dd
-        = pricing.covered_bike
-
-  - if pricing && pricing.outdoor_bike.present?
-    %dl
-      %dt= t('pricings.outdoor_bike')
-      %dd
-        = pricing.outdoor_bike
-
-  - if pricing && pricing.single_garage.present?
-    %dl
-      %dt= t('pricings.single_garage')
-      %dd
-        = pricing.single_garage
-
-  - if pricing && pricing.double_garage.present?
-    %dl
-      %dt= t('pricings.double_garage')
-      %dd
-        = pricing.double_garage
+  - Pricing::PRICING_FIELDS.each do |pricing_field|
+    = pricing.render_pricing_field(pricing_field)
 
   - if pricing.opted?
     .disclaimer= t('pricings.without_vat')

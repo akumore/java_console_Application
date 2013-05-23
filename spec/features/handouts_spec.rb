@@ -54,7 +54,7 @@ describe "Handout aka MiniDoku" do
                                    :storage_surface => 10,
                                    :storage_surface_estimate => 20
                                   ),
-        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'monthly'),
+        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :additional_costs => 99, :price_unit => 'monthly'),
         :information => information,
         :title => 'Demo Objekt',
         :description => 'Lorem Ipsum',
@@ -223,7 +223,8 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content I18n.t('pricings.for_rent_netto')
-        page.should have_content "CHF 1'999.00 / Monat"
+        page.should have_selector("span.value", :text => "1 999.00")
+        page.should have_selector("span.currency", :text => "CHF/Mt.")
       end
 
       it "shows 'without VAT message' if 'opted'" do
@@ -235,8 +236,9 @@ describe "Handout aka MiniDoku" do
       it "shows additional expenses" do
         visit real_estate_handout_path(@real_estate)
 
-        page.should have_content I18n.t('pricings.for_rent_extra')
-        page.should have_content "CHF 99.00 / Monat"
+        page.should have_content I18n.t('pricings.additional_costs')
+        page.should have_selector("span.value", :text => "99.00")
+        page.should have_selector("span.currency", :text => "CHF/Mt.")
       end
 
       it "shows the price of the inside parking lot if available" do
@@ -247,7 +249,8 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz in Autoeinstellhalle'
-        page.should have_content 'CHF 100.00 / Monat'
+        page.should have_selector("span.value", :text => "100.00")
+        page.should have_selector("span.currency", :text => "CHF/Mt.")
       end
 
       it "shows the price of the outside parking lot if available" do
@@ -255,7 +258,8 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz im Freien'
-        page.should have_content 'CHF 80.00 / Monat'
+        page.should have_selector("span.value", :text => "80.00")
+        page.should have_selector("span.currency", :text => "CHF/Mt.")
       end
 
       it 'shows the real estate category in front of the sale price' do
@@ -264,12 +268,32 @@ describe "Handout aka MiniDoku" do
           page.should have_content(@real_estate.category.label)
         end
       end
+
+      context "for rent and with price unit 'year_m2'" do
+        before :each do
+          @real_estate.update_attribute(:offer, Offer::RENT)
+          @pricing.update_attribute(:price_unit, 'year_m2')
+          @pricing.update_attribute(:for_rent_netto_monthly, '50')
+          @pricing.update_attribute(:additional_costs_monthly, '5')
+          visit real_estate_handout_path(@real_estate)
+        end
+
+        it "shows the monthly prices for 'for_rent_netto_monthly'" do
+          page.should have_selector("span.value", :text => "50")
+          page.should have_selector("span.currency", :text => "CHF/Mt.")
+        end
+
+        it "shows the monthly prices for 'additional_costs_monthly'" do
+          page.should have_selector("span.value", :text => "5")
+          page.should have_selector("span.currency", :text => "CHF/Mt.")
+        end
+      end
     end
 
 
     context "Real Estate, private, for rent" do
       before do
-        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'monthly'
+        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :additional_costs => 99, :price_unit => 'monthly'
         @real_estate = Fabricate :residential_building, :pricing => @pricing
       end
 
@@ -280,7 +304,7 @@ describe "Handout aka MiniDoku" do
 
     context "Real Estate, commercial, for rent" do
       before do
-        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :for_rent_extra => 99, :price_unit => 'monthly', :opted => false
+        @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :additional_costs => 99, :price_unit => 'monthly', :opted => false
         @real_estate = Fabricate :commercial_building, :pricing => @pricing
       end
 

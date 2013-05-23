@@ -34,5 +34,8 @@ class PriceUnit
       %w(sell)
     end
 
+    def per_square_meter_per_year
+      'year_m2'
+    end
   end
 end
