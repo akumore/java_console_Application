@@ -141,15 +141,21 @@ describe "RealEstates" do
             visit real_estate_path(real_estate)
           end
 
+          it 'shows the real estate category in front of the sale price' do
+            within '.description' do
+              page.should have_content(real_estate.category.label)
+            end
+          end
+
           it "shows the localized price for rent" do
             page.should have_selector("span.value", :text => "1 520.00")
             page.should have_selector("span.currency", :text => "CHF/Mt.")
           end
 
-          it 'shows the real estate category in front of the sale price' do
-            within '.description' do
-              page.should have_content(real_estate.category.label)
-            end
+          it "shows the additional costs" do
+            page.should have_content("Nebenkosten")
+            page.should have_selector("span.value", :text => "100.00")
+            page.should have_selector("span.currency", :text => "CHF/Mt.")
           end
         end
 
@@ -159,15 +165,21 @@ describe "RealEstates" do
             visit real_estate_path(real_estate)
           end
 
+          it 'shows the real estate category in front of the sale price' do
+            within '.description' do
+              page.should have_content(real_estate.category.label)
+            end
+          end
+
           it "shows the localized price for sale" do
             page.should have_selector("span.value", :text => "1.3 Mio.")
             page.should have_selector("span.currency", :text => "CHF")
           end
 
-          it 'shows the real estate category in front of the sale price' do
-            within '.description' do
-              page.should have_content(real_estate.category.label)
-            end
+          it "shows the additional costs" do
+            page.should have_content("Nebenkosten")
+            page.should have_selector("span.value", :text => "100.00")
+            page.should have_selector("span.currency", :text => "CHF/Mt.")
           end
         end
 
