@@ -157,6 +157,30 @@ describe "RealEstates" do
             page.should have_selector("span.value", :text => "100.00")
             page.should have_selector("span.currency", :text => "CHF/Mt.")
           end
+
+          describe '#opted' do
+            context 'when opted is true' do
+              before :each do
+                real_estate.pricing.update_attribute(:opted, true)
+                visit real_estate_path(real_estate)
+              end
+
+              it "shows VAT message" do
+                page.should have_content "Alle Preise ohne Mehrwertsteuer"
+              end
+            end
+
+            context 'when opted is false' do
+              before :each do
+                real_estate.pricing.update_attribute(:opted, false)
+                visit real_estate_path(real_estate)
+              end
+
+              it "does not show VAT message" do
+                page.should_not have_content "Alle Preise ohne Mehrwertsteuer"
+              end
+            end
+          end
         end
 
         context 'when the real estate is for sale' do
@@ -180,6 +204,30 @@ describe "RealEstates" do
             page.should have_content("Nebenkosten")
             page.should have_selector("span.value", :text => "100.00")
             page.should have_selector("span.currency", :text => "CHF/Mt.")
+          end
+
+          describe '#opted' do
+            context 'when opted is true' do
+              before :each do
+                real_estate.pricing.update_attribute(:opted, true)
+                visit real_estate_path(real_estate)
+              end
+
+              it "shows VAT message" do
+                page.should have_content "Alle Preise ohne Mehrwertsteuer"
+              end
+            end
+
+            context 'when opted is false' do
+              before :each do
+                real_estate.pricing.update_attribute(:opted, false)
+                visit real_estate_path(real_estate)
+              end
+
+              it "does not show VAT message" do
+                page.should_not have_content "Alle Preise ohne Mehrwertsteuer"
+              end
+            end
           end
         end
 
