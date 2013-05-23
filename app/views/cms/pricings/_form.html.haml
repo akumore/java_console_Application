@@ -6,89 +6,182 @@
   = render 'cms/shared/errors', :model => @pricing
 
   %fieldset.push-checkboxes-down
-    .control-group.mandatory
-      = f.label :price_unit
-      .controls
-        - if PriceUnit.all_by_offer_and_utilization(@real_estate.offer, @real_estate.utilization).count > 1
-          = f.select :price_unit, (PriceUnit.all_by_offer_and_utilization(@real_estate.offer, @real_estate.utilization)).map { |c| [t(".#{c}"), c] }, :include_blank => 'Preiseinheit auswählen'
-        - else
-          = f.hidden_field :price_unit, :value => PriceUnit.all_by_offer_and_utilization(@real_estate.offer, @real_estate.utilization).first
-          %span.input-to-text= t(".#{PriceUnit.all_by_offer_and_utilization(@real_estate.offer, @real_estate.utilization).first}")
-    - if @real_estate.for_rent?
-      .control-group.mandatory
-        = f.label :for_rent_netto, @real_estate.parking? ? t('mongoid.attributes.pricing.for_rent_netto_parking') : t('mongoid.attributes.pricing.for_rent_netto')
-        .controls
-          = f.text_field :for_rent_netto, :class => 'span8'
-    - if @real_estate.for_sale?
-      .control-group.mandatory
-        = f.label :for_sale
-        .controls
-          = f.text_field :for_sale, :class => 'span8'
-    .control-group
-      = f.label :estimate
-      .controls
-        = f.text_field :estimate, :class => 'span8'
-        %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Pricing.human_attribute_name(:estimate), 'data-content' => t('.help_popover.estimate') }
-    .control-group{ :class => (@pricing.additional_costs_is_mandatory? ? 'mandatory' : '') }
-      = f.label :additional_costs
-      .controls
-        = f.text_field :additional_costs, :class => 'span8'
-    .control-group
-      = f.label :opted
-      .controls
-        = f.check_box :opted
-    - if accessible?(:storage)
-      .control-group
-        = f.label :storage
-        .controls
-          = f.text_field :storage, :class => 'span8'
-    - if accessible?(:extra_storage)
-      .control-group
-        = f.label :extra_storage
-        .controls
-          = f.text_field :extra_storage, :class => 'span8'
+    .row
+      .span6
+        .control-group.mandatory
+          = f.label :price_unit
+          .controls
+            - if PriceUnit.all_by_offer_and_utilization(@real_estate.offer, @real_estate.utilization).count > 1
+              = f.select :price_unit, (PriceUnit.all_by_offer_and_utilization(@real_estate.offer, @real_estate.utilization)).map { |c| [t(".#{c}"), c] }, :include_blank => 'Preiseinheit auswählen'
+            - else
+              = f.hidden_field :price_unit, :value => PriceUnit.all_by_offer_and_utilization(@real_estate.offer, @real_estate.utilization).first
+              %span.input-to-text= t(".#{PriceUnit.all_by_offer_and_utilization(@real_estate.offer, @real_estate.utilization).first}")
 
-    - if accessible?(:parking_spots_prices_group)
-      %fieldset.parking-spots-prices-group
+        - if @real_estate.for_rent?
+          .control-group.mandatory
+            = f.label :for_rent_netto, @real_estate.parking? ? t('mongoid.attributes.pricing.for_rent_netto_parking') : t('mongoid.attributes.pricing.for_rent_netto')
+            .controls
+              = f.text_field :for_rent_netto
+
         - if @real_estate.for_sale?
-          %legend Kaufpreis für Parkplätze
-        - else
-          %legend Mietzins für Parkplätze
+          .control-group.mandatory
+            = f.label :for_sale
+            .controls
+              = f.text_field :for_sale
 
         .control-group
-          = f.label :inside_parking
+          = f.label :estimate
           .controls
-            = f.text_field :inside_parking
+            = f.text_field :estimate
+            %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Pricing.human_attribute_name(:estimate), 'data-content' => t('.help_popover.estimate') }
+
+        .control-group{ :class => (@pricing.additional_costs_is_mandatory? ? 'mandatory' : '') }
+          = f.label :additional_costs
+          .controls
+            = f.text_field :additional_costs
 
         .control-group
-          = f.label :outside_parking
+          = f.label :opted
           .controls
-            = f.text_field :outside_parking
+            = f.check_box :opted
+
+        - if accessible?(:storage)
+          .control-group
+            = f.label :storage
+            .controls
+              = f.text_field :storage
+
+        - if accessible?(:extra_storage)
+          .control-group
+            = f.label :extra_storage
+            .controls
+              = f.text_field :extra_storage
+
+      .span6.general.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
+        .control-group.control-group-spacer
+
+        .control-group.mandatory
+          = f.label :for_rent_netto_monthly, t('mongoid.attributes.pricing.monthly')
+          .controls
+            = f.text_field :for_rent_netto_monthly
 
         .control-group
-          = f.label :covered_slot
+          = f.label :estimate_monthly, t('mongoid.attributes.pricing.monthly')
           .controls
-            = f.text_field :covered_slot
+            = f.text_field :estimate_monthly
 
-        .control-group
-          = f.label :covered_bike
+        .control-group{ :class => (@pricing.additional_costs_is_mandatory? ? 'mandatory' : '') }
+          = f.label :additional_costs_monthly, t('mongoid.attributes.pricing.monthly')
           .controls
-            = f.text_field :covered_bike
+            = f.text_field :additional_costs_monthly
 
-        .control-group
-          = f.label :outdoor_bike
-          .controls
-            = f.text_field :outdoor_bike
+        .control-group.control-group-spacer
 
-        .control-group
-          = f.label :single_garage
-          .controls
-            = f.text_field :single_garage
+        - if accessible?(:storage)
+          .control-group
+            = f.label :storage_monthly, t('mongoid.attributes.pricing.monthly')
+            .controls
+              = f.text_field :storage_monthly
 
-        .control-group
-          = f.label :double_garage
-          .controls
-            = f.text_field :double_garage
+        - if accessible?(:extra_storage)
+          .control-group
+            = f.label :extra_storage_monthly, t('mongoid.attributes.pricing.monthly')
+            .controls
+              = f.text_field :extra_storage_monthly
+
+    .row
+      .span12
+        - if accessible?(:parking_spots_prices_group)
+          - if @real_estate.for_sale?
+            %legend Kaufpreis für Parkplätze
+          - else
+            %legend Mietzins für Parkplätze
+
+    %fieldset.parking-spots-prices-group
+      .row
+        .span6
+          .control-group
+            = f.label :inside_parking
+            .controls
+              = f.text_field :inside_parking
+        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
+          .control-group
+            = f.label :inside_parking_monthly, t('mongoid.attributes.pricing.monthly')
+            .controls
+              = f.text_field :inside_parking_monthly
+
+      .row
+        .span6
+          .control-group
+            = f.label :outside_parking
+            .controls
+              = f.text_field :outside_parking
+        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
+          .control-group
+            = f.label :outside_parking_monthly, t('mongoid.attributes.pricing.monthly')
+            .controls
+              = f.text_field :outside_parking_monthly
+
+      .row
+        .span6
+          .control-group
+            = f.label :covered_slot
+            .controls
+              = f.text_field :covered_slot
+        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
+          .control-group
+            = f.label :covered_slot_monthly, t('mongoid.attributes.pricing.monthly')
+            .controls
+              = f.text_field :covered_slot_monthly
+
+
+      .row
+        .span6
+          .control-group
+            = f.label :covered_bike
+            .controls
+              = f.text_field :covered_bike
+        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
+          .control-group
+            = f.label :covered_bike_monthly, t('mongoid.attributes.pricing.monthly')
+            .controls
+              = f.text_field :covered_bike_monthly
+
+      .row
+        .span6
+          .control-group
+            = f.label :outdoor_bike
+            .controls
+              = f.text_field :outdoor_bike
+        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
+          .control-group
+            = f.label :outdoor_bike_monthly, t('mongoid.attributes.pricing.monthly')
+            .controls
+              = f.text_field :outdoor_bike_monthly
+
+      .row
+        .span6
+          .control-group
+            = f.label :single_garage
+            .controls
+              = f.text_field :single_garage
+        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
+          .control-group
+            = f.label :single_garage_monthly, t('mongoid.attributes.pricing.monthly')
+            .controls
+              = f.text_field :single_garage_monthly
+
+      .row
+        .span6
+          .control-group
+            = f.label :double_garage
+            .controls
+              = f.text_field :double_garage
+        .span6.monthly.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
+          .control-group
+            = f.label :double_garage_monthly, t('mongoid.attributes.pricing.monthly')
+            .controls
+              = f.text_field :double_garage_monthly
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

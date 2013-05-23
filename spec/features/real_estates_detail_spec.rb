@@ -141,13 +141,44 @@ describe "RealEstates" do
             visit real_estate_path(real_estate)
           end
 
-          it "shows the localized price for rent" do
-            page.should have_content number_to_currency(real_estate.pricing.for_rent_netto, :locale=>'de-CH')
-          end
-
           it 'shows the real estate category in front of the sale price' do
             within '.description' do
               page.should have_content(real_estate.category.label)
+            end
+          end
+
+          it "shows the localized price for rent" do
+            page.should have_selector("span.value", :text => "1 520.00")
+            page.should have_selector("span.currency", :text => "CHF/Mt.")
+          end
+
+          it "shows the additional costs" do
+            page.should have_content("Nebenkosten")
+            page.should have_selector("span.value", :text => "100.00")
+            page.should have_selector("span.currency", :text => "CHF/Mt.")
+          end
+
+          describe '#opted' do
+            context 'when opted is true' do
+              before :each do
+                real_estate.pricing.update_attribute(:opted, true)
+                visit real_estate_path(real_estate)
+              end
+
+              it "shows VAT message" do
+                page.should have_content "Alle Preise ohne Mehrwertsteuer"
+              end
+            end
+
+            context 'when opted is false' do
+              before :each do
+                real_estate.pricing.update_attribute(:opted, false)
+                visit real_estate_path(real_estate)
+              end
+
+              it "does not show VAT message" do
+                page.should_not have_content "Alle Preise ohne Mehrwertsteuer"
+              end
             end
           end
         end
@@ -158,14 +189,65 @@ describe "RealEstates" do
             visit real_estate_path(real_estate)
           end
 
-          it "shows the localized price for sale" do
-            page.should have_content number_to_currency(real_estate.pricing.for_sale, :locale=>'de-CH')
-          end
-
           it 'shows the real estate category in front of the sale price' do
             within '.description' do
               page.should have_content(real_estate.category.label)
             end
+          end
+
+          it "shows the localized price for sale" do
+            page.should have_selector("span.value", :text => "1.3 Mio.")
+            page.should have_selector("span.currency", :text => "CHF")
+          end
+
+          it "shows the additional costs" do
+            page.should have_content("Nebenkosten")
+            page.should have_selector("span.value", :text => "100.00")
+            page.should have_selector("span.currency", :text => "CHF/Mt.")
+          end
+
+          describe '#opted' do
+            context 'when opted is true' do
+              before :each do
+                real_estate.pricing.update_attribute(:opted, true)
+                visit real_estate_path(real_estate)
+              end
+
+              it "shows VAT message" do
+                page.should have_content "Alle Preise ohne Mehrwertsteuer"
+              end
+            end
+
+            context 'when opted is false' do
+              before :each do
+                real_estate.pricing.update_attribute(:opted, false)
+                visit real_estate_path(real_estate)
+              end
+
+              it "does not show VAT message" do
+                page.should_not have_content "Alle Preise ohne Mehrwertsteuer"
+              end
+            end
+          end
+        end
+
+        context "for rent and with price unit 'year_m2'" do
+          before :each do
+            real_estate.update_attribute(:offer, Offer::RENT)
+            real_estate.pricing.update_attribute(:price_unit, 'year_m2')
+            real_estate.pricing.update_attribute(:for_rent_netto_monthly, '50')
+            real_estate.pricing.update_attribute(:additional_costs_monthly, '5')
+            visit real_estate_path(real_estate)
+          end
+
+          it "shows the monthly prices for 'for_rent_netto_monthly'" do
+            page.should have_selector("span.value", :text => "50")
+            page.should have_selector("span.currency", :text => "CHF/Mt.")
+          end
+
+          it "shows the monthly prices for 'additional_costs_monthly'" do
+            page.should have_selector("span.value", :text => "5")
+            page.should have_selector("span.currency", :text => "CHF/Mt.")
           end
         end
       end

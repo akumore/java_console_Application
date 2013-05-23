@@ -127,14 +127,14 @@ describe "RealEstates" do
 
       it "shows the localized price for sale" do
         real_estate.update_attribute :offer, Offer::SALE
-        visit real_estates_path(:offer=>Offer::SALE)
-        page.should have_content number_to_currency(real_estate.pricing.for_sale, :locale=>'de-CH')
+        visit real_estates_path(:offer => Offer::SALE)
+        page.should have_content '1.3 Mio. CHF'
       end
 
       it "shows the localized price for rent" do
         real_estate.update_attribute :offer, Offer::RENT
         visit real_estates_path
-        page.should have_content number_to_currency(real_estate.pricing.for_rent_brutto, :locale=>'de-CH')
+        page.should have_content '1 620.00 CHF'
       end
     end
 

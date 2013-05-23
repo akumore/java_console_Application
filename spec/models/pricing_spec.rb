@@ -6,6 +6,9 @@ describe Pricing do
       p = Pricing.new
       p.stub(:for_rent?).and_return(true)
       p.stub(:for_sale?).and_return(false)
+      p.stub(:living?).and_return(false)
+      p.stub(:working?).and_return(false)
+      p.stub(:storing?).and_return(false)
       p.stub(:parking?).and_return(false)
       p
     end
@@ -127,6 +130,127 @@ describe Pricing do
           pricing.additional_costs_is_mandatory?.should be_false
         end
       end
+    end
+  end
+
+  describe 'when per square meter per year' do
+    describe 'additional monthly fields' do
+      let :square_meter_per_year_pricing do
+        p = Pricing.new
+        p.stub(:for_rent?).and_return(true)
+        p.stub(:for_sale?).and_return(false)
+        p.stub(:living?).and_return(true)
+        p.stub(:working?).and_return(false)
+        p.stub(:storing?).and_return(false)
+        p.stub(:parking?).and_return(false)
+        p.stub(:price_unit_is_per_square_meter_per_year?).and_return(true)
+        p.stub_chain(:_parent, :offer).and_return(Offer::RENT)
+        p
+      end
+
+      context 'when for living' do
+        before do
+          square_meter_per_year_pricing.stub(:living?).and_return(true)
+          square_meter_per_year_pricing.stub(:working?).and_return(false)
+          square_meter_per_year_pricing.stub(:storing?).and_return(false)
+          square_meter_per_year_pricing.stub(:parking?).and_return(false)
+          square_meter_per_year_pricing.stub_chain(:_parent, :utilization).and_return(Utilization::LIVING)
+        end
+
+        it 'requires a monthly netto rent price' do
+          square_meter_per_year_pricing.should have(2).error_on(:for_rent_netto_monthly)
+        end
+
+        it 'requires the monthly additional costs' do
+          square_meter_per_year_pricing.should have(1).error_on(:additional_costs_monthly)
+        end
+      end
+
+      context 'when for working' do
+        before do
+          square_meter_per_year_pricing.stub(:living?).and_return(false)
+          square_meter_per_year_pricing.stub(:working?).and_return(true)
+          square_meter_per_year_pricing.stub(:storing?).and_return(false)
+          square_meter_per_year_pricing.stub(:parking?).and_return(false)
+          square_meter_per_year_pricing.stub_chain(:_parent, :utilization).and_return(Utilization::WORKING)
+        end
+
+        it 'requires a monthly netto rent price' do
+          square_meter_per_year_pricing.should have(2).error_on(:for_rent_netto_monthly)
+        end
+
+        it 'requires the monthly additional costs' do
+          square_meter_per_year_pricing.should have(1).error_on(:additional_costs_monthly)
+        end
+      end
+
+      context 'when for storing' do
+        before do
+          square_meter_per_year_pricing.stub(:living?).and_return(false)
+          square_meter_per_year_pricing.stub(:working?).and_return(false)
+          square_meter_per_year_pricing.stub(:storing?).and_return(true)
+          square_meter_per_year_pricing.stub(:parking?).and_return(false)
+          square_meter_per_year_pricing.stub_chain(:_parent, :utilization).and_return(Utilization::STORING)
+        end
+
+        it 'requires a monthly netto rent price' do
+          square_meter_per_year_pricing.should have(2).error_on(:for_rent_netto_monthly)
+        end
+
+        it 'requires the monthly additional costs' do
+          square_meter_per_year_pricing.should have(1).error_on(:additional_costs_monthly)
+        end
+      end
+
+      context 'when for parking' do
+        before do
+          square_meter_per_year_pricing.stub(:living?).and_return(false)
+          square_meter_per_year_pricing.stub(:working?).and_return(false)
+          square_meter_per_year_pricing.stub(:storing?).and_return(false)
+          square_meter_per_year_pricing.stub(:parking?).and_return(true)
+          square_meter_per_year_pricing.stub_chain(:_parent, :utilization).and_return(Utilization::PARKING)
+        end
+
+        it 'requires a monthly netto rent price' do
+          square_meter_per_year_pricing.should have(2).error_on(:for_rent_netto_monthly)
+        end
+
+        it 'requires not the monthly additional costs' do
+          square_meter_per_year_pricing.should_not have(1).error_on(:additional_costs_monthly)
+        end
+      end
+    end
+  end
+
+  describe '#price_unit_is_per_square_meter_per_year?' do
+    let :pricing do
+      Pricing.new
+    end
+
+    it "returns true when price unit is 'year_m2'" do
+      pricing.price_unit = 'year_m2'
+      pricing.price_unit_is_per_square_meter_per_year?.should be_true
+    end
+
+    it "returns false when price unit is not 'year_m2'" do
+      pricing.price_unit = 'yearly'
+      pricing.price_unit_is_per_square_meter_per_year?.should be_false
+    end
+  end
+
+  describe '#supports_monthly_prices?' do
+    let :pricing do
+      Pricing.new
+    end
+
+    it "returns true when price unit is 'year_m2'" do
+      pricing.price_unit = 'year_m2'
+      pricing.supports_monthly_prices?.should be_true
+    end
+
+    it "returns false when price unit is not 'year_m2'" do
+      pricing.price_unit = 'yearly'
+      pricing.supports_monthly_prices?.should be_false
     end
   end
 end

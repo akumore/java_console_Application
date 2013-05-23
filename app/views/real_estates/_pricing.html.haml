@@ -1,77 +1,9 @@
 .accordion-item
   .title= t('pricings.title') if pricing
   .content
-    - if pricing && pricing.for_sale.present?
-      %dl
-        %dt= real_estate.category.label
-        %dd
-          = pricing.for_sale
 
-    - if pricing && pricing.for_rent_netto.present?
-      %dl
-        %dt
-          = real_estate.category.label
-          = t('pricings.for_rent_netto')
-        %dd
-          = pricing.for_rent_netto
-
-    - if pricing && pricing.additional_costs.present?
-      %dl
-        %dt= t('pricings.additional_costs')
-        %dd
-          = pricing.additional_costs
-
-    - if pricing && pricing.storage.present?
-      %dl
-        %dt= t('pricings.storage')
-        %dd= pricing.storage
-
-    - if pricing && pricing.extra_storage.present?
-      %dl
-        %dt= t('pricings.extra_storage')
-        %dd= pricing.extra_storage
-
-    - if pricing && pricing.inside_parking.present?
-      %dl
-        %dt= t('pricings.inside_parking')
-        %dd
-          = pricing.inside_parking
-
-    - if pricing && pricing.outside_parking.present?
-      %dl
-        %dt= t('pricings.outside_parking')
-        %dd
-          = pricing.outside_parking
-
-    - if pricing && pricing.covered_slot.present?
-      %dl
-        %dt= t('pricings.covered_slot')
-        %dd
-          = pricing.covered_slot
-
-    - if pricing && pricing.covered_bike.present?
-      %dl
-        %dt= t('pricings.covered_bike')
-        %dd
-          = pricing.covered_bike
-
-    - if pricing && pricing.outdoor_bike.present?
-      %dl
-        %dt= t('pricings.outdoor_bike')
-        %dd
-          = pricing.outdoor_bike
-
-    - if pricing && pricing.single_garage.present?
-      %dl
-        %dt= t('pricings.single_garage')
-        %dd
-          = pricing.single_garage
-
-    - if pricing && pricing.double_garage.present?
-      %dl
-        %dt= t('pricings.double_garage')
-        %dd
-          = pricing.double_garage
+    - Pricing::PRICING_FIELDS.each do |pricing_field|
+      = pricing.render_pricing_field(pricing_field)
 
     - if pricing && pricing.opted?
       %p= t('pricings.without_vat')
@@ -79,4 +11,5 @@
     - if information && information.available_from.present?
       %dl
         %dt= t('information.available_from')
-        %dd= information.available_from_compact
+        %dd
+          %span.value= information.available_from_compact
