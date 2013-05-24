@@ -57,7 +57,7 @@ class ReferenceProject
   # Section scopes
   #
   scope :residential_buildings, :where => { :section =>  ReferenceProjectSection::RESIDENTIAL_BUILDING }
-  scope :residential_commercial_buildings, :where => { :section =>  ReferenceProjectSection::RESIDENTIAL_BUILDING }
+  scope :residential_commercial_buildings, :where => { :section =>  ReferenceProjectSection::RESIDENTIAL_COMMERCIAL_BUILDING }
   scope :business_buildings, :where => { :section =>  ReferenceProjectSection::BUSINESS_BUILDING }
   scope :trade_industrial_buildings, :where => { :section =>  ReferenceProjectSection::TRADE_INDUSTRIAL_BUILDING }
   scope :special_buildings, :where => { :section =>  ReferenceProjectSection::SPECIAL_BUILDING }

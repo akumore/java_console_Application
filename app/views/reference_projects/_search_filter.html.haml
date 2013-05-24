@@ -7,7 +7,7 @@
             = link_to t("reference_projects.section.residential_building"), reference_projects_path(:section => ReferenceProjectSection::RESIDENTIAL_BUILDING), :class => 'js-residential_building'
 
         - if @reference_projects.residential_commercial_buildings.present? && @reference_projects.residential_commercial_buildings.count > 0
-          %li.residential-building-tab{ :class => @search_filter.residential_commercial_building? ? "selected" : "" }
+          %li.residential-commercial-building-tab{ :class => @search_filter.residential_commercial_building? ? "selected" : "" }
             = link_to t("reference_projects.section.residential_commercial_building"), reference_projects_path(:section => ReferenceProjectSection::RESIDENTIAL_COMMERCIAL_BUILDING), :class => 'js-residential_commercial_building'
 
         - if @reference_projects.business_buildings.present? && @reference_projects.business_buildings.count > 0
