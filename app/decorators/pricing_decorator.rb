@@ -176,21 +176,28 @@ class PricingDecorator < ApplicationDecorator
 
   def render_definition_description(pricing_field)
     content_tag(:dd) do
-      concat render_price_tags(self.send(pricing_field), price_unit(pricing_field))
+      concat render_price_tags(self.send(pricing_field), price_unit(pricing_field), pricing_field)
       monthly_field = "#{pricing_field}_monthly".to_sym
       if respond_to?(monthly_field) and
         send(monthly_field).present? and
         model.supports_monthly_prices?
-        concat render_price_tags(send(monthly_field), price_unit(monthly_field))
+        concat render_price_tags(send(monthly_field), price_unit(monthly_field), monthly_field)
       end
     end
   end
 
-  def render_price_tags(price, price_unit)
-    [
-      content_tag(:span, price, :class => 'value'),
-      content_tag(:span, price_unit, :class => 'currency')
-    ].join().html_safe
+  def render_price_tags(price, price_unit, pricing_field = nil)
+    if model.supports_monthly_prices? && (Pricing::PARKING_PRICING_FIELDS.include?(pricing_field) || Pricing::MONTHLY_PRICING_FIELDS.include?(pricing_field))
+      [
+        content_tag(:span, price_unit, :class => 'currency currency-monthly'),
+        content_tag(:span, price, :class => 'value value-monthly')
+      ].join().html_safe
+    else
+      [
+        content_tag(:span, price, :class => 'value'),
+        content_tag(:span, price_unit, :class => 'currency')
+      ].join().html_safe
+    end
   end
 
   def price_unit(pricing_field = nil)

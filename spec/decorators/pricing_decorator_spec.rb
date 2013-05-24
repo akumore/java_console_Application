@@ -129,7 +129,7 @@ describe PricingDecorator do
 
   describe '#render_price_tags' do
     let :pricing do
-      PricingDecorator.new(stub(:pricing))
+      PricingDecorator.new(stub(:pricing, :supports_monthly_prices? => true))
     end
 
     it 'returns the value element' do
