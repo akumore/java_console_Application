@@ -63,17 +63,6 @@ class Pricing
   field :single_garage,   :type => Integer # Einzelgarage
   field :double_garage,   :type => Integer # Doppelgarage
 
-  #
-  # Mietzins für Parkplätze (monthly)
-  #
-  field :inside_parking_monthly,  :type => Integer
-  field :outside_parking_monthly, :type => Integer
-  field :covered_slot_monthly,    :type => Integer
-  field :covered_bike_monthly,    :type => Integer
-  field :outdoor_bike_monthly,    :type => Integer
-  field :single_garage_monthly,   :type => Integer
-  field :double_garage_monthly,   :type => Integer
-
   validates :for_rent_netto, :presence => true, :numericality => true, :if => :for_rent?
   validates :additional_costs, :presence => true, :if => :additional_costs_is_mandatory?
   validates :for_sale, :presence => true, :numericality => true, :if => :for_sale?
@@ -91,13 +80,6 @@ class Pricing
             :outdoor_bike,
             :single_garage,
             :double_garage,
-            :inside_parking_monthly,
-            :outside_parking_monthly,
-            :covered_slot_monthly,
-            :covered_bike_monthly,
-            :outdoor_bike_monthly,
-            :single_garage_monthly,
-            :double_garage_monthly,
             :numericality => true, :allow_blank => true
 
   validates :price_unit, :presence => true, :inclusion => PriceUnit.for_sale, :if => :for_sale?
