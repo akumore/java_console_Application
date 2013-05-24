@@ -10,6 +10,9 @@ de:
         overview: 'Zurück zur Übersicht'
         show_attachment: 'PDF anzeigen'
         remove_attachment: 'PDF löschen'
+        displayed_on:
+          home_offer_page: 'Startseiten-/Angebots-Slider'
+          reference_project_page: 'Referenzseite'
       index:
         confirm_delete: 'Das Referenzprojekt "%{title}" sicher löschen?'
         new: 'Neues Referenzprojekt erstellen'
