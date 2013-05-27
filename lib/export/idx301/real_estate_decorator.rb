@@ -495,7 +495,7 @@ module Export::Idx301
 
     def prop_cabletv
       #  str(1)  object has cable tv connection, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      # AM: obsolete
+      model.try(:information).try(:has_cable_tv) ? 'Y' : 'N'
     end
 
     def prop_elevator

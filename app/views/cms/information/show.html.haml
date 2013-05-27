@@ -44,7 +44,11 @@
           %dt= t "mongoid.attributes.information.is_under_building_laws"
           %dd= t "#{@information.is_under_building_laws?}"
 
-  - if @real_estate.private_utilization?
+      %dl.dl-horizontal
+        %dt= t "mongoid.attributes.information.has_cable_tv"
+        %dd= t "#{@information.has_cable_tv?}"
+
+  - if @real_estate.living?
     .row
       .span4
         %dl.dl-horizontal
@@ -79,7 +83,7 @@
           %dt= t "mongoid.attributes.information.has_swimming_pool"
           %dd= t "#{@information.has_swimming_pool?}"
 
-  - if @real_estate.commercial_utilization?
+  - if @real_estate.working? || @real_estate.storing?
     .row
       .span4
         %dl.dl-horizontal
