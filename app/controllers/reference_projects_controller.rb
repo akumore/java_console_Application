@@ -20,6 +20,6 @@ class ReferenceProjectsController < ApplicationController
   end
 
   def get_filtered_reference_projects(search_filter)
-    ReferenceProject.where( :locale => I18n.locale, :section => search_filter.section )
+    ReferenceProject.where( :locale => I18n.locale, :section => search_filter.section, :displayed_on => ReferenceProject::REFERENCE_PROJECT_PAGE )
   end
 end

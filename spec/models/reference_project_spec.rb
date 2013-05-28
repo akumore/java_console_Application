@@ -23,13 +23,79 @@ describe ReferenceProject do
       invalid_reference_project.should have(1).error_on(:images)
     end
 
-    it 'requires a section' do
-      invalid_reference_project.should have(1).error_on(:section)
+    it 'has 2 errors' do
+      invalid_reference_project.valid?
+      invalid_reference_project.errors.should have(2).items
+    end
+  end
+
+  describe 'initialize with preselected display on options' do
+    context 'on home and offer page option' do
+      before :each do
+        invalid_reference_project.displayed_on = [ ReferenceProject::HOME_AND_OFFER_PAGE ]
+        invalid_reference_project.save
+      end
+
+      it 'requires a title' do
+        invalid_reference_project.should have(1).error_on(:title)
+      end
+
+      it 'requires images' do
+        invalid_reference_project.should have(1).error_on(:images)
+      end
+
+      it 'has 2 errors' do
+        invalid_reference_project.valid?
+        invalid_reference_project.errors.should have(2).items
+      end
     end
 
-    it 'has 3 errors' do
-      invalid_reference_project.valid?
-      invalid_reference_project.errors.should have(3).items
+    context 'on reference projects page option' do
+      before :each do
+        invalid_reference_project.displayed_on = [ ReferenceProject::REFERENCE_PROJECT_PAGE ]
+        invalid_reference_project.save
+      end
+
+      it 'requires a title' do
+        invalid_reference_project.should have(1).error_on(:title)
+      end
+
+      it 'requires images' do
+        invalid_reference_project.should have(1).error_on(:images)
+      end
+
+      it 'requires a section' do
+        invalid_reference_project.should have(1).error_on(:section)
+      end
+
+      it 'has 3 errors' do
+        invalid_reference_project.valid?
+        invalid_reference_project.errors.should have(3).items
+      end
+    end
+
+    context 'on both options checked' do
+      before :each do
+        invalid_reference_project.displayed_on = [ ReferenceProject::HOME_AND_OFFER_PAGE, ReferenceProject::REFERENCE_PROJECT_PAGE ]
+        invalid_reference_project.save
+      end
+
+      it 'requires a title' do
+        invalid_reference_project.should have(1).error_on(:title)
+      end
+
+      it 'requires images' do
+        invalid_reference_project.should have(1).error_on(:images)
+      end
+
+      it 'requires a section' do
+        invalid_reference_project.should have(1).error_on(:section)
+      end
+
+      it 'has 3 errors' do
+        invalid_reference_project.valid?
+        invalid_reference_project.errors.should have(3).items
+      end
     end
   end
 
