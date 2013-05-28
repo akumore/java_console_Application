@@ -91,6 +91,7 @@
               %span mit WC-Anteil
 
             = f.text_area :specification_usable_surface_with_toilet, :class => 'span4'
+            %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:specification_usable_surface), 'data-content' => t('.help_popover.specification_usable_surface') }
 
           .controls
             %label.radio
