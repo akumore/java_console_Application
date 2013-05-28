@@ -72,7 +72,6 @@ class Pricing
             :extra_storage,
             :storage_monthly,
             :extra_storage_monthly,
-            :estimate_monthly,
             :inside_parking,
             :outside_parking,
             :covered_slot,
