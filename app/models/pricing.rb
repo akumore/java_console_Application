@@ -18,8 +18,7 @@ class Pricing
   ]
 
   PRICING_FIELDS = [
-    :for_sale,
-    :for_rent_netto,
+    :price_to_be_displayed,
     :additional_costs,
     :storage,
     :extra_storage,
@@ -27,7 +26,7 @@ class Pricing
   ]
 
   MONTHLY_PRICING_FIELDS = [
-    :for_rent_netto_monthly,
+    :price_to_be_displayed_monthly,
     :additional_costs_monthly,
     :storage_monthly,
     :extra_storage_monthly,

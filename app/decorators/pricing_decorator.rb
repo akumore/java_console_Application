@@ -21,13 +21,11 @@ class PricingDecorator < ApplicationDecorator
   end
 
   def for_rent_netto
-    if model.for_rent?
-      if model.estimate.present?
-        model.estimate
-      elsif model.for_rent_netto.present?
-        formatted_price(model.for_rent_netto)
-      end
-    end
+    formatted_price(model.for_rent_netto)
+  end
+
+  def for_sale
+    formatted_price(model.for_sale)
   end
 
   def for_rent_brutto
@@ -36,16 +34,6 @@ class PricingDecorator < ApplicationDecorator
         model.estimate
       elsif model.for_rent_brutto.present?
         formatted_price(model.for_rent_brutto)
-      end
-    end
-  end
-
-  def for_sale
-    if model.for_sale?
-      if model.estimate.present?
-        model.estimate
-      elsif model.for_sale.present?
-        formatted_price(model.for_sale)
       end
     end
   end
@@ -96,13 +84,7 @@ class PricingDecorator < ApplicationDecorator
   # Monthly pricing fields need to be formatted too
   #
   def for_rent_netto_monthly
-    if model.for_rent?
-      if model.estimate_monthly.present?
-        model.estimate_monthly
-      elsif model.for_rent_netto_monthly.present?
-        formatted_price(model.for_rent_netto_monthly)
-      end
-    end
+    formatted_price(model.for_rent_netto_monthly)
   end
 
   def additional_costs_monthly
@@ -119,6 +101,32 @@ class PricingDecorator < ApplicationDecorator
 
   def estimate_monthly
     formatted_price(model.estimate_monthly) if model.estimate_monthly.present?
+  end
+
+  def price_to_be_displayed
+    if model.for_rent?
+      if estimate.present?
+        estimate
+      else
+        for_rent_netto
+      end
+    else
+      if estimate.present?
+        estimate
+      else
+        for_sale
+      end
+    end
+  end
+
+  def price_to_be_displayed_monthly
+    if model.for_rent?
+      if estimate_monthly.present?
+        estimate_monthly
+      else
+        for_rent_netto_monthly
+      end
+    end
   end
 
   def chapter
@@ -169,11 +177,13 @@ class PricingDecorator < ApplicationDecorator
 
   def render_definition_title(pricing_field)
     content_tag(:dt) do
-      if pricing_field == :for_rent_netto
-        self._parent.category.label + " " +
-        t("pricings.#{pricing_field}")
-      elsif pricing_field == :for_sale
-        self._parent.category.label
+      if pricing_field == :price_to_be_displayed
+        if model.for_rent?
+          self._parent.category.label + " " +
+          t("pricings.for_rent_netto")
+        else
+          self._parent.category.label
+        end
       else
         t("pricings.#{pricing_field}")
       end
@@ -193,7 +203,9 @@ class PricingDecorator < ApplicationDecorator
   end
 
   def render_price_tags(price, price_unit, pricing_field = nil)
-    if model.supports_monthly_prices? && (Pricing::PARKING_PRICING_FIELDS.include?(pricing_field) || Pricing::MONTHLY_PRICING_FIELDS.include?(pricing_field))
+    if pricing_field == :price_to_be_displayed && model.estimate.present? || pricing_field == :price_to_be_displayed_monthly && model.estimate_monthly.present?
+      content_tag(:span, price, :class => 'value value-string')
+    elsif model.supports_monthly_prices? && (Pricing::PARKING_PRICING_FIELDS.include?(pricing_field) || Pricing::MONTHLY_PRICING_FIELDS.include?(pricing_field))
       [
         content_tag(:span, price_unit, :class => 'currency currency-monthly'),
         content_tag(:span, price, :class => 'value value-monthly')
@@ -209,8 +221,6 @@ class PricingDecorator < ApplicationDecorator
   def price_unit(pricing_field = nil)
     if Pricing::PARKING_PRICING_FIELDS.include?(pricing_field)
       parking_price_unit
-    elsif model.estimate.present? && [:for_rent_netto, :for_sale].include?(pricing_field)
-      ''
     elsif Pricing::MONTHLY_PRICING_FIELDS.include?(pricing_field)
       t("pricings.decorator.price_units.monthly")
     else
