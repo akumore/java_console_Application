@@ -96,7 +96,13 @@ class PricingDecorator < ApplicationDecorator
   # Monthly pricing fields need to be formatted too
   #
   def for_rent_netto_monthly
-    formatted_price(model.for_rent_netto_monthly) if model.for_rent_netto_monthly.present?
+    if model.for_rent?
+      if model.estimate_monthly.present?
+        model.estimate_monthly
+      elsif model.for_rent_netto_monthly.present?
+        formatted_price(model.for_rent_netto_monthly)
+      end
+    end
   end
 
   def additional_costs_monthly
