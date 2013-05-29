@@ -3,6 +3,8 @@ class PricingDecorator < ApplicationDecorator
 
   decorates :pricing
 
+  INVARIANT_PRICING_FIELDS = Pricing::PRICING_FIELDS - [:for_rent_netto, :for_sale, :for_rent_netto_monthly]
+
   def list_price
     if model.for_rent?
       if model.estimate.present?
@@ -204,7 +206,7 @@ class PricingDecorator < ApplicationDecorator
 
   def render_price_tags(price, price_unit, pricing_field = nil)
     if pricing_field == :price_to_be_displayed && model.estimate.present? || pricing_field == :price_to_be_displayed_monthly && model.estimate_monthly.present?
-      content_tag(:span, price, :class => 'value value-string')
+      content_tag(:span, price, :class => "value value-string #{pricing_field.to_s}")
     elsif model.supports_monthly_prices? && (Pricing::PARKING_PRICING_FIELDS.include?(pricing_field) || Pricing::MONTHLY_PRICING_FIELDS.include?(pricing_field))
       [
         content_tag(:span, price_unit, :class => 'currency currency-monthly'),
