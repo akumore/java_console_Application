@@ -61,8 +61,8 @@ describe PricingDecorator do
         @pricing.estimate.should == 'CHF 200 - 3000'
       end
 
-      it 'overrides the for rent price' do
-        @pricing.for_rent_netto.should == @pricing.estimate
+      it 'does not override the for rent price' do
+        @pricing.for_rent_netto.should == @pricing.for_rent_netto
       end
     end
   end
@@ -121,8 +121,8 @@ describe PricingDecorator do
         @pricing.estimate.should == 'CHF 15000 - 13000'
       end
 
-      it 'overrides the for sale price' do
-        @pricing.for_sale.should == @pricing.estimate
+      it 'does not override the for sale price' do
+        @pricing.for_sale.should == @pricing.for_sale
       end
     end
   end
@@ -170,7 +170,7 @@ describe PricingDecorator do
 
     context 'with a monthly pricing field' do
       it 'returns the localized price unit' do
-        pricing.price_unit(:for_rent_netto_monthly).should == 'CHF/Mt.'
+        pricing.price_unit(:additional_costs_monthly).should == 'CHF/Mt.'
       end
     end
 
@@ -183,11 +183,6 @@ describe PricingDecorator do
         pricing.price_unit(:additional_costs).should == 'CHF/J.'
         pricing.price_unit(:storage).should == 'CHF/J.'
         pricing.price_unit(:extra_storage).should == 'CHF/J.'
-      end
-
-      it 'returns the price unit for all other price fields' do
-        pricing.price_unit(:for_rent_netto).should == ''
-        pricing.price_unit(:for_sale).should == ''
       end
     end
   end
@@ -241,6 +236,54 @@ describe PricingDecorator do
     context 'when number is a string (estimate)' do
       it 'returns false' do
         price.more_than_seven_digits?('300 mio').should be_false
+      end
+    end
+  end
+
+  describe '#price_to_be_displayed' do
+    let :price do
+      PricingDecorator.new(stub(:pricing, :price_unit => 'yearly', :estimate => ''))
+    end
+
+    context 'for_rent' do
+      before :each do
+        price.pricing.stub(:for_rent?).and_return(true)
+        price.pricing.stub(:for_rent_netto).and_return(2000)
+      end
+
+      it 'returns for_rent_netto' do
+        price.price_to_be_displayed.should == '2 000.00'
+      end
+
+      context 'when estimate field is set' do
+        before :each do
+          price.pricing.stub(:estimate).and_return('Kannste nicht mieten')
+        end
+
+        it 'returns estimate field' do
+          price.price_to_be_displayed.should == 'Kannste nicht mieten'
+        end
+      end
+    end
+
+    context 'for_sale' do
+      before :each do
+        price.pricing.stub(:for_rent?).and_return(false)
+        price.pricing.stub(:for_sale).and_return(3000)
+      end
+
+      it 'returns for_rent_netto' do
+        price.price_to_be_displayed.should == '3 000.00'
+      end
+
+      context 'when estimate field is set' do
+        before :each do
+          price.pricing.stub(:estimate).and_return('Kannste nicht kaufen')
+        end
+
+        it 'returns estimate field' do
+          price.price_to_be_displayed.should == 'Kannste nicht kaufen'
+        end
       end
     end
   end
