@@ -11,13 +11,16 @@ de:
         show_attachment: 'PDF anzeigen'
         remove_attachment: 'PDF löschen'
         displayed_on:
-          home_offer_page: 'Startseiten-/Angebots-Slider'
+          home_offer_page: 'Slider-Startseite'
           reference_project_page: 'Referenzseite'
       index:
         confirm_delete: 'Das Referenzprojekt "%{title}" sicher löschen?'
         new: 'Neues Referenzprojekt erstellen'
         edit: 'Editieren'
         destroy: 'Löschen'
+        displayed_on:
+          home_offer_page_html: '&mdash; Slider-Startseite<br />'
+          reference_project_page_html: '&mdash; Referenzseite'
       create:
         success: "Referenzprojekt erfolgreich erstellt"
       update:

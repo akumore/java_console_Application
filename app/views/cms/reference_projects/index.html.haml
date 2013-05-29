@@ -41,7 +41,7 @@
             %td= t("real_estates.search_filter.#{reference_project.utilization}")
             %td
               - reference_project.displayed_on.each do |page|
-                %span= t("cms.reference_projects.form.displayed_on.#{page}")
+                %span= t("cms.reference_projects.index.displayed_on.#{page}_html")
             %td= link_to  t('.destroy'), cms_reference_project_path(reference_project), :method => :delete, :confirm => t('.confirm_delete', :title => reference_project.title)
             %td= link_to t('.edit'), edit_cms_reference_project_path(reference_project)
 
