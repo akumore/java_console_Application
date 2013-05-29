@@ -2,7 +2,7 @@
   .title= t('pricings.title') if pricing
   .content
 
-    - Pricing::PRICING_FIELDS.each do |pricing_field|
+    - PricingDecorator::INVARIANT_PRICING_FIELDS.each do |pricing_field|
       = pricing.render_pricing_field(pricing_field)
 
     - if pricing && pricing.opted?
