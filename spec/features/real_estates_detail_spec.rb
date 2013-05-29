@@ -158,6 +158,17 @@ describe "RealEstates" do
             page.should have_selector("span.currency", :text => "CHF/Mt.")
           end
 
+          context 'when estimate field is present' do
+            before :each do
+              real_estate.pricing.update_attribute(:estimate, 'Ungefährer Preis')
+              visit real_estate_path(real_estate)
+            end
+
+            it 'shows the estimate field' do
+              page.should have_selector("span.value-string", :text => "Ungefährer Preis")
+            end
+          end
+
           describe '#opted' do
             context 'when opted is true' do
               before :each do
@@ -206,6 +217,17 @@ describe "RealEstates" do
             page.should have_selector("span.currency", :text => "CHF/Mt.")
           end
 
+          context 'when estimate field is present' do
+            before :each do
+              real_estate.pricing.update_attribute(:estimate, 'Ungefährer Preis')
+              visit real_estate_path(real_estate)
+            end
+
+            it 'shows the estimate field' do
+              page.should have_selector("span.value-string", :text => "Ungefährer Preis")
+            end
+          end
+
           describe '#opted' do
             context 'when opted is true' do
               before :each do
@@ -248,6 +270,38 @@ describe "RealEstates" do
           it "shows the monthly prices for 'additional_costs_monthly'" do
             page.should have_selector("span.value-monthly", :text => "5")
             page.should have_selector("span.currency-monthly", :text => "CHF/Mt.")
+          end
+
+          context 'when estimate field is present' do
+            before :each do
+              real_estate.pricing.update_attribute(:estimate, 'Ungefährer Preis')
+              visit real_estate_path(real_estate)
+            end
+
+            it 'shows estimate field' do
+              page.should have_selector("span.value-string", :text => "Ungefährer Preis")
+            end
+
+            it 'shows for_rent_netto_monthly pricing field' do
+              page.should have_selector("span.value-monthly", :text => "50")
+              page.should have_selector("span.currency-monthly", :text => "CHF/Mt.")
+            end
+          end
+
+          context 'when estimate and estimate_monthly field is present' do
+            before :each do
+              real_estate.pricing.update_attribute(:estimate, 'Ungefährer Preis')
+              real_estate.pricing.update_attribute(:estimate, 'Ungefährer Preis monatlich')
+              visit real_estate_path(real_estate)
+            end
+
+            it 'shows estimate field' do
+              page.should have_selector("span.value-string", :text => "Ungefährer Preis")
+            end
+
+            it 'shows estimate_monthly field' do
+              page.should have_selector("span.value-string", :text => "Ungefährer Preis monatlich")
+            end
           end
         end
       end
