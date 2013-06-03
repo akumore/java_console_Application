@@ -385,6 +385,10 @@ describe "Handout aka MiniDoku" do
       it 'has a swimmingpool' do
         page.should have_content 'Schwimmbecken'
       end
+
+      it 'does not show the ceiling height' do
+        page.should_not have_content 'Raumhöhe'
+      end
     end
 
     context 'real estate for working utilization' do
@@ -425,6 +429,21 @@ describe "Handout aka MiniDoku" do
 
       it 'has sewage supply' do
         page.should have_content 'Abwasseranschluss'
+      end
+
+      it 'shows the ceiling height' do
+        page.should have_content 'Raumhöhe'
+      end
+    end
+
+    context 'real estate for storing utilization' do
+      before do
+        printable_real_estate.update_attribute :utilization, Utilization::STORING
+        visit real_estate_handout_path printable_real_estate
+      end
+
+      it 'shows the ceiling height' do
+        page.should have_content 'Raumhöhe'
       end
     end
   end
