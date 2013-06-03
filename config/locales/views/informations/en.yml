@@ -11,6 +11,7 @@ en:
     available_immediately: 'immediately'
     maximal_floor_loading: 'Maximum floor load'
     maximal_floor_loading_value: '%{count} kg/m²'
+    freight_elevator: 'Warenlift'
     freight_elevator_carrying_capacity: 'Maximales Gewicht für Warenlift'
     freight_elevator_carrying_capacity_value: '%{count} kg'
     new_building: 'New building'
