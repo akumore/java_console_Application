@@ -6,6 +6,12 @@
       %dt= t('information.available_from')
       %dd= information.available_from
 
+  - if figure && real_estate.working? || real_estate.storing?
+    - if figure.ceiling_height.present?
+      %dl
+        %dt= t('figures.ceiling_height')
+        %dd= figure.ceiling_height
+
   - if information.characteristics.any?
     %dl
       %dt= t('information.characteristics')
