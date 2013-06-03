@@ -42,4 +42,8 @@ class Information
             :presence => true
 
   delegate :living?, :working?, :storing?, :parking?, :to => :_parent
+
+  def has_freight_elevator?
+    freight_elevator_carrying_capacity > 0 if freight_elevator_carrying_capacity.present?
+  end
 end
