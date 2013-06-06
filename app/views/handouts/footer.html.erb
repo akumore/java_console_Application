@@ -14,37 +14,26 @@
     </script>
 
     <script type="text/javascript">
-      function selectFooter() {
-          var currentPage=document.getElementsByClassName('page')[0].textContent;
-          if (currentPage=="1")
-            document.getElementById("title-page-footer").style.display = "block";
-          else
-            document.getElementById("page-footer").style.display = "block";
+      function handleFooterVisibility() {
+        var currentPage=document.getElementsByClassName('page')[0].textContent;
+        if (currentPage=="1")
+          document.getElementById("title-page-footer").style.display = "block";
       }
     </script>
 
     <style type="text/css">
-      #page-footer{
-        font-family: 'Rockwell Std';
-        font-size: 7pt;
-        color: #0A1930;
-        text-align: right;
-        padding-top: 20px;
-      }
-
       #title-page-footer{
         padding-right: 15px;
       }
-
     </style>
   </head>
 
-  <body style="margin: 0;" onload="subst();selectFooter();">
+  <body style="margin: 0;" onload="subst();handleFooterVisibility();">
     <div id="title-page-footer" style="display: none; text-align: right">
+      <% # NOTE: The span.page is needed for current page detection in handleFooterVisibility(); function %>
+      <span class="page" style="display: none;"></span>
+
       <%= image_tag '/images/handout-footer-logo.png', :width => "180" %>
-    </div>
-    <div id="page-footer" style="display:none;">
-        Alfred Müller AG | Objektdokumentation | <span class="page"></span>
     </div>
   </body>
 </html>
