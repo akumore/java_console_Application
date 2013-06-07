@@ -1,10 +1,10 @@
 de:
   handouts:
     show:
-      for_rent_private: "Miete | Wohnen"
-      for_rent_commercial: "Miete | Arbeiten"
-      for_rent_storage: "Miete | Lagern"
-      for_rent_parking: "Miete | Parkieren"
+      for_rent_private: "Mieten | Wohnen"
+      for_rent_commercial: "Mieten | Arbeiten"
+      for_rent_storage: "Mieten | Lagern"
+      for_rent_parking: "Mieten | Parkieren"
     overview:
       title: "Objektübersicht"
       property: "Liegenschaft"
