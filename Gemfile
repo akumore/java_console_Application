@@ -35,7 +35,7 @@ gem 'jquery-scrollto-rails'
 gem 'pdfkit', :git => 'git://github.com/screenconcept/pdfkit.git'
 gem 'mongoid_rails_migrations'
 gem 'whenever', :require => false
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', '3.5.3.25'
 gem 'sc-campfire'
 
 # Gems used only for assets and not required
