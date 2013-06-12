@@ -3,14 +3,20 @@
 @import partials/base
 @import partials/north_arrow_overlay
 
+// NOTE: Wkhtmltopdf (QT) cant work with more than one font-faces
+// Be aware of this issue but currently it works
+// https://code.google.com/p/wkhtmltopdf/issues/detail?id=410
+
 @font-face
   font-family: "RockwellStd"
   src: font-url("RockwellStd.otf") format("opentype")
 
+@font-face
+  font-family: "GothamBook"
+  src: font-url("Gotham-Book.otf") format("opentype")
 
 $title-font: "RockwellStd"
-$text-font: Gotham
-
+$text-font: "GothamBook"
 
 .pb-before
   page-break-before: always !important
