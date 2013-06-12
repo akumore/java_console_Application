@@ -5,7 +5,7 @@ de:
     attributes:
       reference_project:
         title: 'Titel'
-        description: 'Beschreibungstext für Slider auf Start- und Angebotsseite'
+        description: 'Beschreibungstext'
         construction_info: 'Thema'
         image: 'Bild'
         url: 'Projektwebseite'
