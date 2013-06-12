@@ -88,35 +88,36 @@ production:
       offices:
         - marin
 
-    - provider: 'home_ch'
-      agency_id: '75680'
-      sender_id: 'AlfredMuellerWebsite_HomechExporter'
-      video_support: true
-      host: 'idx.home.ch'
-      username: '75680'
-      password: 'pwd475680'
-      offices:
-        - baar
+    # NOTE: Disable home.ch providers due expired contract
+    #- provider: 'home_ch'
+      #agency_id: '75680'
+      #sender_id: 'AlfredMuellerWebsite_HomechExporter'
+      #video_support: true
+      #host: 'idx.home.ch'
+      #username: '75680'
+      #password: 'pwd475680'
+      #offices:
+        #- baar
 
-    - provider: 'home_ch'
-      agency_id: '75847'
-      sender_id: 'AlfredMuellerWebsite_HomechExporter'
-      video_support: true
-      host: 'idx.home.ch'
-      username: '75847'
-      password: 'pwd475847'
-      offices:
-        - marin
+    #- provider: 'home_ch'
+      #agency_id: '75847'
+      #sender_id: 'AlfredMuellerWebsite_HomechExporter'
+      #video_support: true
+      #host: 'idx.home.ch'
+      #username: '75847'
+      #password: 'pwd475847'
+      #offices:
+        #- marin
 
-    - provider: 'home_ch'
-      agency_id: '75848'
-      sender_id: 'AlfredMuellerWebsite_HomechExporter'
-      video_support: true
-      host: 'idx.home.ch'
-      username: '75848'
-      password: 'pwd475848'
-      offices:
-        - camorino
+    #- provider: 'home_ch'
+      #agency_id: '75848'
+      #sender_id: 'AlfredMuellerWebsite_HomechExporter'
+      #video_support: true
+      #host: 'idx.home.ch'
+      #username: '75848'
+      #password: 'pwd475848'
+      #offices:
+        #- camorino
 
     - provider: 'immoscout24'
       agency_id: '117874_mueller'
