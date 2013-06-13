@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### Hotfix on 2013-06-12
+* Cherry-pick english image movie
+* Disable home.ch providers due expired contract
+
 ### v2.4.1 on 2013-05-22
 * Fix footer link for magazine
 
