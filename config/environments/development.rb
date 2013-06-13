@@ -6,8 +6,10 @@ AlfredMueller::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # NOTE: Don't use config.threadsafe! ... have a look at it's implementation.
+  # NOTE: PS: My changes weren't loaded in development mode if threadsafe is set
+  # config.threadsafe!
   config.allow_concurrency = true # so pdfkit responds when running only one server instance, but I'm assuming unexpected behavior...
-  config.threadsafe!
 
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
