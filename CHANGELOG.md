@@ -1,6 +1,10 @@
 # CHANGELOG
 
-### Hotfix on 2013-06-12
+### v2.4.2 on 2013-06-13
+* Fix Handout footer, logo only
+* Use forked version of pdfkit
+* Use @type-face integration for font rendering in handouts
+* Little improvements for reference projects
 * Cherry-pick english image movie
 * Disable home.ch providers due expired contract
 
