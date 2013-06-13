@@ -2,7 +2,7 @@ language: ruby
 services:
   - mongodb
 rvm:
-  - 1.9.3-p0
+  - 1.9.3
 before_script:
   - cp config/mongoid.travis.yml config/mongoid.yml
 script:
