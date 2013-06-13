@@ -1,0 +1,7 @@
+defaults: &defaults
+  host: localhost
+  allow_dynamic_fields: false
+
+test:
+  <<: *defaults
+  database: alfred_mueller_test
