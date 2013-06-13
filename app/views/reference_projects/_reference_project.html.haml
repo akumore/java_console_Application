@@ -14,7 +14,7 @@
           = image_tag reference_project.slider_image.gallery.url
 
         .reference-project-description
-          %h4= reference_project.title
+          .title= reference_project.title
 
           - if reference_project.construction_info.present?
             %p= reference_project.construction_info

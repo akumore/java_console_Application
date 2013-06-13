@@ -3,9 +3,11 @@ fr:
     link_title: 'Vers le projet'
     project_website_link: 'Vers le site internet du projet'
     section:
-      residential_building: 'Maisons d’habitation'
-      business_building: 'Immeubles commerciaux'
-      public_building: 'Edifices publics'
-      rebuilding: 'Transformations'
+      residential_building: 'Maisons d’hab.'
+      residential_commercial_building: 'Maisons d’hab. et imm. commerciaux'
+      business_building: 'Imm. commerciaux'
+      trade_industrial_building: 'Bât. indust. et artisanaux'
+      special_building: 'Constr. spéciales'
+      rebuilding: 'Transf.'
     index:
-      documentation_link: 'Documentation'
+      documentation_link: 'Données du projet'

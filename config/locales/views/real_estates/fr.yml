@@ -3,6 +3,8 @@ fr:
     search_filter:
       living: 'Habiter'
       working: 'Travailler'
+      storing: 'Stockage'
+      parking: 'Stationnement'
       for_sale: 'Acheter'
       for_rent: 'Louer'
       search: 'Chercher'
