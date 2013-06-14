@@ -137,4 +137,10 @@ class InformationDecorator < ApplicationDecorator
       :content      => content
     }
   end
+
+  def additional_information
+    if model.additional_information.present?
+      markdown(model.additional_information)
+    end
+  end
 end
