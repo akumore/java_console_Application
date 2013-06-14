@@ -154,6 +154,12 @@
             .controls
               = f.check_box :has_sewage_supply
 
+    - unless @real_estate.parking?
+      .control-group
+        = f.label :additional_information
+        .controls
+          = f.text_area :additional_information, :class => 'span8'
+
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'
