@@ -33,3 +33,4 @@ it:
     water_supply: 'Allacciamento acqua'
     sewage_supply: 'Allacciamento acqua di scarico'
     cable_tv: 'Kabelfernsehen'
+    additional_information: 'Ergänzende Informationen'
