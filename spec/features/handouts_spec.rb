@@ -349,7 +349,7 @@ describe "Handout aka MiniDoku" do
       pending 'figure out what this is supposed to do'
     end
 
-    context 'real estate for private utilization' do
+    context 'real estate for living utilization' do
       it 'has a view' do
         page.should have_content 'Ausblick'
       end
@@ -385,9 +385,13 @@ describe "Handout aka MiniDoku" do
       it 'has a swimmingpool' do
         page.should have_content 'Schwimmbecken'
       end
+
+      it 'shows the additional information text' do
+        page.should have_content('Ergänzende Informationen zum Ausbau')
+      end
     end
 
-    context 'real estate for commercial utilization' do
+    context 'real estate for working utilization' do
       before do
         printable_real_estate.update_attribute :utilization, Utilization::WORKING
         visit real_estate_handout_path printable_real_estate
@@ -425,6 +429,21 @@ describe "Handout aka MiniDoku" do
 
       it 'has sewage supply' do
         page.should have_content 'Abwasseranschluss'
+      end
+
+      it 'shows the additional information text' do
+        page.should have_content('Ergänzende Informationen zum Ausbau')
+      end
+    end
+
+    context 'with storing utilization' do
+      before do
+        printable_real_estate.update_attribute :utilization, Utilization::STORING
+        visit real_estate_handout_path printable_real_estate
+      end
+
+      it 'shows the additional information text' do
+        page.should have_content('Ergänzende Informationen zum Ausbau')
       end
     end
   end
