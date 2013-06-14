@@ -126,7 +126,6 @@ describe "Cms Information" do
         fill_in "Anzahl WC's", :with => @template_information.number_of_restrooms
 
         ['Neubau',
-         'Altbau',
          'Minergie Bauweise',
          'Minergie zertifiziert',
          'Anfahrrampe',
@@ -145,7 +144,6 @@ describe "Cms Information" do
         information = @real_estate.information
 
         information.is_new_building.should == @template_information.is_new_building
-        information.is_old_building.should == @template_information.is_old_building
         information.is_minergie_style.should == @template_information.is_minergie_style
         information.is_minergie_certified.should == @template_information.is_minergie_certified
         information.has_ramp.should == @template_information.has_ramp
@@ -191,15 +189,34 @@ describe "Cms Information" do
       end
     end
 
-    %w(house apartment).each do |category_name|
-      context "a real estate with a '#{category_name}' category" do
-        before :each do
-          @real_estate = Fabricate(:real_estate, :category => Fabricate("#{category_name}_category".to_sym))
-          visit new_cms_real_estate_information_path(@real_estate)
-        end
+    context "when for sale" do
+      %w(house apartment).each do |category_name|
+        context "a real estate with a '#{category_name}' category" do
+          before :each do
+            @real_estate = Fabricate(:real_estate, :category => Fabricate("#{category_name}_category".to_sym))
+            @real_estate.update_attribute(:offer, Offer::SALE)
+            visit new_cms_real_estate_information_path(@real_estate)
+          end
 
-        it 'renders the is_under_building_laws checkbox' do
-          page.should have_css('#information_is_under_building_laws')
+          it 'renders the is_under_building_laws checkbox' do
+            page.should have_css('#information_is_under_building_laws')
+          end
+        end
+      end
+    end
+
+    context "when for rent" do
+      %w(house apartment).each do |category_name|
+        context "a real estate with a '#{category_name}' category" do
+          before :each do
+            @real_estate = Fabricate(:real_estate, :category => Fabricate("#{category_name}_category".to_sym))
+            @real_estate.update_attribute(:offer, Offer::RENT)
+            visit new_cms_real_estate_information_path(@real_estate)
+          end
+
+          it 'renders the is_under_building_laws checkbox' do
+            page.should_not have_css('#information_is_under_building_laws')
+          end
         end
       end
     end

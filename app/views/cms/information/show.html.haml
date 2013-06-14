@@ -22,8 +22,9 @@
         %dt= t "mongoid.attributes.information.is_new_building"
         %dd= t "#{@information.is_new_building?}"
 
-        %dt= t "mongoid.attributes.information.is_old_building"
-        %dd= t "#{@information.is_old_building?}"
+        - if @real_estate.living?
+          %dt= t "mongoid.attributes.information.is_old_building"
+          %dd= t "#{@information.is_old_building?}"
 
     .span4
       %dl.dl-horizontal
@@ -39,7 +40,7 @@
           %dt= t "mongoid.attributes.information.is_developed"
           %dd= t "#{@information.is_developed?}"
 
-      - if @real_estate.apartment? || @real_estate.house?
+      - if (@real_estate.apartment? || @real_estate.house?) && @real_estate.for_sale?
         %dl.dl-horizontal
           %dt= t "mongoid.attributes.information.is_under_building_laws"
           %dd= t "#{@information.is_under_building_laws?}"
