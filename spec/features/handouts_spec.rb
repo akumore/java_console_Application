@@ -332,12 +332,12 @@ describe "Handout aka MiniDoku" do
       page.should have_content('Merkmale')
     end
 
-    it 'shows if it is a new building' do
-      page.should have_content 'Neubau'
+    it "doesn't show if it is a new building" do
+      page.should_not have_content 'Neubau'
     end
 
-    it 'shows if it is an old building' do
-      page.should have_content 'Altbau'
+    it "doesn't show if it is an old building" do
+      page.should_not have_content 'Altbau'
     end
 
     it 'shows the minergie infos' do
@@ -350,8 +350,8 @@ describe "Handout aka MiniDoku" do
     end
 
     context 'real estate for private utilization' do
-      it 'has a view' do
-        page.should have_content 'Ausblick'
+      it "doesn't have a view" do
+        page.should_not have_content 'Ausblick'
       end
 
       it 'has fireplace' do
@@ -378,8 +378,8 @@ describe "Handout aka MiniDoku" do
         page.should have_content 'Balkon'
       end
 
-      it 'has a raised groundfloor' do
-        page.should have_content 'Hochparterre'
+      it "doesn't have a raised groundfloor" do
+        page.should_not have_content 'Hochparterre'
       end
 
       it 'has a swimmingpool' do
