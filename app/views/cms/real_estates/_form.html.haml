@@ -6,10 +6,12 @@
       = f.label :office_id
       .controls
         = f.collection_select :office_id, Office.all, :id, :label
+
     .control-group.mandatory
       = f.label :category_id
       .controls
         = f.grouped_collection_select :category_id, Category.top_level, :categories, :label, :id, :label
+
     .building-type-container.hidden{ 'data-dependent_on' => '#real_estate_category_id', 'data-dependent_on_value' => Category.where(:name => 'row_house').first.try(:id) }
       .control-group
         = f.label :building_type
@@ -20,20 +22,24 @@
           %label.radio
             = f.radio_button :building_type, RealEstate::BUILDING_MIDDLE_HOUSE
             %span= t(".#{RealEstate::BUILDING_MIDDLE_HOUSE}")
+
     .control-group.mandatory
       = f.label :offer
       .controls.push-inline-labels-down
         %label.inline.radio
           = f.radio_button :offer, Offer::RENT
           %span= t(".#{Offer::RENT}")
+
       .controls.push-inline-labels-down
         %label.inline.radio
           = f.radio_button :offer, Offer::SALE
           %span= t(".#{Offer::SALE}")
+
     .control-group.mandatory
       = f.label :utilization
       .controls
         = f.select :utilization, utilization_select_options, :class => 'span8'
+
     .control-group
       = f.label :channels
       - RealEstate::CHANNELS.each do |channel|
@@ -41,6 +47,14 @@
           %label.inline.checkbox
             = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel)
             %span= t(".channels.#{channel}")
+
+    .order-handout-container.hidden{ 'data-dependent_on' => '#real_estate_utilization', 'data-dependent_on_value' => Utilization::WORKING }
+      .control-group
+        = f.label :order_handout
+        .controls.push-inline-labels-down
+          %label.inline.checkbox
+            = f.check_box :order_handout
+
   .control-group
     = f.label :contact_id
     .controls
@@ -51,21 +65,25 @@
       %legend Titel und Beschreibungen
     - else
       %legend Beschreibungen
+
     - if accessible?(:title)
       .control-group{ :class => "#{@real_estate.parking? ? '' : 'mandatory'}" }
         = f.label :title
         .controls
           = f.text_field :title, :class => 'span8'
+
     - if accessible?(:description)
       .control-group{ :class => "#{@real_estate.parking? ? '' : 'mandatory'}" }
         = f.label :description
         .controls
           = f.text_area :description, :class => 'span8'
+
     - if accessible?(:utilization_description)
       .control-group
         = f.label :utilization_description
         .controls
           = f.text_area :utilization_description, :class => 'span8 short'
+
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'
