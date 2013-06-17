@@ -237,6 +237,17 @@ describe "Cms::RealEstates" do
       end
     end
 
+    context 'when selecting working utilization', :js => true do
+      before do
+        visit edit_cms_real_estate_path(@fabricated_real_estate)
+      end
+
+      it 'shows the order handout option immediately' do
+        select 'Arbeiten', :from => 'Gebäudenutzung'
+        page.should have_css('.order-handout-container:not(.hidden)')
+      end
+    end
+
     context 'when the parking utilization is selected', :parking => true do
       before do
         select 'Parkieren', :from => 'Gebäudenutzung'
