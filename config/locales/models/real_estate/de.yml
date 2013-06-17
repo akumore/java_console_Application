@@ -12,6 +12,7 @@ de:
         utilization: 'Gebäudenutzung'
         offer: 'Angebotstyp'
         channels: 'Ausgabekanäle'
+        order_handout: 'Objektdokumentation bestellen'
         title: 'Titel'
         description: 'Beschreibung'
         building_type: 'Haustyp'
