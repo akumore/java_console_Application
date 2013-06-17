@@ -1,0 +1,12 @@
+en:
+  handout_orders:
+    new:
+      headline: 'OBJEKTDOKUMENATION BESTELLEN'
+    form:
+      submit: 'Bestellung abschicken'
+      errors: 'Please check your inputs:'
+    order_information:
+      headline: 'Your contact'
+    confirmation:
+      thanks: 'Vielen Dank für Ihre Bestellung.'
+      we_will_contact_you: 'Wir werden Ihnen umgehend die Objektdokumentation zustellen.'
