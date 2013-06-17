@@ -1,0 +1,42 @@
+- if @handout_order.errors.any?
+  .alert
+    %h3= t('.errors')
+
+= form_for [@real_estate, @handout_order], :as => :handout_order, :url => real_estate_handout_orders_path(@real_estate), :remote => true do |f|
+  .col.first
+    .control-group
+      .controls
+        = f.text_field :company, :placeholder => HandoutOrder.human_attribute_name(:company)
+
+    .control-group
+      .controls
+        = f.text_field :firstname, :placeholder => HandoutOrder.human_attribute_name(:firstname)
+
+    .control-group
+      .controls
+        = f.text_field :lastname, :placeholder => HandoutOrder.human_attribute_name(:lastname)
+
+    .control-group
+      .controls
+        = f.text_field :email, :placeholder => HandoutOrder.human_attribute_name(:email)
+
+  .col
+    .control-group
+      .controls.controls-spacer
+
+    .control-group
+      .controls
+        = f.text_field :phone, :placeholder => HandoutOrder.human_attribute_name(:phone)
+
+    .control-group
+      .controls
+        = f.text_field :street, :placeholder => HandoutOrder.human_attribute_name(:street)
+
+    .control-group
+      .controls
+        = f.text_field :zipcode, :placeholder => HandoutOrder.human_attribute_name(:zipcode), :class => 'short'
+        = f.text_field :city, :placeholder => HandoutOrder.human_attribute_name(:city), :class => 'medium-short'
+
+    .form-actions
+      .controls
+        = f.submit t(".submit")
