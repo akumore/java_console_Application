@@ -22,6 +22,7 @@ class RealEstatesController < ApplicationController
     real_estates = get_filtered_real_estates(@search_filter).map(&:id)
     @pagination = RealEstatePagination.new(@real_estate, real_estates)
     @appointment = @real_estate.appointments.build
+    @handout_order = HandoutOrder.new
     @filtered_offer_utilization_real_estates = get_filtered_offer_utilization_real_estates(@search_filter)
   end
 
