@@ -54,6 +54,7 @@ class RealEstate
   field :utilization, :type => String, :default => Utilization::LIVING
   field :offer, :type => String, :default => Offer::RENT
   field :channels, :type => Array
+  field :order_handout, :type => Boolean
   field :title, :type => String
   field :description, :type => String
   field :building_type, :type => String
