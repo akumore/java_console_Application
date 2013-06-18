@@ -34,5 +34,5 @@
             = render :template => 'appointments/new'
 
           - if @real_estate.order_handout?
-            %li
+            %li{ 'data-is_handout_order' => 'true' }
               = render :template => 'handout_orders/new'

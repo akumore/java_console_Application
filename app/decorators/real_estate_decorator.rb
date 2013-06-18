@@ -142,6 +142,12 @@ class RealEstateDecorator < ApplicationDecorator
     [title, address.try(:simple), sanitized_description].compact.join ' - '
   end
 
+  def handout_order_link
+    if model.order_handout? && model.working?
+      link_to t('real_estates.show.handout_order'), '#', :class => 'icon-handout-order icon-description'
+    end
+  end
+
   def mini_doku_link
     link_to(
         t('real_estates.show.description_download'),
