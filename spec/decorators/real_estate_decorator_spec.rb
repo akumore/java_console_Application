@@ -25,6 +25,7 @@ describe RealEstateDecorator do
       :utilization_description,
       :seo_description,
       :mini_doku_link,
+      :handout_order_link,
       :floorplan_print_link,
       :project_website_link,
     ].each do |accessor|

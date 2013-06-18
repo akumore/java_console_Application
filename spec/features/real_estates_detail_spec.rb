@@ -183,15 +183,44 @@ describe "RealEstates" do
       end
 
       context 'when the real estate is for rent' do
-        it 'has a link to the mini doku' do
-          real_estate.update_attribute :offer, Offer::RENT
-          real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
-          visit real_estate_path(real_estate)
-          page.within('.sidebar') do
-            page.should have_link('Objektdokumentation', :href => real_estate_handout_path(
-              :real_estate_id => real_estate.id,
-              :format => :pdf
-            ))
+        context 'and for working' do
+          context 'when order_handout is true' do
+            before :each do
+              real_estate.update_attribute(:utilization, Utilization::WORKING)
+              real_estate.update_attribute(:offer, Offer::RENT)
+              real_estate.update_attribute(:channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL])
+              real_estate.update_attribute(:order_handout, true)
+              visit real_estate_path(real_estate)
+            end
+
+            it 'has a handout order link' do
+              page.within('.sidebar') do
+                page.should have_link('Objektdokumentation bestellen')
+              end
+            end
+
+            it 'has no link to the mini doku' do
+              page.within('.sidebar') do
+                page.should_not have_link('Objektdokumentation', :href => real_estate_handout_path(
+                  :real_estate_id => real_estate.id,
+                  :format => :pdf
+                ))
+              end
+            end
+          end
+
+          context 'when order_handout is false' do
+            it 'has a link to the mini doku' do
+              real_estate.update_attribute :offer, Offer::RENT
+              real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
+              visit real_estate_path(real_estate)
+              page.within('.sidebar') do
+                page.should have_link('Objektdokumentation', :href => real_estate_handout_path(
+                  :real_estate_id => real_estate.id,
+                  :format => :pdf
+                ))
+              end
+            end
           end
         end
 
@@ -316,6 +345,34 @@ describe "RealEstates" do
       end
     end
 
+    context 'Making a handout order', :order_handout => true do
+      before :each do
+        real_estate.update_attribute(:order_handout, true)
+      end
+
+      it 'integrates handout order slide into slide show' do
+        visit real_estate_path(real_estate)
+        page.should have_css ".handout-order"
+      end
+
+      it "sends an appointment mail upon submitting the form" do
+        visit real_estate_path(real_estate)
+        within(".handout-order") do
+          fill_in 'handout_order_firstname', :with => 'Musterunternehmen'
+          fill_in 'handout_order_firstname', :with => 'Hans'
+          fill_in 'handout_order_lastname', :with => 'Muster'
+          fill_in 'handout_order_email', :with => 'hans.muster@test.ch'
+          fill_in 'handout_order_phone', :with => '123 456 66 44'
+          fill_in 'handout_order_street', :with => 'musterstrasse'
+          fill_in 'handout_order_zipcode', :with => '8234'
+          fill_in 'handout_order_city', :with => 'the citey'
+        end
+
+        lambda {
+          click_on 'Bestellung abschicken'
+        }.should change(ActionMailer::Base.deliveries, :size).by(1)
+      end
+    end
   end
 
   describe RealEstatePagination do
