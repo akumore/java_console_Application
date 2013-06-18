@@ -59,6 +59,7 @@ class RealEstate
   field :building_type, :type => String
   field :utilization_description, :type => String
   field :category_label, :type => String, :localize => true # used for sorting, normalized by category.label
+  field :microsite, :type => String
 
   validates :category_id, :presence => true
   validates :utilization, :presence => true

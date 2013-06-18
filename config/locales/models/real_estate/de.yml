@@ -31,4 +31,8 @@ de:
           review_it: 'Verifizieren lassen'
           unpublish_it: 'Offline schalten'
           reject_it: 'Zurückweisen'
+        microsite:
+          feldpark: 'Feldpark'
+          buenzpark: 'Bünzpark'
+          gartenstadt: 'Gartenstadt-Schlieren'
 
