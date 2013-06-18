@@ -39,8 +39,12 @@
       - RealEstate::CHANNELS.each do |channel|
         .controls.push-inline-labels-down
           %label.inline.checkbox
-            = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel)
+            = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel), :class => channel
             %span= t(".channels.#{channel}")
+    .microsite-options-container.hidden{ 'data-dependent_on' => '.microsite', 'data-dependent_on_value' => 'true' }
+      .control-group
+        .controls
+          = f.select :microsite, microsite_select_options, :prompt => 'Microsite auswählen', :class => 'span8'
   .control-group
     = f.label :contact_id
     .controls

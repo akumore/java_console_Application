@@ -237,6 +237,17 @@ describe "Cms::RealEstates" do
       end
     end
 
+    context 'when choosing microsite', :js => true do
+      before do
+        visit edit_cms_real_estate_path(@fabricated_real_estate)
+      end
+
+      it 'shows the microsite select options immediately' do
+        check 'Micro-Site'
+        page.should have_css('.microsite-options-container:not(.hidden)')
+      end
+    end
+
     context 'when the parking utilization is selected', :parking => true do
       before do
         select 'Parkieren', :from => 'Gebäudenutzung'

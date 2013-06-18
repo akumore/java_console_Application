@@ -20,6 +20,12 @@ module RealEstatesHelper
     ]
   end
 
+  def microsite_select_options
+    microsites = Microsite.all.inject([]) do |microsites, m|
+      microsites << [t("mongoid.attributes.real_estate.microsite.#{m}"), m]
+    end
+  end
+
   def zoomed_div(floorplan, &block)
     content_tag :div, :class => "floorplan-zoomed", :id => "floorplan-zoomed-#{floorplan.id}" do
       block.call
