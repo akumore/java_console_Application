@@ -16,8 +16,8 @@
         %dt= real_estate.figure.surface_label
         %dd
           = real_estate.figure.surface
-          %span.helptext
-            - if real_estate.figure.specification_surface.present?
+          - if real_estate.figure.specification_surface.present?
+            %span.helptext
               = "(#{real_estate.figure.specification_surface})"
 
       - if real_estate.figure.floor.present?
