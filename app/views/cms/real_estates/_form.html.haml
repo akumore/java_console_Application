@@ -44,7 +44,7 @@
     .microsite-options-container.hidden{ 'data-dependent_on' => '.microsite', 'data-dependent_on_value' => 'true' }
       .control-group
         .controls
-          = f.select :microsite, microsite_select_options, :prompt => 'Microsite auswählen', :class => 'span8'
+          = f.select :microsite_building_project, microsite_select_options, :prompt => 'Microsite auswählen', :class => 'span8'
   .control-group
     = f.label :contact_id
     .controls

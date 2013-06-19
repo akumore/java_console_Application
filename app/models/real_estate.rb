@@ -59,7 +59,7 @@ class RealEstate
   field :building_type, :type => String
   field :utilization_description, :type => String
   field :category_label, :type => String, :localize => true # used for sorting, normalized by category.label
-  field :microsite, :type => String
+  field :microsite_building_project, :type => String # Defines the building project e.g. 'Gartenstadt' or 'Feldpark'
 
   validates :category_id, :presence => true
   validates :utilization, :presence => true
@@ -84,7 +84,7 @@ class RealEstate
   scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
 
   # Utilization scopes
-  scope :living, :where => { :utilization =>  Utilization::LIVING }
+  scope :living,  :where => { :utilization => Utilization::LIVING }
   scope :working, :where => { :utilization => Utilization::WORKING }
   scope :storing, :where => { :utilization => Utilization::STORING }
   scope :parking, :where => { :utilization => Utilization::PARKING }
@@ -92,6 +92,11 @@ class RealEstate
   # Offer scopes
   scope :for_rent, :where => { :offer => Offer::RENT }
   scope :for_sale, :where => { :offer => Offer::SALE }
+
+  # Microsite Building Project scopes
+  scope :gartenstadt, :where => { :microsite_building_project => Microsite::GARTENSTADT }
+  scope :feldpark,    :where => { :microsite_building_project => Microsite::FELDPARK }
+  scope :buenzpark,   :where => { :microsite_building_project => Microsite::BUENZPARK }
 
   def self.mandatory_for_publishing
     %w(address pricing figure information)
