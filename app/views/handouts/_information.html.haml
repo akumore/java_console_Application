@@ -1,11 +1,6 @@
 .chapter.pbi-avoid
   %h2= t('information.title')
 
-  - if information.available_from.present?
-    %dl
-      %dt= t('information.available_from')
-      %dd= information.available_from
-
   - if information.characteristics.any?
     %dl
       %dt= t('information.characteristics')

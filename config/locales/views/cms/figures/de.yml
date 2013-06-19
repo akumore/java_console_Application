@@ -10,4 +10,5 @@ de:
           living_surface_estimate: 'Für spez. Angaben, z.B. ab 102 m², 104 m² – 132 m²<br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Wohnfläche» auf der Webseite und der Objektdokumentation ausgegeben.'
           property_surface_estimate: 'Für spez. Angaben, z.B. ab 102 m², 104 m² – 132 m²<br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Grundstückfläche» auf der Webseite und der Objektdokumentation ausgegeben.'
           usable_surface_estimate: 'Für spez. Angaben, z.B. ab 102 m², 104 m² – 132 m²<br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Nutzfläche» auf der Webseite und der Objektdokumentation ausgegeben.'
-          specification_living_surface: "Wenn dieses Feld ausgefüllt wird, wird der Inhalt in der Objektdokumentation anstelle des Satzes «Fläche exklusive Fassaden-, Treppenhaus-, Wohnungstrennwände, Leitungsschächte und Balkon/Terrasse. Fläche inklusive Innenwände.» dargestellt."
+          specification_usable_surface: 'Das ausgewählte Textfeld erscheint in der Objektdokumentation.<br />Die Texte sind editierbar und somit veränderbar.'
+          specification_living_surface: 'Der Vorlagetext erscheint in der Objektdokumentation.<br />Der Text ist editierbar und somit veränderbar.'

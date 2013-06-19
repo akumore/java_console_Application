@@ -5,14 +5,23 @@ en:
       one: 'Car park in garage'
       other: 'Parking spaces in garage'
     outside_parking_spots:
-      one: 'Car park im Freien'
-      other: 'Parking spaces im Freien'
-    inside_parking_spots_temporary:
-      one: 'Temporary car park in garage'
-      other: 'Temporary parking spaces in garage'
-    outside_parking_spots_temporary:
-      one: 'Temporary car park outside'
-      other: 'Temporary parking outside'
+      one: 'Outdoor car parking place'
+      other: 'Outdoor car parking places'
+    covered_slot:
+      one: 'Outdoor car parking place, covered'
+      other: 'Outdoor car parking places, covered'
+    covered_bike:
+      one: 'Motorbike parking place in garage'
+      other: 'Motorbike parking places in garage'
+    outdoor_bike:
+      one: 'Outdoor motorbike parking place, covered'
+      other: 'Outdoor motorbike parking places, covered'
+    single_garage:
+      one: 'Single garage'
+      other: 'Single garages'
+    double_garage:
+      one: 'Double garage'
+      other: 'Double garages'
     distances: 'Nearby'
     points_of_interest:
       public_transport: 'Public transport %{distance} m'
@@ -21,4 +30,3 @@ en:
       elementary_school: 'Primary school %{distance} m'
       high_school: 'Secondary / high school %{distance} m'
       highway_access: 'Motorway access %{distance} m'
-

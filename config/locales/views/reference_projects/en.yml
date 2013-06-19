@@ -4,8 +4,10 @@ en:
     project_website_link: 'Project Website'
     section:
       residential_building: 'Residential Buildings'
+      residential_commercial_building: 'Residential/Commercial Buildings'
       business_building: 'Commercial Buildings'
-      public_building: 'Public Buildings'
+      trade_industrial_building: 'Trade/Industrial Buildings'
+      special_building: 'Special Buildings'
       rebuilding: 'Conversions'
     index:
-      documentation_link: 'Documentation'
+      documentation_link: 'Data Sheet'

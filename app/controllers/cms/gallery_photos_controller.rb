@@ -45,7 +45,7 @@ module Cms
 
       if @gallery_photo.update_attributes(params[:gallery_photo])
         flash[:succes] = %(Das Foto "#{@gallery_photo.title}" wurde erfolgreich gespeichert.)
-        redirect_to edit_cms_gallery_photo_path(@gallery_photo)
+        redirect_to cms_gallery_photos_path
       else
         render 'edit'
       end

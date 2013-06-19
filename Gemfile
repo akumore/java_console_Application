@@ -32,7 +32,7 @@ gem 'daemons', '1.1.5'
 gem 'sanitize'
 gem 'chosen-rails'
 gem 'jquery-scrollto-rails'
-gem 'pdfkit'
+gem 'pdfkit', :git => 'git://github.com/screenconcept/pdfkit.git'
 gem 'mongoid_rails_migrations'
 gem 'whenever', :require => false
 gem 'newrelic_rpm'

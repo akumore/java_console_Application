@@ -1,5 +1,30 @@
 # CHANGELOG
 
+### v2.4.2 on 2013-06-13
+* Fix Handout footer, logo only
+* Use forked version of pdfkit
+* Use @type-face integration for font rendering in handouts
+* Little improvements for reference projects
+* Cherry-pick english image movie
+* Disable home.ch providers due expired contract
+
+### v2.4.1 on 2013-05-22
+* Fix footer link for magazine
+
+### v2.4.0 on 2013-05-21
+* Feature 1 - Lagern als zusätzliche Gebäudenutzungen
+* Feature 2 - Parkieren als zusätzliche Gebäudenutzungen
+* Feature 3 - Ausbau für die zusätzlichen Gebäudenutzungen "Lagern" und "Parkieren"
+* Feature 4 - Angebotsliste auf der Webseite
+* Feature 8 - Erweiterte Angaben zur Nutz-, Wohn- und Lagerflächen
+* Feature 28 - Erweiterung Bauen
+* Feature 29 - Seite "Referenzen"
+* Feature 30 - Neuverortung "Forum"-Magazin
+
+### v2.3.6 on 2013-05-14
+* Hotfix: Floor field of Figure model is now mandatory in any of the utilizations
+* Cherrypick rake task for printing invalid real estates
+
 ### v2.3.5 on 2013-03-22
 * Hotfix: Change images for Christoph Müller, David Hossli and Thomas Rüppel
 
