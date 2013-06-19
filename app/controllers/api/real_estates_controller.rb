@@ -5,9 +5,16 @@ module Api
 
     def index
       I18n.locale = :de
-      @real_estates = MicrositeDecorator.decorate RealEstate.microsite.published.all
-      respond_with @real_estates.sort, :callback=>params[:callback]
-    end
 
+      if params[:microsite] == Microsite::FELDPARK
+        @real_estates = MicrositeDecorator.decorate RealEstate.microsite.feldpark.published.all
+      elsif params[:microsite] == Microsite::BUENZPARK
+        @real_estates = MicrositeDecorator.decorate RealEstate.microsite.buenzpark.published.all
+      else
+        @real_estates = MicrositeDecorator.decorate RealEstate.microsite.gartenstadt.published.all
+      end
+
+      respond_with @real_estates.sort, :callback => params[:callback]
+    end
   end
 end

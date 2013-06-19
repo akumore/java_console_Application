@@ -6,18 +6,22 @@ describe Api::RealEstatesController do
 
   describe "#index" do
     before do
-      @no_microsite = Fabricate :published_real_estate, :category=>Fabricate(:category), :channels=>[RealEstate::WEBSITE_CHANNEL]
-      @gartenstadt = MicrositeDecorator.decorate Fabricate(:published_real_estate, :category=>Fabricate(:category), :channels=>[RealEstate::MICROSITE_CHANNEL],
-        :figure => Fabricate.build( :figure))
+      @no_microsite = Fabricate :published_real_estate, :category => Fabricate(:category), :channels => [RealEstate::WEBSITE_CHANNEL]
+      @gartenstadt = MicrositeDecorator.decorate Fabricate(:published_real_estate,
+                                                           :category => Fabricate(:category),
+                                                           :channels => [RealEstate::MICROSITE_CHANNEL],
+                                                           :figure => Fabricate.build( :figure),
+                                                           :microsite_building_project => Microsite::GARTENSTADT
+                                                          )
     end
 
     it "gets real estates enabled for microsites" do
-      get  'index', :format=>:json
+      get  'index', :format => :json
       response.body.should == [@gartenstadt].to_json
     end
 
     it "wraps the response with a callback if requested" do
-      get  'index', :format=>:json, :callback => 'callMeBack'
+      get  'index', :format => :json, :callback => 'callMeBack'
       response.body.should == "callMeBack(#{[@gartenstadt].to_json})"
     end
 
@@ -31,15 +35,19 @@ describe Api::RealEstatesController do
           :creator => Fabricate(:cms_editor)
       end
 
-      get  'index', :format=>:json
+      get  'index', :format => :json
       response.body.should == [@gartenstadt].to_json
     end
   end
 
   describe "Expected json format of a real estate" do
     before do
-      @gartenstadt = Fabricate :published_real_estate, :category=>Fabricate(:category), :channels=>[RealEstate::MICROSITE_CHANNEL],
-        :figure => Fabricate.build( :figure, :rooms => 10, :floor => 3)
+      @gartenstadt = Fabricate(:published_real_estate,
+                               :category => Fabricate(:category),
+                               :channels => [RealEstate::MICROSITE_CHANNEL],
+                               :figure => Fabricate.build( :figure, :rooms => 10, :floor => 3),
+                               :microsite_building_project => Microsite::GARTENSTADT
+                              )
       # @decorated_gartenstadt = MicrositeDecorator.decorate @gartenstadt
     end
 
@@ -85,5 +93,4 @@ describe Api::RealEstatesController do
       gartenstadt_hash['price'] == 'CHF 10000'
     end
   end
-
 end
