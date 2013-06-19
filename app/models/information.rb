@@ -31,6 +31,7 @@ class Information
   field :is_developed, :type => Boolean
   field :is_under_building_laws, :type => Boolean
   field :has_cable_tv, :type => Boolean
+  field :additional_information, :type => String
 
   validates_numericality_of :freight_elevator_carrying_capacity,
                             :number_of_restrooms,

@@ -431,6 +431,10 @@ describe "Handout aka MiniDoku" do
       it 'does not show the ceiling height' do
         page.should_not have_content 'Raumhöhe'
       end
+
+      it 'shows the additional information text' do
+        page.should have_content('Ergänzende Informationen zum Ausbau')
+      end
     end
 
     context 'real estate for working utilization' do
@@ -476,6 +480,10 @@ describe "Handout aka MiniDoku" do
       it 'shows the ceiling height' do
         page.should have_content 'Raumhöhe'
       end
+
+      it 'shows the additional information text' do
+        page.should have_content('Ergänzende Informationen zum Ausbau')
+      end
     end
 
     context 'real estate for storing utilization' do
@@ -486,6 +494,10 @@ describe "Handout aka MiniDoku" do
 
       it 'shows the ceiling height' do
         page.should have_content 'Raumhöhe'
+      end
+
+      it 'shows the additional information text' do
+        page.should have_content('Ergänzende Informationen zum Ausbau')
       end
     end
   end

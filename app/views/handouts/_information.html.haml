@@ -33,3 +33,8 @@
       %dl
         %dt= t('figures.storage_surface')
         %dd= figure.storage_surface
+
+  - if information.additional_information.present?
+    %dl
+      %dt= t('information.additional_information')
+      %dd= information.additional_information

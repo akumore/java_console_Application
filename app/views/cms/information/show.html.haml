@@ -126,3 +126,11 @@
 
           %dt= t "mongoid.attributes.information.has_sewage_supply"
           %dd= t "#{@information.has_sewage_supply?}"
+
+  - unless @real_estate.parking?
+    .row
+      .span12
+        - if @information.additional_information.present?
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.information.additional_information"
+            %dd= markdown(@information.additional_information)

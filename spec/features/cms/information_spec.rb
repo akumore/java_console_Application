@@ -34,11 +34,12 @@ describe "Cms Information" do
                                                 :has_sewage_supply => true,
                                                 :is_developed => true,
                                                 :is_under_building_laws => true,
-                                                :has_cable_tv => true
+                                                :has_cable_tv => true,
+                                                :additional_information => 'Zusätzliche Angaben zum Ausbau'
                                               )
     end
 
-    context 'real estate with private utilization' do
+    context 'real estate with living utilization' do
       before :each do
         @real_estate = Fabricate(:real_estate,
           :category => Fabricate(:category),
@@ -54,6 +55,7 @@ describe "Cms Information" do
         select '2012', :from => 'information_available_from_1i'
 
         fill_in 'Etwa verfügbar ab', :with => @template_information.display_estimated_available_from
+        fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
 
         [
           'Aussicht',
@@ -96,6 +98,7 @@ describe "Cms Information" do
         information.available_from.should == @template_information.available_from
         information.display_estimated_available_from.should == @template_information.display_estimated_available_from
         information.has_cable_tv.should == @template_information.has_cable_tv
+        information.additional_information.should == @template_information.additional_information
       end
 
       it 'doesnt render the is_developed checkbox' do
@@ -107,7 +110,7 @@ describe "Cms Information" do
       end
     end
 
-    context 'real estate with commercial utilization' do
+    context 'real estate with working utilization' do
       before :each do
         @real_estate = Fabricate(:real_estate,
           :category => Fabricate(:category),
@@ -124,6 +127,7 @@ describe "Cms Information" do
 
         fill_in 'Etwa verfügbar ab', :with => @template_information.display_estimated_available_from
         fill_in "Anzahl WC's", :with => @template_information.number_of_restrooms
+        fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
 
         ['Neubau',
          'Altbau',
@@ -157,6 +161,7 @@ describe "Cms Information" do
         information.display_estimated_available_from.should == @template_information.display_estimated_available_from
         information.number_of_restrooms.should == @template_information.number_of_restrooms
         information.has_cable_tv.should == @template_information.has_cable_tv
+        information.additional_information.should == @template_information.additional_information
       end
 
       ["Anzahl WC's", "Max Gewicht Warenlift", "Maximale Bodenbelastung"].each do |target_field|
@@ -254,6 +259,11 @@ describe "Cms Information" do
        [:available_from, :display_estimated_available_from].each do |attr|
          page.should have_content real_estate.information.send(attr)
        end
+     end
+
+     it 'shows the additional information text' do
+       visit cms_real_estate_information_path real_estate
+       page.should have_content real_estate.information.additional_information
      end
 
      it 'shows a message if no information exist' do

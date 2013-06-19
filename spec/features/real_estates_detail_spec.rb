@@ -238,6 +238,52 @@ describe "RealEstates" do
       end
     end
 
+    describe 'Chapter Information' do
+      context 'with living utilization' do
+        before :each do
+          real_estate.update_attribute(:utilization, Utilization::LIVING)
+          visit real_estate_path(real_estate)
+        end
+
+        it 'shows the additional information text' do
+          page.should have_content('Ergänzende Informationen zum Ausbau')
+        end
+      end
+
+      context 'with working utilization' do
+        before :each do
+          real_estate.update_attribute(:utilization, Utilization::WORKING)
+          visit real_estate_path(real_estate)
+        end
+
+        it 'shows the additional information text' do
+          page.should have_content('Ergänzende Informationen zum Ausbau')
+        end
+      end
+
+      context 'with storing utilization' do
+        before :each do
+          real_estate.update_attribute(:utilization, Utilization::STORING)
+          visit real_estate_path(real_estate)
+        end
+
+        it 'shows the additional information text' do
+          page.should have_content('Ergänzende Informationen zum Ausbau')
+        end
+      end
+
+      context 'with parking utilization' do
+        before :each do
+          real_estate.update_attribute(:utilization, Utilization::PARKING)
+          visit real_estate_path(real_estate)
+        end
+
+        it "doesn't show the additional information text" do
+          page.should_not have_content('Ergänzende Informationen zum Ausbau')
+        end
+      end
+    end
+
     describe 'sidebar' do
       it 'shows the project website link' do
         page.within('.sidebar') do
