@@ -1,22 +1,32 @@
 .search-filter-container
-
   .default-view
     .offer-tabs
       %ul
-        - if @reference_projects.residental_buildings.present? && @reference_projects.residental_buildings.count > 0
+        - if @reference_projects.residential_buildings.present? && @reference_projects.residential_buildings.count > 0
           %li.residential-building-tab{ :class => @search_filter.residential_building? ? "selected" : "" }
-            = link_to t("reference_projects.section.residential_building"), reference_projects_path(:section => ReferenceProjectSection::RESIDENTIAL_BUILDING), :class => ''
+            = link_to t("reference_projects.section.residential_building"), reference_projects_path(:section => ReferenceProjectSection::RESIDENTIAL_BUILDING), :class => 'js-residential_building'
+
+        - if @reference_projects.residential_commercial_buildings.present? && @reference_projects.residential_commercial_buildings.count > 0
+          %li.residential-commercial-building-tab{ :class => @search_filter.residential_commercial_building? ? "selected" : "" }
+            = link_to t("reference_projects.section.residential_commercial_building"), reference_projects_path(:section => ReferenceProjectSection::RESIDENTIAL_COMMERCIAL_BUILDING), :class => 'js-residential_commercial_building'
 
         - if @reference_projects.business_buildings.present? && @reference_projects.business_buildings.count > 0
           %li.business-building-tab{ :class => @search_filter.business_building? ? "selected" : "" }
-            = link_to t("reference_projects.section.business_building"), reference_projects_path(:section => ReferenceProjectSection::BUSINESS_BUILDING), :class => ''
+            = link_to t("reference_projects.section.business_building"), reference_projects_path(:section => ReferenceProjectSection::BUSINESS_BUILDING), :class => 'js-business_building'
 
-        - if @reference_projects.public_buildings.present? && @reference_projects.public_buildings.count > 0
-          %li.public-building-tab{ :class => @search_filter.public_building? ? "selected" : "" }
-            = link_to t("reference_projects.section.public_building"), reference_projects_path(:section => ReferenceProjectSection::PUBLIC_BUILDING), :class => ''
+        - if @reference_projects.trade_industrial_buildings.present? && @reference_projects.trade_industrial_buildings.count > 0
+          %li.business-building-tab{ :class => @search_filter.trade_industrial_building? ? "selected" : "" }
+            = link_to t("reference_projects.section.trade_industrial_building"), reference_projects_path(:section => ReferenceProjectSection::TRADE_INDUSTRIAL_BUILDING), :class => 'js-trade_industrial_building'
+
+        - if @reference_projects.special_buildings.present? && @reference_projects.special_buildings.count > 0
+          %li.public-building-tab{ :class => @search_filter.special_building? ? "selected" : "" }
+            = link_to t("reference_projects.section.special_building"), reference_projects_path(:section => ReferenceProjectSection::SPECIAL_BUILDING), :class => 'js-special_building'
 
         - if @reference_projects.rebuildings.present? && @reference_projects.rebuildings.count > 0
           %li.rebuilding-tab{ :class => @search_filter.rebuilding? ? "selected" : "" }
-            = link_to t("reference_projects.section.rebuilding"), reference_projects_path(:section => ReferenceProjectSection::REBUILDING), :class => ''
+            = link_to t("reference_projects.section.rebuilding"), reference_projects_path(:section => ReferenceProjectSection::REBUILDING), :class => 'js-rebuilding'
 
-    = search_form.hidden_field :section
+  = search_form.hidden_field :section
+
+  .mobile-view.offer-utilization-filters
+    = search_form.select :section, reference_project_sections

@@ -5,8 +5,8 @@ de:
     attributes:
       reference_project:
         title: 'Titel'
-        description: 'Beschreibung'
-        construction_info: 'Bauzeit'
+        description: 'Beschreibungstext'
+        construction_info: 'Thema'
         image: 'Bild'
         url: 'Projektwebseite'
         attachment: 'Dokument'
@@ -14,3 +14,4 @@ de:
         section: 'Bereich'
         utilization: 'Gebäudenutzung'
         real_estate: 'Immobilie'
+        displayed_on: 'Wird angezeigt auf:'

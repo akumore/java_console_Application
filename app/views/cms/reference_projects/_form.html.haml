@@ -3,72 +3,91 @@
 
   %fieldset
     = f.hidden_field :locale
-    .control-group.mandatory
-      = f.label :title
-      .controls
-        = f.text_field :title, :class => 'span8'
+    .row
+      .span12
+        .control-group.mandatory
+          = f.label :title
+          .controls
+            = f.text_field :title, :class => 'span8'
 
-    .control-group.mandatory
-      = f.label :offer
-      .controls
-        %label.inline.radio
-          = f.radio_button :offer, Offer::RENT
-          %span= t(".#{Offer::RENT}")
-      .controls
-        %label.inline.radio
-          = f.radio_button :offer, Offer::SALE
-          %span= t(".#{Offer::SALE}")
+        .control-group
+          = f.label :displayed_on
+          - ReferenceProject::DISPLAYED_ON_PAGES.each do |page|
+            .controls.push-inline-labels-down
+              %label.inline.checkbox
+                = check_box_tag "reference_project[displayed_on][]", page, @reference_project.displayed_on.include?(page), :class => page
+                %span= t(".displayed_on.#{page}")
 
-    .control-group.mandatory
-      = f.label :utilization
-      .controls
-        %label.radio
-          = f.radio_button :utilization, Utilization::LIVING
-          %span= t(".#{Utilization::LIVING}")
-        %label.radio
-          = f.radio_button :utilization, Utilization::WORKING
-          %span= t(".#{Utilization::WORKING}")
+    .row.hidden{ 'data-dependent_on' => ".#{ReferenceProject::HOME_AND_OFFER_PAGE}", 'data-dependent_on_value' => 'true' }
+      .span12
+        %legend Startseiten-/Angebots-Slider
+        .control-group.mandatory
+          = f.label :offer
+          .controls
+            %label.inline.radio
+              = f.radio_button :offer, Offer::RENT
+              %span= t(".#{Offer::RENT}")
+          .controls
+            %label.inline.radio
+              = f.radio_button :offer, Offer::SALE
+              %span= t(".#{Offer::SALE}")
 
-    .control-group.mandatory
-      = f.label :section
-      .controls
-        = f.select :section, reference_project_sections
+        .control-group.mandatory
+          = f.label :utilization
+          .controls
+            %label.radio
+              = f.radio_button :utilization, Utilization::LIVING
+              %span= t(".#{Utilization::LIVING}")
+            %label.radio
+              = f.radio_button :utilization, Utilization::WORKING
+              %span= t(".#{Utilization::WORKING}")
 
-    .control-group
-      = f.label :description
-      .controls
-        = f.text_area :description, :class => 'span8'
+        .control-group
+          = f.label :description
+          .controls
+            = f.text_area :description, :class => 'span8'
 
-    .control-group
-      = f.label :construction_info
-      .controls
-        = f.text_field :construction_info, :class => 'span8'
+        .control-group
+          = f.label :url
+          .controls
+            = f.text_field :url, :class => 'span8'
 
-    .control-group
-      = f.label :url
-      .controls
-        = f.text_field :url, :class => 'span8'
+        .control-group
+          = f.label :real_estate
+          .controls
+            = f.select :real_estate_id, @real_estates.collect {|p| [ p.title, p.id ]}, { :include_blank => true }
 
-    .control-group
-      = f.label :real_estate
-      .controls
-        = f.select :real_estate_id, @real_estates.collect {|p| [ p.title, p.id ]}, { :include_blank => true }
+    .row.hidden{ 'data-dependent_on' => ".#{ReferenceProject::REFERENCE_PROJECT_PAGE}", 'data-dependent_on_value' => 'true' }
+      .span12
+        %legend Referenzseite
+        .control-group.mandatory
+          = f.label :section
+          .controls
+            = f.select :section, reference_project_sections
 
-    .control-group
-      = f.label :attachment
-      .controls
-        = f.file_field :attachment
+        .control-group
+          = f.label :construction_info
+          .controls
+            = f.text_field :construction_info, :class => 'span8'
 
-        - if @reference_project.attachment.present?
-          .well
-            = f.hidden_field :attachment_cache
-            %p
-              = link_to t('.show_attachment'), @reference_project.attachment.url, :target => '_blank'
-            %label.inline
-              = f.check_box :remove_attachment
-              %span= t('.remove_attachment')
+        .control-group
+          = f.label :attachment
+          .controls
+            = f.file_field :attachment
 
-    = render "edit_images", :f => f
+            - if @reference_project.attachment.present?
+              .well
+                = f.hidden_field :attachment_cache
+                %p
+                  = link_to t('.show_attachment'), @reference_project.attachment.url, :target => '_blank'
+                %label.inline
+                  = f.check_box :remove_attachment
+                  %span= t('.remove_attachment')
+
+    .row
+      .span12
+        %legend Bilder
+        = render "edit_images", :f => f
 
     .form-actions
       = f.submit nil, :class => 'btn btn-primary'
@@ -76,4 +95,3 @@
         = link_to(cms_reference_projects_path, :class => 'btn small') do
           %i.icon-list
           = t('.overview')
-

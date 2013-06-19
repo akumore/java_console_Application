@@ -1,5 +1,6 @@
 Fabricator(:reference_project) do
   title { "A fine reference project #{Fabricate.sequence}" }
+  displayed_on { [ReferenceProject::HOME_AND_OFFER_PAGE] }
   description 'Some reference project description...'
   offer Offer::RENT
   section ReferenceProjectSection::RESIDENTIAL_BUILDING

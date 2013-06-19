@@ -50,6 +50,12 @@ module AlfredMueller
     # Enable the asset pipeline
     config.assets.enabled = true
 
+    # Add the fonts path
+    config.assets.paths << "#{Rails.root}/app/assets/fonts"
+
+    # Precompile additional assets
+    config.assets.precompile += %w( .otf )
+
     # Use SASS over SCSS
     #config.sass.preferred_syntax = :sass
 
