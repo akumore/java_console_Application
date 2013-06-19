@@ -50,6 +50,7 @@ class InformationDecorator < ApplicationDecorator
       buffer << t('information.railway_terminal') if model.has_railway_terminal?
       buffer << t('information.water_supply') if model.has_water_supply?
       buffer << t('information.sewage_supply') if model.has_sewage_supply?
+      buffer << t('information.freight_elevator') if model.has_freight_elevator?
     end
 
     buffer.compact

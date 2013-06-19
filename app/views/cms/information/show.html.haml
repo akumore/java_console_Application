@@ -92,6 +92,12 @@
             = @information.maximal_floor_loading
             &nbsp;
 
+          %dt= t "mongoid.attributes.information.freight_elevator"
+          - if @information.has_freight_elevator?
+            %dd= t "true"
+          - else
+            %dd= t "false"
+
           %dt= t "mongoid.attributes.information.freight_elevator_carrying_capacity"
           %dd
             = @information.freight_elevator_carrying_capacity

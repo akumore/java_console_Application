@@ -11,6 +11,7 @@ fr:
     available_immediately: 'de suite'
     maximal_floor_loading: 'Charge utile maximale'
     maximal_floor_loading_value: '%{count} kg/m²'
+    freight_elevator: 'Warenlift'
     freight_elevator_carrying_capacity: 'Poids maximal pour monte-charges'
     freight_elevator_carrying_capacity_value: '%{count} kg'
     new_building: 'Nouvelle construction'

@@ -127,6 +127,25 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(printable_real_estate)
       end
 
+      describe 'freight_elevator behaviour' do
+        context 'with freight_elevator_carrying_capacity' do
+          it 'shows freight_elevator label' do
+            page.should have_content('Warenlift')
+          end
+        end
+
+        context 'without freight_elevator_carrying_capacity' do
+          before :each do
+            printable_real_estate.information.update_attribute(:freight_elevator_carrying_capacity, '')
+            visit real_estate_handout_path(printable_real_estate)
+          end
+
+          it "doesn't show freight_elevator label" do
+            page.should_not have_content('Warenlift')
+          end
+        end
+      end
+
       it 'shows the storage surface' do
         page.should have_content('Lagerfläche 20 m²')
       end
@@ -162,6 +181,10 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(printable_real_estate)
       end
 
+      it "doesn't show the freight_elevator label" do
+        page.should_not have_content('Warenlift')
+      end
+
       it 'shows the storage surface' do
         page.should have_content('Lagerfläche 20 m²')
       end
@@ -176,6 +199,25 @@ describe "Handout aka MiniDoku" do
       before do
         printable_real_estate.update_attribute :utilization, Utilization::STORING
         visit real_estate_handout_path(printable_real_estate)
+      end
+
+      describe 'freight_elevator behaviour' do
+        context 'with freight_elevator_carrying_capacity' do
+          it 'shows freight_elevator label' do
+            page.should have_content('Warenlift')
+          end
+        end
+
+        context 'without freight_elevator_carrying_capacity' do
+          before :each do
+            printable_real_estate.information.update_attribute(:freight_elevator_carrying_capacity, '')
+            visit real_estate_handout_path(printable_real_estate)
+          end
+
+          it "doesn't show freight_elevator label" do
+            page.should_not have_content('Warenlift')
+          end
+        end
       end
 
       it "doesn't show the storage surface" do
