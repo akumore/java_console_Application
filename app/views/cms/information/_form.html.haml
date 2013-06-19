@@ -24,11 +24,14 @@
             = f.label :is_new_building
             .controls
               = f.check_box :is_new_building
+              %i.icon-question-sign.help-popover.push-inline-labels-down{ :rel => 'popover', 'data-original-title' => Information.human_attribute_name(:is_new_building), 'data-content' => t('.help_popover.is_new_building') }
 
-          .control-group
-            = f.label :is_old_building
-            .controls
-              = f.check_box :is_old_building
+          - if @real_estate.living?
+            .control-group
+              = f.label :is_old_building
+              .controls
+                = f.check_box :is_old_building
+                %i.icon-question-sign.help-popover.push-inline-labels-down{ :rel => 'popover', 'data-original-title' => Information.human_attribute_name(:is_old_building), 'data-content' => t('.help_popover.is_old_building') }
 
         .span4
           .control-group
@@ -48,7 +51,7 @@
               .controls
                 = f.check_box :is_developed
 
-          - if @real_estate.apartment? || @real_estate.house?
+          - if (@real_estate.apartment? || @real_estate.house?) && @real_estate.for_sale?
             .control-group
               = f.label :is_under_building_laws
               .controls
