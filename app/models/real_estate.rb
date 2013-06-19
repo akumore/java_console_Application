@@ -94,9 +94,9 @@ class RealEstate
   scope :for_sale, :where => { :offer => Offer::SALE }
 
   # Microsite Building Project scopes
-  scope :gartenstadt, :where => { :microsite_building_project => Microsite::GARTENSTADT }
-  scope :feldpark,    :where => { :microsite_building_project => Microsite::FELDPARK }
-  scope :buenzpark,   :where => { :microsite_building_project => Microsite::BUENZPARK }
+  scope :gartenstadt, :where => { :microsite_building_project => MicrositeBuildingProject::GARTENSTADT }
+  scope :feldpark,    :where => { :microsite_building_project => MicrositeBuildingProject::FELDPARK }
+  scope :buenzpark,   :where => { :microsite_building_project => MicrositeBuildingProject::BUENZPARK }
 
   def self.mandatory_for_publishing
     %w(address pricing figure information)

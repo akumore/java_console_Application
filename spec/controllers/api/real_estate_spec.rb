@@ -11,7 +11,7 @@ describe Api::RealEstatesController do
                                                            :category => Fabricate(:category),
                                                            :channels => [RealEstate::MICROSITE_CHANNEL],
                                                            :figure => Fabricate.build( :figure),
-                                                           :microsite_building_project => Microsite::GARTENSTADT
+                                                           :microsite_building_project => MicrositeBuildingProject::GARTENSTADT
                                                           )
     end
 
@@ -46,7 +46,7 @@ describe Api::RealEstatesController do
                                :category => Fabricate(:category),
                                :channels => [RealEstate::MICROSITE_CHANNEL],
                                :figure => Fabricate.build( :figure, :rooms => 10, :floor => 3),
-                               :microsite_building_project => Microsite::GARTENSTADT
+                               :microsite_building_project => MicrositeBuildingProject::GARTENSTADT
                               )
       # @decorated_gartenstadt = MicrositeDecorator.decorate @gartenstadt
     end
