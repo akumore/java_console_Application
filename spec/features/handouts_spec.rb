@@ -100,12 +100,12 @@ describe "Handout aka MiniDoku" do
 
 
     describe "Usable surface" do
-      it "shows the living surface if utilization is 'private'" do
+      it "shows the living surface if utilization is 'living'" do
         visit real_estate_handout_path(printable_real_estate)
         page.should have_content('Wohnfläche 120 m²')
       end
 
-      it "shows the usable surface if utilization is 'commercial'" do
+      it "shows the usable surface if utilization is 'working'" do
         printable_real_estate.figure = Fabricate.build(:figure, :usable_surface => 400)
         printable_real_estate.update_attribute(:utilization, Utilization::WORKING)
 
@@ -333,7 +333,7 @@ describe "Handout aka MiniDoku" do
     end
 
 
-    context "Real Estate, private, for rent" do
+    context "Real Estate, living, for rent" do
       before do
         @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :additional_costs => 99, :price_unit => 'monthly'
         @real_estate = Fabricate :residential_building, :pricing => @pricing
@@ -344,7 +344,7 @@ describe "Handout aka MiniDoku" do
     end
 
 
-    context "Real Estate, commercial, for rent" do
+    context "Real Estate, working, for rent" do
       before do
         @pricing = Fabricate.build :pricing_for_rent, :for_rent_netto => 1999, :additional_costs => 99, :price_unit => 'monthly', :opted => false
         @real_estate = Fabricate :commercial_building, :pricing => @pricing
@@ -391,7 +391,7 @@ describe "Handout aka MiniDoku" do
       pending 'figure out what this is supposed to do'
     end
 
-    context 'real estate for private utilization' do
+    context 'real estate for living utilization' do
       it 'has a view' do
         page.should have_content 'Ausblick'
       end
@@ -427,9 +427,13 @@ describe "Handout aka MiniDoku" do
       it 'has a swimmingpool' do
         page.should have_content 'Schwimmbecken'
       end
+
+      it 'does not show the ceiling height' do
+        page.should_not have_content 'Raumhöhe'
+      end
     end
 
-    context 'real estate for commercial utilization' do
+    context 'real estate for working utilization' do
       before do
         printable_real_estate.update_attribute :utilization, Utilization::WORKING
         visit real_estate_handout_path printable_real_estate
@@ -467,6 +471,21 @@ describe "Handout aka MiniDoku" do
 
       it 'has sewage supply' do
         page.should have_content 'Abwasseranschluss'
+      end
+
+      it 'shows the ceiling height' do
+        page.should have_content 'Raumhöhe'
+      end
+    end
+
+    context 'real estate for storing utilization' do
+      before do
+        printable_real_estate.update_attribute :utilization, Utilization::STORING
+        visit real_estate_handout_path printable_real_estate
+      end
+
+      it 'shows the ceiling height' do
+        page.should have_content 'Raumhöhe'
       end
     end
   end

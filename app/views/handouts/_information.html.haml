@@ -1,12 +1,23 @@
 .chapter.pbi-avoid
   %h2= t('information.title')
 
+  - if information.available_from.present?
+    %dl
+      %dt= t('information.available_from')
+      %dd= information.available_from
+
+  - if figure && real_estate.working? || real_estate.storing?
+    - if figure.ceiling_height.present?
+      %dl
+        %dt= t('figures.ceiling_height')
+        %dd= figure.ceiling_height
+
   - if information.characteristics.any?
     %dl
       %dt= t('information.characteristics')
       %dd= information.characteristics.join(', ')
 
-  - if real_estate.commercial_utilization?
+  - if real_estate.working?
     - if information.maximal_floor_loading.present?
       %dl
         %dt= t('information.maximal_floor_loading')

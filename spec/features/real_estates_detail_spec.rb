@@ -133,7 +133,42 @@ describe "RealEstates" do
         end
       end
 
-      describe 'prices' do
+      describe 'Chapter Information' do
+        context 'for working' do
+          before :each do
+            real_estate.update_attribute(:utilization, Utilization::WORKING)
+            visit real_estate_path(real_estate)
+          end
+
+          it 'shows the ceiling height' do
+            page.should have_content('Raumhöhe')
+          end
+        end
+
+        context 'for living' do
+          before :each do
+            real_estate.update_attribute(:utilization, Utilization::LIVING)
+            visit real_estate_path(real_estate)
+          end
+
+          it 'does not show the ceiling height' do
+            page.should_not have_content('Raumhöhe')
+          end
+        end
+
+        context 'for storing' do
+          before :each do
+            real_estate.update_attribute(:utilization, Utilization::STORING)
+            visit real_estate_path(real_estate)
+          end
+
+          it 'shows the ceiling height' do
+            page.should have_content('Raumhöhe')
+          end
+        end
+      end
+
+      describe 'Chapter Pricing' do
         context 'when the real estate is for rent' do
           before :each do
             real_estate.update_attribute :offer, Offer::RENT
