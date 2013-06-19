@@ -21,7 +21,7 @@ module RealEstatesHelper
   end
 
   def microsite_select_options
-    microsites = Microsite.all.inject([]) do |microsites, m|
+    microsites = MicrositeBuildingProject.all.inject([]) do |microsites, m|
       microsites << [t("mongoid.attributes.real_estate.microsite_building_project.#{m}"), m]
     end
   end
