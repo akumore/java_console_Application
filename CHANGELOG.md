@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### 16 - Kleinere Optimierung von Darstellungen und Texten im Eingabetool und auf der Website
+* Implemented stories:
+
 ### v2.4.2 on 2013-06-13
 * Fix Handout footer, logo only
 * Use forked version of pdfkit
