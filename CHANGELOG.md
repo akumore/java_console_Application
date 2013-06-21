@@ -1,7 +1,8 @@
 # CHANGELOG
 
-### 16 - Kleinere Optimierung von Darstellungen und Texten im Eingabetool und auf der Website
+### Feature 16 - Kleinere Optimierung von Darstellungen und Texten im Eingabetool und auf der Website
 * Implemented stories:
+  * #1405 - Als Editor möchte ich andere Namen für die vorhandenen Ausgabekanäle sehen
 
 ### v2.4.2 on 2013-06-13
 * Fix Handout footer, logo only
