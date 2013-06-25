@@ -3,6 +3,7 @@
 ### Feature 16 - Kleinere Optimierung von Darstellungen und Texten im Eingabetool und auf der Website
 * Implemented stories:
   * #1405 - Als Editor möchte ich andere Namen für die vorhandenen Ausgabekanäle sehen
+  * #1403 - Als Besucher und Leser möchte ich das "N" beim eingestellten Winkel sehen
 
 ### v2.4.2 on 2013-06-13
 * Fix Handout footer, logo only
