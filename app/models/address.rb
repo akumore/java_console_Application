@@ -9,6 +9,7 @@ class Address
 
   embedded_in :real_estate
   embeds_one :reference, :as => :referencable
+  embeds_one :microsite_reference
 
   field :city, :type => String
   field :street, :type => String
@@ -34,6 +35,7 @@ class Address
   after_validation :geocode, :if => :should_geocode?
   before_validation :manually_geocode, :if => :manual_geocoding?
   after_initialize :init_reference
+  after_initialize :init_microsite_reference
   attr_protected :location
 
   alias :coordinates :to_coordinates
@@ -69,6 +71,10 @@ class Address
 
   def init_reference
     self.reference ||= Reference.new
+  end
+
+  def init_microsite_reference
+    self.microsite_reference ||= MicrositeReference.new
   end
 
   def any_reference_key

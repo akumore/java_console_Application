@@ -33,6 +33,11 @@ describe Address do
     it 'has 5 errors' do
       @address.valid?
       @address.errors.should have(5).items
+      @address.valid?
+    end
+
+    it 'initialized the microsite reference object' do
+      @address.microsite_reference.should be_a(MicrositeReference)
     end
   end
 

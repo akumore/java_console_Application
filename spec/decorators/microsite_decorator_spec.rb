@@ -50,26 +50,15 @@ describe MicrositeDecorator do
     end
   end
 
-  context "with correct address" do
+  context "with assigend house" do
+    let :real_estate do
+      Fabricate :residential_building, :house
+    end
 
     it 'returns the corresponding house-name' do
       for street_number, house_name in MicrositeDecorator::STREET_NUMBER_HOUSE_MAP
-        street = "Badenerstrasse"
-        real_estate =  Fabricate :residential_building,
-          :address => Fabricate.build(:address, :street => street, :street_number => street_number)
-        decorated_real_estate = MicrositeDecorator.decorate real_estate
-        decorated_real_estate.house.should == house_name
+        MicrositeDecorator.decorate(real_estate).house.should == 'A'
       end
-    end
-  end
-
-  context "with incorrect address" do
-
-    it 'returns nil for unmapped address' do
-      real_estate =  Fabricate :residential_building,
-        :address => Fabricate.build(:address, :street => 'Büchsenweg', :street_number => 30)
-      decorated_real_estate = MicrositeDecorator.decorate real_estate
-      decorated_real_estate.house.should be_nil
     end
   end
 
