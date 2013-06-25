@@ -27,7 +27,6 @@ class Address
   validates :lat, :lng, :presence => true, :if => :manual_geocoding?
 
   field :location, :type => Array #Keep in mind coordinates are stored in long, lat order internally!! Use to_coordinates always.
-  #index [[ :location, Mongo::GEO2D ]] TODO Do we need this?
 
   attr_writer :lat
   attr_writer :lng
