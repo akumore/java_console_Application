@@ -19,15 +19,6 @@ class MicrositeDecorator < ApplicationDecorator
     :private_utilization?,
     :figure
 
-  GARTENSTADT_STREET = 'Badenerstrasse'
-  STREET_NUMBER_HOUSE_MAP = {
-    '26' => 'M',
-    '28' => 'L',
-    '30' => 'K',
-    '32' => 'I',
-    '34' => 'H',
-  }
-
   FLOOR_FLOOR_LABEL_MAP = {
     -1 => 'UG',
     0  => 'EG',
@@ -53,15 +44,6 @@ class MicrositeDecorator < ApplicationDecorator
     figure = real_estate.figure
     if figure.present?
       return FLOOR_FLOOR_LABEL_MAP[figure.floor]
-    else
-      return nil
-    end
-  end
-
-  def house
-    address = real_estate.address
-    if address.present? and address.street.try(:strip) == GARTENSTADT_STREET then
-      return STREET_NUMBER_HOUSE_MAP[address.street_number]
     else
       return nil
     end
@@ -165,7 +147,12 @@ class MicrositeDecorator < ApplicationDecorator
     json['title']       = title()
     json['rooms']       = rooms()
     json['floor_label'] = floor_label()
-    json['house']       = house()
+    # DEPRECATED: house
+    # house falls back to building_key
+    # Used for backward compatibility with Gartenstadt
+    json['house']       = building_key()
+    json['building_key']= building_key()
+    json['property_key']= property_key()
     json['surface']     = surface()
     json['price']       = price()
     json['group']       = group()
@@ -180,7 +167,7 @@ class MicrositeDecorator < ApplicationDecorator
 
   def <=>(other)
     return group_sort_key <=> other.group_sort_key if group_sort_key != other.group_sort_key
-    return house <=> other.house if house != other.house
+    return building_key <=> other.building_key if building_key != other.building_key
     return surface_value <=> other.surface_value if surface_value != other.surface_value
     return figure.floor <=> other.figure.floor if figure.floor != other.figure.floor
     0
