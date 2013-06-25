@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.4.3 on 2013-06-24
+* Implemented hotfixes:
+  * #1520 - Als Immoscout24 möchte ich eine korrekt formatierte Liste erhalten
+
 ### v2.4.2 on 2013-06-13
 * Fix Handout footer, logo only
 * Use forked version of pdfkit
