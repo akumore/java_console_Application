@@ -8,7 +8,16 @@ class MicrositeDecorator < ApplicationDecorator
   include Draper::LazyHelpers
 
   decorates :real_estate
-  allows '_id', :rooms, :floor_label, :house, :surface, :price, :private_utilization?, :figure
+  allows '_id',
+    :rooms,
+    :floor_label,
+    :house,
+    :property_key,
+    :building_key,
+    :surface,
+    :price,
+    :private_utilization?,
+    :figure
 
   GARTENSTADT_STREET = 'Badenerstrasse'
   STREET_NUMBER_HOUSE_MAP = {
@@ -56,6 +65,14 @@ class MicrositeDecorator < ApplicationDecorator
     else
       return nil
     end
+  end
+
+  def property_key
+    real_estate.address.try(:microsite_reference).try(:property_key)
+  end
+
+  def building_key
+    real_estate.address.try(:microsite_reference).try(:building_key)
   end
 
   def surface

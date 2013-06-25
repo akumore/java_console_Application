@@ -51,14 +51,28 @@ describe MicrositeDecorator do
   end
 
   context "with assigend house" do
-    let :real_estate do
-      Fabricate :residential_building, :house
+    let :microsite_reference do
+      Fabricate.build(
+        :microsite_reference,
+        :building_key => 'A',
+        :property_key => '22.34'
+      )
     end
 
-    it 'returns the corresponding house-name' do
-      for street_number, house_name in MicrositeDecorator::STREET_NUMBER_HOUSE_MAP
-        MicrositeDecorator.decorate(real_estate).house.should == 'A'
-      end
+    let :address do
+      Fabricate.build(:address, :microsite_reference => microsite_reference)
+    end
+
+    let :real_estate do
+      Fabricate(:residential_building, :address => address)
+    end
+
+    it 'returns the corresponding property_key' do
+      MicrositeDecorator.decorate(real_estate).property_key.should == '22.34'
+    end
+
+    it 'returns the corresponding building_key' do
+      MicrositeDecorator.decorate(real_estate).building_key.should == 'A'
     end
   end
 
