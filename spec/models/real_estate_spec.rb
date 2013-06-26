@@ -568,4 +568,26 @@ describe RealEstate do
       end
     end
   end
+
+  describe '#is_microsite?' do
+    context 'with microsite channel enabled' do
+      let :real_estate do
+        RealEstate.new(:channels => [RealEstate::MICROSITE_CHANNEL])
+      end
+
+      it 'returns true' do
+        real_estate.is_microsite?.should be_true
+      end
+    end
+
+    context 'with microsite channel disabled' do
+      let :real_estate do
+        RealEstate.new
+      end
+
+      it 'returns false' do
+        real_estate.is_microsite?.should be_false
+      end
+    end
+  end
 end
