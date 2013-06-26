@@ -11,7 +11,7 @@ class MigrateGartenstadtMicrositeAttributes < Mongoid::Migration
 
   def self.up
     RealEstate.microsite.each do |real_estate|
-      address = real_estate.address || Address.new
+      address = real_estate.address ||= Address.new
       address.microsite_reference ||= MicrositeReference.new
 
       if address.street.try(:strip) == GARTENSTADT_STREET then
