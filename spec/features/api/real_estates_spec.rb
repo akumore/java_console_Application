@@ -14,6 +14,7 @@ describe "api/real_estates.json" do
     Fabricate :published_real_estate,
               :category => Fabricate(:category, :label => 'Wohnung'),
               :channels => [RealEstate::MICROSITE_CHANNEL],
+              :microsite_building_project => MicrositeBuildingProject::GARTENSTADT,
               :address => Fabricate.build(:address, :microsite_reference => microsite_reference),
               :information => Fabricate.build(:information),
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),

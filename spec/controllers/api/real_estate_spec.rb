@@ -10,8 +10,8 @@ describe Api::RealEstatesController do
       @gartenstadt = MicrositeDecorator.decorate Fabricate(:published_real_estate,
                                                            :category => Fabricate(:category),
                                                            :channels => [RealEstate::MICROSITE_CHANNEL],
-                                                           :figure => Fabricate.build( :figure),
-                                                           :microsite_building_project => MicrositeBuildingProject::GARTENSTADT
+                                                           :microsite_building_project => MicrositeBuildingProject::GARTENSTADT,
+                                                           :figure => Fabricate.build( :figure)
                                                           )
     end
 
@@ -27,9 +27,11 @@ describe Api::RealEstatesController do
 
     it "doesn't get unpublished real estates" do
       [RealEstate::STATE_EDITING, RealEstate::STATE_IN_REVIEW].each do |state|
-        Fabricate :real_estate, :state => state,
+        Fabricate :real_estate,
+          :state => state,
           :category => Fabricate(:category),
           :channels => [RealEstate::MICROSITE_CHANNEL],
+          :microsite_building_project => MicrositeBuildingProject::GARTENSTADT,
           :figure => Fabricate.build(:figure),
           :editor => Fabricate(:cms_editor),
           :creator => Fabricate(:cms_editor)

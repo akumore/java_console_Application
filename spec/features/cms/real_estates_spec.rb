@@ -130,6 +130,7 @@ describe "Cms::RealEstates" do
 
         it 'enables it for micro-sites' do
           check 'Micro-Site'
+          select 'Gartenstadt-Schlieren'
           click_on 'Immobilie erstellen'
           real_estate.channels.should include RealEstate::MICROSITE_CHANNEL
         end

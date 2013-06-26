@@ -154,7 +154,8 @@ describe "Cms::Addresses" do
       Fabricate(:real_estate,
         :category => Fabricate(:category),
         :address => Fabricate.build(:address),
-        :channels => [RealEstate::MICROSITE_CHANNEL]
+        :channels => [RealEstate::MICROSITE_CHANNEL],
+        :microsite_building_project => MicrositeBuildingProject::GARTENSTADT
       )
     end
 
