@@ -23,7 +23,7 @@ module RealEstatesHelper
   def microsite_select_options
     MicrositeBuildingProject.all.map do |microsite_building_project|
       [
-        t("mongoid.attributes.real_estate.microsite_building_project.#{microsite_building_project}"),
+        t("cms.real_estates.form.microsite_building_projects.#{microsite_building_project}"),
         microsite_building_project
       ]
     end
