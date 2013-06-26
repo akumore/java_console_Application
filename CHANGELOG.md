@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.4.4 on 2013-06-26
+* Implemented hotfixes:
+  * #1553 - Als Besucher möchte ich das neue Logo sehen
+
 ### v2.4.3 on 2013-06-24
 * Implemented hotfixes:
   * #1520 - Als Immoscout24 möchte ich eine korrekt formatierte Liste erhalten

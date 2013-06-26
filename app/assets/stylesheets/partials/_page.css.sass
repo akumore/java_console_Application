@@ -31,7 +31,8 @@ html
   max-width: 1000px
 
 .main-logo
-  background: image-url('main-logo.png') no-repeat left bottom
+  +retina-image("main-logo")
+  background-position: left bottom
   height: 60px
   +hide-text
   +column(3)
