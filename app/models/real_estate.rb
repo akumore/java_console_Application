@@ -63,6 +63,7 @@ class RealEstate
 
   validates :category_id, :presence => true
   validates :utilization, :presence => true
+  validates :microsite_building_project, :presence => true, :if => :is_microsite?
   validates :offer, :presence => true
   validates :title, :presence => true, :unless => :parking?
   validates :description, :presence => true, :unless => :parking?
