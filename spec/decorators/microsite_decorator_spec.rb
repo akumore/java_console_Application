@@ -50,26 +50,29 @@ describe MicrositeDecorator do
     end
   end
 
-  context "with correct address" do
-
-    it 'returns the corresponding house-name' do
-      for street_number, house_name in MicrositeDecorator::STREET_NUMBER_HOUSE_MAP
-        street = "Badenerstrasse"
-        real_estate =  Fabricate :residential_building,
-          :address => Fabricate.build(:address, :street => street, :street_number => street_number)
-        decorated_real_estate = MicrositeDecorator.decorate real_estate
-        decorated_real_estate.house.should == house_name
-      end
+  context "with assigend house" do
+    let :microsite_reference do
+      Fabricate.build(
+        :microsite_reference,
+        :building_key => 'A',
+        :property_key => '22.34'
+      )
     end
-  end
 
-  context "with incorrect address" do
+    let :address do
+      Fabricate.build(:address, :microsite_reference => microsite_reference)
+    end
 
-    it 'returns nil for unmapped address' do
-      real_estate =  Fabricate :residential_building,
-        :address => Fabricate.build(:address, :street => 'Büchsenweg', :street_number => 30)
-      decorated_real_estate = MicrositeDecorator.decorate real_estate
-      decorated_real_estate.house.should be_nil
+    let :real_estate do
+      Fabricate(:residential_building, :address => address)
+    end
+
+    it 'returns the corresponding property_key' do
+      MicrositeDecorator.decorate(real_estate).property_key.should == '22.34'
+    end
+
+    it 'returns the corresponding building_key' do
+      MicrositeDecorator.decorate(real_estate).building_key.should == 'A'
     end
   end
 
@@ -230,7 +233,24 @@ describe MicrositeDecorator do
       real_estate =  Fabricate :commercial_building, :figure => Fabricate.build(:figure)
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.stub(:real_estate_handout_path => '', :path_to_url => '')
-        got = ['_id', 'title', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group', 'utilization', 'category', 'chapters', 'floorplans', 'images', 'downloads']
+        got = [
+          '_id',
+          'title',
+          'rooms',
+          'floor_label',
+          'house',
+          'building_key',
+          'property_key',
+          'surface',
+          'price',
+          'group',
+          'utilization',
+          'category',
+          'chapters',
+          'floorplans',
+          'images',
+          'downloads'
+        ]
         decorated_real_estate.as_json.keys.should == got
     end
   end
@@ -265,17 +285,35 @@ describe MicrositeDecorator do
                                                :category => flat)
       end
 
+      let :house_L do
+        Fabricate.build(
+          :address,
+          :microsite_reference => Fabricate.build(
+            :microsite_reference, :building_key => 'L'
+          )
+        )
+      end
+
+      let :house_H do
+        Fabricate.build(
+          :address,
+          :microsite_reference => Fabricate.build(
+            :microsite_reference, :building_key => 'H'
+          )
+        )
+      end
+
       it "orders by house index alphabetically asc" do
-        real_estate_a.to_model.address = Fabricate.build(:address, :street => 'Badenerstrasse', :street_number => '26')
-        real_estate_b.to_model.address = Fabricate.build(:address, :street => 'Badenerstrasse', :street_number => '28')
+        real_estate_a.to_model.address = house_L
+        real_estate_b.to_model.address = house_H
 
         [real_estate_a, real_estate_b].sort.should == [real_estate_b, real_estate_a]
       end
 
       describe "Inner order of real estates within the same house" do
         before do
-          real_estate_a.to_model.address = Fabricate.build(:address, :street => 'Badenerstrasse', :street_number => '26')
-          real_estate_b.to_model.address = Fabricate.build(:address, :street => 'Badenerstrasse', :street_number => '26')
+          real_estate_a.to_model.address = house_L
+          real_estate_b.to_model.address = house_L
         end
 
         it "orders by surface asc" do

@@ -187,6 +187,10 @@ class RealEstate
     channels.include? EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL
   end
 
+  def is_microsite?
+    channels.include? MICROSITE_CHANNEL
+  end
+
   def is_website?
     channels.include? WEBSITE_CHANNEL
   end
