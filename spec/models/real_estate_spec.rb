@@ -49,7 +49,7 @@ describe RealEstate do
       end
 
       it 'requires a selected microsite option' do
-        microsite_real_estate.should have(1).error_on(:microsite_building_project)
+        microsite_real_estate.should have(2).error_on(:microsite_building_project)
       end
     end
 
