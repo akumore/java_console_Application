@@ -233,7 +233,24 @@ describe MicrositeDecorator do
       real_estate =  Fabricate :commercial_building, :figure => Fabricate.build(:figure)
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.stub(:real_estate_handout_path => '', :path_to_url => '')
-        got = ['_id', 'title', 'rooms', 'floor_label', 'house', 'surface', 'price', 'group', 'utilization', 'category', 'chapters', 'floorplans', 'images', 'downloads']
+        got = [
+          '_id',
+          'title',
+          'rooms',
+          'floor_label',
+          'house',
+          'building_key',
+          'property_key',
+          'surface',
+          'price',
+          'group',
+          'utilization',
+          'category',
+          'chapters',
+          'floorplans',
+          'images',
+          'downloads'
+        ]
         decorated_real_estate.as_json.keys.should == got
     end
   end
@@ -268,17 +285,35 @@ describe MicrositeDecorator do
                                                :category => flat)
       end
 
+      let :house_L do
+        Fabricate.build(
+          :address,
+          :microsite_reference => Fabricate.build(
+            :microsite_reference, :building_key => 'L'
+          )
+        )
+      end
+
+      let :house_H do
+        Fabricate.build(
+          :address,
+          :microsite_reference => Fabricate.build(
+            :microsite_reference, :building_key => 'H'
+          )
+        )
+      end
+
       it "orders by house index alphabetically asc" do
-        real_estate_a.to_model.address = Fabricate.build(:address, :street => 'Badenerstrasse', :street_number => '26')
-        real_estate_b.to_model.address = Fabricate.build(:address, :street => 'Badenerstrasse', :street_number => '28')
+        real_estate_a.to_model.address = house_L
+        real_estate_b.to_model.address = house_H
 
         [real_estate_a, real_estate_b].sort.should == [real_estate_b, real_estate_a]
       end
 
       describe "Inner order of real estates within the same house" do
         before do
-          real_estate_a.to_model.address = Fabricate.build(:address, :street => 'Badenerstrasse', :street_number => '26')
-          real_estate_b.to_model.address = Fabricate.build(:address, :street => 'Badenerstrasse', :street_number => '26')
+          real_estate_a.to_model.address = house_L
+          real_estate_b.to_model.address = house_L
         end
 
         it "orders by surface asc" do
