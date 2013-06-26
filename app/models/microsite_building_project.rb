@@ -12,15 +12,15 @@ module MicrositeBuildingProject
 
   module Accessors
     def feldpark?
-      microsite == FELDPARK
+      microsite_building_project == FELDPARK
     end
 
     def buenzpark?
-      microsite == BUENZPARK
+      microsite_building_project == BUENZPARK
     end
 
     def gartenstadt?
-      microsite == GARTENSTADT
+      microsite_building_project == GARTENSTADT
     end
   end
 
