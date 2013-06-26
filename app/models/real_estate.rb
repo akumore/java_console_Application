@@ -63,11 +63,14 @@ class RealEstate
 
   validates :category_id, :presence => true
   validates :utilization, :presence => true
-  validates :microsite_building_project, :presence => true, :if => :is_microsite?
   validates :offer, :presence => true
   validates :title, :presence => true, :unless => :parking?
   validates :description, :presence => true, :unless => :parking?
   validates :office_id, :presence => true
+  validates :microsite_building_project,
+    :presence => true,
+    :inclusion => { :in => MicrositeBuildingProject.all },
+    :if => :is_microsite?
 
   after_initialize :init_channels
   after_validation :set_category_label
@@ -83,6 +86,9 @@ class RealEstate
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
   scope :print_channel, :where => { :channels => PRINT_CHANNEL }
   scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
+  scope :named_microsite, lambda { |name|
+    microsite.where(:microsite_building_project => name)
+  }
 
   # Utilization scopes
   scope :living,  :where => { :utilization => Utilization::LIVING }
@@ -93,11 +99,6 @@ class RealEstate
   # Offer scopes
   scope :for_rent, :where => { :offer => Offer::RENT }
   scope :for_sale, :where => { :offer => Offer::SALE }
-
-  # Microsite Building Project scopes
-  scope :gartenstadt, :where => { :microsite_building_project => MicrositeBuildingProject::GARTENSTADT }
-  scope :feldpark,    :where => { :microsite_building_project => MicrositeBuildingProject::FELDPARK }
-  scope :buenzpark,   :where => { :microsite_building_project => MicrositeBuildingProject::BUENZPARK }
 
   def self.mandatory_for_publishing
     %w(address pricing figure information)
