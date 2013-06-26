@@ -174,4 +174,3 @@ class MicrositeDecorator < ApplicationDecorator
   end
 
 end
-
