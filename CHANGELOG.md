@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.4.5 on 2013-07-01
+* Implemented hotfixes:
+  * Als Besucher möchte ich Viktor Naumann nicht mehr unter dem Tab «Geschäftsleitung» sehen.
+
 ### v2.4.4 on 2013-06-26
 * Implemented hotfixes:
   * #1553 - Als Besucher möchte ich das neue Logo sehen
