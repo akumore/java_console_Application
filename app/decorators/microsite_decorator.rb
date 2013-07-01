@@ -19,15 +19,6 @@ class MicrositeDecorator < ApplicationDecorator
     :private_utilization?,
     :figure
 
-  FLOOR_FLOOR_LABEL_MAP = {
-    -1 => 'UG',
-    0  => 'EG',
-    1  => '1. OG',
-    2  => '2. OG',
-    3  => '3. OG',
-    4  => '4. OG',
-  }
-
   def title
     real_estate.title
   end
@@ -43,9 +34,21 @@ class MicrositeDecorator < ApplicationDecorator
   def floor_label
     figure = real_estate.figure
     if figure.present?
-      return FLOOR_FLOOR_LABEL_MAP[figure.floor]
+      return_floor_label(figure.floor)
     else
       return nil
+    end
+  end
+
+  def return_floor_label(floor)
+    if floor == -1
+      'UG'
+    elsif floor == 0
+      'EG'
+    elsif floor < 0
+      "#{floor.abs}. UG"
+    else
+      "#{floor}. OG"
     end
   end
 
