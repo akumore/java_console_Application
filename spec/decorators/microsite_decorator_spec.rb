@@ -78,12 +78,47 @@ describe MicrositeDecorator do
 
   context "with assigned floor number" do
 
-    it 'returns the rendered floor name' do
-      for floor, floor_label in MicrositeDecorator::FLOOR_FLOOR_LABEL_MAP
-        real_estate =  Fabricate :residential_building,
+    let :real_estate do
+      MicrositeDecorator.decorate(
+        Fabricate(
+          :residential_building,
           :figure => Fabricate.build(:figure, :floor => floor)
-        decorated_real_estate = MicrositeDecorator.decorate real_estate
-        decorated_real_estate.floor_label.should == floor_label
+        )
+      )
+    end
+
+    context 'with floor -3' do
+      let(:floor) { -3 }
+      it 'returns 3. UG' do
+        real_estate.floor_label.should == '3. UG'
+      end
+    end
+
+    context 'with floor -1' do
+      let(:floor) { -1 }
+      it 'returns UG' do
+        real_estate.floor_label.should == 'UG'
+      end
+    end
+
+    context 'with floor 0' do
+      let(:floor) { 0 }
+      it 'returns EG' do
+        real_estate.floor_label.should == 'EG'
+      end
+    end
+
+    context 'with floor 1' do
+      let(:floor) { 1 }
+      it 'returns 1. OG' do
+        real_estate.floor_label.should == '1. OG'
+      end
+    end
+
+    context 'with floor 10' do
+      let(:floor) { 10 }
+      it 'returns 10. OG' do
+        real_estate.floor_label.should == '10. OG'
       end
     end
   end
