@@ -6,7 +6,11 @@ class Cms::RealEstatesController < Cms::SecuredController
   end
 
   def index
-    @real_estates = RealEstateDecorator.decorate(RealEstate.all)
+    @real_estates = RealEstateDecorator.decorate(RealEstate.all).order_by(
+                                                                           ['address.city', 'asc'],
+                                                                           ['address.street', 'asc'],
+                                                                           ['address.street_number', 'asc']
+                                                                         )
     respond_with @real_estates
   end
 

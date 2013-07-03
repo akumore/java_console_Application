@@ -20,7 +20,9 @@
   - @real_estates.each do |real_estate|
     %tr{:id => "real_estate_#{real_estate.id}"}
       %td= real_estate.try(:address).try(:city)
-      %td= real_estate.try(:address).try(:street)
+      %td
+        = real_estate.try(:address).try(:street)
+        = real_estate.try(:address).try(:street_number)
       %td= t ".#{real_estate.offer}"
       %td= t ".#{real_estate.utilization}"
       %td= t ".#{real_estate.state}"
