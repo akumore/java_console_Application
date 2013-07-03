@@ -7,31 +7,32 @@
       %i.icon-plus-sign
       = t('cms.real_estates.index.new')
 
-%table.table.table-bordered.table-striped{ :id=>'real_estate' }
-  %tr
-    %th= Address.human_attribute_name :city
-    %th= Address.model_name.human
-    %th= RealEstate.human_attribute_name :offer
-    %th= RealEstate.human_attribute_name :utilization
-    %th Status
-    %th
-    %th
-
-  - @real_estates.each do |real_estate|
-    %tr{:id => "real_estate_#{real_estate.id}"}
-      %td= real_estate.try(:address).try(:city)
-      %td
-        = real_estate.try(:address).try(:street)
-        = real_estate.try(:address).try(:street_number)
-      %td= t ".#{real_estate.offer}"
-      %td= t ".#{real_estate.utilization}"
-      %td= t ".#{real_estate.state}"
-      %td
-        - if can?(:edit, real_estate)
-          = link_to  t('.edit'), edit_cms_real_estate_path(real_estate)
-        - else
-          = link_to  t('.show'), cms_real_estate_path(real_estate)
-      %td
-        = link_to copy_cms_real_estate_path(real_estate), :title => t('.copy') do
-          %span.hidden-text= t('.copy')
-          %i.icon-share
+%table.table.table-bordered.table-striped.datatable{ :id=>'real_estate' }
+  %thead
+    %tr
+      %th= Address.human_attribute_name :city
+      %th= Address.model_name.human
+      %th= RealEstate.human_attribute_name :offer
+      %th= RealEstate.human_attribute_name :utilization
+      %th Status
+      %th
+      %th
+  %tbody
+    - @real_estates.each do |real_estate|
+      %tr{:id => "real_estate_#{real_estate.id}"}
+        %td= real_estate.try(:address).try(:city)
+        %td
+          = real_estate.try(:address).try(:street)
+          = real_estate.try(:address).try(:street_number)
+        %td= t ".#{real_estate.offer}"
+        %td= t ".#{real_estate.utilization}"
+        %td= t ".#{real_estate.state}"
+        %td
+          - if can?(:edit, real_estate)
+            = link_to  t('.edit'), edit_cms_real_estate_path(real_estate)
+          - else
+            = link_to  t('.show'), cms_real_estate_path(real_estate)
+        %td
+          = link_to copy_cms_real_estate_path(real_estate), :title => t('.copy') do
+            %span.hidden-text= t('.copy')
+            %i.icon-share
