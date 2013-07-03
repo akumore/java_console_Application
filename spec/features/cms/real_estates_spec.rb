@@ -372,7 +372,7 @@ describe "Cms::RealEstates" do
 
         expect {
           click_link "Diesen Eintrag kopieren"
-        }.should change(RealEstate, :count).by(1)
+        }.to change(RealEstate, :count).by(1)
         real_estate_copy
         current_path.should == edit_cms_real_estate_path(real_estate_copy)
       end
@@ -383,7 +383,7 @@ describe "Cms::RealEstates" do
 
         expect {
           click_link "Diesen Eintrag kopieren"
-        }.should change(RealEstate, :count).by(1)
+        }.to change(RealEstate, :count).by(1)
         current_path.should == edit_cms_real_estate_path(real_estate_copy)
       end
 
@@ -393,7 +393,7 @@ describe "Cms::RealEstates" do
 
         expect {
           click_link "Diesen Eintrag kopieren"
-        }.should change(RealEstate, :count).by(1)
+        }.to change(RealEstate, :count).by(1)
         current_path.should == edit_cms_real_estate_path(real_estate_copy)
       end
     end
