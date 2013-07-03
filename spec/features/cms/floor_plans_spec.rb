@@ -17,7 +17,7 @@ describe "Cms::FloorPlans" do
 
       expect {
         click_on 'Grundriss speichern'
-      }.should change { @real_estate.reload.floor_plans.count }.by(1)
+      }.to change { @real_estate.reload.floor_plans.count }.by(1)
     end
 
     it "doesn't add floor_plan if upload has the wrong content type" do
@@ -29,7 +29,7 @@ describe "Cms::FloorPlans" do
       expect {
         click_on 'Grundriss speichern'
         @real_estate.reload
-      }.should_not change { @real_estate.floor_plans.count }
+      }.to_not change { @real_estate.floor_plans.count }
 
       page.should have_content "Datei muss vom Typ jpg, jpeg, png sein"
     end
@@ -56,7 +56,7 @@ describe "Cms::FloorPlans" do
       fill_in 'Titel', :with => 'The updated Title'
       expect {
         click_on 'Grundriss speichern'
-      }.should change { @floor_plan.reload.title }
+      }.to change { @floor_plan.reload.title }
     end
 
     it "doesn't update if title is empty" do
@@ -65,7 +65,7 @@ describe "Cms::FloorPlans" do
       fill_in 'Titel', :with => ''
       expect {
         click_on 'Grundriss speichern'
-      }.should_not change { @floor_plan.reload.title }
+      }.to_not change { @floor_plan.reload.title }
 
       page.should have_content "Titel muss ausgefüllt werden"
     end
@@ -76,7 +76,7 @@ describe "Cms::FloorPlans" do
       attach_file 'Datei', "#{Rails.root}/spec/support/test_files/document.pdf"
       expect {
         click_on 'Grundriss speichern'
-      }.should_not change { @floor_plan.reload.updated_at }
+      }.to_not change { @floor_plan.reload.updated_at }
 
       page.should have_content "Datei muss vom Typ jpg, jpeg, png sein"
     end
@@ -110,7 +110,7 @@ describe "Cms::FloorPlans" do
       visit cms_real_estate_media_assets_path(@real_estate)
       expect {
         click_on 'Löschen'
-      }.should change { @real_estate.reload.floor_plans.count }.by(-1)
+      }.to change { @real_estate.reload.floor_plans.count }.by(-1)
     end
   end
 end

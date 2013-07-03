@@ -158,7 +158,7 @@ describe "Cms::Users" do
       within "#user-#{other_user.id}" do
         expect {
           click_link 'Löschen'
-        }.should change(Cms::User, :count).by(-1)
+        }.to change(Cms::User, :count).by(-1)
       end
       current_path.should == cms_users_path
       page.should have_content "Der Benutzer #{other_user.email} wurde erfolgreich gelöscht"

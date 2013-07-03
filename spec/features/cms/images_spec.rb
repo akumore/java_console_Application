@@ -17,7 +17,7 @@ describe "Cms::Images" do
 
       expect {
         click_on 'Bild speichern'
-      }.should change { @real_estate.reload.images.count }.by(1)
+      }.to change { @real_estate.reload.images.count }.by(1)
     end
 
     it "doesn't add image if upload has the wrong content type" do
@@ -28,7 +28,7 @@ describe "Cms::Images" do
 
       expect {
         click_on 'Bild speichern'
-      }.should_not change { @real_estate.reload.images.count }
+      }.to_not change { @real_estate.reload.images.count }
 
       page.should have_content "Datei muss vom Typ jpg, jpeg, png sein"
     end
@@ -55,7 +55,7 @@ describe "Cms::Images" do
       check 'Hauptbild'
       expect {
         click_on 'Bild speichern'
-      }.should change { @image.reload.is_primary }
+      }.to change { @image.reload.is_primary }
     end
 
     it 'updates the title' do
@@ -64,7 +64,7 @@ describe "Cms::Images" do
       fill_in 'Titel', :with => 'The updated Title'
       expect {
         click_on 'Bild speichern'
-      }.should change { @image.reload.title }
+      }.to change { @image.reload.title }
     end
 
     it "doesn't update if title is empty" do
@@ -73,7 +73,7 @@ describe "Cms::Images" do
       fill_in 'Titel', :with => ''
       expect {
         click_on 'Bild speichern'
-      }.should_not change { @image.reload.title }
+      }.to_not change { @image.reload.title }
 
       page.should have_content "Titel muss ausgefüllt werden"
     end
@@ -84,7 +84,7 @@ describe "Cms::Images" do
       attach_file 'Datei', "#{Rails.root}/spec/support/test_files/document.pdf"
       expect {
         click_on 'Bild speichern'
-      }.should_not change { @image.reload.updated_at }
+      }.to_not change { @image.reload.updated_at }
 
       page.should have_content "Datei muss vom Typ jpg, jpeg, png sein"
     end
@@ -119,7 +119,7 @@ describe "Cms::Images" do
       visit cms_real_estate_media_assets_path(@real_estate)
       expect {
         click_on 'Löschen'
-      }.should change { @real_estate.reload.images.count }.by(-1)
+      }.to change { @real_estate.reload.images.count }.by(-1)
     end
   end
 end
