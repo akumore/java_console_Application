@@ -62,7 +62,7 @@
             .controls
               = f.check_box :has_cable_tv
 
-    - if @real_estate.private_utilization?
+    - unless @real_estate.parking?
       .row
         .span4
           .control-group
@@ -70,20 +70,21 @@
             .controls
               = f.check_box :has_outlook
 
-          .control-group
-            = f.label :has_fireplace
-            .controls
-              = f.check_box :has_fireplace
+          - if @real_estate.living?
+            .control-group
+              = f.label :has_fireplace
+              .controls
+                = f.check_box :has_fireplace
 
-          .control-group
-            = f.label :has_elevator
-            .controls
-              = f.check_box :has_elevator
+            .control-group
+              = f.label :has_elevator
+              .controls
+                = f.check_box :has_elevator
 
-          .control-group
-            = f.label :has_isdn
-            .controls
-              = f.check_box :has_isdn
+            .control-group
+              = f.label :has_isdn
+              .controls
+                = f.check_box :has_isdn
 
         .span4
           .control-group

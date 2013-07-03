@@ -49,21 +49,22 @@
         %dt= t "mongoid.attributes.information.has_cable_tv"
         %dd= t "#{@information.has_cable_tv?}"
 
-  - if @real_estate.living?
+  - unless @real_estate.parking?
     .row
       .span4
         %dl.dl-horizontal
           %dt= t "mongoid.attributes.information.has_outlook"
           %dd= t "#{@information.has_outlook?}"
 
-          %dt= t "mongoid.attributes.information.has_fireplace"
-          %dd= t "#{@information.has_fireplace?}"
+          - if @real_estate.living?
+            %dt= t "mongoid.attributes.information.has_fireplace"
+            %dd= t "#{@information.has_fireplace?}"
 
-          %dt= t "mongoid.attributes.information.has_elevator"
-          %dd= t "#{@information.has_elevator?}"
+            %dt= t "mongoid.attributes.information.has_elevator"
+            %dd= t "#{@information.has_elevator?}"
 
-          %dt= t "mongoid.attributes.information.has_isdn"
-          %dd= t "#{@information.has_isdn?}"
+            %dt= t "mongoid.attributes.information.has_isdn"
+            %dd= t "#{@information.has_isdn?}"
 
       .span4
         %dl.dl-horizontal
