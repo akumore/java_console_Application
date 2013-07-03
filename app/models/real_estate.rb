@@ -87,6 +87,7 @@ class RealEstate
   scope :print_channel, :where => { :channels => PRINT_CHANNEL }
   scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
   scope :named_microsite, ->(name) { microsite.where(:microsite_building_project => name) }
+  scope :default_order, -> { order_by(['address.city', 'asc'], ['address .street', 'asc'], ['address.street_number', 'asc']) }
 
   # Utilization scopes
   scope :living,  :where => { :utilization => Utilization::LIVING }
