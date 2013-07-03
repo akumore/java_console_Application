@@ -49,41 +49,40 @@
         %dt= t "mongoid.attributes.information.has_cable_tv"
         %dd= t "#{@information.has_cable_tv?}"
 
-  - unless @real_estate.parking?
-    .row
-      .span4
-        %dl.dl-horizontal
-          %dt= t "mongoid.attributes.information.has_outlook"
-          %dd= t "#{@information.has_outlook?}"
+  .row
+    .span4
+      %dl.dl-horizontal
+        %dt= t "mongoid.attributes.information.has_outlook"
+        %dd= t "#{@information.has_outlook?}"
 
-          - if @real_estate.living?
-            %dt= t "mongoid.attributes.information.has_fireplace"
-            %dd= t "#{@information.has_fireplace?}"
+        - if @real_estate.living?
+          %dt= t "mongoid.attributes.information.has_fireplace"
+          %dd= t "#{@information.has_fireplace?}"
 
-            %dt= t "mongoid.attributes.information.has_elevator"
-            %dd= t "#{@information.has_elevator?}"
+          %dt= t "mongoid.attributes.information.has_elevator"
+          %dd= t "#{@information.has_elevator?}"
 
-            %dt= t "mongoid.attributes.information.has_isdn"
-            %dd= t "#{@information.has_isdn?}"
+          %dt= t "mongoid.attributes.information.has_isdn"
+          %dd= t "#{@information.has_isdn?}"
 
-      .span4
-        %dl.dl-horizontal
-          %dt= t "mongoid.attributes.information.is_wheelchair_accessible"
-          %dd= t "#{@information.is_wheelchair_accessible?}"
+    .span4
+      %dl.dl-horizontal
+        %dt= t "mongoid.attributes.information.is_wheelchair_accessible"
+        %dd= t "#{@information.is_wheelchair_accessible?}"
 
-          %dt= t "mongoid.attributes.information.is_child_friendly"
-          %dd= t "#{@information.is_child_friendly?}"
+        %dt= t "mongoid.attributes.information.is_child_friendly"
+        %dd= t "#{@information.is_child_friendly?}"
 
-          %dt= t "mongoid.attributes.information.has_balcony"
-          %dd= t "#{@information.has_balcony?}"
+        %dt= t "mongoid.attributes.information.has_balcony"
+        %dd= t "#{@information.has_balcony?}"
 
-          %dt= t "mongoid.attributes.information.has_raised_ground_floor"
-          %dd= t "#{@information.has_raised_ground_floor?}"
+        %dt= t "mongoid.attributes.information.has_raised_ground_floor"
+        %dd= t "#{@information.has_raised_ground_floor?}"
 
-      .span4
-        %dl.dl-horizontal
-          %dt= t "mongoid.attributes.information.has_swimming_pool"
-          %dd= t "#{@information.has_swimming_pool?}"
+    .span4
+      %dl.dl-horizontal
+        %dt= t "mongoid.attributes.information.has_swimming_pool"
+        %dd= t "#{@information.has_swimming_pool?}"
 
   - if @real_estate.working? || @real_estate.storing?
     .row
