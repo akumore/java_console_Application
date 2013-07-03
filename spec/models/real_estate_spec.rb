@@ -330,6 +330,37 @@ describe RealEstate do
 
   end
 
+  describe 'default_order scope' do
+    it 'orders by city by default' do
+      ('a'..'c').each do |x|
+        real_estate = Fabricate :residential_building,
+          :address => Fabricate.build(:address, city: x)
+      end
+
+      RealEstate.default_order.first.address.city.should eq 'a'
+      RealEstate.default_order.last.address.city.should eq 'c'
+    end
+
+    it 'orders by street when the cities are the same' do
+      ('a'..'c').each do |x|
+        real_estate = Fabricate :residential_building,
+          :address => Fabricate.build(:address, city: 'Zug', street: x)
+      end
+
+      RealEstate.default_order.first.address.street.should eq 'a'
+      RealEstate.default_order.last.address.street.should eq 'c'
+    end
+
+    it 'orders by street number when the cities and the streets are the same' do
+      (1..3).each do |x|
+        real_estate = Fabricate :residential_building,
+          :address => Fabricate.build(:address, city: 'Zug', street: 'Sennweidstrasse', street_number: x)
+      end
+
+      RealEstate.default_order.first.address.street_number.should eq '1'
+      RealEstate.default_order.last.address.street_number.should eq '3'
+    end
+  end
 
   it 'detects embedded models having a presence validation defined' do
     RealEstate.mandatory_for_publishing.should == ["address", "pricing", "figure", "information"]
