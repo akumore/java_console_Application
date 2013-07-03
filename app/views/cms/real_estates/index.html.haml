@@ -10,7 +10,7 @@
 %table.table.table-bordered.table-striped{ :id=>'real_estate' }
   %tr
     %th= Address.human_attribute_name :city
-    %th= RealEstate.human_attribute_name :titel
+    %th= Address.model_name.human
     %th= RealEstate.human_attribute_name :offer
     %th= RealEstate.human_attribute_name :utilization
     %th Status
@@ -20,7 +20,7 @@
   - @real_estates.each do |real_estate|
     %tr{:id => "real_estate_#{real_estate.id}"}
       %td= real_estate.try(:address).try(:city)
-      %td= real_estate.title
+      %td= real_estate.try(:address).try(:street)
       %td= t ".#{real_estate.offer}"
       %td= t ".#{real_estate.utilization}"
       %td= t ".#{real_estate.state}"
