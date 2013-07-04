@@ -31,8 +31,14 @@ describe "Cms::RealEstates" do
       end
 
       it 'selects the tab according to the filter' do
-        visit cms_reference_projects_path(:filter => RealEstate::STATE_PUBLISHED)
+        visit cms_real_estates_path(:filter => RealEstate::STATE_PUBLISHED)
         page.should have_css("li.active:contains(#{I18n.t('cms.real_estates.index.tabs.published')})")
+      end
+
+      it 'shows the list of real estates for the current filter tab' do
+        3.times{ Fabricate :real_estate, :category => @category, :state => RealEstate::STATE_PUBLISHED }
+        visit cms_real_estates_path(:filter => RealEstate::STATE_PUBLISHED)
+        page.should have_selector('table tr', :count => RealEstate.published.count + 1)
       end
     end
 
