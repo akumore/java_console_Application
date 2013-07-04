@@ -44,6 +44,10 @@ de:
         published: 'Veröffentlicht'
         in_review: 'Zu Verifizieren'
         destroyed: "Die Immobilie \"%{title}\" wurde erfolgreich gelöscht."
+        tabs:
+          all: Alle
+          published: Veröffentlicht
+          in_progress: in Bearbeitung
       update:
         sorted:
           success: 'Die Sortierung wurde erfolgreich gespeichert.'

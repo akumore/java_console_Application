@@ -6,7 +6,15 @@ class Cms::RealEstatesController < Cms::SecuredController
   end
 
   def index
-    @real_estates = RealEstateDecorator.decorate(RealEstate.all).default_order
+    case params[:filter]
+    when RealEstate::STATE_EDITING
+      @real_estates = RealEstate.editing.default_order
+    when RealEstate::STATE_PUBLISHED
+      @real_estates = RealEstate.published.default_order
+    else
+      @real_estates = RealEstate.all.default_order
+    end
+      
     respond_with @real_estates
   end
 

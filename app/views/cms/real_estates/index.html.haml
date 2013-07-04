@@ -1,6 +1,14 @@
 - content_for :title do
   Erfasste Immobilen
 
+%ul.nav-tabs.nav
+  %li{ :class => params[:filter].blank? ? 'active' : nil }
+    = link_to t('.tabs.all'), cms_real_estates_path
+  %li{ :class => params[:filter] == RealEstate::STATE_PUBLISHED ? 'active' : nil }
+    = link_to t('.tabs.published'), cms_real_estates_path(:filter => RealEstate::STATE_PUBLISHED)
+  %li{ :class => params[:filter] == RealEstate::STATE_EDITING ? 'active' : nil }
+    = link_to t('.tabs.in_progress'), cms_real_estates_path(:filter => RealEstate::STATE_EDITING)
+
 .row
   .pull-right.padded
     = link_to(new_cms_real_estate_path, :class => 'btn') do
