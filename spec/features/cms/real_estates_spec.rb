@@ -19,6 +19,23 @@ describe "Cms::RealEstates" do
       visit cms_real_estates_path
     end
 
+    describe 'filter tabs' do
+      it "shows a filter tab for 'Alle', 'Veröffentlicht' and 'in Bearbeitung'" do
+        page.should have_link(I18n.t('cms.real_estates.index.tabs.all'))
+        page.should have_link(I18n.t('cms.real_estates.index.tabs.published'))
+        page.should have_link(I18n.t('cms.real_estates.index.tabs.in_progress'))
+      end
+
+      it "has the 'Alle' tab activated by default" do
+        page.should have_css("li.active:contains(#{I18n.t('cms.real_estates.index.tabs.all')})")
+      end
+
+      it 'selects the tab according to the filter' do
+        visit cms_reference_projects_path(:filter => RealEstate::STATE_PUBLISHED)
+        page.should have_css("li.active:contains(#{I18n.t('cms.real_estates.index.tabs.published')})")
+      end
+    end
+
     it "shows the list of real estates" do
       page.should have_selector('table tr', :count => RealEstate.count+1)
     end
