@@ -1,5 +1,15 @@
 # CHANGELOG
 
+### v2.5.0 on 2013-07-05
+* New implemented stories:
+  * #1583 - Als Editor möchte ich die Jobs per drag-n-drop sortieren können
+  * #1494 - Als Editor möchte ich beim Erfassen einer Immobilie auswählen können, welche Microsite (Gartenstadt, Feldpark, Bünzpark) hinterlegt ist
+  * #1495 - Als Entwickler möchte ich ein spezifisches JSON anhand eines Parameters pro Microsite generieren können
+
+* Additional Fixes
+  * Additional microsite properties building_key (Hausnummer), and property_key (Immobiliennummer).
+  * Migration for Gartenstadt items
+
 ### v2.4.5 on 2013-07-01
 * Implemented hotfixes:
   * Als Besucher möchte ich Viktor Naumann nicht mehr unter dem Tab «Geschäftsleitung» sehen.
