@@ -43,6 +43,16 @@ describe RealEstate do
       @real_estate.errors.should have(7).items
     end
 
+    context 'when microsite is selected' do
+      let :microsite_real_estate do
+        RealEstate.new(:channels => [RealEstate::MICROSITE_CHANNEL])
+      end
+
+      it 'requires a selected microsite option' do
+        microsite_real_estate.should have(2).error_on(:microsite_building_project)
+      end
+    end
+
     context 'when having a parking utilization' do
       before do
         @real_estate.stub(:utilization).and_return(Utilization::PARKING)
@@ -301,7 +311,7 @@ describe RealEstate do
       @website_enabled = Fabricate :real_estate, :channels => [RealEstate::WEBSITE_CHANNEL], :category => category
       @homegate_enabled = Fabricate :real_estate, :channels => [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL, RealEstate::WEBSITE_CHANNEL], :category => category
       @print_enabled = Fabricate :real_estate, :channels => [RealEstate::PRINT_CHANNEL, RealEstate::WEBSITE_CHANNEL], :category => category
-      @microsite_enabled = Fabricate :real_estate, :channels => [RealEstate::MICROSITE_CHANNEL], :category => category
+      @microsite_enabled = Fabricate :real_estate, :channels => [RealEstate::MICROSITE_CHANNEL], :category => category, :microsite_building_project => MicrositeBuildingProject::GARTENSTADT
     end
 
     it "gets real estates for website" do
@@ -565,6 +575,28 @@ describe RealEstate do
           real_estate.stub(:description).and_return('')
           real_estate.any_descriptions?.should be_false
         end
+      end
+    end
+  end
+
+  describe '#is_microsite?' do
+    context 'with microsite channel enabled' do
+      let :real_estate do
+        RealEstate.new(:channels => [RealEstate::MICROSITE_CHANNEL])
+      end
+
+      it 'returns true' do
+        real_estate.is_microsite?.should be_true
+      end
+    end
+
+    context 'with microsite channel disabled' do
+      let :real_estate do
+        RealEstate.new
+      end
+
+      it 'returns false' do
+        real_estate.is_microsite?.should be_false
       end
     end
   end

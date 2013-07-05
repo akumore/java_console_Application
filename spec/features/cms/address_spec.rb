@@ -26,6 +26,11 @@ describe "Cms::Addresses" do
       page.should_not have_css('#address_reference_unit_key')
     end
 
+    it 'doesnt render the microsite reference fields' do
+      page.should_not have_css('#address_microsite_reference_property_key')
+      page.should_not have_css('#address_microsite_reference_building_key')
+    end
+
     context 'a valid Address' do
       before :each do
         within(".new_address") do
@@ -140,6 +145,46 @@ describe "Cms::Addresses" do
 
       it 'requires at least one reference number' do
         page.should have_content 'Referenznummer muss ausgefüllt werden'
+      end
+    end
+  end
+
+  context 'when the real estate is to be on a microsite' do
+    let :real_estate do
+      Fabricate(:real_estate,
+        :category => Fabricate(:category),
+        :address => Fabricate.build(:address),
+        :channels => [RealEstate::MICROSITE_CHANNEL],
+        :microsite_building_project => MicrositeBuildingProject::GARTENSTADT
+      )
+    end
+
+    before do
+      visit edit_cms_real_estate_path(real_estate)
+      click_on 'Adresse'
+    end
+
+    it 'shows the microsite reference fields' do
+      page.should have_css('#address_microsite_reference_property_key', :count => 1)
+      page.should have_css('#address_microsite_reference_building_key', :count => 1)
+    end
+
+    describe '#update with valid microsite reference numbers' do
+      before :each do
+        within(".microsite_reference") do
+          fill_in 'Hausnummer', :with => 'H'
+          fill_in 'Immobiliennummer', :with => '22.34'
+        end
+        click_on 'Adresse speichern'
+        real_estate.reload
+      end
+
+      it 'stores the property_key' do
+        real_estate.address.microsite_reference.property_key.should == '22.34'
+      end
+
+      it 'stores the building_key' do
+        real_estate.address.microsite_reference.building_key.should == 'H'
       end
     end
   end
