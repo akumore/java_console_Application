@@ -5,6 +5,28 @@
   * #1405 - Als Editor möchte ich andere Namen für die vorhandenen Ausgabekanäle sehen
   * #1403 - Als Besucher und Leser möchte ich das "N" beim eingestellten Winkel sehen
 
+### v2.5.0 on 2013-07-05
+* New implemented stories:
+  * #1583 - Als Editor möchte ich die Jobs per drag-n-drop sortieren können
+  * #1494 - Als Editor möchte ich beim Erfassen einer Immobilie auswählen können, welche Microsite (Gartenstadt, Feldpark, Bünzpark) hinterlegt ist
+  * #1495 - Als Entwickler möchte ich ein spezifisches JSON anhand eines Parameters pro Microsite generieren können
+
+* Additional Fixes
+  * Additional microsite properties building_key (Hausnummer), and property_key (Immobiliennummer).
+  * Migration for Gartenstadt items
+
+### v2.4.5 on 2013-07-01
+* Implemented hotfixes:
+  * Als Besucher möchte ich Viktor Naumann nicht mehr unter dem Tab «Geschäftsleitung» sehen.
+
+### v2.4.4 on 2013-06-26
+* Implemented hotfixes:
+  * #1553 - Als Besucher möchte ich das neue Logo sehen
+
+### v2.4.3 on 2013-06-24
+* Implemented hotfixes:
+  * #1520 - Als Immoscout24 möchte ich eine korrekt formatierte Liste erhalten
+
 ### v2.4.2 on 2013-06-13
 * Fix Handout footer, logo only
 * Use forked version of pdfkit

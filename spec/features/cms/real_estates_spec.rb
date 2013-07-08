@@ -130,6 +130,7 @@ describe "Cms::RealEstates" do
 
         it 'enables it for micro-sites' do
           check 'MicroSite'
+          select 'Gartenstadt-Schlieren'
           click_on 'Immobilie erstellen'
           real_estate.channels.should include RealEstate::MICROSITE_CHANNEL
         end
@@ -234,6 +235,17 @@ describe "Cms::RealEstates" do
       it 'shows the building type immediately' do
         select 'Reiheneinfamilienhaus', :from => 'Objekt-Art'
         page.should have_css('.building-type-container:not(.hidden)')
+      end
+    end
+
+    context 'when choosing microsite', :js => true do
+      before do
+        visit edit_cms_real_estate_path(@fabricated_real_estate)
+      end
+
+      it 'shows the microsite select options immediately' do
+        check 'MicroSite'
+        page.should have_css('.microsite-options-container:not(.hidden)')
       end
     end
 

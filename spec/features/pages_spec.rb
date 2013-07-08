@@ -67,7 +67,6 @@ describe "Pages" do
         within "#managing-board" do
           page.should have_content "David Hossli"
           page.should have_content "Michael Müller"
-          page.should have_content "Viktor Naumann"
           page.should have_content "Walter Hochreutener"
           page.should have_content "Joe Schmalz"
           page.should have_content "David Spiess"
@@ -76,7 +75,6 @@ describe "Pages" do
           page.should have_link 'E-Mail', :href => "mailto:michael.mueller@alfred-mueller.ch"
           page.should have_link 'E-Mail', :href => "mailto:david.spiess@alfred-mueller.ch"
           page.should have_link 'E-Mail', :href => "mailto:beat.stocker@alfred-mueller.ch"
-          page.should have_link 'E-Mail', :href => "mailto:viktor.naumann@alfred-mueller.ch"
         end
       end
     end
