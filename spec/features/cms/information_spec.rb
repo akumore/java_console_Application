@@ -9,35 +9,37 @@ describe "Cms Information" do
 
     before :each do
       @template_information = Fabricate.build(:information,
-                                                :available_from=>Date.parse('2012-04-24'),
-                                                :display_estimated_available_from=>'Ab Ende April',
-                                                :has_outlook=>true,
-                                                :has_fireplace=>true,
-                                                :has_elevator=>true,
-                                                :has_isdn=>true,
-                                                :is_wheelchair_accessible=>true,
-                                                :is_child_friendly=>true,
-                                                :has_balcony=>true,
-                                                :has_raised_ground_floor=>true,
-                                                :is_new_building=>true,
-                                                :is_old_building=>true,
-                                                :has_swimming_pool=>true,
-                                                :is_minergie_style=>true,
-                                                :is_minergie_certified=>true,
-                                                :maximal_floor_loading=>10,
-                                                :freight_elevator_carrying_capacity=>20,
-                                                :has_ramp=>true,
-                                                :has_lifting_platform=>true,
-                                                :has_railway_terminal=>true,
-                                                :number_of_restrooms=>10,
-                                                :has_water_supply=>true,
-                                                :has_sewage_supply=>true,
-                                                :is_developed=>true,
-                                                :is_under_building_laws=>true
+                                                :available_from => Date.parse('2012-04-24'),
+                                                :display_estimated_available_from => 'Ab Ende April',
+                                                :has_outlook => true,
+                                                :has_fireplace => true,
+                                                :has_elevator => true,
+                                                :has_isdn => true,
+                                                :is_wheelchair_accessible => true,
+                                                :is_child_friendly => true,
+                                                :has_balcony => true,
+                                                :has_raised_ground_floor => true,
+                                                :is_new_building => true,
+                                                :is_old_building => true,
+                                                :has_swimming_pool => true,
+                                                :is_minergie_style => true,
+                                                :is_minergie_certified => true,
+                                                :maximal_floor_loading => 10,
+                                                :freight_elevator_carrying_capacity => 20,
+                                                :has_ramp => true,
+                                                :has_lifting_platform => true,
+                                                :has_railway_terminal => true,
+                                                :number_of_restrooms => 10,
+                                                :has_water_supply => true,
+                                                :has_sewage_supply => true,
+                                                :is_developed => true,
+                                                :is_under_building_laws => true,
+                                                :has_cable_tv => true,
+                                                :additional_information => 'Zusätzliche Angaben zum Ausbau'
                                               )
     end
 
-    context 'real estate with private utilization' do
+    context 'real estate with living utilization' do
       before :each do
         @real_estate = Fabricate(:real_estate,
           :category => Fabricate(:category),
@@ -53,9 +55,24 @@ describe "Cms Information" do
         select '2012', :from => 'information_available_from_1i'
 
         fill_in 'Etwa verfügbar ab', :with => @template_information.display_estimated_available_from
+        fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
 
-        ['Aussicht', 'Cheminée', 'Lift', 'ISDN-Anschluss', 'Rollstuhltauglich', 'Kinderfreundlich', 'Balkon',
-         'Hochparterre', 'Neubau', 'Altbau', 'Swimmingpool', 'Minergie Bauweise', 'Minergie zertifiziert'].each do |checkbox|
+        [
+          'Aussicht',
+          'Cheminée',
+          'Lift',
+          'ISDN-Anschluss',
+          'Rollstuhltauglich',
+          'Kinderfreundlich',
+          'Balkon',
+          'Hochparterre',
+          'Neubau',
+          'Altbau',
+          'Swimmingpool',
+          'Minergie Bauweise',
+          'Minergie zertifiziert',
+          'Kabelfernsehen'
+        ].each do |checkbox|
           check checkbox
         end
 
@@ -80,6 +97,8 @@ describe "Cms Information" do
         information.is_minergie_certified.should == @template_information.is_minergie_certified
         information.available_from.should == @template_information.available_from
         information.display_estimated_available_from.should == @template_information.display_estimated_available_from
+        information.has_cable_tv.should == @template_information.has_cable_tv
+        information.additional_information.should == @template_information.additional_information
       end
 
       it 'doesnt render the is_developed checkbox' do
@@ -91,7 +110,7 @@ describe "Cms Information" do
       end
     end
 
-    context 'real estate with commercial utilization' do
+    context 'real estate with working utilization' do
       before :each do
         @real_estate = Fabricate(:real_estate,
           :category => Fabricate(:category),
@@ -108,9 +127,20 @@ describe "Cms Information" do
 
         fill_in 'Etwa verfügbar ab', :with => @template_information.display_estimated_available_from
         fill_in "Anzahl WC's", :with => @template_information.number_of_restrooms
+        fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
 
-        ['Neubau', 'Altbau', 'Minergie Bauweise', 'Minergie zertifiziert', 'Anfahrrampe',
-         'Hebebühne', 'Bahnanschluss', 'Wasseranschluss', 'Abwasseranschluss'].each do |checkbox|
+        [
+         'Aussicht',
+         'Neubau',
+         'Minergie Bauweise',
+         'Minergie zertifiziert',
+         'Anfahrrampe',
+         'Hebebühne',
+         'Bahnanschluss',
+         'Wasseranschluss',
+         'Abwasseranschluss',
+         'Kabelfernsehen'
+        ].each do |checkbox|
           check checkbox
         end
 
@@ -119,8 +149,8 @@ describe "Cms Information" do
         @real_estate.reload
         information = @real_estate.information
 
+        information.has_outlook.should == @template_information.has_outlook
         information.is_new_building.should == @template_information.is_new_building
-        information.is_old_building.should == @template_information.is_old_building
         information.is_minergie_style.should == @template_information.is_minergie_style
         information.is_minergie_certified.should == @template_information.is_minergie_certified
         information.has_ramp.should == @template_information.has_ramp
@@ -131,6 +161,8 @@ describe "Cms Information" do
         information.available_from.should == @template_information.available_from
         information.display_estimated_available_from.should == @template_information.display_estimated_available_from
         information.number_of_restrooms.should == @template_information.number_of_restrooms
+        information.has_cable_tv.should == @template_information.has_cable_tv
+        information.additional_information.should == @template_information.additional_information
       end
 
       ["Anzahl WC's", "Max Gewicht Warenlift", "Maximale Bodenbelastung"].each do |target_field|
@@ -153,6 +185,62 @@ describe "Cms Information" do
       end
     end
 
+    context 'real estate with storing utilization' do
+      before :each do
+        @real_estate = Fabricate(:real_estate,
+          :category => Fabricate(:category),
+          :utilization => Utilization::STORING
+          )
+        visit new_cms_real_estate_information_path(@real_estate)
+      end
+
+      it 'creates a new information object' do
+
+        select '24', :from => 'information_available_from_3i'
+        select 'April', :from => 'information_available_from_2i'
+        select '2012', :from => 'information_available_from_1i'
+
+        fill_in 'Etwa verfügbar ab', :with => @template_information.display_estimated_available_from
+        fill_in "Anzahl WC's", :with => @template_information.number_of_restrooms
+        fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
+
+        [
+         'Aussicht',
+         'Neubau',
+         'Minergie Bauweise',
+         'Minergie zertifiziert',
+         'Anfahrrampe',
+         'Hebebühne',
+         'Bahnanschluss',
+         'Wasseranschluss',
+         'Abwasseranschluss',
+         'Kabelfernsehen'
+        ].each do |checkbox|
+          check checkbox
+        end
+
+        click_on 'Immobilieninfos erstellen'
+
+        @real_estate.reload
+        information = @real_estate.information
+
+        information.has_outlook.should == @template_information.has_outlook
+        information.is_new_building.should == @template_information.is_new_building
+        information.is_minergie_style.should == @template_information.is_minergie_style
+        information.is_minergie_certified.should == @template_information.is_minergie_certified
+        information.has_ramp.should == @template_information.has_ramp
+        information.has_lifting_platform.should == @template_information.has_lifting_platform
+        information.has_railway_terminal.should == @template_information.has_railway_terminal
+        information.has_water_supply.should == @template_information.has_water_supply
+        information.has_sewage_supply.should == @template_information.has_sewage_supply
+        information.available_from.should == @template_information.available_from
+        information.display_estimated_available_from.should == @template_information.display_estimated_available_from
+        information.number_of_restrooms.should == @template_information.number_of_restrooms
+        information.has_cable_tv.should == @template_information.has_cable_tv
+        information.additional_information.should == @template_information.additional_information
+      end
+    end
+
     context "a real estate with 'properties' category" do
       before :each do
         @real_estate = Fabricate(:real_estate, :category => Fabricate(:properties_category))
@@ -165,15 +253,34 @@ describe "Cms Information" do
       end
     end
 
-    %w(house apartment).each do |category_name|
-      context "a real estate with a '#{category_name}' category" do
-        before :each do
-          @real_estate = Fabricate(:real_estate, :category => Fabricate("#{category_name}_category".to_sym))
-          visit new_cms_real_estate_information_path(@real_estate)
-        end
+    context "when for sale" do
+      %w(house apartment).each do |category_name|
+        context "a real estate with a '#{category_name}' category" do
+          before :each do
+            @real_estate = Fabricate(:real_estate, :category => Fabricate("#{category_name}_category".to_sym))
+            @real_estate.update_attribute(:offer, Offer::SALE)
+            visit new_cms_real_estate_information_path(@real_estate)
+          end
 
-        it 'renders the is_under_building_laws checkbox' do
-          page.should have_css('#information_is_under_building_laws')
+          it 'renders the is_under_building_laws checkbox' do
+            page.should have_css('#information_is_under_building_laws')
+          end
+        end
+      end
+    end
+
+    context "when for rent" do
+      %w(house apartment).each do |category_name|
+        context "a real estate with a '#{category_name}' category" do
+          before :each do
+            @real_estate = Fabricate(:real_estate, :category => Fabricate("#{category_name}_category".to_sym))
+            @real_estate.update_attribute(:offer, Offer::RENT)
+            visit new_cms_real_estate_information_path(@real_estate)
+          end
+
+          it 'renders the is_under_building_laws checkbox' do
+            page.should_not have_css('#information_is_under_building_laws')
+          end
         end
       end
     end
@@ -215,24 +322,29 @@ describe "Cms Information" do
 
 
   describe '#show' do
-     let :real_estate do
-       Fabricate :real_estate, :category => Fabricate(:category), :information => Fabricate.build(:information)
-     end
+    let :real_estate do
+      Fabricate :real_estate, :category => Fabricate(:category), :information => Fabricate.build(:information)
+    end
 
-     let :real_estate_without_information do
-       Fabricate :real_estate, :category => Fabricate(:category)
-     end
+    let :real_estate_without_information do
+      Fabricate :real_estate, :category => Fabricate(:category)
+    end
 
-     it 'shows the information within the cms' do
-       visit cms_real_estate_information_path real_estate
-       [:available_from, :display_estimated_available_from].each do |attr|
-         page.should have_content real_estate.information.send(attr)
-       end
-     end
+    it 'shows the information within the cms' do
+      visit cms_real_estate_information_path real_estate
+      [:available_from, :display_estimated_available_from].each do |attr|
+        page.should have_content real_estate.information.send(attr)
+      end
+    end
 
-     it 'shows a message if no information exist' do
-       visit cms_real_estate_information_path real_estate_without_information
-       page.should have_content "Für diese Immobilie wurden keine Infos hinterlegt."
-     end
+    it 'shows the additional information text' do
+      visit cms_real_estate_information_path real_estate
+      page.should have_content real_estate.information.additional_information
+    end
+
+    it 'shows a message if no information exist' do
+      visit cms_real_estate_information_path real_estate_without_information
+      page.should have_content "Für diese Immobilie wurden keine Infos hinterlegt."
+    end
   end
 end

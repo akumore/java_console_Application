@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'spec_helper'
 
 describe InformationDecorator do
@@ -56,7 +57,7 @@ describe InformationDecorator do
   end
 
   it 'formats the maximal floor loading in kg' do
-    @information.maximal_floor_loading.should == '140 kg'
+    @information.maximal_floor_loading.should == '140 kg/m²'
   end
 
   it 'formats the freigh elevator carrying capacity in kg' do

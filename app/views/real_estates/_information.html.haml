@@ -48,7 +48,7 @@
         %dt= t('figures.built_on')
         %dd= figure.built_on
 
-    - if information && information.characteristics.any?
+    - if information && information.characteristics.any? && !real_estate.parking?
       %dl
         %dt= t('information.characteristics')
         %dd= information.characteristics.join(', ')
@@ -64,3 +64,9 @@
         %dl
           %dt= t('information.freight_elevator_carrying_capacity')
           %dd= information.freight_elevator_carrying_capacity
+
+    - unless real_estate.parking?
+      - if information && information.additional_information.present?
+        %dl
+          %dt= t('information.additional_information')
+          %dd= information.additional_information

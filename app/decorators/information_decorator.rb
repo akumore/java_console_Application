@@ -24,20 +24,17 @@ class InformationDecorator < ApplicationDecorator
   def characteristics
     buffer  = []
 
-    buffer << t('information.new_building') if model.is_new_building?
-    buffer << t('information.old_building') if model.is_old_building?
     buffer << t('information.minergie_style') if model.is_minergie_style?
     buffer << t('information.minergie_certified') if model.is_minergie_certified?
+    buffer << t('information.cable_tv') if model.has_cable_tv?
 
     if model.living?
-      buffer << t('information.view') if model.has_outlook?
       buffer << t('information.fireplace') if model.has_fireplace?
       buffer << t('information.elevator') if model.has_elevator?
       buffer << t('information.isdn') if model.has_isdn?
       buffer << t('information.wheelchair_accessible') if model.is_wheelchair_accessible?
       buffer << t('information.child_friendly') if model.is_child_friendly?
       buffer << t('information.balcony') if model.has_balcony?
-      buffer << t('information.raised_ground_floor') if model.has_raised_ground_floor?
       buffer << t('information.swimmingpool') if model.has_swimming_pool?
     elsif model.working? || model.storing?
       if model.number_of_restrooms.to_i > 0
@@ -49,6 +46,7 @@ class InformationDecorator < ApplicationDecorator
       buffer << t('information.railway_terminal') if model.has_railway_terminal?
       buffer << t('information.water_supply') if model.has_water_supply?
       buffer << t('information.sewage_supply') if model.has_sewage_supply?
+      buffer << t('information.freight_elevator') if model.has_freight_elevator?
     end
 
     buffer.compact
@@ -135,5 +133,11 @@ class InformationDecorator < ApplicationDecorator
       :content_html => content_html,
       :content      => content
     }
+  end
+
+  def additional_information
+    if model.additional_information.present?
+      markdown(model.additional_information)
+    end
   end
 end

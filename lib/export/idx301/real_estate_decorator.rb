@@ -501,7 +501,7 @@ module Export::Idx301
 
     def prop_cabletv
       #  str(1)  object has cable tv connection, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      # AM: obsolete
+      model.try(:information).try(:has_cable_tv) ? 'Y' : 'N'
     end
 
     def prop_elevator
@@ -1142,12 +1142,16 @@ module Export::Idx301
 
     def old_building
       #  str(1)  object has at least 50 years,  'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      model.try(:information).try(:is_old_building) ? 'Y' : 'N'
+      if model.living?
+        model.try(:information).try(:is_old_building) ? 'Y' : 'N'
+      end
     end
 
     def under_building_laws
       # str(1)  land area is not included in offer_type, has to be rented separately,  'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      model.try(:information).try(:is_under_building_laws) ? 'Y' : 'N'
+      if model.for_sale?
+        model.try(:information).try(:is_under_building_laws) ? 'Y' : 'N'
+      end
     end
 
     def under_roof

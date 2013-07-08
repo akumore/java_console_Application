@@ -16,49 +16,55 @@
       = @information.display_estimated_available_from
       &nbsp;
 
-  .row
-    .span4
-      %dl.dl-horizontal
-        %dt= t "mongoid.attributes.information.is_new_building"
-        %dd= t "#{@information.is_new_building?}"
-
-        %dt= t "mongoid.attributes.information.is_old_building"
-        %dd= t "#{@information.is_old_building?}"
-
-    .span4
-      %dl.dl-horizontal
-        %dt= t "mongoid.attributes.information.is_minergie_style"
-        %dd= t "#{@information.is_minergie_style?}"
-
-        %dt= t "mongoid.attributes.information.is_minergie_certified"
-        %dd= t "#{@information.is_minergie_certified?}"
-
-    .span4
-      - if @real_estate.property?
+  - unless @real_estate.parking?
+    .row
+      .span4
         %dl.dl-horizontal
-          %dt= t "mongoid.attributes.information.is_developed"
-          %dd= t "#{@information.is_developed?}"
+          %dt= t "mongoid.attributes.information.is_new_building"
+          %dd= t "#{@information.is_new_building?}"
 
-      - if @real_estate.apartment? || @real_estate.house?
+          - if @real_estate.living?
+            %dt= t "mongoid.attributes.information.is_old_building"
+            %dd= t "#{@information.is_old_building?}"
+
+      .span4
         %dl.dl-horizontal
-          %dt= t "mongoid.attributes.information.is_under_building_laws"
-          %dd= t "#{@information.is_under_building_laws?}"
+          %dt= t "mongoid.attributes.information.is_minergie_style"
+          %dd= t "#{@information.is_minergie_style?}"
 
-  - if @real_estate.private_utilization?
+          %dt= t "mongoid.attributes.information.is_minergie_certified"
+          %dd= t "#{@information.is_minergie_certified?}"
+
+      .span4
+        - if @real_estate.property?
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.information.is_developed"
+            %dd= t "#{@information.is_developed?}"
+
+        - if (@real_estate.apartment? || @real_estate.house?) && @real_estate.for_sale?
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.information.is_under_building_laws"
+            %dd= t "#{@information.is_under_building_laws?}"
+
+        %dl.dl-horizontal
+          %dt= t "mongoid.attributes.information.has_cable_tv"
+          %dd= t "#{@information.has_cable_tv?}"
+
     .row
       .span4
         %dl.dl-horizontal
           %dt= t "mongoid.attributes.information.has_outlook"
           %dd= t "#{@information.has_outlook?}"
 
-          %dt= t "mongoid.attributes.information.has_fireplace"
-          %dd= t "#{@information.has_fireplace?}"
+          - if @real_estate.living?
+            %dt= t "mongoid.attributes.information.has_fireplace"
+            %dd= t "#{@information.has_fireplace?}"
 
-          %dt= t "mongoid.attributes.information.has_elevator"
-          %dd= t "#{@information.has_elevator?}"
+            %dt= t "mongoid.attributes.information.has_elevator"
+            %dd= t "#{@information.has_elevator?}"
 
-          %dt= t "mongoid.attributes.information.has_isdn"
-          %dd= t "#{@information.has_isdn?}"
+            %dt= t "mongoid.attributes.information.has_isdn"
+            %dd= t "#{@information.has_isdn?}"
 
       .span4
         %dl.dl-horizontal
@@ -79,40 +85,53 @@
           %dt= t "mongoid.attributes.information.has_swimming_pool"
           %dd= t "#{@information.has_swimming_pool?}"
 
-  - if @real_estate.commercial_utilization?
+    - if @real_estate.working? || @real_estate.storing?
+      .row
+        .span4
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.information.maximal_floor_loading"
+            %dd
+              = @information.maximal_floor_loading
+              &nbsp;
+
+            %dt= t "mongoid.attributes.information.freight_elevator"
+            - if @information.has_freight_elevator?
+              %dd= t "true"
+            - else
+              %dd= t "false"
+
+            %dt= t "mongoid.attributes.information.freight_elevator_carrying_capacity"
+            %dd
+              = @information.freight_elevator_carrying_capacity
+              &nbsp;
+
+            %dt= t "mongoid.attributes.information.number_of_restrooms"
+            %dd
+              = @information.number_of_restrooms
+              &nbsp;
+
+        .span4
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.information.has_lifting_platform"
+            %dd= t "#{@information.has_lifting_platform?}"
+
+            %dt= t "mongoid.attributes.information.has_ramp"
+            %dd= t "#{@information.has_ramp?}"
+
+            %dt= t "mongoid.attributes.information.has_railway_terminal"
+            %dd= t "#{@information.has_railway_terminal?}"
+
+        .span4
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.information.has_water_supply"
+            %dd= t "#{@information.has_water_supply?}"
+
+            %dt= t "mongoid.attributes.information.has_sewage_supply"
+            %dd= t "#{@information.has_sewage_supply?}"
+
     .row
-      .span4
-        %dl.dl-horizontal
-          %dt= t "mongoid.attributes.information.maximal_floor_loading"
-          %dd
-            = @information.maximal_floor_loading
-            &nbsp;
-
-          %dt= t "mongoid.attributes.information.freight_elevator_carrying_capacity"
-          %dd
-            = @information.freight_elevator_carrying_capacity
-            &nbsp;
-
-          %dt= t "mongoid.attributes.information.number_of_restrooms"
-          %dd
-            = @information.number_of_restrooms
-            &nbsp;
-
-      .span4
-        %dl.dl-horizontal
-          %dt= t "mongoid.attributes.information.has_lifting_platform"
-          %dd= t "#{@information.has_lifting_platform?}"
-
-          %dt= t "mongoid.attributes.information.has_ramp"
-          %dd= t "#{@information.has_ramp?}"
-
-          %dt= t "mongoid.attributes.information.has_railway_terminal"
-          %dd= t "#{@information.has_railway_terminal?}"
-
-      .span4
-        %dl.dl-horizontal
-          %dt= t "mongoid.attributes.information.has_water_supply"
-          %dd= t "#{@information.has_water_supply?}"
-
-          %dt= t "mongoid.attributes.information.has_sewage_supply"
-          %dd= t "#{@information.has_sewage_supply?}"
+      .span12
+        - if @information.additional_information.present?
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.information.additional_information"
+            %dd= markdown(@information.additional_information)
