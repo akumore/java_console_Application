@@ -73,7 +73,7 @@ describe "Handout aka MiniDoku" do
 
     it 'shows the utilization of the real estate' do
       visit real_estate_handout_path(printable_real_estate)
-      page.should have_content('Miete | Wohnen')
+      page.should have_content('Mieten | Wohnen')
     end
 
     it 'shows the chapter title' do
@@ -584,13 +584,6 @@ describe "Handout aka MiniDoku" do
       visit real_estate_handout_path(real_estate)
 
       page.should_not have_css ".chapter.contact"
-    end
-
-    it "shows the handouts-version of department name" do
-      visit real_estate_handout_path(@real_estate)
-      within ".chapter.contact" do
-        page.should have_content "Beratung und Vermietung"
-      end
     end
 
     it 'shows the employees name' do

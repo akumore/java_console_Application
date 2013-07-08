@@ -2,24 +2,21 @@
   %h2= t '.title'
 
   %dl
-    %dt= t ".department_names.for_rent"
-    %dd
+    %dd.dd-without-margin
       = contact.firstname
       = contact.lastname
       %br
       = contact.job_function
 
   %dl
-    %dt
-    %dd
+    %dd.dd-without-margin
       = t '.street'
       %br
       = t '.zip'
       = t '.city'
 
   %dl
-    %dt
-    %dd
+    %dd.dd-without-margin
       = t '.phone'
       = contact.phone
 
