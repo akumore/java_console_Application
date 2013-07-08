@@ -8,25 +8,16 @@ class MicrositeDecorator < ApplicationDecorator
   include Draper::LazyHelpers
 
   decorates :real_estate
-  allows '_id', :rooms, :floor_label, :house, :surface, :price, :private_utilization?, :figure
-
-  GARTENSTADT_STREET = 'Badenerstrasse'
-  STREET_NUMBER_HOUSE_MAP = {
-    '26' => 'M',
-    '28' => 'L',
-    '30' => 'K',
-    '32' => 'I',
-    '34' => 'H',
-  }
-
-  FLOOR_FLOOR_LABEL_MAP = {
-    -1 => 'UG',
-    0  => 'EG',
-    1  => '1. OG',
-    2  => '2. OG',
-    3  => '3. OG',
-    4  => '4. OG',
-  }
+  allows '_id',
+    :rooms,
+    :floor_label,
+    :house,
+    :property_key,
+    :building_key,
+    :surface,
+    :price,
+    :private_utilization?,
+    :figure
 
   def title
     real_estate.title
@@ -43,19 +34,30 @@ class MicrositeDecorator < ApplicationDecorator
   def floor_label
     figure = real_estate.figure
     if figure.present?
-      return FLOOR_FLOOR_LABEL_MAP[figure.floor]
+      return_floor_label(figure.floor)
     else
       return nil
     end
   end
 
-  def house
-    address = real_estate.address
-    if address.present? and address.street.try(:strip) == GARTENSTADT_STREET then
-      return STREET_NUMBER_HOUSE_MAP[address.street_number]
+  def return_floor_label(floor)
+    if floor == -1
+      'UG'
+    elsif floor == 0
+      'EG'
+    elsif floor < 0
+      "#{floor.abs}. UG"
     else
-      return nil
+      "#{floor}. OG"
     end
+  end
+
+  def property_key
+    real_estate.address.try(:microsite_reference).try(:property_key)
+  end
+
+  def building_key
+    real_estate.address.try(:microsite_reference).try(:building_key)
   end
 
   def surface
@@ -148,7 +150,12 @@ class MicrositeDecorator < ApplicationDecorator
     json['title']       = title()
     json['rooms']       = rooms()
     json['floor_label'] = floor_label()
-    json['house']       = house()
+    # DEPRECATED: house
+    # house falls back to building_key
+    # Used for backward compatibility with Gartenstadt
+    json['house']       = building_key()
+    json['building_key']= building_key()
+    json['property_key']= property_key()
     json['surface']     = surface()
     json['price']       = price()
     json['group']       = group()
@@ -163,11 +170,10 @@ class MicrositeDecorator < ApplicationDecorator
 
   def <=>(other)
     return group_sort_key <=> other.group_sort_key if group_sort_key != other.group_sort_key
-    return house <=> other.house if house != other.house
+    return building_key <=> other.building_key if building_key != other.building_key
     return surface_value <=> other.surface_value if surface_value != other.surface_value
     return figure.floor <=> other.figure.floor if figure.floor != other.figure.floor
     0
   end
 
 end
-

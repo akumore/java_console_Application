@@ -130,6 +130,7 @@ describe "Cms::RealEstates" do
 
         it 'enables it for micro-sites' do
           check 'Micro-Site'
+          select 'Gartenstadt-Schlieren'
           click_on 'Immobilie erstellen'
           real_estate.channels.should include RealEstate::MICROSITE_CHANNEL
         end
@@ -237,11 +238,18 @@ describe "Cms::RealEstates" do
       end
     end
 
-    context 'when selecting working utilization', :js => true do
+    context 'when choosing microsite', :js => true do
       before do
         visit edit_cms_real_estate_path(@fabricated_real_estate)
       end
 
+      it 'shows the microsite select options immediately' do
+        check 'Micro-Site'
+        page.should have_css('.microsite-options-container:not(.hidden)')
+      end
+    end
+
+    context 'when selecting working utilization', :js => true do
       it 'shows the order handout option immediately' do
         select 'Arbeiten', :from => 'Gebäudenutzung'
         page.should have_css('.order-handout-container:not(.hidden)')

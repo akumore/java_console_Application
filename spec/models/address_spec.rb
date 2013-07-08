@@ -34,6 +34,10 @@ describe Address do
       @address.valid?
       @address.errors.should have(5).items
     end
+
+    it 'initialized the microsite reference object' do
+      @address.microsite_reference.should be_a(MicrositeReference)
+    end
   end
 
   describe 'geocoding' do

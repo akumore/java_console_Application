@@ -9,6 +9,7 @@ class Address
 
   embedded_in :real_estate
   embeds_one :reference, :as => :referencable
+  embeds_one :microsite_reference
 
   field :city, :type => String
   field :street, :type => String
@@ -27,7 +28,6 @@ class Address
   validates :lat, :lng, :presence => true, :if => :manual_geocoding?
 
   field :location, :type => Array #Keep in mind coordinates are stored in long, lat order internally!! Use to_coordinates always.
-  #index [[ :location, Mongo::GEO2D ]] TODO Do we need this?
 
   attr_writer :lat
   attr_writer :lng
@@ -35,6 +35,7 @@ class Address
   after_validation :geocode, :if => :should_geocode?
   before_validation :manually_geocode, :if => :manual_geocoding?
   after_initialize :init_reference
+  after_initialize :init_microsite_reference
   attr_protected :location
 
   alias :coordinates :to_coordinates
@@ -70,6 +71,10 @@ class Address
 
   def init_reference
     self.reference ||= Reference.new
+  end
+
+  def init_microsite_reference
+    self.microsite_reference ||= MicrositeReference.new
   end
 
   def any_reference_key

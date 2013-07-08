@@ -42,4 +42,26 @@ describe Job do
       @job.should_not be_valid
     end
   end
+
+  describe 'sort by position' do
+    before :each do
+      @job = Fabricate.build(:job)
+    end
+
+    it 'has set position to 1 when job is created' do
+      @job.save
+      @job.position.should == 1
+    end
+
+    it 'increments position on creating two jobs' do
+      job_one = Fabricate(:job)
+      job_one.save
+      job_two = Fabricate(:job)
+      job_two.save
+
+      job_one.position.should == 1
+      job_two.position.should == 2
+    end
+  end
+
 end

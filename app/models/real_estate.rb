@@ -60,6 +60,7 @@ class RealEstate
   field :building_type, :type => String
   field :utilization_description, :type => String
   field :category_label, :type => String, :localize => true # used for sorting, normalized by category.label
+  field :microsite_building_project, :type => String # Defines the building project e.g. 'Gartenstadt' or 'Feldpark'
 
   validates :category_id, :presence => true
   validates :utilization, :presence => true
@@ -67,6 +68,10 @@ class RealEstate
   validates :title, :presence => true, :unless => :parking?
   validates :description, :presence => true, :unless => :parking?
   validates :office_id, :presence => true
+  validates :microsite_building_project,
+    :presence => true,
+    :inclusion => { :in => MicrositeBuildingProject.all },
+    :if => :is_microsite?
 
   after_initialize :init_channels
   after_validation :set_category_label
@@ -82,9 +87,12 @@ class RealEstate
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
   scope :print_channel, :where => { :channels => PRINT_CHANNEL }
   scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
+  scope :named_microsite, lambda { |name|
+    microsite.where(:microsite_building_project => name)
+  }
 
   # Utilization scopes
-  scope :living, :where => { :utilization =>  Utilization::LIVING }
+  scope :living,  :where => { :utilization => Utilization::LIVING }
   scope :working, :where => { :utilization => Utilization::WORKING }
   scope :storing, :where => { :utilization => Utilization::STORING }
   scope :parking, :where => { :utilization => Utilization::PARKING }
@@ -186,6 +194,10 @@ class RealEstate
 
   def export_to_real_estate_portal?
     channels.include? EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL
+  end
+
+  def is_microsite?
+    channels.include? MICROSITE_CHANNEL
   end
 
   def is_website?
