@@ -51,4 +51,15 @@ class Cms::JobsController < Cms::SecuredController
     flash[:alert] = %(Der Job "#{job.title}" wurde erfolgreich gelöscht.)
     redirect_to cms_jobs_path
   end
+
+  def sort
+    if params[:jobs].present?
+      params[:jobs].each do |id_position_map|
+        id_position_map.each do |id, position|
+          Job.find(id).update_attributes!(:position => position[:position].to_i)
+        end
+      end
+    end
+    render :nothing => true
+  end
 end

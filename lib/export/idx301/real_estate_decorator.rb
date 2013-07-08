@@ -383,7 +383,13 @@ module Export::Idx301
       html.gsub!(/\<\/h2>\n/, '</h2>') if html.match(/\<\/h2>\n/)
       html.gsub!(/\<\/h3>\n/, '</h3>') if html.match(/\<\/h3>\n/)
       html.gsub!(/\<\/h4>\n/, '</h4>') if html.match(/\<\/h4>\n/)
-      html = Sanitize.clean(html, :elements => ['b', 'li', 'br']).strip
+      if @account.provider == Provider::IMMOSCOUT
+        html = Sanitize.clean(html, :elements => ['b', 'ul', 'li', 'br']).strip
+        html.gsub!(/\<ul>\n/, '<ul>') if html.match(/\<ul>\n/)
+        html.gsub!(/\n\<\/ul>/, "\<\/ul>\n") if html.match(/\n\<\/ul>/)
+      else
+        html = Sanitize.clean(html, :elements => ['b', 'li', 'br']).strip
+      end
       html.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>').gsub(/>\s+/, '>').gsub(/\s+</, '<').gsub('</li><br><li>', '</li><li>')
     end
 

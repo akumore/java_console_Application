@@ -57,6 +57,7 @@ group :development, :test do
   gem 'guard-rspectacle'
   #gem 'ruby-debug19'
   gem 'pry'
+  gem 'pry-debugger'
   gem 'mmode'
 end
 
