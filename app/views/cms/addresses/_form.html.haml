@@ -52,6 +52,23 @@
           .controls
             = rf.text_field :unit_key, :class => 'span8'
             %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Reference.human_attribute_name(:unit_key), 'data-content' => t('.help_popover.unit_key') }
+  - if @real_estate.is_microsite?
+    %fieldset.microsite_reference
+      %legend= MicrositeReference.model_name.human
+      .control-group
+        .controls
+          .help-block.bold-black= t('.help_microsite_reference_numbers')
+      = f.fields_for @address.microsite_reference do |rf|
+        .control-group
+          = rf.label :property_key
+          .controls
+            = rf.text_field :property_key, :class => 'span8'
+            %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => MicrositeReference.human_attribute_name(:property_key), 'data-content' => t('.help_popover.microsite_property_key') }
+        .control-group
+          = rf.label :building_key
+          .controls
+            = rf.text_field :building_key, :class => 'span8'
+            %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => MicrositeReference.human_attribute_name(:building_key), 'data-content' => t('.help_popover.microsite_building_key') }
   %fieldset.push-checkboxes-down
     %legend= t "mongoid.attributes.address.location"
     .control-group

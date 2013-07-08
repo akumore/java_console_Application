@@ -4,10 +4,13 @@ module Api
     respond_to :json
 
     def index
-      I18n.locale = :de
-      @real_estates = MicrositeDecorator.decorate RealEstate.microsite.published.all
-      respond_with @real_estates.sort, :callback=>params[:callback]
+      I18n.with_locale :de do
+        microsite = params[:microsite] || MicrositeBuildingProject::GARTENSTADT
+        @real_estates = MicrositeDecorator.decorate(
+          RealEstate.named_microsite(microsite).published
+        )
+        respond_with @real_estates.sort, :callback => params[:callback]
+      end
     end
-
   end
 end
