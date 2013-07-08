@@ -1,0 +1,8 @@
+de:
+  mongoid:
+    models:
+      microsite_reference: 'Microsite Referenznummern'
+    attributes:
+      microsite_reference:
+        property_key: 'Immobiliennummer'
+        building_key: 'Hausnummer'

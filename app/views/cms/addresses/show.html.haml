@@ -42,6 +42,19 @@
     = @address.reference.try(:unit_key)
     &nbsp;
 
+%legend= MicrositeReference.model_name.human
+
+%dl.dl-horizontal
+  %dt= t "mongoid.attributes.microsite_reference.property_key"
+  %dd
+    = @address.microsite_reference.try(:property_key)
+    &nbsp;
+
+  %dt= t "mongoid.attributes.microsite_reference.building_key"
+  %dd
+    = @address.microsite_reference.try(:building_key)
+    &nbsp;
+
 %legend= t "mongoid.attributes.address.location"
 
 %dl.dl-horizontal
