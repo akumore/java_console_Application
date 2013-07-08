@@ -49,6 +49,11 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
           target: $(".gallery .flexslider li[data-is_floorplan=true]:not(.clone)"),
           slider: slider
         )
+        new AlfredMueller.Views.SliderDeeplink(
+          el: $(".icon-handout-order"),
+          target: $(".gallery .flexslider li[data-is_handout_order=true]:not(.clone)"),
+          slider: slider
+        )
       before: (slider) ->
         # close overlapping sliders on slide change
         _.each mapSliders, (mapSlider) ->

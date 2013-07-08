@@ -65,8 +65,12 @@
 
   .sidebar
     %ul
-      - if @real_estate.mini_doku_link
+      - if @real_estate.handout_order_link
+        %li= @real_estate.handout_order_link
+
+      - elsif @real_estate.mini_doku_link
         %li= @real_estate.mini_doku_link
+
       - if @real_estate.application_form_link
         %li= @real_estate.application_form_link
       - if @real_estate.floorplan_link

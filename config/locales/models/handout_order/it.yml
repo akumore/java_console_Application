@@ -1,0 +1,14 @@
+it:
+  mongoid:
+    models:
+      handout_order: 'Termin'
+    attributes:
+      handout_order:
+        company: 'Azienda'
+        firstname: 'Cognome'
+        lastname: 'Nome'
+        email:  'Indirizzo e-mail'
+        phone: 'Telefon'
+        street: 'Via'
+        zipcode: 'Codice postale'
+        city: 'Città'

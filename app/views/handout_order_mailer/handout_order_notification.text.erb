@@ -1,0 +1,14 @@
+Eine Bestellung der Objektdokumentation ist am <%= l(@handout_order.created_at, :locale => :de) -%> für das Objekt "<%= @real_estate.title -%>" über die Website eingegangen.
+
+Link zum Objekt:
+<%= real_estate_url(@real_estate, :locale => :de) %>
+
+Kontaktdaten:
+
+Firma: <%= @handout_order.company %>
+Vorname: <%= @handout_order.firstname %>
+Nachname: <%= @handout_order.lastname %>
+E-Mail: <%= @handout_order.email %>
+Telefon: <%= number_to_phone @handout_order.phone %>
+Strasse: <%= @handout_order.street %>
+Ort: <%= @handout_order.zipcode %> <%= @handout_order.city %>

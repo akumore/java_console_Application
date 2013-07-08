@@ -31,4 +31,8 @@
               %source{ :src => video.file.url }
         - if real_estate.contact.present?
           %li
-            = render :template=>'appointments/new'
+            = render :template => 'appointments/new'
+
+          - if @real_estate.order_handout?
+            %li{ 'data-is_handout_order' => 'true' }
+              = render :template => 'handout_orders/new'
