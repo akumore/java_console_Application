@@ -6,7 +6,7 @@ class Infrastructure
   embedded_in :real_estate
   embeds_many :points_of_interest, :class_name => 'PointOfInterest'
 
-  accepts_nested_attributes_for :points_of_interest, :reject_if => proc { |attributes| attributes['distance'].blank? }
+  accepts_nested_attributes_for :points_of_interest
 
   field :inside_parking_spots, :type => Integer # Parkplatz in Autoeinstellhalle
   field :outside_parking_spots, :type => Integer # Parkplatz im Freien
