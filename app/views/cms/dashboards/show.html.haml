@@ -2,7 +2,8 @@
   %h2= t('.in_review')
   %table.in_review_state.table.table-bordered.table-striped
     %tr
-      %th{ :width => '70%' }= RealEstate.human_attribute_name :title
+      %th{ :width => '15%' }= Address.human_attribute_name :city
+      %th{ :width => '55%' }= Address.model_name.human
       %th= t('.last_edited')
       %th
     = render :partial => 'real_estate', :collection => @to_be_reviewed_real_estates
@@ -11,7 +12,8 @@
   %h2= t('.editing')
   %table.editing_state.table.table-bordered.table-striped
     %tr
-      %th{ :width => '70%' }= RealEstate.human_attribute_name :title
+      %th{ :width => '15%' }= Address.human_attribute_name :city
+      %th{ :width => '55%' }= Address.model_name.human
       %th= t('.last_edited')
       %th
     = render :partial => 'real_estate', :collection => @last_edited_real_estates
@@ -20,7 +22,8 @@
   %h2= t('.published')
   %table.published_state.table.table-bordered.table-striped
     %tr
-      %th{ :width => '70%' }= RealEstate.human_attribute_name :title
+      %th{ :width => '15%' }= Address.human_attribute_name :city
+      %th{ :width => '55%' }= Address.model_name.human
       %th= t('.last_edited')
       %th
     = render :partial => 'real_estate', :collection => @last_published_real_estates
