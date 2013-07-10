@@ -61,8 +61,8 @@ describe "Cms::Infrastructures" do
           @infrastructure.double_garage.should == 7
         end
 
-        it 'has addded two points of interest' do
-          @infrastructure.points_of_interest.length.should == 2
+        it 'has added all points of interest' do
+          @infrastructure.points_of_interest.length.should == 6
         end
       end
     end
