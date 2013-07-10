@@ -226,12 +226,12 @@ describe "RealEstates" do
             page.should have_content('20 Geschosse')
           end
 
-          it 'shows renovated on' do
+          it 'shows renovated on year' do
             page.should have_content('Letze Renovierung')
             page.should have_content('1991')
           end
 
-          it 'shos the built on' do
+          it 'shows the built on year' do
             page.should have_content('Baujahr')
             page.should have_content('2008')
           end
@@ -267,12 +267,12 @@ describe "RealEstates" do
             page.should have_content('20 Geschosse')
           end
 
-          it 'shows renovated on' do
+          it 'shows renovated on year' do
             page.should have_content('Letze Renovierung')
             page.should have_content('1991')
           end
 
-          it 'shos the built on' do
+          it 'shows the built on year' do
             page.should have_content('Baujahr')
             page.should have_content('2008')
           end
@@ -318,12 +318,12 @@ describe "RealEstates" do
             page.should have_content('20 Geschosse')
           end
 
-          it 'shows renovated on' do
+          it 'shows renovated on year' do
             page.should have_content('Letze Renovierung')
             page.should have_content('1991')
           end
 
-          it 'shos the built on' do
+          it 'shows the built on year' do
             page.should have_content('Baujahr')
             page.should have_content('2008')
           end
