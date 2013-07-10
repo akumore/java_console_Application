@@ -1,5 +1,13 @@
 # CHANGELOG
 
+### v2.5.1 on 2013-07-10
+* New implemented stories:
+  * #1683 - Als Editor möchte ich «Distanzen in Meter» löschen können
+  * #1732 - Als Besucher und Leser möchte ich die richtigen Infos im «Immobilieninfos» Akkordeon sehen
+
+* Additional Fixes
+  * RMagick gem update
+
 ### v2.5.0 on 2013-07-05
 * New implemented stories:
   * #1583 - Als Editor möchte ich die Jobs per drag-n-drop sortieren können
