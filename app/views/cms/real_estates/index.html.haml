@@ -22,7 +22,7 @@
       %th= Address.human_attribute_name :city
       %th= Address.model_name.human
       %th{ width: '10%' }= Figure.human_attribute_name :floor
-      %th= RealEstate.human_attribute_name :utilization
+      %th= t'figures.surface.commercial'
       %th Status
       %th
       %th
@@ -35,7 +35,7 @@
           = real_estate.address.try(:street)
           = real_estate.address.try(:street_number)
         %td= real_estate.figure.try(:shortened_floor)
-        %td= t ".#{real_estate.utilization}"
+        %td= real_estate.figure.try(:surface)
         %td= t ".#{real_estate.state}"
         %td
           - if can?(:edit, real_estate)
