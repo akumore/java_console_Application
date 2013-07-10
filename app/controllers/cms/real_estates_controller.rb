@@ -8,11 +8,11 @@ class Cms::RealEstatesController < Cms::SecuredController
   def index
     case params[:filter]
     when RealEstate::STATE_EDITING
-      @real_estates = RealEstate.editing.default_order
+      @real_estates = RealEstateDecorator.decorate(RealEstate.editing.default_order)
     when RealEstate::STATE_PUBLISHED
-      @real_estates = RealEstate.published.default_order
+      @real_estates = RealEstateDecorator.decorate(RealEstate.published.default_order)
     else
-      @real_estates = RealEstate.all.default_order
+      @real_estates = RealEstateDecorator.decorate(RealEstate.all.default_order)
     end
       
     respond_with @real_estates

@@ -21,7 +21,7 @@
       %th{ width: '10%' }= Address.human_attribute_name :canton
       %th= Address.human_attribute_name :city
       %th= Address.model_name.human
-      %th= RealEstate.human_attribute_name :offer
+      %th{ width: '10%' }= Figure.human_attribute_name :floor
       %th= RealEstate.human_attribute_name :utilization
       %th Status
       %th
@@ -34,7 +34,7 @@
         %td
           = real_estate.address.try(:street)
           = real_estate.address.try(:street_number)
-        %td= t ".#{real_estate.offer}"
+        %td= real_estate.figure.try(:shortened_floor)
         %td= t ".#{real_estate.utilization}"
         %td= t ".#{real_estate.state}"
         %td
