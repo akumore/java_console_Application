@@ -15,12 +15,14 @@ describe "Cms::RealEstates" do
       @category = Fabricate :category, :name=>'single_house', :label=>'Einfamilienhaus'
       @reference = Reference.new
       @address = Fabricate.build(:address)
+      @figure = Fabricate.build(:figure, :floor => 3)
+      @contact = Fabricate(:employee)
       @real_estate = Fabricate :real_estate, 
                                :category => @category, 
                                :reference => @reference, 
                                :address => @address,
-                               :figure => Fabricate.build(:figure, :floor => 3),
-                               :contact => Fabricate(:contact)
+                               :figure => @figure,
+                               :contact => @contact
       visit cms_real_estates_path
     end
 
@@ -55,14 +57,12 @@ describe "Cms::RealEstates" do
       within("#real_estate_#{@real_estate.id}") do
         real_estate = RealEstateDecorator.decorate(@real_estate)
 
-        # binding.pry
-
         page.should have_content real_estate.address.city
         page.should have_content real_estate.address.street
         page.should have_content real_estate.address.street_number
         page.should have_content real_estate.figure.shortened_floor
         page.should have_content real_estate.figure.surface
-        # page.should have_content 'Muster, Hans'
+        page.should have_content real_estate.contact.fullname_reversed
         page.should have_content I18n.t("cms.real_estates.index.#{real_estate.state}")
       end
     end
