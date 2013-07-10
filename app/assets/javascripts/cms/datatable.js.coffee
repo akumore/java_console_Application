@@ -2,7 +2,7 @@ $ ->
   $(".datatable").dataTable
     "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
     "sPaginationType": "bootstrap"
-    aaSorting: [[0, "asc"], [1, "asc"], [2, "asc"], [3, "asc"], [4, "asc"] ]
+    aaSorting: [[0, "asc"], [1, "asc"], [2, "asc"] ]
     aoColumnDefs: [       
       {"aTargets": [ -2, -1 ], "bSortable": false }     
     ]    
