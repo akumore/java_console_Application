@@ -19,7 +19,8 @@ describe "Cms::RealEstates" do
                                :category => @category, 
                                :reference => @reference, 
                                :address => @address,
-                               :figure => Fabricate.build(:figure, :floor => 3)
+                               :figure => Fabricate.build(:figure, :floor => 3),
+                               :contact => Fabricate(:contact)
       visit cms_real_estates_path
     end
 
@@ -53,11 +54,15 @@ describe "Cms::RealEstates" do
     it "shows the expected real estate attributes" do
       within("#real_estate_#{@real_estate.id}") do
         real_estate = RealEstateDecorator.decorate(@real_estate)
+
+        # binding.pry
+
         page.should have_content real_estate.address.city
         page.should have_content real_estate.address.street
         page.should have_content real_estate.address.street_number
         page.should have_content real_estate.figure.shortened_floor
         page.should have_content real_estate.figure.surface
+        # page.should have_content 'Muster, Hans'
         page.should have_content I18n.t("cms.real_estates.index.#{real_estate.state}")
       end
     end
