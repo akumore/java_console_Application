@@ -1,5 +1,13 @@
 # CHANGELOG
 
+### v2.5.2 on 2013-07-11
+* New implemented stories:
+  * #1301 - Als Besucher möchte ich emotionale Bilder auf der Unternehmensseite für die restlichen Kategorien sehen
+
+* Additional Fixes
+  * Board Of Director Images Update (Adrian Bult, Ida Hardegger & Ulrich
+    Moser)
+
 ### v2.5.1 on 2013-07-10
 * New implemented stories:
   * #1683 - Als Editor möchte ich «Distanzen in Meter» löschen können
