@@ -48,6 +48,23 @@ describe FigureDecorator do
     end
   end
 
+  describe '#shortened_floor' do
+    it 'formats below ground in short form' do
+      @figure.model.update_attribute :floor, -2
+      expect(@figure.shortened_floor).to eq '2. UG'
+    end
+
+    it 'formats on ground in short form' do
+      @figure.model.update_attribute :floor, 0
+      expect(@figure.shortened_floor).to eq 'EG'
+    end
+
+    it 'formats above ground in short form' do
+      @figure.model.update_attribute :floor, 3
+      expect(@figure.shortened_floor).to eq '3. OG'
+    end
+  end
+
   describe '#rooms' do
     it 'formats the number of rooms' do
       @figure.rooms.should == '3.5 Zimmer'

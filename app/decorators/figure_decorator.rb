@@ -49,6 +49,18 @@ class FigureDecorator < ApplicationDecorator
     end
   end
 
+  def shortened_floor
+    if model.floor.present?
+      if model.floor < 0
+        "#{model.floor.abs}. UG"
+      elsif model.floor > 0
+        "#{model.floor}. OG"
+      elsif model.floor == 0
+        'EG'
+      end
+    end
+  end
+
   def rooms
     if model.rooms_estimate.present?
       model.rooms_estimate
