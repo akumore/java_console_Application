@@ -10,5 +10,4 @@ class window.AlfredMueller.Views.GoogleAnalyticsTracker extends Backbone.View
     @label = @el.attr('data-ga-label')
 
   handleClick: ->
-    alert 'check'
     ga "send", "event", @category, @action, @label
