@@ -15,7 +15,7 @@
             - @real_estates.each do |real_estate|
               %tr{ :id => "real-estate-#{real_estate.id}" }
                 %td
-                  = link_to image_tag('transparent.png', :class => :lazy, :size => '145x92', 'data-original' => real_estate.thumbnail), real_estate_path(real_estate, @search_filter.to_params)
+                  = link_to image_tag('transparent.png', :class => :lazy, :size => '145x92', 'data-original' => real_estate.thumbnail), real_estate_path(real_estate, @search_filter.to_params), class: 'ga-tracking-link', data: { :'ga-category' => "#{t("real_estates.search_filter.#{real_estate.offer}")} #{t("real_estates.search_filter.#{real_estate.utilization}")}", :'ga-action' => 'Ansicht Immobilie', :'ga-label' => "#{real_estate.address.simple}" }
                 %td
                   .title
                     = real_estate.title
