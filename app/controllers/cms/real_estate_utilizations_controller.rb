@@ -1,6 +1,6 @@
 class Cms::RealEstateUtilizationsController < ApplicationController
   def index
-    @categories = Category.where(utilization: params[:utilization])
+    @categories = Category.unscoped.where(utilization: params[:utilization]).sorted_by_utilization
 
     respond_to do |format|
       format.js

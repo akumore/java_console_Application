@@ -7,6 +7,7 @@ class Category
   has_many :categories, :foreign_key => :parent_id
 
   scope :top_level, where(:parent_id => nil)
+  scope :sorted_by_utilization, order_by(utilization_sort_order: :asc)
 
   default_scope order_by([{:sort_order => :asc}, {:label => :asc}])
 
