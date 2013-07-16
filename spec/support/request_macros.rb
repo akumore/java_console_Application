@@ -36,13 +36,17 @@ module RequestMacros
     Fabricate(:category,
               :name => 'child_category_1',
               :label => 'Child Category 1',
-              :parent => parent_category
+              :parent => parent_category,
+              :utilization => Utilization::LIVING,
+              :utilization_sort_order => 2
     )
 
     Fabricate(:category,
               :name => 'child_category_2',
               :label => 'Child Category 2',
-              :parent => parent_category
+              :parent => parent_category,
+              :utilization => Utilization::LIVING,
+              :utilization_sort_order => 1
     )
     end
   end
