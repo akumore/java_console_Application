@@ -41,3 +41,7 @@ $(document).ready ->
       target: $(elem.data('dependent_on'))
       targetValue: elem.data('dependent_on_value')
     )
+
+  # initialize real estate utilizations listener
+  if $('#real_estate_utilization').length
+    new AlfredMueller.Cms.Views.RealEstateUtilization $('#real_estate_utilization')
