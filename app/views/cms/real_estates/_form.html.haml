@@ -25,8 +25,8 @@
     .control-group.mandatory
       = f.label :category_id
       .controls
-        = f.select :category_id, Category.where(utilization: @real_estate.utilization).map { |c|[c.label, c.id] }, :class => 'span8'
-    .building-type-container.hidden{ 'data-dependent_on' => '#real_estate_category_id', 'data-dependent_on_value' => Category.where(:name => 'row_house').first.try(:id) }
+        = f.select :category_id, options_for_select(Category.unscoped.where(utilization: @real_estate.utilization).sorted_by_utilization.map { |c|[c.label, c.id, { 'data-category_name' => c.name }] }, selected_key = f.object.category_id), :class => 'span8'
+    .building-type-container{ class: @real_estate.category.try(:name) == 'row_house' ? '' : 'hidden'}
       .control-group
         = f.label :building_type
         .controls

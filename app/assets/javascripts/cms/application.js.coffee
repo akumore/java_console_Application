@@ -44,4 +44,8 @@ $(document).ready ->
 
   # initialize real estate utilizations listener
   if $('#real_estate_utilization').length
-    new AlfredMueller.Cms.Views.RealEstateUtilization $('#real_estate_utilization')
+    new AlfredMueller.Cms.Views.RealEstateUtilizationSelect $('#real_estate_utilization')
+
+  # initialize real estate categories listener
+  if $('#real_estate_category_id').length
+    new AlfredMueller.Cms.Views.RealEstateCategorySelect $('#real_estate_category_id')
