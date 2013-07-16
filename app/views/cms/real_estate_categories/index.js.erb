@@ -1,0 +1,7 @@
+$('#real_estate_category_id').replaceWith("<%= escape_javascript(render :partial => 'index') %>");
+<% unless @category.try(:name) == 'row_house' %>
+$('.building-type-container').addClass('hidden');
+<% end %>
+new AlfredMueller.Cms.Views.RealEstateCategorySelect($('#real_estate_category_id'));
+
+

@@ -20,7 +20,7 @@ AlfredMueller::Application.routes.draw do
       resources :real_estates, :only => :show
     end
 
-    resources :real_estate_utilizations, only: :index
+    resources :real_estate_categories, only: :index
 
     resources :real_estates do
       get :copy, :on => :member
