@@ -26,4 +26,4 @@
         = f.text_field :city, :placeholder => Appointment.human_attribute_name(:city), :class => 'medium-short'
     .form-actions
       .controls
-        = f.submit t(".submit"), class: 'ga-tracking-link', data: { 'ga-category' => "#{t("real_estates.search_filter.#{@real_estate.offer}")} #{t("real_estates.search_filter.#{@real_estate.utilization}")}", 'ga-action' => "Kontakt Formular", 'ga-label' => @real_estate.address.try(:simple) }
+        = f.submit t(".submit")
