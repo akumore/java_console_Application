@@ -16,7 +16,7 @@ class EmployeeDecorator < ApplicationDecorator
     buffer << h.content_tag(:p, p_buffer.join(tag('br')).html_safe)
     buffer << h.content_tag(:p, link_to(
                                         t('employees.contact.email'),
-                                        "mailto:#{model.email}"),
+                                        "mailto:#{model.email}",
                                         class: 'ga-tracking-link',
                                         data: {
                                                 'ga-category' => "#{t("real_estates.search_filter.#{real_estate.offer}")} #{t("real_estates.search_filter.#{real_estate.utilization}")}",
@@ -24,6 +24,7 @@ class EmployeeDecorator < ApplicationDecorator
                                                 'ga-label' => real_estate.address.try(:simple)
                                               }
                                        )
+                           )
     buffer.join.html_safe
   end
 
