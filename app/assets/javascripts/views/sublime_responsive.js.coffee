@@ -1,4 +1,4 @@
-class window.AlfredMueller.Views.SublimeResponsive extends Backbone.View
+class window.AlfredMueller.Views.SublimeVideo extends Backbone.View
 
   @addVideo: (sublime_responsive) ->
     @videos ||= []
@@ -22,7 +22,7 @@ class window.AlfredMueller.Views.SublimeResponsive extends Backbone.View
     $(window).resize @handleWindowResize
     @parent.bind 'activate', @handleWindowResize
 
-    AlfredMueller.Views.SublimeResponsive.addVideo(@)
+    AlfredMueller.Views.SublimeVideo.addVideo(@)
 
   getVideo: ->
     @el.get(0)
