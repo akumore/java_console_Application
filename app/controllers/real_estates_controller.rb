@@ -23,6 +23,8 @@ class RealEstatesController < ApplicationController
     @pagination = RealEstatePagination.new(@real_estate, real_estates)
     @appointment = @real_estate.appointments.build
     @filtered_offer_utilization_real_estates = get_filtered_offer_utilization_real_estates(@search_filter)
+
+    log_event("#{t("real_estates.search_filter.#{@real_estate.offer}")} #{t("real_estates.search_filter.#{@real_estate.utilization}")}", 'Ansicht Immobilie', @real_estate.address.simple)
   end
 
   private
