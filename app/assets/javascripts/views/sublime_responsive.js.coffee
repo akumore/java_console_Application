@@ -6,10 +6,16 @@ class window.AlfredMueller.Views.SublimeVideo extends Backbone.View
 
   @ready: ->
     # when the resources are ready, load up video and resize correctly
-    sublimevideo.ready =>
+    sublime.ready =>
       for video in @videos
         sublimevideo.prepare(video.getVideo())
         video.handleWindowResize()
+
+        # Google Analytics Integration
+        id = $(video.getVideo()).attr('id')
+        sublime.player(id).on
+          start: trackVideoStart
+          end: trackVideoEnd
 
   initialize: ->
     # Prevents some flickering
@@ -32,3 +38,13 @@ class window.AlfredMueller.Views.SublimeVideo extends Backbone.View
     newHeight = newWidth / @aspectRatio
     if sublimevideo.resize
       sublimevideo.resize(@getVideo(), newWidth, newHeight)
+
+  # Google Analytics Integration
+  trackVideoStart = (player) ->
+    ga "send", "event", 'Video', 'Gestartet', videoName(player)
+
+  trackVideoEnd = (player) ->
+    ga "send", "event", 'Video', 'Beendet', videoName(player)
+
+  videoName = (player) ->
+    player.videoElement().getAttribute "title"
