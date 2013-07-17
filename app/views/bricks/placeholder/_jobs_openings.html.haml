@@ -1,7 +1,7 @@
 .jobs
   .accordion.accordion-square
     - Job.published.where(:locale => I18n.locale).each do |job|
-      .accordion-item{ :id => "job_#{job.id}", data: { 'ga-category' => "Mitarbeiter", 'ga-action' => "Ansicht Jobs", 'ga-label' => job.title } }
+      .accordion-item.accordion-ga-tracking-link{ :id => "job_#{job.id}", data: { 'ga-category' => "Mitarbeiter", 'ga-action' => "Ansicht Jobs", 'ga-label' => job.title } }
         .title= job.title
         .content
           = markdown(job.text)

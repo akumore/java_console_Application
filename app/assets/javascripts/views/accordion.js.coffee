@@ -51,6 +51,8 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
       @closeItem(elem)
     else
       @openItem(elem)
+      if elem.hasClass('accordion-ga-tracking-link')
+        new AlfredMueller.Views.GoogleAnalyticsTracker(el: elem)
 
   initSlider: (elem)->
     $(".flexslider", elem).flexslider(
