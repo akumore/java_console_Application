@@ -107,5 +107,5 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     $(".sort-order-dropdown").each ->
       new AlfredMueller.Views.SortOrderDropdown(el: $(this))
 
-    $(".ga-tracking-link").each ->
+    $(".ga-tracking-link").click ->
       new AlfredMueller.Views.GoogleAnalyticsTracker(el: $(this))
