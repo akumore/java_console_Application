@@ -68,7 +68,6 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
     @toggleItem(item)
 
   getTrackingInfo: (elem) ->
-    console.log 'im in'
     trackingInfo = elem.find('.ga-tracking-info')
     elem.attr('data-ga-category', trackingInfo.attr('data-ga-category'))
     elem.attr('data-ga-action', trackingInfo.attr('data-ga-action'))
