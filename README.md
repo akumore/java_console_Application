@@ -24,8 +24,6 @@ on the staging server in `/home/usr/amstaging/.ssh/authorized_keys`
 5. `git push <staging|production> <git ref>` push the code
 6. `mmode disable <amstaging|alfred_mueller>`: disable the maintenance mode on the server
 
-
-
 # Environments
 
 ## Development
@@ -55,7 +53,6 @@ The app runs on the screenconcept2 server:
     * no-epoll: true
     * threaded: true
 
-
 # Environment setups
 
 In order for RVM to work with the whenever gem, we have to write a `.rvmrc` with the contents of `rvm_trust_rvmrcs_flag=1` in our user home.
@@ -82,3 +79,42 @@ run with nohup and in/output redirection.
 
 The ssh connection can be terminated afterwards and the command output
 is stored in the corresponding files.
+
+# Google Analytics
+
+There's a Google Analytics integration for event tracking. I was forced
+to work with two different ways:
+
+* JS/jQuery
+* Controller/Session (thx to @k-graefenhain)
+
+## JS/jQuery
+
+This integration is really simple. There's a JS listener for the `.ga-tracking-link` class in
+`app/assets/javascripts/routes/application.js.coffee`. So every time
+the class is clicked an event triggers and sends the information -
+delivered by data attributes - to google.
+
+I had to do some little tweaks for the accordions and CMS content right
+in the `accordion.js.coffee` JS view. For example I had to use an
+additional element (`.ga-tracking-info`) just to submit the tracking
+info right to the accordion element (I wasn't able to revise the
+accordion brick from the cms so I had to collect the info via this
+additional element).
+
+Additionally, all the movies on the page are going to be tracked too. I
+tweaked the `sublime_video.js.coffee` JS view with some lines.
+
+## Controller/Session
+
+This is the much more comfortable and lovely way (in my opinion). All
+you've got is a `log_event` method in the `ApplicationController`. Just
+have a look at it. The implementation is really really simple.
+
+The `_ga_events.html.haml` partial is rendered right after the Google
+Analytics Code. So sometimes after a successful AJAX requests I had to
+render the partial one more time in the confirmation view for sending
+the event right to Google.
+
+Don't be mad at me for this implementation. I'm not really satisfied
+with this solution but I did my best.
