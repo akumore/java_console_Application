@@ -341,6 +341,192 @@ describe "RealEstates" do
         end
       end
 
+      describe "Chapter Information" do
+        let :figure do
+          Fabricate.build(:figure,
+                          :floor => 3,
+                          :floor_estimate => '',
+                          :rooms => '3.5',
+                          :living_surface => 120,
+                          :living_surface_estimate => '',
+                          :specification_living_surface => 'Test one two three',
+                          :property_surface => 100,
+                          :storage_surface => 10,
+                          :floors => 20,
+                          :renovated_on => '1991',
+                          :built_on => '2008',
+                          :ceiling_height => 5
+                         )
+        end
+
+        let :information do
+          Fabricate.build(:information,
+                          :display_estimated_available_from => 'Mitte Mai',
+                          :is_new_building => true,
+                          :is_old_building => true,
+                          :is_minergie_style => true,
+                          :is_minergie_certified => true,
+                          :has_outlook => true,
+                          :has_fireplace => true,
+                          :has_isdn => true,
+                          :has_elevator => true,
+                          :is_wheelchair_accessible => true,
+                          :is_child_friendly => true,
+                          :has_balcony => true,
+                          :has_raised_ground_floor => true,
+                          :has_swimming_pool => true,
+                          :has_ramp => true,
+                          :maximal_floor_loading => 1234,
+                          :freight_elevator_carrying_capacity => 4321,
+                          :has_lifting_platform => true,
+                          :has_railway_terminal => true,
+                          :has_water_supply => true,
+                          :has_sewage_supply => true,
+                          :number_of_restrooms => 3
+                         )
+        end
+
+        before do
+          real_estate.figure = figure
+          real_estate.information = information
+          real_estate.save
+          visit real_estate_path(real_estate)
+        end
+
+        it 'shows the chapter title' do
+          page.should have_content('Immobilieninfos')
+        end
+
+        context 'real estate for living utilization' do
+          it 'shows the floors' do
+            page.should have_content('Geschosse')
+            page.should have_content('20 Geschosse')
+          end
+
+          it 'shows renovated on year' do
+            page.should have_content('Letze Renovierung')
+            page.should have_content('1991')
+          end
+
+          it 'shows the built on year' do
+            page.should have_content('Baujahr')
+            page.should have_content('2008')
+          end
+
+          it 'shows the characteristics' do
+            page.should have_content('Merkmale')
+          end
+
+          it 'shows the floor' do
+            page.should have_content('Geschoss')
+            page.should have_content('3. Obergeschoss')
+          end
+
+          it 'shows the rooms' do
+            page.should have_content('Zimmeranzahl')
+            page.should have_content('3.5 Zimmer')
+          end
+
+          it 'shows the surface' do
+            page.should have_content('Wohnfläche')
+            page.should have_content('120 m²')
+          end
+        end
+
+        context 'real estate for working utilization' do
+          before do
+            real_estate.update_attribute(:utilization, Utilization::WORKING)
+            visit real_estate_path(real_estate)
+          end
+
+          it 'shows the floors' do
+            page.should have_content('Geschosse')
+            page.should have_content('20 Geschosse')
+          end
+
+          it 'shows renovated on year' do
+            page.should have_content('Letze Renovierung')
+            page.should have_content('1991')
+          end
+
+          it 'shows the built on year' do
+            page.should have_content('Baujahr')
+            page.should have_content('2008')
+          end
+
+          it 'shows the characteristics' do
+            page.should have_content('Merkmale')
+          end
+
+          it 'shows the property surface' do
+            page.should have_content('Grundstückfläche')
+            page.should have_content('100 m²')
+          end
+
+          it 'shows the storage surface' do
+            page.should have_content('Lagerfläche')
+            page.should have_content('10 m²')
+          end
+
+          it 'shows the cieling height' do
+            page.should have_content('Raumhöhe')
+            page.should have_content('5 m')
+          end
+
+          it 'shows the maximal floor loading' do
+            page.should have_content('Maximale Bodenbelastung')
+            page.should have_content('1234 kg')
+          end
+
+          it 'shows the freight elevator carrying capacity' do
+            page.should have_content('Maximales Gewicht für Warenlift')
+            page.should have_content('4321 kg')
+          end
+        end
+
+        context 'real estate for storing utilization' do
+          before do
+            real_estate.update_attribute(:utilization, Utilization::STORING)
+            visit real_estate_path(real_estate)
+          end
+
+          it 'shows the floors' do
+            page.should have_content('Geschosse')
+            page.should have_content('20 Geschosse')
+          end
+
+          it 'shows renovated on year' do
+            page.should have_content('Letze Renovierung')
+            page.should have_content('1991')
+          end
+
+          it 'shows the built on year' do
+            page.should have_content('Baujahr')
+            page.should have_content('2008')
+          end
+
+          it 'shows the characteristics' do
+            page.should have_content('Merkmale')
+          end
+
+          it 'shows the ceiling height' do
+            page.should have_content('Raumhöhe')
+            page.should have_content('5 m')
+          end
+        end
+
+        context 'real estate for parking utilization' do
+          before do
+            real_estate.update_attribute(:utilization, Utilization::PARKING)
+            visit real_estate_path(real_estate)
+          end
+
+          it 'does not show the chapter title' do
+            page.should_not have_content('Immobilieninfos')
+          end
+        end
+      end
+
       describe 'contact' do
         it 'displays the full name of the responsible person' do
           page.should have_content(real_estate.contact.fullname)

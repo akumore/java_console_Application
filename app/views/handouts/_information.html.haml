@@ -1,10 +1,25 @@
 .chapter.pbi-avoid
   %h2= t('information.title')
 
-  - if information.available_from.present?
-    %dl
-      %dt= t('information.available_from')
-      %dd= information.available_from
+  - if figure && real_estate.living?
+    - if figure.floor.present?
+      %dt= t('figures.floor')
+      %dd= figure.floor
+
+    - if figure.rooms.present?
+      %dt= t('figures.rooms')
+      %dd= figure.rooms
+
+    - if figure.surface.present?
+      %dl
+        %dt= figure.surface_label
+        %dd= figure.surface
+
+  - if figure && real_estate.working?
+    - if figure.property_surface.present?
+      %dl
+        %dt= t('figures.property_surface')
+        %dd= figure.property_surface
 
   - if figure && real_estate.working? || real_estate.storing?
     - if figure.ceiling_height.present?
@@ -12,12 +27,34 @@
         %dt= t('figures.ceiling_height')
         %dd= figure.ceiling_height
 
-  - if information.characteristics.any?
+  - if figure && real_estate.working? || real_estate.living?
+    - if figure.storage_surface.present?
+      %dl
+        %dt= t('figures.storage_surface')
+        %dd= figure.storage_surface
+
+  - if figure && figure.floors.present?
+    %dl
+      %dt= t('figures.floors')
+      %dd= figure.floors
+
+  - if figure && figure.renovated_on.present?
+    %dl
+      %dt= t('figures.renovated_on')
+      %dd= figure.renovated_on
+
+  - if figure && figure.built_on.present?
+    %dl
+      %dt= t('figures.built_on')
+      %dd= figure.built_on
+
+  - if information && information.characteristics.any?
     %dl
       %dt= t('information.characteristics')
       %dd= information.characteristics.join(', ')
 
-  - if real_estate.working?
+  - if information && real_estate.working? || real_estate.storing?
+
     - if information.maximal_floor_loading.present?
       %dl
         %dt= t('information.maximal_floor_loading')
@@ -27,12 +64,6 @@
       %dl
         %dt= t('information.freight_elevator_carrying_capacity')
         %dd= information.freight_elevator_carrying_capacity
-
-  - if real_estate.working? || real_estate.living?
-    - if figure.storage_surface.present?
-      %dl
-        %dt= t('figures.storage_surface')
-        %dd= figure.storage_surface
 
   - if information.additional_information.present?
     %dl

@@ -154,7 +154,12 @@ class RealEstateDecorator < ApplicationDecorator
         real_estate_handout_path(
           :real_estate_id => model.id,
           :format => :pdf),
-        :class => 'icon-description', :target => '_blank'
+        :class => 'icon-description ga-tracking-link', :target => '_blank',
+        data: {
+                'ga-category' => "#{t("real_estates.search_filter.#{model.offer}")} #{t("real_estates.search_filter.#{model.utilization}")}",
+                'ga-action' => "Objektdokumentation",
+                'ga-label' => address.try(:simple)
+              }
     ) if model.has_handout?
   end
 
@@ -181,19 +186,48 @@ class RealEstateDecorator < ApplicationDecorator
           '/documents/de/Anmeldeformular-Mieten-Gewerbe.pdf'
         end
       end
-      link_to(t('real_estates.show.application_form'), link, :class => 'icon-description', :target => '_blank')
+      link_to(
+        t('real_estates.show.application_form'),
+        link,
+        :class => 'icon-description ga-tracking-link',
+        :target => '_blank',
+        data: {
+                'ga-category' => "#{t("real_estates.search_filter.#{model.offer}")} #{t("real_estates.search_filter.#{model.utilization}")}",
+                'ga-action' => "Anmeldeformular",
+                'ga-label' => address.try(:simple)
+              }
+      )
     end
   end
 
   def floorplan_link
     if model.floor_plans.exists?
-      link_to t('real_estates.show.floorplan'), '#', :class => 'icon-groundplan'
+      link_to(
+        t('real_estates.show.floorplan'),
+        '#',
+        :class => 'icon-groundplan ga-tracking-link',
+        data: {
+                'ga-category' => "#{t("real_estates.search_filter.#{model.offer}")} #{t("real_estates.search_filter.#{model.utilization}")}",
+                'ga-action' => "Grundriss anzeigen",
+                'ga-label' => address.try(:simple)
+              }
+      )
     end
   end
 
   def floorplan_print_link
     if model.floor_plans.exists?
-      link_to t('real_estates.show.print_floorplan'), real_estate_floorplans_path(model, :print => true), :class => 'icon-printer', :target => '_blank'
+      link_to(
+        t('real_estates.show.print_floorplan'),
+        real_estate_floorplans_path(model, :print => true),
+        :class => 'icon-printer ga-tracking-link',
+        :target => '_blank',
+        data: {
+                'ga-category' => "#{t("real_estates.search_filter.#{model.offer}")} #{t("real_estates.search_filter.#{model.utilization}")}",
+                'ga-action' => "Grundriss drucken",
+                'ga-label' => address.try(:simple)
+              }
+      )
     end
   end
 
