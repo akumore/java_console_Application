@@ -63,7 +63,12 @@ describe "Cms::RealEstates" do
         page.should have_content real_estate.figure.shortened_floor
         page.should have_content real_estate.figure.surface
         page.should have_content real_estate.contact.fullname_reversed
-        page.should have_content I18n.t("cms.real_estates.index.#{real_estate.state}")
+        # real estate state-bar
+        page.should have_css ('i.state.published.inactive')
+        page.should have_css ('i.state.web.active')
+        page.should have_css ('i.state.doc.inactive')
+        page.should have_css ('i.state.portal.inactive')
+        page.should have_css ('i.state.microsite.inactive')
       end
     end
 

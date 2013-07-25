@@ -1,0 +1,39 @@
+.abstract-state
+  display: inline-block
+  background-repeat: no-repeat
+  background-position: 0px -12px
+  width: 15px
+  height: 12px
+  &.active
+    background-position: 0px 0px
+
+.real-estate-state-bar
+  .state
+    margin-right: 3px
+
+  .published
+    @extend .abstract-state
+    width: 13px
+    height: 10px
+    background-image: image-url('icons/icon-published.png')
+
+  .web
+    @extend .abstract-state
+    width: 14px
+    background-image: image-url('icons/icon-web.png')
+
+  .doc
+    @extend .abstract-state
+    width: 8px
+    background-image: image-url('icons/icon-doc.png')
+
+  .portal
+    @extend .abstract-state
+    width: 15px
+    background-image: image-url('icons/icon-portal.png')
+
+  .microsite
+    @extend .abstract-state
+    width: 12px
+    background-image: image-url('icons/icon-microsite.png')
+
