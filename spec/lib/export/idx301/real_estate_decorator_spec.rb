@@ -231,6 +231,16 @@ describe Export::Idx301::RealEstateDecorator do
   end
 
   describe '#object_description' do
+    it 'returns "-"" if theres no description present' do
+      real_estate = Export::Idx301::RealEstateDecorator
+        .new(
+          mock_model(RealEstate, :description => ""),
+          account,
+          {}
+        )
+      expect(real_estate.object_description).to eq '-'
+    end
+
     it 'retains newlines for homegate by converting them to br-Tags' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
