@@ -1,6 +1,26 @@
 - content_for :title do
   Erfasste Immobilen
 
+.real-estate-state-bar
+  %ul.legend
+    %li 
+      %i.state.published.active
+      Veröffentlicht
+    %li
+      %i.state.web.active
+      Web
+    %li
+      %i.state.doc.active
+      Objektdoku
+    %li
+      %i.state.portal.active
+      Externe Portale
+    %li
+      %i.state.microsite.active
+      Micro-Site
+
+
+
 %ul.nav-tabs.nav
   %li{ :class => params[:filter].blank? ? 'active' : nil }
     = link_to t('.tabs.all'), cms_real_estates_path
