@@ -8,4 +8,4 @@ before_script:
 script:
   - mkdir -p tmp/export
   - RAILS_ENV=test bundle exec rake db:migrate
-  - xvfb-run rspec
+  - xvfb-run bundle exec rspec
