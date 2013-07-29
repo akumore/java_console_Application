@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.5.3 in development
+* New implemented stories:
+  * #1843 Als Editor möchte ich Parkplätze ohne Beschreibung auf externe Portale exportieren können
+
 ### v2.5.2 on 2013-07-11
 * New implemented stories:
   * #1301 - Als Besucher möchte ich emotionale Bilder auf der Unternehmensseite für die restlichen Kategorien sehen
