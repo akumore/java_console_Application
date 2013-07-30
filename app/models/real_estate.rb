@@ -63,6 +63,7 @@ class RealEstate
 
   validates :category_id, :presence => true
   validates :utilization, :presence => true
+  validates :utilization_description, :length => { :maximum => 25 }
   validates :offer, :presence => true
   validates :title, :presence => true, :unless => :parking?
   validates :description, :presence => true, :unless => :parking?
