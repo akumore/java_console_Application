@@ -583,7 +583,7 @@ describe "Handout aka MiniDoku" do
 
     it 'shows the usage description' do
       page.should have_content 'Nutzung'
-      page.should have_content printable_real_estate.utilization_description
+      page.should have_content "#{printable_real_estate.category.label}/Commercial/Restaurant"
     end
   end
 
