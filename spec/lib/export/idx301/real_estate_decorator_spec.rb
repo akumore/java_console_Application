@@ -298,6 +298,43 @@ describe Export::Idx301::RealEstateDecorator do
     end
   end
 
+  describe '#object_title' do
+    context 'real estate is of utilization parking' do
+      it 'returns the category label' do
+        real_estate = Export::Idx301::RealEstateDecorator
+        .new(
+          mock_model(RealEstate, 
+            :category => mock_model(Category, :name => 'single_house', :label => 'Einfamilienhaus'),
+            :title => 'Dummy Title',
+            :parking? => true
+          ),
+          account,
+          {}
+        )
+
+        expect(real_estate.object_title).to eq 'Einfamilienhaus'
+      end
+
+    end
+
+    context 'real estate is not of utilization parking' do
+      it 'returns the real estate title' do
+        real_estate = Export::Idx301::RealEstateDecorator
+        .new(
+          mock_model(RealEstate, 
+            :category => mock_model(Category, :name => 'single_house', :label => 'Einfamilienhaus'),
+            :title => 'Dummy Title',
+            :parking? => false
+          ),
+          account,
+          {}
+        )
+
+        expect(real_estate.object_title).to eq 'Dummy Title'
+      end
+    end
+  end
+
   describe '#ceiling_height' do
     context 'for private use' do
       it 'has a value' do

@@ -371,7 +371,11 @@ module Export::Idx301
 
     def object_title
       #  str(70) eyecatcher, title of advertisement
-      model.title.presence
+      if model.parking?
+        model.category.try(:label)
+      else
+        model.title.presence
+      end
     end
 
     def object_description
