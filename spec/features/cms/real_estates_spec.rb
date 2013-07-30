@@ -80,7 +80,7 @@ describe "Cms::RealEstates" do
 
           fill_in 'Titel', :with => 'My Real Estate'
           fill_in 'Beschreibung', :with => 'Some description...'
-          fill_in 'Alle möglichen Objekt-Arten', :with => 'Gewerbe, Hotel'
+          fill_in 'Zusätzliche Objekt-Arten', :with => 'Gewerbe, Hotel'
         end
       end
 
@@ -198,7 +198,7 @@ describe "Cms::RealEstates" do
 
           fill_in 'Titel', :with => 'My edited Real Estate'
           fill_in 'Beschreibung', :with => 'Some edited description...'
-          fill_in 'Alle möglichen Objekt-Arten', :with => 'Gewerbe, Hotel'
+          fill_in 'Zusätzliche Objekt-Arten', :with => 'Gewerbe, Hotel'
         end
 
         click_on 'Immobilie speichern'
