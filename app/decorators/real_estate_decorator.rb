@@ -131,7 +131,13 @@ class RealEstateDecorator < ApplicationDecorator
 
   def utilization_description
     if model.utilization_description.present?
-      model.utilization_description
+      consistent_util_desc = model.utilization_description.gsub(/\s+/, '')
+      consistent_util_desc.gsub!(/,|\//, '/')
+      if /#{category.try(:label)}/.match consistent_util_desc
+        consistent_util_desc
+      else
+        "#{category.try(:label)}/#{consistent_util_desc}" 
+      end
     else
       category.try(:label)
     end
