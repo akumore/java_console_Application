@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### v2.5.3 in development
+### v2.5.3 in 2013-07-30
 * New implemented stories:
   * #1843 Als Editor möchte ich Parkplätze ohne Beschreibung auf externe Portale exportieren können
 
