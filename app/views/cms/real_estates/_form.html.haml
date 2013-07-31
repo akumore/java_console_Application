@@ -70,6 +70,7 @@
         = f.label :utilization_description
         .controls
           = f.text_area :utilization_description, :class => 'span8 short'
+          %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => RealEstate.human_attribute_name(:utilization_description), 'data-content' => t('.help_popover.utilization_description') }
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'
