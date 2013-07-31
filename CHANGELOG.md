@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### v2.5.4 in development
+### v2.5.4 on 2013-07-31
 * New implemented stories (Bugfix):
   * 1852 Als Editor möchte ich, dass Parkplätze nach dem Export mit dem korrekten Titel angezeigt werden
 
