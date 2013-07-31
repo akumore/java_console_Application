@@ -98,12 +98,28 @@ describe RealEstateDecorator do
 
     context 'utilization_description is filled in' do
       context 'category label is already included in the utilization_description' do
-        it 'returns the the utilization_description separated by "/"' do
+        it 'returns the unified utilization_description with category label prefixed when category label is placed at the beginning' do
           real_estate = Fabricate(:real_estate,
-            :category => Fabricate.build(:category, :name => 'single_house', :label => 'Einfamilienhaus'),
-            :utilization_description => 'Einfamilienhaus, Wohnen'
+            :category => Fabricate.build(:category, :name => 'single_house', :label => 'Haus'),
+            :utilization_description => 'Haus, Sweet / Home'
           )
-          expect(RealEstateDecorator.new(real_estate).utilization_description).to eq 'Einfamilienhaus/Wohnen'
+          expect(RealEstateDecorator.new(real_estate).utilization_description).to eq 'Haus/Sweet/Home'
+        end
+
+        it 'returns the unified utilization_description with category label prefixed when category label is placed somewhere in the middle' do
+          real_estate = Fabricate(:real_estate,
+            :category => Fabricate.build(:category, :name => 'single_house', :label => 'Haus'),
+            :utilization_description => 'Sweet/Haus , Home'
+          )
+          expect(RealEstateDecorator.new(real_estate).utilization_description).to eq 'Haus/Sweet/Home'
+        end
+
+        it 'returns the unified utilization_description with category label prefixed when category label is placed at the end' do
+          real_estate = Fabricate(:real_estate,
+            :category => Fabricate.build(:category, :name => 'single_house', :label => 'Haus'),
+            :utilization_description => 'Sweet/ Home ,Haus'
+          )
+          expect(RealEstateDecorator.new(real_estate).utilization_description).to eq 'Haus/Sweet/Home'
         end
       end
 
