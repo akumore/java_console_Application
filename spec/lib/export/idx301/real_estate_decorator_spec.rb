@@ -298,6 +298,35 @@ describe Export::Idx301::RealEstateDecorator do
     end
   end
 
+  describe '#object_title' do
+    context 'real estate is of utilization parking' do
+      it 'returns the category label' do
+        real_estate = Fabricate.build(:real_estate,
+            :category => Fabricate.build(:category, :name => 'single_house', :label => 'Einfamilienhaus'),
+            :title => 'Dummy Title',
+            :utilization => Utilization::PARKING
+          )
+        decorator = Export::Idx301::RealEstateDecorator.new(real_estate, account, {})
+
+        expect(decorator.object_title).to eq 'Einfamilienhaus'
+      end
+
+    end
+
+    context 'real estate is not of utilization parking' do
+      it 'returns the real estate title' do
+        real_estate = Fabricate.build(:real_estate,
+            :category => Fabricate.build(:category, :name => 'single_house', :label => 'Einfamilienhaus'),
+            :title => 'Dummy Title',
+            :utilization => Utilization::LIVING
+          )
+        decorator = Export::Idx301::RealEstateDecorator.new(real_estate, account, {})
+
+        expect(decorator.object_title).to eq 'Dummy Title'
+      end
+    end
+  end
+
   describe '#ceiling_height' do
     context 'for private use' do
       it 'has a value' do

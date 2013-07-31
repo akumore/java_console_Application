@@ -1,7 +1,11 @@
 # CHANGELOG
 
-### v2.5.3 in 2013-07-30
-* New implemented stories:
+### v2.5.4 on 2013-07-31
+* New implemented stories (Bugfix):
+  * 1852 Als Editor möchte ich, dass Parkplätze nach dem Export mit dem korrekten Titel angezeigt werden
+
+### v2.5.3 on 2013-07-30
+* New implemented stories (Bugfix):
   * #1843 Als Editor möchte ich Parkplätze ohne Beschreibung auf externe Portale exportieren können
 
 ### v2.5.2 on 2013-07-11
