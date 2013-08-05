@@ -1,6 +1,26 @@
 - content_for :title do
   Erfasste Immobilen
 
+.real-estate-state-bar
+  %ul.legend
+    %li 
+      %i.state.published.active
+      Veröffentlicht
+    %li
+      %i.state.web.active
+      Web
+    %li
+      %i.state.doc.active
+      Objektdoku
+    %li
+      %i.state.portal.active
+      Externe Portale
+    %li
+      %i.state.microsite.active
+      Micro-Site
+
+
+
 %ul.nav-tabs.nav
   %li{ :class => params[:filter].blank? ? 'active' : nil }
     = link_to t('.tabs.all'), cms_real_estates_path
@@ -38,7 +58,13 @@
         %td= real_estate.figure.try(:shortened_floor)
         %td= real_estate.figure.try(:surface)
         %td= real_estate.contact.try(:fullname_reversed)
-        %td= t ".#{real_estate.state}"
+        %td
+          .real-estate-state-bar
+            %i.state.published{ class: real_estate.state == RealEstate::STATE_PUBLISHED ? 'active' : 'inactive' }
+            %i.state.web{ class: real_estate.is_website? ? 'active' : 'inactive' }
+            %i.state.doc{ class: real_estate.has_handout? ? 'active' : 'inactive' }
+            %i.state.portal{ class: real_estate.export_to_real_estate_portal? ? 'active' : 'inactive' }
+            %i.state.microsite{ class: real_estate.is_microsite? ? 'active' : 'inactive' }
         %td
           - if can?(:edit, real_estate)
             = link_to  t('.edit'), edit_cms_real_estate_path(real_estate)
