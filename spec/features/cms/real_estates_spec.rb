@@ -80,7 +80,7 @@ describe "Cms::RealEstates" do
 
           fill_in 'Titel', :with => 'My Real Estate'
           fill_in 'Beschreibung', :with => 'Some description...'
-          fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel'
+          fill_in 'Zusätzliche Objekt-Arten', :with => 'Gewerbe, Hotel'
         end
       end
 
@@ -198,7 +198,7 @@ describe "Cms::RealEstates" do
 
           fill_in 'Titel', :with => 'My edited Real Estate'
           fill_in 'Beschreibung', :with => 'Some edited description...'
-          fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel, Restaurant'
+          fill_in 'Zusätzliche Objekt-Arten', :with => 'Gewerbe, Hotel'
         end
 
         click_on 'Immobilie speichern'
@@ -213,7 +213,7 @@ describe "Cms::RealEstates" do
         @real_estate.title.should == 'My edited Real Estate'
         @real_estate.contact.fullname.should == 'Hanna Henker'
         @real_estate.description.should == 'Some edited description...'
-        @real_estate.utilization_description.should == 'Gewerbe, Hotel, Restaurant'
+        @real_estate.utilization_description.should == 'Gewerbe, Hotel'
       end
 
       it 'has the Child Category 2 selected' do

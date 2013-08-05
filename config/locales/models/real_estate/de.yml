@@ -15,7 +15,7 @@ de:
         title: 'Titel'
         description: 'Beschreibung'
         building_type: 'Haustyp'
-        utilization_description: 'Nutzungsarten'
+        utilization_description: 'Zusätzliche Objekt-Arten'
         address: 'Adresse'
         pricing: 'Preise'
         information: 'Infos'
