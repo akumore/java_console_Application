@@ -7,6 +7,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery-ui
+#= require jcrop
 #= require jquery.autoresize
 #= require underscore
 #= require backbone
