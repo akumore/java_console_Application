@@ -39,8 +39,23 @@ module MediaAssets
     end
 
     version :cms_preview, :from_version => :gallery do
-      process :resize_to_fill => [600, 340]
+      process :crop
+      process :resize_to_fill => [600, 300]
     end
+
+    def crop
+      if model.crop_x.present?
+        resize_to_limit(600, 300)
+        manipulate! do |img|
+          x = model.crop_x.to_i
+          y = model.crop_y.to_i
+          w = model.crop_w.to_i
+          h = model.crop_h.to_i
+          img.crop!(x, y, w, h)
+        end
+      end
+    end
+
 
     def filename
       super.chomp(File.extname(super)) + '.jpg' if super
