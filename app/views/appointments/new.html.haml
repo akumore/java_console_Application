@@ -7,7 +7,7 @@
 
   .col.appointment-contact-details
     %h3= t "appointments.contact_information.headline"
-    = @real_estate.contact.basic_contact_info
+    = @real_estate.contact.basic_contact_info(@real_estate)
 
     %p.section
       = @real_estate.application_form_link
