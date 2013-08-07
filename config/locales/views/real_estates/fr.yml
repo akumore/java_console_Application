@@ -4,6 +4,7 @@ fr:
       living: 'Habiter'
       working: 'Travailler'
       storing: 'Stockage'
+      storage: 'Stockage'
       parking: 'Stationnement'
       for_sale: 'Acheter'
       for_rent: 'Louer'

@@ -4,6 +4,7 @@ en:
       living: 'Residential'
       working: 'Commercial'
       storing: 'Storage'
+      storage: 'Storage'
       parking: 'Parking'
       for_sale: 'Buy'
       for_rent: 'Rental'
