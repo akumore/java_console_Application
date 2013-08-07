@@ -22,8 +22,8 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
 
     # init responsive sublime players
     $("video").each ->
-      new AlfredMueller.Views.SublimeResponsive(el: $(this))
-    AlfredMueller.Views.SublimeResponsive.ready()
+      new AlfredMueller.Views.SublimeVideo(el: $(this))
+    AlfredMueller.Views.SublimeVideo.ready()
 
     # initialize clickable/hoverable table rows
     $("table").each ->
@@ -106,3 +106,6 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
     # initialize sorting dropdowns
     $(".sort-order-dropdown").each ->
       new AlfredMueller.Views.SortOrderDropdown(el: $(this))
+
+    $(".ga-tracking-link").click ->
+      new AlfredMueller.Views.GoogleAnalyticsTracker(el: $(this))

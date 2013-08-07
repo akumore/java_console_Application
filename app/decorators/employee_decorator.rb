@@ -3,7 +3,7 @@ class EmployeeDecorator < ApplicationDecorator
 
   decorates :employee
 
-  def contact_info
+  def contact_info(real_estate)
     buffer = []
     buffer << h.content_tag(:h3, model.fullname)
 
@@ -14,20 +14,40 @@ class EmployeeDecorator < ApplicationDecorator
     p_buffer << t('employees.contact.fax', :number => model.fax) if model.fax.present?
 
     buffer << h.content_tag(:p, p_buffer.join(tag('br')).html_safe)
-    buffer << h.content_tag(:p, link_to(t('employees.contact.email'), "mailto:#{model.email}"))
+    buffer << h.content_tag(:p, link_to(
+                                        t('employees.contact.email'),
+                                        "mailto:#{model.email}",
+                                        class: 'ga-tracking-link',
+                                        data: {
+                                                'ga-category' => "#{t("real_estates.search_filter.#{real_estate.offer}")} #{t("real_estates.search_filter.#{real_estate.utilization}")}",
+                                                'ga-action' => "Kontakt E-Mail",
+                                                'ga-label' => real_estate.address.try(:simple)
+                                              }
+                                       )
+                           )
     buffer.join.html_safe
   end
 
-  def basic_contact_info
+  def basic_contact_info(real_estate)
     p_buffer = []
     p_buffer << model.fullname
     p_buffer << t('employees.contact.phone', :number => model.phone)
     p_buffer << t('employees.contact.mobile', :number => model.mobile) if model.mobile.present?
-    p_buffer << t('employees.contact.fax', :number => model.fax) if model.fax.present?
+    p_buffer << t('employees.dontact.fax', :number => model.fax) if model.fax.present?
 
     buffer = []
     buffer << h.content_tag(:p, p_buffer.join(tag('br')).html_safe)
-    buffer << h.content_tag(:p, link_to(t('employees.contact.email'), "mailto:#{model.email}"))
+    buffer << h.content_tag(:p, link_to(
+                                        t('employees.contact.email'),
+                                        "mailto:#{model.email}",
+                                        class: 'ga-tracking-link',
+                                        data: {
+                                                'ga-category' => "#{t("real_estates.search_filter.#{real_estate.offer}")} #{t("real_estates.search_filter.#{real_estate.utilization}")}",
+                                                'ga-action' => "Kontakt E-Mail",
+                                                'ga-label' => real_estate.address.try(:simple)
+                                              }
+                                       )
+                           )
     buffer.join.html_safe
   end
 

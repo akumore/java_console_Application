@@ -27,7 +27,7 @@
 
         - real_estate.videos.each do |video|
           %li
-            %video.sublime{ :preload => 'preload' }
+            %video.sublime{ id: "real-estate-movie-#{real_estate.address.simple}", title: real_estate.address.simple, preload: 'preload' }
               %source{ :src => video.file.url }
         - if real_estate.contact.present?
           %li

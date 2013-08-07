@@ -35,6 +35,7 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
       @openItem(elem, false)
 
   openItem: (elem, scroll=true) ->
+    @getTrackingInfo(elem) if elem.find('.ga-tracking-info').length > 0
     @closeItem(@open) if @open
     @open = elem.addClass("open").removeClass("closed")
     @initSlider(elem)
@@ -51,6 +52,8 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
       @closeItem(elem)
     else
       @openItem(elem)
+      if elem.hasClass('accordion-ga-tracking-link')
+        new AlfredMueller.Views.GoogleAnalyticsTracker(el: elem)
 
   initSlider: (elem)->
     $(".flexslider", elem).flexslider(
@@ -64,3 +67,8 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
     item = $(event.currentTarget).parent()
     @toggleItem(item)
 
+  getTrackingInfo: (elem) ->
+    trackingInfo = elem.find('.ga-tracking-info')
+    elem.attr('data-ga-category', trackingInfo.attr('data-ga-category'))
+    elem.attr('data-ga-action', trackingInfo.attr('data-ga-action'))
+    elem.addClass('accordion-ga-tracking-link')

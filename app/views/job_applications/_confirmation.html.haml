@@ -37,3 +37,6 @@
   .row
     .label= JobApplication.human_attribute_name :email
     .field= @job_application.email
+
+%script
+  = render 'layouts/ga_events'

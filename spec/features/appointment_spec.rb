@@ -6,7 +6,7 @@ describe "Appointment" do
 
   before do
     @contact = Fabricate(:employee)
-    @real_estate = Fabricate :real_estate, :contact => @contact, :category => Fabricate(:category)
+    @real_estate = Fabricate :real_estate, :contact => @contact, :category => Fabricate(:category), address: Fabricate.build(:address, :canton => 'sz', :city => 'Sattel')
   end
 
   it "displays the appointment form" do

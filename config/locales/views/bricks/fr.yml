@@ -17,7 +17,8 @@ fr:
         apply: 'Postuler en direct'
         title: 'Pierre El Soda'
         person_html: 'Téléphone +41 32 756 92 92<br>Av. des Champs-Montants 10a<br>CH-2074 Marin'
-        address_html: '<a href="mailto:pierre.elsoda@alfred–mueller.ch">E-Mail</a>'
+        address_text: 'E-Mail'
+        address_link: 'mailto:pierre.elsoda@alfred–mueller.ch'
       contact_form:
         form_title: 'Formulaire de contact'
         title: 'Pierre El Soda'

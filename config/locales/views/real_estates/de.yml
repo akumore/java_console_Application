@@ -6,7 +6,7 @@ de:
       living: 'Wohnen'
       working: 'Arbeiten'
       storing: 'Lagern'
-      storage: 'Lagern'
+      storage: 'Lagern' # This is used for generic translation for link_to helper with google analytics data attributes
       parking: 'Parkieren'
       for_sale: 'Kaufen'
       for_rent: 'Mieten'
