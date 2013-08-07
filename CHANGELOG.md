@@ -1,5 +1,15 @@
 # CHANGELOG
 
+### v2.5.6 on 2013-08-07
+* New implemented stories:
+  * #1737 - Als Entwickler möchte ich den aktuellen Google Analytics Code integrieren
+  * #1738 - Als Entwickler möchte ich einen separaten Google Analytics Code für Staging integrieren
+  * #1739 - Als Entwickler möchte ich die Event Tracking Codes für das Betrachten einer Immobilie integrieren
+  * #1740 - Als Entwickler möchte ich die Event Tracking Codes für die Detailansicht einer Imobilie integrieren
+  * #1741 - Als Entwickler möchte ich die Event Tracking Codes für die Unternehmensseite integrieren
+  * #1742 - Als Entwickler möchte ich die Event Tracking Codes für die Jobsseite integrieren
+  * #1780 - Als Entwickler möchte ich die Event Tracking Codes für diverse SublimeVideos integrieren
+
 ### v2.5.5 on 2013-08-07
 * New implemented stories (Bugfix):
   * 1864 Als Besucher möchte ich in der Einzelübersicht von Immobilien beim Feld 'Maximales Gewicht für Warenlift' pro m2 sehen
