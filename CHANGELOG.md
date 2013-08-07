@@ -1,5 +1,16 @@
 # CHANGELOG
 
+### v2.5.5 on 2013-08-07
+* New implemented stories (Bugfix):
+  * 1864 Als Besucher möchte ich in der Einzelübersicht von Immobilien beim Feld 'Maximales Gewicht für Warenlift' pro m2 sehen
+  * 1865 Als Besucher möchte ich in der Einzelübersicht von Immobilien die Felder 'Lagerpreis' und 'Lagernebenkosten' in der durch den Editor eingestellten Preiseinheit dargestellt sehen
+
+* Additional Fixes
+  * Hotfix for Feldpark microsite (Application form link if storage utilization)
+  * Add missing translations for generic utilization translation
+  * Update airbrake gem
+  * Set rubygems source to https
+
 ### v2.5.4 on 2013-07-31
 * New implemented stories (Bugfix):
   * 1852 Als Editor möchte ich, dass Parkplätze nach dem Export mit dem korrekten Titel angezeigt werden
