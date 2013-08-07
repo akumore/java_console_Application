@@ -13,10 +13,4 @@ class Cms::ImageCroppingsController < Cms::SecuredController
   def edit
     @image = @real_estate.images.find(params[:id])
   end
-
-   def update
-    @image.update_attributes(params[:image])
-    redirect_to cms_real_estate_image_path(@real_estate, @image)
-  end
-
 end

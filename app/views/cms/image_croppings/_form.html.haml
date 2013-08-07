@@ -1,16 +1,13 @@
-%fieldset.push-checkboxes-down
-  .control-group
-    .controls
-      - %w[x y w h].each do |attribute|
-        = f.hidden_field "crop_#{attribute}"
-      
-      - if @image.file.present?
-        .well
-          = image_tag @image.file.url, id: 'cropbox'
+- %w[x y w h].each do |attribute|
+  = f.hidden_field "crop_#{attribute}"
 
-        %h4 Vorschau
-        %div{ style: 'width:100px; height:50px; overflow:hidden' }
-          = image_tag @image.file.url(:cms_preview), id: 'preview'
+- if @image.file.present?
+  .well
+    = image_tag @image.file.url, id: 'cropbox', data: { original_width: @image.original_width, original_height: @image.original_height }
+
+%h3 Vorschau
+%div{ style: 'width:225px; height:112px; overflow:hidden;' }
+  = image_tag @image.file.url, id: 'preview'
 
 .form-actions
   = f.submit 'Zuschneiden', :class => 'btn btn-primary'

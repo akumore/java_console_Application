@@ -17,6 +17,20 @@ module MediaAssets
       primaries.first || MediaAssets::Image.new
     end
 
+    def original_width
+      if file.present?
+        f = ::Magick::Image::read(file.path).first
+        f.columns
+      end
+    end
+
+    def original_height
+      if file.present?
+        f = ::Magick::Image::read(file.path).first
+        f.rows
+      end
+    end
+
 
     private
     def setup_position

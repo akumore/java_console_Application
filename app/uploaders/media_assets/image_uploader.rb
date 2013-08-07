@@ -23,17 +23,20 @@ module MediaAssets
 
     version :minidoku do
       process :convert => 'jpg'
+      process :crop
       process :resize_to_fill => [2000, 1000]
     end
 
     version :gallery do
       process :convert => 'jpg'
+      process :crop
       process :resize_to_fill => [1000, 500]
       process :quality => 80
     end
 
     version :thumb do
       process :convert => 'jpg'
+      process :crop
       process :quality => 70
       process :resize_to_fill => [145, 92]
     end
@@ -45,14 +48,12 @@ module MediaAssets
 
     def crop
       if model.crop_x.present?
-        original = Magick::Image::read(Rails.public_path + model.file.to_s).first
-        resize_to_limit(original.columns, original.rows)
         manipulate! do |img|
           x = model.crop_x.to_i
           y = model.crop_y.to_i
           w = model.crop_w.to_i
           h = model.crop_h.to_i
-          img = original.crop!(x, y, w, h)
+          img.crop!(x, y, w, h)
         end
       end
     end
