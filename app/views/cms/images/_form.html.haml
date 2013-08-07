@@ -19,16 +19,8 @@
 
       - if @image.file.present?
         .well
-          = image_tag @image.file.cms_preview.url, id: 'cropbox'
-          %h4 Preview
-          %div{ style: 'width:100px; height:50px; overflow:hidden' }
-            = image_tag @image.file.url(:cms_preview), id: 'preview'
-          = form_for @image, :as => :image, :url => cms_real_estate_image_path(@real_estate, @image), :method => :put, :html => { :multipart => true } do |f|
-            - %w[x y w h].each do |attribute|
-              = f.hidden_field "crop_#{attribute}"
-              %br
-            .form-actions
-              = f.submit "Crop", :class => 'btn btn-primary'
+          = image_tag @image.file.cms_preview.url
+        = link_to 'Bild zuschneiden', edit_cms_real_estate_image_cropping_path(@real_estate, @image)
 
 .form-actions
   = f.submit t(".save"), :class => 'btn btn-primary'

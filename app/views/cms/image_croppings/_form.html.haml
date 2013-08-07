@@ -1,0 +1,18 @@
+%fieldset.push-checkboxes-down
+  .control-group
+    .controls
+      - %w[x y w h].each do |attribute|
+        = f.hidden_field "crop_#{attribute}"
+      
+      - if @image.file.present?
+        .well
+          = image_tag @image.file.url, id: 'cropbox'
+
+        %h4 Vorschau
+        %div{ style: 'width:100px; height:50px; overflow:hidden' }
+          = image_tag @image.file.url(:cms_preview), id: 'preview'
+
+.form-actions
+  = f.submit 'Zuschneiden', :class => 'btn btn-primary'
+  .pull-right
+    = render 'cms/media_assets/actions'

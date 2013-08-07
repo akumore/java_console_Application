@@ -1,0 +1,8 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+%h3 Bild zuschneiden
+
+= form_for @image, :as => :image, :url => cms_real_estate_image_path(@real_estate, @image), :html => { :multipart => true } do |f|
+  = render 'form', :f => f
