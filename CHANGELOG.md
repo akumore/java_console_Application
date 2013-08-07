@@ -10,6 +10,7 @@
   * Add missing translations for generic utilization translation
   * Update airbrake gem
   * Set rubygems source to https
+  * Update readme with deployment instructions
 
 ### v2.5.4 on 2013-07-31
 * New implemented stories (Bugfix):
