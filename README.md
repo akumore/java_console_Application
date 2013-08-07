@@ -24,7 +24,14 @@ on the staging server in `/home/usr/amstaging/.ssh/authorized_keys`
 5. `git push <staging|production> <git ref>` push the code
 6. `mmode disable <amstaging|alfred_mueller>`: disable the maintenance mode on the server
 
+## How to kill thin servers while deployment takes too long
 
+1. Connect to server via SSH
+2. Get your user id with the simple command `id`. Output should be something like this: `uid=1007(alfred_mueller) gid=1008(alfred_mueller) groups=1008(alfred_mueller)`
+3. Watch currently running thins with `watch -n1 'ps aux | grep '^1007' | grep thin'` while the integer value is the user id => 1007.
+4. In a new session you can monitor the thins with this command `tail -f log/thin.1004*.log`
+5. Kill the running thins with the kill command and the process id. For example: `kill 12841`
+6. You're done :shipit:
 
 # Environments
 
