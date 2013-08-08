@@ -1,5 +1,8 @@
+require 'google_analytics_category_translator'
+
 class RealEstateDecorator < ApplicationDecorator
   include Draper::LazyHelpers
+  include GoogleAnalyticsCategoryTranslator
 
   decorates :real_estate
   decorates_association :contact
@@ -150,7 +153,7 @@ class RealEstateDecorator < ApplicationDecorator
           :format => :pdf),
         :class => 'icon-description ga-tracking-link', :target => '_blank',
         data: {
-                'ga-category' => "#{t("real_estates.search_filter.#{model.offer}")} #{t("real_estates.search_filter.#{model.utilization}")}",
+                'ga-category' => translate_category(model),
                 'ga-action' => "Objektdokumentation",
                 'ga-label' => address.try(:simple)
               }
@@ -186,7 +189,7 @@ class RealEstateDecorator < ApplicationDecorator
         :class => 'icon-description ga-tracking-link',
         :target => '_blank',
         data: {
-                'ga-category' => "#{t("real_estates.search_filter.#{model.offer}")} #{t("real_estates.search_filter.#{model.utilization}")}",
+                'ga-category' => translate_category(model),
                 'ga-action' => "Anmeldeformular",
                 'ga-label' => address.try(:simple)
               }
@@ -201,7 +204,7 @@ class RealEstateDecorator < ApplicationDecorator
         '#',
         :class => 'icon-groundplan ga-tracking-link',
         data: {
-                'ga-category' => "#{t("real_estates.search_filter.#{model.offer}")} #{t("real_estates.search_filter.#{model.utilization}")}",
+                'ga-category' => translate_category(model),
                 'ga-action' => "Grundriss anzeigen",
                 'ga-label' => address.try(:simple)
               }
@@ -217,7 +220,7 @@ class RealEstateDecorator < ApplicationDecorator
         :class => 'icon-printer ga-tracking-link',
         :target => '_blank',
         data: {
-                'ga-category' => "#{t("real_estates.search_filter.#{model.offer}")} #{t("real_estates.search_filter.#{model.utilization}")}",
+                'ga-category' => translate_category(model),
                 'ga-action' => "Grundriss drucken",
                 'ga-label' => address.try(:simple)
               }
