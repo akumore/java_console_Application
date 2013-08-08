@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### v2.5.7 on 2013-08-08
+* Additional Fixes
+  * Outsource GA category translator in lib directory => Keep DRY
+  * Always use German translations for GA category translations
+
 ### v2.5.6 on 2013-08-07
 * New implemented stories:
   * #1737 - Als Entwickler möchte ich den aktuellen Google Analytics Code integrieren
