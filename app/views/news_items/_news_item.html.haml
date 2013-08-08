@@ -9,7 +9,7 @@
           %ul.slides
             - news_item.images.each do |image|
               %li= image_tag(image.file.gallery.url)
-    = markdown(news_item.content)
+    = news_item.content.html_safe
 
     - if news_item.documents.any?
       %ul.icon-list

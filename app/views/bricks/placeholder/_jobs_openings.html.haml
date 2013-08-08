@@ -4,7 +4,7 @@
       .accordion-item{ :id => "job_#{job.id}" }
         .title= job.title
         .content
-          = markdown(job.text)
+          = job.text.html_safe
           %ul.icon-list
             - if job.job_profile_file.present?
               %li
