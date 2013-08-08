@@ -1,5 +1,8 @@
+require 'google_analytics_category_translator'
+
 class EmployeeDecorator < ApplicationDecorator
   include Draper::LazyHelpers
+  include GoogleAnalyticsCategoryTranslator
 
   decorates :employee
 
@@ -19,7 +22,7 @@ class EmployeeDecorator < ApplicationDecorator
                                         "mailto:#{model.email}",
                                         class: 'ga-tracking-link',
                                         data: {
-                                                'ga-category' => "#{t("real_estates.search_filter.#{real_estate.offer}")} #{t("real_estates.search_filter.#{real_estate.utilization}")}",
+                                                'ga-category' => translate_category(real_estate),
                                                 'ga-action' => "Kontakt E-Mail",
                                                 'ga-label' => real_estate.address.try(:simple)
                                               }
@@ -42,7 +45,7 @@ class EmployeeDecorator < ApplicationDecorator
                                         "mailto:#{model.email}",
                                         class: 'ga-tracking-link',
                                         data: {
-                                                'ga-category' => "#{t("real_estates.search_filter.#{real_estate.offer}")} #{t("real_estates.search_filter.#{real_estate.utilization}")}",
+                                                'ga-category' => translate_category(real_estate),
                                                 'ga-action' => "Kontakt E-Mail",
                                                 'ga-label' => real_estate.address.try(:simple)
                                               }

@@ -1,12 +1,12 @@
 de:
   real_estates:
     search_filter:
-      private: 'Wohnen'
-      commercial: 'Arbeiten'
+      private: 'Wohnen' # Used for generic translation
+      commercial: 'Arbeiten' # Used for generic translation
+      storage: 'Lagern' # Used for generic translation
       living: 'Wohnen'
       working: 'Arbeiten'
       storing: 'Lagern'
-      storage: 'Lagern' # This is used for generic translation for link_to helper with google analytics data attributes
       parking: 'Parkieren'
       for_sale: 'Kaufen'
       for_rent: 'Mieten'
