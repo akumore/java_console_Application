@@ -138,7 +138,6 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def seo_description
-    binding.pry
     sanitized_description = strip_tags(description).chomp.chomp if description.present?
     [title, address.try(:simple), sanitized_description].compact.join ' - '
   end
