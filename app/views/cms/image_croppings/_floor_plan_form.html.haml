@@ -1,0 +1,2 @@
+= form_for @image, :as => :floor_plan, :url => cms_real_estate_floor_plan_path(@real_estate, @image), :html => { :multipart => true } do |f|
+  = render 'form', :f => f

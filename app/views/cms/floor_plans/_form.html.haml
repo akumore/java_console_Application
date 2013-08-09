@@ -14,8 +14,9 @@
       - if @floor_plan.file.present?
         .well
           = image_tag @floor_plan.file.cms_preview.url
+        = link_to t('.crop'), edit_cms_real_estate_image_cropping_path(@real_estate, @floor_plan, :image_type => 'floor_plan')
 
 .form-actions
-  = f.submit t(".save"), :class => 'btn btn-primary'
+  = f.submit t('.save'), :class => 'btn btn-primary'
   .pull-right
-    = render "cms/media_assets/actions"
+    = render 'cms/media_assets/actions'

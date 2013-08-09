@@ -1,7 +1,6 @@
 module MediaAssets
-  class FloorPlan < Base
+  class FloorPlan < ImageBase
     mount_uploader :file, MediaAssets::FloorPlanUploader
-
 
     private
     def setup_position

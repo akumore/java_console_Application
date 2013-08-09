@@ -11,6 +11,12 @@ class Cms::ImageCroppingsController < Cms::SecuredController
   end
 
   def edit
-    @image = @real_estate.images.find(params[:id])
+    if params[:image_type] == 'floor_plan'
+      @image = @real_estate.floor_plans.find(params[:id])
+    else
+      @image = @real_estate.images.find(params[:id])
+    end
+
+    render :edit , locals: { image_type: params[:image_type] }
   end
 end
