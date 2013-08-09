@@ -1,0 +1,8 @@
+de:
+  cms:
+    image_croppings:
+      form:
+        aspect_ratio: im Verhältnis 2:1
+        crop: Zuschneiden
+      edit:
+        title: Bild zuschneiden
