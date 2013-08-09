@@ -82,6 +82,6 @@ class ConvertMarkdownToHtml < Mongoid::Migration
   end
 
   def self.convert string
-    RDiscount.new(string).to_html.gsub(/>\s+/, '>')
+    RDiscount.new(string).to_html.gsub(/[\r\n\e]/m, '')
   end
 end
