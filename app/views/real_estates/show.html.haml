@@ -10,7 +10,7 @@
 = form_for @search_filter, :url=>real_estates_path, :method=>'GET' do |search_form|
   = render 'search_filter', :search_form => search_form
 
-.detail
+.detail{ class: "real-estate-#{@real_estate.id}" }
   - if @pagination.valid?
     .result-nav
       %ul
