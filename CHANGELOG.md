@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### v2.5.8 on 2013-08-08
+### v2.5.8 on 2013-08-12
 * Additional Fixes
   * Update Tracking ID because of new universal analytics (analytics.js)
 
