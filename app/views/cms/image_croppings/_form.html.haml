@@ -1,6 +1,9 @@
 .choose-ratio-box
-  = check_box_tag(:fix_ratio)
-  = label_tag :fix_ratio, t('.aspect_ratio')
+  .control-group
+    = label_tag :fix_ratio, t('.aspect_ratio')
+    .controls
+      = check_box_tag(:fix_ratio)
+
 
 - %w[x y w h].each do |attribute|
   = f.hidden_field "crop_#{attribute}"
