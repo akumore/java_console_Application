@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### v2.5.9 on 2013-08-12
+* Additional Fixes
+  * Add id of real estate to the detail div in show view
+  * Hide application form for Bünzpark real estate
+
 ### v2.5.8 on 2013-08-12
 * Additional Fixes
   * Update Tracking ID because of new universal analytics (analytics.js)
