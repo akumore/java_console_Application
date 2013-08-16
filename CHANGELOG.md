@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.6.0 on 2013-08-16
+* New implemented stories:
+  * #1953 - Als Besucher möchte ich das maximale Gewicht für den Warenlift in «kg» sehen
+
 ### v2.5.9 on 2013-08-12
 * Additional Fixes
   * Add id of real estate to the detail div in show view
