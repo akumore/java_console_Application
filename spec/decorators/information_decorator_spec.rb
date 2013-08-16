@@ -61,6 +61,6 @@ describe InformationDecorator do
   end
 
   it 'formats the freigh elevator carrying capacity in kg' do
-    @information.freight_elevator_carrying_capacity.should == '150 kg / m²'
+    @information.freight_elevator_carrying_capacity.should == '150 kg'
   end
 end

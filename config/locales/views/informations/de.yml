@@ -12,7 +12,7 @@ de:
     maximal_floor_loading: 'Maximale Bodenbelastung'
     maximal_floor_loading_value: '%{count} kg / m²'
     freight_elevator_carrying_capacity: 'Maximales Gewicht für Warenlift'
-    freight_elevator_carrying_capacity_value: '%{count} kg / m²'
+    freight_elevator_carrying_capacity_value: '%{count} kg'
     new_building: 'Neubau'
     old_building: 'Altbau'
     minergie_style: 'Minergie Bauweise'

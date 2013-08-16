@@ -12,7 +12,7 @@ it:
     maximal_floor_loading: 'Portata utile max. del pavimento.'
     maximal_floor_loading_value: '%{count} kg / m²'
     freight_elevator_carrying_capacity: 'Portata massima montacarichi'
-    freight_elevator_carrying_capacity_value: '%{count} kg / m²'
+    freight_elevator_carrying_capacity_value: '%{count} kg'
     new_building: 'Costruzione nuova'
     old_building: 'Costruzione vetusta'
     minergie_style: 'Costruzione tipo Minergie'
