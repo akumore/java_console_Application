@@ -1,5 +1,53 @@
 # CHANGELOG
 
+### v2.6.0 on 2013-08-16
+* New implemented stories:
+  * #1953 - Als Besucher möchte ich das maximale Gewicht für den Warenlift in «kg» sehen
+
+### v2.5.9 on 2013-08-12
+* Additional Fixes
+  * Add id of real estate to the detail div in show view
+  * Hide application form for Bünzpark real estate
+
+### v2.5.8 on 2013-08-12
+* Additional Fixes
+  * Update Tracking ID because of new universal analytics (analytics.js)
+
+### v2.5.7 on 2013-08-08
+* Additional Fixes
+  * Outsource GA category translator in lib directory => Keep DRY
+  * Always use German translations for GA category translations
+
+### v2.5.6 on 2013-08-07
+* New implemented stories:
+  * #1737 - Als Entwickler möchte ich den aktuellen Google Analytics Code integrieren
+  * #1738 - Als Entwickler möchte ich einen separaten Google Analytics Code für Staging integrieren
+  * #1739 - Als Entwickler möchte ich die Event Tracking Codes für das Betrachten einer Immobilie integrieren
+  * #1740 - Als Entwickler möchte ich die Event Tracking Codes für die Detailansicht einer Imobilie integrieren
+  * #1741 - Als Entwickler möchte ich die Event Tracking Codes für die Unternehmensseite integrieren
+  * #1742 - Als Entwickler möchte ich die Event Tracking Codes für die Jobsseite integrieren
+  * #1780 - Als Entwickler möchte ich die Event Tracking Codes für diverse SublimeVideos integrieren
+
+### v2.5.5 on 2013-08-07
+* New implemented stories (Bugfix):
+  * 1864 Als Besucher möchte ich in der Einzelübersicht von Immobilien beim Feld 'Maximales Gewicht für Warenlift' pro m2 sehen
+  * 1865 Als Besucher möchte ich in der Einzelübersicht von Immobilien die Felder 'Lagerpreis' und 'Lagernebenkosten' in der durch den Editor eingestellten Preiseinheit dargestellt sehen
+
+* Additional Fixes
+  * Hotfix for Feldpark microsite (Application form link if storage utilization)
+  * Add missing translations for generic utilization translation
+  * Update airbrake gem
+  * Set rubygems source to https
+  * Update readme with deployment instructions
+
+### v2.5.4 on 2013-07-31
+* New implemented stories (Bugfix):
+  * 1852 Als Editor möchte ich, dass Parkplätze nach dem Export mit dem korrekten Titel angezeigt werden
+
+### v2.5.3 on 2013-07-30
+* New implemented stories (Bugfix):
+  * #1843 Als Editor möchte ich Parkplätze ohne Beschreibung auf externe Portale exportieren können
+
 ### v2.5.2 on 2013-07-11
 * New implemented stories:
   * #1301 - Als Besucher möchte ich emotionale Bilder auf der Unternehmensseite für die restlichen Kategorien sehen

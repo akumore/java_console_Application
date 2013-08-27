@@ -4,6 +4,7 @@ it:
       living: 'Abitare'
       working: 'Lavorare'
       storing: 'Immagazzinare'
+      storage: 'Immagazzinare'
       parking: 'Parcheggiare'
       for_sale: 'Acquistare'
       for_rent: 'Affittare'

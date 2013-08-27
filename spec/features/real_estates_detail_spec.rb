@@ -56,6 +56,11 @@ describe "RealEstates" do
       page.should have_css("meta[content='#{RealEstateDecorator.new(real_estate).seo_description}']")
     end
 
+    it "has a detail div with a real estate's ID" do
+      page.should have_css('div.detail')
+      page.should have_css("div.real-estate-#{real_estate.id}")
+    end
+
     describe 'header area' do
       it 'shows the title' do
         page.should have_content(real_estate.title)

@@ -71,4 +71,5 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
     trackingInfo = elem.find('.ga-tracking-info')
     elem.attr('data-ga-category', trackingInfo.attr('data-ga-category'))
     elem.attr('data-ga-action', trackingInfo.attr('data-ga-action'))
+    elem.attr('data-ga-label', trackingInfo.attr('data-ga-label'))
     elem.addClass('accordion-ga-tracking-link')

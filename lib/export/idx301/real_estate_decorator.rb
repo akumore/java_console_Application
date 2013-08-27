@@ -371,26 +371,34 @@ module Export::Idx301
 
     def object_title
       #  str(70) eyecatcher, title of advertisement
-      model.title.presence
+      if model.parking?
+        model.category.try(:label)
+      else
+        model.title.presence
+      end
     end
 
     def object_description
       #  str(4000) biggest varchar2(4000) in oracle - split description into two parts if required.
       # The following HTML-Tags can be used: <LI>,</LI>,<BR>, <B>,</B>. All other Tags will be removed.
       #pre_html = model.description.presence.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>')
-      html = RDiscount.new(model.description.presence).to_html
-      html.gsub!(/\<\/h1>\n/, '</h1>') if html.match(/\<\/h1>\n/)
-      html.gsub!(/\<\/h2>\n/, '</h2>') if html.match(/\<\/h2>\n/)
-      html.gsub!(/\<\/h3>\n/, '</h3>') if html.match(/\<\/h3>\n/)
-      html.gsub!(/\<\/h4>\n/, '</h4>') if html.match(/\<\/h4>\n/)
-      if @account.provider == Provider::IMMOSCOUT
-        html = Sanitize.clean(html, :elements => ['b', 'ul', 'li', 'br']).strip
-        html.gsub!(/\<ul>\n/, '<ul>') if html.match(/\<ul>\n/)
-        html.gsub!(/\n\<\/ul>/, "\<\/ul>\n") if html.match(/\n\<\/ul>/)
+      if model.description.present?
+        html = RDiscount.new(model.description).to_html
+        html.gsub!(/\<\/h1>\n/, '</h1>') if html.match(/\<\/h1>\n/)
+        html.gsub!(/\<\/h2>\n/, '</h2>') if html.match(/\<\/h2>\n/)
+        html.gsub!(/\<\/h3>\n/, '</h3>') if html.match(/\<\/h3>\n/)
+        html.gsub!(/\<\/h4>\n/, '</h4>') if html.match(/\<\/h4>\n/)
+        if @account.provider == Provider::IMMOSCOUT
+          html = Sanitize.clean(html, :elements => ['b', 'ul', 'li', 'br']).strip
+          html.gsub!(/\<ul>\n/, '<ul>') if html.match(/\<ul>\n/)
+          html.gsub!(/\n\<\/ul>/, "\<\/ul>\n") if html.match(/\n\<\/ul>/)
+        else
+          html = Sanitize.clean(html, :elements => ['b', 'li', 'br']).strip
+        end
+        html.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>').gsub(/>\s+/, '>').gsub(/\s+</, '<').gsub('</li><br><li>', '</li><li>')
       else
-        html = Sanitize.clean(html, :elements => ['b', 'li', 'br']).strip
+        '-'
       end
-      html.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>').gsub(/>\s+/, '>').gsub(/\s+</, '<').gsub('</li><br><li>', '</li><li>')
     end
 
     def selling_price

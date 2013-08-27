@@ -231,6 +231,16 @@ describe Export::Idx301::RealEstateDecorator do
   end
 
   describe '#object_description' do
+    it 'returns "-"" if theres no description present' do
+      real_estate = Export::Idx301::RealEstateDecorator
+        .new(
+          mock_model(RealEstate, :description => ""),
+          account,
+          {}
+        )
+      expect(real_estate.object_description).to eq '-'
+    end
+
     it 'retains newlines for homegate by converting them to br-Tags' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
@@ -285,6 +295,35 @@ describe Export::Idx301::RealEstateDecorator do
         )
       real_estate.stub!(:top_level_category_name).and_return('parking')
       real_estate.object_type.should == 5
+    end
+  end
+
+  describe '#object_title' do
+    context 'real estate is of utilization parking' do
+      it 'returns the category label' do
+        real_estate = Fabricate.build(:real_estate,
+            :category => Fabricate.build(:category, :name => 'single_house', :label => 'Einfamilienhaus'),
+            :title => 'Dummy Title',
+            :utilization => Utilization::PARKING
+          )
+        decorator = Export::Idx301::RealEstateDecorator.new(real_estate, account, {})
+
+        expect(decorator.object_title).to eq 'Einfamilienhaus'
+      end
+
+    end
+
+    context 'real estate is not of utilization parking' do
+      it 'returns the real estate title' do
+        real_estate = Fabricate.build(:real_estate,
+            :category => Fabricate.build(:category, :name => 'single_house', :label => 'Einfamilienhaus'),
+            :title => 'Dummy Title',
+            :utilization => Utilization::LIVING
+          )
+        decorator = Export::Idx301::RealEstateDecorator.new(real_estate, account, {})
+
+        expect(decorator.object_title).to eq 'Dummy Title'
+      end
     end
   end
 

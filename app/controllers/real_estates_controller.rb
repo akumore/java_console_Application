@@ -1,7 +1,9 @@
 require 'real_estate_pagination'
+require 'google_analytics_category_translator'
 
 class RealEstatesController < ApplicationController
   respond_to :html
+  include GoogleAnalyticsCategoryTranslator
 
   rescue_from Mongoid::Errors::DocumentNotFound do
     redirect_to real_estates_path
@@ -25,7 +27,7 @@ class RealEstatesController < ApplicationController
     @handout_order = HandoutOrder.new
     @filtered_offer_utilization_real_estates = get_filtered_offer_utilization_real_estates(@search_filter)
 
-    log_event("#{t("real_estates.search_filter.#{@real_estate.offer}")} #{t("real_estates.search_filter.#{@real_estate.utilization}")}", 'Ansicht Immobilie', @real_estate.address.simple)
+    log_event(translate_category(@real_estate), 'Ansicht Immobilie', @real_estate.address.simple)
   end
 
   private
