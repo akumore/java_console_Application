@@ -40,6 +40,10 @@ describe Address do
     end
   end
 
+  describe 'Reference keys' do
+    it 'is invalid if children are not valid'
+  end
+
   describe 'geocoding' do
     before do
       @address = Fabricate.build(:address, :zip => '1234', :city => 'Herrnhut', :street => 'Christian-David-Straße', :street_number=>12, :canton => 'zh', :country => 'Deutschland')
