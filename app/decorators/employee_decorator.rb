@@ -6,7 +6,7 @@ class EmployeeDecorator < ApplicationDecorator
 
   decorates :employee
 
-  def contact_info(real_estate)
+  def contact_info(real_estate = nil)
     buffer = []
     buffer << h.content_tag(:h3, model.fullname)
 
@@ -17,21 +17,12 @@ class EmployeeDecorator < ApplicationDecorator
     p_buffer << t('employees.contact.fax', :number => model.fax) if model.fax.present?
 
     buffer << h.content_tag(:p, p_buffer.join(tag('br')).html_safe)
-    buffer << h.content_tag(:p, link_to(
-                                        t('employees.contact.email'),
-                                        "mailto:#{model.email}",
-                                        class: 'ga-tracking-link',
-                                        data: {
-                                                'ga-category' => translate_category(real_estate),
-                                                'ga-action' => "Kontakt E-Mail",
-                                                'ga-label' => real_estate.address.try(:simple)
-                                              }
-                                       )
-                           )
+    buffer << get_email_link(real_estate)
+
     buffer.join.html_safe
   end
 
-  def basic_contact_info(real_estate)
+  def basic_contact_info(real_estate = nil)
     p_buffer = []
     p_buffer << model.fullname
     p_buffer << t('employees.contact.phone', :number => model.phone)
@@ -40,23 +31,34 @@ class EmployeeDecorator < ApplicationDecorator
 
     buffer = []
     buffer << h.content_tag(:p, p_buffer.join(tag('br')).html_safe)
-    buffer << h.content_tag(:p, link_to(
-                                        t('employees.contact.email'),
-                                        "mailto:#{model.email}",
-                                        class: 'ga-tracking-link',
-                                        data: {
-                                                'ga-category' => translate_category(real_estate),
-                                                'ga-action' => "Kontakt E-Mail",
-                                                'ga-label' => real_estate.address.try(:simple)
-                                              }
-                                       )
-                           )
+    buffer << get_email_link(real_estate)
+    
     buffer.join.html_safe
   end
 
   def image
     if model.image.present?
       model.image.contact.url
+    end
+  end
+
+  private
+
+  def get_email_link(real_estate)
+    if real_estate.present?
+     h.content_tag(:p, link_to(
+                                t('employees.contact.email'),
+                                "mailto:#{model.email}",
+                                class: 'ga-tracking-link',
+                                data: {
+                                        'ga-category' => translate_category(real_estate),
+                                        'ga-action' => "Kontakt E-Mail",
+                                        'ga-label' => real_estate.address.try(:simple)
+                                      }
+                             )
+                  )
+    else
+      h.content_tag(:p, link_to(t('employees.contact.email'), "mailto:#{model.email}"))
     end
   end
 
