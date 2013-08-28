@@ -29,6 +29,7 @@ class InformationDecorator < ApplicationDecorator
     buffer << t('information.cable_tv') if model.has_cable_tv?
 
     if model.living?
+      buffer << t('information.view') if model.has_outlook?
       buffer << t('information.fireplace') if model.has_fireplace?
       buffer << t('information.elevator') if model.has_elevator?
       buffer << t('information.isdn') if model.has_isdn?
