@@ -2,15 +2,16 @@ it:
   pricings:
     decorator:
       price_units:
-        monthly: 'CHF/mese'
-        yearly:  'CHF/anno'
-        weekly:  'CHF/settimana'
-        daily:   'CHF/giorno'
-        year_m2: 'CHF/m²/anno'
-        sell:    'CHF'
-        sell_m2: 'CHF/m²'
+        monthly: '%{price} CHF/mese'
+        yearly:  '%{price} CHF/anno'
+        weekly:  '%{price} CHF/settimana'
+        daily:   '%{price} CHF/giorno'
+        year_m2: '%{price} CHF/m²/anno'
+        sell:    '%{price} CHF'
+        sell_m2: '%{price} CHF/m²'
     title: 'Prezzi/Disponibile'
     for_rent_netto: '(senza spese accessorie)'
+    for_rent_netto_included: '(inklusive Nebenkosten)'
     additional_costs: 'Spese accessorie'
     without_vat: 'Tutti i prezzi senza IVA'
     storage: 'Prezzo magazzino'

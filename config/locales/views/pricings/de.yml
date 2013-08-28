@@ -2,27 +2,28 @@ de:
   cms:
     pricings:
       form:
-        monthly: 'pro Monat'
-        yearly: 'pro Jahr'
-        weekly: 'pro Woche'
+        monthly: 'pro Mt.'
+        yearly: 'pro J.'
+        weekly: 'pro Wo.'
         daily: 'pro Tag'
-        year_m2: 'pro m²/Jahr'
+        year_m2: 'pro m²/J.'
         sell: 'Kaufpreis'
         sell_m2: 'Kaufpreis/m²'
         help_popover:
-            estimate: 'Freitextfeld, z.B. ab 2100.00 CHF/Mt., 150.00 – 250.00 CHF/m²/Jahr oder Preis auf Anfrage'
+            estimate: 'Freitextfeld, z.B. ab 2100.00 CHF/Mt., 150.00 – 250.00 CHF/m²/J. oder Preis auf Anfrage'
   pricings:
     decorator:
       price_units:
-        monthly: 'CHF/Mt.'
-        yearly:  'CHF/J.'
-        weekly:  'CHF/Wo.'
-        daily:   'CHF/Tag'
-        year_m2: 'CHF/m²/J.'
-        sell:    'CHF'
-        sell_m2: 'CHF/m²'
+        monthly: '%{price} CHF/Mt.'
+        yearly:  '%{price} CHF/J.'
+        weekly:  '%{price} CHF/Wo.'
+        daily:   '%{price} CHF/Tag'
+        year_m2: '%{price} CHF/m²/J.'
+        sell:    '%{price} CHF'
+        sell_m2: '%{price} CHF/m²'
     title: 'Preise/Bezug'
     for_rent_netto: '(ohne Nebenkosten)'
+    for_rent_netto_included: '(inklusive Nebenkosten)'
     additional_costs: 'Nebenkosten'
     without_vat: 'Alle Preise ohne Mehrwertsteuer'
     storage: 'Lagerpreis'
