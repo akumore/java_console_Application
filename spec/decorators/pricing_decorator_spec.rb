@@ -133,7 +133,7 @@ describe PricingDecorator do
     end
 
     it 'returns the value element' do
-      expect(pricing.render_price_tags('100', 'yearly')).to eq("<span class=\"col col1\">100 CHF/J.</span>")
+      expect(pricing.render_price_tags('100', 'yearly', :test_string)).to eq("<span class=\"col col1 test_string\">100 CHF/J.</span>")
     end
   end
 
