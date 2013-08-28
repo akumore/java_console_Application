@@ -407,8 +407,7 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content I18n.t('pricings.for_rent_netto')
-        page.should have_selector("span.value", :text => "1 999.00")
-        page.should have_selector("span.currency", :text => "CHF/Mt.")
+        page.should have_selector("span", :text => "1 999.00 CHF/Mt.")
       end
 
       it "shows 'without VAT message' if 'opted'" do
@@ -421,8 +420,7 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content I18n.t('pricings.additional_costs')
-        page.should have_selector("span.value", :text => "99.00")
-        page.should have_selector("span.currency", :text => "CHF/Mt.")
+        page.should have_selector("span", :text => "99.00 CHF/Mt.")
       end
 
       it "shows the price of the inside parking lot if available" do
@@ -433,8 +431,7 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz in Autoeinstellhalle'
-        page.should have_selector("span.value", :text => "100.00")
-        page.should have_selector("span.currency", :text => "CHF/Mt.")
+        page.should have_selector("span", :text => "100.00 CHF/Mt.")
       end
 
       it "shows the price of the outside parking lot if available" do
@@ -442,8 +439,7 @@ describe "Handout aka MiniDoku" do
         visit real_estate_handout_path(@real_estate)
 
         page.should have_content 'Parkplatz im Freien'
-        page.should have_selector("span.value", :text => "80.00")
-        page.should have_selector("span.currency", :text => "CHF/Mt.")
+        page.should have_selector("span", :text => "80.00 CHF/Mt.")
       end
 
       it 'shows the real estate category in front of the sale price' do
@@ -463,13 +459,11 @@ describe "Handout aka MiniDoku" do
         end
 
         it "shows the monthly prices for 'for_rent_netto_monthly'" do
-          page.should have_selector("span.value-monthly", :text => "50")
-          page.should have_selector("span.currency-monthly", :text => "CHF/Mt.")
+          page.should have_selector("span", :text => "50.00 CHF/Mt.")
         end
 
         it "shows the monthly prices for 'additional_costs_monthly'" do
-          page.should have_selector("span.value-monthly", :text => "5")
-          page.should have_selector("span.currency-monthly", :text => "CHF/Mt.")
+          page.should have_selector("span", :text => "5.00 CHF/Mt.")
         end
 
         context 'when estimate field is present' do
@@ -479,12 +473,11 @@ describe "Handout aka MiniDoku" do
           end
 
           it 'shows estimate field' do
-            page.should have_selector("span.value-string", :text => "Ungefährer Preis")
+            page.should have_selector("span", :text => "Ungefährer Preis")
           end
 
           it 'shows for_rent_netto_monthly pricing field' do
-            page.should have_selector("span.value-monthly", :text => "50")
-            page.should have_selector("span.currency-monthly", :text => "CHF/Mt.")
+            page.should have_selector("span", :text => "50.00 CHF/Mt.")
           end
         end
 
@@ -496,11 +489,11 @@ describe "Handout aka MiniDoku" do
           end
 
           it 'shows estimate field' do
-            page.should have_selector("span.value-string", :text => "Ungefährer Preis")
+            page.should have_selector("span", :text => "Ungefährer Preis")
           end
 
           it 'shows estimate_monthly field' do
-            page.should have_selector("span.value-string", :text => "Ungefährer Preis monatlich")
+            page.should have_selector("span", :text => "Ungefährer Preis monatlich")
           end
         end
       end
