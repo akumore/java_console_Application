@@ -566,8 +566,8 @@ describe "Handout aka MiniDoku" do
     end
 
     context 'real estate for living utilization' do
-      it "doesn't have a view" do
-        page.should_not have_content 'Ausblick'
+      it "has a view" do
+        page.should have_content 'Ausblick'
       end
 
       it 'has fireplace' do
