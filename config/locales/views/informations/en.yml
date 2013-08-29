@@ -6,8 +6,8 @@ en:
   information:
     title: 'Real Estate Information'
     characteristics: 'Characteristics'
-    available_from: 'availability date'
-    available_from_compact: 'availability date %{date}'
+    available_from: 'Available'
+    available_from_compact: 'from %{date}'
     available_immediately: 'immediately'
     maximal_floor_loading: 'Maximum floor load'
     maximal_floor_loading_value: '%{count} kg/m²'
