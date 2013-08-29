@@ -87,7 +87,10 @@ class Address
     attr_hash = {}
     allowed_keys.each { |a| attr_hash[a] = self.reference.send(a) }
 
-    if self.class.exists_by_attributes? attr_hash
+    matching_real_estates = self.class.exists_by_attributes?(attr_hash)
+    matching_real_estates.delete(self.real_estate)
+
+    if matching_real_estates.count > 0
       errors.add(:reference_key_combination, I18n.t('cms.addresses.form.errors.reference_key_combination.constraint'))
     end
   end
@@ -95,6 +98,6 @@ class Address
   def self.exists_by_attributes?(attributes)
     attribs = {}
     attributes.each_pair{|k,v| attribs["address.reference.#{k}"] = v }
-    RealEstate.exists?(conditions: attribs)
+    RealEstate.where(attribs).to_a
   end
 end
