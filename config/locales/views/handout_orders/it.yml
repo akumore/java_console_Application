@@ -1,12 +1,12 @@
 it:
   handout_orders:
     new:
-      headline: 'OBJEKTDOKUMENATION BESTELLEN'
+      headline: "ORDINE DELLA DOCUMENTAZIONE DELL'OGGETTO"
     form:
-      submit: 'Bestellung abschicken'
+      submit: "Invio dell'ordine"
       errors: 'Prego controllare i dati inseriti:'
     order_information:
       headline: 'La sua persona di contatto'
     confirmation:
-      thanks: 'Vielen Dank für Ihre Bestellung.'
-      we_will_contact_you: 'Wir werden Ihnen umgehend die Objektdokumentation zustellen.'
+      thanks: "Vi ringraziamo per l'ordine."
+      we_will_contact_you: "Vi invieremo immediatamente la documentazione dell'oggetto."

@@ -13,6 +13,7 @@ en:
     for_rent_netto: 'Prices without Additional Costs'
     for_rent_extra: 'Rent'
     for_rent_depot: 'Deposit'
+    additional_costs: 'Additional Costs'
     without_vat: 'All Prices without value added tax'
     storage: 'Storage space, price'
     extra_storage: 'Storage space, common charges'

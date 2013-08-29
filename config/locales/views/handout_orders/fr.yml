@@ -1,12 +1,12 @@
 fr:
   handout_orders:
     new:
-      headline: 'OBJEKTDOKUMENATION BESTELLEN'
+      headline: 'COMMANDER DOCUMETATION SUR LE BIEN IMMOBILIER'
     form:
-      submit: 'Bestellung abschicken'
+      submit: 'Envoyer la commande'
       errors: 'Contrôler vos données:'
     order_information:
       headline: 'Votre personne de contact'
     confirmation:
-      thanks: 'Vielen Dank für Ihre Bestellung.'
-      we_will_contact_you: 'Wir werden Ihnen umgehend die Objektdokumentation zustellen.'
+      thanks: 'Merci beaucoup pour votre commande.'
+      we_will_contact_you: 'Nous vous enverrons immédiatement la documentation sur le bien immobilier.'

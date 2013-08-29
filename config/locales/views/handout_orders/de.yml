@@ -1,7 +1,7 @@
 de:
   handout_orders:
     new:
-      headline: 'OBJEKTDOKUMENATION BESTELLEN'
+      headline: 'OBJEKTDOKUMENTATION BESTELLEN'
     form:
       submit: 'Bestellung abschicken'
       errors: 'Bitte überprüfen Sie ihre Eingaben:'
