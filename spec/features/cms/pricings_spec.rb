@@ -44,7 +44,7 @@ describe "Cms::Pricings" do
             within(".new_pricing") do
               fill_in 'Netto Miete', :with => '1500'
               fill_in 'Nebenkosten', :with => '50'
-              select 'pro Monat', :from => 'Preiseinheit'
+              select 'pro Mt.', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
                 fill_in 'pricing_inside_parking', :with => '140'
@@ -93,7 +93,7 @@ describe "Cms::Pricings" do
           context 'when selecting per square meter per month price unit' do
             context 'when javascript is enabled', :js => true do
               before :each do
-                select 'pro m²/Jahr', :from => 'Preiseinheit'
+                select 'pro m²/J.', :from => 'Preiseinheit'
               end
 
               it 'shows the monthly prices container' do
@@ -103,7 +103,7 @@ describe "Cms::Pricings" do
 
             context 'a valid monthly pricing' do
               before :each do
-                select 'pro m²/Jahr', :from => 'Preiseinheit'
+                select 'pro m²/J.', :from => 'Preiseinheit'
                 fill_in 'Netto Miete', :with => '565'
                 fill_in 'Nebenkosten', :with => '566'
 
@@ -320,7 +320,7 @@ describe "Cms::Pricings" do
             within(".new_pricing") do
               fill_in 'Netto Miete', :with => '2300'
               fill_in 'Nebenkosten', :with => '150'
-              select 'pro Jahr', :from => 'Preiseinheit'
+              select 'pro J.', :from => 'Preiseinheit'
 
               within('.parking-spots-prices-group') do
                 fill_in 'pricing_inside_parking', :with => '200'

@@ -133,7 +133,7 @@ describe PricingDecorator do
     end
 
     it 'returns the value element' do
-      pricing.render_price_tags('100', 'CHF/J.').should == "<span class=\"value\">100</span><span class=\"currency\">CHF/J.</span>"
+      expect(pricing.render_price_tags('100', 'yearly', :test_string)).to eq("<span class=\"col col1 test_string\">100 CHF/J.</span>")
     end
   end
 
@@ -145,32 +145,32 @@ describe PricingDecorator do
     context 'with a sale parking field' do
       it 'returns localized sell price unit' do
         pricing.pricing.stub!(:for_sale?).and_return true
-        pricing.price_unit(:double_garage).should == 'CHF'
+        expect(pricing.price_unit(:double_garage)).to eq('sell')
       end
     end
 
     context 'with a rent parking field' do
       it 'returns localized sell price unit' do
         pricing.pricing.stub!(:for_sale?).and_return false
-        pricing.price_unit(:double_garage).should == 'CHF/Mt.'
+        expect(pricing.price_unit(:double_garage)).to eq('monthly')
       end
     end
 
     context 'with no pricing field' do
       it 'returns the localized price unit' do
-        pricing.price_unit.should == 'CHF/J.'
+        expect(pricing.price_unit).to eq('yearly')
       end
     end
 
     context 'with a normal pricing field' do
       it 'returns the localized price unit' do
-        pricing.price_unit(:for_rent_netto).should == 'CHF/J.'
+        expect(pricing.price_unit(:for_rent_netto)).to eq('yearly')
       end
     end
 
     context 'with a monthly pricing field' do
       it 'returns the localized price unit' do
-        pricing.price_unit(:for_rent_netto_monthly).should == 'CHF/Mt.'
+        expect(pricing.price_unit(:for_rent_netto_monthly)).to eq('monthly')
       end
     end
   end

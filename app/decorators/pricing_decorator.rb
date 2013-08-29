@@ -41,7 +41,7 @@ class PricingDecorator < ApplicationDecorator
   end
 
   def additional_costs
-    if model.additional_costs.present? && !model.parking?
+    if model.additional_costs.present? && !additional_costs_included? && !model.parking?
       formatted_price(model.additional_costs)
     end
   end
@@ -182,7 +182,11 @@ class PricingDecorator < ApplicationDecorator
       if pricing_field == :price_to_be_displayed
         if model.for_rent?
           self._parent.category.label + " " +
-          t("pricings.for_rent_netto")
+          if additional_costs_included?
+            t("pricings.for_rent_netto_included")
+          else
+            t("pricings.for_rent_netto")
+          end
         else
           self._parent.category.label
         end
@@ -196,9 +200,7 @@ class PricingDecorator < ApplicationDecorator
     content_tag(:dd) do
       concat render_price_tags(self.send(pricing_field), price_unit(pricing_field), pricing_field)
       monthly_field = "#{pricing_field}_monthly".to_sym
-      if respond_to?(monthly_field) and
-        send(monthly_field).present? and
-        model.supports_monthly_prices?
+      if respond_to?(monthly_field) && send(monthly_field).present? && model.supports_monthly_prices?
         concat render_price_tags(send(monthly_field), price_unit(monthly_field), monthly_field)
       end
     end
@@ -206,16 +208,14 @@ class PricingDecorator < ApplicationDecorator
 
   def render_price_tags(price, price_unit, pricing_field = nil)
     if pricing_field == :price_to_be_displayed && model.estimate.present? || pricing_field == :price_to_be_displayed_monthly && model.estimate_monthly.present?
-      content_tag(:span, price, :class => "value value-string #{pricing_field.to_s}")
+      content_tag(:span, price, :class => "col col1 #{pricing_field.to_s}")
     elsif model.supports_monthly_prices? && (Pricing::PARKING_PRICING_FIELDS.include?(pricing_field) || Pricing::MONTHLY_PRICING_FIELDS.include?(pricing_field))
       [
-        content_tag(:span, price_unit, :class => 'currency currency-monthly'),
-        content_tag(:span, price, :class => 'value value-monthly')
+        content_tag(:span, t("pricings.decorator.price_units.monthly", price: price), :class => "col col2 #{pricing_field.to_s}")
       ].join().html_safe
     else
       [
-        content_tag(:span, price, :class => 'value'),
-        content_tag(:span, price_unit, :class => 'currency')
+        content_tag(:span, t("pricings.decorator.price_units.#{price_unit}", price: price), :class => "col col1 #{pricing_field.to_s}"),
       ].join().html_safe
     end
   end
@@ -224,18 +224,22 @@ class PricingDecorator < ApplicationDecorator
     if Pricing::PARKING_PRICING_FIELDS.include?(pricing_field)
       parking_price_unit
     elsif Pricing::MONTHLY_PRICING_FIELDS.include?(pricing_field)
-      t("pricings.decorator.price_units.monthly")
+      'monthly'
     else
-      t("pricings.decorator.price_units.#{model.price_unit}")
+      model.price_unit
     end
   end
 
   def parking_price_unit
     if model.for_sale?
-      t("pricings.decorator.price_units.sell")
+      'sell'
     else
-      t("pricings.decorator.price_units.monthly")
+      'monthly'
     end
+  end
+
+  def additional_costs_included?
+    model.additional_costs == 0
   end
 
   def more_than_seven_digits?(price)
