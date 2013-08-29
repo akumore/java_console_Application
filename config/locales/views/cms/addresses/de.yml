@@ -10,3 +10,6 @@ de:
           unit_key: 'Kurzzeichen des Auftraggebers, z.B. bz'
           microsite_property_key: 'Immobiliennummer eingeben, z.B. 25.12<br>Eindeutige Identifizierung einer Wohnung oder eines Gewerberaum innerbalb eines Projektes/Microsite'
           microsite_building_key: 'Hausnummer eingeben, z.B. 20 oder H<br>Identifiziert ein bestimmtes Haus'
+        errors:
+          reference_key_combination:
+            constraint: 'ist bereits vorhanden.'
