@@ -24,7 +24,8 @@ class Address
   validates :street, :presence => true
   validates :zip, :presence => true
   validates :canton, :presence => true, :inclusion => CANTONS
-  validates :any_reference_key, :presence => true, :if => :export_to_real_estate_portal?
+  validate :any_reference_key, :presence => true, :if => :export_to_real_estate_portal?
+  validate :validates_uniqueness_of_key_composition
   validates :lat, :lng, :presence => true, :if => :manual_geocoding?
 
   field :location, :type => Array #Keep in mind coordinates are stored in long, lat order internally!! Use to_coordinates always.
@@ -79,5 +80,21 @@ class Address
 
   def any_reference_key
     (reference.property_key.presence || reference.building_key.presence || reference.unit_key.presence) if reference.present?
+  end
+
+  def validates_uniqueness_of_key_composition
+    allowed_keys = [:property_key, :building_key, :unit_key]
+    attr_hash = {}
+    allowed_keys.each { |a| attr_hash[a] = self.reference.send(a) }
+
+    if self.class.exists_by_attributes? attr_hash
+      errors.add(:reference_key_combination, 'Halligalli!')
+    end
+  end
+
+  def self.exists_by_attributes?(attributes)
+    attribs = {}
+    attributes.each_pair{|k,v| attribs["address.reference.#{k}"] = v }
+    RealEstate.exists?(conditions: attribs)
   end
 end

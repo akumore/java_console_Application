@@ -44,6 +44,74 @@ describe Address do
     it 'is invalid if children are not valid'
   end
 
+  describe Reference do
+    context 'with published real estate and saved reference in database' do
+      let(:reference_attributes) { Fabricate.attributes_for(:reference) }
+      let(:published_real_estate) { Fabricate.build(:published_real_estate, :address => Fabricate.build(:address, :reference => Fabricate.build(:reference, reference_attributes)), :category => Fabricate(:category)) }
+
+      before do
+        expect(published_real_estate.save).to be_true
+      end
+
+      it "shouldn't be possible to save the reference with the same keys" do
+        expect(Address.exists_by_attributes?(reference_attributes)).to be_true
+        real_estate_from_santa_claus = Fabricate.build(:published_real_estate, :category => Fabricate(:category))
+        expect(real_estate_from_santa_claus.save).to be_true
+        real_estate_from_santa_claus.address = Fabricate.build(:address, :city => 'Steinhausen', :reference => Fabricate.build(:reference, reference_attributes))
+        expect(real_estate_from_santa_claus).not_to be_new_record
+        expect(real_estate_from_santa_claus.address).not_to be_valid
+        expect(real_estate_from_santa_claus).not_to be_valid
+        expect(real_estate_from_santa_claus.save).to be_false
+      end
+    end
+
+    context 'with present real estate and reference in database' do
+      let(:reference_attributes) { Fabricate.attributes_for(:reference) }
+
+      before :each do
+        real_estate = Fabricate.build(:real_estate, :address => Fabricate.build(:address, :reference => Fabricate.build(:reference, reference_attributes)), :category => Fabricate(:category))
+        expect(real_estate.save).to be_true
+      end
+
+      it "shouldn't be possible to save the reference with the same keys" do
+        expect(Address.exists_by_attributes?(reference_attributes)).to be_true
+        real_estate_from_santa_claus = Fabricate.build(:real_estate, :category => Fabricate(:category))
+        expect(real_estate_from_santa_claus.save).to be_true
+        real_estate_from_santa_claus.address = Fabricate.build(:address, :city => 'Steinhausen', :reference => Fabricate.build(:reference, reference_attributes))
+        expect(real_estate_from_santa_claus).not_to be_new_record
+        expect(real_estate_from_santa_claus.address).not_to be_valid
+        expect(real_estate_from_santa_claus).to be_valid
+        expect(real_estate_from_santa_claus.save).to be_true
+      end
+
+      context "should be possible to save the reference with different keys" do
+        let(:reference_attributes) { Fabricate.attributes_for(:reference) }
+        let(:real_estate) { Fabricate.build(:real_estate, :address => Fabricate.build(:address, :reference => Fabricate.build(:reference, reference_attributes)), :category => Fabricate(:category)) }
+        let(:schmutzli_reference_attributes) { Fabricate.attributes_for(:reference, :property_key => 'HUHU') }
+        let(:real_estate_from_schmutzli) { Fabricate.build(:real_estate, :address => Fabricate.build(:address, :reference => Fabricate.build(:reference, schmutzli_reference_attributes)), :category => Fabricate(:category)) }
+
+        before :each do
+          expect(real_estate.save).to be_true
+          expect(real_estate_from_schmutzli.save).to be_true
+        end
+
+        it "should be possible to save the reference with different keys" do
+          #schmutzli_address = Fabricate.build(:address, :city => 'Steinhausen', :reference => schmutzli_reference )
+          #real_estate_from_schmutzli.address = schmutzli_address
+          binding.pry
+          expect(real_estate_from_schmutzli.address).to be_valid
+
+          #real_estate_from_schmutzli.address = Fabricate.build(:address, :city => 'Steinhausen', :reference => schmutzli_reference )
+          #expect(real_estate_from_schmutzli.address.save).to be_true
+
+          #expect(real_estate_from_schmutzli.address).to be_valid
+          #expect(real_estate_from_schmutzli).to be_valid
+          #expect(real_estate_from_schmutzli.save).to be_true
+        end
+      end
+    end
+  end
+
   describe 'geocoding' do
     before do
       @address = Fabricate.build(:address, :zip => '1234', :city => 'Herrnhut', :street => 'Christian-David-Straße', :street_number=>12, :canton => 'zh', :country => 'Deutschland')
