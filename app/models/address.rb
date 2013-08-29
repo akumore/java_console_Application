@@ -87,7 +87,7 @@ class Address
     attr_hash = {}
     allowed_keys.each { |a| attr_hash[a] = self.reference.send(a) }
 
-    matching_real_estates = self.class.exists_by_attributes?(attr_hash)
+    matching_real_estates = self.class.matching_real_estates(attr_hash)
     matching_real_estates.delete(self.real_estate)
 
     if matching_real_estates.count > 0
@@ -95,9 +95,9 @@ class Address
     end
   end
 
-  def self.exists_by_attributes?(attributes)
+  def self.matching_real_estates(attributes)
     attribs = {}
-    attributes.each_pair{|k,v| attribs["address.reference.#{k}"] = v }
+    attributes.each_pair{ |k,v| attribs["address.reference.#{k}"] = v }
     RealEstate.where(attribs).to_a
   end
 end

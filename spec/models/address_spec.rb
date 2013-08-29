@@ -56,7 +56,7 @@ describe Address do
         end
 
         it "shouldn't be possible to save the reference with the same keys" do
-          expect(Address.exists_by_attributes?(reference_attributes)).to be_true
+          expect(Address.matching_real_estates(reference_attributes)).to be_true
           real_estate_from_santa_claus = Fabricate.build(:published_real_estate, :channels => [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL], :category => Fabricate(:category))
           real_estate_from_santa_claus.address = Fabricate.build(:address, :city => 'Steinhausen', :reference => Fabricate.build(:reference, reference_attributes))
           expect(real_estate_from_santa_claus.address).not_to be_valid
@@ -71,7 +71,7 @@ describe Address do
         end
 
         it "shouldn't be possible to save the reference with the same keys" do
-          expect(Address.exists_by_attributes?(reference_attributes)).to be_true
+          expect(Address.matching_real_estates(reference_attributes)).to be_true
           real_estate_from_santa_claus = Fabricate.build(:real_estate, :channels => [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL], :category => Fabricate(:category))
           real_estate_from_santa_claus.address = Fabricate.build(:address, :city => 'Steinhausen', :reference => Fabricate.build(:reference, reference_attributes))
           expect(real_estate_from_santa_claus.address).not_to be_valid
