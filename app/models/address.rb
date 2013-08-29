@@ -88,7 +88,7 @@ class Address
     allowed_keys.each { |a| attr_hash[a] = self.reference.send(a) }
 
     if self.class.exists_by_attributes? attr_hash
-      errors.add(:reference_key_combination, 'Halligalli!')
+      errors.add(:reference_key_combination, I18n.t('cms.addresses.form.errors.reference_key_combination.constraint'))
     end
   end
 
