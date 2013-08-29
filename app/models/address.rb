@@ -24,8 +24,8 @@ class Address
   validates :street, :presence => true
   validates :zip, :presence => true
   validates :canton, :presence => true, :inclusion => CANTONS
-  validate :any_reference_key, :presence => true, :if => :export_to_real_estate_portal?
-  validate :validates_uniqueness_of_key_composition
+  validates :any_reference_key, :presence => true, :if => :export_to_real_estate_portal?
+  validate :validates_uniqueness_of_key_composition, :if => :export_to_real_estate_portal?
   validates :lat, :lng, :presence => true, :if => :manual_geocoding?
 
   field :location, :type => Array #Keep in mind coordinates are stored in long, lat order internally!! Use to_coordinates always.
