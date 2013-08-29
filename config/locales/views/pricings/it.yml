@@ -11,7 +11,7 @@ it:
         sell_m2: '%{price} CHF/m²'
     title: 'Prezzi/Disponibile'
     for_rent_netto: '(senza spese accessorie)'
-    for_rent_netto_included: '(inklusive Nebenkosten)'
+    for_rent_netto_included: '(con spese accessorie)'
     additional_costs: 'Spese accessorie'
     without_vat: 'Tutti i prezzi senza IVA'
     storage: 'Prezzo magazzino'

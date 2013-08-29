@@ -11,7 +11,7 @@ fr:
         sell_m2: '%{price} CHF/m²'
     title: 'Prix/Disponible'
     for_rent_netto: '(sans charges)'
-    for_rent_netto_included: '(inklusive Nebenkosten)'
+    for_rent_netto_included: '(avec charges)'
     additional_costs: 'Charges'
     without_vat: 'Prix sans TVA'
     storage: 'Prix entrepôt'
