@@ -10,6 +10,7 @@
 #= require jquery.autoresize
 #= require underscore
 #= require backbone
+#= require ckeditor/init
 #= require ./backbone_setup
 #= require_tree ./templates
 #= require_tree ./models
@@ -18,7 +19,11 @@
 #= require twitter/bootstrap
 #= require_self
 
+
 $(document).ready ->
+
+  CKEDITOR.replaceAll('editor')
+
   $('.dropdown-toggle').dropdown()
 
   $("table.sortable tbody").sortable

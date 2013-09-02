@@ -125,20 +125,20 @@ class RealEstateDecorator < ApplicationDecorator
 
   def description
     if model.description.present?
-      markdown model.description
+      model.description.html_safe
     end
   end
 
   def utilization_description
     if model.utilization_description.present?
-      model.utilization_description
+      model.utilization_description.html_safe
     else
       category.try(:label)
     end
   end
 
   def seo_description
-    sanitized_description = strip_tags(markdown(description)).chomp.chomp if description.present?
+    sanitized_description = strip_tags(description).chomp.chomp if description.present?
     [title, address.try(:simple), sanitized_description].compact.join ' - '
   end
 

@@ -64,12 +64,12 @@
       .control-group{ :class => "#{@real_estate.parking? ? '' : 'mandatory'}" }
         = f.label :description
         .controls
-          = f.text_area :description, :class => 'span8'
+          = f.text_area :description, :class => 'editor'
     - if accessible?(:utilization_description)
       .control-group
         = f.label :utilization_description
         .controls
-          = f.text_area :utilization_description, :class => 'span8 short'
+          = f.text_area :utilization_description, :class => 'editor'
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

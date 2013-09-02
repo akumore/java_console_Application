@@ -10,7 +10,7 @@ xml.rss :version => "2.0" do
     @news_items.each do |news_item|
       xml.item do
         xml.title news_item.title
-        xml.description RDiscount.new(news_item.content).to_html.html_safe
+        xml.description Sanitize.clean(news_item.content).strip
         xml.pubDate news_item.date.to_s(:rfc822)
         xml.link "http://#{request.env["HTTP_HOST"]}/#{I18n.locale}/news_items#news_item_#{news_item.id}"
         xml.guid news_item.id
