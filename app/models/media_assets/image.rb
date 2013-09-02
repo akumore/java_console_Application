@@ -1,5 +1,5 @@
 module MediaAssets
-  class Image < Base
+  class Image < ImageBase
     mount_uploader :file, MediaAssets::ImageUploader
 
     field :is_primary, :type => Boolean, :default => false
@@ -10,7 +10,6 @@ module MediaAssets
     def self.primary
       primaries.first || MediaAssets::Image.new
     end
-
 
     private
     def setup_position

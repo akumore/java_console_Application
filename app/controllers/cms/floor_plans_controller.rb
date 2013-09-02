@@ -19,12 +19,16 @@ class Cms::FloorPlansController < Cms::SecuredController
 
   def create
     @floor_plan = @real_estate.floor_plans.create(params[:floor_plan])
-    respond_with @floor_plan, :location => cms_real_estate_media_assets_path
+    if @real_estate.valid?
+      redirect_to edit_cms_real_estate_floor_plan_path(@real_estate, @floor_plan)
+    else
+      render 'new'
+    end
   end
 
   def update
     @floor_plan.update_attributes(params[:floor_plan])
-    respond_with @floor_plan, :location => cms_real_estate_media_assets_path
+    redirect_to edit_cms_real_estate_floor_plan_path(@real_estate, @floor_plan)
   end
 
   def destroy

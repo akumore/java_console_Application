@@ -3,3 +3,4 @@ de:
     floor_plans:
       form:
         save: Grundriss speichern
+        crop: Grundriss zuschneiden

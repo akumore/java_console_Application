@@ -15,13 +15,14 @@
       = f.file_field :file
       = f.hidden_field :file_cache
       .help-block.bold-black
-        Bildformat möglichst 2:1, Auflösung so gross wie möglich, idealerweise 2000 x 1000 Pixel bei 72 dpi.
+        = t('.help.image_size')
 
       - if @image.file.present?
         .well
           = image_tag @image.file.cms_preview.url
+        = link_to t('.crop'), edit_cms_real_estate_image_cropping_path(@real_estate, @image, :image_type => 'image')
 
 .form-actions
-  = f.submit t(".save"), :class => 'btn btn-primary'
+  = f.submit t('.save'), :class => 'btn btn-primary'
   .pull-right
-    = render "cms/media_assets/actions"
+    = render 'cms/media_assets/actions'

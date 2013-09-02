@@ -19,12 +19,16 @@ class Cms::ImagesController < Cms::SecuredController
 
   def create
     @image = @real_estate.images.create(params[:image])
-    respond_with @image, :location => [:cms, @real_estate, :media_assets]
+    if @real_estate.valid?
+      redirect_to edit_cms_real_estate_image_path(@real_estate, @image)
+    else
+      render 'new'
+    end
   end
 
   def update
     @image.update_attributes(params[:image])
-    respond_with @image, :location => [:cms, @real_estate, :media_assets]
+    redirect_to edit_cms_real_estate_image_path(@real_estate, @image)
   end
 
   def destroy
