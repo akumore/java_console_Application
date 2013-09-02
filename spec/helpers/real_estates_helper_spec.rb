@@ -28,4 +28,20 @@ describe RealEstatesHelper do
       microsite_select_options.should == expected_arr
     end
   end
+
+  describe '#category_options_for_utilization' do
+    before do
+      Fabricate :category, id: 1, name: 'single_house', label: 'Einfamilienhaus', utilization: Utilization::LIVING
+      Fabricate :category, id: 2, name: 'flat', label: 'Wohnung', utilization: Utilization::LIVING
+      Fabricate :category, id: 3, name: 'studio', label: 'Studio', utilization: Utilization::WORKING
+    end
+
+    it 'returns the category select options with category name data attribute' do
+      expected_arr = [
+        ['Einfamilienhaus', 1, { 'data-category_name' => 'single_house' }], 
+        ['Wohnung', 2, { 'data-category_name' => 'flat' }]
+      ]
+      expect(category_options_for_utilization(Utilization::LIVING)).to eq(expected_arr)
+    end
+  end
 end

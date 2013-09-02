@@ -20,6 +20,10 @@ module RealEstatesHelper
     ]
   end
 
+  def category_options_for_utilization(utilization)
+    Category.unscoped.where(utilization: utilization).sorted_by_utilization.map { |c|[c.label, c.id, { 'data-category_name' => c.name }] }
+  end
+
   def microsite_select_options
     MicrositeBuildingProject.all.map do |microsite_building_project|
       [

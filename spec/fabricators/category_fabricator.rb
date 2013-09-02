@@ -3,6 +3,7 @@
 Fabricator(:category) do
   label { "Category #{Fabricate.sequence}" }
   name { |category| category.label.downcase.parameterize }
+  utilization Utilization::LIVING
   sort_order 1
 end
 
@@ -17,11 +18,13 @@ end
 Fabricator(:row_house_category, :from => :category) do
   label 'Reiheneinfamilienhaus'
   name 'row_house'
+  utilization Utilization::LIVING
   parent { Fabricate(:category) }
 end
 
 Fabricator(:parking_category, :from => :category) do
   label 'Parkplatz im Freien'
   name 'open_slot'
+  utilization Utilization::PARKING
   parent { Fabricate(:category) }
 end
