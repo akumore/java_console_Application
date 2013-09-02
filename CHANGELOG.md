@@ -1,5 +1,14 @@
 # CHANGELOG
 
+### Development
+* New implemented stories:
+  * #1959 - Als Editor möchte ich eine Validation auf der Referenznummer
+  * #1960 - Als Besucher und Leser möchte ich die Preise richtig ausgerichtet sehen
+  * #1961 - Als Besucher möchte ich den aktuellen Vision-Slider sehen
+  * #1981 - Als Besucher und Leser möchte ich beim Preis sehen, ob die Nebenkosten inklusive sind, oder nicht
+  * #1982 - Als Besucher und Leser möchte ich das Bezug ab Feld richtig formatiert sehen
+  * #1984 - Als Besucher und Leser möchte ich das Feld «Aussicht» sehen
+
 ### v2.6.0 on 2013-08-16
 * New implemented stories:
   * #1953 - Als Besucher möchte ich das maximale Gewicht für den Warenlift in «kg» sehen
