@@ -73,7 +73,7 @@ describe "Cms::Images" do
       fill_in 'Titel', :with => ''
       expect {
         click_on 'Bild speichern'
-      }.should_not change { @image.reload.title }
+      }.to_not change { @image.reload.title }
 
       page.should have_content "Titel muss ausgefüllt werden"
     end

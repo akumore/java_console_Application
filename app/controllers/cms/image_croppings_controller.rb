@@ -1,8 +1,5 @@
 class Cms::ImageCroppingsController < Cms::SecuredController
   include Concerns::EmbeddedInRealEstate
-
-  # load_resource :class => MediaAssets::Image, :through => :real_estate
-  # authorize_resource :class => MediaAssets::Image, :through => :real_estate, :except => :show
   
   respond_to :html
   
@@ -16,7 +13,6 @@ class Cms::ImageCroppingsController < Cms::SecuredController
     else
       @image = @real_estate.images.find(params[:id])
     end
-
     render :edit , locals: { image_type: params[:image_type] }
   end
 end
