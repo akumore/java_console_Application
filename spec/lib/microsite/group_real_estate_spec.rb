@@ -21,7 +21,7 @@ module Microsite
     context 'as uncategorized real estate for private use' do
       it 'returns the value of \'rooms\' attribute as grouping key' do
         private_real_estate.stub(:figure => stub(:rooms => '3.5'))
-        GroupRealEstates.get_group(private_real_estate)[:label].should == '3.5 Zimmer Wohnungen'
+        GroupRealEstates.get_group(private_real_estate)[:label].should == '3.5-Zimmer'
       end
     end
 
