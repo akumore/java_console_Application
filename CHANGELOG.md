@@ -9,6 +9,10 @@
   * #1982 - Als Besucher und Leser möchte ich das Bezug ab Feld richtig formatiert sehen
   * #1984 - Als Besucher und Leser möchte ich das Feld «Aussicht» sehen
 
+### v2.6.1 on 2013-09-04
+* New implemented stories:
+  * #2068 - Als Besucher möchte ich das Anmeldeformular bei der Felpark Immobilie nicht mehr sehen
+
 ### v2.6.0 on 2013-08-16
 * New implemented stories:
   * #1953 - Als Besucher möchte ich das maximale Gewicht für den Warenlift in «kg» sehen
