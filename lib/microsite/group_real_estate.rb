@@ -13,8 +13,13 @@ module Microsite
       else
         figure = real_estate.figure
         if figure.present? && figure.rooms.present?
-          label = "#{figure.rooms}-Zimmer"
-          sort_key = figure.rooms
+          if figure.rooms != '0'
+            label = "#{figure.rooms}-Zimmer"
+            sort_key = figure.rooms
+          else
+            label = 'Wohnatelier'
+            sort_key = 'C'
+          end
         end
       end
 
