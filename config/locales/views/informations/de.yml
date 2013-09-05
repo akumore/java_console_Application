@@ -24,6 +24,7 @@ de:
     wheelchair_accessible: 'rollstuhltauglich'
     child_friendly: 'kinderfreundlich'
     balcony: 'Balkon'
+    garden_seating: 'Gartensitzplatz'
     raised_ground_floor: 'Hochparterre'
     swimmingpool: 'Schwimmbecken'
     number_of_restrooms: '%{count} WC'

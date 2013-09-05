@@ -37,6 +37,7 @@ class InformationDecorator < ApplicationDecorator
       buffer << t('information.wheelchair_accessible') if model.is_wheelchair_accessible?
       buffer << t('information.child_friendly') if model.is_child_friendly?
       buffer << t('information.balcony') if model.has_balcony?
+      buffer << t('information.garden_seating') if model.has_garden_seating?
       buffer << t('information.raised_ground_floor') if model.has_raised_ground_floor?
       buffer << t('information.swimmingpool') if model.has_swimming_pool?
     elsif model.working? || model.storing?
