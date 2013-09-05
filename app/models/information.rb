@@ -14,6 +14,7 @@ class Information
   field :is_wheelchair_accessible, :type => Boolean
   field :is_child_friendly, :type => Boolean
   field :has_balcony, :type => Boolean
+  field :has_garden_seating, :type => Boolean
   field :has_raised_ground_floor, :type => Boolean
   field :is_new_building, :type => Boolean
   field :is_old_building, :type => Boolean

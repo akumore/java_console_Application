@@ -9,31 +9,32 @@ describe "Cms Information" do
 
     before :each do
       @template_information = Fabricate.build(:information,
-                                                :available_from=>Date.parse('2012-04-24'),
-                                                :display_estimated_available_from=>'Ab Ende April',
-                                                :has_outlook=>true,
-                                                :has_fireplace=>true,
-                                                :has_elevator=>true,
-                                                :has_isdn=>true,
-                                                :is_wheelchair_accessible=>true,
-                                                :is_child_friendly=>true,
-                                                :has_balcony=>true,
-                                                :has_raised_ground_floor=>true,
-                                                :is_new_building=>true,
-                                                :is_old_building=>true,
-                                                :has_swimming_pool=>true,
-                                                :is_minergie_style=>true,
-                                                :is_minergie_certified=>true,
-                                                :maximal_floor_loading=>10,
-                                                :freight_elevator_carrying_capacity=>20,
-                                                :has_ramp=>true,
-                                                :has_lifting_platform=>true,
-                                                :has_railway_terminal=>true,
-                                                :number_of_restrooms=>10,
-                                                :has_water_supply=>true,
-                                                :has_sewage_supply=>true,
-                                                :is_developed=>true,
-                                                :is_under_building_laws=>true
+                                                :available_from => Date.parse('2012-04-24'),
+                                                :display_estimated_available_from => 'Ab Ende April',
+                                                :has_outlook => true,
+                                                :has_fireplace => true,
+                                                :has_elevator => true,
+                                                :has_isdn => true,
+                                                :is_wheelchair_accessible => true,
+                                                :is_child_friendly => true,
+                                                :has_balcony => true,
+                                                :has_garden_seating => true,
+                                                :has_raised_ground_floor => true,
+                                                :is_new_building => true,
+                                                :is_old_building => true,
+                                                :has_swimming_pool => true,
+                                                :is_minergie_style => true,
+                                                :is_minergie_certified => true,
+                                                :maximal_floor_loading => 10,
+                                                :freight_elevator_carrying_capacity => 20,
+                                                :has_ramp => true,
+                                                :has_lifting_platform => true,
+                                                :has_railway_terminal => true,
+                                                :number_of_restrooms => 10,
+                                                :has_water_supply => true,
+                                                :has_sewage_supply => true,
+                                                :is_developed => true,
+                                                :is_under_building_laws => true
                                               )
     end
 
@@ -54,8 +55,21 @@ describe "Cms Information" do
 
         fill_in 'Etwa verfügbar ab', :with => @template_information.display_estimated_available_from
 
-        ['Aussicht', 'Cheminée', 'Lift', 'ISDN-Anschluss', 'Rollstuhltauglich', 'Kinderfreundlich', 'Balkon',
-         'Hochparterre', 'Neubau', 'Altbau', 'Swimmingpool', 'Minergie Bauweise', 'Minergie zertifiziert'].each do |checkbox|
+        [ 'Aussicht', 
+          'Cheminée', 
+          'Lift', 
+          'ISDN-Anschluss', 
+          'Rollstuhltauglich', 
+          'Kinderfreundlich', 
+          'Balkon', 
+          'Gartensitzplatz',
+          'Hochparterre', 
+          'Neubau', 
+          'Altbau', 
+          'Swimmingpool', 
+          'Minergie Bauweise', 
+          'Minergie zertifiziert'
+        ].each do |checkbox|
           check checkbox
         end
 
@@ -71,6 +85,7 @@ describe "Cms Information" do
         information.is_wheelchair_accessible.should == @template_information.is_wheelchair_accessible
         information.is_child_friendly.should == @template_information.is_child_friendly
         information.has_balcony.should == @template_information.has_balcony
+        information.has_garden_seating.should == @template_information.has_garden_seating
         information.has_raised_ground_floor.should == @template_information.has_raised_ground_floor
         information.has_swimming_pool.should == @template_information.has_swimming_pool
         information.has_isdn.should == @template_information.has_isdn
