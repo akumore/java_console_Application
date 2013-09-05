@@ -36,6 +36,7 @@ class InformationDecorator < ApplicationDecorator
       buffer << t('information.wheelchair_accessible') if model.is_wheelchair_accessible?
       buffer << t('information.child_friendly') if model.is_child_friendly?
       buffer << t('information.balcony') if model.has_balcony?
+      buffer << t('information.garden_seating') if model.has_garden_seating?
       buffer << t('information.swimmingpool') if model.has_swimming_pool?
     elsif model.working? || model.storing?
       if model.number_of_restrooms.to_i > 0
@@ -68,10 +69,6 @@ class InformationDecorator < ApplicationDecorator
   def chapter
     content = []
     content_html = ''
-
-    if information.available_from.present?
-      content << { :key => t('information.available_from'), :value => I18n.l(information.available_from) }
-    end
 
     figure = FigureDecorator.decorate real_estate.figure
     if figure && real_estate.living?

@@ -175,8 +175,8 @@ class MicrositeDecorator < ApplicationDecorator
   def <=>(other)
     return group_sort_key <=> other.group_sort_key if group_sort_key != other.group_sort_key
     return building_key <=> other.building_key if building_key != other.building_key
-    return surface_value <=> other.surface_value if surface_value != other.surface_value
     return figure.floor <=> other.figure.floor if figure.floor != other.figure.floor
+    return surface_value <=> other.surface_value if surface_value != other.surface_value
     0
   end
 

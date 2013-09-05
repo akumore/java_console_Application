@@ -18,6 +18,7 @@ describe "Cms Information" do
                                                 :is_wheelchair_accessible => true,
                                                 :is_child_friendly => true,
                                                 :has_balcony => true,
+                                                :has_garden_seating => true,
                                                 :has_raised_ground_floor => true,
                                                 :is_new_building => true,
                                                 :is_old_building => true,
@@ -57,21 +58,20 @@ describe "Cms Information" do
         fill_in 'Etwa verfügbar ab', :with => @template_information.display_estimated_available_from
         fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
 
-        [
-          'Aussicht',
-          'Cheminée',
-          'Lift',
-          'ISDN-Anschluss',
-          'Rollstuhltauglich',
-          'Kinderfreundlich',
-          'Balkon',
-          'Hochparterre',
-          'Neubau',
-          'Altbau',
-          'Swimmingpool',
-          'Minergie Bauweise',
-          'Minergie zertifiziert',
-          'Kabelfernsehen'
+        [ 'Aussicht', 
+          'Cheminée', 
+          'Lift', 
+          'ISDN-Anschluss', 
+          'Rollstuhltauglich', 
+          'Kinderfreundlich', 
+          'Balkon', 
+          'Gartensitzplatz',
+          'Hochparterre', 
+          'Neubau', 
+          'Altbau', 
+          'Swimmingpool', 
+          'Minergie Bauweise', 
+          'Minergie zertifiziert'
         ].each do |checkbox|
           check checkbox
         end
@@ -88,6 +88,7 @@ describe "Cms Information" do
         information.is_wheelchair_accessible.should == @template_information.is_wheelchair_accessible
         information.is_child_friendly.should == @template_information.is_child_friendly
         information.has_balcony.should == @template_information.has_balcony
+        information.has_garden_seating.should == @template_information.has_garden_seating
         information.has_raised_ground_floor.should == @template_information.has_raised_ground_floor
         information.has_swimming_pool.should == @template_information.has_swimming_pool
         information.has_isdn.should == @template_information.has_isdn

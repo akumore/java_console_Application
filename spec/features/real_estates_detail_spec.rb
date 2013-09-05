@@ -386,6 +386,7 @@ describe "RealEstates" do
                           :is_wheelchair_accessible => true,
                           :is_child_friendly => true,
                           :has_balcony => true,
+                          :has_garden_seating => true,
                           :has_raised_ground_floor => true,
                           :has_swimming_pool => true,
                           :has_ramp => true,
@@ -443,6 +444,10 @@ describe "RealEstates" do
           it 'shows the surface' do
             page.should have_content('Wohnfläche')
             page.should have_content('120 m²')
+          end
+
+          it 'shows the garden seating' do
+            expect(page).to have_content('Gartensitzplatz')
           end
         end
 

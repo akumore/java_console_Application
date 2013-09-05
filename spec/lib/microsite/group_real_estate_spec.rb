@@ -21,7 +21,14 @@ module Microsite
     context 'as uncategorized real estate for private use' do
       it 'returns the value of \'rooms\' attribute as grouping key' do
         private_real_estate.stub(:figure => stub(:rooms => '3.5'))
-        GroupRealEstates.get_group(private_real_estate)[:label].should == '3.5 Zimmer Wohnungen'
+        GroupRealEstates.get_group(private_real_estate)[:label].should == '3.5-Zimmer'
+      end
+
+      context 'rooms are set to \'0\'' do
+        it 'returns \'Wohnatelier\' as grouping key' do
+          private_real_estate.stub(:figure => stub(:rooms => '0'))
+          GroupRealEstates.get_group(private_real_estate)[:label].should == 'Wohnatelier'
+        end
       end
     end
 
@@ -41,6 +48,8 @@ module Microsite
     context 'grouping' do
       it 'sorts the objects in the order: number of rooms, Loft, Dienstleistungsflächen' do
         sort_keys = []
+        private_real_estate.stub(:figure => stub(:rooms => '0'))
+        sort_keys << GroupRealEstates.get_group(private_real_estate)[:sort_key]
         private_real_estate.stub(:figure => stub(:rooms => '1.5'))
         sort_keys << GroupRealEstates.get_group(private_real_estate)[:sort_key]
         private_real_estate.stub(:figure => stub(:rooms => '3.5'))
@@ -48,7 +57,7 @@ module Microsite
         private_real_estate.stub(:category_label => 'Loft')
         sort_keys << GroupRealEstates.get_group(private_real_estate)[:sort_key]
         sort_keys << GroupRealEstates.get_group(commercial_real_estate)[:sort_key]
-        sort_keys.sort.should == [ '1.5', '3.5', 'A', 'B' ]
+        sort_keys.sort.should == [ '1.5', '3.5', 'A', 'B', 'C' ]
       end
     end
 

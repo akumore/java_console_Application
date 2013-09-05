@@ -9,6 +9,13 @@
   * #1982 - Als Besucher und Leser möchte ich das Bezug ab Feld richtig formatiert sehen
   * #1984 - Als Besucher und Leser möchte ich das Feld «Aussicht» sehen
 
+### v2.6.2 on 2013-09-05
+* New implemented stories:
+  * #2011 - Als Entwickler möchte ich in den Microsite JSONs Bezug unter dem Punkt Preise/Bezug sehen
+  * #2070 - Als Entwickler möchte ich die real estates der Microsites nach Gruppe, Building Key, Stockwerk und Wohnfläche sortiert haben
+  * #2071 - Als Entwickler möchte ich die Gruppen Labels in neuem Format sehen
+  * #2041 - Als Editor möchte ich bei einer Immobilie Gartensitzplatz als Info zuweisen
+
 ### v2.6.1 on 2013-09-04
 * New implemented stories:
   * #2068 - Als Besucher möchte ich das Anmeldeformular bei der Felpark Immobilie nicht mehr sehen

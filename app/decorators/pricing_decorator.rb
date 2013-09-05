@@ -155,6 +155,10 @@ class PricingDecorator < ApplicationDecorator
       content << { :key => t('pricings.outside_parking'), :value => outside_parking }
     end
 
+    if real_estate.information.present? && real_estate.information.available_from.present?
+      content << { :key => t('information.available_from'), :value => I18n.l(real_estate.information.available_from) }
+    end
+
     if opted?
       content_html << content_tag(:p, t('pricings.without_vat'))
     end

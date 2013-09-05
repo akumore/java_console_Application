@@ -18,6 +18,7 @@ describe "Handout aka MiniDoku" do
                     :is_wheelchair_accessible => true,
                     :is_child_friendly => true,
                     :has_balcony => true,
+                    :has_garden_seating => true,
                     :has_raised_ground_floor => true,
                     :has_swimming_pool => true,
                     :has_ramp => true,
@@ -589,6 +590,10 @@ describe "Handout aka MiniDoku" do
 
       it "doesn't have a raised groundfloor" do
         page.should_not have_content 'Hochparterre'
+      end
+
+      it 'has a garden seating' do
+        page.should have_content 'Gartensitzplatz'
       end
 
       it 'has a swimmingpool' do
