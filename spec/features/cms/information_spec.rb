@@ -71,7 +71,8 @@ describe "Cms Information" do
           'Altbau', 
           'Swimmingpool', 
           'Minergie Bauweise', 
-          'Minergie zertifiziert'
+          'Minergie zertifiziert',
+          'Kabelfernsehen'
         ].each do |checkbox|
           check checkbox
         end
