@@ -351,16 +351,16 @@ describe MicrositeDecorator do
           real_estate_b.to_model.address = house_L
         end
 
-        it "orders by surface asc" do
-          real_estate_a.to_model.figure.living_surface = 60
-          real_estate_b.to_model.figure.living_surface = 100
-          [real_estate_b, real_estate_a].sort.should == [real_estate_a, real_estate_b]
+        it "orders by floor asc" do
+          real_estate_a.to_model.figure.floor = 2
+          real_estate_b.to_model.figure.floor = -1
+          [real_estate_a, real_estate_b].sort.should == [real_estate_b, real_estate_a]
         end
 
-        describe "inner order of real estates having the same surface" do
-          it "orders by floor asc" do
-            real_estate_a.to_model.figure.floor = -1
-            real_estate_b.to_model.figure.floor = 2
+        describe "inner order of real estates having the same floor" do
+          it "orders by surface asc" do
+            real_estate_a.to_model.figure.living_surface = 60
+            real_estate_b.to_model.figure.living_surface = 100
             [real_estate_b, real_estate_a].sort.should == [real_estate_a, real_estate_b]
           end
         end

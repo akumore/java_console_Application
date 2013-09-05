@@ -71,10 +71,6 @@ class InformationDecorator < ApplicationDecorator
     content = []
     content_html = ''
 
-    if information.available_from.present?
-      content << { :key => t('information.available_from'), :value => I18n.l(information.available_from) }
-    end
-
     figure = FigureDecorator.decorate real_estate.figure
     if figure && real_estate.living?
       if figure.floor.present?
