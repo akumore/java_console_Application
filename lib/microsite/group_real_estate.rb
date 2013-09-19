@@ -10,11 +10,14 @@ module Microsite
       elsif real_estate.category_label == 'Loft'
         label = real_estate.category_label
         sort_key = 'A'
+      elsif real_estate.storing?
+        label = real_estate.category_label
+        sort_key = 'D'
       else
         figure = real_estate.figure
         if figure.present? && figure.rooms.present?
           if figure.rooms != '0'
-            label = "#{figure.rooms}-Zimmer"
+            label = "#{figure.rooms} Zimmer"
             sort_key = figure.rooms
           else
             label = 'Wohnatelier'
