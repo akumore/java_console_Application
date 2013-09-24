@@ -16,7 +16,10 @@ module Microsite
     end
 
     let :commercial_real_estate do
-      stub(:commercial_utilization? => true)
+      stub(
+        :category_label => 'Büro',
+        :commercial_utilization? => true
+      )
     end
 
     let :storing_real_estate do
@@ -51,6 +54,13 @@ module Microsite
     context 'as commercial building' do
       it 'returns \'Dienstleistungsflächen\' as grouping key' do
         GroupRealEstates.get_group(commercial_real_estate)[:label].should == 'Dienstleistungsflächen'
+      end
+
+      context 'with category_name \'Atelier\'' do
+        it 'returns \'Wohnatelier\' as grouping key' do
+          commercial_real_estate.stub(:category_label => 'Atelier')
+          GroupRealEstates.get_group(commercial_real_estate)[:label].should == 'Wohnatelier'
+        end
       end
     end
 
