@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.6.3 on 2013-09-26
+* New implemented stories:
+  * 2192 - Als Entwickler möchte ich die Immobilien über die Microsite API korrekt gruppiert erhalten
+
 ### v2.6.2 on 2013-09-05
 * New implemented stories:
   * #2011 - Als Entwickler möchte ich in den Microsite JSONs Bezug unter dem Punkt Preise/Bezug sehen
