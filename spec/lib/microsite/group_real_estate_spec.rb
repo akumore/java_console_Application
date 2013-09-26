@@ -11,17 +11,29 @@ module Microsite
         :private_utilization? => true,
         :commercial_utilization? => false,
         :category_label => nil,
+        :storing? => false
       )
     end
 
     let :commercial_real_estate do
-      stub(:commercial_utilization? => true)
+      stub(
+        :category_label => 'Büro',
+        :commercial_utilization? => true
+      )
+    end
+
+    let :storing_real_estate do
+      stub(
+        :category_label => 'Disponibel',
+        :commercial_utilization? => false,
+        :storing? => true
+      )
     end
 
     context 'as uncategorized real estate for private use' do
       it 'returns the value of \'rooms\' attribute as grouping key' do
         private_real_estate.stub(:figure => stub(:rooms => '3.5'))
-        GroupRealEstates.get_group(private_real_estate)[:label].should == '3.5-Zimmer'
+        GroupRealEstates.get_group(private_real_estate)[:label].should == '3.5 Zimmer'
       end
 
       context 'rooms are set to \'0\'' do
@@ -43,6 +55,19 @@ module Microsite
       it 'returns \'Dienstleistungsflächen\' as grouping key' do
         GroupRealEstates.get_group(commercial_real_estate)[:label].should == 'Dienstleistungsflächen'
       end
+
+      context 'with category_name \'Atelier\'' do
+        it 'returns \'Wohnatelier\' as grouping key' do
+          commercial_real_estate.stub(:category_label => 'Atelier')
+          GroupRealEstates.get_group(commercial_real_estate)[:label].should == 'Wohnatelier'
+        end
+      end
+    end
+
+    context 'as storing building' do
+      it 'returns the category name as grouping key' do
+        GroupRealEstates.get_group(storing_real_estate)[:label].should == 'Disponibel'
+      end
     end
 
     context 'grouping' do
@@ -55,9 +80,10 @@ module Microsite
         private_real_estate.stub(:figure => stub(:rooms => '3.5'))
         sort_keys << GroupRealEstates.get_group(private_real_estate)[:sort_key]
         private_real_estate.stub(:category_label => 'Loft')
-        sort_keys << GroupRealEstates.get_group(private_real_estate)[:sort_key]
         sort_keys << GroupRealEstates.get_group(commercial_real_estate)[:sort_key]
-        sort_keys.sort.should == [ '1.5', '3.5', 'A', 'B', 'C' ]
+        sort_keys << GroupRealEstates.get_group(storing_real_estate)[:sort_key]
+        sort_keys << GroupRealEstates.get_group(private_real_estate)[:sort_key]
+        sort_keys.sort.should == [ '1.5', '3.5', 'A', 'B', 'C', 'D' ]
       end
     end
 
