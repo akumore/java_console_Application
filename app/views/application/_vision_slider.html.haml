@@ -25,15 +25,15 @@
           = image_tag 'vision/slide-3.jpg'
           .image-caption
             .image-caption-text
-              %h3.vision-header-title= t('.vision.jobs_title')
-              = link_to t('.vision.jobs_link_title'), t('jobs_url'), :class => :go
+              %h3.vision-header-title= t('.vision.workspaces_title')
+              = link_to t('.vision.workspaces_link_title'), real_estates_path(:offer => 'for_rent', :utilization => 'commercial'), :class => :go
 
         %li
           = image_tag 'vision/slide-4.jpg'
           .image-caption
             .image-caption-text
-              %h3.vision-header-title= t('.vision.workspaces_title')
-              = link_to t('.vision.workspaces_link_title'), real_estates_path(:offer => 'for_rent', :utilization => 'commercial'), :class => :go
+              %h3.vision-header-title= t('.vision.jobs_title')
+              = link_to t('.vision.jobs_link_title'), t('jobs_url'), :class => :go
 
       .vision-frame
         %a.vision-click-area.disabled{ :href => '#' }
