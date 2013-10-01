@@ -338,9 +338,34 @@ describe MicrositeDecorator do
         )
       end
 
+      let :house_3_5_7 do
+        Fabricate.build(
+          :address,
+          :microsite_reference => Fabricate.build(
+            :microsite_reference, :building_key => '3/5/7'
+          )
+        )
+      end
+
+      let :house_21 do
+        Fabricate.build(
+          :address,
+          :microsite_reference => Fabricate.build(
+            :microsite_reference, :building_key => '21'
+          )
+        )
+      end
+
       it "orders by house index alphabetically asc" do
         real_estate_a.to_model.address = house_L
         real_estate_b.to_model.address = house_H
+
+        [real_estate_a, real_estate_b].sort.should == [real_estate_b, real_estate_a]
+      end
+
+      it 'orders by house numbers numerically asc' do
+        real_estate_a.to_model.address = house_21
+        real_estate_b.to_model.address = house_3_5_7
 
         [real_estate_a, real_estate_b].sort.should == [real_estate_b, real_estate_a]
       end
