@@ -19,6 +19,7 @@
 
     -  unless @real_estate.parking?
       .row
+        /----------------- column one -----------------/
         .span4
           .control-group
             = f.label :is_new_building
@@ -33,6 +34,23 @@
                 = f.check_box :is_old_building
                 %i.icon-question-sign.help-popover.push-inline-labels-down{ :rel => 'popover', 'data-original-title' => Information.human_attribute_name(:is_old_building), 'data-content' => t('.help_popover.is_old_building') }
 
+          .control-group
+            = f.label :has_outlook
+            .controls
+              = f.check_box :has_outlook
+              
+          .control-group
+            = f.label :has_raised_ground_floor
+            .controls
+              = f.check_box :has_raised_ground_floor
+
+          - if @real_estate.property?
+            .control-group
+              = f.label :is_developed
+              .controls
+                = f.check_box :is_developed
+
+        /----------------- column two -----------------/
         .span4
           .control-group
             = f.label :is_minergie_style
@@ -44,47 +62,17 @@
             .controls
               = f.check_box :is_minergie_certified
 
-        .span4
-          - if @real_estate.property?
-            .control-group
-              = f.label :is_developed
-              .controls
-                = f.check_box :is_developed
-
-          - if (@real_estate.apartment? || @real_estate.house?) && @real_estate.for_sale?
-            .control-group
-              = f.label :is_under_building_laws
-              .controls
-                = f.check_box :is_under_building_laws
-
           .control-group
-            = f.label :has_cable_tv
+            = f.label :has_balcony
             .controls
-              = f.check_box :has_cable_tv
-
-      .row
-        .span4
+              = f.check_box :has_balcony
+              
           .control-group
-            = f.label :has_outlook
+            = f.label :has_garden_seating
             .controls
-              = f.check_box :has_outlook
+              = f.check_box :has_garden_seating
 
-          - if @real_estate.living?
-            .control-group
-              = f.label :has_fireplace
-              .controls
-                = f.check_box :has_fireplace
-
-            .control-group
-              = f.label :has_elevator
-              .controls
-                = f.check_box :has_elevator
-
-            .control-group
-              = f.label :has_isdn
-              .controls
-                = f.check_box :has_isdn
-
+        /-----------------column three -----------------/
         .span4
           .control-group
             = f.label :is_wheelchair_accessible
@@ -95,25 +83,43 @@
             = f.label :is_child_friendly
             .controls
               = f.check_box :is_child_friendly
-
-          .control-group
-            = f.label :has_balcony
-            .controls
-              = f.check_box :has_balcony
-
-          .control-group
-            = f.label :has_garden_seating
-            .controls
-              = f.check_box :has_garden_seating
-        .span4
-          .control-group
-            = f.label :has_raised_ground_floor
-            .controls
-              = f.check_box :has_raised_ground_floor
+              
           .control-group
             = f.label :has_swimming_pool
             .controls
               = f.check_box :has_swimming_pool
+
+          .control-group
+            = f.label :has_cable_tv
+            .controls
+              = f.check_box :has_cable_tv
+
+
+    - if @real_estate.living?
+      .row
+        .span4
+          .control-group
+            = f.label :has_isdn
+            .controls
+              = f.check_box :has_isdn
+
+          - if (@real_estate.apartment? || @real_estate.house?) && @real_estate.for_sale?
+            .control-group
+              = f.label :is_under_building_laws
+              .controls
+                = f.check_box :is_under_building_laws
+
+        .span4
+          .control-group
+            = f.label :has_fireplace
+            .controls
+              = f.check_box :has_fireplace
+
+        .span4
+          .control-group
+            = f.label :has_elevator
+            .controls
+              = f.check_box :has_elevator
 
     - if @real_estate.working? || @real_estate.storing?
       .row

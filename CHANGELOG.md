@@ -8,6 +8,7 @@
   * #1981 - Als Besucher und Leser möchte ich beim Preis sehen, ob die Nebenkosten inklusive sind, oder nicht
   * #1982 - Als Besucher und Leser möchte ich das Bezug ab Feld richtig formatiert sehen
   * #1984 - Als Besucher und Leser möchte ich das Feld «Aussicht» sehen
+  * #2221 - Als Editor möchte ich die Checkboxen im Info Tab möglichst zusammengefasst sehen
 
 ### v2.6.3 on 2013-09-26
 * New implemented stories:
