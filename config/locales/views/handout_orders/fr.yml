@@ -1,7 +1,7 @@
 fr:
   handout_orders:
     new:
-      headline: 'COMMANDER DOCUMETATION SUR LE BIEN IMMOBILIER'
+      headline: 'COMMANDER DOCUMENTATION SUR LE BIEN IMMOBILIER'
     form:
       submit: 'Envoyer la commande'
       errors: 'Contrôler vos données:'
