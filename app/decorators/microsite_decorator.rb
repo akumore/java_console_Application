@@ -174,10 +174,16 @@ class MicrositeDecorator < ApplicationDecorator
 
   def <=>(other)
     return group_sort_key <=> other.group_sort_key if group_sort_key != other.group_sort_key
-    return building_key <=> other.building_key if building_key != other.building_key
+    return building_sort_key <=> other.building_sort_key if building_sort_key != other.building_sort_key
     return figure.floor <=> other.figure.floor if figure.floor != other.figure.floor
     return surface_value <=> other.surface_value if surface_value != other.surface_value
     0
+  end
+
+  def building_sort_key
+    sort_key = building_key.split('/').first() if building_key.present?
+    return building_key if sort_key.to_i == 0
+    sort_key.to_i
   end
 
 end

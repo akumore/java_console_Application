@@ -10,6 +10,10 @@
   * #1984 - Als Besucher und Leser möchte ich das Feld «Aussicht» sehen
   * #2221 - Als Editor möchte ich die Checkboxen im Info Tab möglichst zusammengefasst sehen
 
+### v2.6.4 on 2013-10-03
+* Microsite API update:
+  * Sort building key numerically if the key is/includes a number
+
 ### v2.6.3 on 2013-09-26
 * New implemented stories:
   * 2192 - Als Entwickler möchte ich die Immobilien über die Microsite API korrekt gruppiert erhalten
