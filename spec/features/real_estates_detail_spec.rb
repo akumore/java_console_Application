@@ -650,6 +650,47 @@ describe "RealEstates" do
             end
           end
         end
+        
+        context 'and for living' do
+          context 'when order_handout is true' do
+            before :each do
+              real_estate.update_attribute(:utilization, Utilization::LIVING)
+              real_estate.update_attribute(:offer, Offer::RENT)
+              real_estate.update_attribute(:channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL])
+              real_estate.update_attribute(:order_handout, true)
+              visit real_estate_path(real_estate)
+            end
+
+            it 'has a handout order link' do
+              page.within('.sidebar') do
+                page.should have_link('Objektdokumentation bestellen')
+              end
+            end
+
+            it 'has no link to the mini doku' do
+              page.within('.sidebar') do
+                page.should_not have_link('Objektdokumentation', :href => real_estate_handout_path(
+                  :real_estate_id => real_estate.id,
+                  :format => :pdf
+                ))
+              end
+            end
+          end
+
+          context 'when order_handout is false' do
+            it 'has a link to the mini doku' do
+              real_estate.update_attribute :offer, Offer::RENT
+              real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
+              visit real_estate_path(real_estate)
+              page.within('.sidebar') do
+                page.should have_link('Objektdokumentation', :href => real_estate_handout_path(
+                  :real_estate_id => real_estate.id,
+                  :format => :pdf
+                ))
+              end
+            end
+          end
+        end
 
         context 'for parking' do
           it "doesn't have a link to the mini doku" do
