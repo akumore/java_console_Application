@@ -192,7 +192,7 @@ class RealEstateDecorator < ApplicationDecorator
       link_to(
         t('real_estates.show.application_form'),
         link,
-        :class => 'icon-description ga-tracking-link',
+        :class => 'application-form-link icon-description ga-tracking-link',
         :target => '_blank',
         data: {
                 'ga-category' => translate_category(model),

@@ -10,6 +10,10 @@
   * #1984 - Als Besucher und Leser möchte ich das Feld «Aussicht» sehen
   * #2221 - Als Editor möchte ich die Checkboxen im Info Tab möglichst zusammengefasst sehen
 
+### v2.6.5 on 2013-10-17
+* Move class for application-form-link to RealEstateDecorator to hide the application forms (on detail page and appointment form) for the Bünzpark and Feldpark real estate.
+>>>>>>> master
+
 ### v2.6.4 on 2013-10-03
 * Microsite API update:
   * Sort building key numerically if the key is/includes a number
