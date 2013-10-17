@@ -48,7 +48,7 @@
             = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel), :class => channel
             %span= t(".channels.#{channel}")
 
-    .order-handout-container.hidden{ 'data-dependent_on' => '#real_estate_utilization', 'data-dependent_on_value' => Utilization::WORKING }
+    .order-handout-container.hidden{ 'data-dependent_on' => '#real_estate_utilization', 'data-dependent_on_value' => [Utilization::LIVING, Utilization::WORKING] }
       .control-group
         = f.label :order_handout
         .controls.push-inline-labels-down

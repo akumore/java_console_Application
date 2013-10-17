@@ -249,10 +249,33 @@ describe "Cms::RealEstates" do
       end
     end
 
-    context 'when selecting working utilization', :js => true do
-      it 'shows the order handout option immediately' do
-        select 'Arbeiten', :from => 'Gebäudenutzung'
-        page.should have_css('.order-handout-container:not(.hidden)')
+    context 'selecting utilization' do
+      context 'working', :js => true do
+        it 'shows the order handout option immediately' do
+          select 'Arbeiten', :from => 'Gebäudenutzung'
+          page.should have_css('.order-handout-container:not(.hidden)')
+        end
+      end
+
+      context 'living', :js => true do
+        it 'shows the order handout option immediately' do
+          select 'Wohnen', :from => 'Gebäudenutzung'
+          page.should have_css('.order-handout-container:not(.hidden)')
+        end
+      end
+
+      context 'parking', :js => true do
+        it 'shows the order handout option immediately' do
+          select 'Parkieren', :from => 'Gebäudenutzung'
+          page.should have_css('.order-handout-container.hidden')
+        end
+      end
+
+      context 'storing', :js => true do
+        it 'shows the order handout option immediately' do
+          select 'Lagern', :from => 'Gebäudenutzung'
+          page.should have_css('.order-handout-container.hidden')
+        end
       end
     end
 
@@ -316,6 +339,7 @@ describe "Cms::RealEstates" do
         select 'Wohnen', :from => 'Gebäudenutzung'
         click_on 'Immobilie speichern'
       end
+
 
       it 'shows the base data tab' do
         within('.nav-tabs') do
