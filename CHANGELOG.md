@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.6.5 on 2013-10-17
+* Move class for application-form-link to RealEstateDecorator to hide the application forms (on detail page and appointment form) for the Bünzpark and Feldpark real estate.
+
 ### v2.6.4 on 2013-10-03
 * Microsite API update:
   * Sort building key numerically if the key is/includes a number
