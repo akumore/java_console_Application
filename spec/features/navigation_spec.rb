@@ -84,11 +84,10 @@ describe "Main Navigation" do
       end
     end
 
-    # NOTE: As long as reference projects are in editing status. The navigation is disabled
     it "doesn't show links to the reference projects" do
       visit root_path(:locale => lang)
       within '.main-navigation' do
-        page.should_not have_link I18n.t('navigation.main.reference_projects'), :href => reference_projects_path(:locale => lang)
+        page.should have_link I18n.t('navigation.main.reference_projects'), :href => reference_projects_path(:locale => lang)
       end
     end
   end
