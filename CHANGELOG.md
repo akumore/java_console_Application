@@ -10,6 +10,7 @@
   * #1984 - Als Besucher und Leser möchte ich das Feld «Aussicht» sehen
   * #2221 - Als Editor möchte ich die Checkboxen im Info Tab möglichst zusammengefasst sehen
   * #2413 - Als Administrator möchte ich Objektdokumentation bestellen auch bei Wohnen anklicken können.
+  * #2447 - Als Besucher möchte ich beim Bestellen einer Objektdoku eines 'Wohnen' Objekts keine Firma eintragen müssen
 
 ### v2.6.6 on 2013-10-18
 * Enable reference projects in main navigation
