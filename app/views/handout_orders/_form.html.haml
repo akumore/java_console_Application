@@ -4,9 +4,10 @@
 
 = form_for [@real_estate, @handout_order], :as => :handout_order, :url => real_estate_handout_orders_path(@real_estate), :remote => true do |f|
   .col.first
-    .control-group
-      .controls
-        = f.text_field :company, :placeholder => HandoutOrder.human_attribute_name(:company)
+    - unless @real_estate.living?
+      .control-group
+        .controls
+          = f.text_field :company, :placeholder => HandoutOrder.human_attribute_name(:company)
 
     .control-group
       .controls
@@ -21,8 +22,9 @@
         = f.text_field :email, :placeholder => HandoutOrder.human_attribute_name(:email)
 
   .col
-    .control-group
-      .controls.controls-spacer
+    - unless @real_estate.living?
+      .control-group
+        .controls.controls-spacer
 
     .control-group
       .controls
