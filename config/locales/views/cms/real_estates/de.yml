@@ -13,10 +13,10 @@ de:
         channels:
           website: 'Website'
           homegate: 'Externe Immobilienportale'
-          external_real_estate_portal: 'Externe Immobilienportale'
+          external_real_estate_portal: 'Dritt-Websites'
           print: 'Objektdokumentation'
           reference_projects: 'Referenzprojekt'
-          microsite: 'Micro-Site'
+          microsite: 'MicroSite'
         microsite_building_projects:
           feldpark: 'Feldpark'
           buenzpark: 'Bünzpark'

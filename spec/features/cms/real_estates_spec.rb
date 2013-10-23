@@ -117,7 +117,7 @@ describe "Cms::RealEstates" do
         end
 
         it 'enables it for external real estate portal export' do
-          check 'Externe Immobilienportale'
+          check 'Dritt-Websites'
           click_on 'Immobilie erstellen'
           real_estate.channels.should include RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL
         end
@@ -129,7 +129,7 @@ describe "Cms::RealEstates" do
         end
 
         it 'enables it for micro-sites' do
-          check 'Micro-Site'
+          check 'MicroSite'
           select 'Gartenstadt-Schlieren'
           click_on 'Immobilie erstellen'
           real_estate.channels.should include RealEstate::MICROSITE_CHANNEL
@@ -137,7 +137,7 @@ describe "Cms::RealEstates" do
 
         it 'enables it for multiple channels' do
           check 'Website'
-          check 'Externe Immobilienportale'
+          check 'Dritt-Websites'
           click_on 'Immobilie erstellen'
           [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL, RealEstate::WEBSITE_CHANNEL].each do |channel|
             real_estate.channels.should include channel
@@ -244,7 +244,7 @@ describe "Cms::RealEstates" do
       end
 
       it 'shows the microsite select options immediately' do
-        check 'Micro-Site'
+        check 'MicroSite'
         page.should have_css('.microsite-options-container:not(.hidden)')
       end
     end
