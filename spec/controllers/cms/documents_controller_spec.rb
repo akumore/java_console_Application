@@ -17,7 +17,7 @@ describe 'Real Estate Wizard' do
       it "can't create a new document" do
         expect {
           post 'create', :real_estate_id => @real_estate.id, :document => Fabricate.attributes_for(:media_assets_document)
-        }.should_not change { @real_estate.reload.documents.count }
+        }.to_not change { @real_estate.reload.documents.count }
 
         response.should redirect_to [:cms, @real_estate, :media_assets]
       end
@@ -30,7 +30,7 @@ describe 'Real Estate Wizard' do
       it "can't update the document" do
         expect {
           put 'update', :real_estate_id => @real_estate, :id => @document.id, :document => Fabricate.attributes_for(:media_assets_document, :title => 'Updated Document Title')
-        }.should_not change { @document.reload.title }
+        }.to_not change { @document.reload.title }
 
         response.should redirect_to [:cms, @real_estate, :media_assets]
       end
@@ -38,7 +38,7 @@ describe 'Real Estate Wizard' do
       it "can't destroy the document" do
         expect {
           delete 'destroy', :real_estate_id => @real_estate.id, :id => @document.id
-        }.should_not change { @real_estate.reload.documents.count }
+        }.to_not change { @real_estate.reload.documents.count }
 
         response.should redirect_to [:cms, @real_estate, :media_assets]
       end

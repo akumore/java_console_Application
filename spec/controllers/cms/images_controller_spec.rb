@@ -17,7 +17,7 @@ describe 'Real Estate Wizard' do
       it "can't create a new image" do
         expect {
           post 'create', :real_estate_id => @real_estate.id, :image => Fabricate.attributes_for(:media_assets_image)
-        }.should_not change { @real_estate.reload.images.count }
+        }.to_not change { @real_estate.reload.images.count }
 
         response.should redirect_to [:cms, @real_estate, :media_assets]
       end
@@ -30,7 +30,7 @@ describe 'Real Estate Wizard' do
       it "can't update the image" do
         expect {
           put 'update', :real_estate_id => @real_estate, :id => @image.id, :image => Fabricate.attributes_for(:media_assets_image, :title => 'Updated Image Title')
-        }.should_not change { @image.reload.title }
+        }.to_not change { @image.reload.title }
 
         response.should redirect_to [:cms, @real_estate, :media_assets]
       end
@@ -38,7 +38,7 @@ describe 'Real Estate Wizard' do
       it "can't destroy the image" do
         expect {
           delete 'destroy', :real_estate_id => @real_estate.id, :id => @image.id
-        }.should_not change { @real_estate.reload.images.count }
+        }.to_not change { @real_estate.reload.images.count }
 
         response.should redirect_to [:cms, @real_estate, :media_assets]
       end

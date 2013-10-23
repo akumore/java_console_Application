@@ -46,6 +46,7 @@ group :assets do
   gem 'uglifier'
   gem 'compass-rails'
   gem 'compass-h5bp'
+  gem 'jquery-datatables-rails'
 end
 
 group :development, :test do

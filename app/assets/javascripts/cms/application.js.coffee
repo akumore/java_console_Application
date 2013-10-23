@@ -8,9 +8,12 @@
 #= require jquery_ujs
 #= require jquery-ui
 #= require jquery.autoresize
+#= require dataTables/jquery.dataTables
+#= require dataTables/jquery.dataTables.bootstrap
 #= require underscore
 #= require backbone
 #= require ./backbone_setup
+#= require ./datatable
 #= require_tree ./templates
 #= require_tree ./models
 #= require_tree ./views

@@ -15,8 +15,38 @@ describe "Cms::RealEstates" do
       @category = Fabricate :category, :name=>'single_house', :label=>'Einfamilienhaus'
       @reference = Reference.new
       @address = Fabricate.build(:address)
-      @real_estate = Fabricate :real_estate, :category => @category, :reference => @reference, :address => @address
+      @figure = Fabricate.build(:figure, :floor => 3)
+      @contact = Fabricate(:employee)
+      @real_estate = Fabricate :real_estate, 
+                               :category => @category, 
+                               :reference => @reference, 
+                               :address => @address,
+                               :figure => @figure,
+                               :contact => @contact
       visit cms_real_estates_path
+    end
+
+    describe 'filter tabs' do
+      it "shows a filter tab for 'Alle', 'Veröffentlicht' and 'in Bearbeitung'" do
+        page.should have_link(I18n.t('cms.real_estates.index.tabs.all'))
+        page.should have_link(I18n.t('cms.real_estates.index.tabs.published'))
+        page.should have_link(I18n.t('cms.real_estates.index.tabs.in_progress'))
+      end
+
+      it "has the 'Alle' tab activated by default" do
+        page.should have_css("li.active:contains(#{I18n.t('cms.real_estates.index.tabs.all')})")
+      end
+
+      it 'selects the tab according to the filter' do
+        visit cms_real_estates_path(:filter => RealEstate::STATE_PUBLISHED)
+        page.should have_css("li.active:contains(#{I18n.t('cms.real_estates.index.tabs.published')})")
+      end
+
+      it 'shows the list of real estates for the current filter tab' do
+        3.times{ Fabricate :real_estate, :category => @category, :state => RealEstate::STATE_PUBLISHED }
+        visit cms_real_estates_path(:filter => RealEstate::STATE_PUBLISHED)
+        page.should have_selector('table tr', :count => RealEstate.published.count + 1)
+      end
     end
 
     it "shows the list of real estates" do
@@ -25,11 +55,20 @@ describe "Cms::RealEstates" do
 
     it "shows the expected real estate attributes" do
       within("#real_estate_#{@real_estate.id}") do
-        page.should have_content @real_estate.address.city
-        page.should have_content @real_estate.title
-        page.should have_content I18n.t("cms.real_estates.index.#{@real_estate.offer}")
-        page.should have_content I18n.t("cms.real_estates.index.#{@real_estate.utilization}")
-        page.should have_content I18n.t("cms.real_estates.index.#{@real_estate.state}")
+        real_estate = RealEstateDecorator.decorate(@real_estate)
+
+        page.should have_content real_estate.address.city
+        page.should have_content real_estate.address.street
+        page.should have_content real_estate.address.street_number
+        page.should have_content real_estate.figure.shortened_floor
+        page.should have_content real_estate.figure.surface
+        page.should have_content real_estate.contact.fullname_reversed
+        # real estate state-bar
+        page.should have_css ('i.state.published.inactive')
+        page.should have_css ('i.state.web.active')
+        page.should have_css ('i.state.doc.inactive')
+        page.should have_css ('i.state.portal.inactive')
+        page.should have_css ('i.state.microsite.inactive')
       end
     end
 
@@ -403,7 +442,7 @@ describe "Cms::RealEstates" do
 
         expect {
           click_link "Diesen Eintrag kopieren"
-        }.should change(RealEstate, :count).by(1)
+        }.to change(RealEstate, :count).by(1)
         real_estate_copy
         current_path.should == edit_cms_real_estate_path(real_estate_copy)
       end
@@ -414,7 +453,7 @@ describe "Cms::RealEstates" do
 
         expect {
           click_link "Diesen Eintrag kopieren"
-        }.should change(RealEstate, :count).by(1)
+        }.to change(RealEstate, :count).by(1)
         current_path.should == edit_cms_real_estate_path(real_estate_copy)
       end
 
@@ -424,7 +463,7 @@ describe "Cms::RealEstates" do
 
         expect {
           click_link "Diesen Eintrag kopieren"
-        }.should change(RealEstate, :count).by(1)
+        }.to change(RealEstate, :count).by(1)
         current_path.should == edit_cms_real_estate_path(real_estate_copy)
       end
     end

@@ -53,14 +53,14 @@ describe "Cms News Items Administration" do
       fill_in 'news_item_title', :with => 'Invasion vom Mars'
       fill_in 'news_item_content', :with => 'Das ist ja kaum zu glauben!'
 
-      expect { click_button 'News erstellen' }.should change(NewsItem, :count).by(1)
+      expect { click_button 'News erstellen' }.to change(NewsItem, :count).by(1)
       page.should have_content I18n.t("cms.news_items.create.success")
     end
 
     it "doesn't create because of validation errors" do
       visit new_cms_news_item_path
 
-      expect { click_button 'News erstellen' }.should_not change(NewsItem, :count)
+      expect { click_button 'News erstellen' }.to_not change(NewsItem, :count)
       page.current_path.should == '/cms/news_items' #actual this is the create path
     end
 
@@ -80,7 +80,7 @@ describe "Cms News Items Administration" do
       fill_in 'news_item_title', :with => 'it: Invasion vom Mars'
       fill_in 'news_item_content', :with => 'it: Das ist ja kaum zu glauben!'
 
-      expect { click_button 'News erstellen' }.should change(NewsItem, :count).by(1)
+      expect { click_button 'News erstellen' }.to change(NewsItem, :count).by(1)
       NewsItem.where(:title => 'it: Invasion vom Mars').first.locale.should == 'it'
     end
 
@@ -105,7 +105,7 @@ describe "Cms News Items Administration" do
 
       expect {
         click_button 'News erstellen'
-      }.should_not change(NewsItem, :count)
+      }.to_not change(NewsItem, :count)
 
       page.should have_content "Bild ist nicht gültig"
     end
@@ -130,7 +130,7 @@ describe "Cms News Items Administration" do
 
       expect {
         click_button 'News erstellen'
-      }.should_not change(NewsItem, :count)
+      }.to_not change(NewsItem, :count)
 
       page.should have_content "Dokument ist nicht gültig"
     end
@@ -221,7 +221,7 @@ describe "Cms News Items Administration" do
     news_item = Fabricate :news_item
     visit cms_news_items_path
     within "#news_item_#{news_item.id}" do
-      expect { click_link "Löschen" }.should change(NewsItem, :count).by(-1)
+      expect { click_link "Löschen" }.to change(NewsItem, :count).by(-1)
     end
     page.should have_content I18n.t "cms.news_items.destroy.success"
   end

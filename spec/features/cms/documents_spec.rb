@@ -17,7 +17,7 @@ describe "Cms::Documents" do
 
       expect {
         click_on 'Dokument speichern'
-      }.should change { @real_estate.reload.documents.count }.by(1)
+      }.to change { @real_estate.reload.documents.count }.by(1)
     end
 
     it "doesn't add document if upload has the wrong content type" do
@@ -29,7 +29,7 @@ describe "Cms::Documents" do
       expect {
         click_on 'Dokument speichern'
         @real_estate.reload
-      }.should_not change { @real_estate.documents.count }
+      }.to_not change { @real_estate.documents.count }
 
       page.should have_content "Datei muss vom Typ pdf sein"
     end
@@ -56,7 +56,7 @@ describe "Cms::Documents" do
       fill_in 'Titel', :with => 'The updated Title'
       expect {
         click_on 'Dokument speichern'
-      }.should change { @document.reload.title }
+      }.to change { @document.reload.title }
     end
 
     it "doesn't update if title is empty" do
@@ -65,7 +65,7 @@ describe "Cms::Documents" do
       fill_in 'Titel', :with => ''
       expect {
         click_on 'Dokument speichern'
-      }.should_not change { @document.reload.title }
+      }.to_not change { @document.reload.title }
 
       page.should have_content "Titel muss ausgefüllt werden"
     end
@@ -76,7 +76,7 @@ describe "Cms::Documents" do
       attach_file 'Datei', "#{Rails.root}/spec/support/test_files/image.jpg"
       expect {
         click_on 'Dokument speichern'
-      }.should_not change { @document.reload.updated_at }
+      }.to_not change { @document.reload.updated_at }
 
       page.should have_content "Datei muss vom Typ pdf sein"
     end
@@ -111,7 +111,7 @@ describe "Cms::Documents" do
       visit cms_real_estate_media_assets_path(@real_estate)
       expect {
         click_on 'Löschen'
-      }.should change { @real_estate.reload.documents.count }.by(-1)
+      }.to change { @real_estate.reload.documents.count }.by(-1)
     end
   end
 

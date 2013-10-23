@@ -17,7 +17,7 @@ describe "Cms::Videos" do
 
       expect {
         click_on 'Video speichern'
-      }.should change { @real_estate.reload.videos.count }.by(1)
+      }.to change { @real_estate.reload.videos.count }.by(1)
     end
 
     it "doesn't add video if upload has the wrong content type" do
@@ -28,7 +28,7 @@ describe "Cms::Videos" do
 
       expect {
         click_on 'Video speichern'
-      }.should_not change { @real_estate.reload.videos.count }
+      }.to_not change { @real_estate.reload.videos.count }
 
       page.should have_content "Datei muss vom Typ mp4, m4v, mov sein"
     end
@@ -55,7 +55,7 @@ describe "Cms::Videos" do
       fill_in 'Titel', :with => 'The updated Title'
       expect {
         click_on 'Video speichern'
-      }.should change { @video.reload.title }
+      }.to change { @video.reload.title }
     end
 
     it "doesn't update if title is empty" do
@@ -64,7 +64,7 @@ describe "Cms::Videos" do
       fill_in 'Titel', :with => ''
       expect {
         click_on 'Video speichern'
-      }.should_not change { @video.reload.title }
+      }.to_not change { @video.reload.title }
 
       page.should have_content "Titel muss ausgefüllt werden"
     end
@@ -75,7 +75,7 @@ describe "Cms::Videos" do
       attach_file 'Datei', "#{Rails.root}/spec/support/test_files/document.pdf"
       expect {
         click_on 'Video speichern'
-      }.should_not change { @video.reload.updated_at }
+      }.to_not change { @video.reload.updated_at }
 
       page.should have_content "Datei muss vom Typ mp4, m4v, mov sein"
     end
@@ -110,7 +110,7 @@ describe "Cms::Videos" do
       visit cms_real_estate_media_assets_path(@real_estate)
       expect {
         click_on 'Löschen'
-      }.should change { @real_estate.reload.videos.count }.by(-1)
+      }.to change { @real_estate.reload.videos.count }.by(-1)
     end
   end
 end

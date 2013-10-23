@@ -1,35 +1,76 @@
 - content_for :title do
   Erfasste Immobilien
 
+.real-estate-state-bar
+  %ul.legend
+    %li 
+      %i.state.published.active
+      Veröffentlicht
+    %li
+      %i.state.web.active
+      Web
+    %li
+      %i.state.doc.active
+      Objektdoku
+    %li
+      %i.state.portal.active
+      Externe Portale
+    %li
+      %i.state.microsite.active
+      Micro-Site
+
+
+
+%ul.nav-tabs.nav
+  %li{ :class => params[:filter].blank? ? 'active' : nil }
+    = link_to t('.tabs.all'), cms_real_estates_path
+  %li{ :class => params[:filter] == RealEstate::STATE_PUBLISHED ? 'active' : nil }
+    = link_to t('.tabs.published'), cms_real_estates_path(:filter => RealEstate::STATE_PUBLISHED)
+  %li{ :class => params[:filter] == RealEstate::STATE_EDITING ? 'active' : nil }
+    = link_to t('.tabs.in_progress'), cms_real_estates_path(:filter => RealEstate::STATE_EDITING)
+
 .row
   .pull-right.padded
     = link_to(new_cms_real_estate_path, :class => 'btn') do
       %i.icon-plus-sign
       = t('cms.real_estates.index.new')
 
-%table.table.table-bordered.table-striped{ :id=>'real_estate' }
-  %tr
-    %th= Address.human_attribute_name :city
-    %th= RealEstate.human_attribute_name :titel
-    %th= RealEstate.human_attribute_name :offer
-    %th= RealEstate.human_attribute_name :utilization
-    %th Status
-    %th
-    %th
-
-  - @real_estates.each do |real_estate|
-    %tr{:id => "real_estate_#{real_estate.id}"}
-      %td= real_estate.try(:address).try(:city)
-      %td= real_estate.title
-      %td= t ".#{real_estate.offer}"
-      %td= t ".#{real_estate.utilization}"
-      %td= t ".#{real_estate.state}"
-      %td
-        - if can?(:edit, real_estate)
-          = link_to  t('.edit'), edit_cms_real_estate_path(real_estate)
-        - else
-          = link_to  t('.show'), cms_real_estate_path(real_estate)
-      %td
-        = link_to copy_cms_real_estate_path(real_estate), :title => t('.copy') do
-          %span.hidden-text= t('.copy')
-          %i.icon-share
+%table.table.table-bordered.table-striped.datatable{ :id=>'real_estate' }
+  %thead
+    %tr
+      %th{ width: '10%' }= Address.human_attribute_name :canton
+      %th{ width: '10%' }= Address.human_attribute_name :city
+      %th{ width: '20%' }= Address.model_name.human
+      %th{ width: '10%' }= Figure.human_attribute_name :floor
+      %th{ width: '10%' }= t'figures.surface.commercial'
+      %th{ width: '15%' }= RealEstate.human_attribute_name :contact
+      %th{ width: '15%' } Status
+      %th
+      %th
+  %tbody
+    - @real_estates.each do |real_estate|
+      %tr{:id => "real_estate_#{real_estate.id}"}
+        %td= t "cantons.#{real_estate.address.canton}" if real_estate.address.present?
+        %td= real_estate.address.try(:city)
+        %td
+          = real_estate.address.try(:street)
+          = real_estate.address.try(:street_number)
+        %td= real_estate.figure.try(:shortened_floor)
+        %td= real_estate.figure.try(:surface)
+        %td= real_estate.contact.try(:fullname_reversed)
+        %td
+          .real-estate-state-bar
+            %i.state.published{ class: real_estate.state == RealEstate::STATE_PUBLISHED ? 'active' : 'inactive' }
+            %i.state.web{ class: real_estate.is_website? ? 'active' : 'inactive' }
+            %i.state.doc{ class: real_estate.has_handout? ? 'active' : 'inactive' }
+            %i.state.portal{ class: real_estate.export_to_real_estate_portal? ? 'active' : 'inactive' }
+            %i.state.microsite{ class: real_estate.is_microsite? ? 'active' : 'inactive' }
+        %td
+          - if can?(:edit, real_estate)
+            = link_to  t('.edit'), edit_cms_real_estate_path(real_estate)
+          - else
+            = link_to  t('.show'), cms_real_estate_path(real_estate)
+        %td
+          = link_to copy_cms_real_estate_path(real_estate), :title => t('.copy') do
+            %span.hidden-text= t('.copy')
+            %i.icon-share

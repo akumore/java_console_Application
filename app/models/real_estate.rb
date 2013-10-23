@@ -83,13 +83,12 @@ class RealEstate
   scope :published, :where => { :state => STATE_PUBLISHED }
   scope :in_review, :where => { :state => STATE_IN_REVIEW }
   scope :editing, :where => { :state => STATE_EDITING }
-  scope :recently_updated, lambda { where( :updated_at.gte => 12.hours.ago ) }
+  scope :recently_updated, -> { where( :updated_at.gte => 12.hours.ago ) }
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
   scope :print_channel, :where => { :channels => PRINT_CHANNEL }
   scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
-  scope :named_microsite, lambda { |name|
-    microsite.where(:microsite_building_project => name)
-  }
+  scope :named_microsite, ->(name) { microsite.where(:microsite_building_project => name) }
+  scope :default_order, -> { order_by(['address.city', 'asc'], ['address .street', 'asc'], ['address.street_number', 'asc']) }
 
   # Utilization scopes
   scope :living,  :where => { :utilization => Utilization::LIVING }

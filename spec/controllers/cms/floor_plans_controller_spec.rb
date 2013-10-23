@@ -17,7 +17,7 @@ describe 'Real Estate Wizard' do
       it "can't create a floor plan" do
         expect {
           post 'create', :real_estate_id => @real_estate.id, :floor_plan => Fabricate.attributes_for(:media_assets_floor_plan)
-        }.should_not change { @real_estate.reload.floor_plans.count }
+        }.to_not change { @real_estate.reload.floor_plans.count }
 
         response.should redirect_to [:cms, @real_estate, :media_assets]
       end
@@ -30,7 +30,7 @@ describe 'Real Estate Wizard' do
       it "can't update the floor plan" do
         expect {
           put 'update', :real_estate_id => @real_estate, :id => @floor_plan.id, :floor_plan => Fabricate.attributes_for(:media_assets_floor_plan, :title => 'Updated Image Title')
-        }.should_not change { @floor_plan.reload.title }
+        }.to_not change { @floor_plan.reload.title }
 
         response.should redirect_to [:cms, @real_estate, :media_assets]
       end
@@ -38,7 +38,7 @@ describe 'Real Estate Wizard' do
       it "can't destroy the floor plan" do
         expect {
           delete 'destroy', :real_estate_id => @real_estate.id, :id => @floor_plan.id
-        }.should_not change { @real_estate.reload.floor_plans.count }
+        }.to_not change { @real_estate.reload.floor_plans.count }
 
         response.should redirect_to [:cms, @real_estate, :media_assets]
       end
