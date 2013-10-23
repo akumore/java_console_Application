@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### v2.6.7 on 2013-10-23
+### v2.7.0 on 2013-10-23
 * New implemented stories:
   * #1044 - Als Besucher möchte ich einheitlich formatierte Preise und Zahlen in einem definierten Format
   * #1045 - Als Besucher möchte ich Preise rechtsbündig ausgerichtet ansehen können
@@ -42,8 +42,8 @@
   * #2413 - Als Administrator möchte ich Objektdokumentation bestellen auch bei Wohnen anklicken können.
   * #2447 - Als Besucher möchte ich beim Bestellen einer Objektdoku eines 'Wohnen' Objekts keine Firma eintragen müssen
 
-### v2.6.6 on 2013-10-18
-* Enable reference projects in main navigation
+* Also implemented:
+  * Enable reference projects in main navigation
 
 ### v2.6.5 on 2013-10-17
 * Move class for application-form-link to RealEstateDecorator to hide the application forms (on detail page and appointment form) for the Bünzpark and Feldpark real estate.
