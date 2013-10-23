@@ -1,14 +1,44 @@
 # CHANGELOG
 
-### Development
+### v2.6.7 on 2013-10-23
 * New implemented stories:
+  * #1044 - Als Besucher möchte ich einheitlich formatierte Preise und Zahlen in einem definierten Format
+  * #1045 - Als Besucher möchte ich Preise rechtsbündig ausgerichtet ansehen können
+  * #1047 - Als Editor möchte ich neue Preiseinheiten für Mieten und Kaufen auswählen können
+  * #1048 - Als Editor möchte ich zusätzlich den monatlichen Preis für alle Preise angeben können, wenn die Preiseinheit m2/Jahr eingestellt ist
+  * #1049 - Als Editor möchte ich die Nebenkosten auch für Kaufobjekte ausweisen können (aber nur bei Mieten Pflichtfeld)
+  * #1050 - Als Editor möchte ich sämtliche monatlichen Nebenkosten automatisiert anhand der jährlichen Kosten berechnen
+  * #1051 - Als Besucher möchte ich anstelle des Labels "Mietpreis" die Objekt-Art sehen, z.B. Wohnung
+  * #1052 - Als Besucher und Leser möchte ich die zusätzlichen monatlichen Preise sehen, wenn die Preiseinheit m2/Jahr eingestellt ist
+  * #1053 - Als Besucher möchte ich die Nebenkosten für Kaufobjekte sehen
+  * #1054 - Als Besucher möchte ich sehen, wenn die Preise ohne MwSt. angeben sind
+  * #1055 - Als Besucher und Leser möchte ich Preise und Nebenkosten für Lager sehen können
+  * #1056 - Als Besucher und Leser möchte ich für Parkplätze immer nur den monatlichen Preis sehen, wenn der jährliche und der monatliche Preis verfügbar sind
+  * #1058 - Als Editor möchte ich die Informationen zu Mietzinsdepot und Mietinformationen nicht länger eingeben müssen (gilt für alle Gebäudenutzungen!)
+  * #1091 - Als Editor möchte ich bestimmen, ob ein Angebot über Kabelfernsehen verfügt
+  * #1092 - Als Editor möchte ich bestimmen, ob ein Angebot im Bereich Arbeiten/Lagern über Toiletten verfügt
+  * #1094 - Als Editor sollen bestimmte Gebäudeinformationen nur auf Dritt-Websites dargestellt werden
+  * #1095 - Als Editor möchte ich erweiterte Angaben zum Ausbau eingeben
+  * #1098 - Als Besucher und Leser möchte ich die Raumhöhe sehen können
+  * #1099 - Als Besucher und Leser möchte ich Angaben zur Bodenbelastung angezeigt bekommen in xxxkg/m2
+  * #1100 - Als Editor möchte ich zusätzlich die Information «Warenlift» bei einer Immobilie eingeben können
+  * #1101 - Als Besucher und Leser möchte ich sehen, wenn eine Gewerbeimmobilie einen Warenlift hat
+  * #1111 - Als Leser möchte ich überarbeitete Titel und Labels für die übersetzten Texte in der Objektdokumentation sehen
+  * #1354 - Als Exporter möchte ich die Beschreibungstexte mit dem richtigen Inhalt auf immostreet.ch exportieren
+  * #1399 - Als Editor möchte ich das Bestellen der gedruckten Objektdokumentation für ein Angebot ermöglichen
+  * #1400 - Als Immobilienbewirtschafter möchte ich Anfragen für Objektdokumentationen erhalten
+  * #1401 - Als Besucher möchte ich eine gedruckte Objektdokumentation bestellen können
+  * #1494 - Als Editor möchte ich beim Erfassen einer Immobilie auswählen können, welche Microsite (Gartenstadt, Feldpark, Bünzpark) hinterlegt ist
+  * #1495 - Als Entwickler möchte ich ein spezifisches JSON anhand eines Parameters pro Microsite generieren können
   * #1959 - Als Editor möchte ich eine Validation auf der Referenznummer
   * #1960 - Als Besucher und Leser möchte ich die Preise richtig ausgerichtet sehen
   * #1961 - Als Besucher möchte ich den aktuellen Vision-Slider sehen
   * #1981 - Als Besucher und Leser möchte ich beim Preis sehen, ob die Nebenkosten inklusive sind, oder nicht
   * #1982 - Als Besucher und Leser möchte ich das Bezug ab Feld richtig formatiert sehen
+  * #1983 - Als Besucher und Leser möchte ich die richtigen Übersetzungen sehen
   * #1984 - Als Besucher und Leser möchte ich das Feld «Aussicht» sehen
   * #2221 - Als Editor möchte ich die Checkboxen im Info Tab möglichst zusammengefasst sehen
+  * #2347 - Als Besucher möchte ich Rivista ohne Per la vorangestellt sehen
   * #2413 - Als Administrator möchte ich Objektdokumentation bestellen auch bei Wohnen anklicken können.
   * #2447 - Als Besucher möchte ich beim Bestellen einer Objektdoku eines 'Wohnen' Objekts keine Firma eintragen müssen
 
