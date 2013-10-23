@@ -44,3 +44,11 @@ $(document).ready ->
       target: $(elem.data('dependent_on'))
       targetValue: elem.data('dependent_on_value')
     )
+
+  # initialize real estate utilizations listener
+  if $('#real_estate_utilization').length
+    new AlfredMueller.Cms.Views.RealEstateUtilizationSelect $('#real_estate_utilization')
+
+  # initialize real estate categories listener
+  if $('#real_estate_category_id').length
+    new AlfredMueller.Cms.Views.RealEstateCategorySelect $('#real_estate_category_id')

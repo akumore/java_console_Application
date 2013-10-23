@@ -6,23 +6,7 @@
       = f.label :office_id
       .controls
         = f.collection_select :office_id, Office.all, :id, :label
-
-    .control-group.mandatory
-      = f.label :category_id
-      .controls
-        = f.grouped_collection_select :category_id, Category.top_level, :categories, :label, :id, :label
-
-    .building-type-container.hidden{ 'data-dependent_on' => '#real_estate_category_id', 'data-dependent_on_value' => Category.where(:name => 'row_house').first.try(:id) }
-      .control-group
-        = f.label :building_type
-        .controls
-          %label.radio
-            = f.radio_button :building_type, RealEstate::BUILDING_CORNER_HOUSE
-            %span= t(".#{RealEstate::BUILDING_CORNER_HOUSE}")
-          %label.radio
-            = f.radio_button :building_type, RealEstate::BUILDING_MIDDLE_HOUSE
-            %span= t(".#{RealEstate::BUILDING_MIDDLE_HOUSE}")
-
+    
     .control-group.mandatory
       = f.label :offer
       .controls.push-inline-labels-down
@@ -39,6 +23,21 @@
       = f.label :utilization
       .controls
         = f.select :utilization, utilization_select_options, :class => 'span8'
+
+    .control-group.mandatory
+      = f.label :category_id
+      .controls
+        = f.select :category_id, options_for_select(category_options_for_utilization(@real_estate.utilization), selected_key = f.object.category_id), :class => 'span8'
+    .building-type-container{ class: @real_estate.category.try(:name) == 'row_house' ? '' : 'hidden'}
+      .control-group
+        = f.label :building_type
+        .controls
+          %label.radio
+            = f.radio_button :building_type, RealEstate::BUILDING_CORNER_HOUSE
+            %span= t(".#{RealEstate::BUILDING_CORNER_HOUSE}")
+          %label.radio
+            = f.radio_button :building_type, RealEstate::BUILDING_MIDDLE_HOUSE
+            %span= t(".#{RealEstate::BUILDING_MIDDLE_HOUSE}")
 
     .control-group
       = f.label :channels
@@ -88,6 +87,7 @@
         = f.label :utilization_description
         .controls
           = f.text_area :utilization_description, :class => 'span8 short'
+          %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => RealEstate.human_attribute_name(:utilization_description), 'data-content' => t('.help_popover.utilization_description') }
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

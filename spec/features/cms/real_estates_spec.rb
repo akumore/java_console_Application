@@ -119,7 +119,7 @@ describe "Cms::RealEstates" do
 
           fill_in 'Titel', :with => 'My Real Estate'
           fill_in 'Beschreibung', :with => 'Some description...'
-          fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel'
+          fill_in 'Zusätzliche Objekt-Arten', :with => 'Gewerbe, Hotel'
         end
       end
 
@@ -237,7 +237,7 @@ describe "Cms::RealEstates" do
 
           fill_in 'Titel', :with => 'My edited Real Estate'
           fill_in 'Beschreibung', :with => 'Some edited description...'
-          fill_in 'Nutzungsarten', :with => 'Gewerbe, Hotel, Restaurant'
+          fill_in 'Zusätzliche Objekt-Arten', :with => 'Gewerbe, Hotel'
         end
 
         click_on 'Immobilie speichern'
@@ -252,7 +252,7 @@ describe "Cms::RealEstates" do
         @real_estate.title.should == 'My edited Real Estate'
         @real_estate.contact.fullname.should == 'Hanna Henker'
         @real_estate.description.should == 'Some edited description...'
-        @real_estate.utilization_description.should == 'Gewerbe, Hotel, Restaurant'
+        @real_estate.utilization_description.should == 'Gewerbe, Hotel'
       end
 
       it 'has the Child Category 2 selected' do
@@ -263,17 +263,6 @@ describe "Cms::RealEstates" do
       it 'has the contact Hanna Henker selected' do
         visit edit_cms_real_estate_path(@fabricated_real_estate)
         find(:css, '#real_estate_contact_id option[selected]').text.should == 'Henker, Hanna'
-      end
-    end
-
-    context 'when selecting a row house', :js => true do
-      before do
-        visit edit_cms_real_estate_path(@fabricated_real_estate)
-      end
-
-      it 'shows the building type immediately' do
-        select 'Reiheneinfamilienhaus', :from => 'Objekt-Art'
-        page.should have_css('.building-type-container:not(.hidden)')
       end
     end
 

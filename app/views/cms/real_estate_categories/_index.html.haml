@@ -1,0 +1,5 @@
+%select{ :id => 'real_estate_category_id', :name => 'real_estate[category_id]' }
+  - if @categories.present?
+    - @categories.each do |category|
+      %option{ :value => category.id, 'data-category_name' => category.name }
+        = category.label
