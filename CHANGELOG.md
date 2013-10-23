@@ -1,11 +1,18 @@
 # CHANGELOG
 
 ### in development
-Feature 16 - Kleinere Optimierung von Darstellungen und Texten im Eingabetool und auf der Website
 
-* Implemented stories:
-  * #1405 - Als Editor möchte ich andere Namen für die vorhandenen Ausgabekanäle sehen
-  * #1403 - Als Besucher und Leser möchte ich das "N" beim eingestellten Winkel sehen
+New implemented stories:
+
+* Feature 16 - Kleinere Optimierung von Darstellungen und Texten im Eingabetool und auf der Website  
+    * #1405 - Als Editor möchte ich andere Namen für die vorhandenen Ausgabekanäle sehen
+    * #1403 - Als Besucher und Leser möchte ich das "N" beim eingestellten Winkel sehen
+  
+* Feature 18 - Verbesserte Immobilienlisten im Eingabetool  
+    * #1587 - Als Editor möchte ich die Immobilienliste im Eingabetool sortieren können
+    * #1711 - Als Editor möchte ich die Ausgabekanäle durch Icons markiert angezeigt bekommen
+    * #1712 - Als Editor möchte ich Immobiliendetails in der Übersichtsliste angezeigt bekommen
+    * #1713 - Als Editor möchte ich bei den bearbeiteten und zuletzt publizierten Immobilien den Ort und die Adresse anstelle des Titels sehen
 
 ### v2.7.0 on 2013-10-23
 * New implemented stories:
