@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### v2.7.1 in development
+### v2.7.1 on 2013-10-25
 * Update microsite API:
   * show 'Nutzfläche' and 'Geschoss' in 'Immobilieninfos' of disponibles
 
