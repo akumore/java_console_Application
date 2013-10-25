@@ -1,5 +1,12 @@
 # CHANGELOG
 
+### v2.7.1 in development
+* Update microsite API:
+  * show 'Nutzfläche' and 'Geschoss' in 'Immobilieninfos' of disponibles
+
+* Bug Fix:
+  * show figure fields in figure show view based on real_estate utilization
+
 ### v2.7.0 on 2013-10-23
 * New implemented stories:
   * #1044 - Als Besucher möchte ich einheitlich formatierte Preise und Zahlen in einem definierten Format
