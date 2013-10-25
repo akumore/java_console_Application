@@ -23,7 +23,7 @@ class InformationDecorator < ApplicationDecorator
 
   def characteristics
     buffer  = []
-
+    
     buffer << t('information.minergie_style') if model.is_minergie_style?
     buffer << t('information.minergie_certified') if model.is_minergie_certified?
     buffer << t('information.cable_tv') if model.has_cable_tv?
@@ -71,17 +71,19 @@ class InformationDecorator < ApplicationDecorator
     content_html = ''
 
     figure = FigureDecorator.decorate real_estate.figure
-    if figure && real_estate.living?
+    if figure && (real_estate.living? || real_estate.storing?)
       if figure.floor.present?
         content << { :key => t('figures.floor'), :value => figure.floor }
       end
 
-      if figure.rooms.present?
-        content << { :key => t('figures.rooms'), :value => figure.rooms }
-      end
-
       if figure.surface.present?
         content << { :key => figure.surface_label, :value => figure.surface }
+      end
+
+      if real_estate.living?
+        if figure.rooms.present?
+          content << { :key => t('figures.rooms'), :value => figure.rooms }
+        end
       end
     end
 

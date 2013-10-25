@@ -21,6 +21,13 @@ New implemented stories:
   * #1718 - Als Editor möchte ich Nutzungsarten im Feld "Alle möglichen Objekt-Arten" eingeben
   * #1719 - Als Besucher möchte ich eine kombinierte Ansicht von Objekt-Art und allen möglichen Objekt-Arten einer Immobilie sehen
 
+### v2.7.1 on 2013-10-25
+* Update microsite API:
+  * show 'Nutzfläche' and 'Geschoss' in 'Immobilieninfos' of disponibles
+
+* Bug Fix:
+  * show figure fields in figure show view based on real_estate utilization
+
 ### v2.7.0 on 2013-10-23
 * New implemented stories:
   * #1044 - Als Besucher möchte ich einheitlich formatierte Preise und Zahlen in einem definierten Format
