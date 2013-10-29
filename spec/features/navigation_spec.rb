@@ -87,7 +87,7 @@ describe "Main Navigation" do
     it "doesn't show links to the reference projects" do
       visit root_path(:locale => lang)
       within '.main-navigation' do
-        page.should have_link I18n.t('navigation.main.reference_projects'), :href => reference_projects_path(:locale => lang)
+        page.should_not have_link I18n.t('navigation.main.reference_projects'), :href => reference_projects_path(:locale => lang)
       end
     end
   end

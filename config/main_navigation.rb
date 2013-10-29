@@ -56,7 +56,8 @@ SimpleNavigation::Configuration.run do |navigation|
 
     primary.item :news, t('navigation.main.news'), news_items_path, :highlights_on => proc { controller.request.path == news_items_path }
 
-    primary.item :reference_projects, t('navigation.main.reference_projects'), reference_projects_path, :highlights_on => proc { controller.request.path == reference_projects_path }
+    # TODO: enable reference projects on main navigation as soon as customer is ready!
+    # primary.item :reference_projects, t('navigation.main.reference_projects'), reference_projects_path, :highlights_on => proc { controller.request.path == reference_projects_path }
 
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu

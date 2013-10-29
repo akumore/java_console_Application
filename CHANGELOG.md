@@ -21,6 +21,9 @@ New implemented stories:
   * #1718 - Als Editor möchte ich Nutzungsarten im Feld "Alle möglichen Objekt-Arten" eingeben
   * #1719 - Als Besucher möchte ich eine kombinierte Ansicht von Objekt-Art und allen möglichen Objekt-Arten einer Immobilie sehen
 
+### v2.7.2 on 2013-10-29
+* Disable reference projects in main nav again (on live system)
+
 ### v2.7.1 on 2013-10-25
 * Update microsite API:
   * show 'Nutzfläche' and 'Geschoss' in 'Immobilieninfos' of disponibles
