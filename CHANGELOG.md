@@ -4,17 +4,20 @@
 
 New implemented stories:
 
-* Feature 16 - Kleinere Optimierung von Darstellungen und Texten im Eingabetool und auf der Website  
+* Feedback Stories
+  * #2470 - Als Editor möchte ich die Hausnummern in der Immobilienübersicht und im Dashboard nicht doppelt sehen
+
+* Feature 16 - Kleinere Optimierung von Darstellungen und Texten im Eingabetool und auf der Website
   * #1405 - Als Editor möchte ich andere Namen für die vorhandenen Ausgabekanäle sehen
   * #1403 - Als Besucher und Leser möchte ich das "N" beim eingestellten Winkel sehen
-  
-* Feature 18 - Verbesserte Immobilienlisten im Eingabetool  
+
+* Feature 18 - Verbesserte Immobilienlisten im Eingabetool
   * #1587 - Als Editor möchte ich die Immobilienliste im Eingabetool sortieren können
   * #1711 - Als Editor möchte ich die Ausgabekanäle durch Icons markiert angezeigt bekommen
   * #1712 - Als Editor möchte ich Immobiliendetails in der Übersichtsliste angezeigt bekommen
   * #1713 - Als Editor möchte ich bei den bearbeiteten und zuletzt publizierten Immobilien den Ort und die Adresse anstelle des Titels sehen
 
-* Feature 19 - Eingabe und Darstellung der Objekt-Arten  
+* Feature 19 - Eingabe und Darstellung der Objekt-Arten
   * #1715 - Als Editor möchte ich die Objektarten in den Gruppen Wohnen, Arbeiten, Lagern, Parkieren gruppiert
   * #1716 - Als Editor möchte ich die Objektarten priorisiert alphabetisch sortiert auswählen können
   * #1717 - Als Editor möchte ich in der Immobilie nur Objektarten auswählen können, die der ausgewählten Gebäudenutzung zugeordnet sind
