@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.7.4 on 2013-10-31
+* Add data attributes for project develpment link on homepage to track event
+
 ### v2.7.3 on 2013-10-31
 * Enable reference projects in main nav for the last time (on live system)
 
