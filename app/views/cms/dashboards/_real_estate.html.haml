@@ -2,7 +2,6 @@
   %td= real_estate.try(:address).try(:city)
   %td
     = real_estate.try(:address).try(:street)
-    = real_estate.try(:address).try(:street_number)
   %td= time_ago_in_words(real_estate.updated_at)
   %td
     - if can?(:edit, real_estate)

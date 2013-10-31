@@ -4,6 +4,9 @@
 
 New implemented stories:
 
+* Feedback Stories
+  * #2470 - Als Editor möchte ich die Hausnummern in der Immobilienübersicht und im Dashboard nicht doppelt sehen
+
 * Feature 16 - Kleinere Optimierung von Darstellungen und Texten im Eingabetool und auf der Website
   * #1405 - Als Editor möchte ich andere Namen für die vorhandenen Ausgabekanäle sehen
   * #1403 - Als Besucher und Leser möchte ich das "N" beim eingestellten Winkel sehen
