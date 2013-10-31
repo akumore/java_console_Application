@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.7.3 on 2013-10-31
+* Enable reference projects in main nav for the last time (on live system)
+
 ### v2.7.2 on 2013-10-29
 * Disable reference projects in main nav again (on live system)
 
