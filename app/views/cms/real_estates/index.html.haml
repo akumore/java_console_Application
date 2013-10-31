@@ -40,10 +40,11 @@
     %tr
       %th{ width: '10%' }= Address.human_attribute_name :canton
       %th{ width: '10%' }= Address.human_attribute_name :city
-      %th{ width: '20%' }= Address.model_name.human
+      %th{ width: '15%' }= Address.model_name.human
+      %th{ width: '20%' }= RealEstate.human_attribute_name :titel
       %th{ width: '10%' }= Figure.human_attribute_name :floor
       %th{ width: '10%' }= t'figures.surface.commercial'
-      %th{ width: '15%' }= RealEstate.human_attribute_name :contact
+      %th{ width: '10%' }= RealEstate.human_attribute_name :contact
       %th{ width: '15%' } Status
       %th
       %th
@@ -52,8 +53,8 @@
       %tr{:id => "real_estate_#{real_estate.id}"}
         %td= t "cantons.#{real_estate.address.canton}" if real_estate.address.present?
         %td= real_estate.address.try(:city)
-        %td
-          = real_estate.address.try(:street)
+        %td= real_estate.address.try(:street)
+        %td= real_estate.title
         %td= real_estate.figure.try(:shortened_floor)
         %td= real_estate.figure.try(:surface)
         %td= real_estate.contact.try(:fullname_reversed)

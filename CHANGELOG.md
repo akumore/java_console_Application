@@ -6,6 +6,7 @@ New implemented stories:
 
 * Feedback Stories
   * #2470 - Als Editor möchte ich die Hausnummern in der Immobilienübersicht und im Dashboard nicht doppelt sehen
+  * #2472 - Als Editor möchte ich in der Immobilienübersicht nach dem Titel suchen/filtern können
 
 * Feature 16 - Kleinere Optimierung von Darstellungen und Texten im Eingabetool und auf der Website
   * #1405 - Als Editor möchte ich andere Namen für die vorhandenen Ausgabekanäle sehen
