@@ -25,6 +25,9 @@ New implemented stories:
   * #1718 - Als Editor möchte ich Nutzungsarten im Feld "Alle möglichen Objekt-Arten" eingeben
   * #1719 - Als Besucher möchte ich eine kombinierte Ansicht von Objekt-Art und allen möglichen Objekt-Arten einer Immobilie sehen
 
+### v2.7.4 on 2013-10-31
+* Add data attributes for project develpment link on homepage to track event
+
 ### v2.7.3 on 2013-10-31
 * Enable reference projects in main nav for the last time (on live system)
 

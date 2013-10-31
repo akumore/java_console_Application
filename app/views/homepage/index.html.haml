@@ -49,7 +49,7 @@
       %h3= t ".build"
     .link-box
       %ul
-        %li= link_to t(".project_development"), "#{t('company_url')}#project_development"
+        %li= link_to t(".project_development"), "#{t('company_url')}#project_development", class: 'ga-tracking-link',  data: { 'ga-category' => "Projektentwicklung", 'ga-action' => "Ansicht Projektentwicklung", 'ga-label' => I18n.locale.to_s.upcase }
         %li= link_to t(".new_building"), "#{t('company_url')}#new_building"
         %li= link_to t(".rebuilding"), "#{t('company_url')}#rebuilding"
     .flex-container
