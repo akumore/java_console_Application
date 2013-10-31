@@ -3,7 +3,7 @@
 
 .real-estate-state-bar
   %ul.legend
-    %li 
+    %li
       %i.state.published.active
       Veröffentlicht
     %li
@@ -54,7 +54,6 @@
         %td= real_estate.address.try(:city)
         %td
           = real_estate.address.try(:street)
-          = real_estate.address.try(:street_number)
         %td= real_estate.figure.try(:shortened_floor)
         %td= real_estate.figure.try(:surface)
         %td= real_estate.contact.try(:fullname_reversed)
