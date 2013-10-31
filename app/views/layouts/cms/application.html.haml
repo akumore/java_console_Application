@@ -11,7 +11,7 @@
     %title
       = "#{ controller.controller_name.titleize } - #{ controller.action_name.titleize }"
 
-  .body{ :class => "#{controller.controller_name}" }
+  .body{ :class => "#{controller.controller_name} #{controller.action_name}" }
     .navbar.navbar-fixed-top
       .navbar-inner
         .container
