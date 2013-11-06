@@ -5,6 +5,7 @@ it:
     form:
       submit: "Invio dell'ordine"
       errors: 'Prego controllare i dati inseriti:'
+      optional: 'opzionale'
     order_information:
       headline: 'La sua persona di contatto'
     confirmation:

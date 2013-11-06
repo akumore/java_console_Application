@@ -5,6 +5,7 @@ en:
     form:
       submit: 'Send order'
       errors: 'Please check your inputs:'
+      optional: 'optional'
     order_information:
       headline: 'Your contact'
     confirmation:

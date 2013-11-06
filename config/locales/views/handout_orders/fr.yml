@@ -5,6 +5,7 @@ fr:
     form:
       submit: 'Envoyer la commande'
       errors: 'Contrôler vos données:'
+      optional: 'optionnel'
     order_information:
       headline: 'Votre personne de contact'
     confirmation:

@@ -5,6 +5,7 @@ de:
     form:
       submit: 'Bestellung abschicken'
       errors: 'Bitte überprüfen Sie ihre Eingaben:'
+      optional: 'optional'
     order_information:
       headline: 'Ihre Kontaktperson'
     confirmation:
