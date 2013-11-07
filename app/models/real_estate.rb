@@ -88,7 +88,7 @@ class RealEstate
   scope :editing, :where => { :state => STATE_EDITING }
   scope :recently_updated, -> { where( :updated_at.gte => 12.hours.ago ) }
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
-  scope :print_channel, :where => { :channels => PRINT_CHANNEL, :print_channel_method => PRINT_CHANNEL_METHOD_PDF_DOWNLOAD }
+  scope :print_channel, :where => { :channels => PRINT_CHANNEL, :print_channel_method.ne => PRINT_CHANNEL_METHOD_ORDER }
   scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
   scope :named_microsite, ->(name) { microsite.where(:microsite_building_project => name) }
   scope :default_order, -> { order_by(['address.city', 'asc'], ['address .street', 'asc'], ['address.street_number', 'asc']) }
