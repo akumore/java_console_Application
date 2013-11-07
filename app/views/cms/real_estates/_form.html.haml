@@ -52,8 +52,8 @@
               .controls
                 = f.select :microsite_building_project, microsite_select_options, :prompt => 'Microsite auswählen', :class => 'span8'
         - if RealEstate::PRINT_CHANNEL == channel
-          .print-channel-handout.hidden{ 'data-dependent_on' => '.print', 'data-dependent_on_value' => 'true' }
-            .order-handout-container.hidden{ 'data-dependent_on' => '#real_estate_utilization', 'data-dependent_on_value' => [Utilization::LIVING, Utilization::WORKING] }
+          .print-channel-methods-container.hidden{ 'data-dependent_on' => '.print', 'data-dependent_on_value' => 'true' }
+            .print-channel-method-container.hidden{ 'data-dependent_on' => '#real_estate_utilization', 'data-dependent_on_value' => [Utilization::LIVING, Utilization::WORKING] }
               .control-group
                 .controls.push-inline-labels-down
                   %label.inline.radio
