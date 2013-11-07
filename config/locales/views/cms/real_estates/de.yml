@@ -21,6 +21,8 @@ de:
           feldpark: 'Feldpark'
           buenzpark: 'Bünzpark'
           gartenstadt: 'Gartenstadt-Schlieren'
+        print_method_pdf_download: als PDF downloaden
+        print_method_order: bestellen
         help_popover:
           property_key: 'Für IMB: Liegenschafts-Nr. eingeben, z.B. L2716 <br /> Für M+V: Projekt-Nr. eingeben, z.B. 20643'
           building_key: 'Für IMB: Objekt-Nr. eingeben, z.B. 1012 <br /> Für M+V: genaue Bezeichnung, z.B. Feldpark9_9.12'
