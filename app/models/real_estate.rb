@@ -56,7 +56,7 @@ class RealEstate
   field :utilization, :type => String, :default => Utilization::LIVING
   field :offer, :type => String, :default => Offer::RENT
   field :channels, :type => Array
-  field :print_channel_method, :type => String, :default => PRINT_CHANNEL_METHOD_PDF_DOWNLOAD # defines if handout is published on website or customer has to order it
+  field :print_channel_method, :type => String # defines if handout is published on website or customer has to order it
   field :title, :type => String
   field :description, :type => String
   field :building_type, :type => String
