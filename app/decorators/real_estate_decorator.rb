@@ -331,4 +331,14 @@ class RealEstateDecorator < ApplicationDecorator
       infrastructure.distances.any?
     end
   end
+
+  def channels_string
+    channels.map { |channel|
+      channel_str = I18n.t("cms.real_estates.form.channels.#{channel}")
+      if channel == RealEstate::PRINT_CHANNEL && print_channel_method.present?
+        channel_str << " (#{I18n.t("cms.real_estates.form.#{print_channel_method}")})" 
+      end
+      channel_str
+    }.join(", ")
+  end
 end

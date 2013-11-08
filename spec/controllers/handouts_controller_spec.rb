@@ -3,11 +3,20 @@ require 'spec_helper'
 
 describe HandoutsController do
   let :real_estate_for_sale do
-    Fabricate :published_real_estate, :category => Fabricate(:category), :offer =>  Offer::SALE, :channels => [RealEstate::PRINT_CHANNEL]
+    Fabricate(:published_real_estate, 
+              :category => Fabricate(:category),
+              :offer =>  Offer::SALE,
+              :channels => [RealEstate::PRINT_CHANNEL]
+             )
   end
 
   let :real_estate_for_rent do
-    Fabricate :published_real_estate, :category => Fabricate(:category), :offer =>  Offer::RENT, :channels => [RealEstate::PRINT_CHANNEL]
+    Fabricate(:published_real_estate, 
+              :category => Fabricate(:category), 
+              :offer =>  Offer::RENT, 
+              :channels => [RealEstate::PRINT_CHANNEL],
+              :print_channel_method => RealEstate::PRINT_CHANNEL_METHOD_PDF_DOWNLOAD
+             )
   end
 
   describe 'minidoku/handout' do
@@ -24,6 +33,13 @@ describe HandoutsController do
         PDFKit.should_receive(:new).with(url).and_return mock(PDFKit, :to_pdf => 'yes, this is pdf')
         get :show, :real_estate_id => real_estate_for_rent.id, :format => :pdf, :locale => :de
         response.should be_success
+      end
+
+      context 'when the real estate has order handout configured' do
+        it 'is not accessible' do
+          real_estate_for_rent.update_attribute(:print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_ORDER)
+          expect { get :show, :real_estate_id => real_estate_for_rent.id, :format => :html, :locale => :de }.to raise_error
+        end
       end
     end
   end

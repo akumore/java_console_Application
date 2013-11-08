@@ -611,12 +611,12 @@ describe "RealEstates" do
 
       context 'when the real estate is for rent' do
         context 'and for working' do
-          context 'when order_handout is true' do
+          context 'when order was chosen for print channel method' do
             before :each do
               real_estate.update_attribute(:utilization, Utilization::WORKING)
               real_estate.update_attribute(:offer, Offer::RENT)
               real_estate.update_attribute(:channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL])
-              real_estate.update_attribute(:order_handout, true)
+              real_estate.update_attribute(:print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_ORDER)
               visit real_estate_path(real_estate)
             end
 
@@ -636,7 +636,7 @@ describe "RealEstates" do
             end
           end
 
-          context 'when order_handout is false' do
+          context 'when pdf download was chosen for print channel method' do
             it 'has a link to the mini doku' do
               real_estate.update_attribute :offer, Offer::RENT
               real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
@@ -652,12 +652,12 @@ describe "RealEstates" do
         end
         
         context 'and for living' do
-          context 'when order_handout is true' do
+          context 'when order was chosen for print channel method' do
             before :each do
               real_estate.update_attribute(:utilization, Utilization::LIVING)
               real_estate.update_attribute(:offer, Offer::RENT)
               real_estate.update_attribute(:channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL])
-              real_estate.update_attribute(:order_handout, true)
+              real_estate.update_attribute(:print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_ORDER)
               visit real_estate_path(real_estate)
             end
 
@@ -677,7 +677,7 @@ describe "RealEstates" do
             end
           end
 
-          context 'when order_handout is false' do
+          context 'when pdf download was chosen for print channel method' do
             it 'has a link to the mini doku' do
               real_estate.update_attribute :offer, Offer::RENT
               real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
@@ -813,9 +813,9 @@ describe "RealEstates" do
       end
     end
 
-    context 'Making a handout order', :order_handout => true do
+    context 'Making a handout order' do
       before :each do
-        real_estate.update_attribute(:order_handout, true)
+        real_estate.update_attribute(:print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_ORDER)
       end
 
       it 'integrates handout order slide into slide show' do

@@ -46,19 +46,25 @@
           %label.inline.checkbox
             = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel), :class => channel
             %span= t(".channels.#{channel}")
+        - if RealEstate::MICROSITE_CHANNEL == channel
+          .microsite-options-container.hidden{ 'data-dependent_on' => '.microsite', 'data-dependent_on_value' => 'true' }
+            .control-group
+              .controls
+                = f.select :microsite_building_project, microsite_select_options, :prompt => 'Microsite auswählen', :class => 'span8'
+        - if RealEstate::PRINT_CHANNEL == channel
+          .print-channel-methods-container.hidden{ 'data-dependent_on' => '.print', 'data-dependent_on_value' => 'true' }
+            .print-channel-method-container.hidden{ 'data-dependent_on' => '#real_estate_utilization', 'data-dependent_on_value' => [Utilization::LIVING, Utilization::WORKING] }
+              .control-group
+                .controls.push-inline-labels-down
+                  %label.inline.radio
+                    = f.radio_button :print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_PDF_DOWNLOAD
+                    %span= t(".#{RealEstate::PRINT_CHANNEL_METHOD_PDF_DOWNLOAD}")
 
-    .order-handout-container.hidden{ 'data-dependent_on' => '#real_estate_utilization', 'data-dependent_on_value' => [Utilization::LIVING, Utilization::WORKING] }
-      .control-group
-        = f.label :order_handout
-        .controls.push-inline-labels-down
-          %label.inline.checkbox
-            = f.check_box :order_handout
-
-    .microsite-options-container.hidden{ 'data-dependent_on' => '.microsite', 'data-dependent_on_value' => 'true' }
-      .control-group
-        .controls
-          = f.select :microsite_building_project, microsite_select_options, :prompt => 'Microsite auswählen', :class => 'span8'
-
+                .controls.push-inline-labels-down
+                  %label.inline.radio
+                    = f.radio_button :print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_ORDER
+                    %span= t(".#{RealEstate::PRINT_CHANNEL_METHOD_ORDER}")
+            
   .control-group
     = f.label :contact_id
     .controls

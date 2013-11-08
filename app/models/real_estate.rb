@@ -17,9 +17,11 @@ class RealEstate
 
   WEBSITE_CHANNEL = 'website'
   EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL = 'external_real_estate_portal'
-  PRINT_CHANNEL = 'print'
   MICROSITE_CHANNEL = 'microsite'
-  CHANNELS = %W(#{WEBSITE_CHANNEL} #{EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL} #{PRINT_CHANNEL} #{MICROSITE_CHANNEL})
+  PRINT_CHANNEL = 'print'
+  PRINT_CHANNEL_METHOD_PDF_DOWNLOAD = 'print_method_pdf_download'
+  PRINT_CHANNEL_METHOD_ORDER = 'print_method_order'
+  CHANNELS = %W(#{WEBSITE_CHANNEL} #{EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL} #{MICROSITE_CHANNEL} #{PRINT_CHANNEL})
 
   belongs_to :category
   belongs_to :office
@@ -54,7 +56,7 @@ class RealEstate
   field :utilization, :type => String, :default => Utilization::LIVING
   field :offer, :type => String, :default => Offer::RENT
   field :channels, :type => Array
-  field :order_handout, :type => Boolean
+  field :print_channel_method, :type => String # defines if handout is published on website or customer has to order it
   field :title, :type => String
   field :description, :type => String
   field :building_type, :type => String
@@ -86,7 +88,7 @@ class RealEstate
   scope :editing, :where => { :state => STATE_EDITING }
   scope :recently_updated, -> { where( :updated_at.gte => 12.hours.ago ) }
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
-  scope :print_channel, :where => { :channels => PRINT_CHANNEL }
+  scope :print_channel, :where => { :channels => PRINT_CHANNEL, :print_channel_method.ne => PRINT_CHANNEL_METHOD_ORDER }
   scope :microsite, :where => { :channels => MICROSITE_CHANNEL }
   scope :named_microsite, ->(name) { microsite.where(:microsite_building_project => name) }
   scope :default_order, -> { order_by(['address.city', 'asc'], ['address .street', 'asc'], ['address.street_number', 'asc']) }
@@ -185,7 +187,11 @@ class RealEstate
   alias_method :for_work_or_storage?, :working_or_storing?
 
   def has_handout?
-    for_rent? && channels.include?(RealEstate::PRINT_CHANNEL) && !parking?
+    for_rent? && (channels.include?(PRINT_CHANNEL) && print_channel_method != PRINT_CHANNEL_METHOD_ORDER) && !parking?
+  end
+
+  def order_handout?
+    channels.include?(PRINT_CHANNEL) && print_channel_method == PRINT_CHANNEL_METHOD_ORDER
   end
 
   def top_level_category

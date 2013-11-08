@@ -18,7 +18,7 @@
 
   %dt= t "mongoid.attributes.real_estate.channels"
   %dd
-    = @real_estate.channels.map {|channel| t "cms.real_estates.form.channels.#{channel}"}.join(", ")
+    = @real_estate.channels_string
     &nbsp;
 
   %dt= t "mongoid.attributes.real_estate.contact"

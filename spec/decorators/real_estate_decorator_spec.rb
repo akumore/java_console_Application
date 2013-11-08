@@ -170,6 +170,29 @@ describe RealEstateDecorator do
         end
       end
     end
+  end
 
+  describe '#channels_string' do
+    let(:real_estate) do
+      RealEstateDecorator.decorate Fabricate(:residential_building, :print_channel_method => RealEstate::PRINT_CHANNEL_METHOD_PDF_DOWNLOAD)
+    end
+
+    it 'returns comma separated channels string "Website, Objektdokumentation (als PDF downloaden)"' do
+      expect(real_estate.channels_string).to eq 'Website, Objektdokumentation (als PDF downloaden)'
+    end
+
+    context 'order is set for print_channel_method' do
+      it 'returns comma separated channels string "Website, Objektdokumentation (bestellen)"' do
+        real_estate = RealEstateDecorator.decorate Fabricate(:residential_building, :print_channel_method => RealEstate::PRINT_CHANNEL_METHOD_ORDER)
+        expect(real_estate.channels_string).to eq 'Website, Objektdokumentation (bestellen)'
+      end
+    end
+
+    context 'no print_channel_method is set' do
+      it 'returns comma separated channels string "Website, Objektdokumentation" without print_channel_method in brackets' do
+        real_estate = RealEstateDecorator.decorate Fabricate(:residential_building, :print_channel_method => '')
+        expect(real_estate.channels_string).to eq 'Website, Objektdokumentation'
+      end
+    end
   end
 end

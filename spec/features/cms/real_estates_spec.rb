@@ -279,30 +279,70 @@ describe "Cms::RealEstates" do
 
     context 'selecting utilization' do
       context 'working', :js => true do
-        it 'shows the order handout option immediately' do
-          select 'Arbeiten', :from => 'Gebäudenutzung'
-          page.should have_css('.order-handout-container:not(.hidden)')
+        context 'print channel is chosen' do
+          it 'shows the print channel methods (options) immediately' do
+            check 'Objektdokumentation'
+            page.should have_css('.print-channel-methods-container:not(.hidden)')
+            page.should have_css('.print-channel-method-container:not(.hidden)')
+          end
+        end
+
+        context 'print channel is not chosen' do
+          it 'does not show the print channel methods (options)' do
+            page.should have_css('.print-channel-methods-container.hidden')
+          end
         end
       end
 
       context 'living', :js => true do
-        it 'shows the order handout option immediately' do
-          select 'Wohnen', :from => 'Gebäudenutzung'
-          page.should have_css('.order-handout-container:not(.hidden)')
+        context 'print channel is chosen' do
+          it 'shows the print channel methods immediately' do
+            select 'Wohnen', :from => 'Gebäudenutzung'
+            check 'Objektdokumentation'
+            page.should have_css('.print-channel-methods-container:not(.hidden)')
+            page.should have_css('.print-channel-method-container:not(.hidden)')
+          end
+        end
+
+        context 'print channel is not chosen' do
+          it 'does not show the print channel methods (options)' do
+            select 'Wohnen', :from => 'Gebäudenutzung'
+            page.should have_css('.print-channel-methods-container.hidden')
+          end
         end
       end
 
       context 'parking', :js => true do
-        it 'shows the order handout option immediately' do
-          select 'Parkieren', :from => 'Gebäudenutzung'
-          page.should have_css('.order-handout-container.hidden')
+        context 'print channel is chosen' do
+          it 'does not show the print channel methods (options) immediately' do
+            select 'Parkieren', :from => 'Gebäudenutzung'
+            check 'Objektdokumentation'
+            page.should have_css('.print-channel-method-container.hidden')
+          end
+        end
+
+        context 'print channel is not chosen' do
+          it 'does not show the print channel methods (options)' do
+            select 'Parkieren', :from => 'Gebäudenutzung'
+            page.should have_css('.print-channel-methods-container.hidden')
+          end
         end
       end
 
       context 'storing', :js => true do
-        it 'shows the order handout option immediately' do
-          select 'Lagern', :from => 'Gebäudenutzung'
-          page.should have_css('.order-handout-container.hidden')
+        context 'print channel is chosen' do
+          it 'does not show the print channel methods (options) immediately' do
+            select 'Lagern', :from => 'Gebäudenutzung'
+            check 'Objektdokumentation'
+            page.should have_css('.print-channel-method-container.hidden')
+          end
+        end
+
+        context 'print channel is not chosen' do
+          it 'does not show the print channel methods (options)' do
+            select 'Lagern', :from => 'Gebäudenutzung'
+            page.should have_css('.print-channel-methods-container.hidden')
+          end
         end
       end
     end

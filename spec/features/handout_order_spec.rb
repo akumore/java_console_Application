@@ -9,8 +9,7 @@ describe "HandoutOrder" do
     @real_estate = Fabricate(:real_estate,
                              :contact => @contact,
                              :category => Fabricate(:category),
-                             :utilization => Utilization::WORKING,
-                             :order_handout => true
+                             :utilization => Utilization::WORKING
                             )
   end
 
