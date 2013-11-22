@@ -9,6 +9,7 @@ New implemented stories:
   * #2472 - Als Editor möchte ich in der Immobilienübersicht nach dem Titel suchen/filtern können
   * #2471 - Als Besucher möchte ich im 'Objektdokumentation bestellen' Formular die Firma optional eingeben können, auch wenn es sich um 'Wohnen' handelt
   * #2473 - Als Editor möchte ich beim Erfassen einer Immobilie entweder 'Objektdokumentation' oder 'Objektdokumentation bestellen' auswählen können
+  * #2599 - Als Besucher möchte ich die Preiseinheit einer Immobilie immer in der Kurz-Info sehen
 
 * Feature 16 - Kleinere Optimierung von Darstellungen und Texten im Eingabetool und auf der Website
   * #1405 - Als Editor möchte ich andere Namen für die vorhandenen Ausgabekanäle sehen
