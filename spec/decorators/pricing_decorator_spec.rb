@@ -22,7 +22,7 @@ describe PricingDecorator do
     end
 
     it 'formats the list price' do
-      @pricing.list_price.should == "2 200.00 CHF"
+      @pricing.list_price.should == "2 200.00 CHF/Mt."
     end
 
     it 'formats the netto rent price' do
@@ -57,8 +57,12 @@ describe PricingDecorator do
         @pricing.reload
       end
 
-      it 'formats the estimate price' do
+      it 'returns the estimate price' do
         @pricing.estimate.should == 'CHF 200 - 3000'
+      end
+
+      it 'retruns the estimate price as list price' do
+        @pricing.list_price.should == 'CHF 200 - 3000'
       end
 
       it 'does not override the for rent price' do
@@ -201,6 +205,21 @@ describe PricingDecorator do
       price.formatted_price_with_currency(1000000).should == '1 Mio. CHF'
       price.formatted_price_with_currency(1000000000).should == '1 Milliarde CHF'
       price.formatted_price_with_currency(0).should == '0.00 CHF'
+    end
+  end
+  
+  describe '#formatted_price_with_price_unit' do
+    let :price do
+      PricingDecorator.new(stub(:pricing, :price_unit => 'monthly', :estimate => ''))
+    end
+
+    it 'returns the correct price' do
+      price.formatted_price_with_price_unit('one hundred millions').should == 'one hundred millions CHF/Mt.'
+      price.formatted_price_with_price_unit(1).should == '1.00 CHF/Mt.'
+      price.formatted_price_with_price_unit(999999).should == '999 999.00 CHF/Mt.'
+      price.formatted_price_with_price_unit(1000000).should == '1 Mio. CHF/Mt.'
+      price.formatted_price_with_price_unit(1000000000).should == '1 Milliarde CHF/Mt.'
+      price.formatted_price_with_price_unit(0).should == '0.00 CHF/Mt.'
     end
   end
 

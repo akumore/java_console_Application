@@ -8,26 +8,22 @@ class PricingDecorator < ApplicationDecorator
   def list_price
     if model.for_rent?
       if model.estimate.present?
-        model.estimate
+         model.estimate
       else
         price_value = model.private_utilization? ? model.for_rent_brutto : model.for_rent_netto
-        formatted_price_with_currency(price_value)
+        formatted_price_with_price_unit(price_value)
       end
     elsif model.for_sale?
       if model.estimate.present?
         model.estimate
       else
-        formatted_price_with_currency(model.for_sale)
+        formatted_price_with_price_unit(model.for_sale)
       end
     end
   end
 
   def for_rent_netto
     formatted_price(model.for_rent_netto)
-  end
-
-  def for_sale
-    formatted_price(model.for_sale)
   end
 
   def for_rent_brutto
@@ -38,6 +34,10 @@ class PricingDecorator < ApplicationDecorator
         formatted_price(model.for_rent_brutto)
       end
     end
+  end
+
+  def for_sale
+    formatted_price(model.for_sale)
   end
 
   def additional_costs
@@ -257,6 +257,10 @@ class PricingDecorator < ApplicationDecorator
       :format => "%n",
       :delimiter => ' '
     )
+  end
+
+  def formatted_price_with_price_unit(price)
+    t("pricings.decorator.price_units.#{price_unit}", price: formatted_price(price))
   end
 
   def formatted_price_with_currency(price)
