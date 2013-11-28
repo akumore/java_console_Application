@@ -140,4 +140,4 @@
         - if @information.additional_information.present?
           %dl.dl-horizontal
             %dt= t "mongoid.attributes.information.additional_information"
-            %dd= markdown(@information.additional_information)
+            %dd= @information.additional_information.html_safe
