@@ -137,7 +137,7 @@ class InformationDecorator < ApplicationDecorator
 
   def additional_information
     if model.additional_information.present?
-      markdown(model.additional_information)
+      model.additional_information.html_safe
     end
   end
 end
