@@ -15,8 +15,8 @@ class ConvertMarkdownToHtml < Mongoid::Migration
         real_estate.description = ConvertMarkdownToHtml.convert(real_estate.description)
       end
 
-      if real_estate.utilization_description.present?
-        real_estate.utilization_description = ConvertMarkdownToHtml.convert(real_estate.utilization_description)
+      if real_estate.information.present? && real_estate.information.additional_information.present?
+        real_estate.information.additional_information = ConvertMarkdownToHtml.convert(real_estate.information.additional_information)
       end
 
       if real_estate.additional_description.present?
