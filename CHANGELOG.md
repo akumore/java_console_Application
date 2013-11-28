@@ -1,7 +1,6 @@
 # CHANGELOG
 
-### in development
-
+### v2.8.0 on 2013-11-28
 New implemented stories:
 
 * Feedback Stories
