@@ -94,10 +94,8 @@
       .control-group
         = f.label :utilization_description
         .controls
-          .row
-            .span8
-              = f.text_area :utilization_description, :class => 'editor'
-            %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => RealEstate.human_attribute_name(:utilization_description), 'data-content' => t('.help_popover.utilization_description') }
+          = f.text_area :utilization_description, :class => 'span8 short'
+          %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => RealEstate.human_attribute_name(:utilization_description), 'data-content' => t('.help_popover.utilization_description') }
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
