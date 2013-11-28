@@ -1,0 +1,10 @@
+= render 'wizard_header'
+
+= render_navigation :context => :real_estate
+
+%h3= t('.title')
+
+- if image_type == 'floor_plan'
+  = render 'floor_plan_form'
+- else
+  = render 'image_form'

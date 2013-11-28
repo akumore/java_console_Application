@@ -7,11 +7,13 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery-ui
+#= require jcrop
 #= require jquery.autoresize
 #= require dataTables/jquery.dataTables
 #= require dataTables/jquery.dataTables.bootstrap
 #= require underscore
 #= require backbone
+#= require ckeditor/init
 #= require ./backbone_setup
 #= require ./datatable
 #= require_tree ./templates
@@ -21,7 +23,11 @@
 #= require twitter/bootstrap
 #= require_self
 
+
 $(document).ready ->
+
+  CKEDITOR.replaceAll('editor')
+
   $('.dropdown-toggle').dropdown()
 
   $("table.sortable tbody").sortable

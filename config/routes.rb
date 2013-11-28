@@ -30,13 +30,14 @@ AlfredMueller::Application.routes.draw do
       resource :information
       resource :infrastructure, :except=>:destroy
       resource :additional_description, :except=>:destroy
-
       resources :media_assets, :only => :index
+      resources :image_croppings
       resources :images, :except => :index
       resources :floor_plans, :except => :index
       resources :videos, :except => :index
       resources :documents, :except => :index
     end
+
 
     resources :jobs do
       post :sort, :on => :collection

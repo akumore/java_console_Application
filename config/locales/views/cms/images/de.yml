@@ -2,4 +2,7 @@ de:
   cms:
     images:
       form:
+        help:
+          image_size: Bildformat möglichst 2:1, Auflösung so gross wie möglich, idealerweise 2000 x 1000 Pixel bei 72 dpi.
         save: Bild speichern
+        crop: Bild zuschneiden

@@ -30,4 +30,4 @@
 
     - if real_estate.description.present?
       %dt= t('.description')
-      %dd= markdown real_estate.description
+      %dd= real_estate.description.html_safe

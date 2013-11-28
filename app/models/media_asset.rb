@@ -27,8 +27,8 @@ class MediaAsset
   mount_uploader :file, MediaAssetUploader
 
   field :media_type, :type => String
-  field :is_primary, :type => Boolean, :default=>false
-  field :is_floorplan, :type => Boolean, :default=>false
+  field :is_primary, :type => Boolean, :default => false
+  field :is_floorplan, :type => Boolean, :default => false
   field :title, :type => String
   field :file, :type => String
   field :position, :type => Integer, :default => 1
@@ -36,7 +36,7 @@ class MediaAsset
   validates :title, :presence => true
   validates :media_type, :presence => true
 
-  delegate :url, :to=>:file
+  delegate :url, :to => :file
 
   before_create :setup_position
 

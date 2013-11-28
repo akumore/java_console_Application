@@ -1,0 +1,18 @@
+.choose-ratio-box
+  .control-group
+    = label_tag :fix_ratio, t('.aspect_ratio')
+    .controls
+      = check_box_tag(:fix_ratio)
+
+
+- %w[x y w h].each do |attribute|
+  = f.hidden_field "crop_#{attribute}"
+
+- if @image.file.present?
+  .well
+    = image_tag @image.file.url, id: 'cropbox', data: { original_width: @image.original_width, original_height: @image.original_height }
+
+.form-actions
+  = f.submit t('.crop'), :class => 'btn btn-primary'
+  .pull-right
+    = render 'cms/media_assets/actions'

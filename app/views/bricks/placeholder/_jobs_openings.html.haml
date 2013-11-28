@@ -4,7 +4,7 @@
       .accordion-item.accordion-ga-tracking-link{ :id => "job_#{job.id}", data: { 'ga-category' => "Mitarbeiter", 'ga-action' => "Ansicht Jobs", 'ga-label' => job.title } }
         .title= job.title
         .content
-          = markdown(job.text)
+          = job.text.html_safe
           %ul.icon-list
             - if job.job_profile_file.present?
               %li

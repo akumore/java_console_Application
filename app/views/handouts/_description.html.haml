@@ -3,24 +3,24 @@
   - if location = additional_description.location.presence
     %dl
       %dt= t('additional_descriptions.location')
-      %dd= markdown location
+      %dd= location.html_safe
 
   - if interior = additional_description.interior.presence
     %dl
       %dt= t('additional_descriptions.interior')
-      %dd= markdown interior
+      %dd= interior.html_safe
 
   - if offer = additional_description.offer.presence
     %dl
       %dt= t('additional_descriptions.offer')
-      %dd= markdown offer
+      %dd= offer.html_safe
 
   - if infrastructure = additional_description.infrastructure.presence
     %dl
       %dt= t('additional_descriptions.infrastructure')
-      %dd= markdown infrastructure
+      %dd= infrastructure.html_safe
 
   - if utilization_description = real_estate.utilization_description.presence
     %dl
       %dt= t('additional_descriptions.utilization_description')
-      %dd= markdown utilization_description
+      %dd= utilization_description.html_safe

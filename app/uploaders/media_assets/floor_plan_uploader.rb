@@ -19,21 +19,37 @@ module MediaAssets
     end
 
     version :minidoku do
+      process :crop
       process :convert => 'jpg'
     end
 
     version :gallery do
+      process :crop
       process :convert => 'jpg'
       process :resize_and_pad => [1000, 500, '#FFFFFF']
       process :quality => 80
     end
 
     version :thumb, :from_version => :gallery do
+      process :crop
       process :resize_to_fill => [145, 92]
     end
 
     version :cms_preview, :from_version => :gallery do
+      process :crop
       process :resize_to_fill => [600, 340]
+    end
+
+    def crop
+      if model.crop_x.present?
+        manipulate! do |img|
+          x = model.crop_x.to_i
+          y = model.crop_y.to_i
+          w = model.crop_w.to_i
+          h = model.crop_h.to_i
+          img.crop!(x, y, w, h)
+        end
+      end
     end
 
     def filename

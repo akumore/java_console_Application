@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe Export::Idx301::RealEstateDecorator do
@@ -244,43 +246,56 @@ describe Export::Idx301::RealEstateDecorator do
     it 'retains newlines for homegate by converting them to br-Tags' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, :description => "It\nbreaks\n\ninto new lines"),
+          mock_model(RealEstate, :description => "<p>It<br />breaks</p><p>into new lines</p>"),
           account,
           {}
         )
-      real_estate.object_description.should == 'It<br>breaks<br><br>into new lines'
+      expect(real_estate.object_description).to eq('It<br>breaks<br><br>into new lines')
     end
 
     it 'renders asteriks (*) into <li> bullet points' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, :description => "I\nhave\n\n* one\n* two\n* three\n\nlist items"),
+          mock_model(RealEstate, :description => "<p>I<br />have</p><ul><li>one</li><li>two</li><li>three</li></ul><p>list items</p>"),
           account,
           {}
         )
-      real_estate.object_description.should == 'I<br>have<br><br><li>one</li><li>two</li><li>three</li><br>list items'
+      expect(real_estate.object_description).to eq('I<br>have<br><br><li>one</li><li>two</li><li>three</li><br>list items')
     end
 
     it 'remove double break after heading' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, :description => "### Vorteile\r\n* Maisonette-Wohnung\r\n* Bad und Waschturm\r\n\r\nAutoeinstellhalle kann dazugemietet werden."),
+          mock_model(RealEstate, :description => "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>"),
           account,
           {}
         )
-      real_estate.object_description.should == "Vorteile<br><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li><br>Autoeinstellhalle kann dazugemietet werden."
+      expect(real_estate.object_description).to eq("Vorteile<br><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li><br>Autoeinstellhalle kann dazugemietet werden.")
     end
 
     context 'with immoscout as provider' do
       it 'maintains the ul tags' do
         real_estate = Export::Idx301::RealEstateDecorator
           .new(
-            mock_model(RealEstate, :description => "### Vorteile\r\n* Maisonette-Wohnung\r\n* Bad und Waschturm\r\n\r\nAutoeinstellhalle kann dazugemietet werden."),
+            mock_model(RealEstate, :description => "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>"),
             Account.new(:provider => Provider::IMMOSCOUT),
             {}
           )
 
-        real_estate.object_description.should == "Vorteile<br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden."
+        expect(real_estate.object_description).to eq("Vorteile<br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.")
+      end
+    end
+
+    context 'with HTMLEntities' do
+      it 'convert the HTMLEntities' do
+        real_estate = Export::Idx301::RealEstateDecorator
+          .new(
+            mock_model(RealEstate, :description => "<h3>&Uuml;bersicht</h3><ul><li>Element mit &ouml;</li><li>Element mit &auml;</li><li>Element mit &uuml;</li></ul>"),
+            account,
+            {}
+          )
+
+        expect(real_estate.object_description).to eq("Übersicht<br><li>Element mit ö</li><li>Element mit ä</li><li>Element mit ü</li>")
       end
     end
   end
