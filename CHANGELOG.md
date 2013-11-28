@@ -1,5 +1,13 @@
 # CHANGELOG
 
+### in development
+* Feature 20 - Komforterweiterungen im Eingabetool für Editoren
+  * #1720 - Als Editor möchte ich bei Angebotsbildern den Bildausschnitt und die Zoomstufe auswählen können
+  * #1872 - Als Entwickler möchte ich bestehende Markdown Text in HTML umgewandelt haben
+  * #1873 - Als Entwickler möchte ich den CKEditor integrieren
+  * #1874 - Als Entwickler möchte ich die Markdownspezifischen Methoden im Exporter aufgeräumt haben
+  * #1925 - Als Editor möchte ich die Checkbox für das Ratio hübsch gestyled haben
+
 ### v2.8.0 on 2013-11-28
 New implemented stories:
 
