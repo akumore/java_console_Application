@@ -23,7 +23,7 @@ class ConvertMarkdownToHtml < Mongoid::Migration
         ConvertMarkdownToHtml.convert_additional_description_attributes(real_estate)
       end
 
-      real_estate.save
+      real_estate.save(validate: false)
     end
   end
 
@@ -44,7 +44,7 @@ class ConvertMarkdownToHtml < Mongoid::Migration
       real_estate.additional_description.infrastructure = ConvertMarkdownToHtml.convert(real_estate.additional_description.infrastructure)
     end
 
-    real_estate.additional_description.save
+    real_estate.additional_description.save(validate: false)
   end
 
   def self.convert_page_brick_attributes
