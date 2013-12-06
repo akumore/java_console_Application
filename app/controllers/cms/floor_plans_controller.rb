@@ -28,11 +28,7 @@ class Cms::FloorPlansController < Cms::SecuredController
 
   def update
     @floor_plan.update_attributes(params[:floor_plan])
-    if @floor_plan.valid? && params[:floor_plan][:crop_x].blank?
-      render :edit
-    else
-      render :edit
-    end
+    render :edit
   end
 
   def destroy

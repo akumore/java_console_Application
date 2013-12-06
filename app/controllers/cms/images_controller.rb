@@ -28,11 +28,7 @@ class Cms::ImagesController < Cms::SecuredController
 
   def update
     @image.update_attributes(params[:image])
-    if @image.valid? && params[:image][:crop_x].blank?
-      render :edit
-    else
-      render :edit
-    end
+    render :edit
   end
 
   def destroy
