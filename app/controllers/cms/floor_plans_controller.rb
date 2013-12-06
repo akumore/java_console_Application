@@ -29,7 +29,7 @@ class Cms::FloorPlansController < Cms::SecuredController
   def update
     @floor_plan.update_attributes(params[:floor_plan])
     if @floor_plan.valid? && params[:floor_plan][:crop_x].blank?
-      redirect_to [:cms, @real_estate, :media_assets]
+      render :edit
     else
       render :edit
     end
