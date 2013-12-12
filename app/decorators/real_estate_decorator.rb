@@ -173,6 +173,27 @@ class RealEstateDecorator < ApplicationDecorator
     model.handout.filename
   end
 
+  def render_document_links
+    buffer = []
+
+    model.documents.each do |doc|
+      buffer << content_tag(:li) do
+        link_to(
+            doc.title,
+            doc.file.url,
+            :class => 'icon icon-pdf ga-tracking-link', :target => '_blank',
+            data: {
+                    'ga-category' => translate_category(model),
+                    'ga-action' => doc.title,
+                    'ga-label' => address.try(:simple)
+                  }
+        )
+      end
+    end
+
+    buffer.join.html_safe
+  end
+
   def application_form_link
     if model.for_rent? && !model.parking?
       link = if model.private_utilization?
@@ -336,7 +357,7 @@ class RealEstateDecorator < ApplicationDecorator
     channels.map { |channel|
       channel_str = I18n.t("cms.real_estates.form.channels.#{channel}")
       if channel == RealEstate::PRINT_CHANNEL && print_channel_method.present?
-        channel_str << " (#{I18n.t("cms.real_estates.form.#{print_channel_method}")})" 
+        channel_str << " (#{I18n.t("cms.real_estates.form.#{print_channel_method}")})"
       end
       channel_str
     }.join(", ")
