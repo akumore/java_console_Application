@@ -30,6 +30,13 @@ module MediaAssets
       process :quality => 80
     end
 
+    version :gallery_zoom do
+      process :crop
+      process :convert => 'jpg'
+      process :resize_to_fit => [1200, 10000]
+      process :quality => 80
+    end
+
     version :thumb, :from_version => :gallery do
       process :crop
       process :resize_to_fill => [145, 92]
