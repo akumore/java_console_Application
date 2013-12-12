@@ -9,7 +9,7 @@ class window.AlfredMueller.Cms.Views.ImageCropper
     $('#fix_ratio').attr('checked','checked')
 
     $("#fix_ratio").change (e) =>
-      if @checked
+      if $('#fix_ratio').attr('checked') == 'checked'
         ratio = 2 
       else 
         ratio = 0
