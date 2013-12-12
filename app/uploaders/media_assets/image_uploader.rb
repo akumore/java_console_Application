@@ -41,11 +41,6 @@ module MediaAssets
       process :resize_to_fill => [145, 92]
     end
 
-    version :cms_preview, :from_version => :gallery do
-      process :crop
-      process :resize_to_fill => [600, 300]
-    end
-
     def crop
       if model.crop_x.present?
         manipulate! do |img|
