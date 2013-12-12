@@ -28,11 +28,7 @@ class Cms::ImagesController < Cms::SecuredController
 
   def update
     @image.update_attributes(params[:image])
-    if @image.valid? && params[:image][:crop_x].blank?
-      redirect_to [:cms, @real_estate, :media_assets]
-    else
-      render :edit
-    end
+    render :edit
   end
 
   def destroy
