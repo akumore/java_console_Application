@@ -2,17 +2,12 @@ CKEDITOR.editorConfig = (config) ->
   config.language = 'de'
 
   config.toolbar = [
-    ['Format'],
-    ['Bold', 'Italic', 'Superscript', '-', 'RemoveFormat'],
-    ['NumberedList','BulletedList','-','Outdent','Indent'],
-    ['HorizontalRule', 'SpecialChar'], 
-    ['Link', 'Unlink', 'Anchor'],
-    ['Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo'],
-    ['Source', '-', 'ShowBlocks'],
-    ['Maximize']
+    ['Format','BulletedList','PasteFromWord'],
+    ['Anchor','Image'],
+    ['Source']
   ]
 
-  config.format_tags = 'p;h1;h2;h3;h4;pre'
+  config.format_tags = 'p;h1'
 
 # FULL OPTIONS:
 #[
