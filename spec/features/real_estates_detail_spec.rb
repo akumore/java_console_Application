@@ -766,7 +766,7 @@ describe "RealEstates" do
         # Workaround: Set flag to false, then re-initialize Application
         page.execute_script("Modernizr.touch = false;new AlfredMueller.Routers.Application();")
         first('.flexslider .slides li .zoom-floorplan').click
-        page.should have_css(".fancybox-opened img[src='#{@real_estate_with_floorplan.floor_plans.first.file.url}']")
+        page.should have_css(".fancybox-opened img[src='#{@real_estate_with_floorplan.floor_plans.first.file.gallery_zoom.url}']")
       end
     end
 
