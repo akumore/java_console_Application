@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ### in development
+* Feedback Stories
+  * #2642 - Als Editor möchte ich ein zugeschnittenes Bild in der Vorschau genau so sehen, wie es im Frontend auch angezeigt wird.
+
 * Feature 20 - Komforterweiterungen im Eingabetool für Editoren
   * #1720 - Als Editor möchte ich bei Angebotsbildern den Bildausschnitt und die Zoomstufe auswählen können
   * #1872 - Als Entwickler möchte ich bestehende Markdown Text in HTML umgewandelt haben
