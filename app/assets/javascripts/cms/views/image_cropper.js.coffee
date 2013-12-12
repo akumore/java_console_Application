@@ -1,14 +1,11 @@
-$ ->
-  new AlfredMueller.Cms.Views.ImageCropper
-
 class window.AlfredMueller.Cms.Views.ImageCropper
 
-  constructor: ->
+  constructor: (@elem) ->
     @initJcrop 2
 
-    $('#fix_ratio').attr('checked','checked')
+    @elem.attr('checked','checked')
 
-    $("#fix_ratio").change (e) =>
+    @elem.change (e) =>
       if $('#fix_ratio').attr('checked') == 'checked'
         ratio = 2 
       else 

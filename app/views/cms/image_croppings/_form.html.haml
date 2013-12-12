@@ -1,8 +1,9 @@
-.choose-ratio-box
-  .control-group
-    = label_tag :fix_ratio, t('.aspect_ratio')
-    .controls
-      = check_box_tag(:fix_ratio)
+#image-cropping
+  .choose-ratio-box
+    .control-group
+      = label_tag :fix_ratio, t('.aspect_ratio')
+      .controls
+        = check_box_tag(:fix_ratio)
 
 
 - %w[x y w h].each do |attribute|
