@@ -47,4 +47,8 @@ module ApplicationHelper
       end
     end
   end
+
+  def non_caching_image_tag(source, options = {})
+    image_tag "#{source}?id=#{Random.new.rand(1_000..10_000-1)}", options
+  end
 end
