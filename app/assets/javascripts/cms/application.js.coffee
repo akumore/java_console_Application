@@ -61,4 +61,4 @@ $(document).ready ->
 
   # initialize image cropper
   if $('#image-cropping').length
-    new AlfredMueller.Cms.Views.ImageCropper $('#fix_ratio')
+    new AlfredMueller.Cms.Views.ImageCropper $('#image-cropping')
