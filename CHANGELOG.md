@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.8.1 on 2013-12-13
+* Hotfix: Enable event tracking for static documents (media assets)
+
 ### v2.8.0 on 2013-11-28
 New implemented stories:
 
