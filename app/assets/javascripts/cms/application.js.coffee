@@ -58,3 +58,7 @@ $(document).ready ->
   # initialize real estate categories listener
   if $('#real_estate_category_id').length
     new AlfredMueller.Cms.Views.RealEstateCategorySelect $('#real_estate_category_id')
+
+  # initialize image cropper
+  if $('#image-cropping').length
+    new AlfredMueller.Cms.Views.ImageCropper $('#fix_ratio')

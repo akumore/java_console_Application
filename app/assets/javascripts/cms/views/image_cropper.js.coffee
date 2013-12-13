@@ -1,19 +1,18 @@
-$ ->
-  new AlfredMueller.Cms.Views.ImageCropper
-
 class window.AlfredMueller.Cms.Views.ImageCropper
 
-  constructor: ->
+  constructor: (@elem) ->
     @initJcrop 2
 
-    $('#fix_ratio').attr('checked','checked')
+    # check if aspect ratio checkbox is available
+    if typeof @elem != 'undefined'
+      @elem.attr('checked','checked')
 
-    $("#fix_ratio").change (e) =>
-      if @checked
-        ratio = 2 
-      else 
-        ratio = 0
-      @initJcrop(ratio)
+      @elem.change (e) =>
+        if @elem.attr('checked') == 'checked'
+          ratio = 2 
+        else 
+          ratio = 0
+        @initJcrop(ratio)
 
   update: (coords) =>
     $('#image_crop_x, #floor_plan_crop_x').val(coords.x)
