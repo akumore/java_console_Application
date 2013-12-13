@@ -4,6 +4,9 @@
 * Feedback Stories
   * #2642 - Als Editor möchte ich ein zugeschnittenes Bild in der Vorschau genau so sehen, wie es im Frontend auch angezeigt wird.
   * #2643 - Als Editor möchte die Option 'im Verhältnis 2:1' nur bei der Bearbeitung von Grundrissen sehen
+  * #2644 - Als Editor möchte ich beim Aktualisieren eines Bildes/Grundrisses im Bearbeitungsformular bleiben und nicht in die Medienübersicht gelangen
+  * #2645 - Als Editor möchte ich im WYSIWYG Editor eingeschränkte Möglichkeiten der Formatierung haben
+  * #2647 - Als Editor möchte ich, dass beim Zuschneiden der Bilder die Option 'im Verhältnis 2:1' korrekt funktioniert
 
 * Feature 20 - Komforterweiterungen im Eingabetool für Editoren
   * #1720 - Als Editor möchte ich bei Angebotsbildern den Bildausschnitt und die Zoomstufe auswählen können
