@@ -442,17 +442,6 @@ describe RealEstate do
       real_estate.archived?.should be_true
     end
 
-    it "transitions from 'review' to 'archived'" do
-      real_estate = Fabricate :real_estate,
-                              :state => 'in_review',
-                              :category => category,
-                              :creator => Fabricate(:cms_editor),
-                              :editor => Fabricate(:cms_editor)
-
-      real_estate.archive_it!
-      real_estate.archived?.should be_true
-    end
-
     it "transitions from 'published' to 'archived'" do
       real_estate = Fabricate(:real_estate, :state => 'published', :category => category)
       real_estate.archive_it!
@@ -531,21 +520,6 @@ describe RealEstate do
       end
     end
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   describe '#to_model_access' do
     it 'returns a model access instance' do

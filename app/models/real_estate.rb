@@ -170,7 +170,7 @@ class RealEstate
     end
 
     event :archive_it do
-      transition [:editing, :in_review, :published] => :archived
+      transition [:editing, :published] => :archived
     end
   end
 
