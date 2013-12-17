@@ -14,6 +14,7 @@ class RealEstate
   STATE_EDITING = 'editing'
   STATE_PUBLISHED = 'published'
   STATE_IN_REVIEW = 'in_review'
+  STATE_ARCHIVED = 'archived'
 
   WEBSITE_CHANNEL = 'website'
   EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL = 'external_real_estate_portal'
@@ -86,6 +87,7 @@ class RealEstate
   scope :published, :where => { :state => STATE_PUBLISHED }
   scope :in_review, :where => { :state => STATE_IN_REVIEW }
   scope :editing, :where => { :state => STATE_EDITING }
+  scope :archived, -> { where(:state => STATE_ARCHIVED) }
   scope :recently_updated, -> { where( :updated_at.gte => 12.hours.ago ) }
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
   scope :print_channel, :where => { :channels => PRINT_CHANNEL, :print_channel_method.ne => PRINT_CHANNEL_METHOD_ORDER }
@@ -165,6 +167,10 @@ class RealEstate
 
     event :unpublish_it do
       transition :published => :editing
+    end
+
+    event :archive_it do
+      transition [:editing, :in_review, :published] => :archived
     end
   end
 
