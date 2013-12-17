@@ -177,10 +177,13 @@ describe 'Real Estate Wizard' do
         @access_denied = "Sie haben keine Berechtigungen für diese Aktion"
       end
 
-      it 'prevents from accessing #edit' do
-        get :edit, :id => @real_estate.id
-        response.should redirect_to [:cms, @real_estate]
-        flash[:alert].should == @access_denied
+      %w(published archived).each do |state|
+        it "prevents from accessing #edit in '#{state}'" do
+          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category)
+          get :edit, :id => real_estate.id
+          response.should redirect_to [:cms, real_estate]
+          flash[:alert].should == @access_denied
+        end
       end
 
       it "doesn't prevents admins from accessing #update because of changing state requests" do
@@ -198,7 +201,7 @@ describe 'Real Estate Wizard' do
 
       end
 
-      %w(editing in_review).each do |state|
+      %w(editing in_review archived).each do |state|
         it "allows to destroy real estate in state '#{state}'" do
           real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category), :creator => creator, :editor => editor
 
@@ -216,12 +219,13 @@ describe 'Real Estate Wizard' do
         @access_denied = "Sie haben keine Berechtigungen für diese Aktion"
       end
 
-      it 'prevents from accessing #edit' do
-        real_estate = Fabricate :published_real_estate, :category => Fabricate(:category)
-
-        get :edit, :id => real_estate.id
-        response.should redirect_to [:cms, real_estate]
-        flash[:alert].should == @access_denied
+      %w(published archived).each do |state|
+        it "prevents from accessing #edit in '#{state}'" do
+          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category)
+          get :edit, :id => real_estate.id
+          response.should redirect_to [:cms, real_estate]
+          flash[:alert].should == @access_denied
+        end
       end
 
       it "doesn't prevent editors from accessing #update because of changing state requests" do
@@ -242,12 +246,14 @@ describe 'Real Estate Wizard' do
         flash[:alert].should == @access_denied
       end
 
-      it "allows to destroy real_estate in 'editing'" do
-        real_estate = Fabricate :real_estate, :state => 'editing', :category => Fabricate(:category)
+      %w(editing archived).each do |state|
+        it "allows to destroy real_estate in '#{state}'" do
+          real_estate = Fabricate :real_estate, :state => state, :category => Fabricate(:category)
 
-        delete :destroy, :id=>real_estate.id
-        response.should redirect_to cms_real_estates_url
-        flash[:notice].should == I18n.t('cms.real_estates.index.destroyed', :title => real_estate.title)
+          delete :destroy, :id => real_estate.id
+          response.should redirect_to cms_real_estates_url
+          flash[:notice].should == I18n.t('cms.real_estates.index.destroyed', :title => real_estate.title)
+        end
       end
 
       %w(in_review published).each do |state|

@@ -54,7 +54,7 @@ class Cms::RealEstatesController < Cms::SecuredController
       respond_to do |format|
         format.js { flash.now[:success] = t('cms.real_estates.update.sorted.success') }
         format.html do
-          if @real_estate.published? || @real_estate.in_review? && cannot?(:publish_it, @real_estate)
+          if @real_estate.published? || (@real_estate.in_review? && cannot?(:publish_it, @real_estate)) || @real_estate.archived?
             redirect_to [:cms, @real_estate]
           else
             if @real_estate.address.present?
@@ -110,7 +110,7 @@ class Cms::RealEstatesController < Cms::SecuredController
       true
     else
       if transition.present?
-        %w(review_it reject_it publish_it unpublish_it).include?(transition) ? false : true
+        %w(review_it reject_it publish_it unpublish_it archive_it).include?(transition) ? false : true
       else
         true
       end
