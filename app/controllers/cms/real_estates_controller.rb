@@ -11,8 +11,10 @@ class Cms::RealEstatesController < Cms::SecuredController
       @real_estates = RealEstateDecorator.decorate(RealEstate.editing.default_order)
     when RealEstate::STATE_PUBLISHED
       @real_estates = RealEstateDecorator.decorate(RealEstate.published.default_order)
+    when RealEstate::STATE_ARCHIVED
+      @real_estates = RealEstateDecorator.decorate(RealEstate.archived.default_order)
     else
-      @real_estates = RealEstateDecorator.decorate(RealEstate.all.default_order)
+      @real_estates = RealEstateDecorator.decorate(RealEstate.without_archived.default_order)
     end
       
     respond_with @real_estates

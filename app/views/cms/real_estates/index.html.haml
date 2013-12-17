@@ -28,6 +28,8 @@
     = link_to t('.tabs.published'), cms_real_estates_path(:filter => RealEstate::STATE_PUBLISHED)
   %li{ :class => params[:filter] == RealEstate::STATE_EDITING ? 'active' : nil }
     = link_to t('.tabs.in_progress'), cms_real_estates_path(:filter => RealEstate::STATE_EDITING)
+  %li{ :class => params[:filter] == RealEstate::STATE_ARCHIVED ? 'active' : nil }
+    = link_to t('.tabs.archived'), cms_real_estates_path(:filter => RealEstate::STATE_ARCHIVED)
 
 .row
   .pull-right.padded

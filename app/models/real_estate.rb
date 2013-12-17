@@ -88,6 +88,7 @@ class RealEstate
   scope :in_review, :where => { :state => STATE_IN_REVIEW }
   scope :editing, :where => { :state => STATE_EDITING }
   scope :archived, -> { where(:state => STATE_ARCHIVED) }
+  scope :without_archived, -> { where(:state.ne => STATE_ARCHIVED) }
   scope :recently_updated, -> { where( :updated_at.gte => 12.hours.ago ) }
   scope :web_channel, :where => {:channels => WEBSITE_CHANNEL}
   scope :print_channel, :where => { :channels => PRINT_CHANNEL, :print_channel_method.ne => PRINT_CHANNEL_METHOD_ORDER }
