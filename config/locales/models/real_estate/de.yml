@@ -31,4 +31,6 @@ de:
           review_it: 'Verifizieren lassen'
           unpublish_it: 'Offline schalten'
           reject_it: 'Zurückweisen'
+          archive_it: 'Archivieren'
         microsite_building_project: 'MicroSite'
+
