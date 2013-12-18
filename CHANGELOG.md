@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.8.1 in development
+* New implemented User Stories:
+  * #2720 - Verwaltungsrats Titel entfernen
+
 ### v2.8.1 on 2013-12-13
 * Hotfix: Enable event tracking for static documents (media assets)
 
