@@ -112,7 +112,7 @@ class Cms::RealEstatesController < Cms::SecuredController
       true
     else
       if transition.present?
-        %w(review_it reject_it publish_it unpublish_it archive_it).include?(transition) ? false : true
+        %w(review_it reject_it publish_it unpublish_it archive_it reactivate_it).include?(transition) ? false : true
       else
         true
       end

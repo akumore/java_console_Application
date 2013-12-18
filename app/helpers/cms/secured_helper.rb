@@ -16,7 +16,7 @@ module Cms
 
     def event_button_css(event)
       case event.name
-        when :reject_it, :unpublish_it
+        when :reject_it, :unpublish_it, :archive_it
           "btn btn-danger span2"
         else
           "btn btn-success span2"

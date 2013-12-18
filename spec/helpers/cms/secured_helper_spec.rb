@@ -22,8 +22,13 @@ describe Cms::SecuredHelper do
         @cms_user.stub!(:role).and_return(:editor)
       end
 
-      it "returns event for proceeding to 'in_review' or 'archived' state directly" do
+      it "returns events for proceeding to 'in_review' or 'archived' state directly" do
         helper.fireable_events(@real_estate).should == @all_events.select { |e| [:review_it, :archive_it].include? e.name }
+      end
+
+      it 'returns event for reactivating an archived real estates' do
+        @real_estate.stub!(:state).and_return('archived')
+        helper.fireable_events(@real_estate).should == @all_events.select { |e| e.name == :reactivate_it }
       end
 
     end
@@ -33,11 +38,11 @@ describe Cms::SecuredHelper do
         @cms_user.stub!(:role).and_return(:admin)
       end
 
-      it "returns event for proceeding to 'published' or 'archived' state directly" do
+      it "returns events for proceeding to 'published' or 'archived' state directly" do
         helper.fireable_events(@real_estate).should == @all_events.select { |e| [:publish_it, :archive_it].include? e.name }
       end
 
-      it "returns event for unpublishing or archiving published real estate" do
+      it "returns events for unpublishing or archiving published real estate" do
         @real_estate.stub!(:state).and_return('published')
         helper.fireable_events(@real_estate).should == @all_events.select { |e| [:unpublish_it, :archive_it].include? e.name }
       end
@@ -45,6 +50,11 @@ describe Cms::SecuredHelper do
       it "returns events for rejecting or publishing real estate 'in_review'" do
         @real_estate.stub!(:state).and_return('in_review')
         helper.fireable_events(@real_estate).should == @all_events.select { |e| [:reject_it, :publish_it].include? e.name }
+      end
+
+      it 'returns event for reactivating an archived real estates' do
+        @real_estate.stub!(:state).and_return('archived')
+        helper.fireable_events(@real_estate).should == @all_events.select { |e| e.name == :reactivate_it }
       end
     end
   end

@@ -44,6 +44,7 @@ class Ability
       can :publish_it, RealEstate
       can :unpublish_it, RealEstate
       can :archive_it, RealEstate
+      can :reactivate_it, RealEstate
       cannot :review_it, RealEstate
     end
 
@@ -52,9 +53,10 @@ class Ability
       can :review_it, RealEstate
       can :unpublish_it, RealEstate
       can :archive_it, RealEstate
+      can :reactivate_it, RealEstate
 
       #controller action abilities
-      can :update, RealEstate, :state => ['editing', 'published'] #do not use :manage, this will break state machine cans
+      can :update, RealEstate, :state => ['editing', 'published', 'archived'] #do not use :manage, this will break state machine cans
       can :destroy, RealEstate, :state => ['editing', 'archived']
       cannot :edit, RealEstate, :state => ['in_review', 'published', 'archived']
 
