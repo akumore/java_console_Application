@@ -22,8 +22,8 @@ describe Cms::SecuredHelper do
         @cms_user.stub!(:role).and_return(:editor)
       end
 
-      it "returns event for proceeding to 'in_review' state" do
-        helper.fireable_events(@real_estate).should == @all_events.select { |e| e.name == :review_it }
+      it "returns event for proceeding to 'in_review' or 'archived' state directly" do
+        helper.fireable_events(@real_estate).should == @all_events.select { |e| [:review_it, :archive_it].include? e.name }
       end
 
     end
@@ -33,13 +33,13 @@ describe Cms::SecuredHelper do
         @cms_user.stub!(:role).and_return(:admin)
       end
 
-      it "returns event for proceeding to 'published' state directly" do
-        helper.fireable_events(@real_estate).should == @all_events.select { |e| e.name == :publish_it }
+      it "returns event for proceeding to 'published' or 'archived' state directly" do
+        helper.fireable_events(@real_estate).should == @all_events.select { |e| [:publish_it, :archive_it].include? e.name }
       end
 
-      it "returns event for unpublishing published real estate" do
+      it "returns event for unpublishing or archiving published real estate" do
         @real_estate.stub!(:state).and_return('published')
-        helper.fireable_events(@real_estate).should == @all_events.select { |e| e.name == :unpublish_it }
+        helper.fireable_events(@real_estate).should == @all_events.select { |e| [:unpublish_it, :archive_it].include? e.name }
       end
 
       it "returns events for rejecting or publishing real estate 'in_review'" do

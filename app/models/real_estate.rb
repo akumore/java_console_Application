@@ -154,6 +154,8 @@ class RealEstate
       validates_associated :information
     end
 
+    state :archived
+
     event :review_it do
       transition :editing => :in_review
     end
