@@ -448,6 +448,12 @@ describe RealEstate do
       real_estate.archived?.should be_true
     end
 
+    it "transitions from 'archived' to 'editing'" do
+      real_estate = Fabricate(:real_estate, :state => 'archived', :category => category)
+      real_estate.reactivate_it!
+      real_estate.editing?.should be_true
+    end
+
     context "Mandatory sub-model is missing" do
       before do
         @real_estate = Fabricate(:real_estate, :category=>Fabricate(:category))

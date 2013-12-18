@@ -175,6 +175,10 @@ class RealEstate
     event :archive_it do
       transition [:editing, :published] => :archived
     end
+
+    event :reactivate_it do
+      transition :archived => :editing
+    end
   end
 
   def working_or_storing?
