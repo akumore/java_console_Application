@@ -56,7 +56,7 @@ describe "Pages" do
         within "#board-of-directors" do
           page.should have_content "Christoph Müller"
           page.should have_content "Viktor Naumann"
-          page.should have_content "Dr. Erich Rüegg"
+          page.should have_content "Erich Rüegg"
           # only email of Christoph Müller is needed here
           page.should have_link 'E-Mail', :href => "mailto:christoph.mueller@alfred-mueller.ch"
         end
