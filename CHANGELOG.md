@@ -15,6 +15,10 @@
   * #1874 - Als Entwickler möchte ich die Markdownspezifischen Methoden im Exporter aufgeräumt haben
   * #1925 - Als Editor möchte ich die Checkbox für das Ratio hübsch gestyled haben
 
+### v2.8.2 on 2013-12-19
+* New implemented User Stories:
+  * #2720 - Verwaltungsrats Titel entfernen
+
 ### v2.8.1 on 2013-12-13
 * Hotfix: Enable event tracking for static documents (media assets)
 
