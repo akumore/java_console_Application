@@ -5,7 +5,7 @@ class window.AlfredMueller.Cms.Views.ImageCropper
 
     # check if aspect ratio checkbox is available
 
-    if typeof $('#fix_ratio') != 'undefined'
+    if $('#fix_ratio').length
       $('#fix_ratio').attr('checked','checked')
 
       $('#fix_ratio').change (e) =>
