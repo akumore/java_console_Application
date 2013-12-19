@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### v2.8.1 in development
+### v2.8.2 on 2013-12-19
 * New implemented User Stories:
   * #2720 - Verwaltungsrats Titel entfernen
 
