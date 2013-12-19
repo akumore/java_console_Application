@@ -10,8 +10,8 @@ class window.AlfredMueller.Cms.Views.ImageCropper
 
       $('#fix_ratio').change (e) =>
         if $('#fix_ratio').attr('checked') == 'checked'
-          ratio = 2 
-        else 
+          ratio = 2
+        else
           ratio = 0
         @initJcrop(ratio)
 
@@ -40,4 +40,4 @@ class window.AlfredMueller.Cms.Views.ImageCropper
       trueSize: [origWidth, origHeight]
       onSelect: @update
       onChange: @update
-
+      onRelease: @update
