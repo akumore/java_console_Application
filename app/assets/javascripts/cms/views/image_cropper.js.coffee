@@ -1,19 +1,25 @@
 class window.AlfredMueller.Cms.Views.ImageCropper
 
   constructor: (@elem) ->
-    @initJcrop(2)
+    src = @elem.find('img').attr('src')
+    tmpImg = new Image()
+    tmpImg.onload = =>
+      @initJcrop(2)
 
-    # check if aspect ratio checkbox is available
+      # check if aspect ratio checkbox is available
 
-    if $('#fix_ratio').length
-      $('#fix_ratio').attr('checked','checked')
+      if $('#fix_ratio').length
+        $('#fix_ratio').attr('checked','checked')
 
-      $('#fix_ratio').change (e) =>
-        if $('#fix_ratio').attr('checked') == 'checked'
-          ratio = 2
-        else
-          ratio = 0
-        @initJcrop(ratio)
+        $('#fix_ratio').change (e) =>
+          if $('#fix_ratio').attr('checked') == 'checked'
+            ratio = 2
+          else
+            ratio = 0
+          @initJcrop(ratio)
+
+    tmpImg.src = src
+
 
   update: (coords) =>
     $('#image_crop_x, #floor_plan_crop_x').val(coords.x)
@@ -40,4 +46,3 @@ class window.AlfredMueller.Cms.Views.ImageCropper
       trueSize: [origWidth, origHeight]
       onSelect: @update
       onChange: @update
-      onRelease: @update

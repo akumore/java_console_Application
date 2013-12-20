@@ -59,6 +59,7 @@ $(document).ready ->
   if $('#real_estate_category_id').length
     new AlfredMueller.Cms.Views.RealEstateCategorySelect $('#real_estate_category_id')
 
+$(window).load ->
   # initialize image cropper
-  if $('#image-cropping').length && $('#image-cropping img').length
+  if $('#image-cropping').length
     new AlfredMueller.Cms.Views.ImageCropper $('#image-cropping')
