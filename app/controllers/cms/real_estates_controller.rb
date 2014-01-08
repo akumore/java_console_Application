@@ -6,18 +6,24 @@ class Cms::RealEstatesController < Cms::SecuredController
   end
 
   def index
-    case params[:filter]
-    when RealEstate::STATE_EDITING
-      @real_estates = RealEstateDecorator.decorate(RealEstate.editing.default_order)
-    when RealEstate::STATE_PUBLISHED
-      @real_estates = RealEstateDecorator.decorate(RealEstate.published.default_order)
-    when RealEstate::STATE_ARCHIVED
-      @real_estates = RealEstateDecorator.decorate(RealEstate.archived.default_order)
-    else
-      @real_estates = RealEstateDecorator.decorate(RealEstate.without_archived.default_order)
+    begin
+      Mongoid.identity_map_enabled = true
+      Mongoid::IdentityMap.clear
+      case params[:filter]
+      when RealEstate::STATE_EDITING
+        @real_estates = RealEstateDecorator.decorate(RealEstate.editing.includes(:category, :contact).default_order)
+      when RealEstate::STATE_PUBLISHED
+        @real_estates = RealEstateDecorator.decorate(RealEstate.published.includes(:category, :contact).default_order)
+      when RealEstate::STATE_ARCHIVED
+        @real_estates = RealEstateDecorator.decorate(RealEstate.archived.includes(:category, :contact).default_order)
+      else
+        @real_estates = RealEstateDecorator.decorate(RealEstate.without_archived.includes(:category, :contact).default_order)
+      end
+      respond_with @real_estates
+    ensure
+      Mongoid.identity_map_enabled = false
+      Mongoid::IdentityMap.clear
     end
-      
-    respond_with @real_estates
   end
 
   def show
