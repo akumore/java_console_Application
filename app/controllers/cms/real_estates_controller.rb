@@ -11,14 +11,15 @@ class Cms::RealEstatesController < Cms::SecuredController
       Mongoid::IdentityMap.clear
       case params[:filter]
       when RealEstate::STATE_EDITING
-        @real_estates = RealEstateDecorator.decorate(RealEstate.editing.includes(:category, :contact).default_order)
+        @real_estates = RealEstate.editing
       when RealEstate::STATE_PUBLISHED
-        @real_estates = RealEstateDecorator.decorate(RealEstate.published.includes(:category, :contact).default_order)
+        @real_estates = RealEstate.published
       when RealEstate::STATE_ARCHIVED
-        @real_estates = RealEstateDecorator.decorate(RealEstate.archived.includes(:category, :contact).default_order)
+        @real_estates = RealEstate.archived
       else
-        @real_estates = RealEstateDecorator.decorate(RealEstate.without_archived.includes(:category, :contact).default_order)
+        @real_estates = RealEstate.without_archived
       end
+      @real_estates = RealEstateDecorator.decorate(@real_estates.includes(:category, :contact).default_order)
       respond_with @real_estates
     ensure
       Mongoid.identity_map_enabled = false
