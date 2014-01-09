@@ -3,12 +3,14 @@
 
   - if figure && real_estate.living?
     - if figure.floor.present?
-      %dt= t('figures.floor')
-      %dd= figure.floor
+      %dl
+        %dt= t('figures.floor')
+        %dd= figure.floor
 
     - if figure.rooms.present?
-      %dt= t('figures.rooms')
-      %dd= figure.rooms
+      %dl
+        %dt= t('figures.rooms')
+        %dd= figure.rooms
 
     - if figure.surface.present?
       %dl
