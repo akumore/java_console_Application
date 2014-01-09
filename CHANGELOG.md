@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ### in development
+
 * Feedback Stories
   * #2642 - Als Editor möchte ich ein zugeschnittenes Bild in der Vorschau genau so sehen, wie es im Frontend auch angezeigt wird.
   * #2643 - Als Editor möchte die Option 'im Verhältnis 2:1' nur bei der Bearbeitung von Grundrissen sehen
@@ -14,6 +15,9 @@
   * #1873 - Als Entwickler möchte ich den CKEditor integrieren
   * #1874 - Als Entwickler möchte ich die Markdownspezifischen Methoden im Exporter aufgeräumt haben
   * #1925 - Als Editor möchte ich die Checkbox für das Ratio hübsch gestyled haben
+
+* Bug Fixes:
+  * #2765 - Als Besucher möchte ich die ergänzenden Informationen unter dem Immobilieninfos Tab korrekt ausgerichtet sehen
 
 ### v2.8.2 on 2013-12-19
 * New implemented User Stories:
