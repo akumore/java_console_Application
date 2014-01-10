@@ -92,6 +92,11 @@ run with nohup and in/output redirection.
 The ssh connection can be terminated afterwards and the command output
 is stored in the corresponding files.
 
+## Be careful with recreating image versions in migrations
+
+Migrations that recreate image versions over all real estates can take more than 2h until they're finished.
+Keep in mind (especially on deployment)! 
+
 # Google Analytics
 
 There's a Google Analytics integration for event tracking. I was forced
