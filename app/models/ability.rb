@@ -30,7 +30,7 @@ class Ability
       can :manage, [Cms::User, NewsItem, Employee, Job, Page, ReferenceProject, GalleryPhoto]
 
       can :manage, RealEstate
-      cannot :edit, RealEstate, :state => 'published'
+      cannot :edit, RealEstate, :state => ['published', 'archived']
       cannot :destroy, RealEstate, :state => 'published'
 
       can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription]
@@ -43,6 +43,8 @@ class Ability
       can :reject_it, RealEstate
       can :publish_it, RealEstate
       can :unpublish_it, RealEstate
+      can :archive_it, RealEstate
+      can :reactivate_it, RealEstate
       cannot :review_it, RealEstate
     end
 
@@ -50,11 +52,13 @@ class Ability
       # state machine abilities
       can :review_it, RealEstate
       can :unpublish_it, RealEstate
+      can :archive_it, RealEstate
+      can :reactivate_it, RealEstate
 
       #controller action abilities
-      can :update, RealEstate, :state => ['editing', 'published'] #do not use :manage, this will break state machine cans
-      can :destroy, RealEstate, :state => 'editing'
-      cannot :edit, RealEstate, :state => ['in_review', 'published']
+      can :update, RealEstate, :state => ['editing', 'published', 'archived'] #do not use :manage, this will break state machine cans
+      can :destroy, RealEstate, :state => ['editing', 'archived']
+      cannot :edit, RealEstate, :state => ['in_review', 'published', 'archived']
 
       can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription], :real_estate=>{:state => 'editing'}
       cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription], :real_estate=>{:state => ['in_review', 'published']}

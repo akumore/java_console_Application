@@ -6,16 +6,25 @@ class Cms::RealEstatesController < Cms::SecuredController
   end
 
   def index
-    case params[:filter]
-    when RealEstate::STATE_EDITING
-      @real_estates = RealEstateDecorator.decorate(RealEstate.editing.default_order)
-    when RealEstate::STATE_PUBLISHED
-      @real_estates = RealEstateDecorator.decorate(RealEstate.published.default_order)
-    else
-      @real_estates = RealEstateDecorator.decorate(RealEstate.all.default_order)
+    begin
+      Mongoid.identity_map_enabled = true
+      Mongoid::IdentityMap.clear
+      case params[:filter]
+      when RealEstate::STATE_EDITING
+        @real_estates = RealEstate.editing
+      when RealEstate::STATE_PUBLISHED
+        @real_estates = RealEstate.published
+      when RealEstate::STATE_ARCHIVED
+        @real_estates = RealEstate.archived
+      else
+        @real_estates = RealEstate.without_archived
+      end
+      @real_estates = RealEstateDecorator.decorate(@real_estates.includes(:category, :contact).default_order)
+      respond_with @real_estates
+    ensure
+      Mongoid.identity_map_enabled = false
+      Mongoid::IdentityMap.clear
     end
-      
-    respond_with @real_estates
   end
 
   def show
@@ -54,7 +63,7 @@ class Cms::RealEstatesController < Cms::SecuredController
       respond_to do |format|
         format.js { flash.now[:success] = t('cms.real_estates.update.sorted.success') }
         format.html do
-          if @real_estate.published? || @real_estate.in_review? && cannot?(:publish_it, @real_estate)
+          if @real_estate.published? || (@real_estate.in_review? && cannot?(:publish_it, @real_estate)) || @real_estate.archived?
             redirect_to [:cms, @real_estate]
           else
             if @real_estate.address.present?
@@ -110,7 +119,7 @@ class Cms::RealEstatesController < Cms::SecuredController
       true
     else
       if transition.present?
-        %w(review_it reject_it publish_it unpublish_it).include?(transition) ? false : true
+        %w(review_it reject_it publish_it unpublish_it archive_it reactivate_it).include?(transition) ? false : true
       else
         true
       end

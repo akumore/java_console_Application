@@ -28,6 +28,8 @@
     = link_to t('.tabs.published'), cms_real_estates_path(:filter => RealEstate::STATE_PUBLISHED)
   %li{ :class => params[:filter] == RealEstate::STATE_EDITING ? 'active' : nil }
     = link_to t('.tabs.in_progress'), cms_real_estates_path(:filter => RealEstate::STATE_EDITING)
+  %li{ :class => params[:filter] == RealEstate::STATE_ARCHIVED ? 'active' : nil }
+    = link_to t('.tabs.archived'), cms_real_estates_path(:filter => RealEstate::STATE_ARCHIVED)
 
 .row
   .pull-right.padded
@@ -51,13 +53,16 @@
   %tbody
     - @real_estates.each do |real_estate|
       %tr{:id => "real_estate_#{real_estate.id}"}
-        %td= t "cantons.#{real_estate.address.canton}" if real_estate.address.present?
-        %td= real_estate.address.try(:city)
-        %td= real_estate.address.try(:street)
+        - a = real_estate.address
+        - f = real_estate.figure
+        - c = real_estate.model.contact
+        %td= t "cantons.#{a.canton}" if a.present?
+        %td= a.try(:city)
+        %td= a.try(:street)
         %td= real_estate.title
-        %td= real_estate.figure.try(:shortened_floor)
-        %td= real_estate.figure.try(:surface)
-        %td= real_estate.contact.try(:fullname_reversed)
+        %td= f.try(:shortened_floor)
+        %td= f.try(:surface)
+        %td= c.try(:fullname_reversed)
         %td
           .real-estate-state-bar
             %i.state.published{ class: real_estate.state == RealEstate::STATE_PUBLISHED ? 'active' : 'inactive' }

@@ -53,6 +53,7 @@ de:
           all: Alle
           published: Veröffentlicht
           in_progress: in Bearbeitung
+          archived: Archiviert
       update:
         sorted:
           success: 'Die Sortierung wurde erfolgreich gespeichert.'
