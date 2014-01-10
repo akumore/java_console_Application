@@ -1,7 +1,6 @@
 # CHANGELOG
 
-### in development
-
+### v2.8.3 on 2014-01-10
 * Feedback Stories
   * #2642 - Als Editor möchte ich ein zugeschnittenes Bild in der Vorschau genau so sehen, wie es im Frontend auch angezeigt wird.
   * #2643 - Als Editor möchte die Option 'im Verhältnis 2:1' nur bei der Bearbeitung von Grundrissen sehen
