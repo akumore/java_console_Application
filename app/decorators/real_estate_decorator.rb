@@ -242,11 +242,11 @@ class RealEstateDecorator < ApplicationDecorator
     end
   end
 
-  def floorplan_print_link
+  def floorplan_print_link(floor_plan = nil)
     if model.floor_plans.exists?
       link_to(
         t('real_estates.show.print_floorplan'),
-        real_estate_floorplans_path(model, :print => true),
+        floorplan_print_path(floor_plan),
         :class => 'icon-printer ga-tracking-link',
         :target => '_blank',
         data: {
@@ -255,6 +255,14 @@ class RealEstateDecorator < ApplicationDecorator
                 'ga-label' => address.try(:simple)
               }
       )
+    end
+  end
+
+  def floorplan_print_path(floor_plan = nil)
+    if floor_plan
+      real_estate_floorplan_path(model, floor_plan, :print => true)
+    else
+      real_estate_floorplans_path(model, :print => true)
     end
   end
 
