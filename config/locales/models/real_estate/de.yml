@@ -34,4 +34,6 @@ de:
           archive_it: 'Archivieren'
           reactivate_it: 'Reaktivieren'
         microsite_building_project: 'MicroSite'
+        any_reference_key: 'Referenznummer'
+        reference_key_combination: 'Kombination der Referenznummern'
 

@@ -13,6 +13,4 @@ de:
         location: 'Geo Koordinaten'
         lat: 'Breitengrad'
         lng: 'Längengrad'
-        any_reference_key: 'Referenznummer'
-        reference_key_combination: 'Kombination der Referenznummern'
         manual_geocoding: 'Geokoordinaten manuell eintragen'

@@ -10,6 +10,18 @@ de:
         for_sale: 'Kaufen'
         corner_house: 'Eckhaus'
         middle_house: 'Mittelhaus'
+        microsite_building_projects:
+          feldpark: 'Feldpark'
+          buenzpark: 'Bünzpark'
+          gartenstadt: 'Gartenstadt-Schlieren'
+        help_popover:
+          utilization_description: |
+            Zusätzliche Objekt-Arten als Erweiterung von Objekt-Art eingeben, z.B. "Ausstellung/Atelier" <br />
+            Auf der Webseite und in der Objektdokumentation wird dieses Feld zusammen mit der Objekt-Art ausgegeben, also z.B. "Büro/Ausstellung/Atelier"
+        errors:
+          reference_key_combination:
+            constraint: 'ist bereits vorhanden.'
+      channels:
         channels:
           website: 'Website'
           homegate: 'Externe Immobilienportale'
@@ -17,19 +29,14 @@ de:
           print: 'Objektdokumentation'
           reference_projects: 'Referenzprojekt'
           microsite: 'MicroSite'
-        microsite_building_projects:
-          feldpark: 'Feldpark'
-          buenzpark: 'Bünzpark'
-          gartenstadt: 'Gartenstadt-Schlieren'
         print_method_pdf_download: als PDF downloaden
         print_method_order: bestellen
+      reference:
+        help_reference_numbers: 'Für externe Immobilienportale muss mindestens eine der folgenden 3 Referenznummern ausgefüllt werden.'
         help_popover:
           property_key: 'Für IMB: Liegenschafts-Nr. eingeben, z.B. L2716 <br /> Für M+V: Projekt-Nr. eingeben, z.B. 20643'
           building_key: 'Für IMB: Objekt-Nr. eingeben, z.B. 1012 <br /> Für M+V: genaue Bezeichnung, z.B. Feldpark9_9.12'
           unit_key: 'Kurzzeichen des Auftraggebers, z.B. bz'
-          utilization_description: |
-            Zusätzliche Objekt-Arten als Erweiterung von Objekt-Art eingeben, z.B. "Ausstellung/Atelier" <br />
-            Auf der Webseite und in der Objektdokumentation wird dieses Feld zusammen mit der Objekt-Art ausgegeben, also z.B. "Büro/Ausstellung/Atelier"
       actions:
         overview: 'Zurück zur Übersicht'
         destroy: 'Immobilie löschen'
