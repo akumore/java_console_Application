@@ -1,6 +1,5 @@
 class Reference
   include Mongoid::Document
-  #embedded_in :real_estate # deprecated
   embedded_in :referenceable, :polymorphic => true
 
   field :property_key, :type => String

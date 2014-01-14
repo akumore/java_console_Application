@@ -48,57 +48,20 @@
           %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => RealEstate.human_attribute_name(:utilization_description), 'data-content' => t('.help_popover.utilization_description') }
 
     .control-group
-      = f.label :channels
-      - RealEstate::CHANNELS.each do |channel|
-        .controls.push-inline-labels-down
-          %label.inline.checkbox
-            = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel), :class => channel
-            %span= t(".channels.#{channel}")
-        - if RealEstate::MICROSITE_CHANNEL == channel
-          .microsite-options-container.hidden{ 'data-dependent_on' => '.microsite', 'data-dependent_on_value' => 'true' }
-            .control-group
-              .controls
-                = f.select :microsite_building_project, microsite_select_options, :prompt => 'Microsite auswählen', :class => 'span8'
-        - if RealEstate::PRINT_CHANNEL == channel
-          .print-channel-methods-container.hidden{ 'data-dependent_on' => '.print', 'data-dependent_on_value' => 'true' }
-            .print-channel-method-container.hidden{ 'data-dependent_on' => '#real_estate_utilization', 'data-dependent_on_value' => [Utilization::LIVING, Utilization::WORKING] }
-              .control-group
-                .controls.push-inline-labels-down
-                  %label.inline.radio
-                    = f.radio_button :print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_PDF_DOWNLOAD
-                    %span= t(".#{RealEstate::PRINT_CHANNEL_METHOD_PDF_DOWNLOAD}")
+      = render 'channels', f: f
 
-                .controls.push-inline-labels-down
-                  %label.inline.radio
-                    = f.radio_button :print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_ORDER
-                    %span= t(".#{RealEstate::PRINT_CHANNEL_METHOD_ORDER}")
-            
-  .control-group
-    = f.label :contact_id
-    .controls
-      = f.select :contact_id, Employee.all.order([:lastname, :asc]).map { |e| [e.fullname_reversed, e.id]}, :prompt => 'Kontaktperson auswählen', :class => 'span8'
+    .control-group
+      = f.label :contact_id
+      .controls
+        = f.select :contact_id, Employee.all.order([:lastname, :asc]).map { |e| [e.fullname_reversed, e.id]}, :prompt => 'Kontaktperson auswählen', :class => 'span8'
 
-  -# TODO, noelle: move to Objektübersicht Tab!
-  %fieldset
-    - if accessible?(:title)
-      %legend Titel und Beschreibungen
-    - else
-      %legend Beschreibungen
+    .reference-fields-container.hidden{ 'data-dependent_on' => '.external_real_estate_portal', 'data-dependent_on_value' => 'true' }
+      %fieldset
+        = render 'reference', f: f
 
-    - if accessible?(:title)
-      .control-group{ :class => "#{@real_estate.parking? ? '' : 'mandatory'}" }
-        = f.label :title
-        .controls
-          = f.text_field :title, :class => 'span8'
-
-    - if accessible?(:description)
-      .control-group{ :class => "#{@real_estate.parking? ? '' : 'mandatory'}" }
-        = f.label :description
-        .controls
-          .row
-            .span8
-              = f.text_area :description, :class => 'editor'
-
+    %fieldset
+      = render 'title_description', f: f
+      
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'
