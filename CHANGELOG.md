@@ -3,6 +3,7 @@
 ### v2.8.4 in development
 * New implemented User Stories:
   * #2781 - Als Besucher möchte ich alle Vision-Slider Slides übersetzt sehen
+  * #2787 - Als Besucher möchte ich die korrekte PLZ der Filiale Camorino sehen
   
 * Coding improvements:
   * track floor plan printing in gallery (google analytics)
