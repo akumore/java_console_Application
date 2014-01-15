@@ -82,5 +82,14 @@ describe Reference do
         expect(real_estate_from_santa_claus.save).to be_false
       end
     end
+
+    context 'channel "external_real_estate_portal" is unset' do
+      it 'sets reference of real estate to nil' do
+        real_estate.update_attributes(channels: [RealEstate::WEBSITE_CHANNEL])
+        expect(real_estate.reference.property_key).to be_nil
+        expect(real_estate.reference.building_key).to be_nil
+        expect(real_estate.reference.unit_key).to be_nil
+      end
+    end
   end
 end

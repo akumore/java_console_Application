@@ -6,13 +6,15 @@ class MoveReferenceFromAddressToRealEstate < Mongoid::Migration
       else
         reference = Reference.new
       end
-      real_estate.update_attribute(:reference, reference)
+      real_estate.reference = reference
+      real_estate.save(validate: false)
     end
   end
 
   def self.down
     RealEstate.all.each do |real_estate|
-      real_estate.update_attribute(:reference, nil)
+      real_estate.reference = nil
+      real_estate.save(validate: false)
     end
   end
 end

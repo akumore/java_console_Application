@@ -33,7 +33,7 @@ class RealEstate
   has_many :appointments
   has_many :reference_projects, :dependent => :nullify
 
-  embeds_one :reference, :as => :referencable
+  embeds_one :reference
 
   embeds_one :address, :cascade_callbacks => true, :validate => false # cascade callbacks to guarantee execution of geocoding
   embeds_one :pricing, :validate => false
@@ -254,7 +254,7 @@ class RealEstate
     if self.export_to_real_estate_portal?
       self.reference ||= Reference.new
     else
-      self.reference = nil
+      self.reference = Reference.new
     end
   end
 
