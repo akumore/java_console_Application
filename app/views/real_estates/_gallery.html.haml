@@ -21,7 +21,7 @@
             = zoomed_div floor_plan do
               .toolbar
                 = link_to('close', '#', :class => 'icon-close zoom-close-button')
-                = link_to(t('real_estates.show.print_floorplan'), real_estate_floorplan_path(real_estate, floor_plan, :print => true), :class => 'icon-printer', :target => '_blank')
+                = real_estate.floorplan_print_link(floor_plan)
               = image_tag floor_plan.file.gallery_zoom.url
               = real_estate.north_arrow_overlay
 

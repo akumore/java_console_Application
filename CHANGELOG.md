@@ -6,6 +6,14 @@
   * #2710 - Als Editor möchte ich archivierte Immobilien wieder editieren können
   * #2711 - Als Editor möchte ich eine bessere Performance in der Immobilienübericht haben
 
+### v2.8.4 on 2014-01-15
+* New implemented User Stories:
+  * #2781 - Als Besucher möchte ich alle Vision-Slider Slides übersetzt sehen
+  * #2787 - Als Besucher möchte ich die korrekte PLZ der Filiale Camorino sehen
+  
+* Coding improvements:
+  * track floor plan printing in gallery (google analytics)
+
 ### v2.8.3 on 2014-01-10
 * Feedback Stories
   * #2642 - Als Editor möchte ich ein zugeschnittenes Bild in der Vorschau genau so sehen, wie es im Frontend auch angezeigt wird.
