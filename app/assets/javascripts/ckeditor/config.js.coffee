@@ -3,7 +3,8 @@ CKEDITOR.editorConfig = (config) ->
 
   config.toolbar = [
     ['Format','BulletedList','PasteFromWord'],
-    ['Anchor','Image'],
+    ['Link','Unlink','Anchor'],
+    ['Image'],
     ['Source']
   ]
 
