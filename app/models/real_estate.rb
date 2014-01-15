@@ -78,8 +78,8 @@ class RealEstate
   validates :any_reference_key, :presence => true, :if => :export_to_real_estate_portal?
   validate :validates_uniqueness_of_key_composition, :if => :export_to_real_estate_portal?
 
-  before_validation :init_reference
   after_validation :set_category_label
+  after_validation :refresh_reference
   after_initialize :init_channels
 
   delegate :apartment?, :house?, :property?, :to => :top_level_category, :allow_nil => true
@@ -250,8 +250,12 @@ class RealEstate
     self.channels ||= []
   end
 
-  def init_reference
-    self.reference ||= Reference.new
+  def refresh_reference
+    if self.export_to_real_estate_portal?
+      self.reference ||= Reference.new
+    else
+      self.reference = nil
+    end
   end
 
   def set_category_label
