@@ -9,6 +9,7 @@ describe PricingDecorator do
         :category => Fabricate(:category),
         :offer => Offer::RENT,
         :pricing => Fabricate.build(:pricing,
+          :display_estimated_available_from => 'Mai 2012',
           :price_unit => 'monthly',
           :for_rent_netto => 2000,
           :additional_costs => 200,
@@ -19,6 +20,37 @@ describe PricingDecorator do
       )
 
       @pricing = PricingDecorator.new(@real_estate.pricing)
+    end
+
+    context 'with an estimate avilability date' do
+      it 'has the formatted availability date' do
+        @pricing.available_from_compact.should == 'ab Mai 2012'
+      end
+
+      it 'has the pure availability date' do
+        @pricing.available_from.should == 'Mai 2012'
+      end
+    end
+
+    context 'without an estimate availability date' do
+      before :each do
+        @real_estate.pricing.stub!(:display_estimated_available_from).and_return(nil)
+      end
+
+      it 'has the formatted availability date' do
+        @real_estate.pricing.stub!(:available_from).and_return(Date.parse('20.05.2030'))
+        @pricing.available_from_compact.should == 'ab 20.05.2030'
+      end
+
+      it 'has the pure availability date' do
+        @real_estate.pricing.stub!(:available_from).and_return(Date.parse('20.05.2030'))
+        @pricing.available_from.should == '20.05.2030'
+      end
+
+      it 'shows past availability dates as immediately available' do
+        @real_estate.pricing.stub!(:available_from).and_return(Date.parse('20.05.1986'))
+        @pricing.available_from.should == 'sofort'
+      end
     end
 
     it 'formats the list price' do

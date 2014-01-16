@@ -173,6 +173,30 @@ describe "Cms::Pricings" do
           find('.additional-costs-monthly').should have_content(456)
         end
       end
+
+      describe '#edit' do
+        before do
+          @real_estate = Fabricate(:real_estate,
+                                        :pricing => Fabricate.build(:pricing,
+                                                                      :available_from => Date.parse('2012-04-26'),
+                                                                      :number_of_restrooms => 0
+                                        ),
+                                        :category => Fabricate(:category),
+                                        :utilization => Utilization::WORKING
+                                  )
+          @pricing = @real_estate.pricing
+        end
+
+        it "updates the pricing object" do
+          visit edit_cms_real_estate_pricing_path(@real_estate)
+          fill_in 'Etwa verfügbar ab', :with=>'Ebenfalls ab Ende April verfügbar'
+
+          lambda {
+            click_on 'Preise speichern'
+            @pricing.reload
+          }.should change(@pricing, :display_estimated_available_from)
+        end
+      end
     end
 
     context 'for sale' do
@@ -288,6 +312,9 @@ describe "Cms::Pricings" do
             attr_name = Pricing.human_attribute_name(attr)
             find(:xpath, "//dl/dt[contains(string(), '#{attr_name}')]/following-sibling::dd").should have_content(expected_text)
           end
+          [:available_from, :display_estimated_available_from].each do |attr|
+            page.should have_content real_estate.pricing.send(attr)
+          end
         end
       end
     end
@@ -307,6 +334,14 @@ describe "Cms::Pricings" do
           click_on 'Preise'
         end
 
+        it 'creates a new pricing with available from' do
+
+          click_on 'Preise erstellen'
+          @real_estate.reload
+          @pricing = @real_estate.pricing
+
+        end
+
         it 'opens the create form' do
           current_path.should == new_cms_real_estate_pricing_path(@real_estate)
         end
@@ -318,6 +353,10 @@ describe "Cms::Pricings" do
         context 'a valid Pricing' do
           before :each do
             within(".new_pricing") do
+              select '24', :from => 'pricing_available_from_3i'
+              select 'April', :from => 'pricing_available_from_2i'
+              select '2012', :from => 'pricing_available_from_1i'
+              fill_in 'Etwa verfügbar ab', :with => 'Ab Ende April'
               fill_in 'Netto Miete', :with => '2300'
               fill_in 'Nebenkosten', :with => '150'
               select 'pro J.', :from => 'Preiseinheit'
@@ -368,6 +407,8 @@ describe "Cms::Pricings" do
               @pricing.extra_storage.should == 50
               @pricing.estimate.should == '2500 - 2500.-'
               @pricing.opted.should be_true
+              @pricing.available_from.should == Date.parse('2012-04-24')
+              @pricing.display_estimated_available_from.should == 'Ab Ende April'
             end
           end
         end

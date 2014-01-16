@@ -3,6 +3,17 @@
 = render_navigation :context => :real_estate
 
 .pricing-general
+  %dl.dl-horizontal
+    %dt= t "mongoid.attributes.pricing.available_from"
+    %dd
+      = @pricing.available_from
+      &nbsp;
+
+    %dt= t "mongoid.attributes.pricing.display_estimated_available_from"
+    %dd
+      = @pricing.display_estimated_available_from
+      &nbsp;
+
   - if @real_estate.for_rent?
     .row
       .span5

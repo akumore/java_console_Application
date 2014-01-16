@@ -6,16 +6,6 @@
   = render 'cms/shared/errors', :model => @information
 
   %fieldset.push-checkboxes-down
-    .control-group.mandatory
-      = f.label :available_from
-      .controls
-        = f.date_select :available_from#, :start_year=>Date.today.year, :end_year=>5.years.from_now.year
-
-    .control-group
-      = f.label :display_estimated_available_from
-      .controls
-        = f.text_field :display_estimated_available_from
-        %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Information.human_attribute_name(:display_estimated_available_from), 'data-content' => t('.help_popover.display_estimated_available_from') }
 
     -  unless @real_estate.parking?
       .row

@@ -6,7 +6,6 @@ describe "Handout aka MiniDoku" do
 
   let :information do
     Fabricate.build(:information,
-                    :display_estimated_available_from => 'Mitte Mai',
                     :is_new_building => true,
                     :is_old_building => true,
                     :is_minergie_style => true,
@@ -60,7 +59,11 @@ describe "Handout aka MiniDoku" do
                                    :built_on => '2008',
                                    :ceiling_height => 5
                                   ),
-        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :additional_costs => 99, :price_unit => 'monthly'),
+        :pricing => Fabricate.build(:pricing_for_rent,
+                                    :display_estimated_available_from => 'Mitte Mai',
+                                    :for_rent_netto => 1999,
+                                    :additional_costs => 99,
+                                    :price_unit => 'monthly'),
         :information => information,
         :title => 'Demo Objekt',
         :description => 'Lorem Ipsum',
