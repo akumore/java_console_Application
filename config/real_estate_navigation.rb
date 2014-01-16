@@ -35,13 +35,13 @@ SimpleNavigation::Configuration.run do |navigation|
 
     else
 
-      primary.item :real_estate, 'Stammdaten', cms_real_estate_path(@real_estate)
-      primary.item :address, 'Adresse', cms_real_estate_address_path(@real_estate)
-      primary.item :information, 'Infos', cms_real_estate_information_path(@real_estate)
-      primary.item :pricing, 'Preise', cms_real_estate_pricing_path(@real_estate)
-      primary.item :figure, 'Zahlen und Fakten', cms_real_estate_figure_path(@real_estate), :if => Proc.new { @real_estate.to_model_access.accessible?(:figure) }
-      primary.item :infrastructure, 'Infrastruktur', cms_real_estate_infrastructure_path(@real_estate), :if => Proc.new { @real_estate.to_model_access.accessible?(:infrastructure) }
-      primary.item :additional_description, 'Beschreibungen', cms_real_estate_additional_description_path(@real_estate), :if => Proc.new { @real_estate.to_model_access.accessible?(:additional_description) }
+      primary.item :real_estate, t('navigation.cms.real_estates_navigation.real_estate'), cms_real_estate_path(@real_estate)
+      primary.item :address, t('navigation.cms.real_estates_navigation.address'), cms_real_estate_address_path(@real_estate)
+      primary.item :information, t('navigation.cms.real_estates_navigation.information'), cms_real_estate_information_path(@real_estate)
+      primary.item :pricing, t('navigation.cms.real_estates_navigation.pricing'), cms_real_estate_pricing_path(@real_estate)
+      primary.item :figure, t('navigation.cms.real_estates_navigation.figure'), cms_real_estate_figure_path(@real_estate), :if => Proc.new { @real_estate.to_model_access.accessible?(:figure) }
+      primary.item :infrastructure, t('navigation.cms.real_estates_navigation.infrastructure'), cms_real_estate_infrastructure_path(@real_estate), :if => Proc.new { @real_estate.to_model_access.accessible?(:infrastructure) }
+      primary.item :additional_description, t('navigation.cms.real_estates_navigation.Beschreibungen'), cms_real_estate_additional_description_path(@real_estate), :if => Proc.new { @real_estate.to_model_access.accessible?(:additional_description) }
 
     end
 
