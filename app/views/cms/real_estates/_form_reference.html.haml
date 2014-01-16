@@ -2,7 +2,7 @@
 .control-group
   .controls
     .help-block.bold-black= t('.help_reference_numbers')
-= f.fields_for @real_estate.reference do |rf|
+= form.fields_for @real_estate.reference do |rf|
   .control-group
     = rf.label :property_key
     .controls

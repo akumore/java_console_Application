@@ -48,7 +48,7 @@
           %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => RealEstate.human_attribute_name(:utilization_description), 'data-content' => t('.help_popover.utilization_description') }
 
     .control-group
-      = render 'channels', f: f
+      = render 'form_channels', form: f
 
     .control-group
       = f.label :contact_id
@@ -57,10 +57,10 @@
 
     .reference-fields-container.hidden{ 'data-dependent_on' => '.external_real_estate_portal', 'data-dependent_on_value' => 'true' }
       %fieldset
-        = render 'reference', f: f
+        = render 'form_reference', form: f
 
     %fieldset
-      = render 'title_description', f: f
+      = render 'form_title_description', form: f
       
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

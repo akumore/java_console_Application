@@ -5,14 +5,14 @@
 
 - if accessible?(:title)
   .control-group{ :class => "#{@real_estate.parking? ? '' : 'mandatory'}" }
-    = f.label :title
+    = form.label :title
     .controls
-      = f.text_field :title, :class => 'span8'
+      = form.text_field :title, :class => 'span8'
 
 - if accessible?(:description)
   .control-group{ :class => "#{@real_estate.parking? ? '' : 'mandatory'}" }
-    = f.label :description
+    = form.label :description
     .controls
       .row
         .span8
-          = f.text_area :description, :class => 'editor'
+          = form.text_area :description, :class => 'editor'

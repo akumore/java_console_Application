@@ -1,4 +1,4 @@
-= f.label :channels
+= form.label :channels
 - RealEstate::CHANNELS.each do |channel|
   .controls.push-inline-labels-down
     %label.inline.checkbox
@@ -9,7 +9,7 @@
     .microsite-options-container.hidden{ 'data-dependent_on' => '.microsite', 'data-dependent_on_value' => 'true' }
       .control-group
         .controls
-          = f.select :microsite_building_project, microsite_select_options, :prompt => 'Microsite auswählen', :class => 'span8'
+          = form.select :microsite_building_project, microsite_select_options, :prompt => 'Microsite auswählen', :class => 'span8'
 
   - if RealEstate::PRINT_CHANNEL == channel
     .print-channel-methods-container.hidden{ 'data-dependent_on' => '.print', 'data-dependent_on_value' => 'true' }
@@ -17,10 +17,10 @@
         .control-group
           .controls.push-inline-labels-down
             %label.inline.radio
-              = f.radio_button :print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_PDF_DOWNLOAD
+              = form.radio_button :print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_PDF_DOWNLOAD
               %span= t(".#{RealEstate::PRINT_CHANNEL_METHOD_PDF_DOWNLOAD}")
 
           .controls.push-inline-labels-down
             %label.inline.radio
-              = f.radio_button :print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_ORDER
+              = form.radio_button :print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_ORDER
               %span= t(".#{RealEstate::PRINT_CHANNEL_METHOD_ORDER}")

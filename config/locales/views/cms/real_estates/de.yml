@@ -21,7 +21,7 @@ de:
         errors:
           reference_key_combination:
             constraint: 'ist bereits vorhanden.'
-      channels:
+      form_channels:
         channels:
           website: 'Website'
           homegate: 'Externe Immobilienportale'
@@ -31,7 +31,7 @@ de:
           microsite: 'MicroSite'
         print_method_pdf_download: als PDF downloaden
         print_method_order: bestellen
-      reference:
+      form_reference:
         help_reference_numbers: 'Für externe Immobilienportale muss mindestens eine der folgenden 3 Referenznummern ausgefüllt werden.'
         help_popover:
           property_key: 'Für IMB: Liegenschafts-Nr. eingeben, z.B. L2716 <br /> Für M+V: Projekt-Nr. eingeben, z.B. 20643'
