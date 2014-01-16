@@ -55,12 +55,8 @@
       .controls
         = f.select :contact_id, Employee.all.order([:lastname, :asc]).map { |e| [e.fullname_reversed, e.id]}, :prompt => 'Kontaktperson auswählen', :class => 'span8'
 
-    .reference-fields-container.hidden{ 'data-dependent_on' => '.external_real_estate_portal', 'data-dependent_on_value' => 'true' }
-      %fieldset
-        = render 'form_reference', form: f
-
-    %fieldset
-      = render 'form_title_description', form: f
+  %fieldset
+    = render 'form_title_description', form: f
       
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

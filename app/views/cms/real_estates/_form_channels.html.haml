@@ -25,3 +25,34 @@
             %label.inline.radio
               = form.radio_button :print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_ORDER
               %span= t(".#{RealEstate::PRINT_CHANNEL_METHOD_ORDER}")
+
+  - if RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL == channel
+    .reference-fields-container.hidden{ 'data-dependent_on' => '.external_real_estate_portal', 'data-dependent_on_value' => 'true' }
+      .row.inline-form
+        .span10.offset2
+          .row
+            .span8
+              %legend= Reference.model_name.human
+          .row
+            .span6.offset2
+              %p.bold-black= t('.help_reference_numbers')
+          .row
+            .span12
+              - @real_estate.reference ||= Reference.new
+              = form.fields_for @real_estate.reference do |rf|
+                %fieldset
+                  .control-group
+                    = rf.label :property_key
+                    .controls
+                      = rf.text_field :property_key, :class => 'span6'
+                      %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Reference.human_attribute_name(:property_key), 'data-content' => t('.help_popover.property_key') }
+                  .control-group
+                    = rf.label :building_key
+                    .controls
+                      = rf.text_field :building_key, :class => 'span6'
+                      %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Reference.human_attribute_name(:building_key), 'data-content' => t('.help_popover.building_key') }
+                  .control-group
+                    = rf.label :unit_key
+                    .controls
+                      = rf.text_field :unit_key, :class => 'span6'
+                      %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Reference.human_attribute_name(:unit_key), 'data-content' => t('.help_popover.unit_key') }  
