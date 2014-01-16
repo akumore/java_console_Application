@@ -266,6 +266,18 @@ describe "Cms::RealEstates" do
         visit edit_cms_real_estate_path(@fabricated_real_estate)
         find(:css, '#real_estate_contact_id option[selected]').text.should == 'Henker, Hanna'
       end
+
+      it 'removes all channels when all channels are unchecked again' do
+        visit edit_cms_real_estate_path(@fabricated_real_estate)
+
+        within(".edit_real_estate") do
+          uncheck 'Objektdokumentation'
+          click_on 'Immobilie speichern'
+        end
+
+        @real_estate = RealEstate.find(@fabricated_real_estate.id)
+        @real_estate.channels.should == []
+      end
     end
 
     context 'when choosing microsite', :js => true do
