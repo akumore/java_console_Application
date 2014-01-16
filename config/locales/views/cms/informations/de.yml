@@ -3,6 +3,5 @@ de:
     information:
       form:
         help_popover:
-          display_estimated_available_from: 'Wenn dieses Feld ausgefüllt ist, wird es anstelle des präzisen Datums auf der Webseite und der Objektdokumentation ausgegeben.'
           is_old_building: "Für spezielle, alte Gebäude wie Altstadthaus anklicken"
           is_new_building: "Für Erstvermietung, -verkauf anklicken"

@@ -11,6 +11,11 @@ de:
         sell_m2: 'Kaufpreis/m²'
         help_popover:
             estimate: 'Freitextfeld, z.B. ab 2100.00 CHF/Mt., 150.00 – 250.00 CHF/m²/J. oder Preis auf Anfrage'
+            display_estimated_available_from: 'Wenn dieses Feld ausgefüllt ist, wird es anstelle des präzisen Datums auf der Webseite und der Objektdokumentation ausgegeben.'
+  pricing:
+    available_from: 'Bezug'
+    available_from_compact: 'ab %{date}'
+    available_immediately: 'sofort'
   pricings:
     decorator:
       price_units:

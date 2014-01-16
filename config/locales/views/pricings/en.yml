@@ -1,4 +1,8 @@
 en:
+  pricing:
+    available_from: 'Available'
+    available_from_compact: 'from %{date}'
+    available_immediately: 'immediately'
   pricings:
     decorator:
       price_units:
