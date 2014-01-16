@@ -1,6 +1,7 @@
 class Pricing
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::MultiParameterAttributes
 
   embedded_in :real_estate
 
@@ -36,6 +37,8 @@ class Pricing
     :estimate_monthly
   ]
 
+  field :available_from, :type => Date
+  field :display_estimated_available_from, :type => String
   field :for_rent_netto,   :type => Integer
   field :additional_costs, :type => Integer # Nebenkosten
   field :for_sale,         :type => Integer # Kaufpreis
@@ -65,6 +68,7 @@ class Pricing
   field :single_garage,   :type => Integer # Einzelgarage
   field :double_garage,   :type => Integer # Doppelgarage
 
+  validates :available_from, :presence => true
   validates :for_rent_netto, :presence => true, :numericality => true, :if => :for_rent?
   validates :additional_costs, :presence => true, :if => :additional_costs_is_mandatory?
   validates :for_sale, :presence => true, :numericality => true, :if => :for_sale?
