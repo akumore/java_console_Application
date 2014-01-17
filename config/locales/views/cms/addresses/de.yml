@@ -1,5 +1,0 @@
-de:
-  cms:
-    addresses:
-      form:
-        help_microsite_reference_numbers: 'Referenznummern oder Referenzbezeichnungen zur Lokalisierung einer Immobilie innerhalb einer Microsite (z.B. Ansicht).'

@@ -8,9 +8,31 @@
 
   - if RealEstate::MICROSITE_CHANNEL == channel
     .microsite-options-container.hidden{ 'data-dependent_on' => '.microsite', 'data-dependent_on_value' => 'true' }
-      .control-group
-        .controls
-          = form.select :microsite_building_project, microsite_select_options, :prompt => 'Microsite auswählen', :class => 'span8'
+      %fieldset.microsite_reference
+        .control-group
+          .controls
+            = form.select :microsite_building_project, microsite_select_options, :prompt => 'Microsite auswählen', :class => 'span8'
+        .row.inline-form
+          .span10.offset2
+            .row
+              .span8
+                %legend= MicrositeReference.model_name.human
+            .row
+              .span6.offset2
+                %p.bold-black= t('.help_microsite_reference_numbers')
+            .row
+              .span12
+                = form.fields_for @real_estate.microsite_reference do |rf|
+                  .control-group
+                    = rf.label :property_key
+                    .controls
+                      = rf.text_field :property_key, :class => 'span6'
+                      %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => MicrositeReference.human_attribute_name(:property_key), 'data-content' => t('.help_popover.microsite_property_key') }
+                  .control-group
+                    = rf.label :building_key
+                    .controls
+                      = rf.text_field :building_key, :class => 'span6'
+                      %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => MicrositeReference.human_attribute_name(:building_key), 'data-content' => t('.help_popover.microsite_building_key') }
 
   - if RealEstate::PRINT_CHANNEL == channel
     .print-channel-methods-container.hidden{ 'data-dependent_on' => '.print', 'data-dependent_on_value' => 'true' }
