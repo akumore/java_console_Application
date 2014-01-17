@@ -39,7 +39,6 @@ describe "Cms::Addresses" do
           fill_in 'Postleitzahl', :with => '8123'
           fill_in 'Ort', :with => 'Adliswil'
           select 'Zürich', :from => 'Kanton'
-          fill_in 'Link', :with => 'http://www.google.ch'
           uncheck 'Geokoordinaten manuell eintragen'
         end
       end
@@ -63,7 +62,6 @@ describe "Cms::Addresses" do
           @address.city.should == 'Adliswil'
           @address.zip.should == '8123'
           @address.canton.should == 'zh'
-          @address.link_url.should == 'http://www.google.ch'
           @address.manual_geocoding.should be_false
         end
       end
@@ -94,7 +92,6 @@ describe "Cms::Addresses" do
           fill_in 'Ort', :with => 'Adliswil'
           fill_in 'Postleitzahl', :with => '8135'
           select 'Schaffhausen', :from => 'Kanton'
-          fill_in 'Link', :with => 'http://www.google.com'
           check 'Geokoordinaten manuell eintragen'
         end
 
@@ -109,7 +106,6 @@ describe "Cms::Addresses" do
         @address.city.should == 'Adliswil'
         @address.zip.should == '8135'
         @address.canton.should == 'sh'
-        @address.link_url.should == 'http://www.google.com'
         @address.manual_geocoding.should be_true
       end
     end

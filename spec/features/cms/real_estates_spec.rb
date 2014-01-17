@@ -116,7 +116,7 @@ describe "Cms::RealEstates" do
           select 'Camorino, TI', :from => 'Filiale'
           choose 'Kaufen'
           select 'Muster, Hans', :from => 'Kontaktperson'
-
+          fill_in 'Projektwebseiten-Link', :with => 'http://www.google.ch'
           fill_in 'Titel', :with => 'My Real Estate'
           fill_in 'Beschreibung', :with => 'Some description...'
           fill_in 'Zusätzliche Objekt-Arten', :with => 'Gewerbe, Hotel'
@@ -147,6 +147,11 @@ describe "Cms::RealEstates" do
         it 'saves the offer type' do
           click_on 'Immobilie erstellen'
           real_estate.offer.should == Offer::SALE
+        end
+
+        it 'saves the project website link' do
+          click_on 'Immobilie erstellen'
+          real_estate.link_url.should == 'http://www.google.ch'
         end
 
         it 'enables it for the website' do
@@ -235,6 +240,7 @@ describe "Cms::RealEstates" do
           choose 'Mieten'
           uncheck 'Website'
           check 'Objektdokumentation'
+          fill_in 'Projektwebseiten-Link', :with => 'http://www.google.com'
           select 'Henker, Hanna', :from => 'Kontaktperson'
 
           fill_in 'Titel', :with => 'My edited Real Estate'
@@ -251,6 +257,7 @@ describe "Cms::RealEstates" do
         @real_estate.utilization.should == Utilization::LIVING
         @real_estate.offer.should == Offer::RENT
         @real_estate.channels.should == %w(print)
+        @real_estate.link_url.should == 'http://www.google.com'
         @real_estate.title.should == 'My edited Real Estate'
         @real_estate.contact.fullname.should == 'Hanna Henker'
         @real_estate.description.should == 'Some edited description...'
