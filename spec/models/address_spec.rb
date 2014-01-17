@@ -34,14 +34,6 @@ describe Address do
       @address.valid?
       @address.errors.should have(5).items
     end
-
-    it 'initialized the microsite reference object' do
-      @address.microsite_reference.should be_a(MicrositeReference)
-    end
-  end
-
-  describe 'Reference keys' do
-    it 'is invalid if children are not valid'
   end
 
   describe 'geocoding' do

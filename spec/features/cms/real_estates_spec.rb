@@ -295,6 +295,38 @@ describe "Cms::RealEstates" do
       it 'shows the microsite select options immediately' do
         check 'MicroSite'
         page.should have_css('.microsite-options-container:not(.hidden)')
+        page.should have_css('#real_estate_microsite_building_project', :count => 1)
+      end
+
+      it 'shows the microsite reference fields immediately' do
+        page.should have_css('#real_estate_microsite_reference_property_key', :count => 1)
+        page.should have_css('#real_estate_microsite_reference_building_key', :count => 1)
+      end
+    end
+
+    context 'microsite was chosen' do
+      before do
+        visit edit_cms_real_estate_path(@fabricated_real_estate)
+      end
+      
+      describe '#update with valid microsite reference numbers' do
+        before :each do
+          within(".microsite_reference") do
+            fill_in 'Hausnummer', :with => 'H'
+            fill_in 'Immobiliennummer', :with => '22.34'
+          end
+          click_on 'Immobilie speichern'
+
+          @fabricated_real_estate.reload
+        end
+
+        it 'stores the property_key' do
+          @fabricated_real_estate.microsite_reference.property_key.should == '22.34'
+        end
+
+        it 'stores the building_key' do
+          @fabricated_real_estate.microsite_reference.building_key.should == 'H'
+        end
       end
     end
 
