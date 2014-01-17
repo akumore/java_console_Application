@@ -609,7 +609,7 @@ module Export::Idx301
 
     def url
       # str(200)  only displayed if different to agency URL and if object contains more than 4 pictures - Product ImmoViewer = URL must start with "http://www.immoviewer.ch/"
-      model.try(:address).try(:link_url).presence
+      model.try(:link_url).presence
     end
 
     def agency_id
