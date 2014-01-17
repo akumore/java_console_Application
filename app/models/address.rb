@@ -16,7 +16,6 @@ class Address
   field :zip, :type => String
   field :canton, :type => String
   field :country, :type => String, :defaults => "Schweiz"
-  field :link_url, :type => String
   field :manual_geocoding, :type => Boolean
 
   validates :city, :presence => true
