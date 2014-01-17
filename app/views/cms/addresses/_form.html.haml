@@ -26,10 +26,6 @@
       = f.label :canton
       .controls
         = f.select :canton, Address::CANTONS.map { |c| [t("cantons.#{c}"), c] }, :prompt => 'Kanton auswählen', :class => 'span8'
-    .control-group
-      = f.label :link_url
-      .controls
-        = f.text_field :link_url, :class => 'span8'
   
   - if @real_estate.is_microsite?
     %fieldset.microsite_reference

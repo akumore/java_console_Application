@@ -51,6 +51,11 @@
       = render 'form_channels', form: f
 
     .control-group
+      = f.label :link_url
+      .controls
+        = f.text_field :link_url, :class => 'span8'
+
+    .control-group
       = f.label :contact_id
       .controls
         = f.select :contact_id, Employee.all.order([:lastname, :asc]).map { |e| [e.fullname_reversed, e.id]}, :prompt => 'Kontaktperson auswählen', :class => 'span8'

@@ -9,7 +9,6 @@ de:
         city: 'Ort'
         zip: 'Postleitzahl'
         canton: 'Kanton'
-        link_url: 'Link'
         location: 'Geo Koordinaten'
         lat: 'Breitengrad'
         lng: 'Längengrad'

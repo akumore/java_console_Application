@@ -21,6 +21,11 @@
     = @real_estate.channels_string
     &nbsp;
 
+  %dt= t "mongoid.attributes.real_estate.link_url"
+  %dd
+    = @real_estate.link_url
+    &nbsp;
+
   %dt= t "mongoid.attributes.real_estate.contact"
   %dd
     = [ [:firstname, :lastname].map {|attr| @real_estate.contact.try(attr)}.compact.join(" "), [:phone, :email].map {|attr| @real_estate.contact.try(attr)}.compact.join(", ")].join(", ")
