@@ -364,8 +364,8 @@ module Export::Idx301
 
     def available_from
       #  date  if empty="on request" / Date (DD.MM.YYYY)=Date / Date in past or current date=immediately
-      if model.try(:information).try(:available_from).present?
-        model.information.available_from.strftime("%d.%m.%Y")
+      if model.try(:pricing).try(:available_from).present?
+        model.pricing.available_from.strftime("%d.%m.%Y")
       end
     end
 

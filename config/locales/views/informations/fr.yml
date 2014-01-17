@@ -6,9 +6,6 @@ fr:
   information:
     title: 'Informations immobilières'
     characteristics: 'Caractéristiques'
-    available_from: 'Disponible'
-    available_from_compact: 'dès %{date}'
-    available_immediately: 'de suite'
     maximal_floor_loading: 'Charge utile maximale'
     maximal_floor_loading_value: '%{count} kg/m²'
     freight_elevator: 'Monte-charge'

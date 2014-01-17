@@ -38,7 +38,7 @@ describe Pricing do
 
         it 'has 6 errors' do
           pricing.valid?
-          pricing.errors.should have(5).items
+          pricing.errors.should have(6).items
         end
 
         context 'parking' do
@@ -76,7 +76,7 @@ describe Pricing do
 
         it 'has 4 errors' do
           pricing.valid?
-          pricing.errors.should have(4).items
+          pricing.errors.should have(5).items
         end
 
         context 'parking' do

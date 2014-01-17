@@ -3,24 +3,6 @@ class InformationDecorator < ApplicationDecorator
 
   decorates :information
 
-  def available_from_compact
-    if available_from.present?
-      I18n.t('information.available_from_compact', :date => available_from)
-    end
-  end
-
-  def available_from
-    if model.display_estimated_available_from.present?
-      model.display_estimated_available_from
-    elsif model.available_from.present?
-      if model.available_from.past?
-        I18n.t('information.available_immediately')
-      else
-        I18n.l(model.available_from)
-      end
-    end
-  end
-
   def characteristics
     buffer  = []
     

@@ -58,7 +58,7 @@ describe 'Cms::RealEstate utilization - category - building-type dependency' do
     end
 
     it 'has the right sort order in the category drop-down' do
-      page.find('select#real_estate_category_id').should have_content('EinzelzimmerDachwohnungAppartment')
+      page.find('select#real_estate_category_id').text.gsub("\n", '').should have_content('EinzelzimmerDachwohnungAppartment')
     end
 
     it 'has the building-type radio buttons hidden' do

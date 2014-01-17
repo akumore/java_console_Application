@@ -5,6 +5,24 @@ class PricingDecorator < ApplicationDecorator
 
   INVARIANT_PRICING_FIELDS = Pricing::PRICING_FIELDS - [:for_rent_netto, :for_sale, :for_rent_netto_monthly]
 
+  def available_from_compact
+    if available_from.present?
+      I18n.t('pricing.available_from_compact', :date => available_from)
+    end
+  end
+
+  def available_from
+    if model.display_estimated_available_from.present?
+      model.display_estimated_available_from
+    elsif model.available_from.present?
+      if model.available_from.past?
+        I18n.t('pricing.available_immediately')
+      else
+        I18n.l(model.available_from)
+      end
+    end
+  end
+
   def list_price
     if model.for_rent?
       if model.estimate.present?
@@ -155,8 +173,8 @@ class PricingDecorator < ApplicationDecorator
       content << { :key => t('pricings.outside_parking'), :value => outside_parking }
     end
 
-    if real_estate.information.present? && real_estate.information.available_from.present?
-      content << { :key => t('information.available_from'), :value => I18n.l(real_estate.information.available_from) }
+    if real_estate.pricing.present? && real_estate.pricing.available_from.present?
+      content << { :key => t('pricing.available_from'), :value => I18n.l(real_estate.pricing.available_from) }
     end
 
     if opted?

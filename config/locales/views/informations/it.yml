@@ -6,9 +6,6 @@ it:
   information:
     title: 'Info immobile'
     characteristics: 'Caratteristiche'
-    available_from: 'Disponibile'
-    available_from_compact: 'dal %{date}'
-    available_immediately: 'subito'
     maximal_floor_loading: 'Portata utile max. del pavimento.'
     maximal_floor_loading_value: '%{count} kg/m²'
     freight_elevator: 'Elevatore merci'

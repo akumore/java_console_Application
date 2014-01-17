@@ -16,7 +16,7 @@ de:
         real_estate: 'Stammdaten'
         address: 'Adresse'
         information: 'Infos'
-        pricing: 'Preise'
+        pricing: 'Preise/Bezug'
         figure: 'Zahlen und Fakten'
         infrastructure: 'Infrastruktur'
         additional_description: 'Beschreibungen'

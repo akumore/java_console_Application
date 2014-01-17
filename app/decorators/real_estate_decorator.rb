@@ -78,8 +78,8 @@ class RealEstateDecorator < ApplicationDecorator
 
     buffer << utilization_description if utilization_description.present? && working? || storing?
 
-    if information.present?
-      buffer << information.available_from_compact
+    if pricing.present?
+      buffer << pricing.available_from_compact
     end
 
     buffer.join(tag('br')).html_safe
@@ -119,8 +119,8 @@ class RealEstateDecorator < ApplicationDecorator
       buffer << pricing.list_price if pricing.list_price.present?
     end
 
-    if information.try(:available_from_compact).present?
-      buffer << information.available_from_compact
+    if pricing.try(:available_from_compact).present?
+      buffer << pricing.available_from_compact
     end
 
     buffer.join(tag('br')).html_safe

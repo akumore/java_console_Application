@@ -5,8 +5,6 @@ class Information
 
   embedded_in :real_estate
 
-  field :available_from, :type => Date
-  field :display_estimated_available_from, :type => String
   field :has_outlook, :type => Boolean
   field :has_fireplace, :type => Boolean
   field :has_elevator, :type => Boolean
@@ -39,9 +37,6 @@ class Information
                             :maximal_floor_loading,
                             :greater_than_or_equal_to => 0,
                             :allow_nil => true
-
-  validates :available_from,
-            :presence => true
 
   delegate :living?, :working?, :storing?, :parking?, :to => :_parent
 

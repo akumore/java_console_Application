@@ -4,6 +4,8 @@ de:
       pricing: 'Preise'
     attributes:
       pricing:
+        available_from: Verfügbar ab
+        display_estimated_available_from: Etwa verfügbar ab
         for_rent_netto: 'Netto Miete'
         for_rent_netto_monthly: 'Netto Miete pro Monat'
         for_rent_netto_parking: 'Mietzins'

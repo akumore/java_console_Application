@@ -5,17 +5,6 @@
 - if @information.nil?
   Für diese Immobilie wurden keine #{t "navigation.cms.real_estates_navigation.information"} hinterlegt.
 - else
-  %dl.dl-horizontal
-    %dt= t "mongoid.attributes.information.available_from"
-    %dd
-      = @information.available_from
-      &nbsp;
-
-    %dt= t "mongoid.attributes.information.display_estimated_available_from"
-    %dd
-      = @information.display_estimated_available_from
-      &nbsp;
-
   - unless @real_estate.parking?
     .row
       /----------------- column one -----------------/
