@@ -8,7 +8,6 @@ class Address
   CANTONS = %w(ag ar ai bl bs be fr ge gl gr ju lu ne nw ow sh sz so sg ti tg ur vd vs zg zh)
 
   embedded_in :real_estate
-  embeds_one :microsite_reference
 
   field :city, :type => String
   field :street, :type => String
@@ -31,7 +30,6 @@ class Address
 
   after_validation :geocode, :if => :should_geocode?
   before_validation :manually_geocode, :if => :manual_geocoding?
-  after_initialize :init_microsite_reference
   attr_protected :location
 
   alias :coordinates :to_coordinates
@@ -61,11 +59,5 @@ class Address
 
   def lng
     location.first if location.present?
-  end
-
-  private
-
-  def init_microsite_reference
-    self.microsite_reference ||= MicrositeReference.new
   end
 end
