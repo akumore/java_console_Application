@@ -73,11 +73,6 @@ describe Address do
           @address.address_changed?.should be_true
         end
       end
-
-      it "doesn't detect changes in other fields" do
-        @address.link_url = "test link"
-        @address.address_changed?.should be_false
-      end
     end
 
     it 'geocodes itself on create' do
@@ -92,14 +87,6 @@ describe Address do
       @address.update_attributes :street => 'A new street'
 
       @address.to_coordinates.should == [5, 6]
-    end
-
-    it "doesn't geocode on update without address changing" do
-      Fabricate :real_estate, :address => @address, :category => Fabricate(:category)
-      mock_geocoding!(:coordinates => [5, 6])
-      @address.update_attributes :link_url => "www.heise.de"
-
-      @address.to_coordinates.should_not == [5, 6]
     end
   end
 end
