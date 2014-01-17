@@ -300,6 +300,25 @@ describe Export::Idx301::RealEstateDecorator do
     end
   end
 
+  describe '#available_from' do
+    it 'returns the reference date of the real estate' do
+      real_estate = Export::Idx301::RealEstateDecorator.new(
+        mock_model(RealEstate, 
+          pricing: mock_model(Pricing, 
+            available_from: Date.parse('2012-01-01'),
+            for_rent?: false,
+            additional_costs_is_mandatory?: false,
+            for_sale?: false
+          )
+        ),
+        account,
+        {}
+      )
+
+      expect(real_estate.available_from).to eq '01.01.2012'
+    end
+  end
+
   describe '#object_type' do
     it 'returns 5 for an underground_slot' do
       real_estate = Export::Idx301::RealEstateDecorator
