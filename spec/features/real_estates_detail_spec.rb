@@ -19,7 +19,8 @@ describe "RealEstates" do
               :pricing => Fabricate.build(:pricing),
               :infrastructure => Fabricate.build(:infrastructure),
               :additional_description => Fabricate.build(:additional_description),
-              :contact => Fabricate(:employee)
+              :contact => Fabricate(:employee),
+              :link_url => 'http://www.alfred-mueller.ch'
   end
 
   let :unpublished_real_estate do
@@ -605,7 +606,7 @@ describe "RealEstates" do
     describe 'sidebar' do
       it 'shows the project website link' do
         page.within('.sidebar') do
-          page.should have_link 'Zur Projektwebseite', :href => real_estate.address.link_url
+          page.should have_link 'Zur Projektwebseite', :href => real_estate.link_url
         end
       end
 

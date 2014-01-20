@@ -38,10 +38,15 @@ describe RealEstate do
       @real_estate.should have(1).error_on(:office_id)
     end
 
+    it 'has the microsite reference object initialized' do
+      @real_estate.microsite_reference.should be_a(MicrositeReference)
+    end
+
     it 'has 7 errors' do
       @real_estate.valid?
       @real_estate.errors.should have(7).items
     end
+
 
     context 'when microsite is selected' do
       let :microsite_real_estate do

@@ -27,4 +27,4 @@
   = render 'images', :images => handout_images
 
 - if @real_estate.contact.present?
-  = render 'contact', :contact => @real_estate.contact, :direct_link => @real_estate.address.link_url
+  = render 'contact', :contact => @real_estate.contact, :direct_link => @real_estate.link_url

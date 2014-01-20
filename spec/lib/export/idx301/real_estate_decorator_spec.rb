@@ -510,6 +510,22 @@ describe Export::Idx301::RealEstateDecorator do
     end
   end
 
+  describe '#url' do
+    let :decorated_real_etate do
+      Export::Idx301::RealEstateDecorator.new(
+        mock_model(RealEstate,
+          link_url: 'http://www.feldpark-zug.ch'
+        ),
+        account,
+        {}
+      )
+    end
+
+    it 'returns the project website link' do
+      expect(decorated_real_etate.url).to eq 'http://www.feldpark-zug.ch'
+    end
+  end
+
   describe 'agency adress' do
     let :decorator do
       d = Export::Idx301::RealEstateDecorator.new(mock_model(RealEstate), account, {})

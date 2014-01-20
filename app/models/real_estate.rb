@@ -34,7 +34,7 @@ class RealEstate
   has_many :reference_projects, :dependent => :nullify
 
   embeds_one :reference
-
+  embeds_one :microsite_reference
   embeds_one :address, :cascade_callbacks => true, :validate => false # cascade callbacks to guarantee execution of geocoding
   embeds_one :pricing, :validate => false
   embeds_one :figure, :validate => false
@@ -63,6 +63,7 @@ class RealEstate
   field :utilization_description, :type => String
   field :category_label, :type => String, :localize => true # used for sorting, normalized by category.label
   field :microsite_building_project, :type => String # Defines the building project e.g. 'Gartenstadt' or 'Feldpark'
+  field :link_url, :type => String # Link to project website e.g. www.feldpark-zug.ch
 
   validates :category_id, :presence => true
   validates :utilization, :presence => true
@@ -81,6 +82,7 @@ class RealEstate
   after_validation :set_category_label
   after_validation :refresh_reference
   after_initialize :init_channels
+  after_initialize :init_microsite_reference
 
   delegate :apartment?, :house?, :property?, :to => :top_level_category, :allow_nil => true
   delegate :row_house?, :to => :category, :allow_nil => true
@@ -248,6 +250,10 @@ class RealEstate
   private
   def init_channels
     self.channels ||= []
+  end
+
+  def init_microsite_reference
+    self.microsite_reference ||= MicrositeReference.new
   end
 
   def refresh_reference

@@ -26,28 +26,6 @@
       = f.label :canton
       .controls
         = f.select :canton, Address::CANTONS.map { |c| [t("cantons.#{c}"), c] }, :prompt => 'Kanton auswählen', :class => 'span8'
-    .control-group
-      = f.label :link_url
-      .controls
-        = f.text_field :link_url, :class => 'span8'
-  
-  - if @real_estate.is_microsite?
-    %fieldset.microsite_reference
-      %legend= MicrositeReference.model_name.human
-      .control-group
-        .controls
-          .help-block.bold-black= t('.help_microsite_reference_numbers')
-      = f.fields_for @address.microsite_reference do |rf|
-        .control-group
-          = rf.label :property_key
-          .controls
-            = rf.text_field :property_key, :class => 'span8'
-            %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => MicrositeReference.human_attribute_name(:property_key), 'data-content' => t('.help_popover.microsite_property_key') }
-        .control-group
-          = rf.label :building_key
-          .controls
-            = rf.text_field :building_key, :class => 'span8'
-            %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => MicrositeReference.human_attribute_name(:building_key), 'data-content' => t('.help_popover.microsite_building_key') }
 
   %fieldset.push-checkboxes-down
     %legend= t "mongoid.attributes.address.location"

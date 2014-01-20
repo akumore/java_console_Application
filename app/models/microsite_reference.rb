@@ -1,6 +1,6 @@
 class MicrositeReference
   include Mongoid::Document
-  embedded_in :microsite_reference, :polymorphic => true
+  embedded_in :real_estate
 
   field :property_key, :type => String
   field :building_key, :type => String

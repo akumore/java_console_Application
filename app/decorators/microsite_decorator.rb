@@ -53,11 +53,11 @@ class MicrositeDecorator < ApplicationDecorator
   end
 
   def property_key
-    real_estate.address.try(:microsite_reference).try(:property_key)
+    real_estate.try(:microsite_reference).try(:property_key)
   end
 
   def building_key
-    real_estate.address.try(:microsite_reference).try(:building_key)
+    real_estate.try(:microsite_reference).try(:building_key)
   end
 
   def surface

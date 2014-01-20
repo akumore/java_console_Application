@@ -718,8 +718,10 @@ describe "Handout aka MiniDoku" do
 
     before do
       @contact_person = Fabricate :employee
-      @real_estate = Fabricate :residential_building, :contact => @contact_person, :pricing => Fabricate.build(:pricing_for_rent),
-                               :address => Fabricate.build(:address, :link_url => 'www.gartenstadt.ch')
+      @real_estate = Fabricate :residential_building, 
+                               :contact => @contact_person, 
+                               :pricing => Fabricate.build(:pricing_for_rent),
+                               :link_url => 'www.gartenstadt.ch'
     end
 
     it "is not available, if contact person is't assigned to real estate" do

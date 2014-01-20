@@ -32,10 +32,13 @@ de:
         print_method_pdf_download: als PDF downloaden
         print_method_order: bestellen
         help_reference_numbers: 'Für externe Immobilienportale muss mindestens eine der folgenden 3 Referenznummern ausgefüllt werden.'
+        help_microsite_reference_numbers: 'Referenznummern oder Referenzbezeichnungen zur Lokalisierung einer Immobilie innerhalb einer Microsite (z.B. Ansicht).'
         help_popover:
           property_key: 'Für IMB: Liegenschafts-Nr. eingeben, z.B. L2716 <br /> Für M+V: Projekt-Nr. eingeben, z.B. 20643'
           building_key: 'Für IMB: Objekt-Nr. eingeben, z.B. 1012 <br /> Für M+V: genaue Bezeichnung, z.B. Feldpark9_9.12'
           unit_key: 'Kurzzeichen des Auftraggebers, z.B. bz'
+          microsite_property_key: 'Immobiliennummer eingeben, z.B. 25.12<br>Eindeutige Identifizierung einer Wohnung oder eines Gewerberaum innerbalb eines Projektes/Microsite'
+          microsite_building_key: 'Hausnummer eingeben, z.B. 20 oder H<br>Identifiziert ein bestimmtes Haus'
       actions:
         overview: 'Zurück zur Übersicht'
         destroy: 'Immobilie löschen'
