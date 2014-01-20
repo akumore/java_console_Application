@@ -1,6 +1,8 @@
 # CHANGELOG
 
-### in development
+### v2.8.5 on 2014-01-20
+New implemented User Stories:
+
 * Feature 'Archivierung':
   * #2709 - Als Editor möchte ich Immobilien archivieren können
   * #2710 - Als Editor möchte ich archivierte Immobilien wieder editieren können
