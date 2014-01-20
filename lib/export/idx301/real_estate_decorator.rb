@@ -315,17 +315,17 @@ module Export::Idx301
 
     def ref_property
       #  str(80) at least one of the refs must be non blank (the word null as a value in ref_object cannot be used)
-      model.try(:address).try(:reference).try(:property_key).presence
+      model.try(:reference).try(:property_key).presence
     end
 
     def ref_house
       # str(80) the word null as a value in ref_house cannot be used
-      model.try(:address).try(:reference).try(:building_key).presence
+      model.try(:reference).try(:building_key).presence
     end
 
     def ref_object
       #  str(80) the word null as a value in ref_object cannot be used
-      model.try(:address).try(:reference).try(:unit_key).presence
+      model.try(:reference).try(:unit_key).presence
     end
 
     def object_street

@@ -56,7 +56,7 @@ describe RealEstateStateMailer do
 
     it "includes all channels in the channel list" do
       real_estate.channels.each do |channel|
-        review_mail.body.should match /^\* #{I18n.t("cms.real_estates.form.channels.#{channel}", :locale=>:de)}$/
+        review_mail.body.should match /^\* #{I18n.t("cms.real_estates.form_channels.channels.#{channel}", :locale=>:de)}$/
       end
     end
   end

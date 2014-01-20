@@ -309,7 +309,10 @@ describe RealEstate do
     before do
       category = Fabricate(:category)
       @website_enabled = Fabricate :real_estate, :channels => [RealEstate::WEBSITE_CHANNEL], :category => category
-      @homegate_enabled = Fabricate :real_estate, :channels => [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL, RealEstate::WEBSITE_CHANNEL], :category => category
+      @homegate_enabled = Fabricate(:real_estate, 
+                                    :channels => [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL, RealEstate::WEBSITE_CHANNEL],
+                                    :reference => Fabricate.build(:reference),
+                                    :category => category)
       @print_enabled = Fabricate :real_estate, :channels => [RealEstate::PRINT_CHANNEL, RealEstate::WEBSITE_CHANNEL], :category => category
       @microsite_enabled = Fabricate :real_estate, :channels => [RealEstate::MICROSITE_CHANNEL], :category => category, :microsite_building_project => MicrositeBuildingProject::GARTENSTADT
     end

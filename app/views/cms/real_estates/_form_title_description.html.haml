@@ -1,0 +1,18 @@
+- if accessible?(:title)
+  %legend Titel und Beschreibungen
+- else
+  %legend Beschreibungen
+
+- if accessible?(:title)
+  .control-group{ :class => "#{@real_estate.parking? ? '' : 'mandatory'}" }
+    = form.label :title
+    .controls
+      = form.text_field :title, :class => 'span8'
+
+- if accessible?(:description)
+  .control-group{ :class => "#{@real_estate.parking? ? '' : 'mandatory'}" }
+    = form.label :description
+    .controls
+      .row
+        .span8
+          = form.text_area :description, :class => 'editor'

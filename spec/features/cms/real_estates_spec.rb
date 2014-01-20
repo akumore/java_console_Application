@@ -157,6 +157,7 @@ describe "Cms::RealEstates" do
 
         it 'enables it for external real estate portal export' do
           check 'Dritt-Websites'
+          fill_in 'Liegenschaftsreferenz', with: 'abc'
           click_on 'Immobilie erstellen'
           real_estate.channels.should include RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL
         end
@@ -177,6 +178,7 @@ describe "Cms::RealEstates" do
         it 'enables it for multiple channels' do
           check 'Website'
           check 'Dritt-Websites'
+          fill_in 'Liegenschaftsreferenz', with: 'abc'
           click_on 'Immobilie erstellen'
           [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL, RealEstate::WEBSITE_CHANNEL].each do |channel|
             real_estate.channels.should include channel
@@ -264,6 +266,18 @@ describe "Cms::RealEstates" do
         visit edit_cms_real_estate_path(@fabricated_real_estate)
         find(:css, '#real_estate_contact_id option[selected]').text.should == 'Henker, Hanna'
       end
+
+      it 'removes all channels when all channels are unchecked again' do
+        visit edit_cms_real_estate_path(@fabricated_real_estate)
+
+        within(".edit_real_estate") do
+          uncheck 'Objektdokumentation'
+          click_on 'Immobilie speichern'
+        end
+
+        @real_estate = RealEstate.find(@fabricated_real_estate.id)
+        @real_estate.channels.should == []
+      end
     end
 
     context 'when choosing microsite', :js => true do
@@ -274,6 +288,52 @@ describe "Cms::RealEstates" do
       it 'shows the microsite select options immediately' do
         check 'MicroSite'
         page.should have_css('.microsite-options-container:not(.hidden)')
+      end
+    end
+
+    context 'when the real estate is to be published to homegate', :js => true do
+      before do
+        visit edit_cms_real_estate_path(@fabricated_real_estate)
+      end
+
+      it 'shows the reference fields immediately' do
+        check 'Dritt-Websites'
+        page.should have_css('#real_estate_reference_property_key', :count => 1)
+        page.should have_css('#real_estate_reference_building_key', :count => 1)
+        page.should have_css('#real_estate_reference_unit_key', :count => 1)
+      end
+
+      describe '#update with invalid reference numbers' do
+        before :each do
+          check 'Dritt-Websites'
+          fill_in 'Liegenschaftsreferenz', :with => ''
+          fill_in 'Gebäudereferenz', :with => ''
+          fill_in 'Objektreferenz', :with => ''
+          click_on 'Immobilie speichern'
+        end
+
+        it 'requires at least one reference number' do
+          page.should have_content 'Referenznummer muss ausgefüllt werden'
+        end
+      end
+
+      describe '#update with already existing combination of reference numbers' do
+        before :each do
+          Fabricate(:real_estate,
+                    channels: [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL],
+                    reference: Reference.new( property_key: '123', building_key: '456', unit_key: '789'), 
+                    category: Fabricate(:category))
+        end
+
+        it 'is not possible to save real estate' do
+          check 'Dritt-Websites'
+          fill_in 'Liegenschaftsreferenz', with: '123'
+          fill_in 'Gebäudereferenz', with: '456'
+          fill_in 'Objektreferenz', with: '789'
+          click_on 'Immobilie speichern'
+
+          page.should have_content 'Kombination der Referenznummern ist bereits vorhanden'
+        end
       end
     end
 

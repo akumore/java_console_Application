@@ -355,9 +355,9 @@ class RealEstateDecorator < ApplicationDecorator
 
   def channels_string
     channels.map { |channel|
-      channel_str = I18n.t("cms.real_estates.form.channels.#{channel}")
+      channel_str = I18n.t("cms.real_estates.form_channels.channels.#{channel}")
       if channel == RealEstate::PRINT_CHANNEL && print_channel_method.present?
-        channel_str << " (#{I18n.t("cms.real_estates.form.#{print_channel_method}")})"
+        channel_str << " (#{I18n.t("cms.real_estates.form_channels.#{print_channel_method}")})"
       end
       channel_str
     }.join(", ")

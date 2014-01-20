@@ -115,40 +115,6 @@ describe "Cms::Addresses" do
     end
   end
 
-  context 'when the real estate is to be published to homegate' do
-    before do
-      @real_estate = Fabricate(:real_estate,
-        :category => Fabricate(:category),
-        :address => Fabricate.build(:address,
-          :reference => Fabricate.build(:reference)
-        ),
-        :reference => Fabricate.build(:reference),
-        :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL]
-      )
-      visit edit_cms_real_estate_path(@real_estate)
-      click_on 'Adresse'
-    end
-
-    it 'shows the reference fields' do
-      page.should have_css('#address_reference_property_key', :count => 1)
-      page.should have_css('#address_reference_building_key', :count => 1)
-      page.should have_css('#address_reference_unit_key', :count => 1)
-    end
-
-    describe '#update with invalid reference numbers' do
-      before :each do
-        fill_in 'Liegenschaftsreferenz', :with => ''
-        fill_in 'Gebäudereferenz', :with => ''
-        fill_in 'Objektreferenz', :with => ''
-        click_on 'Adresse speichern'
-      end
-
-      it 'requires at least one reference number' do
-        page.should have_content 'Referenznummer muss ausgefüllt werden'
-      end
-    end
-  end
-
   context 'when the real estate is to be on a microsite' do
     let :real_estate do
       Fabricate(:real_estate,

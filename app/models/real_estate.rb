@@ -22,7 +22,7 @@ class RealEstate
   PRINT_CHANNEL = 'print'
   PRINT_CHANNEL_METHOD_PDF_DOWNLOAD = 'print_method_pdf_download'
   PRINT_CHANNEL_METHOD_ORDER = 'print_method_order'
-  CHANNELS = %W(#{WEBSITE_CHANNEL} #{EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL} #{MICROSITE_CHANNEL} #{PRINT_CHANNEL})
+  CHANNELS = %W(#{WEBSITE_CHANNEL} #{EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL} #{PRINT_CHANNEL} #{MICROSITE_CHANNEL})
 
   belongs_to :category
   belongs_to :office
@@ -33,8 +33,7 @@ class RealEstate
   has_many :appointments
   has_many :reference_projects, :dependent => :nullify
 
-  embeds_one :reference, :as => :referencable
-  #deprecate :reference # disable for now, because it will always log as long as we have defined embeds_one
+  embeds_one :reference
 
   embeds_one :address, :cascade_callbacks => true, :validate => false # cascade callbacks to guarantee execution of geocoding
   embeds_one :pricing, :validate => false
@@ -76,9 +75,12 @@ class RealEstate
     :presence => true,
     :inclusion => { :in => MicrositeBuildingProject.all },
     :if => :is_microsite?
+  validates :any_reference_key, :presence => true, :if => :export_to_real_estate_portal?
+  validate :validates_uniqueness_of_key_composition, :if => :export_to_real_estate_portal?
 
-  after_initialize :init_channels
   after_validation :set_category_label
+  after_validation :refresh_reference
+  after_initialize :init_channels
 
   delegate :apartment?, :house?, :property?, :to => :top_level_category, :allow_nil => true
   delegate :row_house?, :to => :category, :allow_nil => true
@@ -248,7 +250,38 @@ class RealEstate
     self.channels ||= []
   end
 
+  def refresh_reference
+    if self.export_to_real_estate_portal?
+      self.reference ||= Reference.new
+    else
+      self.reference = Reference.new
+    end
+  end
+
   def set_category_label
     self.category_label_translations = self.category.label_translations if category.present?
+  end
+
+  def any_reference_key
+    (reference.property_key.presence || reference.building_key.presence || reference.unit_key.presence) if reference.present?
+  end
+
+  def validates_uniqueness_of_key_composition
+    allowed_keys = [:property_key, :building_key, :unit_key]
+    attr_hash = {}
+    allowed_keys.each { |a| attr_hash[a] = self.reference.send(a) }
+
+    matching_real_estates = RealEstate.matching_real_estates(attr_hash)
+    matching_real_estates.delete(self)
+
+    if matching_real_estates.count > 0
+      errors.add(:reference_key_combination, I18n.t('cms.real_estates.form.errors.reference_key_combination.constraint'))
+    end
+  end
+
+  def self.matching_real_estates(attributes)
+    attribs = {}
+    attributes.each_pair{ |k,v| attribs["reference.#{k}"] = v }
+    RealEstate.where(attribs).to_a
   end
 end
