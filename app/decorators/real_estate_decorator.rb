@@ -260,7 +260,13 @@ class RealEstateDecorator < ApplicationDecorator
 
   def project_website_link
     if link_url.present?
-      link_to t('real_estates.show.project_website_link'), link_url, :target => '_new', :class => 'icon-globe'
+      link = if link_url =~ /https?:\/\//
+               link_url
+             else
+               'http://' + link_url
+             end
+
+      link_to t('real_estates.show.project_website_link'), link, :target => '_new', :class => 'icon-globe'
     end
   end
 

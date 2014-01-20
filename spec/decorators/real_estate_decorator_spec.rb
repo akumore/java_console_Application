@@ -51,6 +51,22 @@ describe RealEstateDecorator do
     end
   end
 
+  describe '#project_website_link' do
+
+    subject { Fabricate.build(:real_estate, :link_url => 'www.example.com').decorate }
+
+    it 'add http' do
+      subject.model.link_url = 'www.example.com'
+      subject.project_website_link.should include('http://www.example.com')
+    end
+
+    it 'keep http' do
+      subject.model.link_url = 'http://www.example.com'
+      subject.project_website_link.should include('http://www.example.com')
+    end
+
+  end
+
   describe '#thumbnail', :thumb => true do
     let :decorated_real_estate do
       r = RealEstateDecorator.decorate(mock_model(RealEstate,
