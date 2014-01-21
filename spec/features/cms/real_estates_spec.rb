@@ -134,6 +134,12 @@ describe "Cms::RealEstates" do
           RealEstate.last
         end
 
+        it 'saves the language' do
+          select 'Italienisch', from: 'Anzeigesprache'
+          click_on 'Immobilie erstellen'
+          real_estate.language.label.should == 'it'
+        end
+
         it 'saves the category' do
           click_on 'Immobilie erstellen'
           real_estate.category.label.should == 'Child Category 1'

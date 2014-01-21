@@ -3,10 +3,15 @@
 
   %fieldset
     .control-group.mandatory
+      = f.label :language
+      .controls
+        = f.select :language, I18n.available_locales.map {|l| [t("languages.#{l}"), l] }
+
+    .control-group.mandatory
       = f.label :office_id
       .controls
         = f.collection_select :office_id, Office.all, :id, :label
-    
+
     .control-group.mandatory
       = f.label :offer
       .controls.push-inline-labels-down

@@ -53,6 +53,7 @@ class RealEstate
   accepts_nested_attributes_for :videos
   accepts_nested_attributes_for :documents
 
+  field :language, :type => String, :default => I18n.locale
   field :state, :type => String, :default => RealEstate::STATE_EDITING
   field :utilization, :type => String, :default => Utilization::LIVING
   field :offer, :type => String, :default => Offer::RENT
