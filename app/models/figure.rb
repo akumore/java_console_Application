@@ -33,12 +33,9 @@ class Figure
   field :storage_surface, :type => String # Lagerfläche
   field :storage_surface_estimate, :type => String # Lagerfläche ungefähr
   field :ceiling_height, :type => String # Raumhöhe
-  field :floors, :type => Integer # Anzahl Stockwerke
-  field :renovated_on, :type => Integer # Renovationsjahr
-  field :built_on, :type => Integer # Baujahr
 
   # fields which must be numeric
-  validates :property_surface, :floors, :renovated_on, :built_on,
+  validates :property_surface,
             :numericality => true,
             :allow_blank => true
 
