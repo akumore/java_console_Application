@@ -54,6 +54,47 @@ class InformationDecorator < ApplicationDecorator
     buffer.compact
   end
 
+  def characteristics_lis
+    old_lang = I18n.locale
+    begin
+      I18n.locale = real_estate.language.to_sym
+      characteristics.map {|c| "\t" + content_tag(:li, c) }
+    ensure
+      I18n.locale = old_lang
+    end
+  end
+
+  def characteristics_ul
+    ['<ul>'] + characteristics_lis + ['</ul>']
+  end
+
+  def update_additional_information
+    info = @model.additional_information.split("\r\n")
+
+    index_of_ul_end = info.index('</ul>')
+    if index_of_ul_end.nil?
+      lis_before = []
+      info = ['<ul>','</ul>'] + info
+      index_of_ul_end = 1
+    else
+      original = RealEstate.find(real_estate.id).information.decorate
+      lis_before = original.characteristics_lis
+    end
+    lis_after = characteristics_lis
+
+    to_add = lis_after - lis_before
+    to_add.reverse.each {|li|
+      info.insert(index_of_ul_end, li)
+    }
+
+    to_remove = lis_before - lis_after
+    to_remove.each {|li|
+      info.delete(li)
+    }
+
+    @model.additional_information = info.join("\r\n")
+  end
+
   def maximal_floor_loading
     if model.maximal_floor_loading.present?
       t('information.maximal_floor_loading_value', :count => model.maximal_floor_loading )
