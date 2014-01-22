@@ -69,13 +69,12 @@ class InformationDecorator < ApplicationDecorator
   end
 
   def update_additional_information
-    info = @model.additional_information.split("\r\n")
+    original_additional_information = @model.additional_information
+    info = @model.additional_information.split(/\r\n|\n/)
 
     index_of_ul_end = info.index('</ul>')
     if index_of_ul_end.nil?
       lis_before = []
-      info = ['<ul>','</ul>'] + info
-      index_of_ul_end = 1
     else
       original = RealEstate.find(real_estate.id).information.decorate
       lis_before = original.characteristics_lis
@@ -83,6 +82,10 @@ class InformationDecorator < ApplicationDecorator
     lis_after = characteristics_lis
 
     to_add = lis_after - lis_before
+    if to_add.length > 0 && index_of_ul_end.nil?
+      info = ['<ul>','</ul>'] + info
+      index_of_ul_end = 1
+    end
     to_add.reverse.each {|li|
       info.insert(index_of_ul_end, li)
     }
@@ -93,6 +96,9 @@ class InformationDecorator < ApplicationDecorator
     }
 
     @model.additional_information = info.join("\r\n")
+
+    # return weather the function changed someting
+    original_additional_information.gsub("\r",'').strip != @model.additional_information.gsub("\r", '').strip
   end
 
   def maximal_floor_loading

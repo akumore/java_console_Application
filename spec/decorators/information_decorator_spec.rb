@@ -71,9 +71,17 @@ describe InformationDecorator do
     @information.maximal_floor_loading.should == '140 kg/m²'
   end
 
+  it 'adds additional no information if nothing selected' do
+    @information.has_balcony = false
+    @information.has_swimming_pool = false
+    @information.additional_information.should == 'Ergänzende Informationen zum Ausbau'
+    @information.update_additional_information.should be_false
+    @information.additional_information.should == 'Ergänzende Informationen zum Ausbau'
+  end
+
   it 'adds additional information' do
     @information.additional_information.should == 'Ergänzende Informationen zum Ausbau'
-    @information.update_additional_information
+    @information.update_additional_information.should be_true
     @information.additional_information.should == [
       '<ul>',
       "\t<li>Balkon</li>",
@@ -89,7 +97,7 @@ describe InformationDecorator do
 
     it 'adds a new characteristic' do
       @information.has_elevator = true
-      @information.update_additional_information
+      @information.update_additional_information.should be_true
       @information.additional_information.should == [
         '<ul>',
         "\t<li>Balkon</li>",
@@ -104,8 +112,8 @@ describe InformationDecorator do
       @information.additional_information = ("some text\r\n" * 3) + @information.additional_information
       @information.additional_information = @information.additional_information.gsub('Balkon', 'Grosser Balkon')
       @information.additional_information = @information.additional_information.gsub('Schwimmbecken', 'Jacuzzi')
-      p @information.additional_information
-      @information.update_additional_information
+
+      @information.update_additional_information.should be_true
       @information.additional_information.should == [
         'some text',
         'some text',

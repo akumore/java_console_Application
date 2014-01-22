@@ -38,7 +38,7 @@
             = f.label :has_outlook
             .controls
               = f.check_box :has_outlook
-              
+
           .control-group
             = f.label :has_raised_ground_floor
             .controls
@@ -166,13 +166,18 @@
             .controls
               = f.check_box :has_sewage_supply
 
-    - unless @real_estate.parking?
-      .control-group
-        = f.label :additional_information
-        .controls
-          .row
-            .span8
-              = f.text_area :additional_information, :class => 'editor'
+
+    - unless @original_additional_information.nil?
+      .alert
+        = t('cms.information.form.check_new_entries')
+        = @original_additional_information
+
+    .control-group
+      = f.label :additional_information
+      .controls
+        .row
+          .span8
+            = f.text_area :additional_information, :class => 'editor'
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

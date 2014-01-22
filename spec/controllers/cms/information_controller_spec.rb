@@ -20,6 +20,13 @@ describe 'Real Estate Wizard' do
         flash[:success].should_not be_nil
       end
 
+      it 'redirects to the new pricing tab without an existing pricing' do
+        post :create, :real_estate_id => @real_estate.id, :information => @information_attributes.merge(:has_cable_tv => true)
+        response.should_not redirect_to new_cms_real_estate_pricing_path(@real_estate)
+        response.should render_template('edit')
+        assigns(:original_additional_information).should_not be_nil
+      end
+
       it 'redirects to the edit pricing tab with an existing pricing' do
         @real_estate.pricing = Fabricate.build :pricing
         post :create, :real_estate_id => @real_estate.id, :information => @information_attributes

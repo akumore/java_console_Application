@@ -100,7 +100,33 @@ describe "Cms Information" do
         information.available_from.should == @template_information.available_from
         information.display_estimated_available_from.should == @template_information.display_estimated_available_from
         information.has_cable_tv.should == @template_information.has_cable_tv
-        information.additional_information.should == @template_information.additional_information
+
+        updated_additional_infos = [
+          "<ul>",
+          "\t<li>Minergie Bauweise</li>",
+          "\t<li>Minergie zertifiziert</li>",
+          "\t<li>Kabelfernsehen</li>",
+          "\t<li>Ausblick</li>",
+          "\t<li>Cheminée</li>",
+          "\t<li>Liftzugang</li>",
+          "\t<li>ISDN Anschluss</li>",
+          "\t<li>rollstuhltauglich</li>",
+          "\t<li>kinderfreundlich</li>",
+          "\t<li>Balkon</li>",
+          "\t<li>Gartensitzplatz</li>",
+          "\t<li>Schwimmbecken</li>",
+          "</ul>",
+          "Zusätzliche Angaben zum Ausbau"]
+        information.additional_information.should == updated_additional_infos.join("\r\n")
+
+        within('.alert') do
+          page.should have_content('Ergänzende informationen wurde automatisch ergänzt. Bitte überprüfen sie den Inhalt')
+        end
+
+        find_field('Ergänzende Informationen').value.should eq updated_additional_infos.join("\n")
+
+        click_on 'Immobilieninfos speichern'
+        current_path.should == new_cms_real_estate_pricing_path(@real_estate)
       end
 
       it 'doesnt render the is_developed checkbox' do
@@ -115,9 +141,9 @@ describe "Cms Information" do
     context 'real estate with working utilization' do
       before :each do
         @real_estate = Fabricate(:real_estate,
-          :category => Fabricate(:category),
-          :utilization => Utilization::WORKING
-          )
+                                 :category => Fabricate(:category),
+                                 :utilization => Utilization::WORKING
+                                )
         visit new_cms_real_estate_information_path(@real_estate)
       end
 
@@ -132,16 +158,16 @@ describe "Cms Information" do
         fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
 
         [
-         'Aussicht',
-         'Neubau',
-         'Minergie Bauweise',
-         'Minergie zertifiziert',
-         'Anfahrrampe',
-         'Hebebühne',
-         'Bahnanschluss',
-         'Wasseranschluss',
-         'Abwasseranschluss',
-         'Kabelfernsehen'
+          'Aussicht',
+          'Neubau',
+          'Minergie Bauweise',
+          'Minergie zertifiziert',
+          'Anfahrrampe',
+          'Hebebühne',
+          'Bahnanschluss',
+          'Wasseranschluss',
+          'Abwasseranschluss',
+          'Kabelfernsehen'
         ].each do |checkbox|
           check checkbox
         end
@@ -164,7 +190,6 @@ describe "Cms Information" do
         information.display_estimated_available_from.should == @template_information.display_estimated_available_from
         information.number_of_restrooms.should == @template_information.number_of_restrooms
         information.has_cable_tv.should == @template_information.has_cable_tv
-        information.additional_information.should == @template_information.additional_information
       end
 
       ["Anzahl WC's", "Max Gewicht Warenlift", "Maximale Bodenbelastung"].each do |target_field|
@@ -190,9 +215,9 @@ describe "Cms Information" do
     context 'real estate with storing utilization' do
       before :each do
         @real_estate = Fabricate(:real_estate,
-          :category => Fabricate(:category),
-          :utilization => Utilization::STORING
-          )
+                                 :category => Fabricate(:category),
+                                 :utilization => Utilization::STORING
+                                )
         visit new_cms_real_estate_information_path(@real_estate)
       end
 
@@ -207,16 +232,16 @@ describe "Cms Information" do
         fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
 
         [
-         'Aussicht',
-         'Neubau',
-         'Minergie Bauweise',
-         'Minergie zertifiziert',
-         'Anfahrrampe',
-         'Hebebühne',
-         'Bahnanschluss',
-         'Wasseranschluss',
-         'Abwasseranschluss',
-         'Kabelfernsehen'
+          'Aussicht',
+          'Neubau',
+          'Minergie Bauweise',
+          'Minergie zertifiziert',
+          'Anfahrrampe',
+          'Hebebühne',
+          'Bahnanschluss',
+          'Wasseranschluss',
+          'Abwasseranschluss',
+          'Kabelfernsehen'
         ].each do |checkbox|
           check checkbox
         end
@@ -239,7 +264,6 @@ describe "Cms Information" do
         information.display_estimated_available_from.should == @template_information.display_estimated_available_from
         information.number_of_restrooms.should == @template_information.number_of_restrooms
         information.has_cable_tv.should == @template_information.has_cable_tv
-        information.additional_information.should == @template_information.additional_information
       end
     end
 
@@ -291,12 +315,12 @@ describe "Cms Information" do
   describe '#edit' do
     before do
       @real_estate = Fabricate(:real_estate,
-                                     :information => Fabricate.build(:information,
-                                                                   :available_from => Date.parse('2012-04-26'),
-                                                                   :number_of_restrooms => 0
-                                     ),
-                                     :category => Fabricate(:category),
-                                     :utilization => Utilization::WORKING
+                               :information => Fabricate.build(:information,
+                                                               :available_from => Date.parse('2012-04-26'),
+                                                               :number_of_restrooms => 0
+                                                              ),
+                                                              :category => Fabricate(:category),
+                                                              :utilization => Utilization::WORKING
                               )
       @information = @real_estate.information
     end
@@ -319,6 +343,20 @@ describe "Cms Information" do
         click_on 'Immobilieninfos speichern'
         @information.reload
       }.should_not change(@information, :number_of_restrooms)
+    end
+
+    it 'updates the additional information field' do
+      visit edit_cms_real_estate_information_path(@real_estate)
+
+      check 'Kabelfernsehen'
+      click_on 'Immobilieninfos speichern'
+
+      within('.alert') do
+        page.should have_content('Ergänzende informationen wurde automatisch ergänzt. Bitte überprüfen sie den Inhalt')
+      end
+
+      click_on 'Immobilieninfos speichern'
+      current_path.should == new_cms_real_estate_pricing_path(@real_estate)
     end
   end
 

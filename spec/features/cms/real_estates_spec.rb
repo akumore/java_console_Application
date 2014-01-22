@@ -135,9 +135,9 @@ describe "Cms::RealEstates" do
         end
 
         it 'saves the language' do
-          select 'Italienisch', from: 'Anzeigesprache'
+          select 'Italienisch', from: 'Anzeigensprache'
           click_on 'Immobilie erstellen'
-          real_estate.language.label.should == 'it'
+          real_estate.language.should == 'it'
         end
 
         it 'saves the category' do
