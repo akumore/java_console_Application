@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### v2.8.6 in development
+
+* Bug Fixes:
+ * #2806 - Hotfix - Als Editor möchte ich auch eine invalide Immobilie wieder bearbeiten können
+
 ### v2.8.5 on 2014-01-20
 New implemented User Stories:
 
