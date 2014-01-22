@@ -57,6 +57,11 @@ class Cms::RealEstatesController < Cms::SecuredController
     real_estate_params = params.fetch(:real_estate, {})
     real_estate_params.merge!(:editor => current_user) if save_last_editor?(real_estate_params[:state_event])
 
+    if real_estate_params[:state_event] == 'unpublish_it'
+      @real_estate.update_attribute(:state, RealEstate::STATE_EDITING ) # ensure the real estate can be edited again, even if it is invalid at the moment
+      real_estate_params.delete(:state_event)
+    end
+
     if @real_estate.update_attributes(real_estate_params)
       notify_users(real_estate_params[:state_event], @real_estate)
 

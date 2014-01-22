@@ -163,6 +163,20 @@ describe 'Real Estate Wizard' do
             put :update, :id => @real_estate.id
           end
         end
+
+        describe '#unpublish_it' do
+          before do
+            @invalid_published_real_esate = Fabricate :published_real_estate, category: category
+            @invalid_published_real_esate.update_attribute(:utilization_description, "Etwas das mehr als fünfundzwanzig Zeichen lang ist")
+            RealEstate.stub!(:find).and_return(@invalid_published_real_esate)
+          end
+
+          it 'changed state to editing' do
+            put :update, id: @invalid_published_real_esate.id, real_estate: { state_event: 'unpublish_it' }
+            expect(@invalid_published_real_esate.valid?).to be_false
+            expect(@invalid_published_real_esate.reload.state).to eq RealEstate::STATE_EDITING
+          end
+        end
       end
     end
 
