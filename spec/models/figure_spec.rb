@@ -52,10 +52,7 @@ describe Figure do
             :property_surface => '19qm2',
             :usable_surface => '300qm2',
             :storage_surface => '20qm2',
-            :ceiling_height => '2.6m',
-            :floors => 'drei',
-            :renovated_on => 'Vor 10 Jahren',
-            :built_on => 'Jahr 2012'
+            :ceiling_height => '2.6m'
           ), :category => Fabricate(:category))
         @figure = @real_estate.figure
       end
@@ -84,18 +81,6 @@ describe Figure do
       it 'requires a number for property_surface' do
         @figure.should have(1).error_on(:property_surface)
       end
-
-      it 'requires a number for floors' do
-        @figure.should have(1).error_on(:floors)
-      end
-
-      it 'requires a number for renovated_on' do
-        @figure.should have(1).error_on(:renovated_on)
-      end
-
-      it 'requires a number for built_on' do
-        @figure.should have(1).error_on(:built_on)
-      end
     end
 
     context 'for commercial utilization' do
@@ -109,10 +94,7 @@ describe Figure do
             :property_surface => '19qm2',
             :usable_surface => '300qm2',
             :storage_surface => '20qm2',
-            :ceiling_height => '2.6m',
-            :floors => 'drei',
-            :renovated_on => 'Vor 10 Jahren',
-            :built_on => 'Jahr 2012'
+            :ceiling_height => '2.6m'
           ), :category => Fabricate(:category))
         @figure = @real_estate.figure
       end
