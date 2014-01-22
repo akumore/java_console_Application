@@ -19,6 +19,3 @@ de:
         storage_surface: 'Lagerfläche in m²'
         storage_surface_estimate: 'Lagerfläche ungefähr'
         ceiling_height: 'Raumhöhe in Meter'
-        floors: 'Anzahl Geschosse'
-        renovated_on: 'Renovationsjahr'
-        built_on: 'Baujahr'

@@ -164,6 +164,24 @@
             .span8
               = f.text_area :additional_information, :class => 'editor'
 
+  - unless @real_estate.parking?
+    %fieldset
+      %legend Gebäude/Liegenschaft
+      .control-group
+        = f.label :built_on
+        .controls
+          = f.text_field :built_on, :class => 'span2'
+
+      .control-group
+        = f.label :renovated_on
+        .controls
+          = f.text_field :renovated_on, :class => 'span2'
+
+      .control-group
+        = f.label :floors
+        .controls
+          = f.text_field :floors, :class => 'span4'    
+
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

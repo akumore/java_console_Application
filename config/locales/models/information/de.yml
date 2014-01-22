@@ -31,3 +31,7 @@ de:
         is_under_building_laws: im Baurecht
         has_cable_tv: Kabelfernsehen
         additional_information: Ergänzende Informationen
+        floors: Anzahl Geschosse
+        renovated_on: Renovationsjahr
+        built_on: Baujahr
+        building_information: Gebäude/Liegenschaft
