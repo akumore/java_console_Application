@@ -22,11 +22,3 @@ fr:
     double_garage:
       one: 'Garage double'
       other: 'Garages doubles'
-    distances: 'À proximité'
-    points_of_interest:
-      public_transport: 'Transports en commun %{distance} m'
-      shopping: 'Magasins %{distance} m'
-      kindergarden: 'Jardin d‘enfants %{distance} m'
-      elementary_school: 'Ecole primaire %{distance} m'
-      high_school: 'Cycle secondaire %{distance} m'
-      highway_access: 'Accès autoroutier %{distance} m'

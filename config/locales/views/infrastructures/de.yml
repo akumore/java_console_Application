@@ -1,26 +1,4 @@
 de:
-  cms:
-    infrastructures:
-      show:
-        parking: 'Parkplätze'
-        points_of_interest:
-          types:
-            public_transport: 'Öffentlicher Verkehr'
-            shopping: 'Einkaufen'
-            kindergarden: 'Kindergarten'
-            elementary_school: 'Grundschule'
-            high_school: 'Oberstufe'
-            highway_access: 'Autobahnanschluss'
-      form:
-        parking: 'Parkplätze'
-        points_of_interest:
-          types:
-            public_transport: 'Öffentlicher Verkehr'
-            shopping: 'Einkaufen'
-            kindergarden: 'Kindergarten'
-            elementary_school: 'Grundschule'
-            high_school: 'Oberstufe'
-            highway_access: 'Autobahnanschluss'
   infrastructures:
     title: 'Infrastruktur'
     inside_parking_spots:
@@ -44,11 +22,3 @@ de:
     double_garage:
       one: 'Doppelgarage'
       other: 'Doppelgaragen'
-    distances: 'In der Nähe'
-    points_of_interest:
-      public_transport: 'Öffentlicher Verkehr %{distance} m'
-      shopping: 'Einkaufen %{distance} m'
-      kindergarden: 'Kindergarten %{distance} m'
-      elementary_school: 'Primarschule %{distance} m'
-      high_school: 'Oberstufe %{distance} m'
-      highway_access: 'Autobahnanschluss %{distance} m'

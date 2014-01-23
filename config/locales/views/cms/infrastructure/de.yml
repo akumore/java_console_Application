@@ -1,0 +1,7 @@
+de:
+  cms:
+    infrastructures:
+      show:
+        parking: 'Parkplätze'
+      form:
+        parking: 'Parkplätze'

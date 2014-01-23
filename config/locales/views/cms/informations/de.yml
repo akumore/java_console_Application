@@ -1,7 +1,25 @@
 de:
   cms:
     information:
+      show:
+        points_of_interest:
+          types:
+            public_transport: 'Öffentlicher Verkehr'
+            shopping: 'Einkaufen'
+            kindergarden: 'Kindergarten'
+            elementary_school: 'Grundschule'
+            high_school: 'Oberstufe'
+            highway_access: 'Autobahnanschluss'
       form:
+        for_rent: 'Mietinformationen'
+        points_of_interest:
+          types:
+            public_transport: 'Öffentlicher Verkehr'
+            shopping: 'Einkaufen'
+            kindergarden: 'Kindergarten'
+            elementary_school: 'Grundschule'
+            high_school: 'Oberstufe'
+            highway_access: 'Autobahnanschluss'
         help_popover:
           is_old_building: "Für spezielle, alte Gebäude wie Altstadthaus anklicken"
           is_new_building: "Für Erstvermietung, -verkauf anklicken"
