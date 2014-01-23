@@ -330,16 +330,16 @@ class RealEstateDecorator < ApplicationDecorator
       information.present? && information.additional_information.present?
     elsif working?
       figure.present? && (figure.property_surface.present? ||
-                          figure.storage_surface.present? ||
-                          figure.ceiling_height.present?
+                          figure.storage_surface.present?
                          ) ||
       information.present? && (information.maximal_floor_loading.present? ||
                                information.freight_elevator_carrying_capacity.present? ||
-                               information.additional_information.present?
+                               information.additional_information.present? ||
+                               information.ceiling_height.present?
                               )
     elsif storing?
-      figure.present? && figure.ceiling_height.present? ||
-      information.present? && information.additional_information.present?
+      information.present? && (information.additional_information.present? ||
+                               information.ceiling_height.present?)
     elsif parking?
       false
     end

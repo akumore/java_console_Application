@@ -39,3 +39,5 @@ it:
     floors_value:
       one: '%{count} Piano'
       other: '%{count} Piani'
+    ceiling_height: 'Altezza locali'
+    ceiling_height_value: '%{size} m'

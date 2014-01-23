@@ -74,8 +74,8 @@ class InformationDecorator < ApplicationDecorator
         content << { :key => t('figures.property_surface'),:value => figure.property_surface }
       end
 
-      if figure.ceiling_height.present?
-        content << { :key => t('figures.ceiling_height'), :value => figure.ceiling_height}
+      if information.ceiling_height.present?
+        content << { :key => t('information.ceiling_height'), :value => information.ceiling_height}
       end
 
       if figure.storage_surface.present?
@@ -126,5 +126,10 @@ class InformationDecorator < ApplicationDecorator
   def floors
     # Anzahl Geschosse
     t('information.floors_value', :count => model.floors) if model.floors.present?
+  end
+
+  def ceiling_height
+    # Raumhöhe
+    t('information.ceiling_height_value', :size => model.ceiling_height) if model.ceiling_height.present?
   end
 end

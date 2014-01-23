@@ -116,12 +116,6 @@
         .controls
           = f.text_field :storage_surface_estimate, :class => 'span4'
 
-    - if accessible?(:ceiling_height)
-      .control-group
-        = f.label :ceiling_height
-        .controls
-          = f.text_field :ceiling_height, :class => 'span4'
-
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

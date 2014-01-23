@@ -13,7 +13,8 @@ describe InformationDecorator do
         :has_swimming_pool => true,
         :maximal_floor_loading => 140,
         :freight_elevator_carrying_capacity => 150,
-        :floors => 2
+        :floors => 2,
+        :ceiling_height => '2.55'
       )
     )
 
@@ -37,5 +38,9 @@ describe InformationDecorator do
     @information.floors.should == '2 Geschosse'
     @information.update_attribute :floors, 1
     @information.floors.should == '1 Geschoss'
+  end
+
+  it 'formats the ceiling height' do
+    @information.ceiling_height.should == '2.55 m'
   end
 end

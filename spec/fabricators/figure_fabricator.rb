@@ -5,5 +5,4 @@ Fabricator(:figure) do
   property_surface '200.5'
   usable_surface '155.3'
   storage_surface '29.5'
-  ceiling_height '2.6'
 end

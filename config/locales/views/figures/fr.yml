@@ -7,11 +7,8 @@ fr:
       private: 'Surface habitable'
     property_surface: 'Surface terrain'
     storage_surface: 'Surface de stockage'
-    ceiling_height: 'Hauteur des locaux'
     lower_floor: '%{floor}. Sous-sol'
     ground_floor: 'Rez-de-chaussée'
     upper_floor: '%{floor}. étage'
     rooms_value: '%{count} pièces'
     surface_value: '%{size} m²'
-    ceiling_height_value: '%{size} m'
-

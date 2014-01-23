@@ -37,7 +37,8 @@ describe "Cms Information" do
                                                 :additional_information => 'Zusätzliche Angaben zum Ausbau',
                                                 :floors => 3,
                                                 :renovated_on => 1997,
-                                                :built_on => 1956
+                                                :built_on => 1956,
+                                                :ceiling_height => '2.6'
                                               )
     end
 
@@ -56,6 +57,7 @@ describe "Cms Information" do
         fill_in 'Anzahl Geschosse', :with => @template_information.floors
         fill_in 'Renovationsjahr', :with => @template_information.renovated_on
         fill_in 'Baujahr', :with => @template_information.built_on
+        fill_in 'Raumhöhe in Meter', :with => @template_information.ceiling_height
 
         [ 'Aussicht', 
           'Cheminée', 
@@ -101,6 +103,7 @@ describe "Cms Information" do
         expect(information.floors).to eq @template_information.floors
         expect(information.renovated_on).to eq @template_information.renovated_on
         expect(information.built_on).to eq @template_information.built_on
+        expect(information.ceiling_height).to eq @template_information.ceiling_height
       end
 
       it 'doesnt render the is_developed checkbox' do
@@ -152,6 +155,7 @@ describe "Cms Information" do
         fill_in 'Anzahl Geschosse', :with => @template_information.floors
         fill_in 'Renovationsjahr', :with => @template_information.renovated_on
         fill_in 'Baujahr', :with => @template_information.built_on
+        fill_in 'Raumhöhe in Meter', :with => @template_information.ceiling_height
 
         [
          'Aussicht',
@@ -184,6 +188,7 @@ describe "Cms Information" do
         expect(information.floors).to eq @template_information.floors
         expect(information.renovated_on).to eq @template_information.renovated_on
         expect(information.built_on).to eq @template_information.built_on
+        expect(information.ceiling_height).to eq @template_information.ceiling_height
       end
 
       it 'doesnt render the has_swimming_pool checkbox' do
@@ -250,6 +255,7 @@ describe "Cms Information" do
         fill_in 'Anzahl Geschosse', :with => @template_information.floors
         fill_in 'Renovationsjahr', :with => @template_information.renovated_on
         fill_in 'Baujahr', :with => @template_information.built_on
+        fill_in 'Raumhöhe in Meter', :with => @template_information.ceiling_height
 
         [
          'Aussicht',
@@ -286,6 +292,7 @@ describe "Cms Information" do
         expect(information.floors).to eq @template_information.floors
         expect(information.renovated_on).to eq @template_information.renovated_on
         expect(information.built_on).to eq @template_information.built_on
+        expect(information.ceiling_height).to eq @template_information.ceiling_height
       end
     end
 

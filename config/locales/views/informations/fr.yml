@@ -39,3 +39,5 @@ fr:
     floors_value:
       one: '%{count} étage'
       other: '%{count} étages'
+    ceiling_height: 'Hauteur des locaux'
+    ceiling_height_value: '%{size} m'

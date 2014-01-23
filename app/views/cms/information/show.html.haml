@@ -124,6 +124,10 @@
               %dt= t "mongoid.attributes.information.number_of_restrooms"
               %dd= @information.number_of_restrooms
 
+        %dl.dl-horizontal
+          %dt= t "mongoid.attributes.information.ceiling_height"
+          %dd= @information.ceiling_height
+
         - if @information.additional_information.present?
           %dl.dl-horizontal
             %dt= t "mongoid.attributes.information.additional_information"

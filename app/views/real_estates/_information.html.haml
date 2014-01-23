@@ -23,11 +23,11 @@
           %dt= t('figures.property_surface')
           %dd= figure.property_surface
 
-    - if figure && real_estate.working? || real_estate.storing?
-      - if figure.ceiling_height.present?
+    - if information && real_estate.working? || real_estate.storing?
+      - if information.ceiling_height.present?
         %dl
-          %dt= t('figures.ceiling_height')
-          %dd= figure.ceiling_height
+          %dt= t('information.ceiling_height')
+          %dd= information.ceiling_height
 
     - if figure && real_estate.working? || real_estate.living?
       - if figure.storage_surface.present?

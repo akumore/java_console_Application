@@ -102,9 +102,4 @@ class FigureDecorator < ApplicationDecorator
       t('figures.surface_value', :size => model.storage_surface)
     end
   end
-
-  def ceiling_height
-    # Raumhöhe
-    t('figures.ceiling_height_value', :size => model.ceiling_height) if model.ceiling_height.present?
-  end
 end

@@ -33,10 +33,6 @@ describe "Cms::Figures" do
         page.should_not have_css('#figure_usage_surface_estimate')
       end
 
-      it 'does not show the ceiling height input' do
-        page.should_not have_css('#figure_ceiling_height')
-      end
-
       context 'a valid Figure' do
         before :each do
           within(".new_figure") do
@@ -121,7 +117,6 @@ describe "Cms::Figures" do
             fill_in 'figure_usable_surface', :with => '200.6'
             fill_in 'figure_usable_surface_estimate', :with => '200.6 - 200.7 m2'
             fill_in 'figure_storage_surface', :with => '150'
-            fill_in 'figure_ceiling_height', :with => '2.6'
           end
         end
 
@@ -146,7 +141,6 @@ describe "Cms::Figures" do
             @figure.usable_surface.should == 200.6
             @figure.usable_surface_estimate.should == '200.6 - 200.7 m2'
             @figure.storage_surface.should == '150'
-            @figure.ceiling_height.should == '2.6'
           end
         end
       end

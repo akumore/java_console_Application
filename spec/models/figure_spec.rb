@@ -51,8 +51,7 @@ describe Figure do
             :living_surface => '120qm2',
             :property_surface => '19qm2',
             :usable_surface => '300qm2',
-            :storage_surface => '20qm2',
-            :ceiling_height => '2.6m'
+            :storage_surface => '20qm2'
           ), :category => Fabricate(:category))
         @figure = @real_estate.figure
       end
@@ -93,14 +92,9 @@ describe Figure do
             :living_surface => '120qm2',
             :property_surface => '19qm2',
             :usable_surface => '300qm2',
-            :storage_surface => '20qm2',
-            :ceiling_height => '2.6m'
+            :storage_surface => '20qm2'
           ), :category => Fabricate(:category))
         @figure = @real_estate.figure
-      end
-
-      it 'requires a number for ceiling_height' do
-        @figure.should have(1).error_on(:ceiling_height)
       end
 
       it 'requires a number for storage_surface' do

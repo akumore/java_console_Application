@@ -30,7 +30,8 @@ describe "Handout aka MiniDoku" do
                     :number_of_restrooms => 3,
                     :floors => 20,
                     :renovated_on => '1991',
-                    :built_on => '2008'
+                    :built_on => '2008',
+                    :ceiling_height => 5
                    )
   end
 
@@ -56,8 +57,7 @@ describe "Handout aka MiniDoku" do
                                    :specification_living_surface => 'Test one two three',
                                    :property_surface => 100,
                                    :storage_surface => 10,
-                                   :storage_surface_estimate => 20,
-                                   :ceiling_height => 5
+                                   :storage_surface_estimate => 20
                                   ),
         :pricing => Fabricate.build(:pricing_for_rent,
                                     :display_estimated_available_from => 'Mitte Mai',
