@@ -70,4 +70,34 @@ describe Information do
       end
     end
   end
+
+  describe '#build_points_of_interest' do
+    before do
+      @real_estate = Fabricate.build(:real_estate,
+                                     utilization: Utilization::PARKING, 
+                                     information: Information.new(),
+                                     category: Fabricate(:category))
+      @information = @real_estate.information
+    end
+
+    context 'with parking utilization' do
+      it "returns #{PointOfInterest::PARKING_STORING_TYPES}" do
+        expect(@information.build_points_of_interest(@real_estate)).to eq PointOfInterest::PARKING_STORING_TYPES
+      end
+    end
+
+    context "with storing utilization" do
+      it "returns #{PointOfInterest::PARKING_STORING_TYPES}" do
+        @real_estate.update_attributes(utilization: Utilization::STORING)
+        expect(@information.build_points_of_interest(@real_estate)).to eq PointOfInterest::PARKING_STORING_TYPES
+      end
+    end
+
+    context 'with every ohter utilization' do
+      it "returns #{PointOfInterest::TYPES}" do
+        @real_estate.update_attributes(utilization: Utilization::LIVING)
+        expect(@information.build_points_of_interest(@real_estate)).to eq PointOfInterest::TYPES
+      end
+    end
+  end
 end
