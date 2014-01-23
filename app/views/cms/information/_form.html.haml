@@ -7,7 +7,7 @@
 
   - unless @real_estate.parking?
     %fieldset.push-checkboxes-down
-      %legend Gebäude/Liegenschaft
+      %legend= t "mongoid.attributes.information.building_information"
       .control-group
         = f.label :built_on
         .controls
@@ -86,7 +86,7 @@
 
 
     %fieldset.push-checkboxes-down
-      %legend Ausbau
+      %legend= t "mongoid.attributes.information.building_up"
       .row
         .span12
           .floated-controls-box
@@ -147,7 +147,7 @@
 
 
     %fieldset.push-checkboxes-down
-      %legend Für externe Portale relevant
+      %legend= t "mongoid.attributes.information.relevant_for_external_portals"
       .row
         .span12
           .floated-controls-box
