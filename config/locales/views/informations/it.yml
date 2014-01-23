@@ -22,6 +22,7 @@ it:
     wheelchair_accessible: 'Accessibile con sedia a rotelle'
     child_friendly: 'Adatto ai bambini'
     balcony: 'Balcone'
+    garden_seating: 'Salotto da giardino'
     raised_ground_floor: 'Piano rialzato'
     swimmingpool: 'Piscina'
     number_of_restrooms: '%{count} WC'
@@ -32,3 +33,9 @@ it:
     sewage_supply: 'Allacciamento acqua di scarico'
     cable_tv: 'TV via cavo'
     additional_information: 'Informazioni aggiuntive'
+    renovated_on: 'Anno di risanamento'
+    built_on: 'Anno di costruzione'
+    floors: 'Piani'
+    floors_value:
+      one: '%{count} Piano'
+      other: '%{count} Piani'

@@ -366,9 +366,6 @@ describe "RealEstates" do
                           :specification_living_surface => 'Test one two three',
                           :property_surface => 100,
                           :storage_surface => 10,
-                          :floors => 20,
-                          :renovated_on => '1991',
-                          :built_on => '2008',
                           :ceiling_height => 5
                          )
         end
@@ -397,7 +394,10 @@ describe "RealEstates" do
                           :has_railway_terminal => true,
                           :has_water_supply => true,
                           :has_sewage_supply => true,
-                          :number_of_restrooms => 3
+                          :number_of_restrooms => 3,
+                          :floors => 20,
+                          :renovated_on => '1991',
+                          :built_on => '2008'
                          )
         end
 

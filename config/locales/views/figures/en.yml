@@ -1,7 +1,6 @@
 en:
   figures:
     floor: 'Floor'
-    floors: 'Floors'
     rooms: 'Number of rooms'
     surface:
       commercial: 'Usable area'
@@ -9,14 +8,9 @@ en:
     property_surface: 'Total area of property'
     storage_surface: 'Storage space'
     ceiling_height: 'Ceiling height'
-    renovated_on: 'Year of renovation'
-    built_on: 'Year of construction'
     lower_floor: '%{floor}. Basement'
     ground_floor: 'Ground Floor'
     upper_floor: '%{floor}. First Floor'
     rooms_value: '%{count} rooms'
     surface_value: '%{size} m²'
     ceiling_height_value: '%{size} m'
-    floors_value:
-      one: '%{count} Floor'
-      other: '%{count} Floors'

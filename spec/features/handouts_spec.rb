@@ -27,7 +27,10 @@ describe "Handout aka MiniDoku" do
                     :has_railway_terminal => true,
                     :has_water_supply => true,
                     :has_sewage_supply => true,
-                    :number_of_restrooms => 3
+                    :number_of_restrooms => 3,
+                    :floors => 20,
+                    :renovated_on => '1991',
+                    :built_on => '2008'
                    )
   end
 
@@ -54,9 +57,6 @@ describe "Handout aka MiniDoku" do
                                    :property_surface => 100,
                                    :storage_surface => 10,
                                    :storage_surface_estimate => 20,
-                                   :floors => 20,
-                                   :renovated_on => '1991',
-                                   :built_on => '2008',
                                    :ceiling_height => 5
                                   ),
         :pricing => Fabricate.build(:pricing_for_rent,

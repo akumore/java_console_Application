@@ -1,7 +1,6 @@
 fr:
   figures:
     floor: 'Etage'
-    floors: 'Etages'
     rooms: 'Nombre pièces'
     surface:
       commercial: 'Surface utile'
@@ -9,15 +8,10 @@ fr:
     property_surface: 'Surface terrain'
     storage_surface: 'Surface de stockage'
     ceiling_height: 'Hauteur des locaux'
-    renovated_on: 'Date rénovation'
-    built_on: 'Année construction'
     lower_floor: '%{floor}. Sous-sol'
     ground_floor: 'Rez-de-chaussée'
     upper_floor: '%{floor}. étage'
     rooms_value: '%{count} pièces'
     surface_value: '%{size} m²'
     ceiling_height_value: '%{size} m'
-    floors_value:
-      one: '%{count} étage'
-      other: '%{count} étages'
 

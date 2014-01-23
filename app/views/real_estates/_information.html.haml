@@ -35,20 +35,20 @@
           %dt= t('figures.storage_surface')
           %dd= figure.storage_surface
 
-    - if figure && figure.floors.present?
+    - if information && information.floors.present?
       %dl
-        %dt= t('figures.floors')
-        %dd= figure.floors
+        %dt= t('information.floors')
+        %dd= information.floors
 
-    - if figure && figure.renovated_on.present?
+    - if information && information.renovated_on.present?
       %dl
-        %dt= t('figures.renovated_on')
-        %dd= figure.renovated_on
+        %dt= t('information.renovated_on')
+        %dd= information.renovated_on
 
-    - if figure && figure.built_on.present?
+    - if information && information.built_on.present?
       %dl
-        %dt= t('figures.built_on')
-        %dd= figure.built_on
+        %dt= t('information.built_on')
+        %dd= information.built_on
 
     - if information && information.characteristics.any? && !real_estate.parking?
       %dl

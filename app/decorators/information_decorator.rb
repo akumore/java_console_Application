@@ -83,16 +83,16 @@ class InformationDecorator < ApplicationDecorator
       end
     end
 
-    if figure && figure.floors.present?
-      content << { :key => t('figures.floors'), :value => figure.floors }
+    if information && information.floors.present?
+      content << { :key => t('information.floors'), :value => information.floors }
     end
 
-    if figure && figure.renovated_on.present?
-      content << { :key => t('figures.renovated_on'), :value => figure.renovated_on }
+    if information && information.renovated_on.present?
+      content << { :key => t('information.renovated_on'), :value => information.renovated_on }
     end
 
-    if figure && figure.built_on.present?
-      content << { :key => t('figures.built_on'), :value => figure.built_on }
+    if information && information.built_on.present?
+      content << { :key => t('information.built_on'), :value => information.built_on }
     end
 
     if characteristics.any?
@@ -121,5 +121,10 @@ class InformationDecorator < ApplicationDecorator
     if model.additional_information.present?
       model.additional_information.html_safe
     end
+  end
+
+  def floors
+    # Anzahl Geschosse
+    t('information.floors_value', :count => model.floors) if model.floors.present?
   end
 end

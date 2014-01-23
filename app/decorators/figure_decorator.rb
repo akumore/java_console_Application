@@ -107,10 +107,4 @@ class FigureDecorator < ApplicationDecorator
     # Raumhöhe
     t('figures.ceiling_height_value', :size => model.ceiling_height) if model.ceiling_height.present?
   end
-
-  def floors
-    # Geschosse
-    t('figures.floors_value', :count => model.floors) if model.floors.present?
-  end
-
 end

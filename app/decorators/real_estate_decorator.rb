@@ -315,11 +315,10 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def general_information?
-    figure.present? && (figure.floors.present? ||
-                        figure.renovated_on.present? ||
-                        figure.built_on.present?
-                       ) ||
-    information.present? && information.characteristics.any?
+    information.present? && (information.floors.present? ||
+                        information.renovated_on.present? ||
+                        information.built_on.present? || 
+                        information.characteristics.any?)
   end
 
   def utilization_information?
