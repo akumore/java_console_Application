@@ -5,8 +5,15 @@
 - if @information.nil?
   Für diese Immobilie wurden keine #{t "navigation.cms.real_estates_navigation.information"} hinterlegt.
 - else
+  %legend= t ".location"
+  %dl.dl-horizontal
+    - @information.points_of_interest.each do |poi|
+      %dt= t ".points_of_interest.types.#{poi.name}"
+      %dd= poi.distance
+
+
   - unless @real_estate.parking?
-    %legend= t "mongoid.attributes.information.building_information"
+    %legend= t ".building_information"
     .row
       .span12
         .floated-controls-box
@@ -77,7 +84,7 @@
               %dd= @information.freight_elevator_carrying_capacity
 
 
-    %legend= t "mongoid.attributes.information.building_up"
+    %legend= t ".building_up"
     .row
       .span12
         .floated-controls-box
@@ -130,7 +137,7 @@
             %dd= @information.additional_information.html_safe
 
 
-    %legend= t "mongoid.attributes.information.relevant_for_external_portals"
+    %legend= t ".relevant_for_external_portals"
     .row
       .span12
         .floated-controls-box

@@ -2,6 +2,10 @@ de:
   cms:
     information:
       show:
+        building_information: 'Gebäude/Liegenschaft'
+        building_up: 'Ausbau'
+        relevant_for_external_portals: 'Für externe Portale relevant'
+        location: 'Standort'
         points_of_interest:
           types:
             public_transport: 'Öffentlicher Verkehr'
@@ -12,6 +16,10 @@ de:
             highway_access: 'Autobahnanschluss'
       form:
         for_rent: 'Mietinformationen'
+        building_information: 'Gebäude/Liegenschaft'
+        building_up: 'Ausbau'
+        relevant_for_external_portals: 'Für externe Portale relevant'
+        location: 'Standort'
         points_of_interest:
           types:
             public_transport: 'Öffentlicher Verkehr'
