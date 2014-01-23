@@ -8,24 +8,24 @@
   - unless @real_estate.parking?
     %fieldset.push-checkboxes-down
       %legend= t "mongoid.attributes.information.building_information"
-      .control-group
-        = f.label :built_on
-        .controls
-          = f.text_field :built_on, :class => 'span2'
-
-      .control-group
-        = f.label :renovated_on
-        .controls
-          = f.text_field :renovated_on, :class => 'span2'
-
-      .control-group
-        = f.label :floors
-        .controls
-          = f.text_field :floors, :class => 'span4'
-
       .row
         .span12
           .floated-controls-box
+            .control-group
+              = f.label :built_on
+              .controls
+                = f.text_field :built_on, class: 'span1'
+
+            .control-group
+              = f.label :renovated_on
+              .controls
+                = f.text_field :renovated_on, class: 'span1'
+
+            .control-group
+              = f.label :floors
+              .controls
+                = f.text_field :floors, class: 'span1'
+
             - if @real_estate.living?
               .control-group
                 = f.label :has_swimming_pool
@@ -138,10 +138,10 @@
                 .controls
                   =f.text_field :number_of_restrooms, class: 'span1'
 
-      .control-group
-        = f.label :ceiling_height
-        .controls
-          = f.text_field :ceiling_height, class: 'span4'
+              .control-group
+                = f.label :ceiling_height
+                .controls
+                  = f.text_field :ceiling_height, class: 'span1'
 
       .control-group
         = f.label :additional_information

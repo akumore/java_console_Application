@@ -57,7 +57,6 @@ describe "Cms Information" do
         fill_in 'Anzahl Geschosse', :with => @template_information.floors
         fill_in 'Renovationsjahr', :with => @template_information.renovated_on
         fill_in 'Baujahr', :with => @template_information.built_on
-        fill_in 'Raumhöhe in Meter', :with => @template_information.ceiling_height
 
         [ 'Aussicht', 
           'Cheminée', 
@@ -103,7 +102,6 @@ describe "Cms Information" do
         expect(information.floors).to eq @template_information.floors
         expect(information.renovated_on).to eq @template_information.renovated_on
         expect(information.built_on).to eq @template_information.built_on
-        expect(information.ceiling_height).to eq @template_information.ceiling_height
       end
 
       it 'doesnt render the is_developed checkbox' do
@@ -136,6 +134,10 @@ describe "Cms Information" do
 
       it 'doesnt render the number_of_restrooms input field' do
         expect(page).to_not have_css('#information_number_of_restrooms')
+      end
+
+      it 'doesnt render the ceiling_height input field' do
+        expect(page).to_not have_css('#information_ceiling_height')
       end
     end
 
@@ -219,7 +221,7 @@ describe "Cms Information" do
         expect(page).to_not have_css('#information_has_water_supply')
       end
 
-      ["Anzahl WC's", "Max Gewicht Warenlift", "Maximale Bodenbelastung"].each do |target_field|
+      ["Anzahl WC's", "Max Gewicht Warenlift", "Max Bodenbelastung"].each do |target_field|
 
         it "fails to create because of invalid '#{target_field}' entered" do
           fill_in target_field, :with => -9

@@ -18,7 +18,7 @@ de:
         has_swimming_pool: Swimmingpool
         is_minergie_style: Minergie Bauweise
         is_minergie_certified: Minergie zertifiziert
-        maximal_floor_loading: Maximale Bodenbelastung
+        maximal_floor_loading: Max Bodenbelastung
         freight_elevator: Warenlift
         freight_elevator_carrying_capacity: Max Gewicht Warenlift
         has_ramp: Anfahrrampe

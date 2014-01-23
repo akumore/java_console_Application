@@ -7,25 +7,21 @@
 - else
   - unless @real_estate.parking?
     %legend= t "mongoid.attributes.information.building_information"
-    %dl.dl-horizontal
-      %dt= t "mongoid.attributes.information.built_on"
-      %dd
-        = @information.built_on
-        &nbsp;
-
-      %dt= t "mongoid.attributes.information.renovated_on"
-      %dd
-        = @information.renovated_on
-        &nbsp;
-
-      %dt= t "mongoid.attributes.information.floors"
-      %dd
-        = @information.floors
-        &nbsp;
-
     .row
       .span12
         .floated-controls-box
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.information.built_on"
+            %dd= @information.built_on
+
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.information.renovated_on"
+            %dd= @information.renovated_on
+
+          %dl.dl-horizontal
+            %dt= t "mongoid.attributes.information.floors"
+            %dd= @information.floors
+
           - if @real_estate.living?
             %dl.dl-horizontal
               %dt= t "mongoid.attributes.information.has_swimming_pool"
@@ -124,9 +120,9 @@
               %dt= t "mongoid.attributes.information.number_of_restrooms"
               %dd= @information.number_of_restrooms
 
-        %dl.dl-horizontal
-          %dt= t "mongoid.attributes.information.ceiling_height"
-          %dd= @information.ceiling_height
+            %dl.dl-horizontal
+              %dt= t "mongoid.attributes.information.ceiling_height"
+              %dd= @information.ceiling_height
 
         - if @information.additional_information.present?
           %dl.dl-horizontal
