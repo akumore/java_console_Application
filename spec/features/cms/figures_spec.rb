@@ -48,9 +48,6 @@ describe "Cms::Figures" do
             fill_in 'figure_living_surface_estimate', :with => '124.6 - 130.4m2'
             fill_in 'figure_property_surface', :with => '400.5'
             fill_in 'figure_property_surface_estimate', :with => '124.5 - 123m2'
-            fill_in 'figure_floors', :with => 3
-            fill_in 'figure_renovated_on', :with => 1997
-            fill_in 'figure_built_on', :with => 1956
           end
         end
 
@@ -76,9 +73,6 @@ describe "Cms::Figures" do
             @figure.living_surface_estimate.should == '124.6 - 130.4m2'
             @figure.property_surface.should == '400.5'
             @figure.property_surface_estimate.should == '124.5 - 123m2'
-            @figure.floors.should == 3
-            @figure.renovated_on.should == 1997
-            @figure.built_on.should == 1956
           end
         end
       end
@@ -128,9 +122,6 @@ describe "Cms::Figures" do
             fill_in 'figure_usable_surface_estimate', :with => '200.6 - 200.7 m2'
             fill_in 'figure_storage_surface', :with => '150'
             fill_in 'figure_ceiling_height', :with => '2.6'
-            fill_in 'figure_floors', :with => 3
-            fill_in 'figure_renovated_on', :with => 1997
-            fill_in 'figure_built_on', :with => 1956
           end
         end
 
@@ -156,9 +147,6 @@ describe "Cms::Figures" do
             @figure.usable_surface_estimate.should == '200.6 - 200.7 m2'
             @figure.storage_surface.should == '150'
             @figure.ceiling_height.should == '2.6'
-            @figure.floors.should == 3
-            @figure.renovated_on.should == 1997
-            @figure.built_on.should == 1956
           end
         end
       end
