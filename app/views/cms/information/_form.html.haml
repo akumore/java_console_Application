@@ -6,14 +6,19 @@
   = render 'cms/shared/errors', :model => @information
 
   %fieldset
-    %legend= t ".location"
-    = f.fields_for :points_of_interest do |poi_f|
-      .control-group
-        = poi_f.label :distance, t(".points_of_interest.types.#{poi_f.object.name}")
+    %legend
+      = t ".location"
+      %span.description= t ".location_desc"
+    .row
+      .span12
+        .floated-controls-box
+          = f.fields_for :points_of_interest do |poi_f|
+            .control-group
+              = poi_f.label :distance, t(".points_of_interest.types.#{poi_f.object.name}")
 
-        .controls
-          = poi_f.text_field :distance
-          = poi_f.hidden_field :name
+              .controls
+                = poi_f.text_field :distance, class: 'span1' 
+                = poi_f.hidden_field :name
 
 
   - unless @real_estate.parking?
@@ -163,7 +168,10 @@
 
 
     %fieldset.push-checkboxes-down
-      %legend= t ".relevant_for_external_portals"
+      %legend
+        = t ".relevant_for_external_portals"
+        %span.description= t ".relevant_for_external_portals_desc"
+
       .row
         .span12
           .floated-controls-box
