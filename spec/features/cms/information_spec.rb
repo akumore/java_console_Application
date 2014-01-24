@@ -120,7 +120,7 @@ describe "Cms Information" do
         information.additional_information.should == updated_additional_infos.join("\r\n")
 
         within('.alert') do
-          page.should have_content('Ergänzende Informationen wurde automatisch ergänzt. Bitte überprüfen Sie den Inhalt')
+          page.should have_content('Ergänzende Informationen wurden automatisch ergänzt. Bitte überprüfen Sie den Inhalt')
         end
 
         find_field('Ergänzende Informationen').value.should eq updated_additional_infos.join("\n")
@@ -352,7 +352,7 @@ describe "Cms Information" do
       click_on 'Immobilieninfos speichern'
 
       within('.alert') do
-        page.should have_content('Ergänzende Informationen wurde automatisch ergänzt. Bitte überprüfen Sie den Inhalt')
+        page.should have_content('Ergänzende Informationen wurden automatisch ergänzt. Bitte überprüfen Sie den Inhalt')
       end
 
       click_on 'Immobilieninfos speichern'
