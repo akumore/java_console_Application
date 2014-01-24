@@ -19,7 +19,8 @@ describe "RealEstates" do
               :pricing => Fabricate.build(:pricing),
               :infrastructure => Fabricate.build(:infrastructure),
               :additional_description => Fabricate.build(:additional_description),
-              :contact => Fabricate(:employee)
+              :contact => Fabricate(:employee),
+              :link_url => 'http://www.alfred-mueller.ch'
   end
 
   let :unpublished_real_estate do
@@ -364,11 +365,7 @@ describe "RealEstates" do
                           :living_surface_estimate => '',
                           :specification_living_surface => 'Test one two three',
                           :property_surface => 100,
-                          :storage_surface => 10,
-                          :floors => 20,
-                          :renovated_on => '1991',
-                          :built_on => '2008',
-                          :ceiling_height => 5
+                          :storage_surface => 10
                          )
         end
 
@@ -396,7 +393,11 @@ describe "RealEstates" do
                           :has_railway_terminal => true,
                           :has_water_supply => true,
                           :has_sewage_supply => true,
-                          :number_of_restrooms => 3
+                          :number_of_restrooms => 3,
+                          :floors => 20,
+                          :renovated_on => '1991',
+                          :built_on => '2008',
+                          :ceiling_height => 5
                          )
         end
 
@@ -605,7 +606,7 @@ describe "RealEstates" do
     describe 'sidebar' do
       it 'shows the project website link' do
         page.within('.sidebar') do
-          page.should have_link 'Zur Projektwebseite', :href => real_estate.address.link_url
+          page.should have_link 'Zur Projektwebseite', :href => real_estate.link_url
         end
       end
 

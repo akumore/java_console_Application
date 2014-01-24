@@ -16,7 +16,7 @@ module Search
       {
         'rooms' => 'figure.rooms',
         'price' => 'pricing.for_rent_netto',
-        'available_from' => 'information.available_from',
+        'available_from' => 'pricing.available_from',
         'category' => 'category_label',
         'usable_surface' => 'figure.usable_surface',
         'floor' => 'figure.floor'

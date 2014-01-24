@@ -1,4 +1,8 @@
 fr:
+  pricing:
+    available_from: 'Disponible'
+    available_from_compact: 'dès %{date}'
+    available_immediately: 'de suite'
   pricings:
     decorator:
       price_units:

@@ -11,9 +11,12 @@ class Cms::InformationController < Cms::SecuredController
 
   def new
     @information = Information.new
+    @information.build_points_of_interest(@real_estate)
+    respond_with @information
   end
 
   def edit
+    @information.build_points_of_interest(@real_estate)
   end
 
   def create

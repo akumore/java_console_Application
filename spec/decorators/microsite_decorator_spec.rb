@@ -57,12 +57,8 @@ describe MicrositeDecorator do
       )
     end
 
-    let :address do
-      Fabricate.build(:address, :microsite_reference => microsite_reference)
-    end
-
     let :real_estate do
-      Fabricate(:residential_building, :address => address)
+      Fabricate(:residential_building, :microsite_reference => microsite_reference)
     end
 
     it 'returns the corresponding property_key' do
@@ -320,58 +316,46 @@ describe MicrositeDecorator do
 
       let :house_L do
         Fabricate.build(
-          :address,
-          :microsite_reference => Fabricate.build(
-            :microsite_reference, :building_key => 'L'
-          )
+          :microsite_reference, :building_key => 'L'
         )
       end
 
       let :house_H do
         Fabricate.build(
-          :address,
-          :microsite_reference => Fabricate.build(
-            :microsite_reference, :building_key => 'H'
-          )
+          :microsite_reference, :building_key => 'H'
         )
       end
 
       let :house_3_5_7 do
         Fabricate.build(
-          :address,
-          :microsite_reference => Fabricate.build(
-            :microsite_reference, :building_key => '3/5/7'
-          )
+          :microsite_reference, :building_key => '3/5/7'
         )
       end
 
       let :house_21 do
         Fabricate.build(
-          :address,
-          :microsite_reference => Fabricate.build(
-            :microsite_reference, :building_key => '21'
-          )
+          :microsite_reference, :building_key => '21'
         )
       end
 
       it "orders by house index alphabetically asc" do
-        real_estate_a.to_model.address = house_L
-        real_estate_b.to_model.address = house_H
+        real_estate_a.to_model.microsite_reference = house_L
+        real_estate_b.to_model.microsite_reference = house_H
 
         [real_estate_a, real_estate_b].sort.should == [real_estate_b, real_estate_a]
       end
 
       it 'orders by house numbers numerically asc' do
-        real_estate_a.to_model.address = house_21
-        real_estate_b.to_model.address = house_3_5_7
+        real_estate_a.to_model.microsite_reference = house_21
+        real_estate_b.to_model.microsite_reference = house_3_5_7
 
         [real_estate_a, real_estate_b].sort.should == [real_estate_b, real_estate_a]
       end
 
       describe "Inner order of real estates within the same house" do
         before do
-          real_estate_a.to_model.address = house_L
-          real_estate_b.to_model.address = house_L
+          real_estate_a.to_model.microsite_reference = house_L
+          real_estate_b.to_model.microsite_reference = house_L
         end
 
         it "orders by floor asc" do

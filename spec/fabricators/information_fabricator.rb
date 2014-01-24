@@ -1,5 +1,8 @@
 # encoding: utf-8
 Fabricator(:information) do
-  available_from { Date.parse('2012-01-01') }
   additional_information 'Ergänzende Informationen zum Ausbau'
+  floors 10
+  renovated_on 1997
+  built_on 1899
+  ceiling_height '2.6'
 end

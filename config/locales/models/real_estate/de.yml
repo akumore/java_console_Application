@@ -10,6 +10,7 @@ de:
         reference: 'Referenz'
         contact: 'Kontaktperson'
         contact_id: 'Kontaktperson'
+        link_url: 'Projektwebseiten-Link'
         utilization: 'Gebäudenutzung'
         offer: 'Angebotstyp'
         channels: 'Ausgabekanäle'
@@ -35,4 +36,6 @@ de:
           archive_it: 'Archivieren'
           reactivate_it: 'Reaktivieren'
         microsite_building_project: 'MicroSite'
+        any_reference_key: 'Referenznummer'
+        reference_key_combination: 'Kombination der Referenznummern'
 

@@ -315,17 +315,17 @@ module Export::Idx301
 
     def ref_property
       #  str(80) at least one of the refs must be non blank (the word null as a value in ref_object cannot be used)
-      model.try(:address).try(:reference).try(:property_key).presence
+      model.try(:reference).try(:property_key).presence
     end
 
     def ref_house
       # str(80) the word null as a value in ref_house cannot be used
-      model.try(:address).try(:reference).try(:building_key).presence
+      model.try(:reference).try(:building_key).presence
     end
 
     def ref_object
       #  str(80) the word null as a value in ref_object cannot be used
-      model.try(:address).try(:reference).try(:unit_key).presence
+      model.try(:reference).try(:unit_key).presence
     end
 
     def object_street
@@ -364,8 +364,8 @@ module Export::Idx301
 
     def available_from
       #  date  if empty="on request" / Date (DD.MM.YYYY)=Date / Date in past or current date=immediately
-      if model.try(:information).try(:available_from).present?
-        model.information.available_from.strftime("%d.%m.%Y")
+      if model.try(:pricing).try(:available_from).present?
+        model.pricing.available_from.strftime("%d.%m.%Y")
       end
     end
 
@@ -546,36 +546,36 @@ module Export::Idx301
 
     def distance_public_transport
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
-      if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'public_transport').try(:first).try(:distance).to_i
+      if model.information.present?
+        model.information.points_of_interest.where(:name => 'public_transport').try(:first).try(:distance).to_i
       end
     end
 
     def distance_shop
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
-      if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'shopping').try(:first).try(:distance).to_i
+      if model.information.present?
+        model.information.points_of_interest.where(:name => 'shopping').try(:first).try(:distance).to_i
       end
     end
 
     def distance_kindergarten
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
-      if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'kindergarden').try(:first).try(:distance).to_i
+      if model.information.present?
+        model.information.points_of_interest.where(:name => 'kindergarden').try(:first).try(:distance).to_i
       end
     end
 
     def distance_school1
       #  int(5)  in meter - remove any non digits (1min. walk = 50m)
-      if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'elementary_school').try(:first).try(:distance).to_i
+      if model.information.present?
+        model.information.points_of_interest.where(:name => 'elementary_school').try(:first).try(:distance).to_i
       end
     end
 
     def distance_school2
       #  int(5)  in meter - remove any non digits (1min. walk = 50m)
-      if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'high_school').try(:first).try(:distance).to_i
+      if model.information.present?
+        model.information.points_of_interest.where(:name => 'high_school').try(:first).try(:distance).to_i
       end
     end
 
@@ -609,7 +609,7 @@ module Export::Idx301
 
     def url
       # str(200)  only displayed if different to agency URL and if object contains more than 4 pictures - Product ImmoViewer = URL must start with "http://www.immoviewer.ch/"
-      model.try(:address).try(:link_url).presence
+      model.try(:link_url).presence
     end
 
     def agency_id
@@ -939,19 +939,19 @@ module Export::Idx301
 
     def distance_motorway
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
-      if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'highway_access').try(:first).try(:distance).to_i
+      if model.information.present?
+        model.information.points_of_interest.where(:name => 'highway_access').try(:first).try(:distance).to_i
       end
     end
 
     def ceiling_height
       #  int(10,2) height of room in meters
-      model.try(:figure).try(:ceiling_height).presence if model.private_utilization?
+      model.try(:information).try(:ceiling_height).presence if model.private_utilization?
     end
 
     def hall_height
       # int(10,2) height of hall in meters
-      model.try(:figure).try(:ceiling_height).presence if model.commercial_utilization?
+      model.try(:information).try(:ceiling_height).presence if model.commercial_utilization?
     end
 
     def maximal_floor_loading

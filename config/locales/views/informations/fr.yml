@@ -1,14 +1,7 @@
 fr:
-  cms:
-    information:
-      form:
-        for_rent: 'Mietinformationen'
   information:
     title: 'Informations immobilières'
     characteristics: 'Caractéristiques'
-    available_from: 'Disponible'
-    available_from_compact: 'dès %{date}'
-    available_immediately: 'de suite'
     maximal_floor_loading: 'Charge utile maximale'
     maximal_floor_loading_value: '%{count} kg/m²'
     freight_elevator: 'Monte-charge'
@@ -25,6 +18,7 @@ fr:
     wheelchair_accessible: 'Accessible aux handicapés'
     child_friendly: 'Adapté au enfants'
     balcony: 'Balcon'
+    garden_seating: 'Salon de jardin'
     raised_ground_floor: 'Rez-de-chaussée supérieur'
     swimmingpool: 'Piscine'
     number_of_restrooms: '%{count} WC'
@@ -35,3 +29,19 @@ fr:
     sewage_supply: 'Raccordement eaux usées'
     cable_tv: 'Télévision par câble'
     additional_information: 'Informations complémentaires'
+    renovated_on: 'Date rénovation'
+    built_on: 'Année construction'
+    floors: 'Etages'
+    floors_value:
+      one: '%{count} étage'
+      other: '%{count} étages'
+    ceiling_height: 'Hauteur des locaux'
+    ceiling_height_value: '%{size} m'
+    distances: 'À proximité'
+    points_of_interest:
+      public_transport: 'Transports en commun %{distance} m'
+      shopping: 'Magasins %{distance} m'
+      kindergarden: 'Jardin d‘enfants %{distance} m'
+      elementary_school: 'Ecole primaire %{distance} m'
+      high_school: 'Cycle secondaire %{distance} m'
+      highway_access: 'Accès autoroutier %{distance} m'

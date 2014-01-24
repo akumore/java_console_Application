@@ -1,0 +1,80 @@
+= form.hidden_field :channels_defined, value: true
+= form.label :channels
+- RealEstate::CHANNELS.each do |channel|
+  .controls.push-inline-labels-down
+    %label.inline.checkbox
+      = check_box_tag "real_estate[channels][]", channel, @real_estate.channels.include?(channel), :class => channel
+      %span= t(".channels.#{channel}")
+
+  - if RealEstate::MICROSITE_CHANNEL == channel
+    .microsite-options-container.hidden{ 'data-dependent_on' => '.microsite', 'data-dependent_on_value' => 'true' }
+      %fieldset.microsite_reference
+        .control-group
+          .controls
+            = form.select :microsite_building_project, microsite_select_options, :prompt => 'Microsite auswählen', :class => 'span8'
+        .row.inline-form
+          .span10.offset2
+            .row
+              .span8
+                %legend= MicrositeReference.model_name.human
+            .row
+              .span6.offset2
+                %p.bold-black= t('.help_microsite_reference_numbers')
+            .row
+              .span12
+                = form.fields_for @real_estate.microsite_reference do |rf|
+                  .control-group
+                    = rf.label :property_key
+                    .controls
+                      = rf.text_field :property_key, :class => 'span6'
+                      %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => MicrositeReference.human_attribute_name(:property_key), 'data-content' => t('.help_popover.microsite_property_key') }
+                  .control-group
+                    = rf.label :building_key
+                    .controls
+                      = rf.text_field :building_key, :class => 'span6'
+                      %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => MicrositeReference.human_attribute_name(:building_key), 'data-content' => t('.help_popover.microsite_building_key') }
+
+  - if RealEstate::PRINT_CHANNEL == channel
+    .print-channel-methods-container.hidden{ 'data-dependent_on' => '.print', 'data-dependent_on_value' => 'true' }
+      .print-channel-method-container.hidden{ 'data-dependent_on' => '#real_estate_utilization', 'data-dependent_on_value' => [Utilization::LIVING, Utilization::WORKING] }
+        .control-group
+          .controls.push-inline-labels-down
+            %label.inline.radio
+              = form.radio_button :print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_PDF_DOWNLOAD
+              %span= t(".#{RealEstate::PRINT_CHANNEL_METHOD_PDF_DOWNLOAD}")
+
+          .controls.push-inline-labels-down
+            %label.inline.radio
+              = form.radio_button :print_channel_method, RealEstate::PRINT_CHANNEL_METHOD_ORDER
+              %span= t(".#{RealEstate::PRINT_CHANNEL_METHOD_ORDER}")
+
+  - if RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL == channel
+    .reference-fields-container.hidden{ 'data-dependent_on' => '.external_real_estate_portal', 'data-dependent_on_value' => 'true' }
+      .row.inline-form
+        .span10.offset2
+          .row
+            .span8
+              %legend= Reference.model_name.human
+          .row
+            .span6.offset2
+              %p.bold-black= t('.help_reference_numbers')
+          .row
+            .span12
+              - @real_estate.reference ||= Reference.new
+              = form.fields_for @real_estate.reference do |rf|
+                %fieldset
+                  .control-group
+                    = rf.label :property_key
+                    .controls
+                      = rf.text_field :property_key, :class => 'span6'
+                      %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Reference.human_attribute_name(:property_key), 'data-content' => t('.help_popover.property_key') }
+                  .control-group
+                    = rf.label :building_key
+                    .controls
+                      = rf.text_field :building_key, :class => 'span6'
+                      %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Reference.human_attribute_name(:building_key), 'data-content' => t('.help_popover.building_key') }
+                  .control-group
+                    = rf.label :unit_key
+                    .controls
+                      = rf.text_field :unit_key, :class => 'span6'
+                      %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Reference.human_attribute_name(:unit_key), 'data-content' => t('.help_popover.unit_key') }  

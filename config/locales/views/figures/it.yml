@@ -1,22 +1,14 @@
 it:
   figures:
     floor: 'Piano'
-    floors: 'Piani'
     rooms: 'No. locali'
     surface:
       commercial: 'Superficie utile'
       private: 'Superficie abitabile'
     property_surface: 'Superficie terreno'
     storage_surface: 'Superficie magazzino'
-    ceiling_height: 'Altezza locali'
-    renovated_on: 'Anno di risanamento'
-    built_on: 'Anno di costruzione'
     lower_floor: '%{floor}. Piano interrato'
     ground_floor: 'Piano terreno'
     upper_floor: '%{floor}. Piano superiore'
     rooms_value: '%{count} locali'
     surface_value: '%{size} m²'
-    ceiling_height_value: '%{size} m'
-    floors_value:
-      one: '%{count} Piano'
-      other: '%{count} Piani'

@@ -1,15 +1,7 @@
 de:
-  cms:
-    information:
-      form:
-        for_rent: 'Mietinformationen'
-        check_new_entries: 'Ergänzende Informationen wurden automatisch ergänzt. Bitte überprüfen Sie den Inhalt. Der ursprüngliche Inhalt war:'
   information:
     title: 'Immobilieninfos'
     characteristics: 'Merkmale'
-    available_from: 'Bezug'
-    available_from_compact: 'ab %{date}'
-    available_immediately: 'sofort'
     maximal_floor_loading: 'Maximale Bodenbelastung'
     maximal_floor_loading_value: '%{count} kg/m²'
     freight_elevator: 'Warenlift'
@@ -37,3 +29,19 @@ de:
     sewage_supply: 'Abwasseranschluss'
     cable_tv: 'Kabelfernsehen'
     additional_information: 'Ergänzende Informationen'
+    renovated_on: 'Letze Renovierung'
+    built_on: 'Baujahr'
+    floors: 'Geschosse'
+    floors_value:
+      one: '%{count} Geschoss'
+      other: '%{count} Geschosse'
+    ceiling_height: 'Raumhöhe'
+    ceiling_height_value: '%{size} m'
+    distances: 'In der Nähe'
+    points_of_interest:
+      public_transport: 'Öffentlicher Verkehr %{distance} m'
+      shopping: 'Einkaufen %{distance} m'
+      kindergarden: 'Kindergarten %{distance} m'
+      elementary_school: 'Primarschule %{distance} m'
+      high_school: 'Oberstufe %{distance} m'
+      highway_access: 'Autobahnanschluss %{distance} m'

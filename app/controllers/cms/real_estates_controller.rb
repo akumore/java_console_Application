@@ -42,6 +42,7 @@ class Cms::RealEstatesController < Cms::SecuredController
 
   def create
     real_estate_params = params[:real_estate]
+    real_estate_params.delete(:channels_defined)
     real_estate_params.merge!(:creator => current_user)
 
     @real_estate = RealEstate.new(params[:real_estate])
@@ -56,6 +57,10 @@ class Cms::RealEstatesController < Cms::SecuredController
   def update
     real_estate_params = params.fetch(:real_estate, {})
     real_estate_params.merge!(:editor => current_user) if save_last_editor?(real_estate_params[:state_event])
+
+    if real_estate_params.delete(:channels_defined) && real_estate_params[:channels].nil?
+      real_estate_params[:channels] = []
+    end
 
     if @real_estate.update_attributes(real_estate_params)
       notify_users(real_estate_params[:state_event], @real_estate)

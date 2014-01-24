@@ -34,72 +34,6 @@ describe Address do
       @address.valid?
       @address.errors.should have(5).items
     end
-
-    it 'initialized the microsite reference object' do
-      @address.microsite_reference.should be_a(MicrositeReference)
-    end
-  end
-
-  describe 'Reference keys' do
-    it 'is invalid if children are not valid'
-  end
-
-  describe Reference do
-    let(:reference_attributes) { Fabricate.attributes_for(:reference) }
-    let(:real_estate) { Fabricate.build(:real_estate, :channels => [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL], :address => Fabricate.build(:address, :reference => Fabricate.build(:reference, reference_attributes)), :category => Fabricate(:category)) }
-    let(:published_real_estate) { Fabricate.build(:published_real_estate, :channels => [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL], :address => Fabricate.build(:address, :reference => Fabricate.build(:reference, reference_attributes)), :category => Fabricate(:category)) }
-
-    context 'with channel external realestate portal set' do
-      context 'with published real estate and saved reference in database' do
-        before do
-          expect(published_real_estate.save).to be_true
-        end
-
-        it "shouldn't be possible to save the reference with the same keys" do
-          expect(Address.matching_real_estates(reference_attributes)).to be_true
-          real_estate_from_santa_claus = Fabricate.build(:published_real_estate, :channels => [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL], :category => Fabricate(:category))
-          real_estate_from_santa_claus.address = Fabricate.build(:address, :city => 'Steinhausen', :reference => Fabricate.build(:reference, reference_attributes))
-          expect(real_estate_from_santa_claus.address).not_to be_valid
-          expect(real_estate_from_santa_claus).not_to be_valid
-          expect(real_estate_from_santa_claus.save).to be_false
-        end
-      end
-
-      context 'with unpublished real estate and reference in database' do
-        before :each do
-          expect(real_estate.save).to be_true
-        end
-
-        it "shouldn't be possible to save the reference with the same keys" do
-          expect(Address.matching_real_estates(reference_attributes)).to be_true
-          real_estate_from_santa_claus = Fabricate.build(:real_estate, :channels => [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL], :category => Fabricate(:category))
-          real_estate_from_santa_claus.address = Fabricate.build(:address, :city => 'Steinhausen', :reference => Fabricate.build(:reference, reference_attributes))
-          expect(real_estate_from_santa_claus.address).not_to be_valid
-          expect(real_estate_from_santa_claus).to be_valid
-          expect(real_estate_from_santa_claus.save).to be_true
-        end
-
-        context "should be possible to save the reference with different keys" do
-          let(:schmutzli_reference_attributes) { Fabricate.attributes_for(:reference, :property_key => 'HUHU') }
-          let(:real_estate_from_schmutzli) { Fabricate.build(:real_estate, :channels => [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL], :address => Fabricate.build(:address, :reference => Fabricate.build(:reference, schmutzli_reference_attributes)), :category => Fabricate(:category)) }
-
-          it "should be possible to save the reference" do
-            expect(real_estate_from_schmutzli.address).to be_valid
-            expect(real_estate_from_schmutzli).to be_valid
-            expect(real_estate_from_schmutzli.save).to be_true
-          end
-        end
-      end
-
-      context 'without channel external realestate portal set' do
-        it "should be possible to save the reference" do
-          real_estate_from_schmutzli = Fabricate.build(:real_estate, :address => Fabricate.build(:address, :reference => Fabricate.build(:reference, reference_attributes)), :category => Fabricate(:category))
-          expect(real_estate_from_schmutzli.address).to be_valid
-          expect(real_estate_from_schmutzli).to be_valid
-          expect(real_estate_from_schmutzli.save).to be_true
-        end
-      end
-    end
   end
 
   describe 'geocoding' do
@@ -131,13 +65,7 @@ describe Address do
           @address.address_changed?.should be_true
         end
       end
-
-      it "doesn't detect changes in other fields" do
-        @address.link_url = "test link"
-        @address.address_changed?.should be_false
-      end
     end
-
 
     it 'geocodes itself on create' do
       mock_geocoding!(:coordinates => [8, 15])
@@ -151,14 +79,6 @@ describe Address do
       @address.update_attributes :street => 'A new street'
 
       @address.to_coordinates.should == [5, 6]
-    end
-
-    it "doesn't geocode on update without address changing" do
-      Fabricate :real_estate, :address => @address, :category => Fabricate(:category)
-      mock_geocoding!(:coordinates => [5, 6])
-      @address.update_attributes :link_url => "www.heise.de"
-
-      @address.to_coordinates.should_not == [5, 6]
     end
   end
 end

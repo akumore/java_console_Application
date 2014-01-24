@@ -437,34 +437,4 @@ describe Infrastructure do
       end
     end
   end
-
-  describe '#build_points_of_interest' do
-    before do
-      @real_estate = Fabricate.build(:real_estate, :utilization => Utilization::PARKING, :infrastructure => Infrastructure.new(
-          :inside_parking_spots => 'eins',
-          :outside_parking_spots => 'zwei'
-        ), :category => Fabricate(:category))
-      @infrastructure = @real_estate.infrastructure
-    end
-
-    context 'with parking utilization' do
-      it "returns #{PointOfInterest::PARKING_STORING_TYPES}" do
-        @infrastructure.build_points_of_interest(@real_estate).should == PointOfInterest::PARKING_STORING_TYPES
-      end
-    end
-
-    context "with storing utilization" do
-      it "returns #{PointOfInterest::PARKING_STORING_TYPES}" do
-        @real_estate.update_attributes(:utilization => Utilization::STORING)
-        @infrastructure.build_points_of_interest(@real_estate).should == PointOfInterest::PARKING_STORING_TYPES
-      end
-    end
-
-    context 'with every ohter utilization' do
-      it "returns #{PointOfInterest::TYPES}" do
-        @real_estate.update_attributes(:utilization => Utilization::LIVING)
-        @infrastructure.build_points_of_interest(@real_estate).should == PointOfInterest::TYPES
-      end
-    end
-  end
 end

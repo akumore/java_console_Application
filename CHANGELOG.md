@@ -7,6 +7,8 @@ New implemented User Stories:
   * #2709 - Als Editor möchte ich Immobilien archivieren können
   * #2710 - Als Editor möchte ich archivierte Immobilien wieder editieren können
   * #2711 - Als Editor möchte ich eine bessere Performance in der Immobilienübericht haben
+* Feature 24
+  * #2595 - Als Editor möchte ich das Bezugsdatum im Tab "Preise/Bezug" eingeben können
 
 ### v2.8.4 on 2014-01-15
 * New implemented User Stories:

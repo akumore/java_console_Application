@@ -1,22 +1,14 @@
 de:
   figures:
     floor: 'Geschoss'
-    floors: 'Geschosse'
     rooms: 'Zimmeranzahl'
     surface:
       commercial: 'Nutzfläche'
       private:  'Wohnfläche'
     property_surface: 'Grundstückfläche'
     storage_surface: 'Lagerfläche'
-    ceiling_height: 'Raumhöhe'
-    renovated_on: 'Letze Renovierung'
-    built_on: 'Baujahr'
     lower_floor: '%{floor}. Untergeschoss'
     ground_floor: 'Erdgeschoss'
     upper_floor: '%{floor}. Obergeschoss'
     rooms_value: '%{count} Zimmer'
     surface_value: '%{size} m²'
-    ceiling_height_value: '%{size} m'
-    floors_value:
-      one: '%{count} Geschoss'
-      other: '%{count} Geschosse'

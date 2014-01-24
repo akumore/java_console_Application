@@ -20,17 +20,6 @@ describe "Cms::Addresses" do
       current_path.should == new_cms_real_estate_address_path(@real_estate)
     end
 
-    it 'doesnt render the reference number fields' do
-      page.should_not have_css('#address_reference_property_key')
-      page.should_not have_css('#address_reference_building_key')
-      page.should_not have_css('#address_reference_unit_key')
-    end
-
-    it 'doesnt render the microsite reference fields' do
-      page.should_not have_css('#address_microsite_reference_property_key')
-      page.should_not have_css('#address_microsite_reference_building_key')
-    end
-
     context 'a valid Address' do
       before :each do
         within(".new_address") do
@@ -39,7 +28,6 @@ describe "Cms::Addresses" do
           fill_in 'Postleitzahl', :with => '8123'
           fill_in 'Ort', :with => 'Adliswil'
           select 'Zürich', :from => 'Kanton'
-          fill_in 'Link', :with => 'http://www.google.ch'
           uncheck 'Geokoordinaten manuell eintragen'
         end
       end
@@ -63,7 +51,6 @@ describe "Cms::Addresses" do
           @address.city.should == 'Adliswil'
           @address.zip.should == '8123'
           @address.canton.should == 'zh'
-          @address.link_url.should == 'http://www.google.ch'
           @address.manual_geocoding.should be_false
         end
       end
@@ -94,7 +81,6 @@ describe "Cms::Addresses" do
           fill_in 'Ort', :with => 'Adliswil'
           fill_in 'Postleitzahl', :with => '8135'
           select 'Schaffhausen', :from => 'Kanton'
-          fill_in 'Link', :with => 'http://www.google.com'
           check 'Geokoordinaten manuell eintragen'
         end
 
@@ -109,84 +95,8 @@ describe "Cms::Addresses" do
         @address.city.should == 'Adliswil'
         @address.zip.should == '8135'
         @address.canton.should == 'sh'
-        @address.link_url.should == 'http://www.google.com'
         @address.manual_geocoding.should be_true
       end
     end
   end
-
-  context 'when the real estate is to be published to homegate' do
-    before do
-      @real_estate = Fabricate(:real_estate,
-        :category => Fabricate(:category),
-        :address => Fabricate.build(:address,
-          :reference => Fabricate.build(:reference)
-        ),
-        :reference => Fabricate.build(:reference),
-        :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL]
-      )
-      visit edit_cms_real_estate_path(@real_estate)
-      click_on 'Adresse'
-    end
-
-    it 'shows the reference fields' do
-      page.should have_css('#address_reference_property_key', :count => 1)
-      page.should have_css('#address_reference_building_key', :count => 1)
-      page.should have_css('#address_reference_unit_key', :count => 1)
-    end
-
-    describe '#update with invalid reference numbers' do
-      before :each do
-        fill_in 'Liegenschaftsreferenz', :with => ''
-        fill_in 'Gebäudereferenz', :with => ''
-        fill_in 'Objektreferenz', :with => ''
-        click_on 'Adresse speichern'
-      end
-
-      it 'requires at least one reference number' do
-        page.should have_content 'Referenznummer muss ausgefüllt werden'
-      end
-    end
-  end
-
-  context 'when the real estate is to be on a microsite' do
-    let :real_estate do
-      Fabricate(:real_estate,
-        :category => Fabricate(:category),
-        :address => Fabricate.build(:address),
-        :channels => [RealEstate::MICROSITE_CHANNEL],
-        :microsite_building_project => MicrositeBuildingProject::GARTENSTADT
-      )
-    end
-
-    before do
-      visit edit_cms_real_estate_path(real_estate)
-      click_on 'Adresse'
-    end
-
-    it 'shows the microsite reference fields' do
-      page.should have_css('#address_microsite_reference_property_key', :count => 1)
-      page.should have_css('#address_microsite_reference_building_key', :count => 1)
-    end
-
-    describe '#update with valid microsite reference numbers' do
-      before :each do
-        within(".microsite_reference") do
-          fill_in 'Hausnummer', :with => 'H'
-          fill_in 'Immobiliennummer', :with => '22.34'
-        end
-        click_on 'Adresse speichern'
-        real_estate.reload
-      end
-
-      it 'stores the property_key' do
-        real_estate.address.microsite_reference.property_key.should == '22.34'
-      end
-
-      it 'stores the building_key' do
-        real_estate.address.microsite_reference.building_key.should == 'H'
-      end
-    end
-  end
-
 end

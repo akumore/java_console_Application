@@ -29,9 +29,6 @@ describe "Cms::Infrastructures" do
           fill_in 'Anzahl Motorrad-Parkplätze im Freien überdacht', :with => '5'
           fill_in 'Anzahl Einzelgaragen', :with => '6'
           fill_in 'Anzahl Doppelgaragen', :with => '7'
-
-          fill_in 'Öffentlicher Verkehr', :with => '200'
-          fill_in 'Einkaufen', :with => '100'
         end
       end
 
@@ -59,10 +56,6 @@ describe "Cms::Infrastructures" do
           @infrastructure.outdoor_bike.should == 5
           @infrastructure.single_garage.should == 6
           @infrastructure.double_garage.should == 7
-        end
-
-        it 'has added all points of interest' do
-          @infrastructure.points_of_interest.length.should == 6
         end
       end
     end

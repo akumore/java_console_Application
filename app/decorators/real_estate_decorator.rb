@@ -78,8 +78,8 @@ class RealEstateDecorator < ApplicationDecorator
 
     buffer << utilization_description if utilization_description.present? && working? || storing?
 
-    if information.present?
-      buffer << information.available_from_compact
+    if pricing.present?
+      buffer << pricing.available_from_compact
     end
 
     buffer.join(tag('br')).html_safe
@@ -119,8 +119,8 @@ class RealEstateDecorator < ApplicationDecorator
       buffer << pricing.list_price if pricing.list_price.present?
     end
 
-    if information.try(:available_from_compact).present?
-      buffer << information.available_from_compact
+    if pricing.try(:available_from_compact).present?
+      buffer << pricing.available_from_compact
     end
 
     buffer.join(tag('br')).html_safe
@@ -267,8 +267,14 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def project_website_link
-    if address.present? && address.link_url.present?
-      link_to t('real_estates.show.project_website_link'), address.link_url, :target => '_new', :class => 'icon-globe'
+    if link_url.present?
+      link = if link_url =~ /https?:\/\//
+               link_url
+             else
+               'http://' + link_url
+             end
+
+      link_to t('real_estates.show.project_website_link'), link, :target => '_new', :class => 'icon-globe'
     end
   end
 
@@ -317,11 +323,11 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def general_information?
-    figure.present? && (figure.floors.present? ||
-                        figure.renovated_on.present? ||
-                        figure.built_on.present?
-                       ) ||
-    information.present? && information.characteristics.any?
+    information.present? && (information.floors.present? ||
+                        information.renovated_on.present? ||
+                        information.built_on.present? || 
+                        information.characteristics.any? ||
+                        information.distances.any?)
   end
 
   def utilization_information?
@@ -333,16 +339,16 @@ class RealEstateDecorator < ApplicationDecorator
       information.present? && information.additional_information.present?
     elsif working?
       figure.present? && (figure.property_surface.present? ||
-                          figure.storage_surface.present? ||
-                          figure.ceiling_height.present?
+                          figure.storage_surface.present?
                          ) ||
       information.present? && (information.maximal_floor_loading.present? ||
                                information.freight_elevator_carrying_capacity.present? ||
-                               information.additional_information.present?
+                               information.additional_information.present? ||
+                               information.ceiling_height.present?
                               )
     elsif storing?
-      figure.present? && figure.ceiling_height.present? ||
-      information.present? && information.additional_information.present?
+      information.present? && (information.additional_information.present? ||
+                               information.ceiling_height.present?)
     elsif parking?
       false
     end
@@ -356,16 +362,15 @@ class RealEstateDecorator < ApplicationDecorator
       infrastructure.covered_bike.present? ||
       infrastructure.outdoor_bike.present? ||
       infrastructure.single_garage.present? ||
-      infrastructure.double_garage.present? ||
-      infrastructure.distances.any?
+      infrastructure.double_garage.present?
     end
   end
 
   def channels_string
     channels.map { |channel|
-      channel_str = I18n.t("cms.real_estates.form.channels.#{channel}")
+      channel_str = I18n.t("cms.real_estates.form_channels.channels.#{channel}")
       if channel == RealEstate::PRINT_CHANNEL && print_channel_method.present?
-        channel_str << " (#{I18n.t("cms.real_estates.form.#{print_channel_method}")})"
+        channel_str << " (#{I18n.t("cms.real_estates.form_channels.#{print_channel_method}")})"
       end
       channel_str
     }.join(", ")

@@ -4,8 +4,6 @@ de:
       information: Immobilieninfos
     attributes:
       information:
-        available_from: Verfügbar ab
-        display_estimated_available_from: Etwa verfügbar ab
         has_outlook:  Aussicht
         has_fireplace: Cheminée
         has_elevator: Lift
@@ -20,7 +18,7 @@ de:
         has_swimming_pool: Swimmingpool
         is_minergie_style: Minergie Bauweise
         is_minergie_certified: Minergie zertifiziert
-        maximal_floor_loading: Maximale Bodenbelastung
+        maximal_floor_loading: Max Bodenbelastung
         freight_elevator: Warenlift
         freight_elevator_carrying_capacity: Max Gewicht Warenlift
         has_ramp: Anfahrrampe
@@ -33,3 +31,7 @@ de:
         is_under_building_laws: im Baurecht
         has_cable_tv: Kabelfernsehen
         additional_information: Ergänzende Informationen
+        floors: Anzahl Geschosse
+        renovated_on: Renovationsjahr
+        built_on: Baujahr
+        ceiling_height: Raumhöhe in Meter

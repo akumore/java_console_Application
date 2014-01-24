@@ -7,8 +7,8 @@
   - if pricing.opted?
     .disclaimer= t('pricings.without_vat')
 
-  - if information && information.available_from.present?
+  - if pricing && pricing.available_from.present?
     %dl
-      %dt= t('information.available_from')
+      %dt= t('pricing.available_from')
       %dd
-        %span.col.col1= information.available_from_compact
+        %span.col.col1= pricing.available_from_compact

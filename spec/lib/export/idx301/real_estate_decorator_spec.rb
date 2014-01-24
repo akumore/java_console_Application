@@ -300,6 +300,25 @@ describe Export::Idx301::RealEstateDecorator do
     end
   end
 
+  describe '#available_from' do
+    it 'returns the reference date of the real estate' do
+      real_estate = Export::Idx301::RealEstateDecorator.new(
+        mock_model(RealEstate, 
+          pricing: mock_model(Pricing, 
+            available_from: Date.parse('2012-01-01'),
+            for_rent?: false,
+            additional_costs_is_mandatory?: false,
+            for_sale?: false
+          )
+        ),
+        account,
+        {}
+      )
+
+      expect(real_estate.available_from).to eq '01.01.2012'
+    end
+  end
+
   describe '#object_type' do
     it 'returns 5 for an underground_slot' do
       real_estate = Export::Idx301::RealEstateDecorator
@@ -348,7 +367,7 @@ describe Export::Idx301::RealEstateDecorator do
         real_estate = Export::Idx301::RealEstateDecorator.new(
           mock_model(RealEstate,  :commercial_utilization? => false,
                                   :private_utilization? => true,
-                                  :figure => mock_model(Figure, :ceiling_height => '2.50')
+                                  :information => mock_model(Information, :ceiling_height => '2.50')
                                   ),
           account,
           {}
@@ -362,7 +381,7 @@ describe Export::Idx301::RealEstateDecorator do
         real_estate = Export::Idx301::RealEstateDecorator.new(
           mock_model(RealEstate,  :commercial_utilization? => true,
                                   :private_utilization? => false,
-                                  :figure => mock_model(Figure, :ceiling_height => '2.50')
+                                  :information => mock_model(Information, :ceiling_height => '2.50')
                                   ),
           account,
           {}
@@ -378,7 +397,7 @@ describe Export::Idx301::RealEstateDecorator do
         real_estate = Export::Idx301::RealEstateDecorator.new(
           mock_model(RealEstate,  :commercial_utilization? => false,
                                   :private_utilization? => true,
-                                  :figure => mock_model(Figure, :ceiling_height => '2.50')
+                                  :information => mock_model(Information, :ceiling_height => '2.50')
                                   ),
           account,
           {}
@@ -392,7 +411,7 @@ describe Export::Idx301::RealEstateDecorator do
         real_estate = Export::Idx301::RealEstateDecorator.new(
           mock_model(RealEstate,  :commercial_utilization? => true,
                                   :private_utilization? => false,
-                                  :figure => mock_model(Figure, :ceiling_height => '2.50')
+                                  :information => mock_model(Information, :ceiling_height => '2.50')
                                   ),
           account,
           {}
@@ -488,6 +507,22 @@ describe Export::Idx301::RealEstateDecorator do
           decorated_real_etate.selling_price.should == 300
         end
       end
+    end
+  end
+
+  describe '#url' do
+    let :decorated_real_etate do
+      Export::Idx301::RealEstateDecorator.new(
+        mock_model(RealEstate,
+          link_url: 'http://www.feldpark-zug.ch'
+        ),
+        account,
+        {}
+      )
+    end
+
+    it 'returns the project website link' do
+      expect(decorated_real_etate.url).to eq 'http://www.feldpark-zug.ch'
     end
   end
 

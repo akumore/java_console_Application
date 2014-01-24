@@ -8,8 +8,6 @@ class Address
   CANTONS = %w(ag ar ai bl bs be fr ge gl gr ju lu ne nw ow sh sz so sg ti tg ur vd vs zg zh)
 
   embedded_in :real_estate
-  embeds_one :reference, :as => :referencable
-  embeds_one :microsite_reference
 
   field :city, :type => String
   field :street, :type => String
@@ -17,15 +15,12 @@ class Address
   field :zip, :type => String
   field :canton, :type => String
   field :country, :type => String, :defaults => "Schweiz"
-  field :link_url, :type => String
   field :manual_geocoding, :type => Boolean
 
   validates :city, :presence => true
   validates :street, :presence => true
   validates :zip, :presence => true
   validates :canton, :presence => true, :inclusion => CANTONS
-  validates :any_reference_key, :presence => true, :if => :export_to_real_estate_portal?
-  validate :validates_uniqueness_of_key_composition, :if => :export_to_real_estate_portal?
   validates :lat, :lng, :presence => true, :if => :manual_geocoding?
 
   field :location, :type => Array #Keep in mind coordinates are stored in long, lat order internally!! Use to_coordinates always.
@@ -35,8 +30,6 @@ class Address
 
   after_validation :geocode, :if => :should_geocode?
   before_validation :manually_geocode, :if => :manual_geocoding?
-  after_initialize :init_reference
-  after_initialize :init_microsite_reference
   attr_protected :location
 
   alias :coordinates :to_coordinates
@@ -66,38 +59,5 @@ class Address
 
   def lng
     location.first if location.present?
-  end
-
-  private
-
-  def init_reference
-    self.reference ||= Reference.new
-  end
-
-  def init_microsite_reference
-    self.microsite_reference ||= MicrositeReference.new
-  end
-
-  def any_reference_key
-    (reference.property_key.presence || reference.building_key.presence || reference.unit_key.presence) if reference.present?
-  end
-
-  def validates_uniqueness_of_key_composition
-    allowed_keys = [:property_key, :building_key, :unit_key]
-    attr_hash = {}
-    allowed_keys.each { |a| attr_hash[a] = self.reference.send(a) }
-
-    matching_real_estates = self.class.matching_real_estates(attr_hash)
-    matching_real_estates.delete(self.real_estate)
-
-    if matching_real_estates.count > 0
-      errors.add(:reference_key_combination, I18n.t('cms.addresses.form.errors.reference_key_combination.constraint'))
-    end
-  end
-
-  def self.matching_real_estates(attributes)
-    attribs = {}
-    attributes.each_pair{ |k,v| attribs["address.reference.#{k}"] = v }
-    RealEstate.where(attribs).to_a
   end
 end

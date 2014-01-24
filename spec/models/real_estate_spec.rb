@@ -38,10 +38,15 @@ describe RealEstate do
       @real_estate.should have(1).error_on(:office_id)
     end
 
+    it 'has the microsite reference object initialized' do
+      @real_estate.microsite_reference.should be_a(MicrositeReference)
+    end
+
     it 'has 7 errors' do
       @real_estate.valid?
       @real_estate.errors.should have(7).items
     end
+
 
     context 'when microsite is selected' do
       let :microsite_real_estate do
@@ -309,7 +314,10 @@ describe RealEstate do
     before do
       category = Fabricate(:category)
       @website_enabled = Fabricate :real_estate, :channels => [RealEstate::WEBSITE_CHANNEL], :category => category
-      @homegate_enabled = Fabricate :real_estate, :channels => [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL, RealEstate::WEBSITE_CHANNEL], :category => category
+      @homegate_enabled = Fabricate(:real_estate, 
+                                    :channels => [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL, RealEstate::WEBSITE_CHANNEL],
+                                    :reference => Fabricate.build(:reference),
+                                    :category => category)
       @print_enabled = Fabricate :real_estate, :channels => [RealEstate::PRINT_CHANNEL, RealEstate::WEBSITE_CHANNEL], :category => category
       @microsite_enabled = Fabricate :real_estate, :channels => [RealEstate::MICROSITE_CHANNEL], :category => category, :microsite_building_project => MicrositeBuildingProject::GARTENSTADT
     end

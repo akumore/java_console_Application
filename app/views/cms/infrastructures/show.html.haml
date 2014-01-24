@@ -51,13 +51,3 @@
     %dd
       = @infrastructure.double_garage
       &nbsp;
-
-  %br
-  %legend Distanzen
-
-  %dl.dl-horizontal.extra-wide
-    - @infrastructure.points_of_interest.each do |poi|
-      %dt= t ".points_of_interest.types.#{poi.name}"
-      %dd
-        = poi.distance
-        &nbsp;

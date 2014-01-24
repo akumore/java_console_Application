@@ -1,16 +1,8 @@
 de:
-  cms:
-    pricings:
-      form:
-        monthly: 'pro Mt.'
-        yearly: 'pro J.'
-        weekly: 'pro Wo.'
-        daily: 'pro Tag'
-        year_m2: 'pro m²/J.'
-        sell: 'Kaufpreis'
-        sell_m2: 'Kaufpreis/m²'
-        help_popover:
-            estimate: 'Freitextfeld, z.B. ab 2100.00 CHF/Mt., 150.00 – 250.00 CHF/m²/J. oder Preis auf Anfrage'
+  pricing:
+    available_from: 'Bezug'
+    available_from_compact: 'ab %{date}'
+    available_immediately: 'sofort'
   pricings:
     decorator:
       price_units:

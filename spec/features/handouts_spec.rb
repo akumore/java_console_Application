@@ -6,7 +6,6 @@ describe "Handout aka MiniDoku" do
 
   let :information do
     Fabricate.build(:information,
-                    :display_estimated_available_from => 'Mitte Mai',
                     :is_new_building => true,
                     :is_old_building => true,
                     :is_minergie_style => true,
@@ -28,7 +27,11 @@ describe "Handout aka MiniDoku" do
                     :has_railway_terminal => true,
                     :has_water_supply => true,
                     :has_sewage_supply => true,
-                    :number_of_restrooms => 3
+                    :number_of_restrooms => 3,
+                    :floors => 20,
+                    :renovated_on => '1991',
+                    :built_on => '2008',
+                    :ceiling_height => 5
                    )
   end
 
@@ -54,13 +57,13 @@ describe "Handout aka MiniDoku" do
                                    :specification_living_surface => 'Test one two three',
                                    :property_surface => 100,
                                    :storage_surface => 10,
-                                   :storage_surface_estimate => 20,
-                                   :floors => 20,
-                                   :renovated_on => '1991',
-                                   :built_on => '2008',
-                                   :ceiling_height => 5
+                                   :storage_surface_estimate => 20
                                   ),
-        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 1999, :additional_costs => 99, :price_unit => 'monthly'),
+        :pricing => Fabricate.build(:pricing_for_rent,
+                                    :display_estimated_available_from => 'Mitte Mai',
+                                    :for_rent_netto => 1999,
+                                    :additional_costs => 99,
+                                    :price_unit => 'monthly'),
         :information => information,
         :title => 'Demo Objekt',
         :description => 'Lorem Ipsum',
@@ -715,8 +718,10 @@ describe "Handout aka MiniDoku" do
 
     before do
       @contact_person = Fabricate :employee
-      @real_estate = Fabricate :residential_building, :contact => @contact_person, :pricing => Fabricate.build(:pricing_for_rent),
-                               :address => Fabricate.build(:address, :link_url => 'www.gartenstadt.ch')
+      @real_estate = Fabricate :residential_building, 
+                               :contact => @contact_person, 
+                               :pricing => Fabricate.build(:pricing_for_rent),
+                               :link_url => 'www.gartenstadt.ch'
     end
 
     it "is not available, if contact person is't assigned to real estate" do

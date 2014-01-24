@@ -11,52 +11,16 @@
     = @address.street_number
     &nbsp;
 
-  %dt= t "mongoid.attributes.address.city"
-  %dd= @address.city
-
   %dt= t "mongoid.attributes.address.zip"
   %dd= @address.zip
+
+  %dt= t "mongoid.attributes.address.city"
+  %dd= @address.city
 
   %dt= t "mongoid.attributes.address.canton"
   %dd= @address.canton.upcase
 
-  %dt= t "mongoid.attributes.address.link_url"
-  %dd
-    = @address.link_url
-    &nbsp;
-%legend= Reference.model_name.human
-
-%dl.dl-horizontal
-  %dt= t "mongoid.attributes.reference.property_key"
-  %dd
-    = @address.reference.try(:property_key)
-    &nbsp;
-
-  %dt= t "mongoid.attributes.reference.building_key"
-  %dd
-    = @address.reference.try(:building_key)
-    &nbsp;
-
-  %dt= t "mongoid.attributes.reference.unit_key"
-  %dd
-    = @address.reference.try(:unit_key)
-    &nbsp;
-
-%legend= MicrositeReference.model_name.human
-
-%dl.dl-horizontal
-  %dt= t "mongoid.attributes.microsite_reference.property_key"
-  %dd
-    = @address.microsite_reference.try(:property_key)
-    &nbsp;
-
-  %dt= t "mongoid.attributes.microsite_reference.building_key"
-  %dd
-    = @address.microsite_reference.try(:building_key)
-    &nbsp;
-
 %legend= t "mongoid.attributes.address.location"
-
 %dl.dl-horizontal
   %dt= t "mongoid.attributes.address.lat"
   %dd

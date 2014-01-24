@@ -1,4 +1,8 @@
 it:
+  pricing:
+    available_from: 'Disponibile'
+    available_from_compact: 'dal %{date}'
+    available_immediately: 'subito'
   pricings:
     decorator:
       price_units:
