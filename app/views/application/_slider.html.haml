@@ -1,6 +1,7 @@
 .flex-container
   .flexslider
     %ul.slides
+      -# projects can also be an array of gallary_photos
       - projects.each do |reference_project|
         - if reference_project.slider_image.present?
           %li

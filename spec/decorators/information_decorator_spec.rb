@@ -56,17 +56,6 @@ describe InformationDecorator do
     @information.characteristics.include?('Schwimmbecken').should be_true
   end
 
-  it 'creates lis correctly' do
-    @information.characteristics_lis.should == ["\t<li>Balkon</li>", "\t<li>Schwimmbecken</li>"]
-  end
-
-  it 'creates lis in different language' do
-    I18n.locale.should == :de
-    @information.real_estate.language = 'it'
-    @information.characteristics_lis.should == ["\t<li>Balcone</li>", "\t<li>Piscina</li>"]
-    I18n.locale.should == :de
-  end
-
   it 'formats the maximal floor loading in kg' do
     @information.maximal_floor_loading.should == '140 kg/m²'
   end
@@ -75,13 +64,13 @@ describe InformationDecorator do
     @information.has_balcony = false
     @information.has_swimming_pool = false
     @information.additional_information.should == 'Ergänzende Informationen zum Ausbau'
-    @information.update_additional_information.should be_false
+    @information.update_list_in(:characteristics, :additional_information).should be_false
     @information.additional_information.should == 'Ergänzende Informationen zum Ausbau'
   end
 
   it 'adds additional information' do
     @information.additional_information.should == 'Ergänzende Informationen zum Ausbau'
-    @information.update_additional_information.should be_true
+    @information.update_list_in(:characteristics, :additional_information).should be_true
     @information.additional_information.should == [
       '<ul>',
       "\t<li>Balkon</li>",
@@ -92,12 +81,12 @@ describe InformationDecorator do
 
   context 'updated additional information' do
     before(:each) do
-      @information.update_additional_information
+      @information.update_list_in(:characteristics, :additional_information)
     end
 
     it 'adds a new characteristic' do
       @information.has_elevator = true
-      @information.update_additional_information.should be_true
+      @information.update_list_in(:characteristics, :additional_information).should be_true
       @information.additional_information.should == [
         '<ul>',
         "\t<li>Balkon</li>",
@@ -113,7 +102,7 @@ describe InformationDecorator do
       @information.additional_information = @information.additional_information.gsub('Balkon', 'Grosser Balkon')
       @information.additional_information = @information.additional_information.gsub('Schwimmbecken', 'Jacuzzi')
 
-      @information.update_additional_information.should be_true
+      @information.update_list_in(:characteristics, :additional_information).should be_true
       @information.additional_information.should == [
         'some text',
         'some text',

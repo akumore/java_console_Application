@@ -19,7 +19,7 @@ class Cms::InformationController < Cms::SecuredController
   def create
     @original_additional_information = @information.additional_information.html_safe
 
-    changed = InformationDecorator.new(@information).update_additional_information
+    changed = InformationDecorator.new(@information).update_list_in(:characteristics, :additional_information)
 
     if @information.save
       return render 'edit' if changed
@@ -33,7 +33,7 @@ class Cms::InformationController < Cms::SecuredController
     @information.attributes = params[:information]
     @original_additional_information = @information.additional_information.html_safe
 
-    changed =  InformationDecorator.new(@information).update_additional_information
+    changed = InformationDecorator.new(@information).update_list_in(:characteristics, :additional_information)
 
     if @information.save && !changed
       redirect_to_step(next_step_after('information'))
