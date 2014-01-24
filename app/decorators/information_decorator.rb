@@ -109,6 +109,13 @@ class InformationDecorator < ApplicationDecorator
       end
     end
 
+    if distances.any?
+      content << {
+        :key => t('information.distances'),
+        :value => distances.join(', ')
+      }
+    end
+
     {
       :title        => t('information.title'),
       :collapsible  => true,
@@ -131,5 +138,17 @@ class InformationDecorator < ApplicationDecorator
   def ceiling_height
     # Raumhöhe
     t('information.ceiling_height_value', :size => model.ceiling_height) if model.ceiling_height.present?
+  end
+
+  def distances
+    buffer = []
+
+    model.points_of_interest.each do |poi|
+      if poi.distance.present?
+        buffer << t("information.points_of_interest.#{poi.name}", :distance => poi.distance)
+      end
+    end
+
+    buffer
   end
 end

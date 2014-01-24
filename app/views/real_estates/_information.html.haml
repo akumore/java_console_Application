@@ -67,6 +67,11 @@
           %dt= t('information.freight_elevator_carrying_capacity')
           %dd= information.freight_elevator_carrying_capacity
 
+    - if information && information.distances.any?
+      %dl
+        %dt= t('information.distances')
+        %dd= information.distances.join(', ')
+
     - unless real_estate.parking?
       - if information && information.additional_information.present?
         %dl

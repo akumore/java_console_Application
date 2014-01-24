@@ -18,6 +18,8 @@ describe InformationDecorator do
       )
     )
 
+    @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'shopping', :distance => 200)
+    @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'public_transport', :distance => 100)
     @information = InformationDecorator.new(@real_estate.information)
   end
 
@@ -42,5 +44,11 @@ describe InformationDecorator do
 
   it 'formats the ceiling height' do
     @information.ceiling_height.should == '2.55 m'
+  end
+
+  describe '#distances' do
+    it 'formats points of interest' do
+      @information.distances.should == ['Einkaufen 200 m', 'Öffentlicher Verkehr 100 m']
+    end
   end
 end

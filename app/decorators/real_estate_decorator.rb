@@ -318,7 +318,8 @@ class RealEstateDecorator < ApplicationDecorator
     information.present? && (information.floors.present? ||
                         information.renovated_on.present? ||
                         information.built_on.present? || 
-                        information.characteristics.any?)
+                        information.characteristics.any? ||
+                        information.distances.any?)
   end
 
   def utilization_information?
@@ -353,8 +354,7 @@ class RealEstateDecorator < ApplicationDecorator
       infrastructure.covered_bike.present? ||
       infrastructure.outdoor_bike.present? ||
       infrastructure.single_garage.present? ||
-      infrastructure.double_garage.present? ||
-      infrastructure.distances.any?
+      infrastructure.double_garage.present?
     end
   end
 
