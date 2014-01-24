@@ -22,11 +22,3 @@ it:
     double_garage:
       one: 'Garage doppio'
       other: 'Garage doppi'
-    distances: 'Nelle vicinanze'
-    points_of_interest:
-      public_transport: 'Trasporti pubblici %{distance} m'
-      shopping: 'Negozi %{distance} m'
-      kindergarden: 'Asilo %{distance} m'
-      elementary_school: 'Scuola elementare %{distance} m'
-      high_school: 'Scuole superiori %{distance} m'
-      highway_access: 'Autostrada %{distance} m'

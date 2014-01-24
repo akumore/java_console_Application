@@ -4,6 +4,9 @@ class Information
   include Mongoid::MultiParameterAttributes
 
   embedded_in :real_estate
+  embeds_many :points_of_interest, :class_name => 'PointOfInterest'
+
+  accepts_nested_attributes_for :points_of_interest
 
   field :has_outlook, :type => Boolean
   field :has_fireplace, :type => Boolean
@@ -52,6 +55,26 @@ class Information
             :if => :working?
 
   delegate :living?, :working?, :storing?, :parking?, :to => :_parent
+
+  def build_points_of_interest(real_estate)
+    if real_estate.parking? || real_estate.storing?
+      build_parking_storing_points_of_interest
+    else
+      build_all_points_of_interest
+    end
+  end
+
+  def build_all_points_of_interest
+    PointOfInterest::TYPES.each do |name|
+      self.points_of_interest.find_or_initialize_by :name => name
+    end
+  end
+
+  def build_parking_storing_points_of_interest
+    PointOfInterest::PARKING_STORING_TYPES.each do |name|
+      self.points_of_interest.find_or_initialize_by :name => name
+    end
+  end
 
   def has_freight_elevator?
     freight_elevator_carrying_capacity > 0 if freight_elevator_carrying_capacity.present?

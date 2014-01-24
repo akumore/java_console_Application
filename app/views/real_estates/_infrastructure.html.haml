@@ -35,8 +35,3 @@
       %dl
         %dt= t('infrastructures.double_garage', :count => infrastructure.double_garage)
         %dd= infrastructure.double_garage
-
-    - if infrastructure.distances.any?
-      %dl
-        %dt= t('infrastructures.distances')
-        %dd= infrastructure.distances.join(', ')

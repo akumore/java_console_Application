@@ -546,36 +546,36 @@ module Export::Idx301
 
     def distance_public_transport
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
-      if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'public_transport').try(:first).try(:distance).to_i
+      if model.information.present?
+        model.information.points_of_interest.where(:name => 'public_transport').try(:first).try(:distance).to_i
       end
     end
 
     def distance_shop
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
-      if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'shopping').try(:first).try(:distance).to_i
+      if model.information.present?
+        model.information.points_of_interest.where(:name => 'shopping').try(:first).try(:distance).to_i
       end
     end
 
     def distance_kindergarten
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
-      if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'kindergarden').try(:first).try(:distance).to_i
+      if model.information.present?
+        model.information.points_of_interest.where(:name => 'kindergarden').try(:first).try(:distance).to_i
       end
     end
 
     def distance_school1
       #  int(5)  in meter - remove any non digits (1min. walk = 50m)
-      if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'elementary_school').try(:first).try(:distance).to_i
+      if model.information.present?
+        model.information.points_of_interest.where(:name => 'elementary_school').try(:first).try(:distance).to_i
       end
     end
 
     def distance_school2
       #  int(5)  in meter - remove any non digits (1min. walk = 50m)
-      if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'high_school').try(:first).try(:distance).to_i
+      if model.information.present?
+        model.information.points_of_interest.where(:name => 'high_school').try(:first).try(:distance).to_i
       end
     end
 
@@ -939,8 +939,8 @@ module Export::Idx301
 
     def distance_motorway
       # int(5)  in meter - remove any non digits (1min. walk = 50m)
-      if model.infrastructure.present?
-        model.infrastructure.points_of_interest.where(:name => 'highway_access').try(:first).try(:distance).to_i
+      if model.information.present?
+        model.information.points_of_interest.where(:name => 'highway_access').try(:first).try(:distance).to_i
       end
     end
 

@@ -1,7 +1,35 @@
 de:
   cms:
     information:
+      show:
+        building_information: 'Gebäude/Liegenschaft'
+        building_up: 'Ausbau'
+        relevant_for_external_portals: 'Dritt-Websites'
+        location: 'Standort'
+        points_of_interest:
+          types:
+            public_transport: 'Öffentlicher Verkehr'
+            shopping: 'Einkaufen'
+            kindergarden: 'Kindergarten'
+            elementary_school: 'Grundschule'
+            high_school: 'Oberstufe'
+            highway_access: 'Autobahnanschluss'
       form:
+        for_rent: 'Mietinformationen'
+        building_information: 'Gebäude/Liegenschaft'
+        building_up: 'Ausbau'
+        relevant_for_external_portals: 'Dritt-Websites'
+        relevant_for_external_portals_desc: '( Diese Angaben erscheinen ausschliesslich auf den Dritt-Websites wie Homegate oder Immoscout )'
+        location: 'Standort'
+        location_desc: '( Distanzen in Meter )'
+        points_of_interest:
+          types:
+            public_transport: 'Öffentlicher Verkehr'
+            shopping: 'Einkaufen'
+            kindergarden: 'Kindergarten'
+            elementary_school: 'Grundschule'
+            high_school: 'Oberstufe'
+            highway_access: 'Autobahnanschluss'
         help_popover:
           is_old_building: "Für spezielle, alte Gebäude wie Altstadthaus anklicken"
           is_new_building: "Für Erstvermietung, -verkauf anklicken"
