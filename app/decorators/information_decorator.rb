@@ -54,7 +54,6 @@ class InformationDecorator < ApplicationDecorator
     buffer.compact
   end
 
-
   def maximal_floor_loading
     if model.maximal_floor_loading.present?
       t('information.maximal_floor_loading_value', :count => model.maximal_floor_loading )
