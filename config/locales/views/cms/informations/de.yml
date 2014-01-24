@@ -4,7 +4,7 @@ de:
       show:
         building_information: 'Gebäude/Liegenschaft'
         building_up: 'Ausbau'
-        relevant_for_external_portals: 'Nachfolgende Angaben erscheinen ausschliesslich auf den Dritt-Websites wie Homegate oder Immoscout'
+        relevant_for_external_portals: 'Dritt-Websites'
         location: 'Standort'
         points_of_interest:
           types:
