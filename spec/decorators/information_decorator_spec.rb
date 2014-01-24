@@ -13,12 +13,13 @@ describe InformationDecorator do
         :has_swimming_pool => true,
         :maximal_floor_loading => 140,
         :freight_elevator_carrying_capacity => 150,
+        :floors => 2,
+        :ceiling_height => '2.55'
       )
     )
 
     @information = InformationDecorator.new(@real_estate.information)
   end
-
 
   it 'has a textual list of characteristics' do
     @information.characteristics.include?('Balkon').should be_true
@@ -31,5 +32,15 @@ describe InformationDecorator do
 
   it 'formats the freigh elevator carrying capacity in kg' do
     @information.freight_elevator_carrying_capacity.should == '150 kg'
+  end
+
+  it 'formats the number of floors' do
+    @information.floors.should == '2 Geschosse'
+    @information.update_attribute :floors, 1
+    @information.floors.should == '1 Geschoss'
+  end
+
+  it 'formats the ceiling height' do
+    @information.ceiling_height.should == '2.55 m'
   end
 end

@@ -367,7 +367,7 @@ describe Export::Idx301::RealEstateDecorator do
         real_estate = Export::Idx301::RealEstateDecorator.new(
           mock_model(RealEstate,  :commercial_utilization? => false,
                                   :private_utilization? => true,
-                                  :figure => mock_model(Figure, :ceiling_height => '2.50')
+                                  :information => mock_model(Information, :ceiling_height => '2.50')
                                   ),
           account,
           {}
@@ -381,7 +381,7 @@ describe Export::Idx301::RealEstateDecorator do
         real_estate = Export::Idx301::RealEstateDecorator.new(
           mock_model(RealEstate,  :commercial_utilization? => true,
                                   :private_utilization? => false,
-                                  :figure => mock_model(Figure, :ceiling_height => '2.50')
+                                  :information => mock_model(Information, :ceiling_height => '2.50')
                                   ),
           account,
           {}
@@ -397,7 +397,7 @@ describe Export::Idx301::RealEstateDecorator do
         real_estate = Export::Idx301::RealEstateDecorator.new(
           mock_model(RealEstate,  :commercial_utilization? => false,
                                   :private_utilization? => true,
-                                  :figure => mock_model(Figure, :ceiling_height => '2.50')
+                                  :information => mock_model(Information, :ceiling_height => '2.50')
                                   ),
           account,
           {}
@@ -411,7 +411,7 @@ describe Export::Idx301::RealEstateDecorator do
         real_estate = Export::Idx301::RealEstateDecorator.new(
           mock_model(RealEstate,  :commercial_utilization? => true,
                                   :private_utilization? => false,
-                                  :figure => mock_model(Figure, :ceiling_height => '2.50')
+                                  :information => mock_model(Information, :ceiling_height => '2.50')
                                   ),
           account,
           {}

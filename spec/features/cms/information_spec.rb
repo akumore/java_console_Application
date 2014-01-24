@@ -34,7 +34,11 @@ describe "Cms Information" do
                                                 :is_developed => true,
                                                 :is_under_building_laws => true,
                                                 :has_cable_tv => true,
-                                                :additional_information => 'Zusätzliche Angaben zum Ausbau'
+                                                :additional_information => 'Zusätzliche Angaben zum Ausbau',
+                                                :floors => 3,
+                                                :renovated_on => 1997,
+                                                :built_on => 1956,
+                                                :ceiling_height => '2.6'
                                               )
     end
 
@@ -50,6 +54,9 @@ describe "Cms Information" do
       it 'creates a new information object' do
 
         fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
+        fill_in 'Anzahl Geschosse', :with => @template_information.floors
+        fill_in 'Renovationsjahr', :with => @template_information.renovated_on
+        fill_in 'Baujahr', :with => @template_information.built_on
 
         [ 'Aussicht', 
           'Cheminée', 
@@ -75,31 +82,62 @@ describe "Cms Information" do
         @real_estate.reload
         information = @real_estate.information
 
-        information.has_outlook.should == @template_information.has_outlook
-        information.has_fireplace.should == @template_information.has_fireplace
-        information.has_elevator.should == @template_information.has_elevator
-        information.has_isdn.should == @template_information.has_isdn
-        information.is_wheelchair_accessible.should == @template_information.is_wheelchair_accessible
-        information.is_child_friendly.should == @template_information.is_child_friendly
-        information.has_balcony.should == @template_information.has_balcony
-        information.has_garden_seating.should == @template_information.has_garden_seating
-        information.has_raised_ground_floor.should == @template_information.has_raised_ground_floor
-        information.has_swimming_pool.should == @template_information.has_swimming_pool
-        information.has_isdn.should == @template_information.has_isdn
-        information.is_new_building.should == @template_information.is_new_building
-        information.is_old_building.should == @template_information.is_old_building
-        information.is_minergie_style.should == @template_information.is_minergie_style
-        information.is_minergie_certified.should == @template_information.is_minergie_certified
-        information.has_cable_tv.should == @template_information.has_cable_tv
-        information.additional_information.should == @template_information.additional_information
+        expect(information.has_outlook).to eq @template_information.has_outlook
+        expect(information.has_fireplace).to eq @template_information.has_fireplace
+        expect(information.has_elevator).to eq @template_information.has_elevator
+        expect(information.has_isdn).to eq @template_information.has_isdn
+        expect(information.is_wheelchair_accessible).to eq @template_information.is_wheelchair_accessible
+        expect(information.is_child_friendly).to eq @template_information.is_child_friendly
+        expect(information.has_balcony).to eq @template_information.has_balcony
+        expect(information.has_garden_seating).to eq @template_information.has_garden_seating
+        expect(information.has_raised_ground_floor).to eq @template_information.has_raised_ground_floor
+        expect(information.has_swimming_pool).to eq @template_information.has_swimming_pool
+        expect(information.has_isdn).to eq @template_information.has_isdn
+        expect(information.is_new_building).to eq @template_information.is_new_building
+        expect(information.is_old_building).to eq @template_information.is_old_building
+        expect(information.is_minergie_style).to eq @template_information.is_minergie_style
+        expect(information.is_minergie_certified).to eq @template_information.is_minergie_certified
+        expect(information.has_cable_tv).to eq @template_information.has_cable_tv
+        expect(information.additional_information).to eq @template_information.additional_information
+        expect(information.floors).to eq @template_information.floors
+        expect(information.renovated_on).to eq @template_information.renovated_on
+        expect(information.built_on).to eq @template_information.built_on
       end
 
       it 'doesnt render the is_developed checkbox' do
-        page.should_not have_css('#is_developed')
+        expect(page).to_not have_css('#information_is_developed')
       end
 
       it 'doesnt render the is_under_building_laws_checkbox' do
-        page.should_not have_css('#is_under_building_laws')
+        expect(page).to_not have_css('#information_is_under_building_laws')
+      end
+
+      it 'doesnt render the has_lifting_platform checkbox' do
+        expect(page).to_not have_css('#information_has_lifting_platform')
+      end
+
+      it 'doesnt render the has_ramp checkbox' do
+        expect(page).to_not have_css('#information_has_ramp')
+      end
+
+      it 'doesnt render the maximal_floor_loading input field' do
+        expect(page).to_not have_css('#information_maximal_floor_loading')
+      end
+
+      it 'doesnt render the has_sewage_supply checkbox' do
+        expect(page).to_not have_css('#information_has_sewage_supply')
+      end
+
+      it 'doesnt render the has_water_supply checkbox' do
+        expect(page).to_not have_css('#information_has_water_supply')
+      end
+
+      it 'doesnt render the number_of_restrooms input field' do
+        expect(page).to_not have_css('#information_number_of_restrooms')
+      end
+
+      it 'doesnt render the ceiling_height input field' do
+        expect(page).to_not have_css('#information_ceiling_height')
       end
     end
 
@@ -116,6 +154,10 @@ describe "Cms Information" do
 
         fill_in "Anzahl WC's", :with => @template_information.number_of_restrooms
         fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
+        fill_in 'Anzahl Geschosse', :with => @template_information.floors
+        fill_in 'Renovationsjahr', :with => @template_information.renovated_on
+        fill_in 'Baujahr', :with => @template_information.built_on
+        fill_in 'Raumhöhe in Meter', :with => @template_information.ceiling_height
 
         [
          'Aussicht',
@@ -125,8 +167,6 @@ describe "Cms Information" do
          'Anfahrrampe',
          'Hebebühne',
          'Bahnanschluss',
-         'Wasseranschluss',
-         'Abwasseranschluss',
          'Kabelfernsehen'
         ].each do |checkbox|
           check checkbox
@@ -137,21 +177,51 @@ describe "Cms Information" do
         @real_estate.reload
         information = @real_estate.information
 
-        information.has_outlook.should == @template_information.has_outlook
-        information.is_new_building.should == @template_information.is_new_building
-        information.is_minergie_style.should == @template_information.is_minergie_style
-        information.is_minergie_certified.should == @template_information.is_minergie_certified
-        information.has_ramp.should == @template_information.has_ramp
-        information.has_lifting_platform.should == @template_information.has_lifting_platform
-        information.has_railway_terminal.should == @template_information.has_railway_terminal
-        information.has_water_supply.should == @template_information.has_water_supply
-        information.has_sewage_supply.should == @template_information.has_sewage_supply
-        information.number_of_restrooms.should == @template_information.number_of_restrooms
-        information.has_cable_tv.should == @template_information.has_cable_tv
-        information.additional_information.should == @template_information.additional_information
+        expect(information.has_outlook).to eq @template_information.has_outlook
+        expect(information.is_new_building).to eq @template_information.is_new_building
+        expect(information.is_minergie_style).to eq @template_information.is_minergie_style
+        expect(information.is_minergie_certified).to eq @template_information.is_minergie_certified
+        expect(information.has_ramp).to eq @template_information.has_ramp
+        expect(information.has_lifting_platform).to eq @template_information.has_lifting_platform
+        expect(information.has_railway_terminal).to eq @template_information.has_railway_terminal
+        expect(information.number_of_restrooms).to eq @template_information.number_of_restrooms
+        expect(information.has_cable_tv).to eq @template_information.has_cable_tv
+        expect(information.additional_information).to eq @template_information.additional_information
+        expect(information.floors).to eq @template_information.floors
+        expect(information.renovated_on).to eq @template_information.renovated_on
+        expect(information.built_on).to eq @template_information.built_on
+        expect(information.ceiling_height).to eq @template_information.ceiling_height
       end
 
-      ["Anzahl WC's", "Max Gewicht Warenlift", "Maximale Bodenbelastung"].each do |target_field|
+      it 'doesnt render the has_swimming_pool checkbox' do
+        expect(page).to_not have_css('#information_has_swimming_pool')
+      end
+
+      it 'doesnt render the is_child_friendly checkbox' do
+        expect(page).to_not have_css('#information_is_child_friendly')
+      end
+
+      it 'doesnt render the has_fireplace checkbox' do
+        expect(page).to_not have_css('#information_has_fireplace')
+      end
+
+      it 'doesnt render the is_old_building checkbox' do
+        expect(page).to_not have_css('#information_is_old_building')
+      end
+
+      it 'doesnt render the is_under_building_laws checkbox' do
+        expect(page).to_not have_css('#information_is_under_building_laws')
+      end
+
+      it 'doesnt render the has_sewage_supply checkbox' do
+        expect(page).to_not have_css('#information_has_sewage_supply')
+      end
+
+      it 'doesnt render the has_water_supply checkbox' do
+        expect(page).to_not have_css('#information_has_water_supply')
+      end
+
+      ["Anzahl WC's", "Max Gewicht Warenlift", "Max Bodenbelastung"].each do |target_field|
 
         it "fails to create because of invalid '#{target_field}' entered" do
           fill_in target_field, :with => -9
@@ -184,6 +254,10 @@ describe "Cms Information" do
 
         fill_in "Anzahl WC's", :with => @template_information.number_of_restrooms
         fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
+        fill_in 'Anzahl Geschosse', :with => @template_information.floors
+        fill_in 'Renovationsjahr', :with => @template_information.renovated_on
+        fill_in 'Baujahr', :with => @template_information.built_on
+        fill_in 'Raumhöhe in Meter', :with => @template_information.ceiling_height
 
         [
          'Aussicht',
@@ -205,18 +279,22 @@ describe "Cms Information" do
         @real_estate.reload
         information = @real_estate.information
 
-        information.has_outlook.should == @template_information.has_outlook
-        information.is_new_building.should == @template_information.is_new_building
-        information.is_minergie_style.should == @template_information.is_minergie_style
-        information.is_minergie_certified.should == @template_information.is_minergie_certified
-        information.has_ramp.should == @template_information.has_ramp
-        information.has_lifting_platform.should == @template_information.has_lifting_platform
-        information.has_railway_terminal.should == @template_information.has_railway_terminal
-        information.has_water_supply.should == @template_information.has_water_supply
-        information.has_sewage_supply.should == @template_information.has_sewage_supply
-        information.number_of_restrooms.should == @template_information.number_of_restrooms
-        information.has_cable_tv.should == @template_information.has_cable_tv
-        information.additional_information.should == @template_information.additional_information
+        expect(information.has_outlook).to eq @template_information.has_outlook
+        expect(information.is_new_building).to eq @template_information.is_new_building
+        expect(information.is_minergie_style).to eq @template_information.is_minergie_style
+        expect(information.is_minergie_certified).to eq @template_information.is_minergie_certified
+        expect(information.has_ramp).to eq @template_information.has_ramp
+        expect(information.has_lifting_platform).to eq @template_information.has_lifting_platform
+        expect(information.has_railway_terminal).to eq @template_information.has_railway_terminal
+        expect(information.has_water_supply).to eq @template_information.has_water_supply
+        expect(information.has_sewage_supply).to eq @template_information.has_sewage_supply
+        expect(information.number_of_restrooms).to eq @template_information.number_of_restrooms
+        expect(information.has_cable_tv).to eq @template_information.has_cable_tv
+        expect(information.additional_information).to eq @template_information.additional_information
+        expect(information.floors).to eq @template_information.floors
+        expect(information.renovated_on).to eq @template_information.renovated_on
+        expect(information.built_on).to eq @template_information.built_on
+        expect(information.ceiling_height).to eq @template_information.ceiling_height
       end
     end
 

@@ -17,9 +17,7 @@ describe FigureDecorator do
         :living_surface_estimate => '',
         :usable_surface => 135,
         :property_surface => 145,
-        :storage_surface => 155,
-        :floors => 2,
-        :ceiling_height => '2.55'
+        :storage_surface => 155
       )
     )
 
@@ -111,16 +109,6 @@ describe FigureDecorator do
 
   it 'formats the size the storage surface' do
     @figure.storage_surface.should == '155 m²'
-  end
-
-  it 'formats the ceiling height' do
-    @figure.ceiling_height.should == '2.55 m'
-  end
-
-  it 'formats the number of floors' do
-    @figure.floors.should == '2 Geschosse'
-    @figure.update_attribute :floors, 1
-    @figure.floors.should == '1 Geschoss'
   end
 
   context 'for private usage' do

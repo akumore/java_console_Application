@@ -33,3 +33,11 @@ de:
     sewage_supply: 'Abwasseranschluss'
     cable_tv: 'Kabelfernsehen'
     additional_information: 'Ergänzende Informationen'
+    renovated_on: 'Letze Renovierung'
+    built_on: 'Baujahr'
+    floors: 'Geschosse'
+    floors_value:
+      one: '%{count} Geschoss'
+      other: '%{count} Geschosse'
+    ceiling_height: 'Raumhöhe'
+    ceiling_height_value: '%{size} m'

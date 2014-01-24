@@ -31,12 +31,25 @@ class Information
   field :is_under_building_laws, :type => Boolean
   field :has_cable_tv, :type => Boolean
   field :additional_information, :type => String
+  field :built_on, :type => Integer # Baujahr
+  field :renovated_on, :type => Integer # Renovationsjahr
+  field :floors, :type => Integer # Anzahl Stockwerke
+  field :ceiling_height, :type => String # Raumhöhe
 
   validates_numericality_of :freight_elevator_carrying_capacity,
                             :number_of_restrooms,
                             :maximal_floor_loading,
+                            :built_on,
+                            :renovated_on,
+                            :floors,
                             :greater_than_or_equal_to => 0,
                             :allow_nil => true
+
+  # ceiling_height must be numeric, but only if commercial
+  validates :ceiling_height,
+            :numericality => true,
+            :allow_blank => true,
+            :if => :working?
 
   delegate :living?, :working?, :storing?, :parking?, :to => :_parent
 

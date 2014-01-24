@@ -5,164 +5,186 @@
 = form_for [:cms, @real_estate, @information], :url=>cms_real_estate_information_path(@real_estate) do |f|
   = render 'cms/shared/errors', :model => @information
 
-  %fieldset.push-checkboxes-down
-
-    -  unless @real_estate.parking?
+  - unless @real_estate.parking?
+    %fieldset.push-checkboxes-down
+      %legend= t "mongoid.attributes.information.building_information"
       .row
-        /----------------- column one -----------------/
-        .span4
-          .control-group
-            = f.label :is_new_building
-            .controls
-              = f.check_box :is_new_building
-              %i.icon-question-sign.help-popover.push-inline-labels-down{ :rel => 'popover', 'data-original-title' => Information.human_attribute_name(:is_new_building), 'data-content' => t('.help_popover.is_new_building') }
-
-          - if @real_estate.living?
+        .span12
+          .floated-controls-box
             .control-group
-              = f.label :is_old_building
+              = f.label :built_on
               .controls
-                = f.check_box :is_old_building
-                %i.icon-question-sign.help-popover.push-inline-labels-down{ :rel => 'popover', 'data-original-title' => Information.human_attribute_name(:is_old_building), 'data-content' => t('.help_popover.is_old_building') }
+                = f.text_field :built_on, class: 'span1'
 
-          .control-group
-            = f.label :has_outlook
-            .controls
-              = f.check_box :has_outlook
-              
-          .control-group
-            = f.label :has_raised_ground_floor
-            .controls
-              = f.check_box :has_raised_ground_floor
-
-          - if @real_estate.property?
             .control-group
-              = f.label :is_developed
+              = f.label :renovated_on
               .controls
-                = f.check_box :is_developed
+                = f.text_field :renovated_on, class: 'span1'
 
-        /----------------- column two -----------------/
-        .span4
-          .control-group
-            = f.label :is_minergie_style
-            .controls
-              = f.check_box :is_minergie_style
+            .control-group
+              = f.label :floors
+              .controls
+                = f.text_field :floors, class: 'span1'
 
-          .control-group
-            = f.label :is_minergie_certified
-            .controls
-              = f.check_box :is_minergie_certified
+            - if @real_estate.living?
+              .control-group
+                = f.label :has_swimming_pool
+                .controls
+                  = f.check_box :has_swimming_pool
 
-          .control-group
-            = f.label :has_balcony
-            .controls
-              = f.check_box :has_balcony
-              
-          .control-group
-            = f.label :has_garden_seating
-            .controls
-              = f.check_box :has_garden_seating
+              .control-group
+                = f.label :is_child_friendly
+                .controls
+                  = f.check_box :is_child_friendly
 
-        /-----------------column three -----------------/
-        .span4
-          .control-group
-            = f.label :is_wheelchair_accessible
-            .controls
-              = f.check_box :is_wheelchair_accessible
+            .control-group
+              = f.label :is_wheelchair_accessible
+              .controls
+                = f.check_box :is_wheelchair_accessible
 
-          .control-group
-            = f.label :is_child_friendly
-            .controls
-              = f.check_box :is_child_friendly
-              
-          .control-group
-            = f.label :has_swimming_pool
-            .controls
-              = f.check_box :has_swimming_pool
+            .control-group
+              = f.label :is_minergie_style
+              .controls
+                = f.check_box :is_minergie_style
 
-          .control-group
-            = f.label :has_cable_tv
-            .controls
-              = f.check_box :has_cable_tv
+            .control-group
+              = f.label :is_minergie_certified
+              .controls
+                = f.check_box :is_minergie_certified
+
+            .control-group
+              = f.label :has_elevator
+              .controls
+                = f.check_box :has_elevator
+
+            - if @real_estate.property?
+              .control-group
+                = f.label :is_developed
+                .controls
+                  = f.check_box :is_developed
+
+            - unless @real_estate.living?
+              .control-group
+                = f.label :has_ramp
+                .controls
+                  = f.check_box :has_ramp
+
+              .control-group
+                = f.label :has_lifting_platform
+                .controls
+                  = f.check_box :has_lifting_platform
+
+              .control-group
+                = f.label :has_railway_terminal
+                .controls
+                  = f.check_box :has_railway_terminal
+
+              .control-group
+                = f.label :freight_elevator_carrying_capacity
+                .controls
+                  = f.text_field :freight_elevator_carrying_capacity, class: 'span1'
 
 
-    - if @real_estate.living?
+    %fieldset.push-checkboxes-down
+      %legend= t "mongoid.attributes.information.building_up"
       .row
-        .span4
-          .control-group
-            = f.label :has_isdn
-            .controls
-              = f.check_box :has_isdn
+        .span12
+          .floated-controls-box
+            - if @real_estate.storing?
+              .control-group
+                = f.label :has_sewage_supply
+                .controls
+                  = f.check_box :has_sewage_supply
 
-          - if (@real_estate.apartment? || @real_estate.house?) && @real_estate.for_sale?
+              .control-group
+                = f.label :has_water_supply
+                .controls
+                  = f.check_box :has_water_supply
+
             .control-group
-              = f.label :is_under_building_laws
+              = f.label :has_balcony
               .controls
-                = f.check_box :is_under_building_laws
+                = f.check_box :has_balcony
+                
+            .control-group
+              = f.label :has_garden_seating
+              .controls
+                = f.check_box :has_garden_seating
 
-        .span4
-          .control-group
-            = f.label :has_fireplace
-            .controls
-              = f.check_box :has_fireplace
+            - if @real_estate.living?
+              .control-group
+                = f.label :has_fireplace
+                .controls
+                  = f.check_box :has_fireplace
 
-        .span4
-          .control-group
-            = f.label :has_elevator
-            .controls
-              = f.check_box :has_elevator
+            .control-group
+              = f.label :has_isdn
+              .controls
+                = f.check_box :has_isdn
 
-    - if @real_estate.working? || @real_estate.storing?
-      .row
-        .span4
-          .control-group
-            = f.label :maximal_floor_loading
-            .controls
-              = f.text_field :maximal_floor_loading, :class=>'span1'
+            .control-group
+              = f.label :has_cable_tv
+              .controls
+                = f.check_box :has_cable_tv
 
-          .control-group
-            = f.label :freight_elevator_carrying_capacity
-            .controls
-              = f.text_field :freight_elevator_carrying_capacity, :class=>'span1'
+            - unless @real_estate.living?
+              .control-group
+                = f.label :maximal_floor_loading
+                .controls
+                  = f.text_field :maximal_floor_loading, class: 'span1'
+              
+              .control-group
+                = f.label :number_of_restrooms
+                .controls
+                  =f.text_field :number_of_restrooms, class: 'span1'
 
-          .control-group
-            = f.label :number_of_restrooms
-            .controls
-              =f.text_field :number_of_restrooms, :class=>'span1'
+              .control-group
+                = f.label :ceiling_height
+                .controls
+                  = f.text_field :ceiling_height, class: 'span1'
 
-        .span4
-          .control-group
-            = f.label :has_lifting_platform
-            .controls
-              = f.check_box :has_lifting_platform
-
-          .control-group
-            = f.label :has_ramp
-            .controls
-              = f.check_box :has_ramp
-
-          .control-group
-            = f.label :has_railway_terminal
-            .controls
-              = f.check_box :has_railway_terminal
-
-        .span4
-          .control-group
-            = f.label :has_water_supply
-            .controls
-              = f.check_box :has_water_supply
-
-          .control-group
-            = f.label :has_sewage_supply
-            .controls
-              = f.check_box :has_sewage_supply
-
-    - unless @real_estate.parking?
       .control-group
         = f.label :additional_information
         .controls
           .row
             .span8
-              = f.text_area :additional_information, :class => 'editor'
+              = f.text_area :additional_information, class: 'editor'
+
+
+    %fieldset.push-checkboxes-down
+      %legend= t "mongoid.attributes.information.relevant_for_external_portals"
+      .row
+        .span12
+          .floated-controls-box
+            - if @real_estate.living?
+              .control-group
+                = f.label :is_old_building
+                .controls
+                  = f.check_box :is_old_building
+                  %i.icon-question-sign.help-popover.push-inline-labels-down{ :rel => 'popover', 'data-original-title' => Information.human_attribute_name(:is_old_building), 'data-content' => t('.help_popover.is_old_building') }
+
+            .control-group
+              = f.label :is_new_building
+              .controls
+                = f.check_box :is_new_building
+                %i.icon-question-sign.help-popover.push-inline-labels-down{ :rel => 'popover', 'data-original-title' => Information.human_attribute_name(:is_new_building), 'data-content' => t('.help_popover.is_new_building') }
+
+            .control-group
+              = f.label :has_outlook
+              .controls
+                = f.check_box :has_outlook
+
+            .control-group
+              = f.label :has_raised_ground_floor
+              .controls
+                = f.check_box :has_raised_ground_floor
+
+            - if (@real_estate.apartment? || @real_estate.house?) && @real_estate.for_sale?
+              .control-group
+                = f.label :is_under_building_laws
+                .controls
+                  = f.check_box :is_under_building_laws
+
 
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
