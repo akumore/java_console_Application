@@ -25,7 +25,7 @@ describe 'ApplicationDecorator' do
   end
 
   describe '#update_list_in' do
-
+    pending
   end
 
 end
