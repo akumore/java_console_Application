@@ -4,6 +4,7 @@ de:
       real_estate: 'Immobilie'
     attributes:
       real_estate:
+        language: 'Anzeigensprache'
         category_id: 'Objekt-Art'
         office_id: 'Filiale'
         reference: 'Referenz'

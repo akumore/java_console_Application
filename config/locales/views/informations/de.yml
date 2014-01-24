@@ -3,6 +3,7 @@ de:
     information:
       form:
         for_rent: 'Mietinformationen'
+        check_new_entries: 'Ergänzende Informationen wurden automatisch ergänzt. Bitte überprüfen Sie den Inhalt. Der ursprüngliche Inhalt war:'
   information:
     title: 'Immobilieninfos'
     characteristics: 'Merkmale'
