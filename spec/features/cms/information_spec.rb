@@ -101,7 +101,6 @@ describe "Cms Information" do
         expect(information.is_minergie_style).to eq @template_information.is_minergie_style
         expect(information.is_minergie_certified).to eq @template_information.is_minergie_certified
         expect(information.has_cable_tv).to eq @template_information.has_cable_tv
-        expect(information.additional_information).to eq @template_information.additional_information
         expect(information.floors).to eq @template_information.floors
         expect(information.renovated_on).to eq @template_information.renovated_on
         expect(information.built_on).to eq @template_information.built_on
@@ -217,7 +216,6 @@ describe "Cms Information" do
         expect(information.has_railway_terminal).to eq @template_information.has_railway_terminal
         expect(information.number_of_restrooms).to eq @template_information.number_of_restrooms
         expect(information.has_cable_tv).to eq @template_information.has_cable_tv
-        expect(information.additional_information).to eq @template_information.additional_information
         expect(information.floors).to eq @template_information.floors
         expect(information.renovated_on).to eq @template_information.renovated_on
         expect(information.built_on).to eq @template_information.built_on
@@ -321,7 +319,6 @@ describe "Cms Information" do
         expect(information.has_sewage_supply).to eq @template_information.has_sewage_supply
         expect(information.number_of_restrooms).to eq @template_information.number_of_restrooms
         expect(information.has_cable_tv).to eq @template_information.has_cable_tv
-        expect(information.additional_information).to eq @template_information.additional_information
         expect(information.floors).to eq @template_information.floors
         expect(information.renovated_on).to eq @template_information.renovated_on
         expect(information.built_on).to eq @template_information.built_on
