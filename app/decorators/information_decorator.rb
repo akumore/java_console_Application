@@ -143,7 +143,18 @@ class InformationDecorator < ApplicationDecorator
   def distances
     buffer = []
 
-    model.points_of_interest.each do |poi|
+    points = model.points_of_interest.to_a
+
+    transports = %w(public_transport highway_access).map {|name| points.find {|p| p.name == name && p.distance.present?} }.compact
+    buffer << transports.map {|trans| t("information.points_of_interest.#{trans.name}", :distance => trans.distance) }.join(', ') if
+      transports.length > 0
+
+    schools =  %w(kindergarden elementary_school high_school).map {|name| points.find {|p| p.name == name && p.distance.present?} }.compact
+    buffer << schools.map {|school| t("information.points_of_interest.#{school.name}", :distance => school.distance) }.join(', ') if
+      schools.length > 0
+
+    points.delete_if {|poi| schools.include?(poi) || transports.include?(poi) }
+    points.each do |poi|
       if poi.distance.present?
         buffer << t("information.points_of_interest.#{poi.name}", :distance => poi.distance)
       end

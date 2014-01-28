@@ -104,7 +104,28 @@ describe InformationDecorator do
 
   describe '#distances' do
     it 'formats points of interest' do
-      @information.distances.should == ['Einkaufen 200 m', 'Öffentlicher Verkehr 100 m']
+      @information.distances.should == ['Öffentlicher Verkehr 100 m', 'Einkaufen 200 m']
+    end
+
+    it 'puts school and transport on same line' do
+      @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'high_school', :distance => 20)
+      @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'elementary_school', :distance => 20)
+      @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'highway_access', :distance => 30)
+      @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'kindergarden', :distance => 20)
+
+      @information.distances.should == ['Öffentlicher Verkehr 100 m, Autobahnanschluss 30 m',
+                                        'Kindergarten 20 m, Primarschule 20 m, Oberstufe 20 m',
+                                        'Einkaufen 200 m']
+    end
+
+    it 'do not use emtpy distances' do
+      @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'high_school', :distance => '')
+      @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'elementary_school', :distance => '')
+      @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'highway_access', :distance => '')
+      @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'kindergarden', :distance => '')
+
+      @information.distances.should == ['Öffentlicher Verkehr 100 m',
+                                        'Einkaufen 200 m']
     end
   end
 end
