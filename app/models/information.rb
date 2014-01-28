@@ -38,6 +38,9 @@ class Information
   field :renovated_on, :type => Integer # Renovationsjahr
   field :floors, :type => Integer # Anzahl Stockwerke
   field :ceiling_height, :type => String # Raumhöhe
+  field :location_html, :type => String
+  field :interior_html, :type => String
+  field :infrastructure_html, :type => String
 
   validates_numericality_of :freight_elevator_carrying_capacity,
                             :number_of_restrooms,
