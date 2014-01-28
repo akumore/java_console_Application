@@ -123,6 +123,16 @@ class RealEstate
     !parking?
   end
 
+  def within_language
+    old_locale = I18n.locale
+    begin
+      I18n.locale = self.language.to_sym
+      yield
+    ensure
+      I18n.locale = old_locale
+    end
+  end
+
   state_machine :state, :initial => :editing do
 
     state :editing

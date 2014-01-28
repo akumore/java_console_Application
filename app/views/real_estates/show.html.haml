@@ -47,21 +47,19 @@
   .gallery
     = render 'gallery', :real_estate => @real_estate
 
-  .description
-    .accordion.accordion-classical{ 'data-open_first' => 1 }
-      - if @real_estate.any_descriptions?
-        = render 'descriptions', :real_estate => @real_estate, :additional_description => @real_estate.additional_description
+  - @real_estate.within_language do
+    .description
+      .accordion.accordion-classical{ 'data-open_first' => 1 }
+        - if @real_estate.any_information? && !@real_estate.parking?
+          = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
 
-      - if @real_estate.any_information? && !@real_estate.parking?
-        = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
+        = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing, :information => @real_estate.information
 
-      = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing, :information => @real_estate.information
+        - if @real_estate.any_infrastructures?
+          = render 'infrastructure', :real_estate => @real_estate, :infrastructure => @real_estate.infrastructure
 
-      - if @real_estate.any_infrastructures?
-        = render 'infrastructure', :real_estate => @real_estate, :infrastructure => @real_estate.infrastructure
-
-      - if @real_estate.contact.present?
-        = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
+        - if @real_estate.contact.present?
+          = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
 
   .sidebar
     %ul

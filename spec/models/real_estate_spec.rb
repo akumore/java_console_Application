@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RealEstate do
   describe 'initialize without any attributes' do
     before :each do
-      @real_estate = RealEstate.new(:state => '', :utilization => '', :offer => '')
+      @real_estate = RealEstate.new(:state => '', :utilization => '', :offer => '', :language => 'it')
     end
 
     it 'does not pass validations' do
@@ -47,6 +47,13 @@ describe RealEstate do
       @real_estate.errors.should have(7).items
     end
 
+    it 'switches language' do
+      expect(I18n.locale).to eq :de
+      @real_estate.within_language do
+        expect(I18n.locale).to eq :it
+      end
+      expect(I18n.locale).to eq :de
+    end
 
     context 'when microsite is selected' do
       let :microsite_real_estate do

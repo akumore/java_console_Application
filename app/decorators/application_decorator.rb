@@ -5,12 +5,9 @@ class ApplicationDecorator < Draper::Base
   # !!! decorator and will break some tests/templates
 
   def field_list_in_real_estate_language(field)
-    old_lang = I18n.locale
-    begin
-      I18n.locale = @model.real_estate.language.to_sym
+    real_estate = @model.real_estate
+    real_estate.within_language do
       self.send(field).map {|c| "\t" + h.content_tag(:li, c) }
-    ensure
-      I18n.locale = old_lang
     end
   end
 
