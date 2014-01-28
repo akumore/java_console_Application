@@ -143,7 +143,7 @@ class InformationDecorator < ApplicationDecorator
   def distances
     buffer = []
 
-    points = model.points_of_interest.to_a
+    points = model.points_of_interest.map {|p| p}
 
     transports = %w(public_transport highway_access).map {|name| points.find {|p| p.name == name && p.distance.present?} }.compact
     buffer << transports.map {|trans| t("information.points_of_interest.#{trans.name}", :distance => trans.distance) }.join(', ') if
