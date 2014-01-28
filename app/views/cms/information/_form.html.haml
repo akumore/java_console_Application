@@ -9,6 +9,7 @@
     %legend
       = t ".location"
       %span.description= t ".location_desc"
+
     .row
       .span12
         .floated-controls-box
@@ -17,9 +18,22 @@
               = poi_f.label :distance, t(".points_of_interest.types.#{poi_f.object.name}")
 
               .controls
-                = poi_f.text_field :distance, class: 'span1' 
+                = poi_f.text_field :distance, class: 'span1'
                 = poi_f.hidden_field :name
 
+    - if accessible?(:location_html)
+      .row
+        .span12
+          - if @location_html_changed
+            .alert
+              = t('cms.information.form.check_new_entries')
+              = @original_location_html
+          .control-group
+            = f.label :location_html
+            .controls
+              .row
+                .span8
+                  = f.text_area :location_html, :class => 'editor'
 
   - unless @real_estate.parking?
     %fieldset.push-checkboxes-down

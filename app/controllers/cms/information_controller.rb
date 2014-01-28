@@ -20,9 +20,7 @@ class Cms::InformationController < Cms::SecuredController
   end
 
   def create
-    @original_additional_information = @information.additional_information.html_safe
-
-    changed = InformationDecorator.new(@information).update_list_in(:characteristics, :additional_information)
+    changed = update_html_inputs
 
     if @information.save
       return render 'edit' if changed
@@ -34,9 +32,7 @@ class Cms::InformationController < Cms::SecuredController
 
   def update
     @information.attributes = params[:information]
-    @original_additional_information = @information.additional_information.html_safe
-
-    changed = InformationDecorator.new(@information).update_list_in(:characteristics, :additional_information)
+    changed = update_html_inputs
 
     if @information.save && !changed
       redirect_to_step(next_step_after('information'))
@@ -48,4 +44,15 @@ class Cms::InformationController < Cms::SecuredController
   def show
   end
 
+  private
+  def update_html_inputs
+    @original_location_html = @information.location_html.html_safe
+    @original_additional_information = @information.additional_information.html_safe
+
+    decorator = InformationDecorator.new(@information)
+    @location_html_changed = decorator.update_list_in(:distances, :location_html)
+    @additional_information_changed = decorator.update_list_in(:characteristics, :additional_information)
+
+    @location_html_changed || @additional_information_changed
+  end
 end

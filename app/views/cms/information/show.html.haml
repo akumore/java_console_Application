@@ -14,6 +14,13 @@
             %dt= t ".points_of_interest.types.#{poi.name}"
             %dd= poi.distance
 
+  - if accessilbe?(:location_html)
+    %dl.dl-horizontal
+      %dt= t "mongoid.attributes.information.location_html"
+      %dd
+        = @information.location_html.html_safe
+        &nbsp;
+
 
   - unless @real_estate.parking?
     %legend= t ".building_information"

@@ -6,11 +6,10 @@ describe 'ApplicationDecorator' do
   let(:model) { double('Information') }
   subject { ApplicationDecorator.new(model) }
 
-
   describe '#field_list_in_real_estate_language' do
 
     before(:each) do
-      model.stub(:real_estate) { double("RealEstate", language: 'xx') }
+      model.stub(:real_estate) { RealEstate.new(language: 'xx') }
     end
 
     it 'sets the real estate language before translate' do
