@@ -12,16 +12,10 @@ class FieldAccess
   end
 
   def accessible?(model, field)
-    found = if @blacklist.include?(key_for(model, field))
-      true
-    elsif @blacklist.include?(any_offer_key_for(model, field))
-      true
-    elsif @blacklist.include?(any_utilization_key_for(model, field))
-      true
-    else
-      false
-    end
-    !found
+    return false if @blacklist.include?(key_for(model, field))
+    return false if @blacklist.include?(any_offer_key_for(model, field))
+    return false if @blacklist.include?(any_utilization_key_for(model, field))
+    true
   end
 
   def key_for(model, field)
