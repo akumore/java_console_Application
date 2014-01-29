@@ -87,12 +87,6 @@
               .controls
                 = f.check_box :has_elevator
 
-            - if @real_estate.property?
-              .control-group
-                = f.label :is_developed
-                .controls
-                  = f.check_box :is_developed
-
             - unless @real_estate.living?
               .control-group
                 = f.label :has_ramp
@@ -221,6 +215,12 @@
                 = f.label :is_under_building_laws
                 .controls
                   = f.check_box :is_under_building_laws
+
+            - if @real_estate.property?
+              .control-group
+                = f.label :is_developed
+                .controls
+                  = f.check_box :is_developed
 
 
   .form-actions
