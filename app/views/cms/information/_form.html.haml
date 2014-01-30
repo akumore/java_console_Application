@@ -41,143 +41,76 @@
       .row
         .span12
           .floated-controls-box
-            .control-group
-              = f.label :built_on
-              .controls
-                = f.text_field :built_on, class: 'span1'
+            - floated_field(f, :text_field, :built_on, class: 'span1')
+            - floated_field(f, :text_field, :renovated_on, class: 'span1')
+            - floated_field(f, :text_field, :floors, class: 'span1')
+            - floated_field(f, :check_box,  :has_swimming_pool)
+            - floated_field(f, :check_box,  :is_child_friendly)
+            - floated_field(f, :check_box,  :is_wheelchair_accessible)
+            - floated_field(f, :check_box,  :is_minergie_style)
+            - floated_field(f, :check_box,  :is_minergie_certified)
+            - floated_field(f, :check_box,  :has_elevator)
+            - floated_field(f, :check_box,  :has_freight_elevator)
+            - floated_field(f, :check_box,  :freight_elevator_carrying_capacity)
+            - floated_field(f, :check_box,  :has_ramp)
+            - floated_field(f, :check_box,  :has_lifting_platform)
+            - floated_field(f, :check_box,  :has_railway_terminal)
 
-            .control-group
-              = f.label :renovated_on
-              .controls
-                = f.text_field :renovated_on, class: 'span1'
-
-            .control-group
-              = f.label :floors
-              .controls
-                = f.text_field :floors, class: 'span1'
-
-            - if @real_estate.living?
-              .control-group
-                = f.label :has_swimming_pool
-                .controls
-                  = f.check_box :has_swimming_pool
-
-              .control-group
-                = f.label :is_child_friendly
-                .controls
-                  = f.check_box :is_child_friendly
-
-            .control-group
-              = f.label :is_wheelchair_accessible
-              .controls
-                = f.check_box :is_wheelchair_accessible
-
-            .control-group
-              = f.label :is_minergie_style
-              .controls
-                = f.check_box :is_minergie_style
-
-            .control-group
-              = f.label :is_minergie_certified
-              .controls
-                = f.check_box :is_minergie_certified
-
-            .control-group
-              = f.label :has_elevator
-              .controls
-                = f.check_box :has_elevator
-
-            - unless @real_estate.living?
-              .control-group
-                = f.label :has_ramp
-                .controls
-                  = f.check_box :has_ramp
-
-              .control-group
-                = f.label :has_lifting_platform
-                .controls
-                  = f.check_box :has_lifting_platform
-
-              .control-group
-                = f.label :has_railway_terminal
-                .controls
-                  = f.check_box :has_railway_terminal
-
-              .control-group
-                = f.label :freight_elevator_carrying_capacity
-                .controls
-                  = f.text_field :freight_elevator_carrying_capacity, class: 'span1'
-
+      .row
+        .span12
+          - if @infrastructure_html_changed
+            .alert
+              = t('cms.information.form.check_new_entries')
+              = @original_infrastructure_html
+          .control-group
+            = f.label :infrastructure_html
+            .controls
+              .row
+                .span8
+                  = f.text_area :infrastructure_html, :class => 'editor'
 
     %fieldset.push-checkboxes-down
       %legend= t ".building_up"
       .row
         .span12
           .floated-controls-box
-            - if @real_estate.storing?
-              .control-group
-                = f.label :has_sewage_supply
-                .controls
-                  = f.check_box :has_sewage_supply
 
-              .control-group
-                = f.label :has_water_supply
-                .controls
-                  = f.check_box :has_water_supply
+            - floated_field(f, :check_box,  :has_sewage_supply)
+            - floated_field(f, :check_box,  :has_water_supply)
+            - floated_field(f, :check_box,  :has_balcony)
+            - floated_field(f, :check_box,  :has_garden_seating)
+            - floated_field(f, :check_box,  :has_fireplace)
+            - floated_field(f, :check_box,  :has_isdn)
+            - floated_field(f, :check_box,  :has_cable_tv)
+            - floated_field(f, :text_field,  :maximal_floor_loading, class: 'span1')
+            - floated_field(f, :text_field,  :number_of_restrooms, class: 'span1')
+            - floated_field(f, :text_field,  :ceiling_height, class: 'span1')
 
-            .control-group
-              = f.label :has_balcony
-              .controls
-                = f.check_box :has_balcony
-                
-            .control-group
-              = f.label :has_garden_seating
-              .controls
-                = f.check_box :has_garden_seating
+      .row
+        .span12
+          - if @additional_information_changed
+            .alert
+              = t('cms.information.form.check_new_entries')
+              = @original_additional_information
+          .control-group
+            = f.label :additional_information
+            .controls
+              .row
+                .span8
+                  = f.text_area :additional_information, class: 'editor'
 
-            - if @real_estate.living?
-              .control-group
-                = f.label :has_fireplace
-                .controls
-                  = f.check_box :has_fireplace
-
-            .control-group
-              = f.label :has_isdn
-              .controls
-                = f.check_box :has_isdn
-
-            .control-group
-              = f.label :has_cable_tv
-              .controls
-                = f.check_box :has_cable_tv
-
-            - unless @real_estate.living?
-              .control-group
-                = f.label :maximal_floor_loading
-                .controls
-                  = f.text_field :maximal_floor_loading, class: 'span1'
-              
-              .control-group
-                = f.label :number_of_restrooms
-                .controls
-                  =f.text_field :number_of_restrooms, class: 'span1'
-
-              .control-group
-                = f.label :ceiling_height
-                .controls
-                  = f.text_field :ceiling_height, class: 'span1'
-
-      - unless @original_additional_information.nil?
-        .alert
-          = t('cms.information.form.check_new_entries')
-          = @original_additional_information
-      .control-group
-        = f.label :additional_information
-        .controls
-          .row
-            .span8
-              = f.text_area :additional_information, class: 'editor'
-
+      .row
+        .span12
+          - if @interior_html_changed
+            .alert
+              = t('cms.information.form.check_new_entries')
+              = @original_interior_html
+          .control-group
+            = f.label :interior_html
+            .controls
+              .row
+                .span8
+                  = f.text_area :interior_html, class: 'editor'
 
     %fieldset.push-checkboxes-down
       %legend

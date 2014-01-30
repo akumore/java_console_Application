@@ -82,4 +82,5 @@ class Information
   def has_freight_elevator?
     freight_elevator_carrying_capacity > 0 if freight_elevator_carrying_capacity.present?
   end
+  alias_method :has_freight_elevator, :has_freight_elevator?
 end

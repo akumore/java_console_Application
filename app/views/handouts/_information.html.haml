@@ -3,6 +3,16 @@
     %dt= t('information.location')
     %dd= location.html_safe
 
+- if interior = additional_description.interior.presence
+  %dl
+    %dt= t('additional_descriptions.interior')
+    %dd= interior.html_safe
+
+- if infrastructure = additional_description.infrastructure.presence
+  %dl
+    %dt= t('additional_descriptions.infrastructure')
+    %dd= infrastructure.html_safe
+
 -# The rest here will be removed, just left here to avoid merge conflicts
 .chapter.pbi-avoid
   %h2= t('information.title')

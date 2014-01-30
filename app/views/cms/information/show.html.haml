@@ -28,125 +28,56 @@
     .row
       .span12
         .floated-controls-box
-          %dl.dl-horizontal
-            %dt= t "mongoid.attributes.information.built_on"
-            %dd= @information.built_on
+          - floated_field_show(@information, :built_on)
+          - floated_field_show(@information, :renovated_on)
+          - floated_field_show(@information, :floors)
+          - floated_field_show(@information, :has_swimming_pool,        :translate_value => true)
+          - floated_field_show(@information, :is_child_friendly,        :translate_value => true)
+          - floated_field_show(@information, :is_wheelchair_accessible, :translate_value => true)
+          - floated_field_show(@information, :is_minergie_style,        :translate_value => true)
+          - floated_field_show(@information, :has_elevator,             :translate_value => true)
 
-          %dl.dl-horizontal
-            %dt= t "mongoid.attributes.information.renovated_on"
-            %dd= @information.renovated_on
+          - floated_field_show(@information, :has_ramp)
+          - floated_field_show(@information, :has_lifting_platform,     :translate_value => true)
+          - floated_field_show(@information, :has_railway_terminal,     :translate_value => true)
+          - floated_field_show(@information, :has_freight_elevator,     :translate_value => true)
+          - floated_field_show(@information, :freight_elevator_carrying_capacity)
 
-          %dl.dl-horizontal
-            %dt= t "mongoid.attributes.information.floors"
-            %dd= @information.floors
-
-          - if @real_estate.living?
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.has_swimming_pool"
-              %dd= t "#{@information.has_swimming_pool?}"
-
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.is_child_friendly"
-              %dd= t "#{@information.is_child_friendly?}"
-
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.is_wheelchair_accessible"
-              %dd= t "#{@information.is_wheelchair_accessible?}"
-
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.is_minergie_style"
-              %dd= t "#{@information.is_minergie_style?}"
-
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.is_minergie_certified"
-              %dd= t "#{@information.is_minergie_certified?}"
-
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.has_elevator"
-              %dd= t "#{@information.has_elevator?}"
-
-          - if @real_estate.property?
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.is_developed"
-              %dd= t "#{@information.is_developed?}"
-
-          - unless @real_estate.living?
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.has_ramp"
-              %dd= t "#{@information.has_ramp?}"
-
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.has_lifting_platform"
-              %dd= t "#{@information.has_lifting_platform?}"
-
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.has_railway_terminal"
-              %dd= t "#{@information.has_railway_terminal?}"
-
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.freight_elevator"
-              - if @information.has_freight_elevator?
-                %dd= t "true"
-              - else
-                %dd= t "false"
-
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.freight_elevator_carrying_capacity"
-              %dd= @information.freight_elevator_carrying_capacity
-
+    - if accessible?(:infrastructure_html)
+      %dl.dl-horizontal
+        %dt= t "mongoid.attributes.information.infrastructure_html"
+        %dd
+          = @information.infrastructure_html.html_safe
+          &nbsp;
 
     %legend= t ".building_up"
     .row
       .span12
         .floated-controls-box
-          - if @real_estate.storing?
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.has_sewage_supply"
-              %dd= t "#{@information.has_sewage_supply?}"
+          - floated_field_show(@information, :has_sewage_supply,     :translate_value => true)
+          - floated_field_show(@information, :has_water_supply,     :translate_value => true)
+          - floated_field_show(@information, :has_balcony,     :translate_value => true)
+          - floated_field_show(@information, :has_garden_seating,     :translate_value => true)
+          - floated_field_show(@information, :has_fireplace,     :translate_value => true)
+          - floated_field_show(@information, :has_isdn,     :translate_value => true)
+          - floated_field_show(@information, :has_cable_tv,     :translate_value => true)
+          - floated_field_show(@information, :maximal_floor_loading)
+          - floated_field_show(@information, :number_of_restrooms)
+          - floated_field_show(@information, :ceiling_height)
 
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.has_water_supply"
-              %dd= t "#{@information.has_water_supply?}"
+    - if accessible?(:additional_information)
+      %dl.dl-horizontal
+        %dt= t "mongoid.attributes.information.additional_information"
+        %dd
+          = @information.additional_information.html_safe
+          &nbsp;
 
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.has_balcony"
-              %dd= t "#{@information.has_balcony?}"
-            
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.has_garden_seating"
-              %dd= t "#{@information.has_garden_seating?}"
-
-          - if @real_estate.living?
-            %dl.dl-horizontal 
-              %dt= t "mongoid.attributes.information.has_fireplace"
-              %dd= t "#{@information.has_fireplace?}"
-
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.has_isdn"
-              %dd= t "#{@information.has_isdn?}"
-
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.has_cable_tv"
-              %dd= t "#{@information.has_cable_tv?}"
-
-          - unless @real_estate.living?
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.maximal_floor_loading"
-              %dd= @information.maximal_floor_loading
-            
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.number_of_restrooms"
-              %dd= @information.number_of_restrooms
-
-            %dl.dl-horizontal
-              %dt= t "mongoid.attributes.information.ceiling_height"
-              %dd= @information.ceiling_height
-
-        - if @information.additional_information.present?
-          %dl.dl-horizontal
-            %dt= t "mongoid.attributes.information.additional_information"
-            %dd= @information.additional_information.html_safe
-
+    - if accessible?(:interior_html)
+      %dl.dl-horizontal
+        %dt= t "mongoid.attributes.information.interior_html"
+        %dd
+          = @information.interior_html.html_safe
+          &nbsp;
 
     %legend= t ".relevant_for_external_portals"
     .row
@@ -173,3 +104,8 @@
             %dl.dl-horizontal
               %dt= t "mongoid.attributes.information.is_under_building_laws"
               %dd= t "#{@information.is_under_building_laws?}"
+
+          - if @real_estate.property?
+            %dl.dl-horizontal
+              %dt= t "mongoid.attributes.information.is_developed"
+              %dd= t "#{@information.is_developed?}"

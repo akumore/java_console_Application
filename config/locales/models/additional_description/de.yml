@@ -4,7 +4,5 @@ de:
       additional_description: 'Beschreibungen'
     attributes:
       additional_description:
-        interior: 'Ausbaustandard'
         offer: 'Angebot'
-        infrastructure: 'Infrastruktur'
         orientation_degrees: 'Ausrichtung Nordpfeil'

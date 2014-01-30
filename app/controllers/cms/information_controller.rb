@@ -8,7 +8,6 @@ class Cms::InformationController < Cms::SecuredController
     redirect_to cms_real_estate_information_path(@real_estate), :alert => exception.message
   end
 
-
   def new
     @information = Information.new
     @information.build_points_of_interest(@real_estate)
@@ -47,12 +46,14 @@ class Cms::InformationController < Cms::SecuredController
   private
   def update_html_inputs
     @original_location_html = @information.location_html.html_safe
-    @original_additional_information = @information.additional_information.html_safe
+    @original_infrastructure_html = @information.infrastructure_html.html_safe
+    @original_interior_html = @information.interior_html.html_safe
 
     decorator = InformationDecorator.new(@information)
     @location_html_changed = decorator.update_list_in(:location_characteristics, :location_html)
-    @additional_information_changed = decorator.update_list_in(:characteristics, :additional_information)
+    @infrastructure_html_changed = decorator.update_list_in(:infrastructure_characteristics, :infrastructure_html)
+    @interior_html_changed = decorator.update_list_in(:interior_characteristics, :interior_html)
 
-    @location_html_changed || @additional_information_changed
+    @infrastructure_html_changed || @location_html_changed || @interior_html_changed
   end
 end

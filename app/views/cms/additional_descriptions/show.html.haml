@@ -6,20 +6,11 @@
   Für diese Immobilie wurden keine #{t "navigation.cms.real_estates_navigation.additional_description"} hinterlegt.
 -else
   %dl.dl-horizontal
-    %dt= t "mongoid.attributes.additional_description.interior"
-    %dd
-      = @additional_description.interior.html_safe
-      &nbsp;
-
     %dt= t "mongoid.attributes.additional_description.offer"
     %dd
       = @additional_description.offer.html_safe
       &nbsp;
 
-    %dt= t "mongoid.attributes.additional_description.infrastructure"
-    %dd
-      = @additional_description.infrastructure.html_safe
-      &nbsp;
 
     %dt= t "mongoid.attributes.additional_description.orientation_degrees"
     %dd

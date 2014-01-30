@@ -84,6 +84,29 @@ class FieldAccess
        *.parking.real_estate.utilization_description
        sale.*.information.rent_info
        rent.parking.information.rent_info
+       *.working.information.has_swimming_pool
+       *.storing.information.has_swimming_pool
+       *.parking.information.has_swimming_pool
+       *.working.information.is_child_friendly
+       *.storing.information.is_child_friendly
+       *.parking.information.is_child_friendly
+       *.living.information.has_ramp
+       *.living.information.has_lifting_platform
+       *.living.information.has_railway_terminal
+       *.living.information.has_freight_elevator
+       *.living.information.freight_elevator_carrying_capacity
+       *.living.information.has_sewage_supply
+       *.working.information.has_sewage_supply
+       *.parking.information.has_sewage_supply
+       *.living.information.has_water_supply
+       *.working.information.has_water_supply
+       *.parking.information.has_water_supply
+       *.storing.information.has_fireplace
+       *.working.information.has_fireplace
+       *.parking.information.has_fireplace
+       *.living.information.maximal_floor_loading
+       *.living.information.number_of_restrooms
+       *.living.information.ceiling_height
     )
   end
 end
