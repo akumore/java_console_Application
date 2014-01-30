@@ -37,7 +37,7 @@ en:
       other: '%{count} Floors'
     ceiling_height: 'Ceiling height'
     ceiling_height_value: '%{size} m'
-    distances: 'Nearby'
+    location: 'Nearby'
     points_of_interest:
       public_transport: 'Public transport %{distance} m'
       shopping: 'Shops %{distance} m'
@@ -45,3 +45,4 @@ en:
       elementary_school: 'Primary school %{distance} m'
       high_school: 'Secondary / high school %{distance} m'
       highway_access: 'Motorway access %{distance} m'
+    location_html: 'Location'

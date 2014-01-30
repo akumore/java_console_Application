@@ -120,7 +120,7 @@ describe "RealEstates" do
 
         it 'shows the location description' do
           page.should have_css('h3:contains(Standort)')
-          page.should have_content real_estate.additional_description.location
+          page.should have_content real_estate.information.location_html
         end
 
         it 'shows the interior description' do

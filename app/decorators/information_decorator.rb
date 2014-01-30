@@ -109,10 +109,10 @@ class InformationDecorator < ApplicationDecorator
       end
     end
 
-    if distances.any?
+    if location_characteristics.any?
       content << {
-        :key => t('information.distances'),
-        :value => distances.join(', ')
+        :key => t('information.location'),
+        :value => location_characteristics.join(', ')
       }
     end
 
@@ -140,7 +140,7 @@ class InformationDecorator < ApplicationDecorator
     t('information.ceiling_height_value', :size => model.ceiling_height) if model.ceiling_height.present?
   end
 
-  def distances
+  def location_characteristics
     buffer = []
 
     points = model.points_of_interest.map {|p| p}

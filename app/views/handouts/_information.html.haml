@@ -1,3 +1,9 @@
+- if location = information.try(&:location_html).presence
+  %dl
+    %dt= t('information.location')
+    %dd= location.html_safe
+
+-# The rest here will be removed, just left here to avoid merge conflicts
 .chapter.pbi-avoid
   %h2= t('information.title')
 

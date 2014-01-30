@@ -37,7 +37,7 @@ fr:
       other: '%{count} étages'
     ceiling_height: 'Hauteur des locaux'
     ceiling_height_value: '%{size} m'
-    distances: 'À proximité'
+    location: 'À proximité'
     points_of_interest:
       public_transport: 'Transports en commun %{distance} m'
       shopping: 'Magasins %{distance} m'
@@ -45,3 +45,4 @@ fr:
       elementary_school: 'Ecole primaire %{distance} m'
       high_school: 'Cycle secondaire %{distance} m'
       highway_access: 'Accès autoroutier %{distance} m'
+    location_html: 'Lieu'

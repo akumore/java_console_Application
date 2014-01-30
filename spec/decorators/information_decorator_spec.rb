@@ -102,9 +102,9 @@ describe InformationDecorator do
     @information.ceiling_height.should == '2.55 m'
   end
 
-  describe '#distances' do
+  describe '#location_characteristics' do
     it 'formats points of interest' do
-      expect(@information.distances).to eq ['Öffentlicher Verkehr 100 m', 'Einkaufen 200 m']
+      expect(@information.location_characteristics).to eq ['Öffentlicher Verkehr 100 m', 'Einkaufen 200 m']
     end
 
     it 'puts school and transport on same line' do
@@ -114,20 +114,20 @@ describe InformationDecorator do
       @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'kindergarden', :distance => 20)
 
       expect(@information.points_of_interest.count).to eq(6)
-      expect(@information.distances).to eq ['Öffentlicher Verkehr 100 m, Autobahnanschluss 30 m',
+      expect(@information.location_characteristics).to eq ['Öffentlicher Verkehr 100 m, Autobahnanschluss 30 m',
                                             'Kindergarten 20 m, Primarschule 20 m, Oberstufe 20 m',
                                             'Einkaufen 200 m']
       expect(@information.points_of_interest.count).to eq(6)
     end
 
-    it 'do not use emtpy distances' do
+    it 'do not use emtpy location_characteristics' do
       @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'high_school', :distance => '')
       @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'elementary_school', :distance => '')
       @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'highway_access', :distance => '')
       @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'kindergarden', :distance => '')
 
       expect(@information.points_of_interest.count).to eq(6)
-      expect(@information.distances).to eq ['Öffentlicher Verkehr 100 m',
+      expect(@information.location_characteristics).to eq ['Öffentlicher Verkehr 100 m',
                                             'Einkaufen 200 m']
       expect(@information.points_of_interest.count).to eq(6)
     end

@@ -105,6 +105,7 @@ describe "Cms Information" do
         expect(information.renovated_on).to eq @template_information.renovated_on
         expect(information.built_on).to eq @template_information.built_on
         expect(information.points_of_interest.length).to eq 6
+        expect(information.location_html).to eq 'In laufweite zum Flughafen'
 
         updated_additional_infos = [
           "<ul>",
@@ -420,6 +421,7 @@ describe "Cms Information" do
     it 'shows the additional information text' do
       visit cms_real_estate_information_path real_estate
       page.should have_content real_estate.information.additional_information
+      page.should have_content real_estate.information.location_html
     end
 
     it 'shows a message if no information exist' do

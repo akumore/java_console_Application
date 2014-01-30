@@ -4,7 +4,6 @@ de:
       additional_description: 'Beschreibungen'
     attributes:
       additional_description:
-        location: 'Standort'
         interior: 'Ausbaustandard'
         offer: 'Angebot'
         infrastructure: 'Infrastruktur'

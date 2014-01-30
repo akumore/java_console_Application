@@ -37,7 +37,7 @@ de:
       other: '%{count} Geschosse'
     ceiling_height: 'Raumhöhe'
     ceiling_height_value: '%{size} m'
-    distances: 'In der Nähe'
+    location: 'In der Nähe'
     points_of_interest:
       public_transport: 'Öffentlicher Verkehr %{distance} m'
       shopping: 'Einkaufen %{distance} m'
@@ -45,3 +45,4 @@ de:
       elementary_school: 'Primarschule %{distance} m'
       high_school: 'Oberstufe %{distance} m'
       highway_access: 'Autobahnanschluss %{distance} m'
+    location_html: 'Standort'

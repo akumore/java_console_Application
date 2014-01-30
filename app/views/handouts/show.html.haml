@@ -15,8 +15,12 @@
 - if @real_estate.floor_plans.any?
   = render 'floorplan'
 
-- if @real_estate.any_information? && !@real_estate.parking?
-  = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
+- information_content = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
+- if information_content.present?
+  .chapter.pbi-avoid
+    .title= t('information.title')
+    .content
+      = information_content
 
 = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing, :information => @real_estate.information
 

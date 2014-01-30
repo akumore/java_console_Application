@@ -5,6 +5,7 @@
 - if @information.nil?
   Für diese Immobilie wurden keine #{t "navigation.cms.real_estates_navigation.information"} hinterlegt.
 - else
+
   %legend= t ".location"
   .row
     .span12
@@ -14,7 +15,7 @@
             %dt= t ".points_of_interest.types.#{poi.name}"
             %dd= poi.distance
 
-  - if accessilbe?(:location_html)
+  - if accessible?(:location_html)
     %dl.dl-horizontal
       %dt= t "mongoid.attributes.information.location_html"
       %dd

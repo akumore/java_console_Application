@@ -50,7 +50,7 @@ class Cms::InformationController < Cms::SecuredController
     @original_additional_information = @information.additional_information.html_safe
 
     decorator = InformationDecorator.new(@information)
-    @location_html_changed = decorator.update_list_in(:distances, :location_html)
+    @location_html_changed = decorator.update_list_in(:location_characteristics, :location_html)
     @additional_information_changed = decorator.update_list_in(:characteristics, :additional_information)
 
     @location_html_changed || @additional_information_changed

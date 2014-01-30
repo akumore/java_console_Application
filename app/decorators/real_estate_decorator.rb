@@ -327,7 +327,7 @@ class RealEstateDecorator < ApplicationDecorator
                         information.renovated_on.present? ||
                         information.built_on.present? || 
                         information.characteristics.any? ||
-                        information.distances.any?)
+                        information.location_characteristics.any?)
   end
 
   def utilization_information?

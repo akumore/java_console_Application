@@ -37,7 +37,7 @@ it:
       other: '%{count} Piani'
     ceiling_height: 'Altezza locali'
     ceiling_height_value: '%{size} m'
-    distances: 'Nelle vicinanze'
+    location: 'Nelle vicinanze'
     points_of_interest:
       public_transport: 'Trasporti pubblici %{distance} m'
       shopping: 'Negozi %{distance} m'
@@ -45,3 +45,4 @@ it:
       elementary_school: 'Scuola elementare %{distance} m'
       high_school: 'Scuole superiori %{distance} m'
       highway_access: 'Autostrada %{distance} m'
+    location_html: 'Ubicazione'

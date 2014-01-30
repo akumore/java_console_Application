@@ -1,10 +1,5 @@
 .chapter.additional-description.pbi-avoid
   %h2= t('.title')
-  - if location = additional_description.location.presence
-    %dl
-      %dt= t('additional_descriptions.location')
-      %dd= location.html_safe
-
   - if interior = additional_description.interior.presence
     %dl
       %dt= t('additional_descriptions.interior')
