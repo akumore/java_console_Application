@@ -17,7 +17,6 @@ describe "RealEstates" do
               :information => Fabricate.build(:information),
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
               :pricing => Fabricate.build(:pricing),
-              :infrastructure => Fabricate.build(:infrastructure),
               :additional_description => Fabricate.build(:additional_description),
               :contact => Fabricate(:employee),
               :link_url => 'http://www.alfred-mueller.ch'
@@ -29,7 +28,6 @@ describe "RealEstates" do
               :address => Fabricate.build(:address),
               :figure => Fabricate.build(:figure, :rooms => 20, :floor => 1),
               :pricing => Fabricate.build(:pricing),
-              :infrastructure => Fabricate.build(:infrastructure),
               :contact => Fabricate(:employee)
   end
 
@@ -533,17 +531,6 @@ describe "RealEstates" do
             page.should have_content('5 m')
           end
         end
-
-        context 'real estate for parking utilization' do
-          before do
-            real_estate.update_attribute(:utilization, Utilization::PARKING)
-            visit real_estate_path(real_estate)
-          end
-
-          it 'does not show the chapter title' do
-            page.should_not have_content('Immobilieninfos')
-          end
-        end
       end
 
       describe 'contact' do
@@ -869,7 +856,6 @@ describe "RealEstates" do
                   :information => Fabricate.build(:information),
                   :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
                   :pricing => Fabricate.build(:pricing),
-                  :infrastructure => Fabricate.build(:infrastructure),
                   :additional_description => Fabricate.build(:additional_description),
                   :contact => Fabricate(:employee)
 
@@ -892,7 +878,6 @@ describe "RealEstates" do
                     :information => Fabricate.build(:information),
                     :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
                     :pricing => Fabricate.build(:pricing),
-                    :infrastructure => Fabricate.build(:infrastructure),
                     :additional_description => Fabricate.build(:additional_description),
                     :contact => Fabricate(:employee)
         end

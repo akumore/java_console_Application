@@ -5,7 +5,7 @@ class PointOfInterest
   TYPES = %w(public_transport shopping kindergarden elementary_school high_school highway_access)
   PARKING_STORING_TYPES = %w(public_transport shopping highway_access)
 
-  embedded_in :infrastructure
+  embedded_in :information
 
   delegate :present?, :to => :distance
 

@@ -19,10 +19,10 @@ module Microsite
         end
       end
 
-      if real_estate.infrastructure.present?
-        infrastructure_chapter = InfrastructureDecorator.decorate(real_estate.infrastructure).chapter
-        unless infrastructure_chapter[:content].blank? and infrastructure_chapter[:content_html].blank?
-          chapters << infrastructure_chapter
+      if real_estate.figure.present?
+        figure_chapter = FigureDecorator.decorate(real_estate.figure).chapter
+        unless figure_chapter[:content].blank? and figure_chapter[:content_html].blank?
+          chapters << figure_chapter
         end
       end
       chapters

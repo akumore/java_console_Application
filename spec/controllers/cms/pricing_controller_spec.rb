@@ -13,36 +13,22 @@ describe 'Real Estate Wizard' do
     end
 
     describe '#create' do
-      context 'with parking utilization' do
-        before do
-          @real_estate = Fabricate :real_estate, :category => Fabricate(:category), :utilization => Utilization::PARKING
-        end
-
-        it 'redirects to the infrastructure tab' do
-          post :create, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
-          response.should redirect_to new_cms_real_estate_infrastructure_path(@real_estate)
-          flash[:success].should_not be_nil
-        end
+      before do
+        @real_estate = Fabricate :real_estate, :category => Fabricate(:category)
       end
 
-      context 'with living, working or storing utilization' do
-        before do
-          @real_estate = Fabricate :real_estate, :category => Fabricate(:category)
-        end
+      it 'redirects to the new information tab without an existing information' do
+        post :create, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
+        response.should redirect_to new_cms_real_estate_information_path(@real_estate)
+        flash[:success].should_not be_nil
+      end
 
-        it 'redirects to the new figures tab without an existing figure' do
-          post :create, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
-          response.should redirect_to new_cms_real_estate_figure_path(@real_estate)
-          flash[:success].should_not be_nil
-        end
+      it 'redirects to the edit information tab with an existing information' do
+        @real_estate.information = Fabricate.build :information
 
-        it 'redirects to the edit figures tab with an existing figures' do
-          @real_estate.figure = Fabricate.build :figure
-
-          post :create, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
-          response.should redirect_to edit_cms_real_estate_figure_path(@real_estate)
-          flash[:success].should_not be_nil
-        end
+        post :create, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
+        response.should redirect_to edit_cms_real_estate_information_path(@real_estate)
+        flash[:success].should_not be_nil
       end
     end
 
@@ -51,16 +37,16 @@ describe 'Real Estate Wizard' do
         @real_estate = Fabricate :real_estate, :category => Fabricate(:category), :pricing => Fabricate.build(:pricing)
       end
 
-      it 'redirects to the new figures tab without an existing figure' do
+      it 'redirects to the new information tab without an existing information' do
         put :update, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
-        response.should redirect_to new_cms_real_estate_figure_path(@real_estate)
+        response.should redirect_to new_cms_real_estate_information_path(@real_estate)
         flash[:success].should_not be_nil
       end
 
-      it 'redirects to the new figures tab with an existing figure' do
-        @real_estate.figure = Fabricate.build(:figure)
+      it 'redirects to the new information tab with an existing information' do
+        @real_estate.information = Fabricate.build(:information)
         put :update, :real_estate_id => @real_estate.id, :pricing => pricing_attributes
-        response.should redirect_to edit_cms_real_estate_figure_path(@real_estate)
+        response.should redirect_to edit_cms_real_estate_information_path(@real_estate)
         flash[:success].should_not be_nil
       end
     end

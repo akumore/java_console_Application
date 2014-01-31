@@ -25,7 +25,7 @@ SimpleNavigation::Configuration.run do |navigation|
                    :highlights_on=> lambda { controller_name=='real_estates' && ['edit', 'update'].include?(action_name)},
           :class=>'mandatory'
 
-      [:address, :information, :pricing, :figure, :infrastructure, :additional_description].each do |submodel|
+      [:address, :figure, :pricing, :information].each do |submodel|
         action = @real_estate.send(submodel).present? ? :edit : :new
         path = "#{action}_cms_real_estate_#{submodel}_path"
         primary.item submodel, t("navigation.cms.real_estates_navigation.#{submodel}"), send(path, @real_estate),
@@ -34,24 +34,19 @@ SimpleNavigation::Configuration.run do |navigation|
       end
 
     else
-
       primary.item :real_estate, t('navigation.cms.real_estates_navigation.real_estate'), cms_real_estate_path(@real_estate)
       primary.item :address, t('navigation.cms.real_estates_navigation.address'), cms_real_estate_address_path(@real_estate)
-      primary.item :information, t('navigation.cms.real_estates_navigation.information'), cms_real_estate_information_path(@real_estate)
-      primary.item :pricing, t('navigation.cms.real_estates_navigation.pricing'), cms_real_estate_pricing_path(@real_estate)
       primary.item :figure, t('navigation.cms.real_estates_navigation.figure'), cms_real_estate_figure_path(@real_estate), :if => Proc.new { @real_estate.to_model_access.accessible?(:figure) }
-      primary.item :infrastructure, t('navigation.cms.real_estates_navigation.infrastructure'), cms_real_estate_infrastructure_path(@real_estate), :if => Proc.new { @real_estate.to_model_access.accessible?(:infrastructure) }
-      primary.item :additional_description, t('navigation.cms.real_estates_navigation.Beschreibungen'), cms_real_estate_additional_description_path(@real_estate), :if => Proc.new { @real_estate.to_model_access.accessible?(:additional_description) }
-
+      primary.item :pricing, t('navigation.cms.real_estates_navigation.pricing'), cms_real_estate_pricing_path(@real_estate)
+      primary.item :information, t('navigation.cms.real_estates_navigation.information'), cms_real_estate_information_path(@real_estate)
     end
 
-    primary.item :media_assets, 'Bilder & Dokumente', cms_real_estate_media_assets_path(@real_estate), :highlights_on => /media_assets|image|video|document/
+    primary.item :media_assets, t('navigation.cms.real_estates_navigation.media_assets'), cms_real_estate_media_assets_path(@real_estate), :highlights_on => /media_assets|image|video|document/
 
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu
     # primary.dom_id = 'menu-id'
     primary.dom_class = 'nav nav-tabs'
-
   end
 
 end

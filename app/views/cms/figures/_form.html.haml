@@ -116,6 +116,43 @@
         .controls
           = f.text_field :storage_surface_estimate, :class => 'span4'
 
+  %fieldset.push-checkboxes-down
+    %legend= t('.offer')
+    .control-group
+      = f.label :inside_parking_spots
+      .controls
+        = f.text_field :inside_parking_spots, :class => 'span4'
+
+    .control-group
+      = f.label :outside_parking_spots
+      .controls
+        = f.text_field :outside_parking_spots, :class => 'span4'
+
+    .control-group
+      = f.label :covered_slot
+      .controls
+        = f.text_field :covered_slot, :class => 'span4'
+
+    .control-group
+      = f.label :covered_bike
+      .controls
+        = f.text_field :covered_bike, :class => 'span4'
+
+    .control-group
+      = f.label :outdoor_bike
+      .controls
+        = f.text_field :outdoor_bike, :class => 'span4'
+
+    .control-group
+      = f.label :single_garage
+      .controls
+        = f.text_field :single_garage, :class => 'span4'
+
+    .control-group
+      = f.label :double_garage
+      .controls
+        = f.text_field :double_garage, :class => 'span4'
+
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

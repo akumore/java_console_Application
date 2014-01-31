@@ -16,7 +16,6 @@ describe 'Cms::Preview::RealEstates' do
               :information => Fabricate.build(:information),
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
               :pricing => Fabricate.build(:pricing),
-              :infrastructure => Fabricate.build(:infrastructure),
               :additional_description => Fabricate.build(:additional_description),
               :contact => Fabricate(:employee)
   end
@@ -27,7 +26,6 @@ describe 'Cms::Preview::RealEstates' do
               :address => Fabricate.build(:address),
               :figure => Fabricate.build(:figure, :rooms => 20, :floor => 1),
               :pricing => Fabricate.build(:pricing),
-              :infrastructure => Fabricate.build(:infrastructure),
               :contact => Fabricate(:employee)
   end
 

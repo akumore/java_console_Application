@@ -14,48 +14,37 @@ describe 'Real Estate Wizard' do
         @information_attributes = Fabricate.attributes_for(:information)
       end
 
-      it 'redirects to the new pricing tab without an existing pricing' do
+      it 'redirects to the media assets overview tab' do
         post :create, :real_estate_id => @real_estate.id, :information => @information_attributes
-        response.should redirect_to new_cms_real_estate_pricing_path(@real_estate)
+        response.should redirect_to cms_real_estate_media_assets_path(@real_estate)
         flash[:success].should_not be_nil
       end
 
-      it 'redirects to the new pricing tab without an existing pricing' do
+      it 'redirects to the new media_assets tab without an existing media_assets' do
         post :create, :real_estate_id => @real_estate.id, :information => @information_attributes.merge(:has_cable_tv => true)
-        response.should_not redirect_to new_cms_real_estate_pricing_path(@real_estate)
+        response.should_not redirect_to cms_real_estate_media_assets_path(@real_estate)
         response.should render_template('edit')
         assigns(:original_additional_information).should_not be_nil
       end
 
-      it 'redirects to the edit pricing tab with an existing pricing' do
-        @real_estate.pricing = Fabricate.build :pricing
+      it 'redirects to the edit media_assets tab with an existing media_assets' do
         post :create, :real_estate_id => @real_estate.id, :information => @information_attributes
-        response.should redirect_to edit_cms_real_estate_pricing_path(@real_estate)
+        response.should redirect_to cms_real_estate_media_assets_path(@real_estate)
         flash[:success].should_not be_nil
       end
     end
-
 
     describe '#update' do
       before do
         @real_estate = Fabricate :real_estate, :address => Fabricate.build(:address), :category => Fabricate(:category), :information => Fabricate.build(:information)
       end
 
-      it 'redirects to the new pricing tab without an existing pricing' do
-        put :update, :real_estate_id => @real_estate.id, :information=>Fabricate.attributes_for(:information)
-        response.should redirect_to(new_cms_real_estate_pricing_path(@real_estate))
-        flash[:success].should_not be_nil
-      end
-
-      it 'redirects to the new pricing tab with an existing pricing' do
-        @real_estate.pricing = Fabricate.build(:pricing)
-
-        put :update, :real_estate_id => @real_estate.id
-        response.should redirect_to(edit_cms_real_estate_pricing_path(@real_estate))
+      it 'redirects to the media assets overview tab' do
+        put :update, :real_estate_id => @real_estate.id, :information => Fabricate.attributes_for(:information)
+        response.should redirect_to(cms_real_estate_media_assets_path(@real_estate))
         flash[:success].should_not be_nil
       end
     end
-
 
     describe '#authorization' do
       context "Real estate isn't editable" do

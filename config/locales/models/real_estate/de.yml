@@ -21,8 +21,7 @@ de:
         address: 'Adresse'
         pricing: 'Preise'
         information: 'Infos'
-        figure: 'Zahlen und Fakten'
-        infrastructure: 'Infrastruktur'
+        figure: 'Objektübersicht'
         additional_description: 'Beschreibungen'
         states:
           published: 'veröffentlicht'

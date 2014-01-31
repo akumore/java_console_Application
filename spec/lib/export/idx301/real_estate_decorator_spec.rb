@@ -307,7 +307,7 @@ describe Export::Idx301::RealEstateDecorator do
           pricing: mock_model(Pricing, 
             available_from: Date.parse('2012-01-01'),
             for_rent?: false,
-            additional_costs_is_mandatory?: false,
+            mandatory_for_rentable_parking?: false,
             for_sale?: false
           )
         ),

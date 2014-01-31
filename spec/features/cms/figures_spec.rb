@@ -14,7 +14,7 @@ describe "Cms::Figures" do
           :reference => Fabricate.build(:reference)
         )
         visit edit_cms_real_estate_path(@real_estate)
-        click_on 'Zahlen und Fakten'
+        click_on 'Objektübersicht'
       end
 
       it 'opens the create form' do
@@ -44,18 +44,25 @@ describe "Cms::Figures" do
             fill_in 'figure_living_surface_estimate', :with => '124.6 - 130.4m2'
             fill_in 'figure_property_surface', :with => '400.5'
             fill_in 'figure_property_surface_estimate', :with => '124.5 - 123m2'
+            fill_in 'figure_inside_parking_spots', :with => '1'
+            fill_in 'figure_outside_parking_spots', :with => '2'
+            fill_in 'figure_covered_slot', :with => '3'
+            fill_in 'figure_covered_bike', :with => '4'
+            fill_in 'figure_outdoor_bike', :with => '5'
+            fill_in 'figure_single_garage', :with => '6'
+            fill_in 'figure_double_garage', :with => '7'
           end
         end
 
         it 'saves a new Figure' do
-          click_on 'Zahlen und Fakten erstellen'
+          click_on 'Objektübersicht erstellen'
           @real_estate.reload
           @real_estate.figure.should be_a(Figure)
         end
 
         context '#create' do
           before :each do
-            click_on 'Zahlen und Fakten erstellen'
+            click_on 'Objektübersicht erstellen'
             @real_estate.reload
             @figure = @real_estate.figure
           end
@@ -69,6 +76,13 @@ describe "Cms::Figures" do
             @figure.living_surface_estimate.should == '124.6 - 130.4m2'
             @figure.property_surface.should == '400.5'
             @figure.property_surface_estimate.should == '124.5 - 123m2'
+            @figure.inside_parking_spots.should == 1
+            @figure.outside_parking_spots.should == 2
+            @figure.covered_slot.should == 3
+            @figure.covered_bike.should == 4
+            @figure.outdoor_bike.should == 5
+            @figure.single_garage.should == 6
+            @figure.double_garage.should == 7
           end
         end
       end
@@ -84,7 +98,7 @@ describe "Cms::Figures" do
           :reference => Fabricate.build(:reference)
         )
         visit edit_cms_real_estate_path(@real_estate)
-        click_on 'Zahlen und Fakten'
+        click_on 'Objektübersicht'
       end
 
       it 'opens the create form' do
@@ -117,18 +131,25 @@ describe "Cms::Figures" do
             fill_in 'figure_usable_surface', :with => '200.6'
             fill_in 'figure_usable_surface_estimate', :with => '200.6 - 200.7 m2'
             fill_in 'figure_storage_surface', :with => '150'
+            fill_in 'figure_inside_parking_spots', :with => '1'
+            fill_in 'figure_outside_parking_spots', :with => '2'
+            fill_in 'figure_covered_slot', :with => '3'
+            fill_in 'figure_covered_bike', :with => '4'
+            fill_in 'figure_outdoor_bike', :with => '5'
+            fill_in 'figure_single_garage', :with => '6'
+            fill_in 'figure_double_garage', :with => '7'
           end
         end
 
         it 'saves a new Figure' do
-          click_on 'Zahlen und Fakten erstellen'
+          click_on 'Objektübersicht erstellen'
           @real_estate.reload
           @real_estate.figure.should be_a(Figure)
         end
 
         context '#create' do
           before :each do
-            click_on 'Zahlen und Fakten erstellen'
+            click_on 'Objektübersicht erstellen'
             @real_estate.reload
             @figure = @real_estate.figure
           end
@@ -141,6 +162,13 @@ describe "Cms::Figures" do
             @figure.usable_surface.should == 200.6
             @figure.usable_surface_estimate.should == '200.6 - 200.7 m2'
             @figure.storage_surface.should == '150'
+            @figure.inside_parking_spots.should == 1
+            @figure.outside_parking_spots.should == 2
+            @figure.covered_slot.should == 3
+            @figure.covered_bike.should == 4
+            @figure.outdoor_bike.should == 5
+            @figure.single_garage.should == 6
+            @figure.double_garage.should == 7
           end
         end
       end
@@ -154,10 +182,14 @@ describe "Cms::Figures" do
 
      it 'shows the figure within the cms' do
        visit cms_real_estate_figure_path real_estate
-       [:floor,:rooms,:living_surface].each do |attr|
+       [:floor,:rooms,:living_surface,].each do |attr|
          page.should have_content real_estate.figure.send(attr)
        end
-     end
+
+      [:has_parking_spot,:has_garage].each do |attr|
+        page.should have_content I18n.t("#{real_estate.figure.send(attr)}")
+      end
+    end
   end
 
 end

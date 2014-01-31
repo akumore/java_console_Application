@@ -131,7 +131,7 @@ describe "Cms Information" do
         find_field('Ergänzende Informationen').value.should eq updated_additional_infos.join("\n")
 
         click_on 'Immobilieninfos speichern'
-        current_path.should == new_cms_real_estate_pricing_path(@real_estate)
+        current_path.should == cms_real_estate_media_assets_path(@real_estate)
       end
 
       it 'doesnt render the is_developed checkbox' do
@@ -403,7 +403,7 @@ describe "Cms Information" do
       end
 
       click_on 'Immobilieninfos speichern'
-      current_path.should == new_cms_real_estate_pricing_path(@real_estate)
+      current_path.should == cms_real_estate_media_assets_path(@real_estate)
     end
   end
 
@@ -424,7 +424,7 @@ describe "Cms Information" do
 
     it 'shows a message if no information exist' do
       visit cms_real_estate_information_path real_estate_without_information
-      page.should have_content "Für diese Immobilie wurden keine Infos hinterlegt."
+      page.should have_content "Für diese Immobilie wurden keine weiteren Informationen hinterlegt."
     end
   end
 end

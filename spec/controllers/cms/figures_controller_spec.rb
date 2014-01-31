@@ -16,16 +16,16 @@ describe 'Real Estate Wizard' do
         @figure_attributes =Fabricate.attributes_for(:figure)
       end
 
-      it 'redirects to the new infrastructure tab without an existing infrastructure' do
+      it 'redirects to the new pricing tab without an existing pricing' do
         post :create, :real_estate_id => @real_estate.id, :figure => @figure_attributes
-        response.should redirect_to new_cms_real_estate_infrastructure_path(@real_estate)
+        response.should redirect_to new_cms_real_estate_pricing_path(@real_estate)
         flash[:success].should_not be_nil
       end
 
-      it 'redirects to the edit infrastructure tab with an existing infrastructure' do
-        @real_estate.infrastructure = Fabricate.build :infrastructure
+      it 'redirects to the edit pricing tab with an existing pricing' do
+        @real_estate.pricing = Fabricate.build :pricing
         post :create, :real_estate_id => @real_estate.id, :figure => @figure_attributes
-        response.should redirect_to(edit_cms_real_estate_infrastructure_path(@real_estate))
+        response.should redirect_to(edit_cms_real_estate_pricing_path(@real_estate))
         flash[:success].should_not be_nil
       end
     end
@@ -37,16 +37,16 @@ describe 'Real Estate Wizard' do
         @figure_attributes =Fabricate.attributes_for(:figure)
       end
 
-      it 'redirects to the new infrastructure tab without an existing infrastructure' do
+      it 'redirects to the new pricing tab without an existing pricing' do
         put :update, :real_estate_id => @real_estate.id, :figure => @figure_attributes
-        response.should redirect_to(new_cms_real_estate_infrastructure_path(@real_estate))
+        response.should redirect_to(new_cms_real_estate_pricing_path(@real_estate))
         flash[:success].should_not be_nil
       end
 
-      it 'redirects to the edit infrastructure tab with an existing infrastructure' do
-        @real_estate.infrastructure = Fabricate.build(:infrastructure)
+      it 'redirects to the edit pricing tab with an existing pricing' do
+        @real_estate.pricing = Fabricate.build(:pricing)
         put :update, :real_estate_id => @real_estate.id, :figure => @figure_attributes
-        response.should redirect_to(edit_cms_real_estate_infrastructure_path(@real_estate))
+        response.should redirect_to(edit_cms_real_estate_pricing_path(@real_estate))
         flash[:success].should_not be_nil
       end
     end

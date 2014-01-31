@@ -12,3 +12,25 @@ de:
     upper_floor: '%{floor}. Obergeschoss'
     rooms_value: '%{count} Zimmer'
     surface_value: '%{size} m²'
+    title: 'Infrastruktur'
+    inside_parking_spots:
+      one: 'Parkplatz in Autoeinstellhalle'
+      other: 'Parkplätze in Autoeinstellhalle'
+    outside_parking_spots:
+      one: 'Parkplatz im Freien'
+      other: 'Parkplätze im Freien'
+    covered_slot:
+      one: 'Parkplatz im Freien überdacht'
+      other: 'Parkplätze im Freien überdacht'
+    covered_bike:
+      one: 'Motorrad-Parkplatz in Autoeinstellhalle'
+      other: 'Motorrad-Parkplätze in Autoeinstellhalle'
+    outdoor_bike:
+      one: 'Motorrad-Parkplatz im Freien überdacht'
+      other: 'Motorrad-Parkplätze im Freien überdacht'
+    single_garage:
+      one: 'Einzelgarage'
+      other: 'Einzelgaragen'
+    double_garage:
+      one: 'Doppelgarage'
+      other: 'Doppelgaragen'

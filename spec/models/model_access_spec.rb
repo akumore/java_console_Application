@@ -19,8 +19,8 @@ describe ModelAccess do
   describe '#accessible?' do
     context 'when the key is in the blacklist' do
       it 'returns false' do
-        model_access = ModelAccess.new(Offer::RENT, Utilization::LIVING, %w(rent.living.infrastructure))
-        model_access.accessible?('infrastructure').should be_false
+        model_access = ModelAccess.new(Offer::RENT, Utilization::LIVING, %w(rent.living.information))
+        model_access.accessible?('information').should be_false
       end
     end
 
@@ -63,14 +63,8 @@ describe ModelAccess do
       end
 
       describe 'figure' do
-        it 'is not accessible' do
-          model_access.accessible?(:figure).should be_false
-        end
-      end
-
-      describe 'infrastructure' do
         it 'is accessible' do
-          model_access.accessible?(:infrastructure).should be_true
+          model_access.accessible?(:figure).should be_true
         end
       end
 

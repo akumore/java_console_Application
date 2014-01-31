@@ -35,10 +35,6 @@ describe "Cms::Pricings" do
           page.should have_css('#pricing_extra_storage')
         end
 
-        it 'shows right parking spots pricing group title' do
-          page.should have_content('Mietzins für Parkplätze')
-        end
-
         context 'a valid Pricing' do
           before :each do
             within(".new_pricing") do
@@ -46,15 +42,13 @@ describe "Cms::Pricings" do
               fill_in 'Nebenkosten', :with => '50'
               select 'pro Mt.', :from => 'Preiseinheit'
 
-              within('.parking-spots-prices-group') do
-                fill_in 'pricing_inside_parking', :with => '140'
-                fill_in 'pricing_outside_parking', :with => '160'
-                fill_in 'pricing_double_garage', :with => '200'
-                fill_in 'pricing_single_garage', :with => '150'
-                fill_in 'pricing_outdoor_bike', :with => '120'
-                fill_in 'pricing_covered_bike', :with => '145'
-                fill_in 'pricing_covered_slot', :with => '155'
-              end
+              fill_in 'pricing_inside_parking', :with => '140'
+              fill_in 'pricing_outside_parking', :with => '160'
+              fill_in 'pricing_double_garage', :with => '200'
+              fill_in 'pricing_single_garage', :with => '150'
+              fill_in 'pricing_outdoor_bike', :with => '120'
+              fill_in 'pricing_covered_bike', :with => '145'
+              fill_in 'pricing_covered_slot', :with => '155'
 
               fill_in 'Ungefährer Preis', :with => '1500 - 2000.-'
               check('Optiert')
@@ -236,25 +230,19 @@ describe "Cms::Pricings" do
           page.should have_css('#pricing_extra_storage')
         end
 
-        it 'shows right parking spots pricing group title' do
-          page.should have_content('Kaufpreis für Parkplätze')
-        end
-
         context 'a valid Pricing' do
           before :each do
             within(".new_pricing") do
               fill_in 'Kaufpreis', :with => '100000'
               select 'Kaufpreis', :from => 'Preiseinheit'
 
-              within('.parking-spots-prices-group') do
-                fill_in 'pricing_inside_parking', :with => '50000'
-                fill_in 'pricing_outside_parking', :with => '10000'
-                fill_in 'pricing_double_garage', :with => '20000'
-                fill_in 'pricing_single_garage', :with => '15000'
-                fill_in 'pricing_outdoor_bike', :with => '11000'
-                fill_in 'pricing_covered_bike', :with => '14000'
-                fill_in 'pricing_covered_slot', :with => '12000'
-              end
+              fill_in 'pricing_inside_parking', :with => '50000'
+              fill_in 'pricing_outside_parking', :with => '10000'
+              fill_in 'pricing_double_garage', :with => '20000'
+              fill_in 'pricing_single_garage', :with => '15000'
+              fill_in 'pricing_outdoor_bike', :with => '11000'
+              fill_in 'pricing_covered_bike', :with => '14000'
+              fill_in 'pricing_covered_slot', :with => '12000'
 
               fill_in 'Ungefährer Preis', :with => '10000 - 200000.-'
               check('Optiert')
@@ -361,15 +349,13 @@ describe "Cms::Pricings" do
               fill_in 'Nebenkosten', :with => '150'
               select 'pro J.', :from => 'Preiseinheit'
 
-              within('.parking-spots-prices-group') do
-                fill_in 'pricing_inside_parking', :with => '200'
-                fill_in 'pricing_outside_parking', :with => '150'
-                fill_in 'pricing_double_garage', :with => '300'
-                fill_in 'pricing_single_garage', :with => '250'
-                fill_in 'pricing_outdoor_bike', :with => '220'
-                fill_in 'pricing_covered_bike', :with => '230'
-                fill_in 'pricing_covered_slot', :with => '205'
-              end
+              fill_in 'pricing_inside_parking', :with => '200'
+              fill_in 'pricing_outside_parking', :with => '150'
+              fill_in 'pricing_double_garage', :with => '300'
+              fill_in 'pricing_single_garage', :with => '250'
+              fill_in 'pricing_outdoor_bike', :with => '220'
+              fill_in 'pricing_covered_bike', :with => '230'
+              fill_in 'pricing_covered_slot', :with => '205'
 
               fill_in 'Lagerpreis', :with => '200'
               fill_in 'Lager Nebenkosten', :with => '50'
@@ -451,15 +437,13 @@ describe "Cms::Pricings" do
               fill_in 'Nebenkosten', :with => '150'
               select 'Kaufpreis', :from => 'Preiseinheit'
 
-              within('.parking-spots-prices-group') do
-                fill_in 'pricing_inside_parking', :with => '40000'
-                fill_in 'pricing_outside_parking', :with => '15000'
-                fill_in 'pricing_double_garage', :with => '45000'
-                fill_in 'pricing_single_garage', :with => '30000'
-                fill_in 'pricing_outdoor_bike', :with => '25000'
-                fill_in 'pricing_covered_bike', :with => '27000'
-                fill_in 'pricing_covered_slot', :with => '29000'
-              end
+              fill_in 'pricing_inside_parking', :with => '40000'
+              fill_in 'pricing_outside_parking', :with => '15000'
+              fill_in 'pricing_double_garage', :with => '45000'
+              fill_in 'pricing_single_garage', :with => '30000'
+              fill_in 'pricing_outdoor_bike', :with => '25000'
+              fill_in 'pricing_covered_bike', :with => '27000'
+              fill_in 'pricing_covered_slot', :with => '29000'
 
               fill_in 'Lagerpreis', :with => '100000'
               fill_in 'Lager Nebenkosten', :with => '2000'
@@ -498,6 +482,78 @@ describe "Cms::Pricings" do
               @pricing.extra_storage == 2000
               @pricing.opted.should be_true
             end
+          end
+        end
+      end
+    end
+  end
+
+  context 'in a real estate with parking utilization' do
+    context 'for rent' do
+      describe '#new' do
+        before :each do
+          @real_estate = Fabricate(:real_estate,
+            :utilization => Utilization::PARKING,
+            :offer => Offer::RENT,
+            :category => Category.last,
+            :reference => Fabricate.build(:reference)
+          )
+          visit edit_cms_real_estate_path(@real_estate)
+          click_on 'Preise'
+        end
+
+        it 'does show the price unit' do
+          page.should have_css('#pricing_price_unit')
+        end
+
+        it 'does not show pricing_for_rent_netto field' do
+          page.should_not have_css('#pricing_for_rent_netto')
+        end
+
+        it 'does not show pricing_estimate field' do
+          page.should_not have_css('#pricing_estimate')
+        end
+
+        it 'does not show pricing_additional_costs field' do
+          page.should_not have_css('#pricing_additional_costs')
+        end
+
+        it 'does not show pricing_storage field' do
+          page.should_not have_css('#pricing_storage')
+        end
+
+        it 'does not show pricing_extra_storage field' do
+          page.should_not have_css('#pricing_extra_storage')
+        end
+
+        it 'does not show pricing_estimate field' do
+          page.should_not have_css('#pricing_estimate')
+        end
+
+        context 'a valid Pricing' do
+          before :each do
+            within(".new_pricing") do
+              select '24', :from => 'pricing_available_from_3i'
+              select 'April', :from => 'pricing_available_from_2i'
+              select '2012', :from => 'pricing_available_from_1i'
+              fill_in 'Etwa verfügbar ab', :with => 'Ab Ende April'
+
+              fill_in 'pricing_inside_parking', :with => '200'
+              fill_in 'pricing_outside_parking', :with => '150'
+              fill_in 'pricing_double_garage', :with => '300'
+              fill_in 'pricing_single_garage', :with => '250'
+              fill_in 'pricing_outdoor_bike', :with => '220'
+              fill_in 'pricing_covered_bike', :with => '230'
+              fill_in 'pricing_covered_slot', :with => '205'
+
+              check('Optiert')
+            end
+          end
+
+          it 'saves a new Pricing' do
+            click_on 'Preise erstellen'
+            @real_estate.reload
+            @real_estate.pricing.should be_a(Pricing)
           end
         end
       end

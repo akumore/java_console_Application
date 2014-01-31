@@ -21,3 +21,38 @@
       - if additional_description.infrastructure.present?
         %h3= t('additional_descriptions.infrastructure')
         = additional_description.infrastructure.html_safe
+
+    - if figure.inside_parking_spots.present?
+      %dl
+        %dt= t('figures.inside_parking_spots', :count => figure.inside_parking_spots)
+        %dd= figure.inside_parking_spots
+
+    - if figure.outside_parking_spots.present?
+      %dl
+        %dt= t('figures.outside_parking_spots', :count => figure.outside_parking_spots)
+        %dd= figure.outside_parking_spots
+
+    - if figure.covered_slot.present?
+      %dl
+        %dt= t('figures.covered_slot', :count => figure.covered_slot)
+        %dd= figure.covered_slot
+
+    - if figure.covered_bike.present?
+      %dl
+        %dt= t('figures.covered_bike', :count => figure.covered_bike)
+        %dd= figure.covered_bike
+
+    - if figure.outdoor_bike.present?
+      %dl
+        %dt= t('figures.outdoor_bike', :count => figure.outdoor_bike)
+        %dd= figure.outdoor_bike
+
+    - if figure.single_garage.present?
+      %dl
+        %dt= t('figures.single_garage', :count => figure.single_garage)
+        %dd= figure.single_garage
+
+    - if figure.double_garage.present?
+      %dl
+        %dt= t('figures.double_garage', :count => figure.double_garage)
+        %dd= figure.double_garage

@@ -56,6 +56,8 @@ class FieldAccess
 
   def self.cms_blacklist
     %w(
+       *.parking.figure.floor
+       *.parking.figure.floor_estimate
        *.working.figure.rooms
        *.parking.figure.rooms
        *.storing.figure.rooms
@@ -72,7 +74,9 @@ class FieldAccess
        *.storing.figure.specification_living_surface
        *.parking.figure.specification_living_surface
        *.storing.figure.property_surface
+       *.parking.figure.property_surface
        *.storing.figure.property_surface_estimate
+       *.parking.figure.property_surface_estimate
        *.living.figure.usable_surface
        *.parking.figure.usable_surface
        *.living.figure.specification_usable_surface
@@ -85,7 +89,9 @@ class FieldAccess
        *.storing.pricing.storage
        *.parking.pricing.extra_storage
        *.storing.pricing.extra_storage
-       *.parking.pricing.parking_spots_prices_group
+       *.parking.pricing.for_rent_netto
+       *.parking.pricing.estimate
+       *.parking.pricing.additional_costs
        *.parking.real_estate.title
        *.parking.real_estate.utilization_description
        sale.*.information.rent_info

@@ -69,8 +69,8 @@ class Pricing
   field :double_garage,   :type => Integer # Doppelgarage
 
   validates :available_from, :presence => true
-  validates :for_rent_netto, :presence => true, :numericality => true, :if => :for_rent?
-  validates :additional_costs, :presence => true, :if => :additional_costs_is_mandatory?
+  validates :for_rent_netto, :presence => true, :numericality => true, :if => :mandatory_for_rentable_parking?
+  validates :additional_costs, :presence => true, :if => :mandatory_for_rentable_parking?
   validates :for_sale, :presence => true, :numericality => true, :if => :for_sale?
 
   validates :additional_costs,
@@ -120,7 +120,7 @@ class Pricing
     PriceUnit.all_by_offer_and_utilization(_parent.offer, _parent.utilization)
   end
 
-  def additional_costs_is_mandatory?
+  def mandatory_for_rentable_parking?
     for_rent? && !parking?
   end
 
