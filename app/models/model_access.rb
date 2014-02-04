@@ -14,8 +14,7 @@ class ModelAccess < FieldAccess
 
   def self.cms_blacklist
     %w(
-       *.parking.figure
-       *.parking.additional_description
+      *.parking.additional_description
     )
   end
 end

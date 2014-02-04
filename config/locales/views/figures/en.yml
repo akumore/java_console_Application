@@ -12,3 +12,25 @@ en:
     upper_floor: '%{floor}. First Floor'
     rooms_value: '%{count} rooms'
     surface_value: '%{size} m²'
+    title: 'Infrastructure'
+    inside_parking_spots:
+      one: 'Car park in garage'
+      other: 'Parking spaces in garage'
+    outside_parking_spots:
+      one: 'Outdoor car parking place'
+      other: 'Outdoor car parking places'
+    covered_slot:
+      one: 'Outdoor car parking place, covered'
+      other: 'Outdoor car parking places, covered'
+    covered_bike:
+      one: 'Motorbike parking place in garage'
+      other: 'Motorbike parking places in garage'
+    outdoor_bike:
+      one: 'Outdoor motorbike parking place, covered'
+      other: 'Outdoor motorbike parking places, covered'
+    single_garage:
+      one: 'Single garage'
+      other: 'Single garages'
+    double_garage:
+      one: 'Double garage'
+      other: 'Double garages'

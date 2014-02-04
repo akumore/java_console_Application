@@ -1,7 +1,10 @@
 de:
   cms:
     figures:
+      show:
+        offer: 'Angebot'
       form:
+        offer: 'Angebot'
         help_popover:
           floor: 'Hier nur Geschoss-Nr. angeben, z.B. -1, 0, 1, 2 etc.'
           floor_estimate: 'Hier Geschoss angeben, z.B. Attikageschoss, 1./2. Obergeschoss, 1. – 5. Obergeschoss<br /><br />Wenn dieses Feld ausgefüllt wird, wird es anstelle des Feldes «Geschoss» auf der Webseite und der Objektdokumentation ausgegeben.'

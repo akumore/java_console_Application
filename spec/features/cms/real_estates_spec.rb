@@ -458,6 +458,12 @@ describe "Cms::RealEstates" do
         click_on 'Immobilie speichern'
       end
 
+      it 'shows the figures tab' do
+        within('.nav-tabs') do
+          page.should have_link('Objektübersicht')
+        end
+      end
+
       it 'shows the base data tab' do
         within('.nav-tabs') do
           page.should have_link('Stammdaten')
@@ -472,7 +478,7 @@ describe "Cms::RealEstates" do
 
       it 'shows the infos tab' do
         within('.nav-tabs') do
-          page.should have_link('Infos')
+          page.should have_link('Weitere Informationen')
         end
       end
 
@@ -482,27 +488,9 @@ describe "Cms::RealEstates" do
         end
       end
 
-      it 'does not show the figures tab' do
-        within('.nav-tabs') do
-          page.should_not have_link('Zahlen und Fakten')
-        end
-      end
-
-      it 'shows the infrastructure tab' do
-        within('.nav-tabs') do
-          page.should have_link('Infrastruktur')
-        end
-      end
-
-      it 'does not show the description tab' do
-        within('.nav-tabs') do
-          page.should_not have_link('Beschreibungen')
-        end
-      end
-
       it 'shows the images tab' do
         within('.nav-tabs') do
-          page.should have_link('Bilder & Dokumente')
+          page.should have_link('Bilder/Anhänge')
         end
       end
     end
@@ -513,7 +501,6 @@ describe "Cms::RealEstates" do
         click_on 'Immobilie speichern'
       end
 
-
       it 'shows the base data tab' do
         within('.nav-tabs') do
           page.should have_link('Stammdaten')
@@ -528,7 +515,7 @@ describe "Cms::RealEstates" do
 
       it 'shows the infos tab' do
         within('.nav-tabs') do
-          page.should have_link('Infos')
+          page.should have_link('Weitere Informationen')
         end
       end
 
@@ -540,25 +527,13 @@ describe "Cms::RealEstates" do
 
       it 'shows the figures tab' do
         within('.nav-tabs') do
-          page.should have_link('Zahlen und Fakten')
-        end
-      end
-
-      it 'shows the infrastructure tab' do
-        within('.nav-tabs') do
-          page.should have_link('Infrastruktur')
-        end
-      end
-
-      it 'shows the description tab' do
-        within('.nav-tabs') do
-          page.should have_link('Beschreibungen')
+          page.should have_link('Objektübersicht')
         end
       end
 
       it 'shows the images tab' do
         within('.nav-tabs') do
-          page.should have_link('Bilder & Dokumente')
+          page.should have_link('Bilder/Anhänge')
         end
       end
     end

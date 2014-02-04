@@ -15,12 +15,11 @@ de:
       real_estates_navigation:
         real_estate: 'Stammdaten'
         address: 'Adresse'
-        information: 'Infos'
+        information: 'Weitere Informationen'
         pricing: 'Preise/Bezug'
-        figure: 'Zahlen und Fakten'
-        infrastructure: 'Infrastruktur'
+        figure: 'Objektübersicht'
         additional_description: 'Beschreibungen'
-        media_assets: 'Bilder & Dokumente'
+        media_assets: 'Bilder/Anhänge'
   languages:
     de: 'Deutsch'
     fr: 'Französisch'

@@ -6,7 +6,7 @@
   = render 'cms/shared/errors', :model => @pricing
 
   %fieldset.push-checkboxes-down
-
+    %legend Preise
     .row
       .span6
         .control-group.mandatory
@@ -19,10 +19,11 @@
               %span.input-to-text= t(".#{PriceUnit.all_by_offer_and_utilization(@real_estate.offer, @real_estate.utilization).first}")
 
         - if @real_estate.for_rent?
-          .control-group.mandatory
-            = f.label :for_rent_netto, @real_estate.parking? ? t('mongoid.attributes.pricing.for_rent_netto_parking') : t('mongoid.attributes.pricing.for_rent_netto')
-            .controls
-              = f.text_field :for_rent_netto
+          - if accessible?(:for_rent_netto)
+            .control-group.mandatory
+              = f.label :for_rent_netto, @real_estate.parking? ? t('mongoid.attributes.pricing.for_rent_netto_parking') : t('mongoid.attributes.pricing.for_rent_netto')
+              .controls
+                = f.text_field :for_rent_netto
 
         - if @real_estate.for_sale?
           .control-group.mandatory
@@ -30,16 +31,18 @@
             .controls
               = f.text_field :for_sale
 
-        .control-group
-          = f.label :estimate
-          .controls
-            = f.text_field :estimate
-            %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Pricing.human_attribute_name(:estimate), 'data-content' => t('.help_popover.estimate') }
+        - if accessible?(:estimate)
+          .control-group
+            = f.label :estimate
+            .controls
+              = f.text_field :estimate
+              %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Pricing.human_attribute_name(:estimate), 'data-content' => t('.help_popover.estimate') }
 
-        .control-group{ :class => (@pricing.additional_costs_is_mandatory? ? 'mandatory' : '') }
-          = f.label :additional_costs
-          .controls
-            = f.text_field :additional_costs
+        - if accessible?(:additional_costs)
+          .control-group{ :class => (@pricing.mandatory_for_rentable_parking? ? 'mandatory' : '') }
+            = f.label :additional_costs
+            .controls
+              = f.text_field :additional_costs
 
         - if accessible?(:storage)
           .control-group
@@ -52,6 +55,46 @@
             = f.label :extra_storage
             .controls
               = f.text_field :extra_storage
+
+        .control-group
+          = f.label :inside_parking
+          .controls
+            = f.text_field :inside_parking
+
+        .control-group
+          = f.label :outside_parking
+          .controls
+            = f.text_field :outside_parking
+
+        .control-group
+          = f.label :covered_slot
+          .controls
+            = f.text_field :covered_slot
+
+        .control-group
+          = f.label :covered_bike
+          .controls
+            = f.text_field :covered_bike
+
+        .control-group
+          = f.label :outdoor_bike
+          .controls
+            = f.text_field :outdoor_bike
+
+        .control-group
+          = f.label :single_garage
+          .controls
+            = f.text_field :single_garage
+
+        .control-group
+          = f.label :double_garage
+          .controls
+            = f.text_field :double_garage
+
+        .control-group
+          = f.label :opted
+          .controls
+            = f.check_box :opted
 
       .span6.general.monthly-prices-container.hidden{ 'data-dependent_on' => '#pricing_price_unit', 'data-dependent_on_value' => 'year_m2' }
         .control-group.control-group-spacer
@@ -66,7 +109,7 @@
           .controls
             = f.text_field :estimate_monthly
 
-        .control-group{ :class => (@pricing.additional_costs_is_mandatory? ? 'mandatory' : '') }
+        .control-group{ :class => (@pricing.mandatory_for_rentable_parking? ? 'mandatory' : '') }
           = f.label :additional_costs_monthly, t('mongoid.attributes.pricing.monthly')
           .controls
             = f.text_field :additional_costs_monthly
@@ -85,58 +128,9 @@
             .controls
               = f.text_field :extra_storage_monthly
 
-    .row
-      .span12
-        - if accessible?(:parking_spots_prices_group)
-          - if @real_estate.for_sale?
-            %legend Kaufpreis für Parkplätze
-          - else
-            %legend Mietzins für Parkplätze
 
-    %fieldset.parking-spots-prices-group
-      .control-group
-        = f.label :inside_parking
-        .controls
-          = f.text_field :inside_parking
-
-      .control-group
-        = f.label :outside_parking
-        .controls
-          = f.text_field :outside_parking
-
-      .control-group
-        = f.label :covered_slot
-        .controls
-          = f.text_field :covered_slot
-
-      .control-group
-        = f.label :covered_bike
-        .controls
-          = f.text_field :covered_bike
-
-      .control-group
-        = f.label :outdoor_bike
-        .controls
-          = f.text_field :outdoor_bike
-
-      .control-group
-        = f.label :single_garage
-        .controls
-          = f.text_field :single_garage
-
-      .control-group
-        = f.label :double_garage
-        .controls
-          = f.text_field :double_garage
-
-      .control-group
-        = f.label :opted
-        .controls
-          = f.check_box :opted
-
-    .row
-      .span12
-        %legend Bezug
+  %fieldset
+    %legend Bezug
 
     .control-group.mandatory
       = f.label :available_from

@@ -33,8 +33,8 @@ class Ability
       cannot :edit, RealEstate, :state => ['published', 'archived']
       cannot :destroy, RealEstate, :state => 'published'
 
-      can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription]
-      cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription], :real_estate=>{:state => 'published'}
+      can :manage, [Address,Information,Pricing,Figure,AdditionalDescription]
+      cannot :manage, [Address,Information,Pricing,Figure,AdditionalDescription], :real_estate=>{:state => 'published'}
 
       can :manage, [MediaAssets::Image, MediaAssets::FloorPlan, MediaAssets::Video, MediaAssets::Document]
       cannot :manage, [MediaAssets::Image, MediaAssets::FloorPlan, MediaAssets::Video, MediaAssets::Document], :real_estate=>{:state => 'published'}
@@ -60,8 +60,8 @@ class Ability
       can :destroy, RealEstate, :state => ['editing', 'archived']
       cannot :edit, RealEstate, :state => ['in_review', 'published', 'archived']
 
-      can :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription], :real_estate=>{:state => 'editing'}
-      cannot :manage, [Address,Information,Pricing,Infrastructure,Figure,AdditionalDescription], :real_estate=>{:state => ['in_review', 'published']}
+      can :manage, [Address,Information,Pricing,Figure,AdditionalDescription], :real_estate=>{:state => 'editing'}
+      cannot :manage, [Address,Information,Pricing,Figure,AdditionalDescription], :real_estate=>{:state => ['in_review', 'published']}
 
       can :manage, [MediaAssets::Image, MediaAssets::FloorPlan, MediaAssets::Video, MediaAssets::Document], :real_estate=>{:state => 'editing'}
       cannot :manage, [MediaAssets::Image, MediaAssets::FloorPlan, MediaAssets::Video, MediaAssets::Document], :real_estate=>{:state => ['in_review', 'published']}

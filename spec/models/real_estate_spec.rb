@@ -378,7 +378,7 @@ describe RealEstate do
   end
 
   it 'detects embedded models having a presence validation defined' do
-    RealEstate.mandatory_for_publishing.should == ["address", "pricing", "figure", "information"]
+    RealEstate.mandatory_for_publishing.should == ["address", "pricing", "figure"]
   end
 
 
@@ -472,7 +472,7 @@ describe RealEstate do
     context "Mandatory sub-model is missing" do
       before do
         @real_estate = Fabricate(:real_estate, :category=>Fabricate(:category))
-        @mandatory_embedded_models = [:address, :pricing, :information]
+        @mandatory_embedded_models = [:address, :pricing]
       end
 
       it "doesn't change over from 'editing' to 'in_review'" do
