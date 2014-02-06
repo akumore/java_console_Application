@@ -4,6 +4,8 @@ require "spec_helper"
 
 describe "RealEstates" do
   monkey_patch_default_url_options
+  before { ApplicationController.new.set_current_view_context }
+  before { @utilization = Utilization::LIVING }
 
   let :category do
     Fabricate(:category, :label => 'Wohnung')
@@ -11,24 +13,25 @@ describe "RealEstates" do
 
   let :real_estate do
     Fabricate :published_real_estate,
-              :category => category,
-              :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
-              :address => Fabricate.build(:address),
-              :information => Fabricate.build(:information),
-              :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
-              :pricing => Fabricate.build(:pricing),
-              :additional_description => Fabricate.build(:additional_description),
-              :contact => Fabricate(:employee),
-              :link_url => 'http://www.alfred-mueller.ch'
+      :utilization => @utilization,
+      :category => category,
+      :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
+      :address => Fabricate.build(:address),
+      :information => @information || Fabricate.build(:information),
+      :figure => @figure || Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
+      :pricing => Fabricate.build(:pricing),
+      :additional_description => Fabricate.build(:additional_description),
+      :contact => Fabricate(:employee),
+      :link_url => 'http://www.alfred-mueller.ch'
   end
 
   let :unpublished_real_estate do
     Fabricate :real_estate,
-              :category => category,
-              :address => Fabricate.build(:address),
-              :figure => Fabricate.build(:figure, :rooms => 20, :floor => 1),
-              :pricing => Fabricate.build(:pricing),
-              :contact => Fabricate(:employee)
+      :category => category,
+      :address => Fabricate.build(:address),
+      :figure => Fabricate.build(:figure, :rooms => 20, :floor => 1),
+      :pricing => Fabricate.build(:pricing),
+      :contact => Fabricate(:employee)
   end
 
   describe "Visiting unpublished real estate" do
@@ -47,128 +50,59 @@ describe "RealEstates" do
   end
 
   describe 'Visit real estate show path', :show => true do
-    before :each do
-      visit real_estate_path(real_estate)
-    end
 
-    it 'has a description for the search engine' do
-      page.should have_css("meta[content='#{RealEstateDecorator.new(real_estate).seo_description}']")
-    end
+    describe 'Chapter Information' do
+      context 'living' do
+        before do @utilization = Utilization::LIVING end
 
-    it "has a detail div with a real estate's ID" do
-      page.should have_css('div.detail')
-      page.should have_css("div.real-estate-#{real_estate.id}")
-    end
+        it 'renders the page correct' do
+          visit real_estate_path(real_estate)
+          page.should have_css("meta[content='#{RealEstateDecorator.new(real_estate).seo_description}']")
 
-    describe 'header area' do
-      it 'shows the title' do
-        page.should have_content(real_estate.title)
-      end
+          page.should have_css('div.detail')
+          page.should have_css("div.real-estate-#{real_estate.id}")
 
-      describe 'short infos' do
-        it "shows the address" do
+          page.should have_content(real_estate.title)
+
           page.within('.short-info') do
             address = real_estate.address
             page.should have_content "#{address.city} #{address.canton.upcase}"
             page.should have_content "#{address.street} #{address.street_number}"
-          end
-        end
-
-        it 'shows the utilization description' do
-          page.within('.short-info') do
             page.should have_content(RealEstateDecorator.new(real_estate).utilization_description)
-          end
-        end
-
-        it 'shows the price' do
-          page.within('.short-info') do
-          end
-        end
-
-        it "shows the number of rooms" do
-          page.within('.short-info') do
             page.should have_content "#{real_estate.figure.rooms} Zimmer"
-          end
-        end
-
-        it "shows the floor" do
-          page.within('.short-info') do
             page.should have_content "#{real_estate.figure.floor}. Obergeschoss"
-          end
-        end
-
-        it 'shows the surface size' do
-          page.within('.short-info') do
             page.should have_content real_estate.figure.living_surface
           end
-        end
 
-        it 'shows the availability date' do
-          page.within('.short-info') do
-          end
-        end
-      end
-    end
-
-    describe 'accordion' do
-      describe 'descriptions' do
-        it 'shows the description' do
           page.should have_content(real_estate.description)
-        end
-
-        it 'shows the location description' do
           page.should have_css('h3:contains(Standort)')
-          page.should have_content real_estate.information.location_html
-        end
-
-        it 'shows the interior description' do
+          page.html.should include real_estate.information.location_html
           page.should have_css('h3:contains(Ausbaustandard)')
-          page.should have_content real_estate.additional_description.interior
-        end
-
-        it 'shows the offer description' do
+          page.html.should include real_estate.information.interior_html
           page.should have_css('h3:contains(Angebot)')
-          page.should have_content real_estate.additional_description.offer
-        end
-
-        it 'shows the infrastructure description' do
+          page.html.should include real_estate.figure.offer_html.to_s
           page.should have_css('h3:contains(Infrastruktur)')
-          page.should have_content real_estate.additional_description.infrastructure
+          page.html.should include real_estate.information.infrastructure_html
+          page.should_not have_content('Raumhöhe')
         end
       end
 
-      describe 'Chapter Information' do
-        context 'for working' do
-          before :each do
-            real_estate.update_attribute(:utilization, Utilization::WORKING)
-            visit real_estate_path(real_estate)
-          end
+      context 'working' do
+        before do @utilization = Utilization::WORKING end
 
-          it 'shows the ceiling height' do
-            page.should have_content('Raumhöhe')
-          end
+        it 'renders the page correct' do
+          visit real_estate_path(real_estate)
+          page.should have_content('Raumhöhe')
         end
 
-        context 'for living' do
-          before :each do
-            real_estate.update_attribute(:utilization, Utilization::LIVING)
-            visit real_estate_path(real_estate)
-          end
+      end
 
-          it 'does not show the ceiling height' do
-            page.should_not have_content('Raumhöhe')
-          end
-        end
+      context 'storing' do
+        before do @utilization = Utilization::WORKING end
 
-        context 'for storing' do
-          before :each do
-            real_estate.update_attribute(:utilization, Utilization::STORING)
-            visit real_estate_path(real_estate)
-          end
-
-          it 'shows the ceiling height' do
-            page.should have_content('Raumhöhe')
-          end
+        it 'renders the page correct' do
+          visit real_estate_path(real_estate)
+          page.should have_content('Raumhöhe')
         end
       end
 
@@ -400,102 +334,56 @@ describe "RealEstates" do
         end
 
         before do
-          real_estate.figure = figure
-          real_estate.information = information
-          real_estate.save
-          visit real_estate_path(real_estate)
+          @figure = figure
+          @information = information
         end
 
         it 'shows the chapter title' do
+          visit real_estate_path(real_estate)
           page.should have_content('Immobilieninfos')
         end
 
         context 'real estate for living utilization' do
-          it 'shows the floors' do
+          before do visit real_estate_path(real_estate) end
+
+          it 'renders page correct' do
             page.should have_content('Geschosse')
             page.should have_content('20 Geschosse')
-          end
-
-          it 'shows renovated on year' do
-            page.should have_content('Letze Renovierung')
+            page.should have_content('Letzte Renovierung')
             page.should have_content('1991')
-          end
-
-          it 'shows the built on year' do
             page.should have_content('Baujahr')
             page.should have_content('2008')
-          end
-
-          it 'shows the characteristics' do
-            page.should have_content('Merkmale')
-          end
-
-          it 'shows the floor' do
             page.should have_content('Geschoss')
             page.should have_content('3. Obergeschoss')
-          end
-
-          it 'shows the rooms' do
             page.should have_content('Zimmeranzahl')
             page.should have_content('3.5 Zimmer')
-          end
-
-          it 'shows the surface' do
             page.should have_content('Wohnfläche')
             page.should have_content('120 m²')
-          end
-
-          it 'shows the garden seating' do
             expect(page).to have_content('Gartensitzplatz')
           end
         end
 
         context 'real estate for working utilization' do
           before do
-            real_estate.update_attribute(:utilization, Utilization::WORKING)
+            @utilization = Utilization::WORKING
             visit real_estate_path(real_estate)
           end
 
           it 'shows the floors' do
             page.should have_content('Geschosse')
             page.should have_content('20 Geschosse')
-          end
-
-          it 'shows renovated on year' do
-            page.should have_content('Letze Renovierung')
+            page.should have_content('Letzte Renovierung')
             page.should have_content('1991')
-          end
-
-          it 'shows the built on year' do
             page.should have_content('Baujahr')
             page.should have_content('2008')
-          end
-
-          it 'shows the characteristics' do
-            page.should have_content('Merkmale')
-          end
-
-          it 'shows the property surface' do
             page.should have_content('Grundstückfläche')
             page.should have_content('100 m²')
-          end
-
-          it 'shows the storage surface' do
             page.should have_content('Lagerfläche')
             page.should have_content('10 m²')
-          end
-
-          it 'shows the cieling height' do
             page.should have_content('Raumhöhe')
             page.should have_content('5 m')
-          end
-
-          it 'shows the maximal floor loading' do
             page.should have_content('Maximale Bodenbelastung')
             page.should have_content('1234 kg')
-          end
-
-          it 'shows the freight elevator carrying capacity' do
             page.should have_content('Maximales Gewicht für Warenlift')
             page.should have_content('4321 kg')
           end
@@ -503,38 +391,37 @@ describe "RealEstates" do
 
         context 'real estate for storing utilization' do
           before do
-            real_estate.update_attribute(:utilization, Utilization::STORING)
+            @utilization = Utilization::STORING
             visit real_estate_path(real_estate)
           end
 
           it 'shows the floors' do
             page.should have_content('Geschosse')
             page.should have_content('20 Geschosse')
-          end
-
-          it 'shows renovated on year' do
-            page.should have_content('Letze Renovierung')
+            page.should have_content('Letzte Renovierung')
             page.should have_content('1991')
-          end
-
-          it 'shows the built on year' do
             page.should have_content('Baujahr')
             page.should have_content('2008')
-          end
-
-          it 'shows the characteristics' do
-            page.should have_content('Merkmale')
-          end
-
-          it 'shows the ceiling height' do
             page.should have_content('Raumhöhe')
             page.should have_content('5 m')
+          end
+        end
+
+        context 'real estate for parking utilization' do
+          before do
+            @utilization = Utilization::PARKING
+            visit real_estate_path(real_estate)
+          end
+
+          it 'does not show the chapter title' do
+            page.should_not have_content('Immobilieninfos')
           end
         end
       end
 
       describe 'contact' do
         it 'displays the full name of the responsible person' do
+          visit real_estate_path(real_estate)
           page.should have_content(real_estate.contact.fullname)
           page.should have_content(real_estate.contact.phone)
           page.should have_content(real_estate.contact.fax)
@@ -547,7 +434,7 @@ describe "RealEstates" do
     describe 'Chapter Information' do
       context 'with living utilization' do
         before :each do
-          real_estate.update_attribute(:utilization, Utilization::LIVING)
+          @utilization = Utilization::LIVING
           visit real_estate_path(real_estate)
         end
 
@@ -558,7 +445,7 @@ describe "RealEstates" do
 
       context 'with working utilization' do
         before :each do
-          real_estate.update_attribute(:utilization, Utilization::WORKING)
+          @utilization = Utilization::WORKING
           visit real_estate_path(real_estate)
         end
 
@@ -569,7 +456,7 @@ describe "RealEstates" do
 
       context 'with storing utilization' do
         before :each do
-          real_estate.update_attribute(:utilization, Utilization::STORING)
+          @utilization = Utilization::STORING
           visit real_estate_path(real_estate)
         end
 
@@ -580,7 +467,7 @@ describe "RealEstates" do
 
       context 'with parking utilization' do
         before :each do
-          real_estate.update_attribute(:utilization, Utilization::PARKING)
+          @utilization = Utilization::PARKING
           visit real_estate_path(real_estate)
         end
 
@@ -592,6 +479,8 @@ describe "RealEstates" do
 
     describe 'sidebar' do
       it 'shows the project website link' do
+        visit real_estate_path(real_estate)
+
         page.within('.sidebar') do
           page.should have_link 'Zur Projektwebseite', :href => real_estate.link_url
         end
@@ -638,7 +527,7 @@ describe "RealEstates" do
             end
           end
         end
-        
+
         context 'and for living' do
           context 'when order was chosen for print channel method' do
             before :each do
@@ -723,10 +612,12 @@ describe "RealEstates" do
     end
 
     it "has a map of the real estate location" do
+      visit real_estate_path(real_estate)
       page.should have_css(".map", :count => 1)
     end
 
     it "has the json representation of the location" do
+      visit real_estate_path(real_estate)
       find(".map[data-real_estate]")['data-real_estate'].should == real_estate.to_json(:only => :_id, :methods => :coordinates)
     end
 
@@ -850,14 +741,14 @@ describe "RealEstates" do
     context 'with two real estates' do
       before do
         Fabricate :published_real_estate,
-                  :category => category,
-                  :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
-                  :address => Fabricate.build(:address),
-                  :information => Fabricate.build(:information),
-                  :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
-                  :pricing => Fabricate.build(:pricing),
-                  :additional_description => Fabricate.build(:additional_description),
-                  :contact => Fabricate(:employee)
+          :category => category,
+          :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
+          :address => Fabricate.build(:address),
+          :information => Fabricate.build(:information),
+          :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
+          :pricing => Fabricate.build(:pricing),
+          :additional_description => Fabricate.build(:additional_description),
+          :contact => Fabricate(:employee)
 
         visit real_estate_path(real_estate)
       end
@@ -872,14 +763,14 @@ describe "RealEstates" do
       before do
         2.times do
           Fabricate :published_real_estate,
-                    :category => category,
-                    :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
-                    :address => Fabricate.build(:address),
-                    :information => Fabricate.build(:information),
-                    :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
-                    :pricing => Fabricate.build(:pricing),
-                    :additional_description => Fabricate.build(:additional_description),
-                    :contact => Fabricate(:employee)
+            :category => category,
+            :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
+            :address => Fabricate.build(:address),
+            :information => Fabricate.build(:information),
+            :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
+            :pricing => Fabricate.build(:pricing),
+            :additional_description => Fabricate.build(:additional_description),
+            :contact => Fabricate(:employee)
         end
 
         visit real_estate_path(real_estate)
@@ -969,12 +860,12 @@ describe "RealEstates" do
     context 'for a commercial for rent real estate' do
       let :search_filter_real_estate do
         Fabricate :published_real_estate,
-         :utilization => Utilization::WORKING,
-         :offer => Offer::RENT,
-         :category => Fabricate(:category),
-         :address => Fabricate.build(:address),
-         :figure => Fabricate.build(:figure),
-         :pricing => Fabricate.build(:pricing_for_rent)
+          :utilization => Utilization::WORKING,
+          :offer => Offer::RENT,
+          :category => Fabricate(:category),
+          :address => Fabricate.build(:address),
+          :figure => Fabricate.build(:figure),
+          :pricing => Fabricate.build(:pricing_for_rent)
       end
 
       before do

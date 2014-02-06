@@ -3,6 +3,10 @@ require 'spec_helper'
 
 describe InformationDecorator do
   before { ApplicationController.new.set_current_view_context }
+    let(:field_access) { FieldAccess.new(@real_estate.offer, @real_estate.utilization, FieldAccess.cms_blacklist) }
+    before(:each) do
+      Draper::Base.helpers.controller.stub(:field_access) { field_access }
+    end
 
   before :each do
     @real_estate = Fabricate(:published_real_estate,
@@ -17,6 +21,7 @@ describe InformationDecorator do
         :ceiling_height => '2.55'
       )
     )
+    @real_estate.information.interior_html = 'Infrastructure description'
 
     @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'shopping', :distance => 200)
     @real_estate.information.points_of_interest << PointOfInterest.new(:name => 'public_transport', :distance => 100)
@@ -24,72 +29,75 @@ describe InformationDecorator do
   end
 
   it 'has a textual list of characteristics' do
-    @information.characteristics.include?('Balkon').should be_true
-    @information.characteristics.include?('Schwimmbecken').should be_true
+    @information.interior_characteristics.include?('Balkon').should be_true
+    @information.infrastructure_characteristics.include?('Schwimmbecken').should be_true
   end
 
   it 'formats the maximal floor loading in kg' do
-    @information.maximal_floor_loading.should == '140 kg/m²'
+    @information.maximal_floor_loading.should == 'Maximale Bodenbelastung: 140 kg/m²'
   end
 
   it 'adds additional no information if nothing selected' do
     @information.has_balcony = false
     @information.has_swimming_pool = false
-    @information.additional_information.should == 'Ergänzende Informationen zum Ausbau'
-    @information.update_list_in(:characteristics, :additional_information).should be_false
-    @information.additional_information.should == 'Ergänzende Informationen zum Ausbau'
+    @information.infrastructure_html = 'Infrastructure description'
+    @information.update_list_in(:infrastructure_characteristics, :infrastructure_html).should be_false
+    @information.infrastructure_html.should == 'Infrastructure description'
   end
 
-  it 'adds additional information' do
-    @information.additional_information.should == 'Ergänzende Informationen zum Ausbau'
-    @information.update_list_in(:characteristics, :additional_information).should be_true
-    @information.additional_information.should == [
+  it 'adds infrastructure information' do
+    @information.infrastructure_html.should == [
       '<ul>',
-      "\t<li>Balkon</li>",
+      "\t<li>Baujahr: 1899</li>",
+      "\t<li>Letzte Renovierung: 1997</li>",
+      "\t<li>2 Geschosse</li>",
       "\t<li>Schwimmbecken</li>",
       '</ul>',
-      'Ergänzende Informationen zum Ausbau'].join("\r\n")
+      'Infrastructure description'].join("\r\n")
   end
 
   context 'updated additional information' do
     before(:each) do
-      @information.update_list_in(:characteristics, :additional_information)
+      @information.update_list_in(:interior_characteristics, :interior_html)
     end
 
-    it 'adds a new characteristic' do
+    it 'adds new characteristic' do
       @information.has_elevator = true
-      @information.update_list_in(:characteristics, :additional_information).should be_true
-      @information.additional_information.should == [
+      @information.update_list_in(:infrastructure_characteristics, :infrastructure_html).should be_true
+      @information.infrastructure_html.should == [
         '<ul>',
-        "\t<li>Balkon</li>",
+        "\t<li>Baujahr: 1899</li>",
+        "\t<li>Letzte Renovierung: 1997</li>",
+        "\t<li>2 Geschosse</li>",
         "\t<li>Schwimmbecken</li>",
         "\t<li>Liftzugang</li>",
         '</ul>',
-        'Ergänzende Informationen zum Ausbau'].join("\r\n")
+        'Infrastructure description'].join("\r\n")
     end
 
     it 'adds a new characteristic with user changes' do
       @information.has_elevator = true
-      @information.additional_information = ("some text\r\n" * 3) + @information.additional_information
-      @information.additional_information = @information.additional_information.gsub('Balkon', 'Grosser Balkon')
-      @information.additional_information = @information.additional_information.gsub('Schwimmbecken', 'Jacuzzi')
+      @information.infrastructure_html = ("some text\r\n" * 3) + @information.infrastructure_html
+      @information.infrastructure_html = @information.infrastructure_html.gsub('Schwimmbecken', 'Jacuzzi')
 
-      @information.update_list_in(:characteristics, :additional_information).should be_true
-      @information.additional_information.should == [
+      @information.update_list_in(:infrastructure_characteristics, :infrastructure_html).should be_true
+      @information.infrastructure_html.should == [
         'some text',
         'some text',
         'some text',
         '<ul>',
-        "\t<li>Grosser Balkon</li>",
+        "\t<li>Baujahr: 1899</li>",
+        "\t<li>Letzte Renovierung: 1997</li>",
+        "\t<li>2 Geschosse</li>",
         "\t<li>Jacuzzi</li>",
         "\t<li>Liftzugang</li>",
         '</ul>',
-        'Ergänzende Informationen zum Ausbau'].join("\r\n")
+        'Infrastructure description'].join("\r\n")
     end
   end
 
   it 'formats the freigh elevator carrying capacity in kg' do
-    @information.freight_elevator_carrying_capacity.should == '150 kg'
+    @information.freight_elevator_carrying_capacity.should == 'Maximales Gewicht für Warenlift: 150 kg'
   end
 
   it 'formats the number of floors' do
@@ -99,7 +107,7 @@ describe InformationDecorator do
   end
 
   it 'formats the ceiling height' do
-    @information.ceiling_height.should == '2.55 m'
+    @information.ceiling_height.should == 'Raumhöhe: 2.55 m'
   end
 
   describe '#location_characteristics' do
@@ -130,6 +138,27 @@ describe InformationDecorator do
       expect(@information.location_characteristics).to eq ['Öffentlicher Verkehr 100 m',
                                             'Einkaufen 200 m']
       expect(@information.points_of_interest.count).to eq(6)
+    end
+  end
+
+  describe '#infrastructure_characteristics' do
+
+    it 'create a translated list' do
+      @real_estate.utilization = Utilization::WORKING
+      expect(@information.working?).to be_true
+      expect(@information.infrastructure_characteristics).to eq ["Baujahr: 1899", "Letzte Renovierung: 1997", "2 Geschosse", "Maximales Gewicht für Warenlift: 150 kg"]
+    end
+
+    it 'respect acessibility' do
+      @real_estate.utilization = Utilization::LIVING
+      expect(@information.living?).to be_true
+      expect(@information.infrastructure_characteristics).to eq ["Baujahr: 1899", "Letzte Renovierung: 1997", "2 Geschosse", "Schwimmbecken"]
+    end
+
+    it 'parking has no infrastructure' do
+      @real_estate.utilization = Utilization::PARKING
+      expect(@information.parking?).to be_true
+      expect(@information.infrastructure_characteristics).to eq []
     end
   end
 end

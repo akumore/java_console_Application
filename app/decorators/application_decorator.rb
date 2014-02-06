@@ -12,17 +12,17 @@ class ApplicationDecorator < Draper::Base
   end
 
   def update_list_in(list_field, html_field)
-    original_html = @model.send(html_field)
+    original_html = @model.send(html_field).to_s
     info = original_html.split(/\r\n|\n/)
 
-    index_of_ul_end = info.index('</ul>')
-    if index_of_ul_end.nil?
-      lis_before = []
-    else
+    lis_before = []
+    unless @model.new_record?
       object_name = model_class.to_s.tableize
       original = RealEstate.find(real_estate.id).send(object_name).decorate
       lis_before = original.field_list_in_real_estate_language(list_field)
     end
+
+    index_of_ul_end = info.index('</ul>')
     lis_after = field_list_in_real_estate_language(list_field)
 
     to_add = lis_after - lis_before
@@ -40,6 +40,7 @@ class ApplicationDecorator < Draper::Base
     }
 
     new_html = info.join("\r\n")
+    #binding.pry if html_field == :infrastructure_html
     @model.send("#{html_field}=", new_html)
 
     # return weather the function changed someting

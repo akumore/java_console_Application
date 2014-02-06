@@ -6,11 +6,6 @@
       %dt= t('additional_descriptions.offer')
       %dd= offer.html_safe
 
-  - if infrastructure = additional_description.infrastructure.presence
-    %dl
-      %dt= t('additional_descriptions.infrastructure')
-      %dd= infrastructure.html_safe
-
   - if utilization_description = real_estate.utilization_description.presence
     %dl
       %dt= t('additional_descriptions.utilization_description')

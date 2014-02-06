@@ -57,23 +57,23 @@ describe "Cms Information" do
         fill_in 'Anzahl Geschosse', :with => @template_information.floors
         fill_in 'Renovationsjahr', :with => @template_information.renovated_on
         fill_in 'Baujahr', :with => @template_information.built_on
-        
+
         fill_in 'Öffentlicher Verkehr', :with => '200'
         fill_in 'Einkaufen', :with => '100'
 
-        [ 'Aussicht', 
-          'Cheminée', 
-          'Lift', 
-          'ISDN-Anschluss', 
-          'Rollstuhltauglich', 
-          'Kinderfreundlich', 
-          'Balkon', 
+        [ 'Aussicht',
+          'Cheminée',
+          'Lift',
+          'ISDN-Anschluss',
+          'Rollstuhltauglich',
+          'Kinderfreundlich',
+          'Balkon',
           'Gartensitzplatz',
-          'Hochparterre', 
-          'Neubau', 
-          'Altbau', 
-          'Swimmingpool', 
-          'Minergie Bauweise', 
+          'Hochparterre',
+          'Neubau',
+          'Altbau',
+          'Swimmingpool',
+          'Minergie Bauweise',
           'Minergie zertifiziert',
           'Kabelfernsehen'
         ].each do |checkbox|
@@ -95,7 +95,6 @@ describe "Cms Information" do
         expect(information.has_garden_seating).to eq @template_information.has_garden_seating
         expect(information.has_raised_ground_floor).to eq @template_information.has_raised_ground_floor
         expect(information.has_swimming_pool).to eq @template_information.has_swimming_pool
-        expect(information.has_isdn).to eq @template_information.has_isdn
         expect(information.is_new_building).to eq @template_information.is_new_building
         expect(information.is_old_building).to eq @template_information.is_old_building
         expect(information.is_minergie_style).to eq @template_information.is_minergie_style
@@ -105,31 +104,13 @@ describe "Cms Information" do
         expect(information.renovated_on).to eq @template_information.renovated_on
         expect(information.built_on).to eq @template_information.built_on
         expect(information.points_of_interest.length).to eq 6
-        expect(information.location_html).to eq 'In laufweite zum Flughafen'
-
-        updated_additional_infos = [
-          "<ul>",
-          "\t<li>Minergie Bauweise</li>",
-          "\t<li>Minergie zertifiziert</li>",
-          "\t<li>Kabelfernsehen</li>",
-          "\t<li>Ausblick</li>",
-          "\t<li>Cheminée</li>",
-          "\t<li>Liftzugang</li>",
-          "\t<li>ISDN Anschluss</li>",
-          "\t<li>rollstuhltauglich</li>",
-          "\t<li>kinderfreundlich</li>",
-          "\t<li>Balkon</li>",
-          "\t<li>Gartensitzplatz</li>",
-          "\t<li>Schwimmbecken</li>",
-          "</ul>",
-          "Zusätzliche Angaben zum Ausbau"]
-        information.additional_information.should == updated_additional_infos.join("\r\n")
+        expect(information.location_html).to eq "<ul>\r\n\t<li>Öffentlicher Verkehr 200 m</li>\r\n\t<li>Einkaufen 100 m</li>\r\n</ul>"
+        expect(information.infrastructure_html).to eq "<ul>\r\n\t<li>Baujahr: 1956</li>\r\n\t<li>Letzte Renovierung: 1997</li>\r\n\t<li>3 Geschosse</li>\r\n\t<li>Schwimmbecken</li>\r\n\t<li>kinderfreundlich</li>\r\n\t<li>rollstuhltauglich</li>\r\n\t<li>Minergie Bauweise</li>\r\n\t<li>Minergie zertifiziert</li>\r\n\t<li>Liftzugang</li>\r\n</ul>"
+        expect(information.interior_html).to eq "<ul>\r\n\t<li>Balkon</li>\r\n\t<li>Gartensitzplatz</li>\r\n\t<li>Cheminée</li>\r\n\t<li>ISDN Anschluss</li>\r\n\t<li>Kabelfernsehen</li>\r\n</ul>"
 
         within('.alert') do
           page.should have_content('Ergänzende Informationen wurden automatisch ergänzt. Bitte überprüfen Sie den Inhalt')
         end
-
-        find_field('Ergänzende Informationen').value.should eq updated_additional_infos.join("\n")
 
         click_on 'Immobilieninfos speichern'
         current_path.should == cms_real_estate_media_assets_path(@real_estate)
@@ -243,12 +224,12 @@ describe "Cms Information" do
         expect(page).to_not have_css('#information_is_under_building_laws')
       end
 
-      it 'doesnt render the has_sewage_supply checkbox' do
-        expect(page).to_not have_css('#information_has_sewage_supply')
+      it 'does render the has_sewage_supply checkbox' do
+        expect(page).to have_css('#information_has_sewage_supply')
       end
 
-      it 'doesnt render the has_water_supply checkbox' do
-        expect(page).to_not have_css('#information_has_water_supply')
+      it 'does render the has_water_supply checkbox' do
+        expect(page).to have_css('#information_has_water_supply')
       end
 
       ["Anzahl WC's", "Max Gewicht Warenlift", "Max Bodenbelastung"].each do |target_field|
@@ -420,8 +401,10 @@ describe "Cms Information" do
 
     it 'shows the additional information text' do
       visit cms_real_estate_information_path real_estate
-      page.should have_content real_estate.information.additional_information
-      page.should have_content real_estate.information.location_html
+      page.html.should include real_estate.information.additional_information
+      page.html.should include real_estate.information.location_html
+      page.html.should include real_estate.information.interior_html
+      page.html.should include real_estate.information.infrastructure_html
     end
 
     it 'shows a message if no information exist' do

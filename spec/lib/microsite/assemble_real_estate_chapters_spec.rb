@@ -37,7 +37,7 @@ module Microsite
       end
 
       let :real_estate_with_pricing_and_figure do
-        stub( :pricing => pricing, :figure => figure, :description => nil, :additional_description => nil, :title => nil, :information => nil)
+        stub(:offer => offer, :pricing => pricing, :figure => figure, :description => nil, :additional_description => nil, :title => nil, :information => nil, :utilization => 'living')
       end
 
       let :pricing do
@@ -46,6 +46,10 @@ module Microsite
 
       let :figure do
         stub(:present? => true)
+      end
+
+      let :offer do
+        stub()
       end
 
       context 'and with both content/content_html not blank' do
@@ -102,7 +106,7 @@ module Microsite
 
     context 'without pricing and figure attributes' do
       let :real_estate_with_pricing_and_figure do
-        stub( :pricing => pricing, :figure => figure, :description => nil, :additional_description => nil, :title => nil, :information => nil)
+        stub(:offer => offer, :pricing => pricing, :figure => figure, :description => nil, :additional_description => nil, :title => nil, :information => nil, :utilization => 'living')
       end
 
       let :pricing do
@@ -111,6 +115,10 @@ module Microsite
 
       let :figure do
         stub(:present? => false)
+      end
+
+      let :offer do
+        stub()
       end
 
       it 'returns no chapters' do

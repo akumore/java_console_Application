@@ -58,7 +58,7 @@ module ApplicationHelper
     haml_tag(:dl, class: 'dl-horizontal') do
       haml_tag(:dt, t("mongoid.attributes.#{model.class.name.tableize}.#{field}"))
       value = model.send(field)
-      value = t(value.to_s) if options[:translate_value]
+      value = t(value.to_s) if options[:translate_value] && value.to_s.present?
       haml_tag(:dd, value)
     end
   end

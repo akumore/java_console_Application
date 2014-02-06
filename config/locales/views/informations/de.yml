@@ -25,11 +25,11 @@ de:
     has_lifting_platform: 'Hebebühne'
     has_ramp: 'Anfahrrampe'
     has_railway_terminal: 'Bahnanschluss'
-    water_supply: 'Wasseranschluss'
+    has_water_supply: 'Wasseranschluss'
     has_sewage_supply: 'Abwasseranschluss'
     has_cable_tv: 'Kabelfernsehen'
     additional_information: 'Ergänzende Informationen'
-    renovated_on: 'Letze Renovierung'
+    renovated_on: 'Letzte Renovierung'
     built_on: 'Baujahr'
     floors: 'Geschosse'
     floors_value:

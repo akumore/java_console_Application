@@ -25,7 +25,7 @@ fr:
     has_lifting_platform: 'Plate-forme élévatrice'
     has_ramp: 'Quai de chargement'
     has_railway_terminal: 'Desserte ferroviaire'
-    water_supply: 'Raccordement eaux claires'
+    has_water_supply: 'Raccordement eaux claires'
     has_sewage_supply: 'Raccordement eaux usées'
     has_cable_tv: 'Télévision par câble'
     additional_information: 'Informations complémentaires'

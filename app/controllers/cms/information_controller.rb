@@ -45,9 +45,9 @@ class Cms::InformationController < Cms::SecuredController
 
   private
   def update_html_inputs
-    @original_location_html = @information.location_html.html_safe
-    @original_infrastructure_html = @information.infrastructure_html.html_safe
-    @original_interior_html = @information.interior_html.html_safe
+    @original_location_html = @information.location_html.try(&:html_safe)
+    @original_infrastructure_html = @information.infrastructure_html.try(&:html_safe)
+    @original_interior_html = @information.interior_html.try(&:html_safe)
 
     decorator = InformationDecorator.new(@information)
     @location_html_changed = decorator.update_list_in(:location_characteristics, :location_html)

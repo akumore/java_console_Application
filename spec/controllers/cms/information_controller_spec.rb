@@ -2,6 +2,12 @@
 require 'spec_helper'
 
 describe 'Real Estate Wizard' do
+  let(:field_access) { FieldAccess.new(@real_estate.offer, @real_estate.utilization, FieldAccess.cms_blacklist) }
+  before { 
+    ApplicationController.new.set_current_view_context
+    Draper::Base.helpers.controller.stub(:field_access) { mock(:accessible? => true) }
+  }
+
   before do
     sign_in(Fabricate(:cms_admin))
   end
@@ -14,8 +20,19 @@ describe 'Real Estate Wizard' do
         @information_attributes = Fabricate.attributes_for(:information)
       end
 
-      it 'redirects to the media assets overview tab' do
+      it 'render edit when html fields are updated automatically' do
         post :create, :real_estate_id => @real_estate.id, :information => @information_attributes
+        expect(assigns(:infrastructure_html_changed)).to be_true
+        response.should render_template('edit')
+
+        # when click on save again goto media assets
+        post :update, :real_estate_id => @real_estate.id, :information => @information_attributes
+        response.should redirect_to cms_real_estate_media_assets_path(@real_estate)
+        flash[:success].should_not be_nil
+      end
+
+      it 'redirects to the media assets overview tab' do
+        post :create, :real_estate_id => @real_estate.id, :information => {}
         response.should redirect_to cms_real_estate_media_assets_path(@real_estate)
         flash[:success].should_not be_nil
       end
@@ -24,14 +41,9 @@ describe 'Real Estate Wizard' do
         post :create, :real_estate_id => @real_estate.id, :information => @information_attributes.merge(:has_cable_tv => true)
         response.should_not redirect_to cms_real_estate_media_assets_path(@real_estate)
         response.should render_template('edit')
-        assigns(:original_additional_information).should_not be_nil
+        assigns(:original_interior_html).should_not be_nil
       end
 
-      it 'redirects to the edit media_assets tab with an existing media_assets' do
-        post :create, :real_estate_id => @real_estate.id, :information => @information_attributes
-        response.should redirect_to cms_real_estate_media_assets_path(@real_estate)
-        flash[:success].should_not be_nil
-      end
     end
 
     describe '#update' do

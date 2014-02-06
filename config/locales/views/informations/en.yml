@@ -25,7 +25,7 @@ en:
     has_lifting_platform: 'hydraulic lift'
     has_ramp: 'loading/unloading ramp'
     has_railway_terminal: 'railway connection'
-    water_supply: 'water connection'
+    has_water_supply: 'water connection'
     has_sewage_supply: 'sewage connection'
     has_cable_tv: 'Cable TV'
     additional_information: 'Supplementary information'

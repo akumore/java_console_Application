@@ -3,6 +3,8 @@
 require "spec_helper"
 
 describe "api/real_estates.json" do
+  before { ApplicationController.new.set_current_view_context }
+
   let :microsite_reference do
     Fabricate.build(:microsite_reference,
                     :property_key => '22.34',

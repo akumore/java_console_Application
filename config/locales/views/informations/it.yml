@@ -25,7 +25,7 @@ it:
     has_lifting_platform: 'Pantografo'
     has_ramp: 'Rampa'
     has_railway_terminal: 'Raccordo ferroviario'
-    water_supply: 'Allacciamento acqua'
+    has_water_supply: 'Allacciamento acqua'
     has_sewage_supply: 'Allacciamento acqua di scarico'
     has_cable_tv: 'TV via cavo'
     additional_information: 'Informazioni aggiuntive'

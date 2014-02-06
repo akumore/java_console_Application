@@ -34,12 +34,6 @@ describe "Cms::Descriptions" do
   #       end
   #     end
 
-  #     it 'saves a new Description' do
-  #       click_on 'Beschreibungen erstellen'
-  #       @real_estate.reload
-  #       @real_estate.additional_description.should be_a(AdditionalDescription)
-  #     end
-
   #     context '#create' do
   #       before :each do
   #         click_on 'Beschreibungen erstellen'
@@ -78,7 +72,6 @@ describe "Cms::Descriptions" do
   #     visit cms_real_estate_additional_description_path real_estate_without_desc
   #     page.should have_content "Für diese Immobilie wurden keine Beschreibungen hinterlegt."
   #   end
-
+  # end
   end
-
 end

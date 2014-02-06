@@ -9,9 +9,15 @@ class InformationDecorator < ApplicationDecorator
 
     fields.each {|field|
       next unless field_access.accessible?(model, field)
-      value = information.send(field)
+      value = self.send(field)
       next if value.blank?
-      if value.is_a?(Boolean)
+
+      case
+      when self.method(field).arity > -1
+        # expect this function is defined in the decorator itself
+        # which formats and translates the value userfriendly
+        buffer << value
+      when value.is_a?(Boolean)
         buffer << t("information.#{field}") if value
       else
         buffer << t("information.#{field}") + ': ' + value.to_s
@@ -31,29 +37,32 @@ class InformationDecorator < ApplicationDecorator
   end
 
   INTERIOR_FIELDS = %w(has_sewage_supply has_water_supply has_balcony has_garden_seating has_fireplace has_isdn
-    has_cable_tv maximal_floor_loading ceiling_height)
+    has_cable_tv maximal_floor_loading ceiling_height number_of_restrooms)
 
   def interior_characteristics
     return [] if real_estate.parking?
-    buffer = translate_characteristics(INTERIOR_FIELDS)
-
-    if accessible?(:number_of_restrooms)
-      buffer << t('information.number_of_restrooms', :count => model.number_of_restrooms)
-    end
-
-    buffer
+    translate_characteristics(INTERIOR_FIELDS)
   end
 
+  def update_characteristics
+    update_list_in(:location_characteristics, :location_html)
+    update_list_in(:infrastructure_characteristics, :infrastructure_html)
+    update_list_in(:interior_characteristics, :interior_html)
+  end
+
+  def number_of_restrooms
+    t('information.number_of_restrooms', :count => model.number_of_restrooms)
+  end
 
   def maximal_floor_loading
     if model.maximal_floor_loading.present?
-      t('information.maximal_floor_loading_value', :count => model.maximal_floor_loading )
+      t('information.maximal_floor_loading') + ': ' + t('information.maximal_floor_loading_value', :count => model.maximal_floor_loading )
     end
   end
 
   def freight_elevator_carrying_capacity
     if model.freight_elevator_carrying_capacity.present?
-      t('information.freight_elevator_carrying_capacity_value', :count => model.freight_elevator_carrying_capacity )
+      t('information.freight_elevator_carrying_capacity') + ': ' + t('information.freight_elevator_carrying_capacity_value', :count => model.freight_elevator_carrying_capacity )
     end
   end
 
@@ -147,7 +156,7 @@ class InformationDecorator < ApplicationDecorator
 
   def ceiling_height
     # Raumhöhe
-    t('information.ceiling_height_value', :size => model.ceiling_height) if model.ceiling_height.present?
+    t('information.ceiling_height') + ': ' + t('information.ceiling_height_value', :size => model.ceiling_height) if model.ceiling_height.present?
   end
 
   def location_characteristics
