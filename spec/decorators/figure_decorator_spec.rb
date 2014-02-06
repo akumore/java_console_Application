@@ -22,7 +22,7 @@ describe FigureDecorator do
                     :covered_slot => 3,
                     :covered_bike => 4,
                     :outdoor_bike => 5,
-                    :single_garage => 6, 
+                    :single_garage => 6,
                     :double_garage => 7)
 
   end

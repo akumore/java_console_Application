@@ -33,6 +33,32 @@ describe "Cms::Figures" do
         page.should_not have_css('#figure_usage_surface_estimate')
       end
 
+      it 'does show the offer html' do
+        page.should have_css('#figure_offer_html')
+      end
+
+      it 'replaces old lis' do
+        fill_in 'figure_rooms', :with => '3.5'
+        fill_in 'figure_floor', :with => '-1'
+        fill_in 'figure_covered_slot', :with => '1'
+        click_on 'Objektübersicht erstellen'
+
+        @real_estate.reload
+        expect(@real_estate.figure.offer_html).to eq "<ul>\r\n\t<li>1 Parkplatz im Freien überdacht</li>\r\n</ul>"
+
+        fill_in 'figure_covered_slot', :with => '66'
+        click_on 'Objektübersicht speichern'
+
+        @real_estate.reload
+        expect(@real_estate.figure.offer_html).to eq "<ul>\r\n\t<li>66 Parkplätze im Freien überdacht</li>\r\n</ul>"
+
+        fill_in 'figure_covered_slot', :with => ''
+        click_on 'Objektübersicht speichern'
+
+        @real_estate.reload
+        expect(@real_estate.figure.offer_html).to eq "<ul>\r\n</ul>"
+      end
+
       context 'a valid Figure' do
         before :each do
           within(".new_figure") do
@@ -83,7 +109,11 @@ describe "Cms::Figures" do
             @figure.outdoor_bike.should == 5
             @figure.single_garage.should == 6
             @figure.double_garage.should == 7
+            @figure.offer_html.to_s.should == "<ul>\r\n\t<li>1 Parkplatz in Autoeinstellhalle</li>\r\n\t<li>2 Parkplätze im Freien</li>\r\n\t<li>3 Parkplätze im Freien überdacht</li>\r\n\t<li>4 Motorrad-Parkplätze in Autoeinstellhalle</li>\r\n\t<li>5 Motorrad-Parkplätze im Freien überdacht</li>\r\n\t<li>6 Einzelgaragen</li>\r\n\t<li>7 Doppelgaragen</li>\r\n</ul>"
+
+            expect(page).to have_content('Angebot Beschreibung wurde automatisch ergänzt. Bitte überprüfen Sie den Inhalt')
           end
+
         end
       end
     end

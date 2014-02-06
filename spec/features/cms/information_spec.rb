@@ -109,7 +109,7 @@ describe "Cms Information" do
         expect(information.interior_html).to eq "<ul>\r\n\t<li>Balkon</li>\r\n\t<li>Gartensitzplatz</li>\r\n\t<li>Cheminée</li>\r\n\t<li>ISDN Anschluss</li>\r\n\t<li>Kabelfernsehen</li>\r\n</ul>"
 
         within('.alert') do
-          page.should have_content('Ergänzende Informationen wurden automatisch ergänzt. Bitte überprüfen Sie den Inhalt')
+          page.should have_content('Standort Beschreibung wurde automatisch ergänzt. Bitte überprüfen Sie den Inhalt')
         end
 
         click_on 'Immobilieninfos speichern'
@@ -381,7 +381,7 @@ describe "Cms Information" do
       click_on 'Immobilieninfos speichern'
 
       within('.alert') do
-        page.should have_content('Ergänzende Informationen wurden automatisch ergänzt. Bitte überprüfen Sie den Inhalt')
+        page.should have_content('Ausbau Beschreibung wurde automatisch ergänzt. Bitte überprüfen Sie den Inhalt')
       end
 
       click_on 'Immobilieninfos speichern'

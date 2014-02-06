@@ -3,7 +3,6 @@
 require 'spec_helper'
 
 describe RealEstatesHelper do
-  create_category_tree
 
   describe '#caption_css_class_for_text' do
     context 'with a long text' do
@@ -33,8 +32,8 @@ describe RealEstatesHelper do
 
   describe '#category_options_for_utilization' do
     before do
-      Fabricate :category, id: 1, name: 'single_house', label: 'Einfamilienhaus', utilization: Utilization::LIVING
-      Fabricate :category, id: 2, name: 'flat', label: 'Wohnung', utilization: Utilization::LIVING
+      Fabricate :category, id: 1, name: 'single_house', label: 'Einfamilienhaus', utilization: Utilization::LIVING, utilization_sort_order: 1
+      Fabricate :category, id: 2, name: 'flat', label: 'Wohnung', utilization: Utilization::LIVING, utilization_sort_order: 2
       Fabricate :category, id: 3, name: 'studio', label: 'Studio', utilization: Utilization::WORKING
     end
 

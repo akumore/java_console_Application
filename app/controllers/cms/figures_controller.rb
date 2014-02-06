@@ -18,7 +18,10 @@ class Cms::FiguresController < Cms::SecuredController
   end
 
   def create
+    changed = update_html_inputs
+
     if @figure.save
+      return render 'edit' if changed
       redirect_to_step(next_step_after('figure'))
     else
       render 'new'
@@ -26,11 +29,23 @@ class Cms::FiguresController < Cms::SecuredController
   end
 
   def update
-    if @figure.update_attributes(params[:figure])
+    @figure.attributes = params[:figure]
+    changed = update_html_inputs
+
+    if @figure.save && !changed
       redirect_to_step(next_step_after('figure'))
     else
       render 'edit'
     end
   end
 
+  private
+  def update_html_inputs
+    @original_offer_html = @figure.offer_html.try(&:html_safe)
+
+    decorator = FigureDecorator.new(@figure)
+    @offer_html_changed = decorator.update_list_in(:offer_characteristics, :offer_html)
+
+    @offer_html_changed
+  end
 end

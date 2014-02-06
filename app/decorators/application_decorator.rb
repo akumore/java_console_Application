@@ -68,7 +68,6 @@ class ApplicationDecorator < Draper::Base
     }
 
     new_html = info.join("\r\n")
-    #binding.pry if html_field == :infrastructure_html
     @model.send("#{html_field}=", new_html)
 
     # return weather the function changed someting

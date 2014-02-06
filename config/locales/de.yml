@@ -30,6 +30,8 @@ de:
       create: "%{model} erstellen"
       update: "%{model} speichern"
       edit: "%{model} bearbeiten"
+    check_new_entries: "%{field} wurde automatisch ergänzt. Bitte überprüfen Sie den Inhalt."
+    old_content_was: "Der ursprüngliche Inhalt war:"
   errors:
     messages:
       extension_white_list_error: 'muss vom Typ %{allowed_types} sein'
