@@ -14,23 +14,23 @@ it:
     surface_value: '%{size} m²'
     title: 'Infrastruttura'
     inside_parking_spots:
-      one: 'Parcheggio in autorimessa'
-      other: 'Parcheggi in autorimessa'
+      one: '%{count} Parcheggio in autorimessa'
+      other: '%{count} Parcheggi in autorimessa'
     outside_parking_spots:
-      one: 'Parcheggio all‘esterno'
-      other: 'Parcheggi all‘esterno'
+      one: '%{count} Parcheggio all‘esterno'
+      other: '%{count} Parcheggi all‘esterno'
     covered_slot:
-      one: 'Posteggio esterno coperto'
-      other: 'Posteggi esterni coperti'
+      one: '%{count} Posteggio esterno coperto'
+      other: '%{count} Posteggi esterni coperti'
     covered_bike:
-      one: 'Posteggio moto in autorimessa'
-      other: 'Posteggi moto in autorimessa'
+      one: '%{count} Posteggio moto in autorimessa'
+      other: '%{count} Posteggi moto in autorimessa'
     outdoor_bike:
-      one: 'Posteggio moto esterno coperto'
-      other: 'Posteggi moto esterni coperti'
+      one: '%{count} Posteggio moto esterno coperto'
+      other: '%{count} Posteggi moto esterni coperti'
     single_garage:
-      one: 'Garage singolo'
-      other: 'Garage singoli'
+      one: '%{count} Garage singolo'
+      other: '%{count} Garage singoli'
     double_garage:
-      one: 'Garage doppio'
-      other: 'Garage doppi'
+      one: '%{count} Garage doppio'
+      other: '%{count} Garage doppi'

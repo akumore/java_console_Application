@@ -3,30 +3,6 @@ class InformationDecorator < ApplicationDecorator
 
   decorates :information
 
-  def translate_characteristics(fields)
-    field_access = context[:field_access] || controller.field_access
-    buffer = []
-
-    fields.each {|field|
-      next unless field_access.accessible?(model, field)
-      value = self.send(field)
-      next if value.blank?
-
-      case
-      when self.method(field).arity > -1
-        # expect this function is defined in the decorator itself
-        # which formats and translates the value userfriendly
-        buffer << value
-      when value.is_a?(Boolean)
-        buffer << t("information.#{field}") if value
-      else
-        buffer << t("information.#{field}") + ': ' + value.to_s
-      end
-    }
-
-    buffer
-  end
-
   INFRASTRUCTURE_FIELDS = %w(built_on renovated_on floors has_swimming_pool is_child_friendly is_wheelchair_accessible
     is_minergie_style is_minergie_certified has_elevator has_ramp has_lifting_platform has_railway_terminal
     freight_elevator_carrying_capacity)

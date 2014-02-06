@@ -14,23 +14,23 @@ fr:
     surface_value: '%{size} m²'
     title: 'Infrastructure'
     inside_parking_spots:
-      one: 'Place de parc dans parking souterrain'
-      other: 'Places de parc dans parking souterrain'
+      one: '%{count} Place de parc dans parking souterrain'
+      other: '%{count} Places de parc dans parking souterrain'
     outside_parking_spots:
-      one: 'Place de parc à l‘extérieur'
-      other: 'Places de parc à l‘extérieur'
+      one: '%{count} Place de parc à l‘extérieur'
+      other: '%{count} Places de parc à l‘extérieur'
     covered_slot:
-      one: 'Place de stationnement couverte à l’extérieur'
-      other: 'Places de stationnement couverte à l’extérieur'
+      one: '%{count} Place de stationnement couverte à l’extérieur'
+      other: '%{count} Places de stationnement couverte à l’extérieur'
     covered_bike:
-      one: 'Place de stationnement pour moto dans parking'
-      other: 'Places de stationnement pour moto dans parking'
+      one: '%{count} Place de stationnement pour moto dans parking'
+      other: '%{count} Places de stationnement pour moto dans parking'
     outdoor_bike:
-      one: 'Place de stationnement pour moto couverte à l’extérieur'
-      other: 'Places de stationnement pour moto couvertes à l’extérieur'
+      one: '%{count} Place de stationnement pour moto couverte à l’extérieur'
+      other: '%{count} Places de stationnement pour moto couvertes à l’extérieur'
     single_garage:
-      one: 'Garage simple'
-      other: 'Garages simples'
+      one: '%{count} Garage simple'
+      other: '%{count} Garages simples'
     double_garage:
-      one: 'Garage double'
-      other: 'Garages doubles'
+      one: '%{count} Garage double'
+      other: '%{count} Garages doubles'

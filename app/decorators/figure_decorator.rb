@@ -3,6 +3,13 @@ class FigureDecorator < ApplicationDecorator
 
   decorates :figure
 
+  OFFER_FIELDS = %w(inside_parking_spots outside_parking_spots covered_slot covered_bike
+                    outdoor_bike single_garage double_garage)
+
+  def offer_characteristics
+    translate_characteristics(OFFER_FIELDS)
+  end
+
   def surface_label
     if model.living?
       t "figures.surface.private"

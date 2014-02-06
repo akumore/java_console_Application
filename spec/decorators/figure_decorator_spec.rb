@@ -3,25 +3,50 @@ require 'spec_helper'
 
 describe FigureDecorator do
   before { ApplicationController.new.set_current_view_context }
+  let(:field_access) { FieldAccess.new(@real_estate.offer, @real_estate.utilization, FieldAccess.cms_blacklist) }
+  before(:each) do Draper::Base.helpers.controller.stub(:field_access) { field_access } end
+
+  let(:figure) do
+    Fabricate.build(:figure,
+                    :floor => 2,
+                    :floor_estimate => '',
+                    :rooms => '3.5',
+                    :rooms_estimate => '',
+                    :living_surface => 100,
+                    :living_surface_estimate => '',
+                    :usable_surface => 135,
+                    :property_surface => 145,
+                    :storage_surface => 155,
+                    :inside_parking_spots => 1,
+                    :outside_parking_spots => 2,
+                    :covered_slot => 3,
+                    :covered_bike => 4,
+                    :outdoor_bike => 5,
+                    :single_garage => 6, 
+                    :double_garage => 7)
+
+  end
 
   before :each do
     @real_estate = Fabricate(:published_real_estate,
-      :category => Fabricate(:category),
-      :utilization => Utilization::LIVING,
-      :figure => Fabricate.build(:figure,
-        :floor => 2,
-        :floor_estimate => '',
-        :rooms => '3.5',
-        :rooms_estimate => '',
-        :living_surface => 100,
-        :living_surface_estimate => '',
-        :usable_surface => 135,
-        :property_surface => 145,
-        :storage_surface => 155
-      )
-    )
+                             :category => Fabricate(:category),
+                             :utilization => Utilization::LIVING,
+                             :figure => figure)
 
     @figure = FigureDecorator.new(@real_estate.figure)
+  end
+
+  describe '#offer_characteristics' do
+    it 'creates an array of characteristics' do
+      expect(@figure.offer_characteristics).to eq [
+        "1 Parkplatz in Autoeinstellhalle",
+        "2 Parkplätze im Freien",
+        "3 Parkplätze im Freien überdacht",
+        "4 Motorrad-Parkplätze in Autoeinstellhalle",
+        "5 Motorrad-Parkplätze im Freien überdacht",
+        "6 Einzelgaragen",
+        "7 Doppelgaragen"]
+    end
   end
 
   describe '#floor' do
@@ -114,13 +139,13 @@ describe FigureDecorator do
   context 'for private usage' do
     before :each do
       @real_estate = Fabricate(:published_real_estate,
-        :category => Fabricate(:category),
-        :utilization => Utilization::LIVING,
-        :figure => Fabricate.build(:figure,
-          :living_surface => 153,
-          :usable_surface => 120
-        )
-      )
+                               :category => Fabricate(:category),
+                               :utilization => Utilization::LIVING,
+                               :figure => Fabricate.build(:figure,
+                                                          :living_surface => 153,
+                                                          :usable_surface => 120
+                                                         )
+                              )
 
       @figure = FigureDecorator.new(@real_estate.figure)
     end
@@ -142,13 +167,13 @@ describe FigureDecorator do
   context 'for commercial usage' do
     before :each do
       @real_estate = Fabricate(:published_real_estate,
-        :category => Fabricate(:category),
-        :utilization => Utilization::WORKING,
-        :figure => Fabricate.build(:figure,
-          :living_surface => 153,
-          :usable_surface => 120
-        )
-      )
+                               :category => Fabricate(:category),
+                               :utilization => Utilization::WORKING,
+                               :figure => Fabricate.build(:figure,
+                                                          :living_surface => 153,
+                                                          :usable_surface => 120
+                                                         )
+                              )
 
       @figure = FigureDecorator.new(@real_estate.figure)
     end
