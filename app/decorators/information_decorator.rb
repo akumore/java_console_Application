@@ -4,7 +4,7 @@ class InformationDecorator < ApplicationDecorator
   decorates :information
 
   def translate_characteristics(fields)
-    field_access = controller.field_access
+    field_access = context[:field_access] || controller.field_access
     buffer = []
 
     fields.each {|field|

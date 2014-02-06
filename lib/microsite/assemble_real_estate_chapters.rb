@@ -1,12 +1,16 @@
 # encoding: utf-8
+require 'field_access'
 
 module Microsite
   class AssembleRealEstateChapters
 
     def self.get_chapters(real_estate)
       chapters = []
+
+      field_access = FieldAccess.new(real_estate.offer, real_estate.utilization, FieldAccess.cms_blacklist)
+
       if real_estate.information.present?
-        information_chapter = InformationDecorator.decorate(real_estate.information).chapter
+        information_chapter = InformationDecorator.decorate(real_estate.information, context: {field_access: field_access}).chapter
         unless information_chapter[:content].blank? and information_chapter[:content_html].blank?
           chapters << information_chapter
         end
