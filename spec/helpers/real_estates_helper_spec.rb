@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 describe RealEstatesHelper do
+  create_category_tree
+
   describe '#caption_css_class_for_text' do
     context 'with a long text' do
       it 'has the long shard image' do
