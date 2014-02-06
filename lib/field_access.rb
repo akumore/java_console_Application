@@ -1,4 +1,7 @@
+require 'constants'
+
 class FieldAccess
+  include Constants
 
   attr_reader :model_class,
               :offer,
@@ -102,10 +105,8 @@ class FieldAccess
        *.living.information.has_freight_elevator
        *.living.information.freight_elevator_carrying_capacity
        *.living.information.has_sewage_supply
-       *.working.information.has_sewage_supply
        *.parking.information.has_sewage_supply
        *.living.information.has_water_supply
-       *.working.information.has_water_supply
        *.parking.information.has_water_supply
        *.storing.information.has_fireplace
        *.working.information.has_fireplace

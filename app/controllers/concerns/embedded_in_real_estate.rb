@@ -1,3 +1,5 @@
+require 'field_access'
+
 module Concerns
   module EmbeddedInRealEstate
     extend ActiveSupport::Concern

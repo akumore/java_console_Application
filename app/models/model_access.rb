@@ -1,3 +1,5 @@
+require 'field_access'
+
 class ModelAccess < FieldAccess
 
   def accessible?(model)

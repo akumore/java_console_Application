@@ -1,15 +1,15 @@
-module Offer
+require 'constants'
 
-  RENT = 'for_rent'
-  SALE = 'for_sale'
+module Offer
+  include Constants::Offer
 
   module Accessors
     def for_rent?
-      offer == RENT
+      offer == Offer::RENT
     end
 
     def for_sale?
-      offer == SALE
+      offer == Offer::SALE
     end
   end
 end
