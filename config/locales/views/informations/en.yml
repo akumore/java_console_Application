@@ -47,3 +47,5 @@ en:
       highway_access: 'Motorway access %{distance} m'
     location_html: 'Location'
     interior_html: 'Quality of fittings'
+    offer: 'Offer'
+    infrastructure: 'Infrastructure'

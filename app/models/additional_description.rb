@@ -5,6 +5,5 @@ class AdditionalDescription
 
   embedded_in :real_estate
 
-  field :offer, :type => String
   field :orientation_degrees, :type => Integer
 end

@@ -47,3 +47,5 @@ fr:
       highway_access: 'Accès autoroutier %{distance} m'
     location_html: 'Lieu'
     interior_html: 'Standard de construction'
+    offer: 'Offre'
+    infrastructure: 'Infrastructure'

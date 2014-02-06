@@ -40,6 +40,7 @@ class Figure
   field :outdoor_bike, :type => Integer # Motorrad-Parkplatz im Freien überdacht
   field :single_garage, :type => Integer # Einzelgarage
   field :double_garage, :type => Integer # Doppelgarage
+  field :offer_html, :type => String
 
   # fields which must be numeric
   validates :property_surface,

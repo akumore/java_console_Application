@@ -47,3 +47,5 @@ de:
       highway_access: 'Autobahnanschluss %{distance} m'
     location_html: 'Standort'
     interior_html: 'Ausbaustandard'
+    offer: 'Angebot'
+    infrastructure: 'Infrastruktur'

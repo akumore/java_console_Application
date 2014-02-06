@@ -47,3 +47,5 @@ it:
       highway_access: 'Autostrada %{distance} m'
     location_html: 'Ubicazione'
     interior_html: 'Finiture standard'
+    offer: 'Offerta'
+    infrastructure: 'Infrastruttura'
