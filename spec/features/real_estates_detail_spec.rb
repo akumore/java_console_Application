@@ -76,13 +76,13 @@ describe "RealEstates" do
 
           page.should have_content(real_estate.description)
           page.should have_css('h3:contains(Standort)')
-          page.html.should include real_estate.information.location_html
+          page.html.gsub(/\s*/m, ' ').should include real_estate.information.location_html.gsub(/\s*/m, ' ')
           page.should have_css('h3:contains(Ausbaustandard)')
-          page.html.should include real_estate.information.interior_html
+          page.html.gsub(/\s*/m, ' ').should include real_estate.information.interior_html.gsub(/\s*/m, ' ')
           page.should have_css('h3:contains(Angebot)')
-          page.html.should include real_estate.figure.offer_html.to_s
+          page.html.gsub(/\s*/m, ' ').should include real_estate.figure.offer_html.to_s.gsub(/\s*/m, ' ')
           page.should have_css('h3:contains(Infrastruktur)')
-          page.html.should include real_estate.information.infrastructure_html
+          page.html.gsub(/\s*/m, ' ').should include real_estate.information.infrastructure_html.gsub(/\s*/m, ' ')
           page.should_not have_content('Raumhöhe')
         end
       end

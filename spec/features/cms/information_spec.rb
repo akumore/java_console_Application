@@ -401,10 +401,10 @@ describe "Cms Information" do
 
     it 'shows the additional information text' do
       visit cms_real_estate_information_path real_estate
-      page.html.should include real_estate.information.additional_information
-      page.html.should include real_estate.information.location_html
-      page.html.should include real_estate.information.interior_html
-      page.html.should include real_estate.information.infrastructure_html
+      page.html.gsub(/\s*/m, ' ').should include real_estate.information.additional_information.gsub(/\s*/m, ' ')
+      page.html.gsub(/\s*/m, ' ').should include real_estate.information.location_html.gsub(/\s*/m, ' ')
+      page.html.gsub(/\s*/m, ' ').should include real_estate.information.interior_html.gsub(/\s*/m, ' ')
+      page.html.gsub(/\s*/m, ' ').should include real_estate.information.infrastructure_html.gsub(/\s*/m, ' ')
     end
 
     it 'shows a message if no information exist' do
