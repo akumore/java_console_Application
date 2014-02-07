@@ -33,9 +33,6 @@
     %h2= t('pricings.title')
     = pricing_content
 
-- if @real_estate.additional_description.present?
-  = render 'description', :real_estate => @real_estate, :additional_description => @real_estate.additional_description
-
 - if (handout_images = @real_estate.images.for_print).any?
   = render 'images', :images => handout_images
 
