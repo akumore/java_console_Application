@@ -75,8 +75,8 @@
             .content
               = information_content
 
-      - if @real_estate.contact.present?
-        = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
+        - if @real_estate.contact.present?
+          = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
 
   .sidebar
     %ul
