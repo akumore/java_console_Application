@@ -652,37 +652,43 @@ describe "Handout aka MiniDoku" do
     end
   end
 
-  describe "Chapter Descriptions" do
-    before do
-      visit real_estate_handout_path(printable_real_estate)
-    end
+  # TODO: noelle, make new specs that make sense when content structure in handout is updated (Feature 24/21)
+  # describe "Chapter Descriptions" do
+  #   before do
+  #     visit real_estate_handout_path(printable_real_estate)
+  #   end
 
-    it 'shows the chapter title' do
-      within('.chapter.additional-description h2') do
-        page.should have_content 'Beschreibung'
-      end
-    end
+  #   it 'shows the chapter title' do
+  #     within('.chapter.additional-description h2') do
+  #       page.should have_content 'Beschreibung'
+  #     end
+  #   end
 
-    it 'shows the location description' do
-      page.should have_content 'In der Nähe'
-      page.should have_content 'Lorem ipsum ... 2. Beschreibung'
-    end
+  #   it 'shows the location description' do
+  #     page.should have_content 'In der Nähe'
+  #     page.should have_content 'Lorem ipsum ... 2. Beschreibung'
+  #   end
 
-    it 'shows the interior description' do
-      page.should have_content 'Ausbaustandard'
-      page.should have_content 'Lorem ipsum ... 3. Beschreibung'
-    end
+  #   it 'shows the interior description' do
+  #     page.should have_content 'Ausbaustandard'
+  #     page.should have_content 'Lorem ipsum ... 3. Beschreibung'
+  #   end
 
-    it 'shows the offer description' do
-      page.should have_content 'Angebot'
-      page.should have_content 'Lorem ipsum ... 4. Beschreibung'
-    end
+  #   it 'shows the offer description' do
+  #     page.should have_content 'Angebot'
+  #     page.should have_content 'Lorem ipsum ... 4. Beschreibung'
+  #   end
 
-    it 'shows the infrastructure description' do
-      page.should have_content 'Infrastruktur'
-      page.should have_content 'Lorem ipsum ... 5. Beschreibung'
-    end
-  end
+  #   it 'shows the infrastructure description' do
+  #     page.should have_content 'Infrastruktur'
+  #     page.should have_content 'Lorem ipsum ... 5. Beschreibung'
+  #   end
+
+  #   it 'shows the usage description' do
+  #     page.should have_content 'Nutzung'
+  #     page.should have_content "#{printable_real_estate.category.label}/Commercial/Restaurant"
+  #   end
+  # end
 
   describe "Chapter Contact" do
 
