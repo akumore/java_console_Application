@@ -682,11 +682,6 @@ describe "Handout aka MiniDoku" do
       page.should have_content 'Infrastruktur'
       page.should have_content 'Lorem ipsum ... 5. Beschreibung'
     end
-
-    it 'shows the usage description' do
-      page.should have_content 'Nutzung'
-      page.should have_content "#{printable_real_estate.category.label}/Commercial/Restaurant"
-    end
   end
 
   describe "Chapter Contact" do
