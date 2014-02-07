@@ -10,7 +10,6 @@ class RealEstateDecorator < ApplicationDecorator
   decorates_association :information
   decorates_association :pricing
   decorates_association :figure
-  decorates_association :infrastructure
   decorates_association :floor_plans
 
   def initialize(*args)
@@ -327,42 +326,62 @@ class RealEstateDecorator < ApplicationDecorator
                         information.renovated_on.present? ||
                         information.built_on.present? || 
                         information.characteristics.any? ||
-                        information.distances.any?)
+                        information.location_characteristics.any?)
   end
 
+  # TODO: noelle refactor!!
   def utilization_information?
     if living?
       figure.present? && (figure.floor.present? ||
                           figure.rooms.present? ||
-                          figure.surface.present?
+                          figure.surface.present? ||
+                          figure.inside_parking_spots.present? ||
+                          figure.outside_parking_spots.present? ||
+                          figure.covered_slot.present? ||
+                          figure.covered_bike.present? ||
+                          figure.outdoor_bike.present? ||
+                          figure.single_garage.present? ||
+                          figure.double_garage.present?
                          ) ||
       information.present? && information.additional_information.present?
+    
     elsif working?
       figure.present? && (figure.property_surface.present? ||
-                          figure.storage_surface.present?
+                          figure.storage_surface.present? ||
+                          figure.inside_parking_spots.present? ||
+                          figure.outside_parking_spots.present? ||
+                          figure.covered_slot.present? ||
+                          figure.covered_bike.present? ||
+                          figure.outdoor_bike.present? ||
+                          figure.single_garage.present? ||
+                          figure.double_garage.present?
                          ) ||
       information.present? && (information.maximal_floor_loading.present? ||
                                information.freight_elevator_carrying_capacity.present? ||
                                information.additional_information.present? ||
                                information.ceiling_height.present?
                               )
+    
     elsif storing?
       information.present? && (information.additional_information.present? ||
-                               information.ceiling_height.present?)
+                               information.ceiling_height.present?
+                              ) ||
+      figure.present? && (figure.inside_parking_spots.present? ||
+                          figure.outside_parking_spots.present? ||
+                          figure.covered_slot.present? ||
+                          figure.covered_bike.present? ||
+                          figure.outdoor_bike.present? ||
+                          figure.single_garage.present? ||
+                          figure.double_garage.present?)
+    
     elsif parking?
-      false
-    end
-  end
-
-  def any_infrastructures?
-    if infrastructure.present?
-      infrastructure.inside_parking_spots.present? ||
-      infrastructure.outside_parking_spots.present? ||
-      infrastructure.covered_slot.present? ||
-      infrastructure.covered_bike.present? ||
-      infrastructure.outdoor_bike.present? ||
-      infrastructure.single_garage.present? ||
-      infrastructure.double_garage.present?
+      figure.present? && (figure.inside_parking_spots.present? ||
+                          figure.outside_parking_spots.present? ||
+                          figure.covered_slot.present? ||
+                          figure.covered_bike.present? ||
+                          figure.outdoor_bike.present? ||
+                          figure.single_garage.present? ||
+                          figure.double_garage.present?)
     end
   end
 

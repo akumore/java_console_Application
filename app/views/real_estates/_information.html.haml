@@ -1,79 +1,35 @@
-.accordion-item
-  .title= t('information.title')
-  .content
-    - if figure && real_estate.living?
-      - if figure.floor.present?
-        %dl
-          %dt= t('figures.floor')
-          %dd= figure.floor
+- unless real_estate.parking?
+  - if information.try(&:location_html).present?
+    %h3= t('information.location')
+    = information.location_html.html_safe
 
-      - if figure.rooms.present?
-        %dl
-          %dt= t('figures.rooms')
-          %dd= figure.rooms
+  - if information.try(&:infrastructure_html).present?
+    %h3= t('information.infrastructure')
+    = information.infrastructure_html.html_safe
 
-      - if figure.surface.present?
-        %dl
-          %dt= figure.surface_label
-          %dd= figure.surface
+  - if information.try(&:interior_html).present?
+    %h3= t('information.interior_html')
+    = information.interior_html.html_safe
 
-    - if figure && real_estate.working?
-      - if figure.property_surface.present?
-        %dl
-          %dt= t('figures.property_surface')
-          %dd= figure.property_surface
+  - if information && information.additional_information.present?
+    %dl
+      %dt= t('information.additional_information')
+      %dd= information.additional_information
 
-    - if information && real_estate.working? || real_estate.storing?
-      - if information.ceiling_height.present?
-        %dl
-          %dt= t('information.ceiling_height')
-          %dd= information.ceiling_height
+- if information && real_estate.working? || real_estate.storing?
 
-    - if figure && real_estate.working? || real_estate.living?
-      - if figure.storage_surface.present?
-        %dl
-          %dt= t('figures.storage_surface')
-          %dd= figure.storage_surface
+  - if information.maximal_floor_loading.present?
+    %dl
+      %dt= t('information.maximal_floor_loading')
+      %dd= information.maximal_floor_loading
 
-    - if information && information.floors.present?
-      %dl
-        %dt= t('information.floors')
-        %dd= information.floors
+  - if information.freight_elevator_carrying_capacity.present?
+    %dl
+      %dt= t('information.freight_elevator_carrying_capacity')
+      %dd= information.freight_elevator_carrying_capacity
 
-    - if information && information.renovated_on.present?
-      %dl
-        %dt= t('information.renovated_on')
-        %dd= information.renovated_on
-
-    - if information && information.built_on.present?
-      %dl
-        %dt= t('information.built_on')
-        %dd= information.built_on
-
-    - if information && information.characteristics.any? && !real_estate.parking?
-      %dl
-        %dt= t('information.characteristics')
-        %dd= information.characteristics.join(', ')
-
-    - if information && real_estate.working? || real_estate.storing?
-
-      - if information.maximal_floor_loading.present?
-        %dl
-          %dt= t('information.maximal_floor_loading')
-          %dd= information.maximal_floor_loading
-
-      - if information.freight_elevator_carrying_capacity.present?
-        %dl
-          %dt= t('information.freight_elevator_carrying_capacity')
-          %dd= information.freight_elevator_carrying_capacity
-
-    - if information && information.distances.any?
-      %dl
-        %dt= t('information.distances')
-        %dd= information.distances.join(', ')
-
-    - unless real_estate.parking?
-      - if information && information.additional_information.present?
-        %dl
-          %dt= t('information.additional_information')
-          %dd= information.additional_information
+- unless real_estate.parking?
+  - if information && information.additional_information.present?
+    %dl
+      %dt= t('information.additional_information')
+      %dd= information.additional_information

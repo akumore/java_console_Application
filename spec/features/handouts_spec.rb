@@ -3,9 +3,13 @@ require "spec_helper"
 
 describe "Handout aka MiniDoku" do
   monkey_patch_default_url_options
+  before { ApplicationController.new.set_current_view_context }
 
   let :information do
     Fabricate.build(:information,
+                    :location_html => 'Lorem ipsum ... 2. Beschreibung',
+                    :interior_html => 'Lorem ipsum ... 3. Beschreibung',
+                    :infrastructure_html => 'Lorem ipsum ... 5. Beschreibung',
                     :is_new_building => true,
                     :is_old_building => true,
                     :is_minergie_style => true,
@@ -37,33 +41,40 @@ describe "Handout aka MiniDoku" do
 
   let :additional_description do
     Fabricate.build(:additional_description,
-                    :location => 'Lorem ipsum ... 2. Beschreibung',
-                    :interior => 'Lorem ipsum ... 3. Beschreibung',
-                    :offer => 'Lorem ipsum ... 4. Beschreibung',
-                    :infrastructure => 'Lorem ipsum ... 5. Beschreibung',
                     :orientation_degrees => 180
                    )
   end
 
+  let :figure do
+    Fabricate.build(:figure,
+                    :floor => 3,
+                    :floor_estimate => '',
+                    :rooms => '3.5',
+                    :living_surface => 120,
+                    :living_surface_estimate => '',
+                    :specification_living_surface => 'Test one two three',
+                    :property_surface => 100,
+                    :storage_surface => 10,
+                    :storage_surface_estimate => 20,
+                    :usable_surface => 400,
+                    :offer_html => 'Lorem ipsum ... 4. Beschreibung'
+                  )
+  end
+
+  let :pricing do
+    Fabricate.build(:pricing_for_rent,
+                    :display_estimated_available_from => 'Mitte Mai',
+                    :for_rent_netto => 1999,
+                    :additional_costs => 99,
+                    :price_unit => 'monthly')
+  end
+
   let :printable_real_estate do
     Fabricate(:residential_building,
+        :utilization => @utilization || Utilization::LIVING,
         :address => Fabricate.build(:address, :street => 'Musterstrasse', :street_number => '1', :zip => '8400', :city => 'Hausen'),
-        :figure => Fabricate.build(:figure,
-                                   :floor => 3,
-                                   :floor_estimate => '',
-                                   :rooms => '3.5',
-                                   :living_surface => 120,
-                                   :living_surface_estimate => '',
-                                   :specification_living_surface => 'Test one two three',
-                                   :property_surface => 100,
-                                   :storage_surface => 10,
-                                   :storage_surface_estimate => 20
-                                  ),
-        :pricing => Fabricate.build(:pricing_for_rent,
-                                    :display_estimated_available_from => 'Mitte Mai',
-                                    :for_rent_netto => 1999,
-                                    :additional_costs => 99,
-                                    :price_unit => 'monthly'),
+        :figure => figure,
+        :pricing => pricing,
         :information => information,
         :title => 'Demo Objekt',
         :description => 'Lorem Ipsum',
@@ -115,9 +126,7 @@ describe "Handout aka MiniDoku" do
       end
 
       it "shows the usable surface if utilization is 'working'" do
-        printable_real_estate.figure = Fabricate.build(:figure, :usable_surface => 400)
-        printable_real_estate.update_attribute(:utilization, Utilization::WORKING)
-
+        @utilization = Utilization::WORKING
         visit real_estate_handout_path(printable_real_estate)
         page.should have_content('Nutzfläche 400 m²')
       end
@@ -131,32 +140,30 @@ describe "Handout aka MiniDoku" do
 
   describe 'Chapter Real Estate information' do
     describe 'General information' do
-      before do
-        visit real_estate_handout_path(printable_real_estate)
-      end
 
       it 'shows the chapter title' do
+        visit real_estate_handout_path(printable_real_estate)
         page.should have_content('Immobilieninfos')
       end
 
       context 'real estate for living utilization' do
+        before do
+          visit real_estate_handout_path(printable_real_estate)
+        end
+
         it 'shows the floors' do
           page.should have_content('Geschosse')
           page.should have_content('20 Geschosse')
         end
 
         it 'shows renovated on' do
-          page.should have_content('Letze Renovierung')
+          page.should have_content('Letzte Renovierung')
           page.should have_content('1991')
         end
 
         it 'shos the built on' do
           page.should have_content('Baujahr')
           page.should have_content('2008')
-        end
-
-        it 'shows the characteristics' do
-          page.should have_content('Merkmale')
         end
 
         it 'shows the floor' do
@@ -177,7 +184,7 @@ describe "Handout aka MiniDoku" do
 
       context 'real estate for working utilization' do
         before do
-          printable_real_estate.update_attribute(:utilization, Utilization::WORKING)
+          @utilization = Utilization::WORKING
           visit real_estate_handout_path(printable_real_estate)
         end
 
@@ -187,17 +194,13 @@ describe "Handout aka MiniDoku" do
         end
 
         it 'shows renovated on' do
-          page.should have_content('Letze Renovierung')
+          page.should have_content('Letzte Renovierung')
           page.should have_content('1991')
         end
 
         it 'shos the built on' do
           page.should have_content('Baujahr')
           page.should have_content('2008')
-        end
-
-        it 'shows the characteristics' do
-          page.should have_content('Merkmale')
         end
 
         it 'shows the property surface' do
@@ -225,29 +228,26 @@ describe "Handout aka MiniDoku" do
           page.should have_content('4321 kg')
         end
 
-        describe 'freight_elevator behaviour' do
-          context 'with freight_elevator_carrying_capacity' do
-            it 'shows freight_elevator label' do
-              page.should have_content('Warenlift')
-            end
-          end
+      end
 
-          context 'without freight_elevator_carrying_capacity' do
-            before :each do
-              printable_real_estate.information.update_attribute(:freight_elevator_carrying_capacity, '')
-              visit real_estate_handout_path(printable_real_estate)
-            end
+      describe 'freight_elevator behaviour' do
+        it 'shows freight_elevator label' do
+          @utilization = Utilization::WORKING
+          visit real_estate_handout_path(printable_real_estate)
+          page.should have_content('Warenlift')
+        end
 
-            it "doesn't show freight_elevator label" do
-              page.should_not have_content('Warenlift')
-            end
-          end
+        it "doesn't show freight_elevator label" do
+          @utilization = Utilization::WORKING
+          information.freight_elevator_carrying_capacity = ''
+          visit real_estate_handout_path(printable_real_estate)
+          page.should_not have_content('Warenlift')
         end
       end
 
       context 'real estate for storing utilization' do
         before do
-          printable_real_estate.update_attribute(:utilization, Utilization::STORING)
+          @utilization = Utilization::STORING
           visit real_estate_handout_path(printable_real_estate)
         end
 
@@ -257,7 +257,7 @@ describe "Handout aka MiniDoku" do
         end
 
         it 'shows renovated on' do
-          page.should have_content('Letze Renovierung')
+          page.should have_content('Letzte Renovierung')
           page.should have_content('1991')
         end
 
@@ -266,38 +266,16 @@ describe "Handout aka MiniDoku" do
           page.should have_content('2008')
         end
 
-        it 'shows the characteristics' do
-          page.should have_content('Merkmale')
-        end
-
         it 'shows the ceiling height' do
           page.should have_content('Raumhöhe')
           page.should have_content('5 m')
         end
 
-        describe 'freight_elevator behaviour' do
-          context 'with freight_elevator_carrying_capacity' do
-            it 'shows freight_elevator label' do
-              page.should have_content('Warenlift')
-            end
-          end
-
-          context 'without freight_elevator_carrying_capacity' do
-            before :each do
-              printable_real_estate.information.update_attribute(:freight_elevator_carrying_capacity, '')
-              visit real_estate_handout_path(printable_real_estate)
-            end
-
-            it "doesn't show freight_elevator label" do
-              page.should_not have_content('Warenlift')
-            end
-          end
-        end
       end
 
       context 'real estate for parking utilization' do
         before do
-          printable_real_estate.update_attribute(:utilization, Utilization::PARKING)
+          @utilization = Utilization::PARKING
           visit real_estate_handout_path(printable_real_estate)
         end
 
@@ -310,7 +288,7 @@ describe "Handout aka MiniDoku" do
     describe 'specifications' do
       context 'with working utilization' do
         before do
-          printable_real_estate.update_attribute :utilization, Utilization::WORKING
+          @utilization = Utilization::WORKING
           visit real_estate_handout_path(printable_real_estate)
         end
 
@@ -320,7 +298,7 @@ describe "Handout aka MiniDoku" do
 
         context 'with toilet specification' do
           before do
-            printable_real_estate.figure.update_attributes(:specification_usable_surface_toilet => true, :specification_usable_surface_with_toilet => 'Mit Toilette')
+            figure.update_attributes(:specification_usable_surface_toilet => true, :specification_usable_surface_with_toilet => 'Mit Toilette')
             visit real_estate_handout_path(printable_real_estate)
           end
 
@@ -332,7 +310,7 @@ describe "Handout aka MiniDoku" do
 
         context 'without toilet specification' do
           before do
-            printable_real_estate.figure.update_attributes(:specification_usable_surface_toilet => false, :specification_usable_surface_without_toilet => 'Ohne Toilette')
+            figure.update_attributes(:specification_usable_surface_toilet => false, :specification_usable_surface_without_toilet => 'Ohne Toilette')
             visit real_estate_handout_path(printable_real_estate)
           end
 
@@ -345,7 +323,7 @@ describe "Handout aka MiniDoku" do
 
       context 'with living utilization' do
         before do
-          printable_real_estate.update_attribute :utilization, Utilization::LIVING
+          @utilization = Utilization::LIVING
           visit real_estate_handout_path(printable_real_estate)
         end
 
@@ -361,7 +339,7 @@ describe "Handout aka MiniDoku" do
 
       context 'with storing utilization' do
         before do
-          printable_real_estate.update_attribute :utilization, Utilization::STORING
+          @utilization = Utilization::STORING
           visit real_estate_handout_path(printable_real_estate)
         end
 
@@ -370,7 +348,7 @@ describe "Handout aka MiniDoku" do
         end
 
         it 'shows the specification to storing surface' do
-          printable_real_estate.figure.update_attribute :specification_usable_surface, 'Spezifikation zur Lagerfläche'
+          figure.update_attribute :specification_usable_surface, 'Spezifikation zur Lagerfläche'
           visit real_estate_handout_path(printable_real_estate)
           page.should have_content('Spezifikation zur Lagerfläche')
         end
@@ -378,7 +356,7 @@ describe "Handout aka MiniDoku" do
 
       context 'with parking utilization' do
         before do
-          printable_real_estate.update_attribute :utilization, Utilization::PARKING
+          @utilization = Utilization::PARKING
           visit real_estate_handout_path(printable_real_estate)
         end
 
@@ -524,47 +502,44 @@ describe "Handout aka MiniDoku" do
       it_should_behave_like "Pricing information shown for all kind of real estates"
 
     end
-
   end
 
   describe "Chapter Information" do
-    before do
-      visit real_estate_handout_path(printable_real_estate)
-    end
-
-    it 'shows the chapter title' do
-      page.should have_content 'Immobilieninfos'
-    end
-
-    it 'shows the availability date' do
-      page.should have_content 'Bezug'
-      page.should have_content 'Mitte Mai'
-    end
-
-    it 'shows the characteristics' do
-      page.should have_content('Merkmale')
-    end
-
-    it "doesn't show if it is a new building" do
-      page.should_not have_content 'Neubau'
-    end
-
-    it "doesn't show if it is an old building" do
-      page.should_not have_content 'Altbau'
-    end
-
-    it 'shows the minergie infos' do
-      page.should have_content 'Minergie Bauweise'
-      page.should have_content 'Minergie zertifiziert'
-    end
-
-    it 'shows if it is under building laws' do
-      pending 'figure out what this is supposed to do'
-    end
 
     context 'real estate for living utilization' do
-      it "has a view" do
-        page.should have_content 'Ausblick'
+      before do
+        visit real_estate_handout_path printable_real_estate
+      end
+
+      it 'shows the chapter title' do
+        page.should have_content 'Immobilieninfos'
+      end
+
+      it 'shows the availability date' do
+        page.should have_content 'Bezug'
+        page.should have_content 'Mitte Mai'
+      end
+
+      it "doesn't show if it is a new building" do
+        page.should_not have_content 'Neubau'
+      end
+
+      it "doesn't show if it is an old building" do
+        page.should_not have_content 'Altbau'
+      end
+
+      it 'shows the minergie infos' do
+        page.should have_content 'Minergie Bauweise'
+        page.should have_content 'Minergie zertifiziert'
+      end
+
+      it 'shows if it is under building laws' do
+        pending 'figure out what this is supposed to do'
+      end
+
+      it "has no view" do
+        # only on third party webpages
+        page.should_not have_content 'Ausblick'
       end
 
       it 'has fireplace' do
@@ -614,7 +589,7 @@ describe "Handout aka MiniDoku" do
 
     context 'real estate for working utilization' do
       before do
-        printable_real_estate.update_attribute :utilization, Utilization::WORKING
+        @utilization = Utilization::WORKING
         visit real_estate_handout_path printable_real_estate
       end
 
@@ -663,7 +638,7 @@ describe "Handout aka MiniDoku" do
 
     context 'real estate for storing utilization' do
       before do
-        printable_real_estate.update_attribute :utilization, Utilization::STORING
+        @utilization = Utilization::STORING
         visit real_estate_handout_path printable_real_estate
       end
 
@@ -689,7 +664,7 @@ describe "Handout aka MiniDoku" do
     end
 
     it 'shows the location description' do
-      page.should have_content 'Standort'
+      page.should have_content 'In der Nähe'
       page.should have_content 'Lorem ipsum ... 2. Beschreibung'
     end
 

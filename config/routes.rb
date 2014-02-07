@@ -28,7 +28,6 @@ AlfredMueller::Application.routes.draw do
       resource :pricing, :except=>:destroy
       resource :figure, :except=>:destroy
       resource :information
-      resource :infrastructure, :except=>:destroy
       resource :additional_description, :except=>:destroy
       resources :media_assets, :only => :index
       resources :image_croppings

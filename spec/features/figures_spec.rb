@@ -10,13 +10,13 @@ describe "RealEstates Figures" do
 
   let :real_estate do
     Fabricate :published_real_estate,
+              :utilization => @utilization || Utilization::LIVING,
               :category => category,
               :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
               :address => Fabricate.build(:address),
               :information => Fabricate.build(:information),
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
               :pricing => Fabricate.build(:pricing),
-              :infrastructure => Fabricate.build(:infrastructure),
               :additional_description => Fabricate.build(:additional_description),
               :contact => Fabricate(:employee)
   end
@@ -24,7 +24,7 @@ describe "RealEstates Figures" do
   describe '#ceiling_height' do
     context 'with living utilization' do
       it "doesn't shows ceiling height" do
-        real_estate.update_attribute(:utilization, Utilization::LIVING)
+        @utilization = Utilization::LIVING
         visit real_estate_path(real_estate)
         page.should_not have_content('Raumhöhe')
       end
@@ -32,7 +32,7 @@ describe "RealEstates Figures" do
 
     context 'with working utilization' do
       it "shows ceiling height" do
-        real_estate.update_attribute(:utilization, Utilization::WORKING)
+        @utilization = Utilization::WORKING
         visit real_estate_path(real_estate)
         page.should have_content('Raumhöhe')
       end
@@ -40,7 +40,7 @@ describe "RealEstates Figures" do
 
     context 'with storing utilization' do
       it "shows ceiling height" do
-        real_estate.update_attribute(:utilization, Utilization::STORING)
+        @utilization = Utilization::STORING
         visit real_estate_path(real_estate)
         page.should have_content('Raumhöhe')
       end
@@ -48,7 +48,7 @@ describe "RealEstates Figures" do
 
     context 'with parking utilization' do
       it "doesn't shows ceiling height" do
-        real_estate.update_attribute(:utilization, Utilization::PARKING)
+        @utilization = Utilization::PARKING
         visit real_estate_path(real_estate)
         page.should_not have_content('Raumhöhe')
       end

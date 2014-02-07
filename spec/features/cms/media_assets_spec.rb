@@ -17,7 +17,7 @@ describe "Cms::MediaAssets" do
 
   it 'takes me to media assets #index' do
     visit edit_cms_real_estate_path(@real_estate)
-    click_on 'Bilder & Dokumente'
+    click_on 'Bilder/Anhänge'
     current_path.should == cms_real_estate_media_assets_path(@real_estate)
   end
 

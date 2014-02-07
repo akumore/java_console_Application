@@ -1,9 +1,7 @@
-module Utilization
+require 'constants'
 
-  LIVING  = 'private'
-  WORKING = 'commercial'
-  STORING = 'storage'
-  PARKING = 'parking'
+module Utilization
+  include Constants::Utilization
 
   def self.all
     [LIVING, WORKING, STORING, PARKING]
@@ -11,7 +9,7 @@ module Utilization
 
   module Accessors
     def living?
-      utilization == LIVING
+      utilization == Utilization::LIVING
     end
 
     def commercial?
@@ -23,15 +21,15 @@ module Utilization
     end
 
     def working?
-      utilization == WORKING
+      utilization == Utilization::WORKING
     end
 
     def storing?
-      utilization == STORING
+      utilization == Utilization::STORING
     end
 
     def parking?
-      utilization == PARKING
+      utilization == Utilization::PARKING
     end
   end
 end

@@ -7,6 +7,13 @@ Fabricator(:real_estate) do
   description 'Some real estate description...'
   utilization_description 'Commercial, Restaurant'
   office { Fabricate(:office) }
+
+  after_build do |re|
+    if info = re.information
+      field_access = FieldAccess.new(re.offer, re.utilization, FieldAccess.cms_blacklist)
+      info.decorate(context: {field_access: field_access}).update_characteristics
+    end
+  end
 end
 
 Fabricator(:published_real_estate, :from => :real_estate) do

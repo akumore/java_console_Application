@@ -3,48 +3,42 @@ class InformationDecorator < ApplicationDecorator
 
   decorates :information
 
-  def characteristics
-    buffer  = []
-    
-    buffer << t('information.minergie_style') if model.is_minergie_style?
-    buffer << t('information.minergie_certified') if model.is_minergie_certified?
-    buffer << t('information.cable_tv') if model.has_cable_tv?
+  INFRASTRUCTURE_FIELDS = %w(built_on renovated_on floors has_swimming_pool is_child_friendly is_wheelchair_accessible
+    is_minergie_style is_minergie_certified has_elevator has_ramp has_lifting_platform has_railway_terminal
+    freight_elevator_carrying_capacity)
 
-    if model.living?
-      buffer << t('information.view') if model.has_outlook?
-      buffer << t('information.fireplace') if model.has_fireplace?
-      buffer << t('information.elevator') if model.has_elevator?
-      buffer << t('information.isdn') if model.has_isdn?
-      buffer << t('information.wheelchair_accessible') if model.is_wheelchair_accessible?
-      buffer << t('information.child_friendly') if model.is_child_friendly?
-      buffer << t('information.balcony') if model.has_balcony?
-      buffer << t('information.garden_seating') if model.has_garden_seating?
-      buffer << t('information.swimmingpool') if model.has_swimming_pool?
-    elsif model.working? || model.storing?
-      if model.number_of_restrooms.to_i > 0
-        buffer << t('information.number_of_restrooms', :count => model.number_of_restrooms)
-      end
+  def infrastructure_characteristics
+    return [] if real_estate.parking?
+    translate_characteristics(INFRASTRUCTURE_FIELDS)
+  end
 
-      buffer << t('information.ramp') if model.has_ramp?
-      buffer << t('information.lifting_platform') if model.has_lifting_platform?
-      buffer << t('information.railway_terminal') if model.has_railway_terminal?
-      buffer << t('information.water_supply') if model.has_water_supply?
-      buffer << t('information.sewage_supply') if model.has_sewage_supply?
-      buffer << t('information.freight_elevator') if model.has_freight_elevator?
-    end
+  INTERIOR_FIELDS = %w(has_sewage_supply has_water_supply has_balcony has_garden_seating has_fireplace has_isdn
+    has_cable_tv maximal_floor_loading ceiling_height number_of_restrooms)
 
-    buffer.compact
+  def interior_characteristics
+    return [] if real_estate.parking?
+    translate_characteristics(INTERIOR_FIELDS)
+  end
+
+  def update_characteristics
+    update_list_in(:location_characteristics, :location_html)
+    update_list_in(:infrastructure_characteristics, :infrastructure_html)
+    update_list_in(:interior_characteristics, :interior_html)
+  end
+
+  def number_of_restrooms
+    t('information.number_of_restrooms', :count => model.number_of_restrooms)
   end
 
   def maximal_floor_loading
     if model.maximal_floor_loading.present?
-      t('information.maximal_floor_loading_value', :count => model.maximal_floor_loading )
+      t('information.maximal_floor_loading') + ': ' + t('information.maximal_floor_loading_value', :count => model.maximal_floor_loading )
     end
   end
 
   def freight_elevator_carrying_capacity
     if model.freight_elevator_carrying_capacity.present?
-      t('information.freight_elevator_carrying_capacity_value', :count => model.freight_elevator_carrying_capacity )
+      t('information.freight_elevator_carrying_capacity') + ': ' + t('information.freight_elevator_carrying_capacity_value', :count => model.freight_elevator_carrying_capacity )
     end
   end
 
@@ -95,6 +89,7 @@ class InformationDecorator < ApplicationDecorator
       content << { :key => t('information.built_on'), :value => information.built_on }
     end
 
+    characteristics = infrastructure_characteristics + interior_characteristics
     if characteristics.any?
       content << { :key => t('information.characteristics'), :value => characteristics.join(', ') }
     end
@@ -109,10 +104,10 @@ class InformationDecorator < ApplicationDecorator
       end
     end
 
-    if distances.any?
+    if location_characteristics.any?
       content << {
-        :key => t('information.distances'),
-        :value => distances.join(', ')
+        :key => t('information.location'),
+        :value => location_characteristics.join(', ')
       }
     end
 
@@ -137,13 +132,24 @@ class InformationDecorator < ApplicationDecorator
 
   def ceiling_height
     # Raumhöhe
-    t('information.ceiling_height_value', :size => model.ceiling_height) if model.ceiling_height.present?
+    t('information.ceiling_height') + ': ' + t('information.ceiling_height_value', :size => model.ceiling_height) if model.ceiling_height.present?
   end
 
-  def distances
+  def location_characteristics
     buffer = []
 
-    model.points_of_interest.each do |poi|
+    points = model.points_of_interest.map {|p| p}
+
+    transports = %w(public_transport highway_access).map {|name| points.find {|p| p.name == name && p.distance.present?} }.compact
+    buffer << transports.map {|trans| t("information.points_of_interest.#{trans.name}", :distance => trans.distance) }.join(', ') if
+      transports.length > 0
+
+    schools =  %w(kindergarden elementary_school high_school).map {|name| points.find {|p| p.name == name && p.distance.present?} }.compact
+    buffer << schools.map {|school| t("information.points_of_interest.#{school.name}", :distance => school.distance) }.join(', ') if
+      schools.length > 0
+
+    points.delete_if {|poi| schools.include?(poi) || transports.include?(poi) }
+    points.each do |poi|
       if poi.distance.present?
         buffer << t("information.points_of_interest.#{poi.name}", :distance => poi.distance)
       end

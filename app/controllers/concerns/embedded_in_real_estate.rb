@@ -1,3 +1,5 @@
+require 'field_access'
+
 module Concerns
   module EmbeddedInRealEstate
     extend ActiveSupport::Concern
@@ -7,6 +9,8 @@ module Concerns
       load_resource :real_estate
       before_filter :save_editor, :only => [:update, :create]
     end
+
+    EXISTING_TABS = ['address', 'figure', 'pricing', 'information', 'media_assets']
 
     def success_message_for(name)
       "#{name.singularize.classify.constantize.model_name.human} erfolgreich gespeichert."
@@ -25,8 +29,12 @@ module Concerns
       end
     end
 
+    def get_available_tabs
+      EXISTING_TABS.select { |tab| @real_estate.to_model_access.accessible?(tab) }
+    end
+
     def next_step_after(name)
-      TabList.new(@real_estate).next_step(name)
+      get_available_tabs[get_available_tabs.index(name) + 1]
     end
 
     def save_editor

@@ -1,4 +1,7 @@
+require 'constants'
+
 class FieldAccess
+  include Constants
 
   attr_reader :model_class,
               :offer,
@@ -12,16 +15,10 @@ class FieldAccess
   end
 
   def accessible?(model, field)
-    found = if @blacklist.include?(key_for(model, field))
-      true
-    elsif @blacklist.include?(any_offer_key_for(model, field))
-      true
-    elsif @blacklist.include?(any_utilization_key_for(model, field))
-      true
-    else
-      false
-    end
-    !found
+    return false if @blacklist.include?(key_for(model, field))
+    return false if @blacklist.include?(any_offer_key_for(model, field))
+    return false if @blacklist.include?(any_utilization_key_for(model, field))
+    true
   end
 
   def key_for(model, field)
@@ -56,6 +53,8 @@ class FieldAccess
 
   def self.cms_blacklist
     %w(
+       *.parking.figure.floor
+       *.parking.figure.floor_estimate
        *.working.figure.rooms
        *.parking.figure.rooms
        *.storing.figure.rooms
@@ -72,7 +71,9 @@ class FieldAccess
        *.storing.figure.specification_living_surface
        *.parking.figure.specification_living_surface
        *.storing.figure.property_surface
+       *.parking.figure.property_surface
        *.storing.figure.property_surface_estimate
+       *.parking.figure.property_surface_estimate
        *.living.figure.usable_surface
        *.parking.figure.usable_surface
        *.living.figure.specification_usable_surface
@@ -85,11 +86,34 @@ class FieldAccess
        *.storing.pricing.storage
        *.parking.pricing.extra_storage
        *.storing.pricing.extra_storage
-       *.parking.pricing.parking_spots_prices_group
+       *.parking.pricing.for_rent_netto
+       *.parking.pricing.estimate
+       *.parking.pricing.additional_costs
        *.parking.real_estate.title
        *.parking.real_estate.utilization_description
        sale.*.information.rent_info
        rent.parking.information.rent_info
+       *.working.information.has_swimming_pool
+       *.storing.information.has_swimming_pool
+       *.parking.information.has_swimming_pool
+       *.working.information.is_child_friendly
+       *.storing.information.is_child_friendly
+       *.parking.information.is_child_friendly
+       *.living.information.has_ramp
+       *.living.information.has_lifting_platform
+       *.living.information.has_railway_terminal
+       *.living.information.has_freight_elevator
+       *.living.information.freight_elevator_carrying_capacity
+       *.living.information.has_sewage_supply
+       *.parking.information.has_sewage_supply
+       *.living.information.has_water_supply
+       *.parking.information.has_water_supply
+       *.storing.information.has_fireplace
+       *.working.information.has_fireplace
+       *.parking.information.has_fireplace
+       *.living.information.maximal_floor_loading
+       *.living.information.number_of_restrooms
+       *.living.information.ceiling_height
     )
   end
 end

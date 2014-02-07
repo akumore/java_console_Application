@@ -15,10 +15,23 @@
 - if @real_estate.floor_plans.any?
   = render 'floorplan'
 
-- if @real_estate.any_information? && !@real_estate.parking?
-  = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
+- information_content = render 'real_estates/information', :real_estate => @real_estate, :information => @real_estate.information
+- if information_content.present?
+  .chapter.pbi-avoid
+    %h2= t('information.title')
+    = information_content
 
-= render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing, :information => @real_estate.information
+- figure_content = render 'real_estates/figure', :real_estate => @real_estate, :figure => @real_estate.figure
+- if figure_content.present?
+  .chapter.pbi-avoid
+    %h2= t('figure.title')
+    = figure_content
+
+- pricing_content = render 'real_estates/pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
+- if pricing_content.present?
+  .chapter.pricing.pbi-avoid
+    %h2= t('pricings.title')
+    = pricing_content
 
 - if @real_estate.additional_description.present?
   = render 'description', :real_estate => @real_estate, :additional_description => @real_estate.additional_description

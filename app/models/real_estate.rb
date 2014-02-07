@@ -39,7 +39,6 @@ class RealEstate
   embeds_one :pricing, :validate => false
   embeds_one :figure, :validate => false
   embeds_one :information, :validate => false
-  embeds_one :infrastructure, :validate => false
   embeds_one :additional_description
 
   embeds_many :images, :class_name => 'MediaAssets::Image', :cascade_callbacks => true
@@ -112,7 +111,7 @@ class RealEstate
   scope :for_sale, :where => { :offer => Offer::SALE }
 
   def self.mandatory_for_publishing
-    %w(address pricing figure information)
+    %w(address pricing figure)
   end
 
   def validate_figure_in_editing_state?
@@ -121,6 +120,16 @@ class RealEstate
 
   def validate_figure_in_published_state?
     !parking?
+  end
+
+  def within_language
+    old_locale = I18n.locale
+    begin
+      I18n.locale = self.language.to_sym
+      yield
+    ensure
+      I18n.locale = old_locale
+    end
   end
 
   state_machine :state, :initial => :editing do
@@ -137,13 +146,11 @@ class RealEstate
       validates :address, :presence => true, :if => :state_changed?, :unless => :new_record?
       validates :pricing, :presence => true, :if => :state_changed?, :unless => :new_record?
       validates :figure, :presence => true, :if => :validate_figure_in_editing_state?, :unless => :new_record?
-      validates :information, :presence => true, :if => :state_changed?, :unless => :new_record?
 
       # :if => :state_changed? # Allows admin to save real estate in_review state
       validates_associated :address, :if => :state_changed?
       validates_associated :pricing, :if => :state_changed?
       validates_associated :figure, :if => :validate_figure_in_editing_state?
-      validates_associated :information, :if => :state_changed?
     end
 
     state :published do
@@ -151,12 +158,10 @@ class RealEstate
       validates :address, :presence => true, :unless => :new_record?
       validates :pricing, :presence => true, :unless => :new_record?
       validates :figure, :presence => true, :if => :validate_figure_in_published_state?, :unless => :new_record?
-      validates :information, :presence => true, :unless => :new_record?
 
       validates_associated :address
       validates_associated :pricing
       validates_associated :figure, :if => :validate_figure_in_published_state?
-      validates_associated :information
     end
 
     state :archived
@@ -234,18 +239,6 @@ class RealEstate
 
   def to_model_access
     ModelAccess.new(offer, utilization, ModelAccess.cms_blacklist)
-  end
-
-  def any_descriptions?
-    if parking?
-      description.present?
-    else
-      description.present? ||
-      additional_description.location.present? ||
-      additional_description.interior.present? ||
-      additional_description.offer.present? ||
-      additional_description.infrastructure.present?
-    end
   end
 
   private

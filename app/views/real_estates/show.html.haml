@@ -47,21 +47,36 @@
   .gallery
     = render 'gallery', :real_estate => @real_estate
 
-  .description
-    .accordion.accordion-classical{ 'data-open_first' => 1 }
-      - if @real_estate.any_descriptions?
-        = render 'descriptions', :real_estate => @real_estate, :additional_description => @real_estate.additional_description
+  - @real_estate.within_language do
+    .description
+      .accordion.accordion-classical{ 'data-open_first' => 1 }
 
-      - if @real_estate.any_information? && !@real_estate.parking?
-        = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
+        - if @real_estate.description.present?
+          .accordion-item
+            .title= t('additional_descriptions.title')
+            .content= @real_estate.description.html_safe
 
-      = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing, :information => @real_estate.information
+        - figure_content = render 'figure', :real_estate => @real_estate, :figure => @real_estate.figure
+        - if figure_content.present?
+          .accordion-item
+            .title= t('figures.title')
+            .content= figure_content
 
-      - if @real_estate.any_infrastructures?
-        = render 'infrastructure', :real_estate => @real_estate, :infrastructure => @real_estate.infrastructure
+        - pricing_content = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
+        - if pricing_content.present?
+          .accordion-item
+            .title= t('pricings.title')
+            .content= pricing_content
 
-      - if @real_estate.contact.present?
-        = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
+        - information_content = render 'information', :real_estate => @real_estate, :information => @real_estate.information
+        - if information_content.present?
+          .accordion-item
+            .title= t('information.title')
+            .content
+              = information_content
+
+        - if @real_estate.contact.present?
+          = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
 
   .sidebar
     %ul

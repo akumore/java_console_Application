@@ -5,9 +5,5 @@ class AdditionalDescription
 
   embedded_in :real_estate
 
-  field :location, :type => String
-  field :interior, :type => String
-  field :offer, :type => String
-  field :infrastructure, :type => String
   field :orientation_degrees, :type => Integer
 end

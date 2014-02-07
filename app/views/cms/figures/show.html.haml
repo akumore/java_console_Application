@@ -5,16 +5,18 @@
 - if @figure.nil?
   Für diese Immobilie wurden keine #{t "navigation.cms.real_estates_navigation.figure"} hinterlegt.
 - else
-  %dl.dl-horizontal
-    %dt= t "mongoid.attributes.figure.floor"
-    %dd
-      = @figure.floor
-      &nbsp;
+  %dl.dl-horizontal.extra-wide
+    - if accessible?(:floor)
+      %dt= t "mongoid.attributes.figure.floor"
+      %dd
+        = @figure.floor
+        &nbsp;
 
-    %dt= t "mongoid.attributes.figure.floor_estimate"
-    %dd
-      = @figure.floor_estimate
-      &nbsp;
+    - if accessible?(:floor_estimate)
+      %dt= t "mongoid.attributes.figure.floor_estimate"
+      %dd
+        = @figure.floor_estimate
+        &nbsp;
 
 
     - if @real_estate.living?
@@ -81,3 +83,50 @@
       %dd
         = @figure.specification_usable_surface
         &nbsp;
+        
+
+  %legend= t('.offer')
+  %dl.dl-horizontal.extra-wide
+    %dt= t "mongoid.attributes.figure.has_parking_spot"
+    %dd= t "#{@figure.has_parking_spot?}"
+
+    %dt= t "mongoid.attributes.figure.has_roofed_parking_spot"
+    %dd= t "#{@figure.has_roofed_parking_spot?}"
+
+    %dt= t "mongoid.attributes.figure.has_garage"
+    %dd= t "#{@figure.has_garage?}"
+
+    %dt= t "mongoid.attributes.figure.inside_parking_spots"
+    %dd
+      = @figure.inside_parking_spots
+      &nbsp;
+
+    %dt= t "mongoid.attributes.figure.outside_parking_spots"
+    %dd
+      = @figure.outside_parking_spots
+      &nbsp;
+
+    %dt= t "mongoid.attributes.figure.covered_slot"
+    %dd
+      = @figure.covered_slot
+      &nbsp;
+
+    %dt= t "mongoid.attributes.figure.covered_bike"
+    %dd
+      = @figure.covered_bike
+      &nbsp;
+
+    %dt= t "mongoid.attributes.figure.outdoor_bike"
+    %dd
+      = @figure.outdoor_bike
+      &nbsp;
+
+    %dt= t "mongoid.attributes.figure.single_garage"
+    %dd
+      = @figure.single_garage
+      &nbsp;
+
+    %dt= t "mongoid.attributes.figure.double_garage"
+    %dd
+      = @figure.double_garage
+      &nbsp;

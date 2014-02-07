@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RealEstate do
   describe 'initialize without any attributes' do
     before :each do
-      @real_estate = RealEstate.new(:state => '', :utilization => '', :offer => '')
+      @real_estate = RealEstate.new(:state => '', :utilization => '', :offer => '', :language => 'it')
     end
 
     it 'does not pass validations' do
@@ -47,6 +47,13 @@ describe RealEstate do
       @real_estate.errors.should have(7).items
     end
 
+    it 'switches language' do
+      expect(I18n.locale).to eq :de
+      @real_estate.within_language do
+        expect(I18n.locale).to eq :it
+      end
+      expect(I18n.locale).to eq :de
+    end
 
     context 'when microsite is selected' do
       let :microsite_real_estate do
@@ -371,7 +378,7 @@ describe RealEstate do
   end
 
   it 'detects embedded models having a presence validation defined' do
-    RealEstate.mandatory_for_publishing.should == ["address", "pricing", "figure", "information"]
+    RealEstate.mandatory_for_publishing.should == ["address", "pricing", "figure"]
   end
 
 
@@ -465,7 +472,7 @@ describe RealEstate do
     context "Mandatory sub-model is missing" do
       before do
         @real_estate = Fabricate(:real_estate, :category=>Fabricate(:category))
-        @mandatory_embedded_models = [:address, :pricing, :information]
+        @mandatory_embedded_models = [:address, :pricing]
       end
 
       it "doesn't change over from 'editing' to 'in_review'" do
@@ -577,61 +584,6 @@ describe RealEstate do
       it 'returns false' do
         real_estate.stub(:parking?).and_return(true)
         real_estate.validate_figure_in_published_state?.should be_false
-      end
-    end
-  end
-
-  describe '#any_descriptions?' do
-    let :real_estate do
-      RealEstate.new(:description => 'stuff',
-                     :additional_description => AdditionalDescription.new(:location => 'Location description',
-                                                                           :interior => 'Interior description')
-                    )
-    end
-
-    context 'when description is given' do
-      it 'returns true' do
-        real_estate.any_descriptions?.should be_true
-      end
-    end
-
-    context 'when additional descriptions are given' do
-      it 'returns true' do
-        real_estate.any_descriptions?.should be_true
-      end
-
-      context 'when no main description is given' do
-        it 'returns true' do
-          real_estate.stub(:description).and_return('')
-          real_estate.any_descriptions?.should be_true
-        end
-      end
-
-      context 'when parking without main description' do
-        it 'returns false' do
-          real_estate.stub(:description).and_return('')
-          real_estate.stub(:parking?).and_return(true)
-          real_estate.any_descriptions?.should be_false
-        end
-      end
-    end
-
-    context 'when parking' do
-      before do
-        real_estate.stub(:parking?).and_return(true)
-      end
-
-      context 'when having a description' do
-        it 'returns true' do
-          real_estate.any_descriptions?.should be_true
-        end
-      end
-
-      context 'when having no description' do
-        it 'returns false' do
-          real_estate.stub(:description).and_return('')
-          real_estate.any_descriptions?.should be_false
-        end
       end
     end
   end

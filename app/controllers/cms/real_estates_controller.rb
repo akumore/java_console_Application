@@ -1,3 +1,5 @@
+require 'field_access'
+
 class Cms::RealEstatesController < Cms::SecuredController
   load_and_authorize_resource :except => [:index, :show, :new, :create, :copy]
 

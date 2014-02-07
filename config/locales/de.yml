@@ -15,12 +15,11 @@ de:
       real_estates_navigation:
         real_estate: 'Stammdaten'
         address: 'Adresse'
-        information: 'Infos'
+        information: 'Weitere Informationen'
         pricing: 'Preise/Bezug'
-        figure: 'Zahlen und Fakten'
-        infrastructure: 'Infrastruktur'
+        figure: 'Objektübersicht'
         additional_description: 'Beschreibungen'
-        media_assets: 'Bilder & Dokumente'
+        media_assets: 'Bilder/Anhänge'
   languages:
     de: 'Deutsch'
     fr: 'Französisch'
@@ -31,6 +30,8 @@ de:
       create: "%{model} erstellen"
       update: "%{model} speichern"
       edit: "%{model} bearbeiten"
+    check_new_entries: "%{field} wurde automatisch ergänzt. Bitte überprüfen Sie den Inhalt."
+    old_content_was: "Der ursprüngliche Inhalt war:"
   errors:
     messages:
       extension_white_list_error: 'muss vom Typ %{allowed_types} sein'

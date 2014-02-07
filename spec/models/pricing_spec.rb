@@ -102,7 +102,7 @@ describe Pricing do
     end
   end
 
-  describe '#additional_costs_is_mandatory?' do
+  describe '#mandatory_for_rentable_parking?' do
     let :pricing do
       Pricing.new.tap do |p|
         p.stub(:parking?).and_return(false)
@@ -113,7 +113,7 @@ describe Pricing do
 
     context 'when for sale' do
       it 'returns false' do
-        pricing.additional_costs_is_mandatory?.should be_false
+        pricing.mandatory_for_rentable_parking?.should be_false
       end
     end
 
@@ -121,13 +121,13 @@ describe Pricing do
       it 'returns true' do
         pricing.stub(:for_rent?).and_return(true)
         pricing.stub(:for_sale?).and_return(false)
-        pricing.additional_costs_is_mandatory?.should be_true
+        pricing.mandatory_for_rentable_parking?.should be_true
       end
 
       context 'when for parking' do
         it 'returns false' do
           pricing.stub(:parking?).and_return(true)
-          pricing.additional_costs_is_mandatory?.should be_false
+          pricing.mandatory_for_rentable_parking?.should be_false
         end
       end
     end

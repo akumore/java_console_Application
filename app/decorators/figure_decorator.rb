@@ -3,6 +3,13 @@ class FigureDecorator < ApplicationDecorator
 
   decorates :figure
 
+  OFFER_FIELDS = %w(inside_parking_spots outside_parking_spots covered_slot covered_bike
+                    outdoor_bike single_garage double_garage)
+
+  def offer_characteristics
+    translate_characteristics(OFFER_FIELDS)
+  end
+
   def surface_label
     if model.living?
       t "figures.surface.private"
@@ -101,5 +108,63 @@ class FigureDecorator < ApplicationDecorator
     elsif model.storage_surface.present?
       t('figures.surface_value', :size => model.storage_surface)
     end
+  end
+
+  def chapter
+    content = []
+    if figure.inside_parking_spots.present?
+      content << {
+        :key => t('figures.inside_parking_spots', :count => figure.inside_parking_spots),
+        :value => figure.inside_parking_spots
+      }
+    end
+
+    if figure.outside_parking_spots.present?
+      content << {
+        :key => t('figures.outside_parking_spots', :count => figure.outside_parking_spots),
+        :value => figure.outside_parking_spots
+      }
+    end
+
+    if figure.covered_slot.present?
+      content << {
+        :key => t('figures.covered_slot', :count => figure.covered_slot),
+        :value => figure.covered_slot
+      }
+    end
+
+    if figure.covered_bike.present?
+      content << {
+        :key => t('figures.covered_bike', :count => figure.covered_bike),
+        :value => figure.covered_bike
+      }
+    end
+
+    if figure.outdoor_bike.present?
+      content << {
+        :key => t('figures.outdoor_bike', :count => figure.outdoor_bike),
+        :value => figure.outdoor_bike
+      }
+    end
+
+    if figure.single_garage.present?
+      content << {
+        :key => t('figures.single_garage', :count => figure.single_garage),
+        :value => figure.single_garage
+      }
+    end
+
+    if figure.double_garage.present?
+      content << {
+        :key => t('figures.double_garage', :count => figure.double_garage),
+        :value => figure.double_garage
+      }
+    end
+
+    {
+      :title => t('figures.title'),
+      :collapsible => true,
+      :content => content
+    }
   end
 end

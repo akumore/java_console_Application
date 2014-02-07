@@ -527,12 +527,12 @@ module Export::Idx301
 
     def prop_parking
       #  str(1)  object has parking lot, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      model.try(:infrastructure).try(:has_parking_spot) ? 'Y' : 'N'
+      model.try(:figure).try(:has_parking_spot) ? 'Y' : 'N'
     end
 
     def prop_garage
       # str(1)  object has garage place, 'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      model.try(:infrastructure).try(:has_garage) ? 'Y' : 'N'
+      model.try(:figure).try(:has_garage) ? 'Y' : 'N'
     end
 
     def prop_balcony
@@ -1166,7 +1166,7 @@ module Export::Idx301
 
     def under_roof
       #  str(1)  object is under a roof,  'N','Y' or blank (blank=the same meaning as 'N'); '0', '1' or blank (blank=the same meening as '0')
-      model.try(:infrastructure).try(:has_roofed_parking_spot) ? 'Y' : 'N'
+      model.try(:figure).try(:has_roofed_parking_spot) ? 'Y' : 'N'
     end
 
     def swimmingpool

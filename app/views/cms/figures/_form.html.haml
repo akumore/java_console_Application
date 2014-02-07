@@ -116,6 +116,30 @@
         .controls
           = f.text_field :storage_surface_estimate, :class => 'span4'
 
+  %fieldset.push-checkboxes-down
+    %legend= t('.offer')
+    - floated_field(f, :text_field, :inside_parking_spots)
+    - floated_field(f, :text_field, :outside_parking_spots)
+    - floated_field(f, :text_field, :covered_slot)
+    - floated_field(f, :text_field, :covered_bike)
+    - floated_field(f, :text_field, :outdoor_bike)
+    - floated_field(f, :text_field, :single_garage)
+    - floated_field(f, :text_field, :double_garage)
+
+    .row
+      .span12
+        - if @offer_html_changed
+          .alert
+            = t('helpers.check_new_entries', field: t('mongoid.attributes.figure.offer_html')).html_safe
+            = t('helpers.old_content_was')
+            = @original_offer_html
+        .control-group
+          = f.label :offer_html
+          .controls
+            .row
+              .span8
+                = f.text_area :offer_html, :class => 'editor'
+
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'

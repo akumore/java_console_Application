@@ -12,3 +12,25 @@ it:
     upper_floor: '%{floor}. Piano superiore'
     rooms_value: '%{count} locali'
     surface_value: '%{size} m²'
+    title: 'Infrastruttura'
+    inside_parking_spots:
+      one: '%{count} Parcheggio in autorimessa'
+      other: '%{count} Parcheggi in autorimessa'
+    outside_parking_spots:
+      one: '%{count} Parcheggio all‘esterno'
+      other: '%{count} Parcheggi all‘esterno'
+    covered_slot:
+      one: '%{count} Posteggio esterno coperto'
+      other: '%{count} Posteggi esterni coperti'
+    covered_bike:
+      one: '%{count} Posteggio moto in autorimessa'
+      other: '%{count} Posteggi moto in autorimessa'
+    outdoor_bike:
+      one: '%{count} Posteggio moto esterno coperto'
+      other: '%{count} Posteggi moto esterni coperti'
+    single_garage:
+      one: '%{count} Garage singolo'
+      other: '%{count} Garage singoli'
+    double_garage:
+      one: '%{count} Garage doppio'
+      other: '%{count} Garage doppi'

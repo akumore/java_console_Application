@@ -1,11 +1,11 @@
 de:
   mongoid:
     models:
-      figure: 'Zahlen und Fakten'
+      figure: 'Objektübersicht'
     attributes:
       figure:
         floor: 'Geschoss'
-        floor_estimate: 'Geschoss ungefähr'
+        floor_estimate: 'Geschossbereich'
         rooms: 'Anzahl Zimmer'
         rooms_estimate: 'Anzahl Zimmer ungefähr'
         living_surface: 'Wohnfläche in m²'
@@ -18,3 +18,14 @@ de:
         specification_usable_surface: 'Spezifikation Bruttonutzfläche'
         storage_surface: 'Lagerfläche in m²'
         storage_surface_estimate: 'Lagerfläche ungefähr'
+        has_parking_spot: 'Hat Parkplatz'
+        has_roofed_parking_spot: 'Hat überdachten Parkplatz'
+        has_garage: 'Hat Garage'
+        inside_parking_spots: 'Anzahl Parkplätze in Autoeinstellhalle'
+        outside_parking_spots: 'Anzahl Parkplätze im Freien'
+        covered_slot: 'Anzahl Parkplätze im Freien überdacht'
+        covered_bike: 'Anzahl Motorrad-Parkplätze in Autoeinstellhalle'
+        outdoor_bike: 'Anzahl Motorrad-Parkplätze im Freien überdacht'
+        single_garage: 'Anzahl Einzelgaragen'
+        double_garage: 'Anzahl Doppelgaragen'
+        offer_html: 'Angebot Beschreibung'

@@ -1,15 +1,11 @@
-.accordion-item
-  .title= t('pricings.title')
-  - if pricing.present?
-    .content
-      - PricingDecorator::INVARIANT_PRICING_FIELDS.each do |pricing_field|
-        = pricing.render_pricing_field(pricing_field)
+- PricingDecorator::INVARIANT_PRICING_FIELDS.each do |pricing_field|
+  = pricing.render_pricing_field(pricing_field)
 
-      - if pricing && pricing.opted?
-        %p= t('pricings.without_vat')
+- if pricing && pricing.opted?
+  %p= t('pricings.without_vat')
 
-      - if pricing && pricing.available_from.present?
-        %dl
-          %dt= t('pricing.available_from')
-          %dd
-            %span.col.col1= pricing.available_from_compact
+- if pricing && pricing.available_from.present?
+  %dl
+    %dt= t('pricing.available_from')
+    %dd
+      %span.col.col1= pricing.available_from_compact

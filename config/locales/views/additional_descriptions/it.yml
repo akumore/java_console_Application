@@ -1,8 +1,4 @@
 it:
   additional_descriptions:
     title: "Panoramica dell'oggetto"
-    location: 'Ubicazione'
-    interior: 'Finiture standard'
-    offer: 'Offerta'
-    infrastructure: 'Infrastruttura'
     utilization_description: 'Utilizzazione'

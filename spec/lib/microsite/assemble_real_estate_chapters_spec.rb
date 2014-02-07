@@ -4,7 +4,7 @@ require 'active_support/all'
 require 'microsite/assemble_real_estate_chapters'
 
 class PricingDecorator; end
-class InfrastructureDecorator; end
+class FigureDecorator; end
 
 module Microsite
   describe AssembleRealEstateChapters do
@@ -26,26 +26,30 @@ module Microsite
       stub(:chapter => pricing_chapter)
     end
 
-    let :infrastructure_decorator do
-      stub(:chapter => infrastructure_chapter)
+    let :figure_decorator do
+      stub(:chapter => figure_chapter)
     end
 
-    context 'with pricing and infrastructure attributes' do
+    context 'with pricing and figure attributes' do
       before do
         PricingDecorator.should_receive(:decorate).with(pricing).and_return(pricing_decorator)
-        InfrastructureDecorator.should_receive(:decorate).with(infrastructure).and_return(infrastructure_decorator)
+        FigureDecorator.should_receive(:decorate).with(figure).and_return(figure_decorator)
       end
 
-      let :real_estate_with_pricing_and_infrastructure do
-        stub( :pricing => pricing, :infrastructure => infrastructure, :description => nil, :additional_description => nil, :title => nil, :information => nil)
+      let :real_estate_with_pricing_and_figure do
+        stub(:offer => offer, :pricing => pricing, :figure => figure, :description => nil, :additional_description => nil, :title => nil, :information => nil, :utilization => 'living')
       end
 
       let :pricing do
         stub(:present? => true)
       end
 
-      let :infrastructure do
+      let :figure do
         stub(:present? => true)
+      end
+
+      let :offer do
+        stub()
       end
 
       context 'and with both content/content_html not blank' do
@@ -53,13 +57,13 @@ module Microsite
           chapter_not_blank
         end
 
-        let :infrastructure_chapter do
+        let :figure_chapter do
           chapter_not_blank
         end
 
         it 'returns all chapters with the corresponding decorators' do
-          chapters = AssembleRealEstateChapters.get_chapters real_estate_with_pricing_and_infrastructure
-          chapters.should == [ pricing_chapter, infrastructure_chapter ]
+          chapters = AssembleRealEstateChapters.get_chapters real_estate_with_pricing_and_figure
+          chapters.should == [ pricing_chapter, figure_chapter ]
         end
       end
 
@@ -68,12 +72,12 @@ module Microsite
           chapter_blank
         end
 
-        let :infrastructure_chapter do
+        let :figure_chapter do
           chapter_blank
         end
 
         it 'returns all chapters with the corresponding decorators' do
-          chapters = AssembleRealEstateChapters.get_chapters real_estate_with_pricing_and_infrastructure
+          chapters = AssembleRealEstateChapters.get_chapters real_estate_with_pricing_and_figure
           chapters.should == []
         end
       end
@@ -86,7 +90,7 @@ module Microsite
           chapter
         end
 
-        let :infrastructure_chapter do
+        let :figure_chapter do
           chapter = stub()
           chapter.should_receive(:[]).any_number_of_times.with(:content).and_return([{:key => 'value'}])
           chapter.should_receive(:[]).any_number_of_times.with(:content_html).and_return('')
@@ -94,27 +98,31 @@ module Microsite
         end
 
         it 'returns all chapters with the corresponding decorators' do
-          chapters = AssembleRealEstateChapters.get_chapters real_estate_with_pricing_and_infrastructure
-          chapters.should == [ pricing_chapter, infrastructure_chapter ]
+          chapters = AssembleRealEstateChapters.get_chapters real_estate_with_pricing_and_figure
+          chapters.should == [ pricing_chapter, figure_chapter ]
         end
       end
     end
 
-    context 'without pricing and infrastructure attributes' do
-      let :real_estate_with_pricing_and_infrastructure do
-        stub( :pricing => pricing, :infrastructure => infrastructure, :description => nil, :additional_description => nil, :title => nil, :information => nil)
+    context 'without pricing and figure attributes' do
+      let :real_estate_with_pricing_and_figure do
+        stub(:offer => offer, :pricing => pricing, :figure => figure, :description => nil, :additional_description => nil, :title => nil, :information => nil, :utilization => 'living')
       end
 
       let :pricing do
         stub(:present? => false)
       end
 
-      let :infrastructure do
+      let :figure do
         stub(:present? => false)
       end
 
+      let :offer do
+        stub()
+      end
+
       it 'returns no chapters' do
-        chapters = AssembleRealEstateChapters.get_chapters real_estate_with_pricing_and_infrastructure
+        chapters = AssembleRealEstateChapters.get_chapters real_estate_with_pricing_and_figure
         chapters.should == []
       end
     end

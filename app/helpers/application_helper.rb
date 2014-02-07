@@ -52,4 +52,26 @@ module ApplicationHelper
     image_tag "#{source}?id=#{Random.new.rand(1_000..10_000-1)}", options
   end
 
+  def floated_field_show(model, field, options = {})
+    return '' unless accessible?(field)
+
+    haml_tag(:dl, class: 'dl-horizontal') do
+      haml_tag(:dt, t("mongoid.attributes.#{model.class.name.tableize}.#{field}"))
+      value = model.send(field)
+      value = t(value.to_s) if options[:translate_value] && value.to_s.present?
+      haml_tag(:dd, value)
+    end
+  end
+
+  def floated_field(form, type, field, options = {})
+    return '' unless accessible?(field)
+
+    haml_tag('.control-group') do
+      haml_concat form.label(field)
+      haml_tag('.controls') do
+        haml_concat form.send(type, field, options)
+      end
+    end
+  end
+
 end
