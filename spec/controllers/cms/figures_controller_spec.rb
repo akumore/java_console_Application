@@ -28,6 +28,16 @@ describe 'Real Estate Wizard' do
         response.should redirect_to(edit_cms_real_estate_pricing_path(@real_estate))
         flash[:success].should_not be_nil
       end
+
+      it 'render edit again if offer html changed' do
+        post :create, :real_estate_id => @real_estate.id, :figure => @figure_attributes.merge(:covered_slot => 3)
+        expect(assigns(:offer_html_changed)).to be_true
+        response.should render_template('edit')
+
+        post :update, :real_estate_id => @real_estate.id, :figure => @figure_attributes.merge(:covered_slot => 3)
+        response.should redirect_to new_cms_real_estate_pricing_path(@real_estate)
+        flash[:success].should_not be_nil
+      end
     end
 
 
@@ -47,6 +57,16 @@ describe 'Real Estate Wizard' do
         @real_estate.pricing = Fabricate.build(:pricing)
         put :update, :real_estate_id => @real_estate.id, :figure => @figure_attributes
         response.should redirect_to(edit_cms_real_estate_pricing_path(@real_estate))
+        flash[:success].should_not be_nil
+      end
+
+      it 'render edit again if offer html changed' do
+        post :update, :real_estate_id => @real_estate.id, :figure => @figure_attributes.merge(:covered_slot => 3)
+        expect(assigns(:offer_html_changed)).to be_true
+        response.should render_template('edit')
+
+        post :update, :real_estate_id => @real_estate.id, :figure => @figure_attributes.merge(:covered_slot => 3)
+        response.should redirect_to new_cms_real_estate_pricing_path(@real_estate)
         flash[:success].should_not be_nil
       end
     end

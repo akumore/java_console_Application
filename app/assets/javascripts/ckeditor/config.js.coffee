@@ -1,5 +1,6 @@
 CKEDITOR.editorConfig = (config) ->
   config.language = 'de'
+  config.entities = false
 
   config.toolbar = [
     ['Format','BulletedList','PasteFromWord'],

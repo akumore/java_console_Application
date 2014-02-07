@@ -117,4 +117,5 @@ class Figure
   def has_parking_spot?
     has_parking_spot
   end
+
 end
