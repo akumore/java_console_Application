@@ -16,6 +16,12 @@
           = non_caching_image_tag @floor_plan.file.gallery.url
         = link_to t('.crop'), edit_cms_real_estate_image_cropping_path(@real_estate, @floor_plan, :image_type => 'floor_plan')
 
+  .control-group
+    = f.label :orientation_degrees
+    .controls
+      = f.text_field :orientation_degrees, :class => 'span3'
+      %i.icon-question-sign.help-popover-top{ :rel => 'popover', 'data-original-title' => MediaAssets::FloorPlan.human_attribute_name(:orientation_degrees), 'data-content' => t('.help_popover.orientation_degrees') }
+
 .form-actions
   = f.submit t('.save'), :class => 'btn btn-primary'
   .pull-right

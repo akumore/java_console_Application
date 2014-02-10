@@ -9,3 +9,7 @@
   %dt Vorschau
   %dd.well
     = non_caching_image_tag @floor_plan.file.gallery.url
+
+  %dt= MediaAssets::FloorPlan.human_attribute_name :orientation_degrees
+  %dd= @floor_plan.orientation_degrees
+
