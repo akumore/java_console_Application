@@ -12,6 +12,7 @@ class Office
   field :street, :type => String
   field :phone, :type => String
   field :fax, :type => String
+  field :language, :type => String, :default => I18n.locale
 
   validates :label, :presence => true
   validates :name, :presence => true
