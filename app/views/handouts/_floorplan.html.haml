@@ -3,5 +3,5 @@
 
   .floorplan-image.pbi-avoid
     %div
-      = @real_estate.north_arrow_img_tag
+      = @real_estate.floor_plans.first.north_arrow_img_tag
     = image_tag(@real_estate.floor_plans.first.file.minidoku.url)
