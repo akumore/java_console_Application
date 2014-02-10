@@ -55,6 +55,10 @@ $(document).ready ->
   if $('#real_estate_utilization').length
     new AlfredMueller.Cms.Views.RealEstateUtilizationSelect $('#real_estate_utilization')
 
+  # initialize real estate language listener 
+  if $('#real_estate_office_id').length
+    new AlfredMueller.Cms.Views.RealEstateOfficeSelect $('#real_estate_office_id')
+
   # initialize real estate categories listener
   if $('#real_estate_category_id').length
     new AlfredMueller.Cms.Views.RealEstateCategorySelect $('#real_estate_category_id')

@@ -3,14 +3,16 @@
 
   %fieldset
     .control-group.mandatory
-      = f.label :language
-      .controls
-        = f.select :language, I18n.available_locales.map {|l| [t("languages.#{l}"), l] }
-
-    .control-group.mandatory
       = f.label :office_id
       .controls
         = f.collection_select :office_id, Office.all, :id, :label
+        :javascript
+          window.officeLanguageMap = #{Office.all.inject({}) {|ret, o| ret[o.id.to_s] = o.language; ret}.to_json}
+
+    .control-group.mandatory
+      = f.label :language
+      .controls
+        = f.select :language, I18n.available_locales.map {|l| [t("languages.#{l}"), l] }
 
     .control-group.mandatory
       = f.label :offer

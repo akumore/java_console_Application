@@ -108,6 +108,12 @@ describe "Cms::RealEstates" do
       Category.top_level.map(&:sort_order).should include(1, 2)
     end
 
+    it 'switches language on office change', js: true do
+      expect(find_field('Sprache').value).to eq 'de'
+      select 'Camorino, TI', :from => 'Filiale'
+      expect(find_field('Sprache').value).to eq 'it'
+    end
+
     context 'a valid RealEstate' do
       before :each do
         within(".new_real_estate") do
@@ -135,7 +141,7 @@ describe "Cms::RealEstates" do
         end
 
         it 'saves the language' do
-          select 'Italienisch', from: 'Anzeigensprache'
+          select 'Italienisch', from: 'Sprache'
           click_on 'Immobilie erstellen'
           real_estate.language.should == 'it'
         end
