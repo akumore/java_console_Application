@@ -53,7 +53,7 @@
 
         - if @real_estate.description.present?
           .accordion-item
-            .title= t('additional_descriptions.title')
+            .title= t('.description')
             .content= @real_estate.description.html_safe
 
         - figure_content = render 'figure', :real_estate => @real_estate, :figure => @real_estate.figure

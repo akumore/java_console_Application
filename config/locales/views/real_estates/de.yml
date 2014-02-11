@@ -27,6 +27,7 @@ de:
       number_of_rooms: "%{count} Zimmer"
       hits: "%{count} Treffer"
     show:
+      description: 'Objektübersicht'
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Übersicht'
       prev: 'Vorheriges Projekt'
