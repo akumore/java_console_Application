@@ -21,7 +21,7 @@ class ApplicationDecorator < Draper::Base
       value = self.send(field)
       next if value.blank?
 
-      translated = t("#{object_name}.#{field}") 
+      translated = t("#{object_name}.#{field}")
       case
       when self.method(field).arity > -1
         # expect this function is defined in the decorator itself

@@ -37,7 +37,7 @@ module Microsite
       end
 
       let :real_estate_with_pricing_and_figure do
-        stub(:offer => offer, :pricing => pricing, :figure => figure, :description => nil, :additional_description => nil, :title => nil, :information => nil, :utilization => 'living')
+        stub(:offer => offer, :pricing => pricing, :figure => figure, :description => nil, :title => nil, :information => nil, :utilization => 'living')
       end
 
       let :pricing do
@@ -106,7 +106,7 @@ module Microsite
 
     context 'without pricing and figure attributes' do
       let :real_estate_with_pricing_and_figure do
-        stub(:offer => offer, :pricing => pricing, :figure => figure, :description => nil, :additional_description => nil, :title => nil, :information => nil, :utilization => 'living')
+        stub(:offer => offer, :pricing => pricing, :figure => figure, :description => nil, :title => nil, :information => nil, :utilization => 'living')
       end
 
       let :pricing do

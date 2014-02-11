@@ -39,12 +39,6 @@ describe "Handout aka MiniDoku" do
                    )
   end
 
-  let :additional_description do
-    Fabricate.build(:additional_description,
-                    :orientation_degrees => 180
-                   )
-  end
-
   let :figure do
     Fabricate.build(:figure,
                     :floor => 3,
@@ -80,8 +74,7 @@ describe "Handout aka MiniDoku" do
         :description => 'Lorem Ipsum',
         :floor_plans => [
           Fabricate.build(:media_assets_floor_plan)
-        ],
-        :additional_description => additional_description
+        ]
       )
   end
 
@@ -694,8 +687,8 @@ describe "Handout aka MiniDoku" do
 
     before do
       @contact_person = Fabricate :employee
-      @real_estate = Fabricate :residential_building, 
-                               :contact => @contact_person, 
+      @real_estate = Fabricate :residential_building,
+                               :contact => @contact_person,
                                :pricing => Fabricate.build(:pricing_for_rent),
                                :link_url => 'www.gartenstadt.ch'
     end

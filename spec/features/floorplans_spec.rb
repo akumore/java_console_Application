@@ -16,7 +16,6 @@ describe "Floorplans for printing" do
               :information => Fabricate.build(:information),
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
               :pricing => Fabricate.build(:pricing),
-              :additional_description => Fabricate.build(:additional_description, :orientation_degrees => 180),
               :floor_plans => [Fabricate.build(:media_assets_floor_plan), Fabricate.build(:media_assets_floor_plan)],
               :contact => Fabricate(:employee)
   end

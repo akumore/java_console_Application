@@ -20,7 +20,6 @@ describe "RealEstates" do
       :information => @information || Fabricate.build(:information),
       :figure => @figure || Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
       :pricing => Fabricate.build(:pricing),
-      :additional_description => Fabricate.build(:additional_description),
       :contact => Fabricate(:employee),
       :link_url => 'http://www.alfred-mueller.ch'
   end
@@ -747,7 +746,6 @@ describe "RealEstates" do
           :information => Fabricate.build(:information),
           :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
           :pricing => Fabricate.build(:pricing),
-          :additional_description => Fabricate.build(:additional_description),
           :contact => Fabricate(:employee)
 
         visit real_estate_path(real_estate)
@@ -769,7 +767,6 @@ describe "RealEstates" do
             :information => Fabricate.build(:information),
             :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
             :pricing => Fabricate.build(:pricing),
-            :additional_description => Fabricate.build(:additional_description),
             :contact => Fabricate(:employee)
         end
 
