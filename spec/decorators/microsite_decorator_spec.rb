@@ -196,7 +196,7 @@ describe MicrositeDecorator do
   context "floorplans" do
 
     let :real_estate do
-      real_estate =  Fabricate :residential_building, :floor_plans => [Fabricate.build(:media_assets_floor_plan)]
+      real_estate =  Fabricate :residential_building, :floor_plans => [Fabricate.build(:media_assets_floor_plan, orientation_degrees: 289)]
     end
 
     let :decorated_real_estate do
@@ -234,7 +234,7 @@ describe MicrositeDecorator do
     context "with orientation set" do
       let :real_estate do
         real_estate =  Fabricate :residential_building,
-          :floor_plans => [Fabricate.build(:media_assets_floor_plan)]
+          :floor_plans => [Fabricate.build(:media_assets_floor_plan, orientation_degrees: 289)]
       end
 
       it "adds the north-arrow image link to the returned hash" do
@@ -251,12 +251,10 @@ describe MicrositeDecorator do
 
     context "without orientation set" do
       let :real_estate do
-        real_estate =  Fabricate :residential_building,
-          :floor_plans => [Fabricate.build(:media_assets_floor_plan, orientation_degrees: '')]
+        real_estate =  Fabricate :residential_building, :floor_plans => [Fabricate.build(:media_assets_floor_plan)]
       end
 
       it "does not add the north-arrow image link to the returned hash" do
-        decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.floorplans.first[:north_arrow].should be_nil
       end
     end

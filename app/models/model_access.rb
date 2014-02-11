@@ -15,8 +15,6 @@ class ModelAccess < FieldAccess
   end
 
   def self.cms_blacklist
-    %w(
-      *.parking.additional_description
-    )
+    %w()
   end
 end

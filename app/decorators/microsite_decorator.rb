@@ -104,7 +104,7 @@ class MicrositeDecorator < ApplicationDecorator
         :url => path_to_url(asset.file.gallery.url),
         :url_full_size => path_to_url(real_estate_floorplan_path(I18n.locale, real_estate, asset)),
         :url_full_size_image => path_to_url(asset.file.url),
-        :title => asset.title,
+        :title => asset.title
       }
       north_arrow_img = MediaAssets::FloorPlanDecorator.decorate(asset).north_arrow_img
       attributes[:north_arrow] = path_to_url(image_path(north_arrow_img)) if north_arrow_img.present?
