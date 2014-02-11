@@ -156,7 +156,6 @@ module InitialCategories
         r.information = Information.new(:available_from => Date.parse('2012-01-21'))
         r.infrastructure = Infrastructure.new
         r.description = "Beschreibung 1!!!"
-        r.additional_description = AdditionalDescription.new
         r.images = gartenstadt_images.map { |img_path|
           MediaAssets::Image.new(
               :is_primary => img_path==gartenstadt_images.first,
@@ -183,7 +182,6 @@ module InitialCategories
           r.figure = Figure.new(:floor => 3, :living_surface => 186)
           r.infrastructure = Infrastructure.new
           r.description = "Beschreibung 1"
-          r.additional_description = AdditionalDescription.new
           r.save!
         end
 

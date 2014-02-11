@@ -1,8 +1,0 @@
-de:
-  mongoid:
-    models:
-      additional_description: 'Beschreibungen'
-    attributes:
-      additional_description:
-        offer: 'Angebot'
-        orientation_degrees: 'Ausrichtung Nordpfeil'

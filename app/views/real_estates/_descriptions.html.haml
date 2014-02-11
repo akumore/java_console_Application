@@ -3,14 +3,3 @@
   .content
     - if real_estate.description.present?
       = real_estate.description.html_safe
-
-    - if additional_description.present? && !real_estate.parking?
-
-      - if additional_description.interior.present?
-        %h3= t('additional_descriptions.interior')
-        = additional_description.interior.html_safe
-
-      - if additional_description.offer.present?
-        %h3= t('additional_descriptions.offer')
-        = additional_description.offer.html_safe
-
