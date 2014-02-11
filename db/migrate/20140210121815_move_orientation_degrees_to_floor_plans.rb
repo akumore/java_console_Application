@@ -1,4 +1,18 @@
+class AdditionalDescription
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
+  embedded_in :real_estate
+
+  field :orientation_degrees, :type => Integer
+end
+
+class RealEstate
+  embeds_one :additional_description
+end
+
 class MoveOrientationDegreesToFloorPlans < Mongoid::Migration
+
   def self.up
     RealEstate.all.each do |re|
       if re.additional_description
