@@ -12,7 +12,6 @@ class RealEstate
 end
 
 class MoveOrientationDegreesToFloorPlans < Mongoid::Migration
-
   def self.up
     RealEstate.all.each do |re|
       if re.additional_description
