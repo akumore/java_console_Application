@@ -13,7 +13,7 @@ it:
     is_minergie_certified: 'Certificato Minergie'
     has_outlook: 'Vista'
     has_fireplace: 'Camino'
-    hass_elevator: 'Ascensore'
+    has_elevator: 'Ascensore'
     has_isdn: 'Allacciamento ISDN'
     is_wheelchair_accessible: 'Accessibile con sedia a rotelle'
     is_child_friendly: 'Adatto ai bambini'

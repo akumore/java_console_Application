@@ -44,7 +44,7 @@ class Cms::FiguresController < Cms::SecuredController
     @original_offer_html = @figure.offer_html.try(&:html_safe)
 
     decorator = FigureDecorator.new(@figure)
-    @offer_html_changed = decorator.update_list_in(:offer_characteristics, :offer_html)
+    @offer_html_changed = decorator.update_list_in(:offer)
 
     @offer_html_changed
   end

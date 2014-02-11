@@ -10,6 +10,10 @@ class FigureDecorator < ApplicationDecorator
     translate_characteristics(OFFER_FIELDS)
   end
 
+  def update_characteristics
+    update_list_in(:offer)
+  end
+
   def surface_label
     if model.living?
       t "figures.surface.private"

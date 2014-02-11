@@ -3,6 +3,7 @@ require 'spec_helper'
 
 describe "Cms::RealEstates" do
   create_category_tree
+  before { ApplicationController.new.set_current_view_context }
 
   before do
     Fabricate(:row_house_category)
@@ -17,9 +18,9 @@ describe "Cms::RealEstates" do
       @address = Fabricate.build(:address)
       @figure = Fabricate.build(:figure, :floor => 3)
       @contact = Fabricate(:employee)
-      @real_estate = Fabricate :real_estate, 
-                               :category => @category, 
-                               :reference => @reference, 
+      @real_estate = Fabricate :real_estate,
+                               :category => @category,
+                               :reference => @reference,
                                :address => @address,
                                :figure => @figure,
                                :contact => @contact
@@ -249,6 +250,7 @@ describe "Cms::RealEstates" do
         within(".edit_real_estate") do
           select 'Child Category 2', :from => 'Objekt-Art'
           select 'Wohnen', :from => 'Gebäudenutzung'
+          select 'Italienisch', :from => 'Sprache'
           choose 'Mieten'
           uncheck 'Website'
           check 'Objektdokumentation'
@@ -594,6 +596,47 @@ describe "Cms::RealEstates" do
     end
   end
 
+  context '#update language with information and figure html fields' do
+    login_cms_user
+
+    before :each do
+      @category = Fabricate :category, :name=>'single_house', :label=>'Einfamilienhaus'
+      @figure = Fabricate.build(:figure, :floor => 3, double_garage: 1, single_garage: 3)
+      @information = Fabricate.build(:information,
+                                     :has_elevator => false,
+                                     :has_cable_tv  => true)
+    end
+
+    it 'changes items in figure' do
+      @information.points_of_interest << PointOfInterest.new(:name => 'high_school', :distance => 20)
+      @real_estate = Fabricate :real_estate,
+        :category => @category,
+        :information => @information,
+        :figure => @figure
+
+      # this field may not appear in translation
+      @real_estate.information.has_elevator = true
+      @real_estate.save!
+
+      expect(@real_estate.information.infrastructure_html).to eq "<ul>\r\n\t<li>Baujahr: 1899</li>\r\n\t<li>Letzte Renovierung: 1997</li>\r\n\t<li>10 Geschosse</li>\r\n</ul>\r\nInfrastructure description"
+      expect(@real_estate.information.interior_html).to eq "<ul>\r\n\t<li>Kabelfernsehen</li>\r\n</ul>\r\nInterior description"
+      expect(@real_estate.information.location_html).to eq "<ul>\r\n\t<li>Oberstufe 20 m</li>\r\n</ul>\r\nLocation description"
+      expect(@real_estate.figure.offer_html).to eq "<ul>\r\n\t<li>3 Einzelgaragen</li>\r\n\t<li>1 Doppelgarage</li>\r\n</ul>"
+
+      visit edit_cms_real_estate_path(@real_estate)
+      within(".edit_real_estate") do
+        select 'Italienisch', :from => 'Sprache'
+      end
+      click_on 'Immobilie speichern'
+
+      @real_estate.reload
+      expect(@real_estate.information.infrastructure_html).to eq "<ul>\r\n\t<li>Anno di costruzione: 1899</li>\r\n\t<li>Anno di risanamento: 1997</li>\r\n\t<li>10 Piani</li>\r\n</ul>\r\nInfrastructure description"
+      expect(@real_estate.information.interior_html).to eq "<ul>\r\n\t<li>TV via cavo</li>\r\n</ul>\r\nInterior description"
+      expect(@real_estate.information.location_html).to eq "<ul>\r\n\t<li>Scuole superiori 20 m</li>\r\n</ul>\r\nLocation description"
+      expect(@real_estate.figure.offer_html).to eq "<ul>\r\n\t<li>3 Garage singoli</li>\r\n\t<li>1 Garage doppio</li>\r\n</ul>"
+    end
+  end
+
   describe 'invalid tab' do
     login_cms_user
 
@@ -617,9 +660,9 @@ describe "Cms::RealEstates" do
       context 'a published real estate' do
         before :each do
           @published_real_estate = Fabricate(:published_real_estate,
-            :category => Fabricate(:category),
-            :reference => Fabricate.build(:reference)
-          )
+                                             :category => Fabricate(:category),
+                                             :reference => Fabricate.build(:reference)
+                                            )
           visit edit_cms_real_estate_path(@published_real_estate)
         end
 
@@ -631,9 +674,9 @@ describe "Cms::RealEstates" do
       context 'an editable real estate' do
         before :each do
           @editable_real_estate = Fabricate(:real_estate,
-            :category => Fabricate(:category),
-            :reference => Fabricate.build(:reference)
-          )
+                                            :category => Fabricate(:category),
+                                            :reference => Fabricate.build(:reference)
+                                           )
           visit edit_cms_real_estate_path(@editable_real_estate)
         end
 
@@ -663,10 +706,10 @@ describe "Cms::RealEstates" do
       context 'a published real estate' do
         it 'does not have a button to delete the real estate' do
           @published_real_estate = Fabricate(:published_real_estate,
-          :category => Fabricate(:category),
-          :reference => Fabricate.build(:reference)
-        )
-        visit edit_cms_real_estate_path(@published_real_estate)
+                                             :category => Fabricate(:category),
+                                             :reference => Fabricate.build(:reference)
+                                            )
+          visit edit_cms_real_estate_path(@published_real_estate)
           page.should_not have_link("Immobilie löschen")
         end
       end
@@ -674,9 +717,9 @@ describe "Cms::RealEstates" do
       context 'an editable real estate' do
         before :each do
           @editable_real_estate = Fabricate(:real_estate,
-            :category => Fabricate(:category),
-            :reference => Fabricate.build(:reference)
-          )
+                                            :category => Fabricate(:category),
+                                            :reference => Fabricate.build(:reference)
+                                           )
           visit edit_cms_real_estate_path(@editable_real_estate)
         end
 
