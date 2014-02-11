@@ -33,7 +33,7 @@
       = f.label :category_id
       .controls
         = f.select :category_id, options_for_select(category_options_for_utilization(@real_estate.utilization), selected_key = f.object.category_id), :class => 'span8'
-    
+
     .building-type-container{ class: @real_estate.category.try(:name) == 'row_house' ? '' : 'hidden'}
       .control-group
         = f.label :building_type
@@ -67,7 +67,7 @@
 
   %fieldset
     = render 'form_title_description', form: f
-      
+
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
     = render 'cms/real_estates/actions'
