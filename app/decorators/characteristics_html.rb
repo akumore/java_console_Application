@@ -25,6 +25,8 @@ class CharacteristicsHtml
   end
 
   def update
+    return false unless decorator.valid?
+
     if original && original.real_estate.language != decorator.real_estate.language
       switch_language
     else

@@ -8,6 +8,7 @@ describe CharacteristicsHtml do
          field_html: 'abc',
          real_estate: real_estate,
          new_record?: false,
+         valid?: true,
          model_class: Information)
   end
 
@@ -33,7 +34,13 @@ describe CharacteristicsHtml do
         decorator.stub(:new_record? => true)
       end
 
-      its 'does not update field when no characteristics are available' do
+      it 'does not update when record is invalid' do
+        decorator.should_receive(:valid?).and_return(false)
+        decorator.should_not_receive('field_html=')
+        expect(subject.update).to be_false
+      end
+
+      it 'does not update field when no characteristics are available' do
         decorator.should_receive(:field_list_in_real_estate_language).
           with('field_characteristics').
           and_return([])
@@ -41,7 +48,7 @@ describe CharacteristicsHtml do
         expect(subject.update).to be_false
       end
 
-      its 'does insert new characteristics' do
+      it 'does insert new characteristics' do
         decorator.should_receive('field_html=').with("<ul>\r\na\r\nb\r\n</ul>\r\nabc")
         decorator.should_receive(:field_list_in_real_estate_language).
           with('field_characteristics').
@@ -51,7 +58,6 @@ describe CharacteristicsHtml do
     end
 
     context 'nothing changed' do
-
 
       it 'does not update anything if characteristics did not change' do
         decorator.should_receive(:field_list_in_real_estate_language).
@@ -72,6 +78,7 @@ describe CharacteristicsHtml do
              real_estate: changed_real_estate,
              model_class: Information,
              field_html: "<ul>\r\na\r\n</ul>\r\nabc",
+             valid?: true,
              new_record?: false)
       end
 
@@ -81,6 +88,12 @@ describe CharacteristicsHtml do
       end
 
       subject { CharacteristicsHtml.new(changed_decorator, :field) }
+
+      it 'does not update when record is invalid' do
+        changed_decorator.should_receive(:valid?).and_return(false)
+        changed_decorator.should_not_receive('field_html=')
+        expect(subject.update).to be_false
+      end
 
       it 'insert new list items' do
         changed_decorator.should_receive(:field_list_in_real_estate_language).
