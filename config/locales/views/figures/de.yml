@@ -12,7 +12,7 @@ de:
     upper_floor: '%{floor}. Obergeschoss'
     rooms_value: '%{count} Zimmer'
     surface_value: '%{size} m²'
-    title: 'Infrastruktur'
+    title: 'Objektübersicht'
     inside_parking_spots:
       one: '%{count} Parkplatz in Autoeinstellhalle'
       other: '%{count} Parkplätze in Autoeinstellhalle'

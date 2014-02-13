@@ -27,7 +27,6 @@ fr:
         one: "%{count} Objet"
         other: "%{count} Objets"
     show:
-      description: "Aperçu de l'objet"
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Aperçu'
       prev: 'Précédent projet'
