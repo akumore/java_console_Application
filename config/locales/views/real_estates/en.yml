@@ -27,6 +27,7 @@ en:
         one: "%{count} Hit"
         other: "%{count} Hits"
     show:
+      description: 'Object Overview'
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Overview'
       prev: 'Previous project'

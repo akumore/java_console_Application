@@ -71,7 +71,7 @@ describe Cms::SecuredHelper do
       end
     end
 
-    [:additional_description, :information].each do |tab|
+    [:information].each do |tab|
       it "doesn't mark #{tab} tab 'mandatory'" do
         helper.mark_mandatory_tab(tab).should be_nil
       end
@@ -86,7 +86,7 @@ describe Cms::SecuredHelper do
       end
     end
 
-    [:additional_description, :information].each do |tab|
+    [:information].each do |tab|
       it "doesn't highlight valid #{tab} tabs" do
         not_publishable.publish_it.should be_false
         assign :real_estate, not_publishable

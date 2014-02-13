@@ -18,7 +18,6 @@ describe 'Sort order behaviour' do
               :information => Fabricate.build(:information),
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
               :pricing => Fabricate.build(:pricing),
-              :additional_description => Fabricate.build(:additional_description),
               :contact => Fabricate(:employee)
   end
 
@@ -31,7 +30,6 @@ describe 'Sort order behaviour' do
               :information => Fabricate.build(:information),
               :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
               :pricing => Fabricate.build(:pricing),
-              :additional_description => Fabricate.build(:additional_description),
               :contact => Fabricate(:employee)
   end
 

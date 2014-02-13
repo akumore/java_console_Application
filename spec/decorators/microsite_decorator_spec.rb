@@ -196,7 +196,7 @@ describe MicrositeDecorator do
   context "floorplans" do
 
     let :real_estate do
-      real_estate =  Fabricate :residential_building, :floor_plans => [Fabricate.build(:media_assets_floor_plan)]
+      real_estate =  Fabricate :residential_building, :floor_plans => [Fabricate.build(:media_assets_floor_plan, orientation_degrees: 289)]
     end
 
     let :decorated_real_estate do
@@ -211,7 +211,8 @@ describe MicrositeDecorator do
           :url => "link",
           :url_full_size => "link",
           :url_full_size_image => "link",
-          :title => "Floor plan title"
+          :title => "Floor plan title",
+          :north_arrow => "link"
         })
       end
 
@@ -224,7 +225,7 @@ describe MicrositeDecorator do
       it "should call path_to_url for each image link" do
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.stub(:real_estate_floorplan_path => '')
-        decorated_real_estate.should_receive(:path_to_url).exactly(3).times.and_return('http://abosute_url')
+        decorated_real_estate.should_receive(:path_to_url).exactly(4).times.and_return('http://abosute_url')
         decorated_real_estate.floorplans
       end
 
@@ -233,8 +234,7 @@ describe MicrositeDecorator do
     context "with orientation set" do
       let :real_estate do
         real_estate =  Fabricate :residential_building,
-          :floor_plans => [Fabricate.build(:media_assets_floor_plan)],
-          :additional_description => Fabricate.build(:additional_description, :orientation_degrees => 293)
+          :floor_plans => [Fabricate.build(:media_assets_floor_plan, orientation_degrees: 289)]
       end
 
       it "adds the north-arrow image link to the returned hash" do
@@ -250,6 +250,10 @@ describe MicrositeDecorator do
     end
 
     context "without orientation set" do
+      let :real_estate do
+        real_estate =  Fabricate :residential_building, :floor_plans => [Fabricate.build(:media_assets_floor_plan)]
+      end
+
       it "does not add the north-arrow image link to the returned hash" do
         decorated_real_estate.floorplans.first[:north_arrow].should be_nil
       end

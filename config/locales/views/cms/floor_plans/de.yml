@@ -4,3 +4,5 @@ de:
       form:
         save: Grundriss speichern
         crop: Grundriss zuschneiden
+        help_popover:
+          orientation_degrees: "Einfache Zahl eingeben z.B. für Osten 90. <center><div style='height: 200px; width: 200px;'><img src='/images/nordpfeil.jpg' alt='Nordpfeil' /><div></center>"

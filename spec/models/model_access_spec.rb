@@ -68,12 +68,6 @@ describe ModelAccess do
         end
       end
 
-      describe 'additional descriptions' do
-        it 'is not accessible' do
-          model_access.accessible?(:additional_description).should be_false
-        end
-      end
-
       describe 'images' do
         it 'is accessible' do
           model_access.accessible?(:media_asset).should be_true

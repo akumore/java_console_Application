@@ -18,7 +18,6 @@ it:
         information: 'Weitere Informationen'
         pricing: 'Preise/Bezug'
         figure: 'Objektübersicht'
-        additional_description: 'Beschreibungen'
         media_assets: 'Bilder/Anhänge'
   languages:
     de: 'Deutsch'

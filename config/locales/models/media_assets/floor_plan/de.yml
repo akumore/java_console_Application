@@ -6,3 +6,4 @@ de:
       media_assets/floor_plan:
         title: Titel
         file: Datei
+        orientation_degrees: 'Ausrichtung Nordpfeil'

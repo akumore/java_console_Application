@@ -13,11 +13,8 @@ describe "Floorplans for printing" do
               :category => category,
               :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
               :address => Fabricate.build(:address),
-              :information => Fabricate.build(:information),
-              :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
               :pricing => Fabricate.build(:pricing),
-              :additional_description => Fabricate.build(:additional_description, :orientation_degrees => 180),
-              :floor_plans => [Fabricate.build(:media_assets_floor_plan), Fabricate.build(:media_assets_floor_plan)],
+              :floor_plans => [Fabricate.build(:media_assets_floor_plan, orientation_degrees: 289), Fabricate.build(:media_assets_floor_plan)],
               :contact => Fabricate(:employee)
   end
 

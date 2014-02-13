@@ -22,7 +22,6 @@ de:
         pricing: 'Preise'
         information: 'Infos'
         figure: 'Objektübersicht'
-        additional_description: 'Beschreibungen'
         states:
           published: 'veröffentlicht'
           editing: 'bearbeiten'

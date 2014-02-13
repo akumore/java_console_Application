@@ -27,6 +27,7 @@ it:
         one: "%{count} Risultato"
         other: "%{count} Risultati"
     show:
+      description: "Panoramica dell'oggetto"
       to_favorites: 'Zu Favoriten hinzufügen'
       overview: 'Visione d’insieme'
       prev: 'Precedente progetto'

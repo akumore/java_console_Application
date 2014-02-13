@@ -277,30 +277,6 @@ class RealEstateDecorator < ApplicationDecorator
     end
   end
 
-  def north_arrow_overlay
-    additional_description = real_estate.additional_description
-    if additional_description.present? && additional_description.orientation_degrees.present?
-      h.content_tag(:div, :class => "north-arrow-container") do
-        north_arrow_img_tag
-      end
-    end
-  end
-
-  def north_arrow_img_tag
-    img = north_arrow_img
-    if north_arrow_img.present?
-      h.image_tag(img, :class => 'north-arrow')
-    end
-  end
-
-  def north_arrow_img
-    if real_estate.additional_description.present? and real_estate.additional_description.orientation_degrees.present?
-      angle = real_estate.additional_description.orientation_degrees.to_i
-      angle = angle - angle % 5
-      "north-arrow/#{angle}.png"
-    end
-  end
-
   def thumbnail
     if parking?
       image_path({
@@ -324,7 +300,7 @@ class RealEstateDecorator < ApplicationDecorator
   def general_information?
     information.present? && (information.floors.present? ||
                         information.renovated_on.present? ||
-                        information.built_on.present? || 
+                        information.built_on.present? ||
                         information.characteristics.any? ||
                         information.location_characteristics.any?)
   end
@@ -344,7 +320,7 @@ class RealEstateDecorator < ApplicationDecorator
                           figure.double_garage.present?
                          ) ||
       information.present? && information.additional_information.present?
-    
+
     elsif working?
       figure.present? && (figure.property_surface.present? ||
                           figure.storage_surface.present? ||
@@ -361,7 +337,7 @@ class RealEstateDecorator < ApplicationDecorator
                                information.additional_information.present? ||
                                information.ceiling_height.present?
                               )
-    
+
     elsif storing?
       information.present? && (information.additional_information.present? ||
                                information.ceiling_height.present?
@@ -373,7 +349,7 @@ class RealEstateDecorator < ApplicationDecorator
                           figure.outdoor_bike.present? ||
                           figure.single_garage.present? ||
                           figure.double_garage.present?)
-    
+
     elsif parking?
       figure.present? && (figure.inside_parking_spots.present? ||
                           figure.outside_parking_spots.present? ||

@@ -4,8 +4,8 @@
       window.print()
 
 .floorplans
-  .north-arrow
-    = @real_estate.north_arrow_img_tag
   - @real_estate.floor_plans.each do |floor_plan|
+    .north-arrow
+      = floor_plan.north_arrow_img_tag
     = image_tag floor_plan.file.gallery_zoom.url
 

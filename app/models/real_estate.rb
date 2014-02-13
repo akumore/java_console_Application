@@ -39,7 +39,6 @@ class RealEstate
   embeds_one :pricing, :validate => false
   embeds_one :figure, :validate => false
   embeds_one :information, :validate => false
-  embeds_one :additional_description
 
   embeds_many :images, :class_name => 'MediaAssets::Image', :cascade_callbacks => true
   embeds_many :floor_plans, :class_name => 'MediaAssets::FloorPlan', :cascade_callbacks => true
