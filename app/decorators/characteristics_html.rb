@@ -12,7 +12,8 @@ class CharacteristicsHtml
     return nil if decorator.new_record?
 
     object_name = decorator.model_class.to_s.underscore
-    @original ||= RealEstate.find(decorator.real_estate.id).send(object_name).decorate
+    decorator_class = (object_name + "_decorator").classify.constantize
+    @original ||= decorator_class.new(RealEstate.find(decorator.real_estate.id).send(object_name))
   end
 
   def lis_before
