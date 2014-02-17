@@ -113,7 +113,7 @@ describe 'Real Estate Wizard' do
           before do
             @real_estate = Fabricate :real_estate, :category => category
             RealEstate.stub!(:find).and_return(@real_estate)
-            @real_estate.stub!(:update_attributes).and_return(true)
+            @real_estate.stub!(:save).and_return(true)
             @mailer_stub = stub(:deliver => true)
             RealEstateStateMailer.stub!(:review_notification).and_return(@mailer_stub)
             controller.stub!(:current_user).and_return(editor)
@@ -141,7 +141,7 @@ describe 'Real Estate Wizard' do
           before do
             @real_estate = Fabricate :real_estate, :category => category
             RealEstate.stub!(:find).and_return(@real_estate)
-            @real_estate.stub!(:update_attributes).and_return(true)
+            @real_estate.stub!(:save).and_return(true)
             @mailer_stub = stub(:deliver => true)
             RealEstateStateMailer.stub!(:reject_notification).and_return(@mailer_stub)
             controller.stub!(:current_user).and_return(admin)

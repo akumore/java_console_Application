@@ -9,9 +9,12 @@ Fabricator(:real_estate) do
   office { Fabricate(:office) }
 
   after_build do |re|
+    field_access = FieldAccess.new(re.offer, re.utilization, FieldAccess.cms_blacklist)
     if info = re.information
-      field_access = FieldAccess.new(re.offer, re.utilization, FieldAccess.cms_blacklist)
       info.decorate(context: {field_access: field_access}).update_characteristics
+    end
+    if figure = re.figure
+      figure.decorate(context: {field_access: field_access}).update_characteristics
     end
   end
 end

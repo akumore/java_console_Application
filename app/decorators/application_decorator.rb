@@ -39,39 +39,8 @@ class ApplicationDecorator < Draper::Base
     buffer
   end
 
-  def update_list_in(list_field, html_field)
-    original_html = @model.send(html_field).to_s
-    info = original_html.split(/\r\n|\n/)
-
-    lis_before = []
-    unless @model.new_record?
-      object_name = model_class.to_s.underscore
-      original = RealEstate.find(real_estate.id).send(object_name).decorate
-      lis_before = original.field_list_in_real_estate_language(list_field)
-    end
-
-    index_of_ul_end = info.index('</ul>')
-    lis_after = field_list_in_real_estate_language(list_field)
-
-    to_add = lis_after - lis_before
-    if to_add.length > 0 && index_of_ul_end.nil?
-      info = ['<ul>','</ul>'] + info
-      index_of_ul_end = 1
-    end
-    to_add.reverse.each {|li|
-      info.insert(index_of_ul_end, li)
-    }
-
-    to_remove = lis_before - lis_after
-    to_remove.each {|li|
-      info.delete(li)
-    }
-
-    new_html = info.join("\r\n")
-    @model.send("#{html_field}=", new_html)
-
-    # return weather the function changed someting
-    original_html.gsub("\r",'').strip != new_html.gsub("\r", '').strip
+  def update_list_in(list_field)
+    CharacteristicsHtml.new(self, list_field).update
   end
 
 end

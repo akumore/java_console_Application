@@ -50,9 +50,9 @@ class Cms::InformationController < Cms::SecuredController
     @original_interior_html = @information.interior_html.try(&:html_safe)
 
     decorator = InformationDecorator.new(@information)
-    @location_html_changed = decorator.update_list_in(:location_characteristics, :location_html)
-    @infrastructure_html_changed = decorator.update_list_in(:infrastructure_characteristics, :infrastructure_html)
-    @interior_html_changed = decorator.update_list_in(:interior_characteristics, :interior_html)
+    @location_html_changed = decorator.update_list_in(:location)
+    @infrastructure_html_changed = decorator.update_list_in(:infrastructure)
+    @interior_html_changed = decorator.update_list_in(:interior)
 
     @infrastructure_html_changed || @location_html_changed || @interior_html_changed
   end

@@ -39,7 +39,7 @@ describe InformationDecorator do
     @information.has_balcony = false
     @information.has_swimming_pool = false
     @information.infrastructure_html = 'Infrastructure description'
-    @information.update_list_in(:infrastructure_characteristics, :infrastructure_html).should be_false
+    @information.update_list_in(:infrastructure)
     @information.infrastructure_html.should == 'Infrastructure description'
   end
 
@@ -56,12 +56,12 @@ describe InformationDecorator do
 
   context 'updated additional information' do
     before(:each) do
-      @information.update_list_in(:interior_characteristics, :interior_html)
+      @information.update_list_in(:interior)
     end
 
     it 'adds new characteristic' do
       @information.has_elevator = true
-      @information.update_list_in(:infrastructure_characteristics, :infrastructure_html).should be_true
+      @information.update_list_in(:infrastructure)
       @information.infrastructure_html.should == [
         '<ul>',
         "\t<li>Baujahr: 1899</li>",
@@ -78,7 +78,7 @@ describe InformationDecorator do
       @information.infrastructure_html = ("some text\r\n" * 3) + @information.infrastructure_html
       @information.infrastructure_html = @information.infrastructure_html.gsub('Schwimmbecken', 'Jacuzzi')
 
-      @information.update_list_in(:infrastructure_characteristics, :infrastructure_html).should be_true
+      @information.update_list_in(:infrastructure)
       @information.infrastructure_html.should == [
         'some text',
         'some text',

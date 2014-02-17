@@ -64,7 +64,13 @@ class Cms::RealEstatesController < Cms::SecuredController
       real_estate_params[:channels] = []
     end
 
-    if @real_estate.update_attributes(real_estate_params)
+    @real_estate.attributes = real_estate_params
+    if @real_estate.changed.include? 'language'
+      InformationDecorator.new(@real_estate.information).update_characteristics if @real_estate.information
+      FigureDecorator.new(@real_estate.figure).update_characteristics if @real_estate.figure
+    end
+
+    if @real_estate.save
       notify_users(real_estate_params[:state_event], @real_estate)
 
       respond_to do |format|

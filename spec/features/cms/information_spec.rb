@@ -374,6 +374,19 @@ describe "Cms Information" do
       }.should_not change(@information, :number_of_restrooms)
     end
 
+    it "doesn't update html field if invalid" do
+      visit edit_cms_real_estate_information_path(@real_estate)
+      fill_in "Anzahl WC's", :with=>-9
+      fill_in "Max Bodenbelastung", :with => '12'
+
+      click_on 'Immobilieninfos speichern'
+      expect(find_field('Ausbau Beschreibung').value).to eq "<ul>\n\t<li>Raumhöhe: 2.6 m</li>\n\t<li>0 WC</li>\n</ul>\nInterior description"
+
+      fill_in "Anzahl WC's", :with=>7
+      click_on 'Immobilieninfos speichern'
+      expect(find_field('Ausbau Beschreibung').value).to eq "<ul>\n\t<li>Raumhöhe: 2.6 m</li>\n\t<li>Maximale Bodenbelastung: 12 kg/m²</li>\n\t<li>7 WC</li>\n</ul>\nInterior description"
+    end
+
     it 'updates the additional information field' do
       visit edit_cms_real_estate_information_path(@real_estate)
 

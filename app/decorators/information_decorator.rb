@@ -21,9 +21,9 @@ class InformationDecorator < ApplicationDecorator
   end
 
   def update_characteristics
-    update_list_in(:location_characteristics, :location_html)
-    update_list_in(:infrastructure_characteristics, :infrastructure_html)
-    update_list_in(:interior_characteristics, :interior_html)
+    update_list_in(:location)
+    update_list_in(:infrastructure)
+    update_list_in(:interior)
   end
 
   def number_of_restrooms
