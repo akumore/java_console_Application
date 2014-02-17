@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://x6veLi2LExUsoSQrtiwP@gem.fury.io/me/'
 
 gem 'rails', '~> 3.1.0'
 gem 'rails-i18n'
@@ -14,6 +15,7 @@ gem 'simple-navigation'
 gem 'twitter-bootstrap-rails'
 gem 'blazing'
 gem 'blazing-rails'
+gem 'special_sauce'
 gem 'devise', '2.0.0'
 gem 'responders'
 gem 'thin'
@@ -59,8 +61,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspectacle'
   #gem 'ruby-debug19'
-  gem 'pry'
-  gem 'pry-debugger'
+  gem 'pry-rails'
   gem 'mmode'
 end
 
