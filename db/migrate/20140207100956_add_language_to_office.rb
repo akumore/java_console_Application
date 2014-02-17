@@ -12,6 +12,9 @@ class AddLanguageToOffice < Mongoid::Migration
       end
       office.save!
     }
+    RealEstate.all.each {|real_estate|
+      real_estate.update_attribute('language', real_estate.office.language)
+    }
   end
 
   def self.down
