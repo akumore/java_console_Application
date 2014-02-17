@@ -22,6 +22,7 @@ describe CharacteristicsHtml do
 
   before do
     RealEstate.stub(:find) { real_estate }
+    InformationDecorator.stub(:new) { decorator }
   end
 
   subject { CharacteristicsHtml.new(decorator, :field) }
