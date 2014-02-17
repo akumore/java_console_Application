@@ -1,3 +1,8 @@
+require 'application_controller'
+require 'application_decorator'
+require 'information_decorator'
+require 'figure_decorator'
+
 class FillHtmlFields < Mongoid::Migration
   FIELDS = {
     information: [:infrastructure, :interior, :location],
