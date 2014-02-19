@@ -1,5 +1,5 @@
 - plan = @real_estate.floor_plans.first
-- if (Rails.root + 'public' + plan.file.to_s).exist?
+- if (Rails.root + "public#{plan.file.to_s}").exist?
   .chapter.floorplan.pbi-avoid
     %h2= t('.title')
 
