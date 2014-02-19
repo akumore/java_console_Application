@@ -1,7 +1,9 @@
-.chapter.floorplan.pbi-avoid
-  %h2= t('.title')
+- plan = @real_estate.floor_plans.first
+- if (Rails.root + "public#{plan.file.to_s}").exist?
+  .chapter.floorplan.pbi-avoid
+    %h2= t('.title')
 
-  .floorplan-image.pbi-avoid
-    %div
-      = @real_estate.floor_plans.first.north_arrow_img_tag
-    = image_tag(@real_estate.floor_plans.first.file.minidoku.url)
+    .floorplan-image.pbi-avoid
+      %div
+        = plan.north_arrow_img_tag
+      = image_tag(plan.file.minidoku.url)

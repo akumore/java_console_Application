@@ -12,7 +12,7 @@ fr:
     upper_floor: '%{floor}. étage'
     rooms_value: '%{count} pièces'
     surface_value: '%{size} m²'
-    title: 'Infrastructure'
+    title: "Aperçu de l'objet"
     inside_parking_spots:
       one: '%{count} Place de parc dans parking souterrain'
       other: '%{count} Places de parc dans parking souterrain'

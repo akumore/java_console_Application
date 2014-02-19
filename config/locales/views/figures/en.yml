@@ -12,7 +12,7 @@ en:
     upper_floor: '%{floor}. First Floor'
     rooms_value: '%{count} rooms'
     surface_value: '%{size} m²'
-    title: 'Infrastructure'
+    title: 'Object Overview'
     inside_parking_spots:
       one: '%{count} Car park in garage'
       other: '%{count} Parking spaces in garage'
