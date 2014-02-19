@@ -12,7 +12,7 @@ it:
     upper_floor: '%{floor}. Piano superiore'
     rooms_value: '%{count} locali'
     surface_value: '%{size} m²'
-    title: 'Infrastruttura'
+    title: "Panoramica dell'oggetto"
     inside_parking_spots:
       one: '%{count} Parcheggio in autorimessa'
       other: '%{count} Parcheggi in autorimessa'

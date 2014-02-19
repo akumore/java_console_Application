@@ -48,12 +48,14 @@
     = render 'gallery', :real_estate => @real_estate
 
   - @real_estate.within_language do
+
     .description
+
       .accordion.accordion-classical{ 'data-open_first' => 1 }
 
         - if @real_estate.description.present?
           .accordion-item
-            .title= t('.description')
+            .title= t('handouts..overview.description')
             .content= @real_estate.description.html_safe
 
         - figure_content = render 'figure', :real_estate => @real_estate, :figure => @real_estate.figure
