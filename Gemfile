@@ -13,12 +13,8 @@ gem 'settingslogic'
 gem 'rails-backbone'
 gem 'simple-navigation'
 gem 'twitter-bootstrap-rails'
-gem 'blazing'
-gem 'blazing-rails'
 gem 'devise', '2.0.0'
 gem 'responders'
-gem 'thin'
-gem 'airbrake'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'rmagick'
 gem 'rdiscount'
@@ -37,10 +33,12 @@ gem 'jquery-scrollto-rails'
 gem 'pdfkit', :git => 'git://github.com/screenconcept/pdfkit.git'
 gem 'mongoid_rails_migrations'
 gem 'whenever', :require => false
-gem 'newrelic_rpm'
-gem 'sc-campfire'
 gem 'jcrop-rails'
 gem 'special_sauce'
+gem 'blazing'
+gem 'unicorn'
+gem 'airbrake'
+gem 'newrelic_rpm'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -60,12 +58,11 @@ group :development, :test do
   gem 'fabrication'
   gem 'guard'
   gem 'guard-rspectacle'
-  #gem 'ruby-debug19'
   gem 'pry'
   gem 'pry-debugger'
   gem 'mmode'
 end
 
 group :test do
-  gem "launchy", "~> 2.0.5"
+  gem 'launchy', '~> 2.0.5'
 end
