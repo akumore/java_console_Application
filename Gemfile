@@ -60,7 +60,6 @@ group :development, :test do
   gem 'guard-rspectacle'
   gem 'pry'
   gem 'pry-debugger'
-  gem 'mmode'
 end
 
 group :test do

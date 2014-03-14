@@ -179,8 +179,6 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.25.1)
-    mmode (0.0.8)
-      thor
     mongo (1.5.2)
       bson (= 1.5.2)
     mongoid (2.4.3)
@@ -347,7 +345,6 @@ DEPENDENCIES
   jquery-scrollto-rails
   json
   launchy (~> 2.0.5)
-  mmode
   mongoid (~> 2.4)
   mongoid_rails_migrations
   newrelic_rpm
