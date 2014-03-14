@@ -1,4 +1,4 @@
-[![Build Status](https://magnum.travis-ci.com/screenconcept/alfred-mueller.png?token=vgnCpmpJido3Y8bAsdL1)](https://magnum.travis-ci.com/screenconcept/alfred-mueller)
+[![Build Status](https://magnum.travis-ci.com/screenconcept/alfredmueller_web.png?token=vgnCpmpJido3Y8bAsdL1)](https://magnum.travis-ci.com/screenconcept/alfredmueller_web)
 
 # Setup
 
@@ -95,7 +95,7 @@ is stored in the corresponding files.
 ## Be careful with recreating image versions in migrations
 
 Migrations that recreate image versions over all real estates can take more than 2h until they're finished.
-Keep in mind (especially on deployment)! 
+Keep in mind (especially on deployment)!
 
 # Google Analytics
 
