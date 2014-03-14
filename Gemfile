@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://x6veLi2LExUsoSQrtiwP@gem.fury.io/me/'
 
 gem 'rails', '~> 3.1.0'
 gem 'rails-i18n'
@@ -39,6 +40,7 @@ gem 'whenever', :require => false
 gem 'newrelic_rpm'
 gem 'sc-campfire'
 gem 'jcrop-rails'
+gem 'special_sauce'
 
 # Gems used only for assets and not required
 # in production environments by default.
