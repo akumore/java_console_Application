@@ -6,6 +6,8 @@ require File.expand_path('../config/application', __FILE__)
 
 AlfredMueller::Application.load_tasks
 
+require 'special_sauce/tasks/rails'
+
 task :generate_north_arrow_images do
   require 'assets/generate_north_arrow_images'
   dir = File.join(File.dirname(__FILE__), 'app', 'assets', 'images', 'north-arrow')
