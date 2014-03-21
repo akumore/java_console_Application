@@ -155,8 +155,12 @@ class PricingDecorator < ApplicationDecorator
       content << { :key => t('pricings.outside_parking'), :value => outside_parking }
     end
 
-    if real_estate.information.present? && real_estate.information.available_from.present?
-      content << { :key => t('information.available_from'), :value => I18n.l(real_estate.information.available_from) }
+    if real_estate.information.present?
+      if real_estate.information.display_estimated_available_from.present?
+        content << { :key => t('information.available_from'), :value => real_estate.information.display_estimated_available_from }
+      elsif real_estate.information.available_from.present?
+        content << { :key => t('information.available_from'), :value => I18n.l(real_estate.information.available_from) }
+      end
     end
 
     if opted?
