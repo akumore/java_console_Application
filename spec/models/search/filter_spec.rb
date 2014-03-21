@@ -45,7 +45,7 @@ describe Search::Filter do
       context 'for storage utilization' do
         it 'defaults to search_field rooms' do
           RealEstate.stub_chain(:for_rent, :storing).and_return([real_estate])
-          Search::Filter.new(:utilization => Utilization::STORING).sort_field.should == 'rooms'
+          Search::Filter.new(:utilization => Utilization::STORING).sort_field.should == 'usable_surface'
         end
       end
 
