@@ -9,7 +9,7 @@ module Search
     end
 
     def sort_field
-      if working?
+      if working? || storing?
         'usable_surface'
       else
         'rooms'
