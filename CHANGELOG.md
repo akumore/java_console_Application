@@ -1,5 +1,13 @@
 # CHANGELOG
 
+### v2.8.7 in development
+* New implemented User Stories:
+  * #3228 - Als Microsite möchte ich das "Etwa verfügbar ab" Bezugsdatum sehen
+  * #3229 - Als Microsite möchte ich "Dienstleisungsfläche" als Gruppenindikator erhalten
+
+* Other improvements:
+  * Added page break after floorplan in handout PDF to avoid blang pages
+
 ### v2.8.6 on 2014-01-22
 * Bug Fixes:
  * #2806 - Hotfix - Als Editor möchte ich auch eine invalide Immobilie wieder bearbeiten können
@@ -16,7 +24,7 @@ New implemented User Stories:
 * New implemented User Stories:
   * #2781 - Als Besucher möchte ich alle Vision-Slider Slides übersetzt sehen
   * #2787 - Als Besucher möchte ich die korrekte PLZ der Filiale Camorino sehen
-  
+
 * Coding improvements:
   * track floor plan printing in gallery (google analytics)
 
