@@ -4,6 +4,7 @@
 * New implemented User Stories:
   * #3228 - Als Microsite möchte ich das "Etwa verfügbar ab" Bezugsdatum sehen
   * #3229 - Als Microsite möchte ich "Dienstleisungsfläche" als Gruppenindikator erhalten
+  * #3238 - Als Besucher möchte ich die Zimmeranzahl nicht sehen, wenn sie 0 ist
 
 * Other improvements:
   * Added page break after floorplan in handout PDF to avoid blang pages
