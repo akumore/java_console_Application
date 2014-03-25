@@ -1,16 +1,16 @@
-= form_for [:cms, @job], :html => { :multipart => true } do |f|
-  = render 'cms/shared/errors', :model => @job
+= form_for [:cms, @job], html: { multipart: true } do |f|
+  = render 'cms/shared/errors', model: @job
 
   = f.hidden_field :locale
   %fieldset.push-checkboxes-down
     .control-group
       = f.label :title
       .controls
-        = f.text_field :title, :class => 'span8'
+        = f.text_field :title, class: 'span8'
     .control-group
       = f.label :text
       .controls
-        = f.text_area :text, :class => 'editor'
+        = f.text_area :text, class: 'editor'
     .control-group
       = f.label :is_published
       .controls
@@ -23,7 +23,14 @@
 
         - if @job.job_profile_file.present?
           .well
-            = link_to 'Stellenprofil anzeigen', @job.job_profile_file.url, :target => '_new'
+            = link_to 'Stellenprofil anzeigen', @job.job_profile_file.url, target: '_new'
+
+    - if @job.job_profile_file.present?
+      .control-group
+        = f.label :remove_job_profile_file
+        .controls
+          = f.check_box :remove_job_profile_file
+
 
   .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
+    = f.submit nil, class: 'btn btn-primary'
