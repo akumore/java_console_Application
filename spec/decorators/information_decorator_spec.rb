@@ -63,4 +63,41 @@ describe InformationDecorator do
   it 'formats the freigh elevator carrying capacity in kg' do
     @information.freight_elevator_carrying_capacity.should == '150 kg'
   end
+
+  describe '#chapter "Immobilieninfos"' do
+    before :each do
+      @real_estate = Fabricate(:published_real_estate,
+        category: Fabricate(:category),
+        information: Fabricate.build(:information),
+        figure: Fabricate.build(:figure,
+          floor: 1,
+          rooms: '2.5',
+          living_surface: 125,
+          floors: 3,
+          renovated_on: 2014,
+          built_on: 2014
+        )
+      )
+      @information_decorator = InformationDecorator.new(@real_estate.information)
+    end
+
+    describe 'key "Zimmeranzahl"' do
+      it 'returns "2.5 Zimmer" for rooms = "2.5"' do
+        value  = ''
+        @information_decorator.chapter()[:content].each do |element|
+          value = element[:value] if element[:key] == 'Zimmeranzahl'
+        end
+        expect(value).to eq '2.5 Zimmer'
+      end
+
+      it 'does not return a key, value pair for "Zimmeranzahl" if rooms = "0"' do
+        @real_estate.figure.rooms = '0'
+        value  = ''
+        @information_decorator.chapter()[:content].each do |element|
+          value = element[:value] if element[:key] == 'Zimmeranzahl'
+        end
+        expect(value).to be_empty
+      end
+    end
+  end
 end
