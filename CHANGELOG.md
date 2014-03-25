@@ -1,12 +1,5 @@
 # CHANGELOG
 
-### v2.8.8 in features/changes_from_mrs_wyss
-* Other improvements:
-  * Default sort field within storing utilization is now «usable_surface» not «rooms» (frontend)
-  * The text attribute of a job is not required anymore to pass validations (CMS)
-  * Add a checkbox to remove uploaded job profile file (CMS)
-  * Update job profile drop down menu to show only published job profiles (frontend)
-
 ### v2.8.7 in development
 * New implemented User Stories:
   * #3228 - Als Microsite möchte ich das "Etwa verfügbar ab" Bezugsdatum sehen
@@ -15,6 +8,10 @@
 
 * Other improvements:
   * Added page break after floorplan in handout PDF to avoid blang pages
+  * Default sort field within storing utilization is now «usable_surface» not «rooms» (frontend)
+  * The text attribute of a job is not required anymore to pass validations (CMS)
+  * Add a checkbox to remove uploaded job profile file (CMS)
+  * Update job profile drop down menu to show only published job profiles (frontend)
 
 ### v2.8.6 on 2014-01-22
 * Bug Fixes:
