@@ -11,7 +11,7 @@
   .control-group
     = f.label :job
     .controls
-      = f.select :job, Job.published.map { |job| [job.title, job.id] }, prompt: t('.speculative_application')
+      = f.select :job, Job.published.where(locale: I18n.locale).map { |job| [job.title, job.id] }, prompt: t('.speculative_application')
   .control-group.mandatory
     = f.label :firstname
     .controls
