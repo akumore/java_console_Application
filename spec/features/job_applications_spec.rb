@@ -7,7 +7,7 @@ describe "JobApplications" do
   describe '#new' do
     context 'with no published jobs' do
       before :each do
-        Fabricate(:job, title: 'Bauleiter')
+        Fabricate(:job, title: 'Bauleiter DE')
         visit new_job_application_path
       end
 
@@ -19,21 +19,33 @@ describe "JobApplications" do
 
     context 'with published jobs' do
       before :each do
-        Fabricate(:published_job, title: 'Bauleiter')
-        visit new_job_application_path
+        Fabricate(:published_job, title: 'Bauleiter DE')
+        Fabricate(:published_job, title: 'Bauleiter EN', locale: :en)
       end
 
-      it "displays the job application form with default option and 'Bauleiter' option" do
+      it "displays the job application form with default option and 'Bauleiter DE' option" do
+        visit new_job_application_path
         expect(current_path).to eq(new_job_application_path)
         expect(page).to have_css('.new_job_application')
-        expect(page).to have_select('Job', options: ['Initiativbewerbung', 'Bauleiter'])
+        expect(page).to have_select('Job', options: ['Initiativbewerbung', 'Bauleiter DE'])
       end
+
+      context 'with locale :en' do
+        it "displays the job application form with default option and 'Bauleiter EN' option" do
+          visit new_job_application_path(locale: :en)
+          expect(current_path).to eq(new_job_application_path(locale: :en))
+          expect(page).to have_css('.new_job_application')
+          expect(page).to have_select('Job', options: ['Unsolicited application', 'Bauleiter EN'])
+        end
+      end
+
 
       describe '#create' do
         before :each do
+          visit new_job_application_path
           @attachment = "#{Rails.root}/spec/support/test_files/document.pdf"
           within(".new_job_application") do
-            select('Bauleiter', from: 'Job')
+            select('Bauleiter DE', from: 'Job')
             fill_in 'Vorname', with: 'Hans'
             fill_in 'Name', with: 'Muster'
             fill_in 'Geboren am', with: '20.05.1986'

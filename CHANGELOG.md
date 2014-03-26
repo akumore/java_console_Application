@@ -5,7 +5,8 @@
   * Default sort field within storing utilization is now «usable_surface» not «rooms» (frontend)
   * The text attribute of a job is not required anymore to pass validations (CMS)
   * Add a checkbox to remove uploaded job profile file (CMS)
-  * Update job profile drop down menu to show only published job profiles (frontend)
+  * Update job profile drop down menu to show only published and localized job profiles (frontend)
+  * Add aclado as a new exporter (export)
 
 ### v2.8.7 in development
 * New implemented User Stories:
