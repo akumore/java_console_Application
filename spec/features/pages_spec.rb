@@ -69,11 +69,11 @@ describe "Pages" do
           page.should have_content "Michael Müller"
           page.should have_content "Walter Hochreutener"
           page.should have_content "Joe Schmalz"
-          page.should have_content "David Spiess"
+          page.should_not have_content "David Spiess"
           page.should have_link 'E-Mail', :href => "mailto:david.hossli@alfred-mueller.ch"
           page.should have_link 'E-Mail', :href => "mailto:joe.schmalz@alfred-mueller.ch"
           page.should have_link 'E-Mail', :href => "mailto:michael.mueller@alfred-mueller.ch"
-          page.should have_link 'E-Mail', :href => "mailto:david.spiess@alfred-mueller.ch"
+          page.should_not have_link 'E-Mail', :href => "mailto:david.spiess@alfred-mueller.ch"
           page.should have_link 'E-Mail', :href => "mailto:beat.stocker@alfred-mueller.ch"
         end
       end
