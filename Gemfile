@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://x6veLi2LExUsoSQrtiwP@gem.fury.io/me/'
 
 gem 'rails', '~> 3.1.0'
 gem 'rails-i18n'
@@ -18,6 +17,7 @@ gem 'devise', '2.0.0'
 gem 'responders'
 gem 'airbrake'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'mini_magick'
 gem 'rdiscount'
 gem 'ckeditor'
 gem 'draper'
@@ -36,7 +36,6 @@ gem 'mongoid_rails_migrations'
 gem 'whenever', :require => false
 gem 'newrelic_rpm'
 gem 'jcrop-rails'
-gem 'mini_magick'
 gem 'special_sauce'
 gem 'unicorn'
 
