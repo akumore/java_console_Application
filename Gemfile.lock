@@ -117,6 +117,7 @@ GEM
       railties (~> 3.1)
       warden (~> 1.1)
     diff-lcs (1.2.5)
+    dotenv (0.10.0)
     draper (0.10.0)
       activesupport (>= 2.3.10)
     ejs (1.0.0)
@@ -334,6 +335,7 @@ DEPENDENCIES
   daemons (= 1.1.5)
   delorean
   devise (= 2.0.0)
+  dotenv
   draper
   fabrication
   geocoder
