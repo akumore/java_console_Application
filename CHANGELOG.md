@@ -1,4 +1,8 @@
 # CHANGELOG
+### v2.8.8 on 2014-03-31
+
+* Hotfix
+  * Remove David Spiess from company leaders
 
 ### v2.8.7 on 2014-03-26
 * New implemented User Stories:
