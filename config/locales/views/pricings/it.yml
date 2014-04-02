@@ -23,3 +23,4 @@ it:
     outdoor_bike: 'Posteggio moto esterno coperto'
     single_garage: 'Garage singolo'
     double_garage: 'Garage doppio'
+    for_sale: "Prezzo d'acquisto"

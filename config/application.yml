@@ -178,3 +178,15 @@ production:
       password: 'vz91LF'
       offices:
         - marin
+
+    - provider: 'aclado'
+      agency_id: 'alm'
+      sender_id: 'AlfredMuellerWebsite_AcladoExporter'
+      video_support: true
+      host: 'aclado.ch'
+      username: 'alfred-mueller'
+      password: 'AFM34ebuvk'
+      offices:
+        - baar
+        - camorino
+        - marin

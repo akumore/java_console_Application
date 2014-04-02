@@ -4,5 +4,6 @@ class Provider
   IMMOSCOUT = 'immoscout24'
   HOMECH = 'home_ch'
   IMMOSTREET = 'immostreet'
+  ACLADO = 'aclado'
 
 end

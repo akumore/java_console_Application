@@ -7,11 +7,11 @@
           %li= msg
 
 
-= form_for @job_application, :url => job_application_path, :remote => true do |f|
+= form_for @job_application, url: job_application_path, remote: true do |f|
   .control-group
     = f.label :job
     .controls
-      = f.select :job, Job.all.map { |job| [job.title, job.id] }, :prompt => t('.speculative_application')
+      = f.select :job, Job.published.where(locale: I18n.locale).map { |job| [job.title, job.id] }, prompt: t('.speculative_application')
   .control-group.mandatory
     = f.label :firstname
     .controls
@@ -29,11 +29,11 @@
     .controls
       = f.text_field :street
   .control-group.mandatory
-    = f.label :zipcode, :class => 'zip-label'
-    = f.label :city, :class => 'comma-before'
+    = f.label :zipcode, class: 'zip-label'
+    = f.label :city, class: 'comma-before'
     .controls
-      = f.text_field :zipcode, :class => :short
-      = f.text_field :city, :class => 'medium-short'
+      = f.text_field :zipcode, class: :short
+      = f.text_field :city, class: 'medium-short'
   .control-group.mandatory
     = f.label :phone
     .controls
