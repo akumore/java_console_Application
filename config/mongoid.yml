@@ -5,7 +5,7 @@ defaults: &defaults
   port: <%= ENV['MONGOID_PORT'] %>
   username: <%= ENV['MONGOID_USERNAME'] %>
   password: <%= ENV['MONGOID_PASSWORD'] %>
-  database: <%= ENV['MONGOID_DATABASE'] || "alfred_mueller#{Rails.env}" %>
+  database: <%= ENV['MONGOID_DATABASE'] || "alfred_mueller_#{Rails.env}" %>
 
 development:
   <<: *defaults
