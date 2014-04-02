@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.8.9 in development
+* New implemented User Stories:
+  * #3327 - Als Besucher möchte ich alle Grundrisse in der Objektdokumentation sehen
+
 ### v2.8.8 on 2014-03-31
 * Hotfix
   * Remove David Spiess from company leaders
