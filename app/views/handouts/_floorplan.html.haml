@@ -1,7 +1,8 @@
 .chapter.floorplan.pb-after
   %h2= t('.title')
 
-  .floorplan-image.pbi-avoid
-    %div
-      = @real_estate.north_arrow_img_tag
-    = image_tag(@real_estate.floor_plans.first.file.minidoku.url)
+  - @real_estate.floor_plans.each do |floorplan|
+    .floorplan-image.pbi-avoid
+      %div
+        = @real_estate.north_arrow_img_tag
+      = image_tag(floorplan.file.minidoku.url)
