@@ -99,5 +99,37 @@ describe InformationDecorator do
         expect(value).to be_empty
       end
     end
+
+    describe 'keys "Wohnfläche", "Nutzfläche", "Grundstückfläche", "Lagerfläche"' do
+      context 'living utilization' do
+        it 'returns the right surface' do
+          @real_estate.figure.living_surface = '33' # Wohnfläche
+          living_surface  = ''
+          working_surfaces = []
+          @information_decorator.chapter()[:content].each do |element|
+            living_surface = element[:value] if element[:key] == 'Wohnfläche'
+            working_surfaces << element[:value] if element[:key] == 'Nutzfläche' || element[:key] == 'Grundstückfläche' || element[:key] == 'Lagerfläche'
+          end
+          expect(living_surface).to eq '33 m²'
+          expect(working_surfaces).to be_empty
+        end
+      end
+
+      context 'working utilization' do
+        it 'returns the right surfaces' do
+          @real_estate.utilization = Utilization::WORKING
+          @real_estate.figure.usable_surface = '44' # Nutzfläche
+          @real_estate.figure.property_surface = '55' # Grundstückfläche
+          @real_estate.figure.storage_surface = '66' # Lagerfläche
+          living_surface = ''
+          working_surfaces  = []
+          @information_decorator.chapter()[:content].each do |element|
+            working_surfaces << element[:value] if element[:key] == 'Nutzfläche' || element[:key] == 'Grundstückfläche' || element[:key] == 'Lagerfläche'
+          end
+          expect(working_surfaces).to eq ['44 m²', '55 m²', '66 m²']
+          expect(living_surface).to be_empty
+        end
+      end
+    end
   end
 end
