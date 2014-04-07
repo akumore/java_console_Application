@@ -1,4 +1,9 @@
 # CHANGELOG
+
+### v2.9.0
+
+* Hosting Migration auf c3
+
 ### v2.8.8 on 2014-03-31
 
 * Hotfix
