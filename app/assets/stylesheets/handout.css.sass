@@ -93,6 +93,9 @@ strong, b
   margin: 60px
   +clearfix
 
+  &:last-child
+    margin: 60px 60px 0 60px
+
   dl
     +clearfix
 
@@ -132,6 +135,9 @@ strong, b
 
   .floorplan-image
     position: relative
+    margin-bottom: 50px
+    &:last-child
+      margin-bottom: 0
     img
       max-width: 100%
       max-height: 800px
@@ -189,5 +195,11 @@ ul
   margin-left: 20px
   list-style: disc outside
 
-.north-arrow
-  padding-bottom: 5px
+img.north-arrow
+  position: absolute
+  bottom: 0
+  right: 50px
+  bottom: 25px
+  background-color: white  
+  width: 50px
+  height: 50px
