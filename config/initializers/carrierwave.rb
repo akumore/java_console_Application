@@ -9,7 +9,7 @@ end
 
 
 module CarrierWave
-  module RMagick
+  module MiniMagick
 
     def quality(percentage)
       manipulate! do |img|

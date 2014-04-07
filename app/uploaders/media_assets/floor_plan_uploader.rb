@@ -2,7 +2,7 @@ require 'carrierwave/processing/mime_types'
 
 module MediaAssets
   class FloorPlanUploader < CarrierWave::Uploader::Base
-    include CarrierWave::RMagick
+    include CarrierWave::MiniMagick
 
     # Override the directory where uploaded files will be stored.
     # This is a sensible default for uploaders that are meant to be mounted:

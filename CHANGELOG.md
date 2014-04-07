@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.9.0 2014-04-07
+
+* Hosting Migration auf c3
+
 ### v2.8.9 on 2014-04-03
 * New implemented User Stories:
   * #3297 - Als Besucher möchte ich keine leeren Seiten in der Objektdokumentation sehen
