@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.9.1 2014-04-09
+
+* Reenabled cronjobs
+
 ### v2.9.0 2014-04-07
 
 * Hosting Migration auf c3
