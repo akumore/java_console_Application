@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### v2.9.2 2014-04-10
+
+* Hotfix Real Estate copy
+* Do not user tls on local email delivery
+
 ### v2.9.1 2014-04-09
 
 * Reenabled cronjobs
