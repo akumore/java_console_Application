@@ -11,15 +11,13 @@ module MediaAssets
 
     def original_width
       if file.present?
-        f = ::Magick::Image::read(file.path).first
-        f.columns
+        MiniMagick::Image.open(file.path)['width']
       end
     end
 
     def original_height
       if file.present?
-        f = ::Magick::Image::read(file.path).first
-        f.rows
+        MiniMagick::Image.open(file.path)['height']
       end
     end
 
