@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.9.3 2014-04-10
+
+* Increase server timeout to 300
+
 ### v2.9.2 2014-04-10
 
 * Hotfix Real Estate copy
