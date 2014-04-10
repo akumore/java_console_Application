@@ -3,7 +3,7 @@ APP_ROOT = File.expand_path(File.dirname(File.dirname(__FILE__)))
 worker_processes 3
 working_directory APP_ROOT
 preload_app true
-timeout 30
+timeout 300
 
 listen APP_ROOT + "/tmp/unicorn.sock", :backlog => 64
 pid APP_ROOT + "/tmp/unicorn.pid"
