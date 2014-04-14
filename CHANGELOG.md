@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### v2.9.4
+
+* Upddate blazing to prevent crontab overwrites
+
 ### v2.9.3 2014-04-10
 
 * Increase server timeout to 300
