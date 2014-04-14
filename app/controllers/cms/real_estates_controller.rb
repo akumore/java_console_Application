@@ -64,8 +64,9 @@ class Cms::RealEstatesController < Cms::SecuredController
       real_estate_params[:channels] = []
     end
 
-    if real_estate_params.delete(:state_event).to_s == 'unpublish_it'
+    if real_estate_params[:state_event].to_s == 'unpublish_it'
       @real_estate.update_attribute(:state, RealEstate::STATE_EDITING ) # ensure the real estate can be edited again, even if it is invalid at the moment
+      real_estate_params.delete(:state_event)
     end
 
     @real_estate.attributes = real_estate_params

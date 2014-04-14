@@ -5,5 +5,5 @@
     - if (Rails.root + "public#{floorplan.file.to_s}").exist?
       .floorplan-image.pbi-avoid
         %div
-          = @real_estate.north_arrow_img_tag
+          = floorplan.north_arrow_img_tag
         = image_tag(floorplan.file.minidoku.url)

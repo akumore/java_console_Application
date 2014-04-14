@@ -332,15 +332,14 @@ describe PricingDecorator do
       before :each do
         @real_estate = Fabricate(:published_real_estate,
           category: Fabricate(:category),
-          information: Fabricate.build(:information, display_estimated_available_from: ''),
-          pricing: Fabricate.build(:pricing)
+          pricing: Fabricate.build(:pricing, display_estimated_available_from: '')
         )
         @pricing_decorator = PricingDecorator.new(@real_estate.pricing)
       end
 
       context 'display_estimated_available_from is set' do
         it 'returns the display_estimated_available_from value' do
-          @real_estate.information.display_estimated_available_from = 'Sommer 2014'
+          @real_estate.pricing.display_estimated_available_from = 'Sommer 2014'
           expect(@pricing_decorator.chapter()[:content].last[:value]).to eq 'Sommer 2014'
         end
       end
