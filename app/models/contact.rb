@@ -12,4 +12,8 @@ class Contact
   field :message, :type => String
 
   validates :firstname, :lastname, :street, :zip, :city, :email, :message, :presence => true
+
+  # field that must be empty to protect from spam
+  field :unnecessary_field, :type => String
+  validates :unnecessary_field, inclusion: {in: ['']}
 end
