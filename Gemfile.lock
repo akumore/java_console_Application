@@ -289,7 +289,7 @@ GEM
     simple-navigation (3.6.0)
       activesupport (>= 2.3.2)
     slop (3.4.7)
-    special_sauce (0.3.6)
+    special_sauce (0.3.7)
       airbrake
       blazing
       thor
