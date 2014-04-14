@@ -77,7 +77,8 @@ AlfredMueller::Application.routes.draw do
   end
 
   match '/eingabetool' => 'cms/dashboards#show'
-  
+  match '/cms' => 'cms/dashboards#show'
+
   root :to => 'homepage#index'
 
 end
