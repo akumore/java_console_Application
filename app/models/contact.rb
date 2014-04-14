@@ -2,6 +2,7 @@ class Contact
 
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Concerns::SpamProtection
 
   field :firstname, :type => String
   field :lastname, :type => String
@@ -13,7 +14,4 @@ class Contact
 
   validates :firstname, :lastname, :street, :zip, :city, :email, :message, :presence => true
 
-  # field that must be empty to protect from spam
-  field :unnecessary_field, :type => String
-  validates :unnecessary_field, inclusion: {in: ['']}
 end

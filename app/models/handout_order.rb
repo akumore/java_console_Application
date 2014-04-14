@@ -1,6 +1,7 @@
 class HandoutOrder
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Concerns::SpamProtection
 
   field :company,   :type => String
   field :firstname, :type => String
