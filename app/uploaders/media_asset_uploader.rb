@@ -3,7 +3,7 @@ require 'carrierwave/processing/mime_types'
 
 class MediaAssetUploader < CarrierWave::Uploader::Base
 
-  include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
   include CarrierWave::MimeTypes
 
   process :set_content_type

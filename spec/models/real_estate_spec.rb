@@ -211,6 +211,10 @@ describe RealEstate do
       RealEstate.copy!(@original)
     end
 
+    it 'should be valid' do
+      copy.valid?.should be_true
+    end
+
     it 'is also an real estate' do
       copy.should be_a RealEstate
     end

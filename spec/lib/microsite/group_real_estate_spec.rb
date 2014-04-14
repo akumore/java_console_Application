@@ -52,8 +52,8 @@ module Microsite
     end
 
     context 'as commercial building' do
-      it 'returns \'Dienstleistungsflächen\' as grouping key' do
-        GroupRealEstates.get_group(commercial_real_estate)[:label].should == 'Dienstleistungsflächen'
+      it 'returns \'Dienstleistungsfläche\' as grouping key' do
+        GroupRealEstates.get_group(commercial_real_estate)[:label].should == 'Dienstleistungsfläche'
       end
 
       context 'with category_name \'Atelier\'' do

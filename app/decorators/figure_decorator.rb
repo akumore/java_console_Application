@@ -75,8 +75,10 @@ class FigureDecorator < ApplicationDecorator
   def rooms
     if model.rooms_estimate.present?
       model.rooms_estimate
-    elsif model.rooms.present?
+    elsif model.rooms.present? && '0' != model.rooms
       t('figures.rooms_value', :count => model.rooms)
+    else
+      ''
     end
   end
 

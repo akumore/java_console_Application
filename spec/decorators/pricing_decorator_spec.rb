@@ -239,7 +239,7 @@ describe PricingDecorator do
       price.formatted_price_with_currency(0).should == '0.00 CHF'
     end
   end
-  
+
   describe '#formatted_price_with_price_unit' do
     let :price do
       PricingDecorator.new(stub(:pricing, :price_unit => 'monthly', :estimate => ''))
@@ -322,6 +322,32 @@ describe PricingDecorator do
 
         it 'returns estimate field' do
           price.price_to_be_displayed.should == 'Kannste nicht kaufen'
+        end
+      end
+    end
+  end
+
+  describe '#chapter "Preise/Bezug"' do
+    describe 'key "Bezug"' do
+      before :each do
+        @real_estate = Fabricate(:published_real_estate,
+          category: Fabricate(:category),
+          information: Fabricate.build(:information, display_estimated_available_from: ''),
+          pricing: Fabricate.build(:pricing)
+        )
+        @pricing_decorator = PricingDecorator.new(@real_estate.pricing)
+      end
+
+      context 'display_estimated_available_from is set' do
+        it 'returns the display_estimated_available_from value' do
+          @real_estate.information.display_estimated_available_from = 'Sommer 2014'
+          expect(@pricing_decorator.chapter()[:content].last[:value]).to eq 'Sommer 2014'
+        end
+      end
+
+      context 'display_estimated_available_from is not set' do
+        it 'returns the available_from value' do
+          expect(@pricing_decorator.chapter()[:content].last[:value]).to eq '01.01.2012'
         end
       end
     end

@@ -159,4 +159,73 @@ describe InformationDecorator do
       expect(@information.infrastructure_characteristics).to eq []
     end
   end
+
+  describe '#chapter "Immobilieninfos"' do
+    before :each do
+      @real_estate = Fabricate(:published_real_estate,
+        category: Fabricate(:category),
+        information: Fabricate.build(:information),
+        figure: Fabricate.build(:figure,
+          floor: 1,
+          rooms: '2.5',
+          living_surface: 125,
+          floors: 3,
+          renovated_on: 2014,
+          built_on: 2014
+        )
+      )
+      @information_decorator = InformationDecorator.new(@real_estate.information)
+    end
+
+    describe 'key "Zimmeranzahl"' do
+      it 'returns "2.5 Zimmer" for rooms = "2.5"' do
+        value  = ''
+        @information_decorator.chapter()[:content].each do |element|
+          value = element[:value] if element[:key] == 'Zimmeranzahl'
+        end
+        expect(value).to eq '2.5 Zimmer'
+      end
+
+      it 'does not return a key, value pair for "Zimmeranzahl" if rooms = "0"' do
+        @real_estate.figure.rooms = '0'
+        value  = ''
+        @information_decorator.chapter()[:content].each do |element|
+          value = element[:value] if element[:key] == 'Zimmeranzahl'
+        end
+        expect(value).to be_empty
+      end
+    end
+
+    describe 'keys "Wohnfläche", "Nutzfläche", "Grundstückfläche", "Lagerfläche"' do
+      context 'living utilization' do
+        it 'returns the right surface' do
+          @real_estate.figure.living_surface = '33' # Wohnfläche
+          living_surface  = ''
+          working_surfaces = []
+          @information_decorator.chapter()[:content].each do |element|
+            living_surface = element[:value] if element[:key] == 'Wohnfläche'
+            working_surfaces << element[:value] if element[:key] == 'Nutzfläche' || element[:key] == 'Grundstückfläche' || element[:key] == 'Lagerfläche'
+          end
+          expect(living_surface).to eq '33 m²'
+          expect(working_surfaces).to be_empty
+        end
+      end
+
+      context 'working utilization' do
+        it 'returns the right surfaces' do
+          @real_estate.utilization = Utilization::WORKING
+          @real_estate.figure.usable_surface = '44' # Nutzfläche
+          @real_estate.figure.property_surface = '55' # Grundstückfläche
+          @real_estate.figure.storage_surface = '66' # Lagerfläche
+          living_surface = ''
+          working_surfaces  = []
+          @information_decorator.chapter()[:content].each do |element|
+            working_surfaces << element[:value] if element[:key] == 'Nutzfläche' || element[:key] == 'Grundstückfläche' || element[:key] == 'Lagerfläche'
+          end
+          expect(working_surfaces).to eq ['44 m²', '55 m²', '66 m²']
+          expect(living_surface).to be_empty
+        end
+      end
+    end
+  end
 end

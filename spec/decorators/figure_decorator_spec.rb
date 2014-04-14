@@ -97,6 +97,11 @@ describe FigureDecorator do
       @figure.update_attribute :rooms_estimate, '2.5 - 4.5 Zimmer'
       @figure.rooms.should == '2.5 - 4.5 Zimmer'
     end
+
+    it 'returns an empty string if rooms is zero' do
+      @figure.update_attribute :rooms, '0'
+      expect(@figure.rooms).to eq ''
+    end
   end
 
   describe '#living_surface' do

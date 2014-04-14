@@ -9,6 +9,5 @@ public/assets
 public/uploads
 uploads
 *.*~
-config/mongoid.yml
 db/backups/*
 public/robots.txt

@@ -8,3 +8,4 @@ de:
         text: 'Text'
         is_published: 'Veröffentlichen?'
         job_profile_file: 'Stellenprofil'
+        remove_job_profile_file: 'Stellenprofil löschen'

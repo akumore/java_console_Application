@@ -1,6 +1,6 @@
 module MediaAssets
   class ImageUploader < CarrierWave::Uploader::Base
-    include CarrierWave::RMagick
+    include CarrierWave::MiniMagick
 
     # Override the directory where uploaded files will be stored.
     # This is a sensible default for uploaders that are meant to be mounted:
@@ -48,7 +48,9 @@ module MediaAssets
           y = model.crop_y.to_i
           w = model.crop_w.to_i
           h = model.crop_h.to_i
-          img.crop!(x, y, w, h)
+          img.crop "#{w}x#{h}+#{x}+#{y}"
+          img = yield(img) if block_given?
+          img
         end
       end
     end

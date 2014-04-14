@@ -1,9 +1,9 @@
-- plan = @real_estate.floor_plans.first
-- if (Rails.root + "public#{plan.file.to_s}").exist?
-  .chapter.floorplan.pbi-avoid
-    %h2= t('.title')
+.chapter.floorplan.pb-after
+  %h2= t('.title')
 
-    .floorplan-image.pbi-avoid
-      %div
-        = plan.north_arrow_img_tag
-      = image_tag(plan.file.minidoku.url)
+  - @real_estate.floor_plans.each do |floorplan|
+    - if (Rails.root + "public#{floorplan.file.to_s}").exist?
+      .floorplan-image.pbi-avoid
+        %div
+          = @real_estate.north_arrow_img_tag
+        = image_tag(floorplan.file.minidoku.url)

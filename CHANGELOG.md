@@ -1,5 +1,54 @@
 # CHANGELOG
 
+### v2.9.4
+
+* Upddate blazing to prevent crontab overwrites
+
+### v2.9.3 2014-04-10
+
+* Increase server timeout to 300
+
+### v2.9.2 2014-04-10
+
+* Hotfix Real Estate copy
+* Do not user tls on local email delivery
+
+### v2.9.1 2014-04-09
+
+* Reenabled cronjobs
+
+### v2.9.0 2014-04-07
+
+* Hosting Migration auf c3
+
+### v2.8.9 on 2014-04-03
+* New implemented User Stories:
+  * #3297 - Als Besucher möchte ich keine leeren Seiten in der Objektdokumentation sehen
+  * #3327 - Als Besucher möchte ich alle Grundrisse in der Objektdokumentation sehen
+  * #3356 - Als Besucher möchte ich bei Immobilien unter Arbeiten die Nutzfläche unter Immobilieninfos bei der entsprechenden Immobilie sehen
+
+### v2.8.8 on 2014-03-31
+* Hotfix
+  * Remove David Spiess from company leaders
+
+### v2.8.7 on 2014-03-26
+* New implemented User Stories:
+  * #3228 - Als Microsite möchte ich das "Etwa verfügbar ab" Bezugsdatum sehen
+  * #3229 - Als Microsite möchte ich "Dienstleisungsfläche" als Gruppenindikator erhalten
+  * #3238 - Als Besucher möchte ich die Zimmeranzahl nicht sehen, wenn sie 0 ist
+
+* Other improvements:
+  * Added page break after floorplan in handout PDF to avoid blang pages
+  * Default sort field within storing utilization is now «usable_surface» not «rooms» (frontend)
+  * The text attribute of a job is not required anymore to pass validations (CMS)
+  * Add a checkbox to remove uploaded job profile file (CMS)
+  * Update job profile drop down menu to show only published and localized job profiles (frontend)
+  * Add aclado as a new exporter (export)
+
+### v2.8.6 on 2014-01-22
+* Bug Fixes:
+ * #2806 - Hotfix - Als Editor möchte ich auch eine invalide Immobilie wieder bearbeiten können
+
 ### v2.8.5 on 2014-01-20
 New implemented User Stories:
 
@@ -14,7 +63,7 @@ New implemented User Stories:
 * New implemented User Stories:
   * #2781 - Als Besucher möchte ich alle Vision-Slider Slides übersetzt sehen
   * #2787 - Als Besucher möchte ich die korrekte PLZ der Filiale Camorino sehen
-  
+
 * Coding improvements:
   * track floor plan printing in gallery (google analytics)
 

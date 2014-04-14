@@ -7,12 +7,12 @@ describe Job do
     end
 
     it 'does not pass validations' do
-      @job.should_not be_valid
+      expect(@job).to_not be_valid
     end
 
-    it 'has 2 errors' do
+    it 'has 1 error' do
       @job.valid?
-      @job.errors.should have(2).items
+      expect(@job.errors).to have(1).items
     end
   end
 
@@ -22,11 +22,11 @@ describe Job do
     end
 
     it 'passes validations' do
-      @job.should be_valid
+      expect(@job).to be_valid
     end
 
     it 'has an attached job_profile' do
-      @job.job_profile_file.url.should be_present
+      expect(@job.job_profile_file.url).to be_present
     end
   end
 
@@ -39,7 +39,7 @@ describe Job do
 
     it 'fails validations' do
       @job.save
-      @job.should_not be_valid
+      expect(@job).to_not be_valid
     end
   end
 
@@ -50,7 +50,7 @@ describe Job do
 
     it 'has set position to 1 when job is created' do
       @job.save
-      @job.position.should == 1
+      expect(@job.position).to eq(1)
     end
 
     it 'increments position on creating two jobs' do
@@ -59,8 +59,8 @@ describe Job do
       job_two = Fabricate(:job)
       job_two.save
 
-      job_one.position.should == 1
-      job_two.position.should == 2
+      expect(job_one.position).to eq(1)
+      expect(job_two.position).to eq(2)
     end
   end
 

@@ -1,4 +1,4 @@
-require 'RMagick'
+require 'mini_magick'
 
 WIDTH        = 2 * 40
 HEIGHT       = 2 * 40

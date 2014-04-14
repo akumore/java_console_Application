@@ -9,12 +9,12 @@ end
 
 
 module CarrierWave
-  module RMagick
+  module MiniMagick
 
     def quality(percentage)
       manipulate! do |img|
-        img.strip! # removes profiles and comments, saves about 90% on thumbnails
-        img.write(current_path){ self.quality = percentage } unless img.quality == percentage
+        img.strip # removes profiles and comments, saves about 90% on thumbnails
+        img.quality(percentage.to_s)
         img = yield(img) if block_given?
         img
       end

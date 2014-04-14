@@ -64,6 +64,10 @@ class InformationDecorator < ApplicationDecorator
     end
 
     if figure && real_estate.working?
+      if figure.surface.present?
+        content << { :key => figure.surface_label, :value => figure.surface }
+      end
+
       if figure.property_surface.present?
         content << { :key => t('figures.property_surface'),:value => figure.property_surface }
       end
