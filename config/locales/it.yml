@@ -71,6 +71,7 @@ it:
         notice: "%{resource_name} wurde erfolgreich gelöscht."
         alert: "%{resource_name} konnte nicht gelöscht werden."
   jobs_url: '/it/jobs'
+  forum_url: '/it/company#la-nostra-rivista'
   company_url: '/it/company'
   contact_url: '/it/contact'
 #  errors:
