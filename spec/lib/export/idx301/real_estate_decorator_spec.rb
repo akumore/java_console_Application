@@ -273,6 +273,18 @@ describe Export::Idx301::RealEstateDecorator do
       expect(real_estate.object_description).to eq("Vorteile<br><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li><br>Autoeinstellhalle kann dazugemietet werden.")
     end
 
+    it 'inserts a <br> tag before the second h3' do
+      real_estate = Export::Idx301::RealEstateDecorator
+        .new(
+          mock_model(RealEstate, :description => "<h3>Vorteile</h3><ul><li>Teststring 1</li><li>Teststring 2</li></ul><h3>Angebot</h3><ul><li>Teststring 3</li></ul>"),
+          account,
+          {}
+        )
+      expect(real_estate.object_description).to eq("Vorteile<br><li>Teststring 1</li><li>Teststring 2</li><br>Angebot<br><li>Teststring 3</li>")
+    end
+
+
+
     context 'with immoscout as provider' do
       it 'maintains the ul tags' do
         real_estate = Export::Idx301::RealEstateDecorator
