@@ -276,7 +276,7 @@ describe Export::Idx301::RealEstateDecorator do
     it 'inserts a <br> tag before the second h3' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, :description => "<h3>Vorteile</h3><ul><li>Teststring 1</li><li>Teststring 2</li></ul><h3>Angebot</h3><ul><li>Teststring 3</li></ul>"),
+          mock_model(RealEstate, :description => "<h3>Vorteile</h3><ul><li>Teststring 1</li><li>Teststring 2</li></ul>\n<h3>Angebot</h3><ul><li>Teststring 3</li></ul>"),
           account,
           {}
         )
