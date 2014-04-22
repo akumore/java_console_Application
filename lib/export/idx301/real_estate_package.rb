@@ -52,7 +52,7 @@ module Export
         path  = file.path
         filename = "i_#{@real_estate.id}_#{@images.length + 1}#{ext}"
         account_path = File.join(@packager.image_path, filename)
-        FileUtils.cp(path, account_path)
+        FileUtils.ln(path, account_path)
         @images << filename
       end
 
@@ -64,7 +64,7 @@ module Export
         ext = File.extname(file.path)
         filename = "v_#{@real_estate.id}_#{@videos.length + 1}#{ext}"
         account_path = File.join(@packager.movie_path, filename)
-        FileUtils.cp(file.path, account_path)
+        FileUtils.ln(file.path, account_path)
         @videos << filename
       end
 
@@ -74,7 +74,7 @@ module Export
         handout_path = File.join Rails.root, 'public', handout.path
         if File.exists? handout_path
           logger.info "Adding cache file for handout #{handout.path}"
-          FileUtils.cp(handout_path, account_path)
+          FileUtils.ln(handout_path, account_path)
         else
           logger.info "Creating handout #{handout.path}"
           handout.to_file(account_path)
@@ -86,7 +86,7 @@ module Export
         ext = File.extname(file.path)
         filename = "d_#{@real_estate.id}_#{@documents.length + 1}#{ext}"
         account_path = File.join(@packager.doc_path, filename)
-        FileUtils.cp(file.path, account_path)
+        FileUtils.ln(file.path, account_path)
         @documents << filename
       end
 
