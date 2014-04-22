@@ -2,6 +2,7 @@ class Contact
 
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Concerns::SpamProtection
 
   field :firstname, :type => String
   field :lastname, :type => String
@@ -12,4 +13,5 @@ class Contact
   field :message, :type => String
 
   validates :firstname, :lastname, :street, :zip, :city, :email, :message, :presence => true
+
 end

@@ -1,6 +1,7 @@
 class Appointment
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Concerns::SpamProtection
 
   belongs_to :real_estate
 
