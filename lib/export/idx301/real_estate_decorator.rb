@@ -384,6 +384,8 @@ module Export::Idx301
       #pre_html = model.description.presence.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>')
       if model.description.present?
         html = model.description
+        html.gsub!(/>\s+/, '>')
+        html.gsub!(/\s+</, '<')
         html.gsub!(/<br\ \/>/, '<br>')
         html.gsub!(/<\/p><p>/, '<br><br>')
         html.gsub!(/<\/p><ul>/, '<br><br>')

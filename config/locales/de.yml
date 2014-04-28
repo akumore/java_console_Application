@@ -71,6 +71,7 @@ de:
         notice: "%{resource_name} wurde erfolgreich gelöscht."
         alert: "%{resource_name} konnte nicht gelöscht werden."
   jobs_url: '/de/jobs'
+  forum_url: '/de/company#unser-magazin'
   company_url: '/de/company'
   contact_url: '/de/contact'
   'true': 'Ja'

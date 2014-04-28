@@ -7,6 +7,14 @@
   .flex-container
     .flexslider
       %ul.slides
+        - unless I18n.locale == :en
+          %li
+            = image_tag 'vision/slide-5.jpg'
+            .image-caption
+              .image-caption-text
+                %h3.vision-header-title= t('.vision.forum_title').html_safe
+                = link_to t('.vision.forum_link_title'), t('forum_url'), :class => :go
+
         %li
           = image_tag 'vision/slide-1.jpg'
           .image-caption

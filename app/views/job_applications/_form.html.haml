@@ -8,6 +8,7 @@
 
 
 = form_for @job_application, url: job_application_path, remote: true do |f|
+  = f.hidden_field :unnecessary_field
   .control-group
     = f.label :job
     .controls

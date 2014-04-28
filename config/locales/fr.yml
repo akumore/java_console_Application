@@ -69,6 +69,7 @@ fr:
         notice: "%{resource_name} wurde erfolgreich gelöscht."
         alert: "%{resource_name} konnte nicht gelöscht werden."
   jobs_url: '/fr/jobs'
+  forum_url: '/fr/company#notre-magazine'
   company_url: '/fr/company'
   contact_url: '/fr/contact'
 #  errors:

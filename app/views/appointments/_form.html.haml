@@ -3,6 +3,7 @@
     %h3= t('.errors')
 
 = form_for [@real_estate, @appointment], :remote=>true do |f|
+  = f.hidden_field :unnecessary_field
   .col.first
     .control-group
       .controls

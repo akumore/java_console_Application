@@ -1,23 +1,31 @@
 # CHANGELOG
+### v2.9.5 on 2014-04-22
+* Bug Fix:
+  * Fix slider image for the new forum magazine (correct size to 1000x500 px)
 
-### v2.9.4
+### v2.9.4 on 2014-04-22
+* New implemented User Stories:
+  * #2810 - Als Besucher möchte ich den Teaser zum neuen Forum im Vision Slider sehen
+  * #3417 - Als Immobilienplatform möchte ich das korrekte unload.txt File erhalten
 
-* Upddate blazing to prevent crontab overwrites
+* Other improvements:
+  * Upddate blazing to prevent crontab overwrites
+  * Add spam protection for contact mailer, appointment, handout order and job application forms
 
-### v2.9.3 2014-04-10
+### v2.9.3 on 2014-04-10
 
 * Increase server timeout to 300
 
-### v2.9.2 2014-04-10
+### v2.9.2 on 2014-04-10
 
 * Hotfix Real Estate copy
 * Do not user tls on local email delivery
 
-### v2.9.1 2014-04-09
+### v2.9.1 on 2014-04-09
 
 * Reenabled cronjobs
 
-### v2.9.0 2014-04-07
+### v2.9.0 on 2014-04-07
 
 * Hosting Migration auf c3
 

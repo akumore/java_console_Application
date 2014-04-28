@@ -56,14 +56,14 @@ describe Export::Idx301::RealEstatePackage do
     before { MediaAssetUploader.enable_processing=true }
     after { MediaAssetUploader.enable_processing=false }
 
-    it 'copies the real estate images into /images' do
+    it 'hardlinks the real estate images into /images' do
       package = Export::Idx301::RealEstatePackage.new(real_estate, packager, account)
       package.should_receive(:add_image).exactly(3).times
       package.package_assets
     end
 
     context 'with video support' do
-      it 'copies the real estate videos into /movies' do
+      it 'hardlinks the real estate videos into /movies' do
         package = Export::Idx301::RealEstatePackage.new(real_estate, packager, account)
         package.should_receive(:add_video).exactly(2).times
         package.package_assets
@@ -71,7 +71,7 @@ describe Export::Idx301::RealEstatePackage do
     end
 
     context 'without video support' do
-      it 'copies the real estate videos into /movies' do
+      it 'hardlinks the real estate videos into /movies' do
         account.stub!(:video_support?).and_return(false)
         package = Export::Idx301::RealEstatePackage.new(real_estate, packager, account)
         package.should_not_receive(:add_video)
@@ -79,7 +79,7 @@ describe Export::Idx301::RealEstatePackage do
       end
     end
 
-    it 'copies the real estate videos into /documents' do
+    it 'hardlinks the real estate videos into /documents' do
       package = Export::Idx301::RealEstatePackage.new(real_estate, packager, account)
       package.should_receive(:add_document).exactly(2).times
       package.package_assets
@@ -106,7 +106,7 @@ describe Export::Idx301::RealEstatePackage do
       package.asset_information[:images].first.should == "i_#{real_estate.id}_1.jpg"
     end
 
-    it 'copies the image into /images with a unique filename' do
+    it 'hardlinks the image into /images with a unique filename' do
       package = Export::Idx301::RealEstatePackage.new(real_estate, packager, account)
       package.add_image(real_estate.images.first.file)
       File.exists?(File.join(@tmp_path, 'images', "i_#{real_estate.id}_1.jpg")).should be_true
@@ -128,7 +128,7 @@ describe Export::Idx301::RealEstatePackage do
       package.asset_information[:videos].first.should == "v_#{real_estate.id}_1.mp4"
     end
 
-    it 'copies the video into /movies with a unique filename' do
+    it 'hardlinks the video into /movies with a unique filename' do
       package = Export::Idx301::RealEstatePackage.new(real_estate, packager, account)
       package.add_video(real_estate.videos.first.file)
       File.exists?(File.join(@tmp_path, 'movies', "v_#{real_estate.id}_1.mp4")).should be_true
@@ -142,7 +142,7 @@ describe Export::Idx301::RealEstatePackage do
       package.asset_information[:documents].first.should == "d_#{real_estate.id}_1.pdf"
     end
 
-    it 'copies the document into /docs with a unique filename' do
+    it 'hardlinks the document into /docs with a unique filename' do
       package = Export::Idx301::RealEstatePackage.new(real_estate, packager, account)
       package.add_document(real_estate.documents.first.file)
       File.exists?(File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf")).should be_true
@@ -158,11 +158,11 @@ describe Export::Idx301::RealEstatePackage do
     end
 
     context 'when a cache file is present' do
-      it 'copies the cache file' do
+      it 'hardlinks the cache file' do
         pdf = File.join(Rails.root, 'public', real_estate.handout.path)
         package = Export::Idx301::RealEstatePackage.new(real_estate, packager, account)
         File.stub!(:exists?).and_return(true)
-        FileUtils.should_receive(:cp).with(pdf, File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf"))
+        FileUtils.should_receive(:ln).with(pdf, File.join(@tmp_path, 'doc', "d_#{real_estate.id}_1.pdf"))
         real_estate.handout.should_not_receive(:to_file)
         package.add_handout(real_estate.handout)
       end
