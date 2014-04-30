@@ -71,7 +71,9 @@ de:
         notice: "%{resource_name} wurde erfolgreich gelöscht."
         alert: "%{resource_name} konnte nicht gelöscht werden."
   jobs_url: '/de/jobs'
-  forum_url: '/uploads/brick/download/file/53562b821a6e0e0152004f02/Alfred_Mueller_FORUM_Nr62_DE_150dpi_WEB.pdf'
+  company_page_id: '4f79989086a98e459400004c'
+  current_forum_brick_id: '53562b821a6e0e0152004f02'
+  forum_url: '/de/company#unser-magazin'
   company_url: '/de/company'
   contact_url: '/de/contact'
   'true': 'Ja'

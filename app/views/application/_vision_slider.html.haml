@@ -13,7 +13,9 @@
             .image-caption
               .image-caption-text
                 %h3.vision-header-title= t('.vision.forum_title').html_safe
-                = link_to t('.vision.forum_link_title'), t('forum_url'), :class => :go
+                - forum_link = Page.find(t('company_page_id')).bricks.find(t('current_forum_brick_id')).file.to_s.dfkj rescue t('forum_url')
+                = link_to t('.vision.forum_link_title'), forum_link, :class => :go
+
 
         %li
           = image_tag 'vision/slide-1.jpg'
