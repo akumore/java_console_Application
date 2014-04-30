@@ -1,4 +1,8 @@
 # CHANGELOG
+
+### v2.9.6 on 2014-04-30
+* Directly link forum slide to current PDF
+
 ### v2.9.5 on 2014-04-22
 * Bug Fix:
   * Fix slider image for the new forum magazine (correct size to 1000x500 px)
