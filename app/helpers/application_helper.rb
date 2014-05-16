@@ -51,4 +51,12 @@ module ApplicationHelper
   def non_caching_image_tag(source, options = {})
     image_tag "#{source}?id=#{Random.new.rand(1_000..10_000-1)}", options
   end
+
+  def get_forum_brick
+    begin
+      Page.find(t('company_page_id')).bricks.find(t('current_forum_brick_id'))
+    rescue Mongoid::Errors::DocumentNotFound
+      false
+    end
+  end
 end
