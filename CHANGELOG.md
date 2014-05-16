@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.7 on 2014-05-16
+* Add event tracking information for Forum PDF download in vision slider and downlaod brick
+
 ### v2.9.6 on 2014-04-30
 * Directly link forum slide to current PDF
 

@@ -88,8 +88,15 @@ class window.AlfredMueller.Views.VisionSlider extends Backbone.View
 
   handleSlide: (slider) =>
     link = $("a.go", slider.slides.eq(slider.currentSlide))
+    @setTrackingInfo(link) if link.hasClass('ga-tracking-link')
 
     if link.length > 0
       @visionClickArea.attr("href", link.attr("href")).removeClass("disabled")
     else
       @visionClickArea.attr("href", link).addClass("disabled")
+
+  setTrackingInfo: (elem) ->
+    @visionClickArea.attr('data-ga-category', elem.attr('data-ga-category'))
+    @visionClickArea.attr('data-ga-action', elem.attr('data-ga-action'))
+    @visionClickArea.attr('data-ga-label', elem.attr('data-ga-label'))
+    @visionClickArea.addClass('ga-tracking-link')

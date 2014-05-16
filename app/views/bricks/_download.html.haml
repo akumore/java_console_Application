@@ -1,1 +1,1 @@
-= link_to brick.title, brick.file.url, :class => 'icon-pdf', :target => '_blank'
+= link_to brick.title, brick.file.url, class: 'icon-pdf ga-tracking-link', target: '_blank', data: { 'ga-category' => "Download Baustein", 'ga-action' => "Download", 'ga-label' => brick.title }
