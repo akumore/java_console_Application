@@ -200,7 +200,7 @@ class RealEstate
   alias_method :for_work_or_storage?, :working_or_storing?
 
   def has_handout?
-    for_rent? && (channels.include?(PRINT_CHANNEL) && print_channel_method != PRINT_CHANNEL_METHOD_ORDER) && !parking?
+     (channels.include?(PRINT_CHANNEL) && print_channel_method != PRINT_CHANNEL_METHOD_ORDER) && !parking?
   end
 
   def order_handout?
