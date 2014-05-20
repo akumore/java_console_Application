@@ -5,7 +5,6 @@ class HandoutsController < ApplicationController
 
   def show
     @real_estate = RealEstateDecorator.new RealEstate.published.print_channel.find(params[:real_estate_id])
-    raise 'Real Estate must be for rent' if @real_estate.for_sale?
 
     respond_to do |format|
       format.html { render :show }
