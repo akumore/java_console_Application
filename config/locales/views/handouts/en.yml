@@ -5,6 +5,10 @@ en:
       for_rent_commercial: "Rental | Commercial"
       for_rent_storage: "Rental | Storage"
       for_rent_parking: "Rental | Parking"
+      for_sale_private: "Buy | Residential"
+      for_sale_commercial: "Buy | Commercial"
+      for_sale_storage: "Buy | Storage"
+      for_sale_parking: "Buy | Parking"
     overview:
       title: "Object Overview"
       property: "Real estate"
