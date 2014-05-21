@@ -1,4 +1,7 @@
 # CHANGELOG
+### v2.9.10 on 2014-05-21
+* Track news item documents
+
 ### v2.9.9 on 2014-05-21
 * Add translated subtitle in generated handout for sale real estates
 * Add rb-readline gem
