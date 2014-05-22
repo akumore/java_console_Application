@@ -1,6 +1,7 @@
 # CHANGELOG
-### v2.9.10 on 2014-05-21
+### v2.9.10 on 2014-05-22
 * Track news item documents
+* Update document title for exported real estate documentation
 
 ### v2.9.9 on 2014-05-21
 * Add translated subtitle in generated handout for sale real estates
