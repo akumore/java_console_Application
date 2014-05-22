@@ -602,6 +602,7 @@ module Export::Idx301
 
     def document_title
       #  str(200)  title of document
+      return 'Objektdokumentation'if model.has_handout?
       model.documents.try(:first).try(:title).presence
     end
 
