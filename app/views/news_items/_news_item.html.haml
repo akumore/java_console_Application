@@ -1,4 +1,4 @@
-.accordion-item{ :id => "news_item_#{news_item.id}" }
+.accordion-item{ id: "news_item_#{news_item.id}" }
   .title
     %span.date= l(news_item.date)
     = news_item.title
@@ -14,4 +14,4 @@
     - if news_item.documents.any?
       %ul.icon-list
         - news_item.documents.each do |document|
-          %li= link_to File.basename(document.file.path), document.file.url, :class => 'icon-document'
+          %li= link_to File.basename(document.file.path), document.file.url, class: 'icon-document ga-tracking-link', data: { 'ga-category' => "Download Baustein", 'ga-action' => "Download", 'ga-label' => File.basename(document.file.path) }
