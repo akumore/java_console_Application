@@ -1,4 +1,9 @@
 # CHANGELOG
+
+### v2.9.11 on 2014-06-03
+* New implemented User Stories:
+  * #3810 - Als Editor möchte ich ein Flag setzen können, welches das Anmeldeformular anzeigt oder nicht
+
 ### v2.9.10 on 2014-05-22
 * Track news item documents
 * Update document title for exported real estate documentation
