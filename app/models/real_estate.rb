@@ -64,6 +64,7 @@ class RealEstate
   field :utilization_description, :type => String
   field :category_label, :type => String, :localize => true # used for sorting, normalized by category.label
   field :microsite_building_project, :type => String # Defines the building project e.g. 'Gartenstadt' or 'Feldpark'
+  field :show_application_form, :type => Boolean, :default => true # Used to show application form in frontend or nah
 
   validates :category_id, :presence => true
   validates :utilization, :presence => true
