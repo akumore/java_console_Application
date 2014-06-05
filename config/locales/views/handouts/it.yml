@@ -5,6 +5,10 @@ it:
       for_rent_commercial: "Affittare | Lavorare"
       for_rent_storage: "Affittare | Immagazzinare"
       for_rent_parking: "Affittare | Parcheggiare"
+      for_sale_private: "Acquistare | Abitare"
+      for_sale_commercial: "Acquistare | Lavorare"
+      for_sale_storage: "Acquistare | Immagazzinare"
+      for_sale_parking: "Acquistare | Parcheggiare"
     overview:
       title: "Panoramica dell'oggetto"
       property: "Immobile"

@@ -6,7 +6,7 @@
   .primary-title
     = @real_estate.title
     %span
-      = t(".#{Offer::RENT}_#{@real_estate.utilization}")
+      = t(".#{@real_estate.offer}_#{@real_estate.utilization}")
   .primary-title-dots
     \...
 

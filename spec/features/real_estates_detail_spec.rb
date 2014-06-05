@@ -579,11 +579,27 @@ describe "RealEstates" do
         end
 
         context 'for living' do
-          it 'has a link for the application form pdf' do
+          before do
             real_estate.update_attribute :utilization, Utilization::LIVING
-            visit real_estate_path(real_estate)
-            page.within('.sidebar') do
-              page.should have_link('Anmeldeformular', :href => '/documents/de/Anmeldeformular-Mieten-Wohnen.pdf')
+          end
+
+          context 'show_application_form flag is set' do
+            it 'has a link for the application form pdf' do
+              real_estate.update_attribute :show_application_form, true
+              visit real_estate_path(real_estate)
+              page.within('.sidebar') do
+                page.should have_link('Anmeldeformular', :href => '/documents/de/Anmeldeformular-Mieten-Wohnen.pdf')
+              end
+            end
+          end
+
+          context 'show_application_form flag is not set' do
+            it 'has no link for the application form pdf' do
+              real_estate.update_attribute :show_application_form, false
+              visit real_estate_path(real_estate)
+              page.within('.sidebar') do
+                page.should_not have_link('Anmeldeformular', :href => '/documents/de/Anmeldeformular-Mieten-Wohnen.pdf')
+              end
             end
           end
         end

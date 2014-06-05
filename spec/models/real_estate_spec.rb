@@ -134,7 +134,7 @@ describe RealEstate do
 
       context 'when channel is active' do
         it 'returns nil' do
-          real_estate.has_handout?.should be_false
+          real_estate.has_handout?.should be_true
         end
       end
 

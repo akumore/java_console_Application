@@ -13,7 +13,15 @@
             .image-caption
               .image-caption-text
                 %h3.vision-header-title= t('.vision.forum_title').html_safe
-                = link_to t('.vision.forum_link_title'), t('forum_url'), :class => :go
+                - forum_brick = get_forum_brick
+
+                - if forum_brick.present?
+                  - forum_link = forum_brick.file.to_s
+                  = link_to t('.vision.forum_link_title'), forum_link, :class => 'go ga-tracking-link', data: { 'ga-category' => "Download Baustein", 'ga-action' => "Download", 'ga-label' => forum_brick.title }
+                - else
+                  - forum_link = t('forum_url')
+                  = link_to t('.vision.forum_link_title'), forum_link, :class => :go
+
 
         %li
           = image_tag 'vision/slide-1.jpg'

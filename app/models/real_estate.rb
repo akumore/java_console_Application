@@ -63,6 +63,7 @@ class RealEstate
   field :category_label, :type => String, :localize => true # used for sorting, normalized by category.label
   field :microsite_building_project, :type => String # Defines the building project e.g. 'Gartenstadt' or 'Feldpark'
   field :link_url, :type => String # Link to project website e.g. www.feldpark-zug.ch
+  field :show_application_form, :type => Boolean, :default => true # Used to show application form in frontend or nah
 
   validates :category_id, :presence => true
   validates :utilization, :presence => true
@@ -209,7 +210,7 @@ class RealEstate
   alias_method :for_work_or_storage?, :working_or_storing?
 
   def has_handout?
-    for_rent? && (channels.include?(PRINT_CHANNEL) && print_channel_method != PRINT_CHANNEL_METHOD_ORDER) && !parking?
+     (channels.include?(PRINT_CHANNEL) && print_channel_method != PRINT_CHANNEL_METHOD_ORDER) && !parking?
   end
 
   def order_handout?

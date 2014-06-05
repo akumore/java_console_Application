@@ -51,6 +51,14 @@ $(document).ready ->
       targetValue: elem.data('dependent_on_value')
     )
 
+  $("form div[data-dependent-select_on]").each ->
+    elem = $(this)
+    new AlfredMueller.Cms.Views.DependentSelectDisplay(
+      el: elem
+      target: $(elem.data('dependent-select_on'))
+      targetRadioGroup: $(elem.data('dependent-select_radio-group'))
+    )
+
   # initialize real estate utilizations listener
   if $('#real_estate_utilization').length
     new AlfredMueller.Cms.Views.RealEstateUtilizationSelect $('#real_estate_utilization')

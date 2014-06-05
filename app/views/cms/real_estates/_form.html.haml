@@ -47,6 +47,13 @@
             = f.radio_button :building_type, RealEstate::BUILDING_MIDDLE_HOUSE
             %span= t(".#{RealEstate::BUILDING_MIDDLE_HOUSE}")
 
+    .show-application-form-container.hidden{ 'data-dependent-select_on' => '#real_estate_offer_for_rent', 'data-dependent-select_radio-group' => "[name='real_estate[offer]']" }
+      .control-group
+        = f.label :show_application_form
+        .controls.push-inline-labels-down
+          %label.inline.checkbox
+            = f.check_box :show_application_form
+
     - if accessible?(:utilization_description)
       .control-group
         = f.label :utilization_description

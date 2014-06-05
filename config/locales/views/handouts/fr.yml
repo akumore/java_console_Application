@@ -5,6 +5,10 @@ fr:
       for_rent_commercial: "Louer | Travailler"
       for_rent_storage: "Louer | Stockage"
       for_rent_parking: "Louer | Stationnement"
+      for_sale_private: "Acheter | Habiter"
+      for_sale_commercial: "Acheter | Travailler"
+      for_sale_storage: "Acheter | Stockage"
+      for_sale_parking: "Acheter | Stationnement"
     overview:
       title: "Aperçu de l'objet"
       property: "Immeuble"

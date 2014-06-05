@@ -74,4 +74,11 @@ module ApplicationHelper
     end
   end
 
+  def get_forum_brick
+    begin
+      Page.find(t('company_page_id')).bricks.find(t('current_forum_brick_id'))
+    rescue Mongoid::Errors::DocumentNotFound
+      false
+    end
+  end
 end

@@ -1,4 +1,26 @@
 # CHANGELOG
+
+### v2.9.11 on 2014-06-03
+* New implemented User Stories:
+  * #3810 - Als Editor möchte ich ein Flag setzen können, welches das Anmeldeformular anzeigt oder nicht
+
+### v2.9.10 on 2014-05-22
+* Track news item documents
+* Update document title for exported real estate documentation
+
+### v2.9.9 on 2014-05-21
+* Add translated subtitle in generated handout for sale real estates
+* Add rb-readline gem
+
+### v2.9.8 on 2014-05-20
+* Enable enable handout generation also for sale real estates
+
+### v2.9.7 on 2014-05-16
+* Add event tracking information for Forum PDF download in vision slider and downlaod brick
+
+### v2.9.6 on 2014-04-30
+* Directly link forum slide to current PDF
+
 ### v2.9.5 on 2014-04-22
 * Bug Fix:
   * Fix slider image for the new forum magazine (correct size to 1000x500 px)

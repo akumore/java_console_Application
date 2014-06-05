@@ -250,6 +250,7 @@ GEM
       thor (~> 0.14.6)
     raindrops (0.13.0)
     rake (10.0.3)
+    rb-readline (0.5.1)
     rdiscount (1.6.8)
     rdoc (3.12.2)
       json (~> 1.4)
@@ -373,6 +374,7 @@ DEPENDENCIES
   rails (~> 3.1.0)
   rails-backbone
   rails-i18n
+  rb-readline
   rdiscount
   remotipart
   responders
