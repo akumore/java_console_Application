@@ -195,8 +195,8 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def application_form_link
-    if model.for_rent? && !model.parking?
-      link = if model.private_utilization?
+    if model.show_application_form? && model.for_rent? && !model.parking?
+      link = if model.living?
         if I18n.locale == :it
           '/documents/it/Formulario-di-contatto-Affittare-Abitare.pdf'
         elsif I18n.locale == :fr
@@ -204,7 +204,7 @@ class RealEstateDecorator < ApplicationDecorator
         else
           '/documents/de/Anmeldeformular-Mieten-Wohnen.pdf'
         end
-      elsif model.commercial_utilization?
+      elsif model.working? || model.storing?
         if I18n.locale == :it
           '/documents/it/Formulario-di-contatto-Affittare-Lavorare.pdf'
         elsif I18n.locale == :fr

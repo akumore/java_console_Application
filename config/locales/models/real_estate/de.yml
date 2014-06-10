@@ -12,6 +12,7 @@ de:
         utilization: 'Gebäudenutzung'
         offer: 'Angebotstyp'
         channels: 'Ausgabekanäle'
+        show_application_form: 'Anmeldeformular anzeigen'
         title: 'Titel'
         description: 'Beschreibung'
         building_type: 'Haustyp'
