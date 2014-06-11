@@ -21,6 +21,12 @@
     = @real_estate.channels_string
     &nbsp;
 
+  - if accessible?(:show_application_form)
+    %dt= t "mongoid.attributes.real_estate.show_application_form"
+    %dd
+      = t @real_estate.show_application_form
+      &nbsp;
+
   %dt= t "mongoid.attributes.real_estate.contact"
   %dd
     = [ [:firstname, :lastname].map {|attr| @real_estate.contact.try(attr)}.compact.join(" "), [:phone, :email].map {|attr| @real_estate.contact.try(attr)}.compact.join(", ")].join(", ")

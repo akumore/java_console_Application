@@ -92,6 +92,8 @@ class FieldAccess
        *.parking.real_estate.utilization_description
        sale.*.information.rent_info
        rent.parking.information.rent_info
+       sale.*.real_estate.show_application_form
+       rent.parking.real_estate.show_application_form
     )
   end
 end
