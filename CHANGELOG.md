@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### v2.9.11 on 2014-06-03
+### v2.9.11 on 2014-06-11
 * New implemented User Stories:
   * #3810 - Als Editor möchte ich ein Flag setzen können, welches das Anmeldeformular anzeigt oder nicht
 
