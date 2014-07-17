@@ -1,4 +1,6 @@
 # CHANGELOG
+### v2.9.12 on 2014-07-17
+* Update special_sauce gem to have pracitcally mongoid sync rake tasks avaliable
 
 ### v2.9.11 on 2014-06-11
 * New implemented User Stories:
