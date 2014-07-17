@@ -37,7 +37,7 @@ gem 'mongoid_rails_migrations'
 gem 'whenever', :require => false
 gem 'newrelic_rpm'
 gem 'jcrop-rails'
-gem 'special_sauce'
+gem 'special_sauce', '0.3.8.pre2'
 gem 'unicorn'
 gem 'dotenv-rails'
 gem 'rb-readline'
