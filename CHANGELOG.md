@@ -1,5 +1,5 @@
 # CHANGELOG
-### v2.9.13 in development
+### v2.9.13 on 2014-07-21
 * New implemented User Stories:
   * #4143 - Als Besucher möchte ich auf den externen Portalen, die Beschreibung der Immobilien korrekt formatiert sehen
 
