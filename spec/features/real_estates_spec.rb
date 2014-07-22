@@ -57,6 +57,21 @@ describe "RealEstates" do
       page.should have_css "#real-estate-#{real_estate.id}"
     end
 
+    context 'for rent and living real estates overview' do
+      it 'does not render the adwebster retargeting pixels' do
+        Rails.stub_chain(:env, :production?).and_return(true)
+        visit real_estates_path(offer: Offer::RENT, utilization: Utilization::LIVING)
+        expect(page.html).not_to match('<!-- Begin ADWEBSTER.COM -->')
+      end
+    end
+
+    context 'for rent and working real estates overview' do
+      it 'renders the adwebster retargeting pixels' do
+        Rails.stub_chain(:env, :production?).and_return(true)
+        visit real_estates_path(offer: Offer::RENT, utilization: Utilization::WORKING)
+        expect(page.html).to match('<!-- Begin ADWEBSTER.COM -->')
+      end
+    end
 
     describe "Shown information about a search results" do
       let :primary_image do

@@ -59,4 +59,12 @@ module ApplicationHelper
       false
     end
   end
+
+  def render_retargeting_pixels?
+    Rails.env.production? &&
+    current_page?(controller: 'real_estates',
+                  action: 'index',
+                  offer: Offer::RENT,
+                  utilization: Utilization::WORKING)
+  end
 end
