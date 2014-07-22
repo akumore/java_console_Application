@@ -270,7 +270,7 @@ describe Export::Idx301::RealEstateDecorator do
           account,
           {}
         )
-      expect(real_estate.object_description).to eq("Vorteile<br><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li><br>Autoeinstellhalle kann dazugemietet werden.")
+      expect(real_estate.object_description).to eq("Vorteile<br><br><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li><br>Autoeinstellhalle kann dazugemietet werden.")
     end
 
     it 'inserts a <br> tag before the second h3' do
@@ -280,17 +280,17 @@ describe Export::Idx301::RealEstateDecorator do
           account,
           {}
         )
-      expect(real_estate.object_description).to eq("Vorteile<br><li>Teststring 1</li><li>Teststring 2</li><br>Angebot<br><li>Teststring 3</li>")
+      expect(real_estate.object_description).to eq("Vorteile<br><br><li>Teststring 1</li><li>Teststring 2</li><br>Angebot<br><br><li>Teststring 3</li>")
     end
 
-    it 'inserts a <br> tag after an ending p-tag that is followed by a h-tag' do
+    it 'inserts two <br> tags after an ending p-tag that is followed by a h-tag' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
           mock_model(RealEstate, :description => "<p>Einleitung</p><h3>Vorteile</h3><ul><li>Teststring 1</li></ul><h3>Angebot</h3><ul><li>Teststring 2</li></ul>"),
           account,
           {}
         )
-      expect(real_estate.object_description).to eq("Einleitung<br>Vorteile<br><li>Teststring 1</li><br>Angebot<br><li>Teststring 2</li>")
+      expect(real_estate.object_description).to eq("Einleitung<br><br>Vorteile<br><br><li>Teststring 1</li><br>Angebot<br><br><li>Teststring 2</li>")
     end
 
     context 'with immoscout as provider' do
@@ -302,7 +302,7 @@ describe Export::Idx301::RealEstateDecorator do
             {}
           )
 
-        expect(real_estate.object_description).to eq("Vorteile<br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.")
+        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.")
       end
     end
 
@@ -315,7 +315,7 @@ describe Export::Idx301::RealEstateDecorator do
             {}
           )
 
-        expect(real_estate.object_description).to eq("Übersicht<br><li>Element mit ö</li><li>Element mit ä</li><li>Element mit ü</li>")
+        expect(real_estate.object_description).to eq("Übersicht<br><br><li>Element mit ö</li><li>Element mit ä</li><li>Element mit ü</li>")
       end
     end
   end
