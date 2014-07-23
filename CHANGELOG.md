@@ -1,4 +1,8 @@
 # CHANGELOG
+### v2.9.15 on 2014-07-23
+* New implemented User Stories:
+  * Fix: Login into backend is not possible anymore because of a problem in new helper method which renders retargeting pixel
+
 ### v2.9.14 on 2014-07-22
 * New implemented User Stories:
   * Fix: #4143 - Als Besucher möchte ich auf den externen Portalen, die Beschreibung der Immobilien korrekt formatiert sehen
