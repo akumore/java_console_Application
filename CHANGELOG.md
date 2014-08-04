@@ -1,4 +1,19 @@
 # CHANGELOG
+### v2.9.15 on 2014-07-23
+* New implemented User Stories:
+  * Fix: Login into backend is not possible anymore because of a problem in new helper method which renders retargeting pixel
+
+### v2.9.14 on 2014-07-22
+* New implemented User Stories:
+  * Fix: #4143 - Als Besucher möchte ich auf den externen Portalen, die Beschreibung der Immobilien korrekt formatiert sehen
+  * #4189 Als Entwickler möchte ich das Retargeting Pixel versteckt im HTML einbinden
+
+### v2.9.13 on 2014-07-21
+* New implemented User Stories:
+  * #4143 - Als Besucher möchte ich auf den externen Portalen, die Beschreibung der Immobilien korrekt formatiert sehen
+
+### v2.9.12 on 2014-07-17
+* Update special_sauce gem to have pracitcally mongoid sync rake tasks avaliable
 
 ### v2.9.11 on 2014-06-11
 * New implemented User Stories:
