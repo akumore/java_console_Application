@@ -47,38 +47,36 @@
   .gallery
     = render 'gallery', :real_estate => @real_estate
 
-  - @real_estate.within_language do
+  .description
 
-    .description
+    .accordion.accordion-classical{ 'data-open_first' => 1 }
 
-      .accordion.accordion-classical{ 'data-open_first' => 1 }
+      - if @real_estate.description.present?
+        .accordion-item
+          .title= t('handouts..overview.description')
+          .content= @real_estate.description.html_safe
 
-        - if @real_estate.description.present?
-          .accordion-item
-            .title= t('handouts..overview.description')
-            .content= @real_estate.description.html_safe
+      - figure_content = render 'figure', :real_estate => @real_estate, :figure => @real_estate.figure
+      - if figure_content.present?
+        .accordion-item
+          .title= t('figures.title')
+          .content= figure_content
 
-        - figure_content = render 'figure', :real_estate => @real_estate, :figure => @real_estate.figure
-        - if figure_content.present?
-          .accordion-item
-            .title= t('figures.title')
-            .content= figure_content
+      - pricing_content = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
+      - if pricing_content.present?
+        .accordion-item
+          .title= t('pricings.title')
+          .content= pricing_content
 
-        - pricing_content = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
-        - if pricing_content.present?
-          .accordion-item
-            .title= t('pricings.title')
-            .content= pricing_content
+      - information_content = render 'information', :real_estate => @real_estate, :information => @real_estate.information
+      - if information_content.present?
+        .accordion-item
+          .title= t('information.title')
+          .content
+            = information_content
 
-        - information_content = render 'information', :real_estate => @real_estate, :information => @real_estate.information
-        - if information_content.present?
-          .accordion-item
-            .title= t('information.title')
-            .content
-              = information_content
-
-        - if @real_estate.contact.present?
-          = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
+      - if @real_estate.contact.present?
+        = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
 
   .sidebar
     %ul
