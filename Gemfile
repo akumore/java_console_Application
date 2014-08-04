@@ -40,6 +40,7 @@ gem 'newrelic_rpm'
 gem 'jcrop-rails'
 gem 'special_sauce'
 gem 'unicorn'
+gem 'rack-handlers'
 gem 'dotenv-rails'
 gem 'rb-readline'
 
