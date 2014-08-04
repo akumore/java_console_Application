@@ -26,3 +26,7 @@
         = render 'layouts/footer'
     -# Javascript at the bottom for fast page loading
     = render 'layouts/javascripts', :javascripts_partial => 'layouts/javascripts'
+
+    -# Retargeting pixels at the very bottom for fast page loading
+    - if render_retargeting_pixels?
+      = render 'layouts/retargeting_pixels'

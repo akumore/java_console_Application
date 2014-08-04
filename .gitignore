@@ -10,4 +10,5 @@ public/uploads
 uploads
 *.*~
 db/backups/*
+db/data
 public/robots.txt
