@@ -33,7 +33,6 @@ class Information
   field :is_developed, :type => Boolean
   field :is_under_building_laws, :type => Boolean
   field :has_cable_tv, :type => Boolean
-  field :additional_information, :type => String
   field :built_on, :type => Integer # Baujahr
   field :renovated_on, :type => Integer # Renovationsjahr
   field :floors, :type => Integer # Anzahl Stockwerke

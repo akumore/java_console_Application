@@ -65,13 +65,6 @@
           - floated_field_show(@information, :number_of_restrooms)
           - floated_field_show(@information, :ceiling_height)
 
-    - if accessible?(:additional_information)
-      %dl.dl-horizontal
-        %dt= t "mongoid.attributes.information.additional_information"
-        %dd
-          = @information.additional_information.html_safe
-          &nbsp;
-
     - if accessible?(:interior_html)
       %dl.dl-horizontal
         %dt= t "mongoid.attributes.information.interior_html"

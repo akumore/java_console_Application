@@ -28,7 +28,6 @@ en:
     has_water_supply: 'water connection'
     has_sewage_supply: 'sewage connection'
     has_cable_tv: 'Cable TV'
-    additional_information: 'Supplementary information'
     renovated_on: 'Year of renovation'
     built_on: 'Year of construction'
     floors: 'Floors'

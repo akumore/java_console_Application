@@ -89,15 +89,6 @@
 
       .row
         .span12
-          .control-group
-            = f.label :additional_information
-            .controls
-              .row
-                .span8
-                  = f.text_area :additional_information, class: 'editor'
-
-      .row
-        .span12
           - if @interior_html_changed
             .alert
               = t('helpers.check_new_entries', field: t('mongoid.attributes.information.interior_html')).html_safe
