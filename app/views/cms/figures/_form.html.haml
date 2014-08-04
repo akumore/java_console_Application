@@ -118,13 +118,16 @@
 
   %fieldset.push-checkboxes-down
     %legend= t('.offer')
-    - floated_field(f, :text_field, :inside_parking_spots)
-    - floated_field(f, :text_field, :outside_parking_spots)
-    - floated_field(f, :text_field, :covered_slot)
-    - floated_field(f, :text_field, :covered_bike)
-    - floated_field(f, :text_field, :outdoor_bike)
-    - floated_field(f, :text_field, :single_garage)
-    - floated_field(f, :text_field, :double_garage)
+    .row
+      .span12
+        .floated-controls-box
+          - floated_field(f, :text_field, :inside_parking_spots, class: 'span2')
+          - floated_field(f, :text_field, :outside_parking_spots, class: 'span2')
+          - floated_field(f, :text_field, :covered_slot, class: 'span2')
+          - floated_field(f, :text_field, :covered_bike, class: 'span2')
+          - floated_field(f, :text_field, :outdoor_bike, class: 'span2')
+          - floated_field(f, :text_field, :single_garage, class: 'span2')
+          - floated_field(f, :text_field, :double_garage, class: 'span2')
 
     .row
       .span12
