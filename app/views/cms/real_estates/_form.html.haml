@@ -57,12 +57,14 @@
     .control-group
       = render 'form_channels', form: f
 
-    .show-application-form-container.hidden{ 'data-dependent-select_on' => '#real_estate_offer_for_rent', 'data-dependent-select_radio-group' => "[name='real_estate[offer]']" }
-      .control-group
-        = f.label :show_application_form
-        .controls.push-inline-labels-down
-          %label.inline.checkbox
-            = f.check_box :show_application_form
+
+    - if accessible?(:show_application_form)
+      .show-application-form-container.hidden{ 'data-dependent-select_on' => '#real_estate_offer_for_rent', 'data-dependent-select_radio-group' => "[name='real_estate[offer]']" }
+        .control-group
+          = f.label :show_application_form
+          .controls.push-inline-labels-down
+            %label.inline.checkbox
+              = f.check_box :show_application_form
 
     .control-group
       = f.label :link_url

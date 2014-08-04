@@ -114,6 +114,8 @@ class FieldAccess
        *.living.information.maximal_floor_loading
        *.living.information.number_of_restrooms
        *.living.information.ceiling_height
+       sale.*.real_estate.show_application_form
+       rent.parking.real_estate.show_application_form
     )
   end
 end
