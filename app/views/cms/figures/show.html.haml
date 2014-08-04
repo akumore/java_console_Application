@@ -45,6 +45,16 @@
         = @figure.specification_living_surface
         &nbsp;
 
+    - if @real_estate.working? || @real_estate.storing?
+      %dt= t "mongoid.attributes.figure.usable_surface"
+      %dd
+        = @figure.usable_surface
+        &nbsp;
+
+      %dt= t "mongoid.attributes.figure.usable_surface_estimate"
+      %dd
+        = @figure.usable_surface_estimate
+        &nbsp;
 
     - if @real_estate.living? || @real_estate.working?
       %dt= t "mongoid.attributes.figure.property_surface"
@@ -67,23 +77,10 @@
         = @figure.storage_surface_estimate
         &nbsp;
 
-
-    - if @real_estate.working? || @real_estate.storing?
-      %dt= t "mongoid.attributes.figure.usable_surface"
-      %dd
-        = @figure.usable_surface
-        &nbsp;
-
-      %dt= t "mongoid.attributes.figure.usable_surface_estimate"
-      %dd
-        = @figure.usable_surface_estimate
-        &nbsp;
-
       %dt= t "mongoid.attributes.figure.specification_usable_surface"
       %dd
         = @figure.specification_usable_surface
         &nbsp;
-        
 
   %legend= t('.offer')
   %dl.dl-horizontal.extra-wide
