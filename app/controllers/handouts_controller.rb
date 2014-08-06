@@ -2,7 +2,7 @@ class HandoutsController < ApplicationController
   layout 'handout'
   include RealEstatesHelper
 
-  caches_page :footer, :show
+  caches_page :show
 
   def show
     @real_estate = RealEstateDecorator.new authorized_real_estates.print_channel.find(params[:real_estate_id])
