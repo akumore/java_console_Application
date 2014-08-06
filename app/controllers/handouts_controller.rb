@@ -12,8 +12,9 @@ class HandoutsController < ApplicationController
 
       format.pdf do
         send_data @real_estate.handout.to_pdf,
-          :filename => "#{@real_estate.handout.filename}.pdf",
-          :disposition => 'inline', :type => 'multipart/related'
+          filename: "#{@real_estate.handout.filename}.pdf",
+          type: 'application/pdf',
+          disposition: 'inline'
       end
     end
   end
