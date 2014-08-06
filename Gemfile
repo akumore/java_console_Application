@@ -70,4 +70,5 @@ end
 
 group :test do
   gem 'launchy', '~> 2.0.5'
+  gem 'poltergeist'
 end

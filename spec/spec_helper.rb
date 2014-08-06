@@ -8,11 +8,14 @@ require 'rspec/mocks'
 # Load homegate export in order to get tests running TODO: move this into a better place
 require 'export/export'
 
+# use poltergeist/phantomjs for js testing
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
-
-Capybara.javascript_driver = :webkit
 
 Fabrication.configure do |config|
   fabricator_dir = "spec/fabricators"
