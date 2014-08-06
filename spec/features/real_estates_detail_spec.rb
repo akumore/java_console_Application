@@ -7,6 +7,11 @@ describe "RealEstates" do
   before { ApplicationController.new.set_current_view_context }
   before { @utilization = Utilization::LIVING }
 
+  before(:each) do
+    # generally treat all requests not as local (for unpublished testing)
+    stub_const('ActionDispatch::Request::LOCALHOST', [])
+  end
+
   let :category do
     Fabricate(:category, :label => 'Wohnung')
   end
