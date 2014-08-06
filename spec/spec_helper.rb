@@ -45,7 +45,7 @@ RSpec.configure do |config|
   config.include ExporterFileSystemHelpers
   config.extend ExhibitMacros
 
-  config.after(:each) do
+  config.before(:each) do
     Mongoid.database.collections.each do |collection|
       collection.remove unless collection.name =~ /^system\./
     end
