@@ -4,6 +4,31 @@ require 'spec_helper'
 
 describe RealEstatesHelper do
 
+  describe '#autorized_real_estates' do
+    context 'local request' do
+      it 'return all realestates' do
+        should_receive(:request).and_return(double('request', 'local?' => true))
+        expect(authorized_real_estates).to eq(RealEstate)
+      end
+    end
+
+    context 'signed in request' do
+      it 'return all realestates' do
+        should_receive(:request).and_return(double('request', 'local?' => false))
+        should_receive(:user_signed_in?).and_return(true)
+        expect(authorized_real_estates).to eq(RealEstate)
+      end
+    end
+
+    context 'public request' do
+      it 'return all realestates' do
+        should_receive(:request).and_return(double('request', 'local?' => false))
+        should_receive(:user_signed_in?).and_return(false)
+        expect(authorized_real_estates).not_to eq(RealEstate)
+      end
+    end
+  end
+
   describe '#caption_css_class_for_text' do
     context 'with a long text' do
       it 'has the long shard image' do
