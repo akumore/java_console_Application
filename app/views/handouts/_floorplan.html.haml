@@ -2,7 +2,7 @@
   %h2= t('.title')
 
   - @real_estate.floor_plans.each do |floorplan|
-    - if (Rails.root + "public#{floorplan.file.to_s}").exist?
+    - if File.exist?(floorplan.file.path)
       .floorplan-image.pbi-avoid
         %div
           = floorplan.north_arrow_img_tag
