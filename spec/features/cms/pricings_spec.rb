@@ -506,12 +506,12 @@ describe "Cms::Pricings" do
           page.should have_css('#pricing_price_unit')
         end
 
-        it 'does not show pricing_for_rent_netto field' do
-          page.should_not have_css('#pricing_for_rent_netto')
+        it 'does show pricing_for_rent_netto field' do
+          page.should have_css('#pricing_for_rent_netto')
         end
 
-        it 'does not show pricing_estimate field' do
-          page.should_not have_css('#pricing_estimate')
+        it 'does show pricing_estimate field' do
+          page.should have_css('#pricing_estimate')
         end
 
         it 'does not show pricing_additional_costs field' do
@@ -526,8 +526,8 @@ describe "Cms::Pricings" do
           page.should_not have_css('#pricing_extra_storage')
         end
 
-        it 'does not show pricing_estimate field' do
-          page.should_not have_css('#pricing_estimate')
+        it 'does show pricing_estimate field' do
+          page.should have_css('#pricing_estimate')
         end
 
         context 'a valid Pricing' do

@@ -61,7 +61,7 @@ describe "Cms Information" do
 
         [ 'Aussicht',
           'Cheminée',
-          'Lift',
+          'Personenlift',
           'ISDN-Anschluss',
           'Rollstuhltauglich',
           'Kinderfreundlich',
