@@ -1,10 +1,11 @@
 class HandoutsController < ApplicationController
   layout 'handout'
+  include RealEstatesHelper
 
   caches_page :footer, :show
 
   def show
-    @real_estate = RealEstateDecorator.new RealEstate.published.print_channel.find(params[:real_estate_id])
+    @real_estate = RealEstateDecorator.new authorized_real_estates.print_channel.find(params[:real_estate_id])
 
     respond_to do |format|
       format.html { render :show }

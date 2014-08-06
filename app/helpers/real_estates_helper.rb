@@ -1,5 +1,12 @@
 module RealEstatesHelper
 
+  def authorized_real_estates
+    # Allow local requests for pdf generation
+    return RealEstate if request.local?
+    return RealEstate if user_signed_in?
+    RealEstate.published
+  end
+
   def cantons_for_collection_select(cantons)
     cantons.map {|canton| [canton, t("cantons.#{canton}")]}
   end

@@ -31,4 +31,4 @@
         = f.submit t("mongoid.attributes.real_estate.events.#{event.name}"), :class => event_button_css(event)
 
     - if @real_estate.persisted?
-      = link_to t('.preview_button'), @real_estate.published? ? real_estate_path(@real_estate, :locale => I18n.locale) : cms_preview_real_estate_path(@real_estate), :class => 'preview-button btn', :target => '_blank'
+      = link_to t('.preview_button'), real_estate_path(@real_estate, :locale => I18n.locale), :class => 'preview-button btn', :target => '_blank'
