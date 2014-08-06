@@ -1,6 +1,7 @@
 CarrierWave.configure do |config|
   config.permissions = 0666
   config.storage = :file
+  config.root = "#{Rails.root}/public"
 
   if Rails.env.test?
     config.enable_processing = false
