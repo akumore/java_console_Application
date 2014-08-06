@@ -4,6 +4,7 @@ CarrierWave.configure do |config|
 
   if Rails.env.test?
     config.enable_processing = false
+    config.root = "#{Rails.root}/tmp/test_uploads"
   end
 end
 
