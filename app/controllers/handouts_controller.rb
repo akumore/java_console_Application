@@ -5,7 +5,7 @@ class HandoutsController < ApplicationController
   caches_page :show
 
   def show
-    @real_estate = RealEstateDecorator.new authorized_real_estates.print_channel.find(params[:real_estate_id])
+    @real_estate = RealEstateDecorator.new accessible_real_estates.print_channel.find(params[:real_estate_id])
 
     respond_to do |format|
       format.html { render :show }

@@ -8,7 +8,7 @@ describe RealEstatesHelper do
     context 'local request' do
       it 'return all realestates' do
         should_receive(:request).and_return(double('request', 'local?' => true))
-        expect(authorized_real_estates).to eq(RealEstate)
+        expect(accessible_real_estates).to eq(RealEstate)
       end
     end
 
@@ -16,7 +16,7 @@ describe RealEstatesHelper do
       it 'return all realestates' do
         should_receive(:request).and_return(double('request', 'local?' => false))
         should_receive(:user_signed_in?).and_return(true)
-        expect(authorized_real_estates).to eq(RealEstate)
+        expect(accessible_real_estates).to eq(RealEstate)
       end
     end
 
@@ -24,7 +24,7 @@ describe RealEstatesHelper do
       it 'return all realestates' do
         should_receive(:request).and_return(double('request', 'local?' => false))
         should_receive(:user_signed_in?).and_return(false)
-        expect(authorized_real_estates).not_to eq(RealEstate)
+        expect(accessible_real_estates).not_to eq(RealEstate)
       end
     end
   end

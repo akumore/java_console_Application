@@ -19,7 +19,7 @@ class RealEstatesController < ApplicationController
   end
 
   def show
-    @real_estate = RealEstateDecorator.decorate authorized_real_estates.web_channel.find(params[:id])
+    @real_estate = RealEstateDecorator.decorate accessible_real_estates.web_channel.find(params[:id])
     @search_filter.utilization = @real_estate.utilization
     @search_filter.offer = @real_estate.offer
     real_estates = get_filtered_real_estates(@search_filter).map(&:id)

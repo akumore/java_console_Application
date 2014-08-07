@@ -1,6 +1,6 @@
 module RealEstatesHelper
 
-  def authorized_real_estates
+  def accessible_real_estates
     # Allow local requests for pdf generation
     return RealEstate if request.local?
     return RealEstate if user_signed_in?
