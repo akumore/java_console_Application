@@ -49,6 +49,7 @@ RSpec.configure do |config|
     Mongoid.database.collections.each do |collection|
       collection.remove unless collection.name =~ /^system\./
     end
+    FileUtils.rmtree('tmp/test_uploads') if Dir.exist?('tmp/test_uploads')
   end
 end
 
