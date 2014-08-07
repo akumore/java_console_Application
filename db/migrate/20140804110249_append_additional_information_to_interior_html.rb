@@ -1,4 +1,8 @@
 class AppendAdditionalInformationToInteriorHtml < Mongoid::Migration
+  Information.class_eval do
+    field :additional_information, :type => String
+  end
+
   def self.up
     RealEstate.all.each do |re|
       i = re.information
