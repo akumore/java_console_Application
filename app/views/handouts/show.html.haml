@@ -1,5 +1,5 @@
 #title-page-header
-  - if File.exist?(@real_estate.images.primary.file.minidoku.path)
+  - if File.exist?(@real_estate.images.primary.file.minidoku.path.to_s)
     .primary-image
       = image_tag @real_estate.images.primary.file.minidoku.url
   .frame-overlay
