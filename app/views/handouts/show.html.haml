@@ -1,6 +1,7 @@
 #title-page-header
-  .primary-image
-    = image_tag @real_estate.images.primary.file.minidoku.url
+  - if File.exist?(@real_estate.images.primary.file.minidoku.path)
+    .primary-image
+      = image_tag @real_estate.images.primary.file.minidoku.url
   .frame-overlay
     = image_tag('vision/frame.png')
   .primary-title
