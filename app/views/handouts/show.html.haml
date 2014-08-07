@@ -11,15 +11,15 @@
   .primary-title-dots
     \...
 
-- if @real_estate.floor_plans.any?
-  = render 'floorplan'
-
 - figure_content = render('overview', real_estate: @real_estate).to_s
 - figure_content += render('real_estates/figure', :real_estate => @real_estate, :figure => @real_estate.figure).to_s
 - if figure_content.present?
   .chapter.pb-after
     %h2= t('figures.title')
     = figure_content
+
+- if @real_estate.floor_plans.any?
+  = render 'floorplan'
 
 - pricing_content = render 'real_estates/pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
 - if pricing_content.present?
