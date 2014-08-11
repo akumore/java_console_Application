@@ -34,7 +34,6 @@ describe "Cms Information" do
                                                 :is_developed => true,
                                                 :is_under_building_laws => true,
                                                 :has_cable_tv => true,
-                                                :additional_information => 'Zusätzliche Angaben zum Ausbau',
                                                 :floors => 3,
                                                 :renovated_on => 1997,
                                                 :built_on => 1956,
@@ -53,7 +52,6 @@ describe "Cms Information" do
 
       it 'creates a new information object' do
 
-        fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
         fill_in 'Anzahl Geschosse', :with => @template_information.floors
         fill_in 'Renovationsjahr', :with => @template_information.renovated_on
         fill_in 'Baujahr', :with => @template_information.built_on
@@ -63,7 +61,7 @@ describe "Cms Information" do
 
         [ 'Aussicht',
           'Cheminée',
-          'Lift',
+          'Personenlift',
           'ISDN-Anschluss',
           'Rollstuhltauglich',
           'Kinderfreundlich',
@@ -165,7 +163,6 @@ describe "Cms Information" do
       it 'creates a new information object' do
 
         fill_in "Anzahl WC's", :with => @template_information.number_of_restrooms
-        fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
         fill_in 'Anzahl Geschosse', :with => @template_information.floors
         fill_in 'Renovationsjahr', :with => @template_information.renovated_on
         fill_in 'Baujahr', :with => @template_information.built_on
@@ -264,7 +261,6 @@ describe "Cms Information" do
       it 'creates a new information object' do
 
         fill_in "Anzahl WC's", :with => @template_information.number_of_restrooms
-        fill_in 'Ergänzende Informationen', :with => @template_information.additional_information
         fill_in 'Anzahl Geschosse', :with => @template_information.floors
         fill_in 'Renovationsjahr', :with => @template_information.renovated_on
         fill_in 'Baujahr', :with => @template_information.built_on
@@ -414,7 +410,6 @@ describe "Cms Information" do
 
     it 'shows the additional information text' do
       visit cms_real_estate_information_path real_estate
-      page.html.gsub(/\s*/m, ' ').should include real_estate.information.additional_information.gsub(/\s*/m, ' ')
       page.html.gsub(/\s*/m, ' ').should include real_estate.information.location_html.gsub(/\s*/m, ' ')
       page.html.gsub(/\s*/m, ' ').should include real_estate.information.interior_html.gsub(/\s*/m, ' ')
       page.html.gsub(/\s*/m, ' ').should include real_estate.information.infrastructure_html.gsub(/\s*/m, ' ')

@@ -90,6 +90,7 @@ describe "JobApplications" do
           click_on 'Bewerbung senden'
           application = JobApplication.first
           expect(application.attachment).to be_a(JobApplicationUploader)
+          expect(application.attachment.path).to start_with((Rails.root + 'uploads/job_application/attachment/').to_s)
           upload = File.basename(application.attachment.path)
           expect(upload).to eq(File.basename(@attachment))
         end

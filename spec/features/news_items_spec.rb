@@ -28,19 +28,6 @@ describe "News", :js => true do
 
 
   describe 'detail view' do
-    before do
-      # Switching driver because of a bug visiting links with anchors
-      Capybara.javascript_driver=:selenium
-    end
-    after do
-      Capybara.javascript_driver=:webkit
-    end
-
-    #
-    # The following tests use the selenium javascript driver
-    # because capybara_webkit seems to timeout on anchors in URLs
-    # https://github.com/thoughtbot/capybara-webkit/issues/52
-    #
     let :news_item do
       Fabricate(:news_item)
     end

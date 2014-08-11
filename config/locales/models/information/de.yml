@@ -6,7 +6,7 @@ de:
       information:
         has_outlook:  Aussicht
         has_fireplace: Cheminée
-        has_elevator: Lift
+        has_elevator: Personenlift
         has_isdn: ISDN-Anschluss
         is_wheelchair_accessible: Rollstuhltauglich
         is_child_friendly: Kinderfreundlich
@@ -30,7 +30,6 @@ de:
         is_developed: Bauland erschlossen
         is_under_building_laws: im Baurecht
         has_cable_tv: Kabelfernsehen
-        additional_information: Ergänzende Informationen
         floors: Anzahl Geschosse
         renovated_on: Renovationsjahr
         built_on: Baujahr

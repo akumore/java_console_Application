@@ -123,12 +123,6 @@ class InformationDecorator < ApplicationDecorator
     }
   end
 
-  def additional_information
-    if model.additional_information.present?
-      model.additional_information.html_safe
-    end
-  end
-
   def floors
     # Anzahl Geschosse
     t('information.floors_value', :count => model.floors) if model.floors.present?

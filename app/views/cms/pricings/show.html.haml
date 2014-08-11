@@ -20,12 +20,12 @@
           %dd
             = number_to_currency @pricing.for_rent_netto, :locale => 'de-CH'
 
-    - if @pricing.price_unit_is_per_square_meter_per_year?
-      .span5.monthly-prices-container
-        %dl.dl-horizontal.dl-shrinked
-          %dt= t("mongoid.attributes.pricing.monthly")
-          %dd.for-rent-netto-monthly
-            = number_to_currency @pricing.for_rent_netto_monthly, :locale => 'de-CH'
+      - if @pricing.price_unit_is_per_square_meter_per_year?
+        .span5.monthly-prices-container
+          %dl.dl-horizontal.dl-shrinked
+            %dt= t("mongoid.attributes.pricing.monthly")
+            %dd.for-rent-netto-monthly
+              = number_to_currency @pricing.for_rent_netto_monthly, :locale => 'de-CH'
 
 - if @real_estate.for_sale?
   .row
@@ -43,11 +43,11 @@
         %dd
           = @pricing.estimate
 
-  - if @pricing.price_unit_is_per_square_meter_per_year?
-    .span5.monthly-prices-container
-      %dl.dl-horizontal.dl-shrinked
-        %dd.estimate-monthly= @pricing.estimate_monthly
-        %dt= t "mongoid.attributes.pricing.monthly"
+    - if @pricing.price_unit_is_per_square_meter_per_year?
+      .span5.monthly-prices-container
+        %dl.dl-horizontal.dl-shrinked
+          %dd.estimate-monthly= @pricing.estimate_monthly
+          %dt= t "mongoid.attributes.pricing.monthly"
 
 - if accessible?(:additional_costs)
   .row
@@ -57,12 +57,12 @@
         %dd
           = number_to_currency @pricing.additional_costs, :locale => 'de-CH'
 
-  - if @pricing.price_unit_is_per_square_meter_per_year?
-    .span5.monthly-prices-container
-      %dl.dl-horizontal.dl-shrinked
-        %dt= t "mongoid.attributes.pricing.monthly"
-        %dd.additional-costs-monthly
-          = number_to_currency @pricing.additional_costs_monthly, :locale => 'de-CH'
+    - if @pricing.price_unit_is_per_square_meter_per_year?
+      .span5.monthly-prices-container
+        %dl.dl-horizontal.dl-shrinked
+          %dt= t "mongoid.attributes.pricing.monthly"
+          %dd.additional-costs-monthly
+            = number_to_currency @pricing.additional_costs_monthly, :locale => 'de-CH'
 
 .row
   .span5

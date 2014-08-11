@@ -4,6 +4,7 @@ require 'google_analytics_category_translator'
 class RealEstatesController < ApplicationController
   respond_to :html
   include GoogleAnalyticsCategoryTranslator
+  include RealEstatesHelper
 
   rescue_from Mongoid::Errors::DocumentNotFound do
     redirect_to real_estates_path
@@ -18,7 +19,7 @@ class RealEstatesController < ApplicationController
   end
 
   def show
-    @real_estate = RealEstateDecorator.decorate RealEstate.published.web_channel.find(params[:id])
+    @real_estate = RealEstateDecorator.decorate accessible_real_estates.web_channel.find(params[:id])
     @search_filter.utilization = @real_estate.utilization
     @search_filter.offer = @real_estate.offer
     real_estates = get_filtered_real_estates(@search_filter).map(&:id)
