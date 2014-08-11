@@ -303,7 +303,19 @@ describe "Cms::RealEstates" do
 
     context 'when choosing microsite', :js => true do
       before do
-        visit edit_cms_real_estate_path(@fabricated_real_estate)
+        begin
+          visit edit_cms_real_estate_path(@fabricated_real_estate)
+        rescue
+          # don't know why this happens (issues with ckeditor)
+          # just try again
+          #
+          # Failure/Error: visit edit_cms_real_estate_path(@fabricated_real_estate)
+          # Capybara::Poltergeist::JavascriptError:
+          #   One or more errors were raised in the Javascript code on the page:
+          #  [CKEDITOR.resourceManager.load] Resource name "default" was not found at "http://127.0.0.1:50793/assets/ckeditor/styles.js?t=D6IE".
+          visit edit_cms_real_estate_path(@fabricated_real_estate)
+        end
+
       end
 
       it 'shows the microsite select options immediately' do
