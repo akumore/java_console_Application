@@ -1,4 +1,7 @@
 # CHANGELOG
+### v2.9.16 on 2014-08-22
+* Display retargeting pixel on all pages
+
 ### v2.9.15 on 2014-07-23
 * New implemented User Stories:
   * Fix: Login into backend is not possible anymore because of a problem in new helper method which renders retargeting pixel
