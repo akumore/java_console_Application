@@ -21,6 +21,20 @@
           = f.text_field :floor_estimate, :class => 'span4'
           %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:floor_estimate), 'data-content' => t('.help_popover.floor_estimate') }
 
+    - if accessible?(:rooms)
+      .control-group.mandatory
+        = f.label :rooms
+        .controls
+          = f.text_field :rooms, :class => 'span4'
+          %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:rooms), 'data-content' => t('.help_popover.rooms') }
+
+    - if accessible?(:rooms_estimate)
+      .control-group
+        = f.label :rooms_estimate
+        .controls
+          = f.text_field :rooms_estimate, :class => 'span4'
+          %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:rooms_estimate), 'data-content' => t('.help_popover.rooms_estimate') }
+
     - if accessible?(:specification_living_surface)
       .control-group
         = f.label :specification_living_surface
@@ -52,17 +66,38 @@
           .controls
             = f.text_area :specification_usable_surface, :class => 'span4'
 
-
   %fieldset.push-checkboxes-down
     %legend= t('.offer')
     .row
+      .span4
+        - floated_field(f, :text_field, :living_surface, class: 'span2')
+      .span8
+        - floated_field(f, :text_field, :living_surface_estimate, class: 'span3') do
+          %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:living_surface_estimate), 'data-content' => t('.help_popover.living_surface_estimate') }
+
+    .row
+      .span4
+        - floated_field(f, :text_field, :usable_surface, class: 'span2')
+      .span8
+        - floated_field(f, :text_field, :usable_surface_estimate, class: 'span3') do
+          %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:usable_surface_estimate), 'data-content' => t('.help_popover.usable_surface_estimate') }
+
+    .row
+      .span4
+        - floated_field(f, :text_field, :property_surface, class: 'span2')
+      .span8
+        - floated_field(f, :text_field, :property_surface_estimate, class: 'span3') do
+          %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:property_surface_estimate), 'data-content' => t('.help_popover.property_surface_estimate') }
+    .row
+      .span4
+        - floated_field(f, :text_field, :storage_surface, class: 'span2')
+      .span8
+        - floated_field(f, :text_field, :storage_surface_estimate, class: 'span3')
+
+    .row
       .span12
         .floated-controls-box
-          - floated_field(f, :text_field, :rooms, class: 'span2')
-          - floated_field(f, :text_field, :living_surface, class: 'span2')
-          - floated_field(f, :text_field, :usable_surface, class: 'span2')
-          - floated_field(f, :text_field, :property_surface, class: 'span2')
-          - floated_field(f, :text_field, :storage_surface, class: 'span2')
+
           - floated_field(f, :text_field, :inside_parking_spots, class: 'span2')
           - floated_field(f, :text_field, :outside_parking_spots, class: 'span2')
           - floated_field(f, :text_field, :covered_slot, class: 'span2')

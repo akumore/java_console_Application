@@ -9,14 +9,6 @@
 
   - if real_estate.figure.present?
 
-    - if real_estate.figure.surface.present?
-      %dt= real_estate.figure.surface_label
-      %dd
-        = real_estate.figure.surface
-        - if real_estate.figure.specification_surface.present?
-          %span.helptext
-            = "(#{real_estate.figure.specification_surface})"
-
     - if real_estate.figure.floor.present?
       %dt= t('figures.floor')
       %dd= real_estate.figure.floor

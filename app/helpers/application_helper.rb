@@ -70,6 +70,7 @@ module ApplicationHelper
       haml_concat form.label(field)
       haml_tag('.controls') do
         haml_concat form.send(type, field, options)
+        yield if block_given?
       end
     end
   end
