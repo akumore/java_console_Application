@@ -1,6 +1,6 @@
 de:
   information:
-    title: 'Immobilieninfos'
+    title: 'Weitere Informationen'
     characteristics: 'Merkmale'
     maximal_floor_loading: 'Maximale Bodenbelastung'
     maximal_floor_loading_value: '%{count} kg/m²'
@@ -36,7 +36,6 @@ de:
       other: '%{count} Geschosse'
     ceiling_height: 'Raumhöhe'
     ceiling_height_value: '%{size} m'
-    location: 'In der Nähe'
     points_of_interest:
       public_transport: 'Öffentlicher Verkehr %{distance} m'
       shopping: 'Einkaufen %{distance} m'
@@ -45,6 +44,7 @@ de:
       high_school: 'Oberstufe %{distance} m'
       highway_access: 'Autobahnanschluss %{distance} m'
     location_html: 'Standort'
-    interior_html: 'Ausbaustandard'
+    interior_html: 'Ausbau'
     offer: 'Angebot'
-    infrastructure: 'Infrastruktur'
+    infrastructure_html: 'Gebäude/Liegenschaft'
+    TODO: change in cms/figures template

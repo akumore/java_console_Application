@@ -1,6 +1,6 @@
 en:
   information:
-    title: 'Real Estate Information'
+    title: 'Additional information'
     characteristics: 'Characteristics'
     maximal_floor_loading: 'Maximum floor load'
     maximal_floor_loading_value: '%{count} kg/m²'
@@ -36,7 +36,6 @@ en:
       other: '%{count} Floors'
     ceiling_height: 'Ceiling height'
     ceiling_height_value: '%{size} m'
-    location: 'Nearby'
     points_of_interest:
       public_transport: 'Public transport %{distance} m'
       shopping: 'Shops %{distance} m'
@@ -45,6 +44,6 @@ en:
       high_school: 'Secondary / high school %{distance} m'
       highway_access: 'Motorway access %{distance} m'
     location_html: 'Location'
-    interior_html: 'Quality of fittings'
+    interior_html: 'Fittings'
     offer: 'Offer'
-    infrastructure: 'Infrastructure'
+    infrastructure_html: 'Building/Property'
