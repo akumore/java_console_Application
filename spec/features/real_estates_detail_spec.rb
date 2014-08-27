@@ -344,7 +344,7 @@ describe "RealEstates" do
 
         it 'shows the chapter title' do
           visit real_estate_path(real_estate)
-          page.should have_content('Immobilieninfos')
+          page.should have_content('Weitere Informationen')
         end
 
         context 'real estate for living utilization' do
@@ -418,7 +418,7 @@ describe "RealEstates" do
           end
 
           it 'does not show the chapter title' do
-            page.should_not have_content('Immobilieninfos')
+            page.should_not have_content('Weitere Informationen')
           end
         end
       end

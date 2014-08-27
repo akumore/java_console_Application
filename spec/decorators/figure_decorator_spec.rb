@@ -39,6 +39,8 @@ describe FigureDecorator do
   describe '#offer_characteristics' do
     it 'creates an array of characteristics' do
       expect(@figure.offer_characteristics).to eq [
+        "3.5 Zimmer", "Wohnfläche 100 m²", "Nutzfläche 135 m²",
+        "Grundstückfläche 145 m²", "Lagerfläche 155 m²",
         "1 Parkplatz in Autoeinstellhalle",
         "2 Parkplätze im Freien",
         "3 Parkplätze im Freien überdacht",

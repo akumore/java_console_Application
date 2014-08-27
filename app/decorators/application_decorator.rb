@@ -21,14 +21,14 @@ class ApplicationDecorator < Draper::Base
       value = self.send(field)
       next if value.blank?
 
-      translated = t("#{object_name}.#{field}")
+      translated = I18n.t("#{object_name}.#{field}")
       case
       when self.method(field).arity > -1
         # expect this function is defined in the decorator itself
         # which formats and translates the value userfriendly
         buffer << value
       when translated.is_a?(Hash)
-        buffer << t("#{object_name}.#{field}", :count => value)
+        buffer << I18n.t("#{object_name}.#{field}", :count => value)
       when value.is_a?(Boolean)
         buffer << translated if value
       else

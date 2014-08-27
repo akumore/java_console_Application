@@ -14,7 +14,7 @@ class CharacteristicsHtml
     object_name = decorator.model_class.to_s.underscore
     decorator_class = (object_name + "_decorator").classify.constantize
     unchanged = RealEstate.find(decorator.real_estate.id).send(object_name)
-    @original ||= decorator_class.new(unchanged, context: decorator.context)
+    @original ||= decorator_class.new(unchanged)#, context: decorator.context)
   end
 
   def lis_before

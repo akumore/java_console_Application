@@ -44,19 +44,19 @@ describe "Cms::Figures" do
         click_on 'Objektübersicht erstellen'
 
         @real_estate.reload
-        expect(@real_estate.figure.offer_html).to eq "<ul>\r\n\t<li>1 Parkplatz im Freien überdacht</li>\r\n</ul>"
+        expect(@real_estate.figure.offer_html).to eq "<ul>\r\n\t<li>3.5 Zimmer</li>\r\n\t<li>1 Parkplatz im Freien überdacht</li>\r\n</ul>"
 
         fill_in 'figure_covered_slot', :with => '66'
         click_on 'Objektübersicht speichern'
 
         @real_estate.reload
-        expect(@real_estate.figure.offer_html).to eq "<ul>\r\n\t<li>66 Parkplätze im Freien überdacht</li>\r\n</ul>"
+        expect(@real_estate.figure.offer_html).to eq "<ul>\r\n\t<li>3.5 Zimmer</li>\r\n\t<li>66 Parkplätze im Freien überdacht</li>\r\n</ul>"
 
         fill_in 'figure_covered_slot', :with => ''
         click_on 'Objektübersicht speichern'
 
         @real_estate.reload
-        expect(@real_estate.figure.offer_html).to eq "<ul>\r\n</ul>"
+        expect(@real_estate.figure.offer_html).to eq "<ul>\r\n\t<li>3.5 Zimmer</li>\r\n</ul>"
       end
 
       context 'a valid Figure' do
@@ -109,7 +109,7 @@ describe "Cms::Figures" do
             @figure.outdoor_bike.should == 5
             @figure.single_garage.should == 6
             @figure.double_garage.should == 7
-            @figure.offer_html.to_s.should == "<ul>\r\n\t<li>1 Parkplatz in Autoeinstellhalle</li>\r\n\t<li>2 Parkplätze im Freien</li>\r\n\t<li>3 Parkplätze im Freien überdacht</li>\r\n\t<li>4 Motorrad-Parkplätze in Autoeinstellhalle</li>\r\n\t<li>5 Motorrad-Parkplätze im Freien überdacht</li>\r\n\t<li>6 Einzelgaragen</li>\r\n\t<li>7 Doppelgaragen</li>\r\n</ul>"
+            @figure.offer_html.to_s.should == "<ul>\r\n\t<li>3 - 3.5 Zimmer</li>\r\n\t<li>Wohnfläche 124.6 - 130.4m2</li>\r\n\t<li>Grundstückfläche 124.5 - 123m2</li>\r\n\t<li>1 Parkplatz in Autoeinstellhalle</li>\r\n\t<li>2 Parkplätze im Freien</li>\r\n\t<li>3 Parkplätze im Freien überdacht</li>\r\n\t<li>4 Motorrad-Parkplätze in Autoeinstellhalle</li>\r\n\t<li>5 Motorrad-Parkplätze im Freien überdacht</li>\r\n\t<li>6 Einzelgaragen</li>\r\n\t<li>7 Doppelgaragen</li>\r\n</ul>"
 
             expect(page).to have_content('Angebot Beschreibung wurde automatisch ergänzt. Bitte überprüfen Sie den Inhalt')
           end

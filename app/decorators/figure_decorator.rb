@@ -3,7 +3,7 @@ class FigureDecorator < ApplicationDecorator
 
   decorates :figure
 
-  OFFER_FIELDS = %w(rooms living_surface usable_surface property_surface storage_surface
+  OFFER_FIELDS = %w(rooms long_living_surface long_usable_surface long_property_surface long_storage_surface
                     inside_parking_spots outside_parking_spots covered_slot covered_bike
                     outdoor_bike single_garage double_garage)
 
@@ -79,15 +79,27 @@ class FigureDecorator < ApplicationDecorator
     t('figures.surface_value', :size => model.living_surface) if model.living_surface.present?
   end
 
+  def long_living_surface
+    t("figures.surface.private") + ' ' + living_surface if living_surface.present?
+  end
+
   def usable_surface
     return model.usable_surface_estimate if model.usable_surface_estimate.present?
     t('figures.surface_value', :size => model.usable_surface) if model.usable_surface.present?
+  end
+
+  def long_usable_surface
+    t("figures.surface.commercial") + ' ' + usable_surface if usable_surface.present?
   end
 
   def property_surface
     # Grundstückfläche
     return model.property_surface_estimate if model.property_surface_estimate.present?
     t('figures.surface_value', :size => model.property_surface) if model.property_surface.present?
+  end
+
+  def long_property_surface
+    t('figures.property_surface') + ' ' + property_surface if property_surface.present?
   end
 
   def storage_surface
@@ -97,6 +109,10 @@ class FigureDecorator < ApplicationDecorator
     elsif model.storage_surface.present?
       t('figures.surface_value', :size => model.storage_surface)
     end
+  end
+
+  def long_storage_surface
+    t('figures.storage_surface') + ' ' + storage_surface if storage_surface.present?
   end
 
   def chapter

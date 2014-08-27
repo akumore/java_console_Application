@@ -46,6 +46,7 @@ RSpec.configure do |config|
   config.extend ExhibitMacros
 
   config.before(:each) do
+    ApplicationController.new.set_current_view_context
     Mongoid.database.collections.each do |collection|
       collection.remove unless collection.name =~ /^system\./
     end
