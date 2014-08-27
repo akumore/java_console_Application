@@ -3,8 +3,6 @@ require 'spec_helper'
 
 describe FigureDecorator do
   before { ApplicationController.new.set_current_view_context }
-  let(:field_access) { FieldAccess.new(@real_estate.offer, @real_estate.utilization, FieldAccess.cms_blacklist) }
-  before(:each) do Draper::Base.helpers.controller.stub(:field_access) { field_access } end
 
   let(:figure) do
     Fabricate.build(:figure,
@@ -39,7 +37,7 @@ describe FigureDecorator do
   describe '#offer_characteristics' do
     it 'creates an array of characteristics' do
       expect(@figure.offer_characteristics).to eq [
-        "3.5 Zimmer", "Wohnfläche 100 m²", "Nutzfläche 135 m²",
+        "3.5 Zimmer", "Wohnfläche 100 m²",
         "Grundstückfläche 145 m²", "Lagerfläche 155 m²",
         "1 Parkplatz in Autoeinstellhalle",
         "2 Parkplätze im Freien",
@@ -130,10 +128,12 @@ describe FigureDecorator do
 
   describe '#usable_surface' do
     it 'formats the size' do
+      @figure.real_estate.utilization = Utilization::WORKING
       @figure.usable_surface.should == '135 m²'
     end
 
     it 'renders the estimate usable surface if present' do
+      @figure.real_estate.utilization = Utilization::WORKING
       @figure.update_attribute :usable_surface_estimate, '181 - 191 m²'
       @figure.usable_surface.should == '181 - 191 m²'
     end

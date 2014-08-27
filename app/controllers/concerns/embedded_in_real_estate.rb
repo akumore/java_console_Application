@@ -1,5 +1,3 @@
-require 'field_access'
-
 module Concerns
   module EmbeddedInRealEstate
     extend ActiveSupport::Concern
@@ -44,10 +42,6 @@ module Concerns
     def editing_model
       model_name = controller_name.singularize
       instance_variable_get("@#{model_name}")
-    end
-
-    def field_access
-      @field_access ||= FieldAccess.new(@real_estate.offer, @real_estate.utilization, FieldAccess.cms_blacklist)
     end
   end
 end

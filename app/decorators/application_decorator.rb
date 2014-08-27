@@ -11,8 +11,12 @@ class ApplicationDecorator < Draper::Base
     end
   end
 
+  def field_access
+    return @model.field_access if @model.is_a?(RealEstate)
+    @model.real_estate.field_access
+  end
+
   def translate_characteristics(fields)
-    field_access = context[:field_access] || controller.field_access
     buffer = []
     object_name = model_class.to_s.tableize
 

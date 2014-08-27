@@ -1,5 +1,3 @@
-require 'field_access'
-
 class Cms::RealEstatesController < Cms::SecuredController
   load_and_authorize_resource :except => [:index, :show, :new, :create, :copy]
 
@@ -114,10 +112,6 @@ class Cms::RealEstatesController < Cms::SecuredController
     else
       @real_estate
     end
-  end
-
-  def field_access
-    @field_access ||= FieldAccess.new(@real_estate.offer, @real_estate.utilization, FieldAccess.cms_blacklist)
   end
 
   private

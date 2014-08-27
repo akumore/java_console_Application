@@ -24,7 +24,8 @@ module Cms
     end
 
     def accessible?(attribute)
-      controller.field_access.accessible?(controller.editing_model, attribute)
+      raise 'no real estate!' unless @real_estate
+      @real_estate.field_access.accessible?(controller.editing_model, attribute)
     end
 
     def exhibit_form_for(model, &block)
