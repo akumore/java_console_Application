@@ -3,7 +3,7 @@ class FigureDecorator < ApplicationDecorator
 
   decorates :figure
 
-  OFFER_FIELDS = %w(rooms long_living_surface long_usable_surface long_property_surface long_storage_surface
+  OFFER_FIELDS = %w(rooms long_surface long_property_surface long_storage_surface
                     inside_parking_spots outside_parking_spots covered_slot covered_bike
                     outdoor_bike single_garage double_garage)
 
@@ -27,6 +27,10 @@ class FigureDecorator < ApplicationDecorator
     return usable_surface if model.working?
     return living_surface if model.living?
     usable_surface
+  end
+
+  def long_surface
+    surface_label + ' ' + surface if surface.present?
   end
 
   def specification_surface
@@ -75,24 +79,19 @@ class FigureDecorator < ApplicationDecorator
   end
 
   def living_surface
+    return unless field_access.accessible?(model, :living_surface)
     return model.living_surface_estimate if model.living_surface_estimate.present?
     t('figures.surface_value', :size => model.living_surface) if model.living_surface.present?
   end
 
-  def long_living_surface
-    t("figures.surface.private") + ' ' + living_surface if living_surface.present?
-  end
-
   def usable_surface
+    return unless field_access.accessible?(model, :usable_surface)
     return model.usable_surface_estimate if model.usable_surface_estimate.present?
     t('figures.surface_value', :size => model.usable_surface) if model.usable_surface.present?
   end
 
-  def long_usable_surface
-    t("figures.surface.commercial") + ' ' + usable_surface if usable_surface.present?
-  end
-
   def property_surface
+    return unless field_access.accessible?(model, :property_surface)
     # Grundstückfläche
     return model.property_surface_estimate if model.property_surface_estimate.present?
     t('figures.surface_value', :size => model.property_surface) if model.property_surface.present?
@@ -103,6 +102,7 @@ class FigureDecorator < ApplicationDecorator
   end
 
   def storage_surface
+    return unless field_access.accessible?(model, :storage_surface)
     # Lagerfläche
     if model.storage_surface_estimate.present?
       t('figures.surface_value', :size => model.storage_surface_estimate)

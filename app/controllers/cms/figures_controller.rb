@@ -21,7 +21,7 @@ class Cms::FiguresController < Cms::SecuredController
     changed = update_html_inputs
 
     if @figure.save
-      return render 'edit' if changed
+      return render 'edit' if changed && !params[:force_redirect]
       redirect_to_step(next_step_after('figure'))
     else
       render 'new'
@@ -32,7 +32,7 @@ class Cms::FiguresController < Cms::SecuredController
     @figure.attributes = params[:figure]
     changed = update_html_inputs
 
-    if @figure.save && !changed
+    if @figure.save && (!changed && !params[:force_redirect])
       redirect_to_step(next_step_after('figure'))
     else
       render 'edit'
