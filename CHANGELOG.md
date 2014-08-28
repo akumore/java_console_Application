@@ -1,4 +1,8 @@
 # CHANGELOG
+
+### v2.9.17 on 2014-08-28
+* Replace «Umbau» image within accordion on company page
+
 ### v2.9.16 on 2014-08-22
 * Display retargeting pixel on all pages
 
