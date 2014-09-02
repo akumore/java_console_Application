@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.18 on 2014-09-02
+* Hotfix: Reorder slider (image movie is now the first slider and forum the last one)
+
 ### v2.9.17 on 2014-08-28
 * Hotfix: Replace «Umbau» image within accordion on company page
 
