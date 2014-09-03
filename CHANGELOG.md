@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.19 on 2014-09-03
+* Hotfix: Update text for Forum slide (vision slider)
+
 ### v2.9.18 on 2014-09-02
 * Hotfix: Reorder slider (image movie is now the first slider and forum the last one)
 
