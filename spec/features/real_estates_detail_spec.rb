@@ -7,6 +7,11 @@ describe "RealEstates" do
   before { ApplicationController.new.set_current_view_context }
   before { @utilization = Utilization::LIVING }
 
+  before(:each) do
+    # generally treat all requests not as local (for unpublished testing)
+    stub_const('ActionDispatch::Request::LOCALHOST', [])
+  end
+
   let :category do
     Fabricate(:category, :label => 'Wohnung')
   end
@@ -426,52 +431,6 @@ describe "RealEstates" do
           page.should have_content(real_estate.contact.fax)
           page.should have_content(real_estate.contact.mobile)
           page.should have_link('E-Mail')
-        end
-      end
-    end
-
-    describe 'Chapter Information' do
-      context 'with living utilization' do
-        before :each do
-          @utilization = Utilization::LIVING
-          visit real_estate_path(real_estate)
-        end
-
-        it 'shows the additional information text' do
-          page.should have_content('Ergänzende Informationen zum Ausbau')
-        end
-      end
-
-      context 'with working utilization' do
-        before :each do
-          @utilization = Utilization::WORKING
-          visit real_estate_path(real_estate)
-        end
-
-        it 'shows the additional information text' do
-          page.should have_content('Ergänzende Informationen zum Ausbau')
-        end
-      end
-
-      context 'with storing utilization' do
-        before :each do
-          @utilization = Utilization::STORING
-          visit real_estate_path(real_estate)
-        end
-
-        it 'shows the additional information text' do
-          page.should have_content('Ergänzende Informationen zum Ausbau')
-        end
-      end
-
-      context 'with parking utilization' do
-        before :each do
-          @utilization = Utilization::PARKING
-          visit real_estate_path(real_estate)
-        end
-
-        it "doesn't show the additional information text" do
-          page.should_not have_content('Ergänzende Informationen zum Ausbau')
         end
       end
     end

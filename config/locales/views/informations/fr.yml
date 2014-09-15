@@ -28,7 +28,6 @@ fr:
     has_water_supply: 'Raccordement eaux claires'
     has_sewage_supply: 'Raccordement eaux usées'
     has_cable_tv: 'Télévision par câble'
-    additional_information: 'Informations complémentaires'
     renovated_on: 'Date rénovation'
     built_on: 'Année construction'
     floors: 'Etages'

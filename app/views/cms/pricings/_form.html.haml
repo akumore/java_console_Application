@@ -114,8 +114,6 @@
           .controls
             = f.text_field :additional_costs_monthly
 
-        .control-group.control-group-spacer
-
         - if accessible?(:storage)
           .control-group
             = f.label :storage_monthly, t('mongoid.attributes.pricing.monthly')

@@ -24,15 +24,6 @@ on the staging server in `/home/usr/amstaging/.ssh/authorized_keys`
 5. `git push <staging|production> <git ref>` push the code
 6. `mmode disable <amstaging|alfred_mueller>`: disable the maintenance mode on the server
 
-## How to kill thin servers while deployment takes too long
-
-1. Connect to server via SSH
-2. Get your user id with the simple command `id`. Output should be something like this: `uid=1007(alfred_mueller) gid=1008(alfred_mueller) groups=1008(alfred_mueller)`
-3. Watch currently running thins with `watch -n1 'ps aux | grep '^1007' | grep thin'` while the integer value is the user id => 1007.
-4. In a new session you can monitor the thins with this command `tail -f log/thin.1004*.log`
-5. Kill the running thins with the kill command and the process id. For example: `kill 12841`
-6. You're done :shipit:
-
 # Environments
 
 ## Development
@@ -41,26 +32,18 @@ Make sure you have a running instance of MongoDB before starting the rails serve
 If not, start it by calling `mongod` in your terminal.
 
 ## Staging
-The app runs on the scrcpt2.nine.ch server:
+The app runs on the c3.screenconcept.ch server:
 
-* Home: `/home/usr/amstaging/public_html`
-* Web: [staging.alfredmueller.screenconcept.ch](http://staging.alfredmueller.screenconcept.ch)
+* Home: `/home/www-data/apps/alfredmueller_web_staging`
+* Web: [alfredmueller-web-staging.c3.screenconcept.ch](http://alfredmueller-web-staging.c3.screenconcept.ch)
 * CMS test admin account: admin@screenconcept.ch / bambus
 
 ## Production
 The app runs on the screenconcept2 server:
 
-* Home: `/home/usr/alfred_mueller/public_html`
-* Web: [production.alfredmueller.screenconcept.ch](http://production.alfredmueller.screenconcept.ch)
-* CMS admin account: admin@screenconcept.ch / ****** (ask Immanuel, Thomas or Melinda)
-
-###Special Thin webserver configuration is required in staging and production environments:
-
-* Staging: edit /home/usr/amstaging/.nine/ruby/1.9.3-p0@alfred_mueller/amstaging.yml
-* Production: edit /home/usr/alfred_mueller/.nine/ruby/1.9.3-p0@alfred_mueller/alfred_mueller.yml
-* add the following parameters:
-    * no-epoll: true
-    * threaded: true
+* Home: `/home/www-data/apps/alfredmueller_web_production`
+* Web: [alfred-mueller.ch](http://alfred-mueller.ch)
+* CMS admin account: admin@screenconcept.ch / ****** (ask Noëlle, Flavio)
 
 # Environment setups
 
@@ -73,12 +56,8 @@ In order for RVM to work with the whenever gem, we have to write a `.rvmrc` with
 
 ## PDF Generation
 
-* Thin is freezing when generating PDFs using PDFKit. As an workaround we have to run Thin in threaded mode.
-* This seems to be a bug in Thin.
-
 ## Performance
 
-* Thin is very slow when running Ruby 1.9 in threaded mode with 'epoll' enabled. Therefore it has to be disabled!
 * Response times of Mongolab (currently used for database hosting) are very high, around 100ms for each database access. Don't use it in production.
 
 ## Avoid SSH disconnects due to firewall timeouts

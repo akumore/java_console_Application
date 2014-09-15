@@ -55,19 +55,6 @@
           = f.text_area :specification_living_surface, :class => 'span4'
           %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:specification_living_surface), 'data-content' => t('.help_popover.specification_living_surface') }
 
-    - if accessible?(:property_surface)
-      .control-group
-        = f.label :property_surface
-        .controls
-          = f.text_field :property_surface, :class => 'span4'
-
-    - if accessible?(:property_surface_estimate)
-      .control-group
-        = f.label :property_surface_estimate
-        .controls
-          = f.text_field :property_surface_estimate, :class => 'span4'
-          %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:property_surface_estimate), 'data-content' => t('.help_popover.property_surface_estimate') }
-
     - if accessible?(:usable_surface)
       .control-group.mandatory
         = f.label :usable_surface
@@ -80,6 +67,19 @@
         .controls
           = f.text_field :usable_surface_estimate, :class => 'span4'
           %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:usable_surface_estimate), 'data-content' => t('.help_popover.usable_surface_estimate') }
+
+    - if accessible?(:property_surface)
+      .control-group
+        = f.label :property_surface
+        .controls
+          = f.text_field :property_surface, :class => 'span4'
+
+    - if accessible?(:property_surface_estimate)
+      .control-group
+        = f.label :property_surface_estimate
+        .controls
+          = f.text_field :property_surface_estimate, :class => 'span4'
+          %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:property_surface_estimate), 'data-content' => t('.help_popover.property_surface_estimate') }
 
     - if accessible?(:specification_usable_surface)
       .control-group
@@ -118,13 +118,16 @@
 
   %fieldset.push-checkboxes-down
     %legend= t('.offer')
-    - floated_field(f, :text_field, :inside_parking_spots)
-    - floated_field(f, :text_field, :outside_parking_spots)
-    - floated_field(f, :text_field, :covered_slot)
-    - floated_field(f, :text_field, :covered_bike)
-    - floated_field(f, :text_field, :outdoor_bike)
-    - floated_field(f, :text_field, :single_garage)
-    - floated_field(f, :text_field, :double_garage)
+    .row
+      .span12
+        .floated-controls-box
+          - floated_field(f, :text_field, :inside_parking_spots, class: 'span2')
+          - floated_field(f, :text_field, :outside_parking_spots, class: 'span2')
+          - floated_field(f, :text_field, :covered_slot, class: 'span2')
+          - floated_field(f, :text_field, :covered_bike, class: 'span2')
+          - floated_field(f, :text_field, :outdoor_bike, class: 'span2')
+          - floated_field(f, :text_field, :single_garage, class: 'span2')
+          - floated_field(f, :text_field, :double_garage, class: 'span2')
 
     .row
       .span12

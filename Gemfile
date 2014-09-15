@@ -40,6 +40,7 @@ gem 'newrelic_rpm'
 gem 'jcrop-rails'
 gem 'special_sauce'
 gem 'unicorn'
+gem 'rack-handlers'
 gem 'dotenv-rails'
 gem 'rb-readline'
 
@@ -69,4 +70,5 @@ end
 
 group :test do
   gem 'launchy', '~> 2.0.5'
+  gem 'poltergeist'
 end

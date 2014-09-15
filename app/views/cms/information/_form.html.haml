@@ -51,7 +51,7 @@
             - floated_field(f, :check_box,  :is_minergie_style)
             - floated_field(f, :check_box,  :is_minergie_certified)
             - floated_field(f, :check_box,  :has_elevator)
-            - floated_field(f, :text_field,  :freight_elevator_carrying_capacity)
+            - floated_field(f, :text_field,  :freight_elevator_carrying_capacity, class: 'span1')
             - floated_field(f, :check_box,  :has_ramp)
             - floated_field(f, :check_box,  :has_lifting_platform)
             - floated_field(f, :check_box,  :has_railway_terminal)
@@ -86,15 +86,6 @@
             - floated_field(f, :text_field,  :maximal_floor_loading, class: 'span1')
             - floated_field(f, :text_field,  :number_of_restrooms, class: 'span1')
             - floated_field(f, :text_field,  :ceiling_height, class: 'span1')
-
-      .row
-        .span12
-          .control-group
-            = f.label :additional_information
-            .controls
-              .row
-                .span8
-                  = f.text_area :additional_information, class: 'editor'
 
       .row
         .span12

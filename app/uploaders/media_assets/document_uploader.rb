@@ -8,14 +8,6 @@ module MediaAssets
       "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
 
-    #
-    # Workaround for empty filename issue
-    # https://gist.github.com/519484
-    #
-    def root
-      CarrierWave.root
-    end
-
     # Add a white list of extensions which are allowed to be uploaded.
     def extension_white_list
       ExtensionWhiteList.new %w(pdf)

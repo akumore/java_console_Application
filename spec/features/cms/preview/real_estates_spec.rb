@@ -37,7 +37,7 @@ describe 'Cms::Preview::RealEstates' do
       end
 
       it 'shows the preview button with the cms_preview_real_estate_path link' do
-        page.should have_link 'Vorschau', :href => cms_preview_real_estate_path(unpublished_real_estate)
+        page.should have_link 'Vorschau', :href => real_estate_path('de', unpublished_real_estate)
       end
     end
 
@@ -67,7 +67,7 @@ describe 'Cms::Preview::RealEstates' do
     login_cms_user
 
     before do
-      visit cms_preview_real_estate_path(real_estate)
+      visit real_estate_path('de', real_estate)
     end
 
     it 'shows the preview' do

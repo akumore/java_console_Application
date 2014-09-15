@@ -1,31 +1,26 @@
-.chapter.pb-after
-  %dl
-    - if real_estate.address.present?
-      %dt= t('.address')
-      %dd= real_estate.address.simple
+%dl
+  - if real_estate.address.present?
+    %dt= t('.address')
+    %dd= real_estate.address.simple
 
-    - if real_estate.utilization_description.present?
-      %dt= t('real_estates.search_filter_order.search_fields.category')
-      %dd= real_estate.utilization_description
+  - if real_estate.utilization_description.present?
+    %dt= t('real_estates.search_filter_order.search_fields.category')
+    %dd= real_estate.utilization_description
 
-    - if real_estate.figure.present?
+  - if real_estate.figure.present?
 
-      - if real_estate.figure.surface.present?
-        %dt= real_estate.figure.surface_label
-        %dd
-          = real_estate.figure.surface
-          - if real_estate.figure.specification_surface.present?
-            %span.helptext
-              = "(#{real_estate.figure.specification_surface})"
+    - if real_estate.figure.surface.present?
+      %dt= real_estate.figure.surface_label
+      %dd
+        = real_estate.figure.surface
+        - if real_estate.figure.specification_surface.present?
+          %span.helptext
+            = "(#{real_estate.figure.specification_surface})"
 
-      - if real_estate.figure.floor.present?
-        %dt= t('figures.floor')
-        %dd= real_estate.figure.floor
+    - if real_estate.figure.floor.present?
+      %dt= t('figures.floor')
+      %dd= real_estate.figure.floor
 
-      - if real_estate.figure.rooms.present?
-        %dt= t('figures.rooms')
-        %dd= real_estate.figure.rooms
-
-    - if real_estate.description.present?
-      %dt= t('.description')
-      %dd= real_estate.description.html_safe
+    - if real_estate.figure.rooms.present?
+      %dt= t('figures.rooms')
+      %dd= real_estate.figure.rooms

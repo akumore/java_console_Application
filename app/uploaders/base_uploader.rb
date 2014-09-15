@@ -19,11 +19,4 @@ class BaseUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
-  #
-  # Workaround for empty filename issue
-  # https://gist.github.com/519484
-  #
-  def root
-    CarrierWave.root
-  end
 end
