@@ -79,11 +79,4 @@ module ApplicationHelper
   rescue Mongoid::Errors::DocumentNotFound
     false
   end
-
-  def render_retargeting_pixels?
-    Rails.env.production? && (params[:controller] == 'real_estates') &&
-    current_page?(controller: 'real_estates', action: 'index',
-                  offer: Offer::RENT,
-                  utilization: Utilization::WORKING)
-  end
 end

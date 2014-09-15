@@ -55,10 +55,10 @@ describe "RealEstates" do
     end
 
     context 'for rent and living real estates overview' do
-      it 'does not render the adwebster retargeting pixels' do
+      it 'does render the adwebster retargeting pixels' do
         Rails.stub_chain(:env, :production?).and_return(true)
         visit real_estates_path(offer: Offer::RENT, utilization: Utilization::LIVING)
-        expect(page.html).not_to match('<!-- Begin ADWEBSTER.COM -->')
+        expect(page.html).to match('<!-- Begin ADWEBSTER.COM -->')
       end
     end
 
