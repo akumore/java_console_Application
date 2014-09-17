@@ -4,7 +4,7 @@ working_directory APP_ROOT
 timeout 300
 worker_processes 3
 
-unless Rails.env.development?
+unless ENV['RAILS_ENV'] == 'development'
   preload_app true
   stderr_path APP_ROOT + "/log/unicorn.stderr.log"
   stdout_path APP_ROOT + "/log/unicorn.stdout.log"
