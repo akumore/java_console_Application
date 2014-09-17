@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe RealEstate do
+
   describe 'initialize without any attributes' do
     before :each do
       @real_estate = RealEstate.new(:state => '', :utilization => '', :offer => '', :language => 'it')

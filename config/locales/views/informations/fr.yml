@@ -1,6 +1,6 @@
 fr:
   information:
-    title: 'Informations immobilières'
+    title: 'Autres informations'
     characteristics: 'Caractéristiques'
     maximal_floor_loading: 'Charge utile maximale'
     maximal_floor_loading_value: '%{count} kg/m²'
@@ -36,7 +36,6 @@ fr:
       other: '%{count} étages'
     ceiling_height: 'Hauteur des locaux'
     ceiling_height_value: '%{size} m'
-    location: 'À proximité'
     points_of_interest:
       public_transport: 'Transports en commun %{distance} m'
       shopping: 'Magasins %{distance} m'
@@ -45,6 +44,6 @@ fr:
       high_school: 'Cycle secondaire %{distance} m'
       highway_access: 'Accès autoroutier %{distance} m'
     location_html: 'Lieu'
-    interior_html: 'Standard de construction'
+    interior_html: 'Construction'
     offer: 'Offre'
-    infrastructure: 'Infrastructure'
+    infrastructure_html: 'Bâtiment/Bien immobilier'

@@ -28,12 +28,12 @@ module Export
         end
       end
 
-      def finish
+      def upload
         begin
           @uploader.do_upload!
           logger.info "Published #{@packages.size} real estates on #{@account.name}."
         rescue => err
-          logger.warn "#{err.class} raised on action 'finish', exception message was:\n#{err.message}"
+          logger.warn "#{err.class} raised on action 'upload', exception message was:\n#{err.message}"
           logger.info err.backtrace.join("\n")
         end
       end

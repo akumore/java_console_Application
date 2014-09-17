@@ -16,18 +16,3 @@
     %dl
       %dt= t('figures.rooms')
       %dd= figure.rooms
-
-  - if figure.surface.present?
-    %dl
-      %dt= figure.surface_label
-      %dd= figure.surface
-
-  - if real_estate.working? && figure.property_surface.present?
-    %dl
-      %dt= t('figures.property_surface')
-      %dd= figure.property_surface
-
-  - if (real_estate.working? || real_estate.living?) && figure.storage_surface.present?
-    %dl
-      %dt= t('figures.storage_surface')
-      %dd= figure.storage_surface

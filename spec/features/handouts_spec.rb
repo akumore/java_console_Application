@@ -136,7 +136,7 @@ describe "Handout aka MiniDoku" do
 
       it 'shows the chapter title' do
         visit real_estate_handout_path(printable_real_estate)
-        page.should have_content('Immobilieninfos')
+        page.should have_content('Weitere Informationen')
       end
 
       context 'real estate for living utilization' do
@@ -273,7 +273,7 @@ describe "Handout aka MiniDoku" do
         end
 
         it 'does not show the chapter title' do
-          page.should_not have_content('Immobilieninfos')
+          page.should_not have_content('Weitere Informationen')
         end
       end
     end
@@ -505,7 +505,7 @@ describe "Handout aka MiniDoku" do
       end
 
       it 'shows the chapter title' do
-        page.should have_content 'Immobilieninfos'
+        page.should have_content 'Weitere Informationen'
       end
 
       it 'shows the availability date' do

@@ -29,4 +29,5 @@ class HandoutsController < ApplicationController
   def footer
     render :layout => false
   end
+
 end

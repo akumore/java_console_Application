@@ -2,11 +2,7 @@
 require 'spec_helper'
 
 describe 'Real Estate Wizard' do
-  let(:field_access) { FieldAccess.new(@real_estate.offer, @real_estate.utilization, FieldAccess.cms_blacklist) }
-  before { 
-    ApplicationController.new.set_current_view_context
-    Draper::Base.helpers.controller.stub(:field_access) { mock(:accessible? => true) }
-  }
+  before { ApplicationController.new.set_current_view_context }
 
   before do
     sign_in(Fabricate(:cms_admin))

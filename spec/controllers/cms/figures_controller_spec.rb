@@ -17,14 +17,14 @@ describe 'Real Estate Wizard' do
       end
 
       it 'redirects to the new pricing tab without an existing pricing' do
-        post :create, :real_estate_id => @real_estate.id, :figure => @figure_attributes
+        post :create, :real_estate_id => @real_estate.id, :figure => @figure_attributes, :force_redirect => true
         response.should redirect_to new_cms_real_estate_pricing_path(@real_estate)
         flash[:success].should_not be_nil
       end
 
       it 'redirects to the edit pricing tab with an existing pricing' do
         @real_estate.pricing = Fabricate.build :pricing
-        post :create, :real_estate_id => @real_estate.id, :figure => @figure_attributes
+        post :create, :real_estate_id => @real_estate.id, :figure => @figure_attributes, :force_redirect => true
         response.should redirect_to(edit_cms_real_estate_pricing_path(@real_estate))
         flash[:success].should_not be_nil
       end

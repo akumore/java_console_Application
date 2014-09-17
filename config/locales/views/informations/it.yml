@@ -1,6 +1,6 @@
 it:
   information:
-    title: 'Info immobile'
+    title: 'Ulteriori informazioni'
     characteristics: 'Caratteristiche'
     maximal_floor_loading: 'Portata utile max. del pavimento.'
     maximal_floor_loading_value: '%{count} kg/m²'
@@ -36,7 +36,6 @@ it:
       other: '%{count} Piani'
     ceiling_height: 'Altezza locali'
     ceiling_height_value: '%{size} m'
-    location: 'Nelle vicinanze'
     points_of_interest:
       public_transport: 'Trasporti pubblici %{distance} m'
       shopping: 'Negozi %{distance} m'
@@ -45,6 +44,6 @@ it:
       high_school: 'Scuole superiori %{distance} m'
       highway_access: 'Autostrada %{distance} m'
     location_html: 'Ubicazione'
-    interior_html: 'Finiture standard'
+    interior_html: 'Finiture'
     offer: 'Offerta'
-    infrastructure: 'Infrastruttura'
+    infrastructure_html: 'Edificio/immobile'

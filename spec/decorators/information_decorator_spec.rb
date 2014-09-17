@@ -3,8 +3,6 @@ require 'spec_helper'
 
 describe InformationDecorator do
   before { ApplicationController.new.set_current_view_context }
-  let(:field_access) { FieldAccess.new(@real_estate.offer, @real_estate.utilization, FieldAccess.cms_blacklist) }
-  before(:each) do Draper::Base.helpers.controller.stub(:field_access) { field_access } end
 
   before :each do
     @real_estate = Fabricate(:published_real_estate,

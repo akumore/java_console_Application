@@ -1,4 +1,5 @@
 require 'copy_real_estate'
+require 'field_access'
 
 class RealEstate
   include Offer::Accessors
@@ -239,6 +240,10 @@ class RealEstate
 
   def to_model_access
     ModelAccess.new(offer, utilization, ModelAccess.cms_blacklist)
+  end
+
+  def field_access
+    FieldAccess.new(offer, utilization, FieldAccess.cms_blacklist)
   end
 
   private
