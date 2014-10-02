@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.20 on 2014-10-02
+* Hotfix: Add SAA Certificate image on jobs page
+
 ### v2.9.19 on 2014-09-03
 * Hotfix: Update text for Forum slide (vision slider)
 
