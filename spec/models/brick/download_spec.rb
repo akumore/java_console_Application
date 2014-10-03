@@ -10,9 +10,9 @@ describe Brick::Download do
       @brick.should_not be_valid
     end
 
-    it 'has 1 error' do
+    it 'has 2 error' do
       @brick.valid?
-      @brick.errors.should have(1).items
+      @brick.errors.should have(2).items
     end
   end
 

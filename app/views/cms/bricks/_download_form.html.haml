@@ -1,11 +1,12 @@
-= form_for @brick, :url => url do |f|
-  = render 'cms/shared/errors', :model => @brick
+= form_for @brick, url: url do |f|
+  = render 'cms/shared/errors', model: @brick
 
   %fieldset
     .control-group.mandatory
       = f.label :title
       .controls
-        = f.text_field :title, :class => 'span8'
+        = f.text_field :title, class: 'span8'
+
     .control-group.mandatory
       = f.label :file
       .controls
@@ -13,8 +14,16 @@
 
         - if @brick.file.present?
           .well
-            = link_to "\"#{@brick.title}\" in neuem Fenster öffnen", @brick.file.url, :target => '_new'
+            = link_to "\"#{@brick.title}\" in neuem Fenster öffnen", @brick.file.url, target: '_new'
 
+    .control-group
+      = f.label :image
+      .controls
+        = f.file_field :image
+
+        - if @brick.image.present?
+          .well
+            = image_tag(@brick.image)
 
   .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
+    = f.submit nil, class: 'btn btn-primary'

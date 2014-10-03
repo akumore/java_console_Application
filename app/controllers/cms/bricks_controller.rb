@@ -5,7 +5,7 @@ class Cms::BricksController < Cms::SecuredController
 
   authorize_resource Page
   rescue_from CanCan::AccessDenied do |err|
-    redirect_to cms_dashboards_path, :alert => err.message
+    redirect_to cms_dashboards_path, alert: err.message
   end
 
 
