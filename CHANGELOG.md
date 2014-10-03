@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.21 on 2014-10-03
+* Hotfix: Add ability to add image to existing download brick
+
 ### v2.9.20 on 2014-10-02
 * Hotfix: Add SAA Certificate image on jobs page
 
