@@ -12,7 +12,6 @@ describe "Cms::Bricks" do
       @page.bricks << Fabricate.build(:placeholder_brick)
       @page.bricks << Fabricate.build(:accordion_brick)
       @page.bricks << Fabricate.build(:download_brick)
-      @page.bricks << Fabricate.build(:download_brick, image: File.open("#{Rails.root}/spec/support/test_files/image.jpg"))
       @page.reload
 
       @title_brick = @page.bricks[0]
@@ -20,7 +19,6 @@ describe "Cms::Bricks" do
       @placeholder_brick = @page.bricks[2]
       @accordion_brick = @page.bricks[3]
       @download_brick = @page.bricks[4]
-      @download_brick_with_image = @page.bricks[5]
 
       visit edit_cms_page_path(@page)
     end
@@ -346,7 +344,7 @@ describe "Cms::Bricks" do
       describe '#edit' do
         before :each do
           @page = Fabricate(:page)
-          @page.bricks << Fabricate.build(:download_brick, image: File.open("#{Rails.root}/spec/support/test_files/image.jpg"))
+          @page.bricks << Fabricate.build(:download_brick)
           @download_brick_with_image = @page.bricks.last
           visit edit_cms_page_download_brick_path(@page, @download_brick_with_image)
         end
