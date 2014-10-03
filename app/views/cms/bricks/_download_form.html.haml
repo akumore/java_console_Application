@@ -16,7 +16,7 @@
           .well
             = link_to "\"#{@brick.title}\" in neuem Fenster öffnen", @brick.file.url, target: '_new'
 
-    .control-group.mandatory
+    .control-group
       = f.label :image
       .controls
         = f.file_field :image

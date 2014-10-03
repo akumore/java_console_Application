@@ -6,6 +6,7 @@ class Brick::Download < Brick::Base
   field :file, type: String
 
   validates :title, presence: true
+  validates :file, presence: true
 
   mount_uploader :file, DownloadBrickDocumentUploader
   mount_uploader :image, DownloadBrickImageUploader
