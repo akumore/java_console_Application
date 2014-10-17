@@ -107,7 +107,6 @@ describe "Handout aka MiniDoku" do
 
     it 'shows the number of rooms' do
       visit real_estate_handout_path(printable_real_estate)
-      page.should have_content('Zimmeranzahl')
       page.should have_content('3.5 Zimmer')
     end
 
@@ -154,7 +153,7 @@ describe "Handout aka MiniDoku" do
           page.should have_content('1991')
         end
 
-        it 'shos the built on' do
+        it 'shows the built on' do
           page.should have_content('Baujahr')
           page.should have_content('2008')
         end
@@ -165,7 +164,6 @@ describe "Handout aka MiniDoku" do
         end
 
         it 'shows the rooms' do
-          page.should have_content('Zimmeranzahl')
           page.should have_content('3.5 Zimmer')
         end
 

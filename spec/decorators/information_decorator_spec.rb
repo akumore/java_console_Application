@@ -85,8 +85,8 @@ describe InformationDecorator do
         "\t<li>Baujahr: 1899</li>",
         "\t<li>Letzte Renovierung: 1997</li>",
         "\t<li>2 Geschosse</li>",
-        "\t<li>Jacuzzi</li>",
         "\t<li>Liftzugang</li>",
+        "\t<li>Jacuzzi</li>",
         '</ul>',
         'Infrastructure description'].join("\r\n")
     end

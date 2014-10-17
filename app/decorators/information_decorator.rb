@@ -4,8 +4,8 @@ class InformationDecorator < ApplicationDecorator
   decorates :information
 
   INFRASTRUCTURE_FIELDS = %w(built_on renovated_on floors has_swimming_pool is_child_friendly is_wheelchair_accessible
-    is_minergie_style is_minergie_certified has_elevator has_ramp has_lifting_platform has_railway_terminal
-    freight_elevator_carrying_capacity)
+    is_minergie_style is_minergie_certified has_elevator freight_elevator_carrying_capacity
+    has_ramp has_lifting_platform has_railway_terminal)
 
   def infrastructure_characteristics
     return [] if real_estate.parking?

@@ -359,7 +359,6 @@ describe "RealEstates" do
             page.should have_content('2008')
             page.should have_content('Geschoss')
             page.should have_content('3. Obergeschoss')
-            page.should have_content('Zimmeranzahl')
             page.should have_content('3.5 Zimmer')
             page.should have_content('Wohnfläche')
             page.should have_content('120 m²')

@@ -380,7 +380,7 @@ describe "Cms Information" do
 
       fill_in "Anzahl WC's", :with=>7
       click_on 'Immobilieninfos speichern'
-      expect(find_field('Ausbau Beschreibung').value).to eq "<ul>\n\t<li>Raumhöhe: 2.6 m</li>\n\t<li>Maximale Bodenbelastung: 12 kg/m²</li>\n\t<li>7 WC</li>\n</ul>\nInterior description"
+      expect(find_field('Ausbau Beschreibung').value).to eq "<ul>\n\t<li>Maximale Bodenbelastung: 12 kg/m²</li>\n\t<li>Raumhöhe: 2.6 m</li>\n\t<li>7 WC</li>\n</ul>\nInterior description"
     end
 
     it 'updates the additional information field' do
