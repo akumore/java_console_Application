@@ -16,6 +16,10 @@ body, select, input, textarea
 html
   overflow-y: scroll
 
+html,
+body
+  overflow-x: hidden
+
 .clear
   clear: both
 
@@ -55,6 +59,10 @@ html
     .sub-navigation-wrapper
       padding-top: 20px
       visibility: visible
+
+.footer-navigation
+  +horizontal-list(0.55em)
+  margin-bottom: 4em
 
 .meta-navigation
   +horizontal-list(10px)
@@ -159,7 +167,6 @@ h1, h2, h3, h4, p, ul, ol
   h4
     font-size: 2.25em
     padding: 0.5em 0
-    margin-bottom: 2em
 
 .footer-wrapper
   +clearfix
