@@ -382,28 +382,28 @@ module Export::Idx301
       #  str(4000) biggest varchar2(4000) in oracle - split description into two parts if required.
       # The following HTML-Tags can be used: <LI>,</LI>,<BR>, <B>,</B>. All other Tags will be removed.
       #pre_html = model.description.presence.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>')
-      if model.description.present?
-        html = model.description
-        html.gsub!(/>\s+/, '>')
-        html.gsub!(/\s+</, '<')
-        html.gsub!(/<br\ \/>/, '<br>')
-        html.gsub!(/<\/p><p>/, '<br><br>')
-        html.gsub!(/<\/p><ul>/, '<br><br>')
-        html.gsub!(/<\/p><h\d>/, '<br><br>')
-        html.gsub!(/<\/ul></, '</ul><br><')
-        html.gsub!(/\<\/h1>/, '</h1><br><br>')
-        html.gsub!(/\<\/h2>/, '</h2><br><br>')
-        html.gsub!(/\<\/h3>/, '</h3><br><br>')
-        html.gsub!(/\<\/h4>/, '</h4><br><br>')
-        if @account.provider == Provider::IMMOSCOUT
-          html = Sanitize.clean(html, :elements => ['b', 'ul', 'li', 'br']).strip
-        else
-          html = Sanitize.clean(html, :elements => ['b', 'li', 'br']).strip
-        end
-        html.to_s.gsub(/>\s+/, '>').gsub(/\s+</, '<')
+      html = model.description.to_s
+      html += model.figure.try(&:offer_html).to_s
+
+      return '-' unless html.present?
+
+      html.gsub!(/>\s+/, '>')
+      html.gsub!(/\s+</, '<')
+      html.gsub!(/<br\ \/>/, '<br>')
+      html.gsub!(/<\/p><p>/, '<br><br>')
+      html.gsub!(/<\/p><ul>/, '<br><br>')
+      html.gsub!(/<\/p><h\d>/, '<br><br>')
+      html.gsub!(/<\/ul></, '</ul><br><')
+      html.gsub!(/\<\/h1>/, '</h1><br><br>')
+      html.gsub!(/\<\/h2>/, '</h2><br><br>')
+      html.gsub!(/\<\/h3>/, '</h3><br><br>')
+      html.gsub!(/\<\/h4>/, '</h4><br><br>')
+      if @account.provider == Provider::IMMOSCOUT
+        html = Sanitize.clean(html, :elements => ['b', 'ul', 'li', 'br']).strip
       else
-        '-'
+        html = Sanitize.clean(html, :elements => ['b', 'li', 'br']).strip
       end
+      html.to_s.gsub(/>\s+/, '>').gsub(/\s+</, '<')
     end
 
     def selling_price

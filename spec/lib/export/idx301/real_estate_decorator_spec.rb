@@ -236,7 +236,9 @@ describe Export::Idx301::RealEstateDecorator do
     it 'returns "-"" if theres no description present' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, :description => ""),
+          mock_model(RealEstate,
+                     description: "",
+                     figure: nil),
           account,
           {}
         )
@@ -246,63 +248,75 @@ describe Export::Idx301::RealEstateDecorator do
     it 'retains newlines for homegate by converting them to br-Tags' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, :description => "<p>It<br />breaks</p><p>into new lines</p>"),
+          mock_model(RealEstate,
+                     description: "<p>It<br />breaks</p><p>into new lines</p><br>blabl<br><br>",
+                     figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
           account,
           {}
         )
-      expect(real_estate.object_description).to eq('It<br>breaks<br><br>into new lines')
+      expect(real_estate.object_description).to eq('It<br>breaks<br><br>into new lines<br>blabl<br><br>blabl<br><br>')
     end
 
     it 'renders asteriks (*) into <li> bullet points' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, :description => "<p>I<br />have</p><ul><li>one</li><li>two</li><li>three</li></ul><p>list items</p>"),
+          mock_model(RealEstate,
+                     description: "<p>I<br />have</p><ul><li>one</li><li>two</li><li>three</li></ul><p>list items</p>",
+                     figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
           account,
           {}
         )
-      expect(real_estate.object_description).to eq('I<br>have<br><br><li>one</li><li>two</li><li>three</li><br>list items')
+      expect(real_estate.object_description).to eq('I<br>have<br><br><li>one</li><li>two</li><li>three</li><br>list items<br><br>blabl<br><br>')
     end
 
     it 'remove double break after heading' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, :description => "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>"),
+          mock_model(RealEstate, 
+                     description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
+                     figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
           account,
           {}
         )
-      expect(real_estate.object_description).to eq("Vorteile<br><br><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li><br>Autoeinstellhalle kann dazugemietet werden.")
+      expect(real_estate.object_description).to eq("Vorteile<br><br><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li><br>Autoeinstellhalle kann dazugemietet werden.<br><br>blabl<br><br>")
     end
 
     it 'inserts a <br> tag before the second h3' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, :description => "<h3>Vorteile</h3><ul><li>Teststring 1</li><li>Teststring 2</li></ul>\n<h3>Angebot</h3><ul><li>Teststring 3</li></ul>"),
+          mock_model(RealEstate,
+                     description: "<h3>Vorteile</h3><ul><li>Teststring 1</li><li>Teststring 2</li></ul>\n<h3>Angebot</h3><ul><li>Teststring 3</li></ul>",
+                     figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
           account,
           {}
         )
-      expect(real_estate.object_description).to eq("Vorteile<br><br><li>Teststring 1</li><li>Teststring 2</li><br>Angebot<br><br><li>Teststring 3</li>")
+      expect(real_estate.object_description).to eq("Vorteile<br><br><li>Teststring 1</li><li>Teststring 2</li><br>Angebot<br><br><li>Teststring 3</li><br>blabl<br><br>")
     end
 
     it 'inserts two <br> tags after an ending p-tag that is followed by a h-tag' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, :description => "<p>Einleitung</p><h3>Vorteile</h3><ul><li>Teststring 1</li></ul><h3>Angebot</h3><ul><li>Teststring 2</li></ul>"),
+          mock_model(RealEstate,
+                     description: "<p>Einleitung</p><h3>Vorteile</h3><ul><li>Teststring 1</li></ul><h3>Angebot</h3><ul><li>Teststring 2</li></ul>",
+                     figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
           account,
           {}
         )
-      expect(real_estate.object_description).to eq("Einleitung<br><br>Vorteile<br><br><li>Teststring 1</li><br>Angebot<br><br><li>Teststring 2</li>")
+      expect(real_estate.object_description).to eq("Einleitung<br><br>Vorteile<br><br><li>Teststring 1</li><br>Angebot<br><br><li>Teststring 2</li><br>blabl<br><br>")
     end
 
     context 'with immoscout as provider' do
       it 'maintains the ul tags' do
         real_estate = Export::Idx301::RealEstateDecorator
           .new(
-            mock_model(RealEstate, :description => "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>"),
+            mock_model(RealEstate,
+                       description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
+                       figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
             Account.new(:provider => Provider::IMMOSCOUT),
             {}
           )
 
-        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.")
+        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>blabl<br><br>")
       end
     end
 
@@ -310,12 +324,14 @@ describe Export::Idx301::RealEstateDecorator do
       it 'convert the HTMLEntities' do
         real_estate = Export::Idx301::RealEstateDecorator
           .new(
-            mock_model(RealEstate, :description => "<h3>&Uuml;bersicht</h3><ul><li>Element mit &ouml;</li><li>Element mit &auml;</li><li>Element mit &uuml;</li></ul>"),
+            mock_model(RealEstate,
+                       description: "<h3>&Uuml;bersicht</h3><ul><li>Element mit &ouml;</li><li>Element mit &auml;</li><li>Element mit &uuml;</li></ul>",
+                       figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
             account,
             {}
           )
 
-        expect(real_estate.object_description).to eq("Übersicht<br><br><li>Element mit ö</li><li>Element mit ä</li><li>Element mit ü</li>")
+        expect(real_estate.object_description).to eq("Übersicht<br><br><li>Element mit ö</li><li>Element mit ä</li><li>Element mit ü</li><br>blabl<br><br>")
       end
     end
   end
