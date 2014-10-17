@@ -1,63 +1,64 @@
 %h4= t('.title')
 
-.footer-news
-  - if @footer_news_items.empty?
-    %br
-  - @footer_news_items.each do |news_item|
-    %div{:id=>"footer-news-item-#{news_item.id}"}
-      %h6= l news_item.date
-      %h5= news_item.title
-      = footer_news_item_link news_item
+.footer-wrapper
+  .footer-news
+    - if @footer_news_items.empty?
+      %br
+    - @footer_news_items.each do |news_item|
+      %div{:id=>"footer-news-item-#{news_item.id}"}
+        %h6= l news_item.date
+        %h5= news_item.title
+        = footer_news_item_link news_item
 
-.footer-teasers
-  - unless I18n.locale == :en
+  .footer-teasers
+    - unless I18n.locale == :en
+      %div
+        %h5= t ".forum_title"
+        %dl
+          %dt= t ".forum_content"
+          %dd= link_to t(".take_me_to_forum_magazine"), "#{t('.forum_url')}"
+
     %div
-      %h5= t ".forum_title"
+      %h5= t ".we_are_here_for_you"
       %dl
-        %dt= t ".forum_content"
-        %dd= link_to t(".take_me_to_forum_magazine"), "#{t('.forum_url')}"
+        %dt= t ".we_are_here_for_you_content"
+        %dd= link_to t(".take_me_to_image_film"), "#{t('company_url')}#vision"
 
-  %div
-    %h5= t ".we_are_here_for_you"
-    %dl
-      %dt= t ".we_are_here_for_you_content"
-      %dd= link_to t(".take_me_to_image_film"), "#{t('company_url')}#vision"
+    %div
+      %h5= t ".we_want_you"
+      %dl
+        %dd=t ".discover_alfred_mueller"
+        %dd= link_to t(".take_me_to_the_jobs"), t('jobs_url')
 
-  %div
-    %h5= t ".we_want_you"
-    %dl
-      %dd=t ".discover_alfred_mueller"
-      %dd= link_to t(".take_me_to_the_jobs"), t('jobs_url')
+    %div
+      %h5 St. Martin
+      %dl
+        %dt=t ".cameroon_drinking_water"
+        %dd=link_to t(".take_me_to_st_martin_website"), 'http://www.martinstiftung.ch/', :target => '_target'
 
-  %div
-    %h5 St. Martin
-    %dl
-      %dt=t ".cameroon_drinking_water"
-      %dd=link_to t(".take_me_to_st_martin_website"), 'http://www.martinstiftung.ch/', :target => '_target'
+    %div
+      %h5 Allmig
+      %dl
+        %dt=t ".compost_and_nuclear_plant_in_region_zug"
+        %dd=link_to t(".take_me_to_allmig_website"), 'http://www.allmig.ch/', :target => '_target'
 
-  %div
-    %h5 Allmig
-    %dl
-      %dt=t ".compost_and_nuclear_plant_in_region_zug"
-      %dd=link_to t(".take_me_to_allmig_website"), 'http://www.allmig.ch/', :target => '_target'
+  .footer-contact
+    %div
+      %h5= t('.contact.title')
+      %dl
+        %dd= t('.contact.address_html')
+        %dd= t('.contact.phone_html')
+        %dd= link_to t('.contact.directions'), contact_path
 
-.footer-contact
-  %div
-    %h5= t('.contact.title')
-    %dl
-      %dd= t('.contact.address_html')
-      %dd= t('.contact.phone_html')
-      %dd= link_to t('.contact.directions'), contact_path
-
-  .memberships
-    %h5= t '.memberships'
-    %dl
-      - if I18n.locale == :de
-        %dt Verband Schweizerischer Generalunternehmer VSGU
-        %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", :target => "_blank"
-        %dt Schweizerischer Verband der Immobilienwirtschaft SVIT
-        %dd= link_to "www.svit.ch", "http://www.svit.ch", :target => "_blank"
-      - else
-        %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", :target => "_blank"
-        %dd= link_to "www.svit.ch", "http://www.svit.ch", :target => "_blank"
+    .memberships
+      %h5= t '.memberships'
+      %dl
+        - if I18n.locale == :de
+          %dt Verband Schweizerischer Generalunternehmer VSGU
+          %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", :target => "_blank"
+          %dt Schweizerischer Verband der Immobilienwirtschaft SVIT
+          %dd= link_to "www.svit.ch", "http://www.svit.ch", :target => "_blank"
+        - else
+          %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", :target => "_blank"
+          %dd= link_to "www.svit.ch", "http://www.svit.ch", :target => "_blank"
 
