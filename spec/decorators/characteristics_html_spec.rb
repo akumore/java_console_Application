@@ -3,6 +3,33 @@ require 'spec_helper'
 
 describe CharacteristicsHtml do
 
+  describe 'merge' do
+    subject { CharacteristicsHtml }
+
+    it 'merge correct' do
+      expect(subject.merge([],    [],        %w(a))).to eq %w(a)
+      expect(subject.merge([],    %w(a),     %w(a))).to eq []
+      expect(subject.merge([],    %w(a b),   %w(a))).to eq []
+      expect(subject.merge(%w(a), [],        %w(a))).to eq %w(a)
+      expect(subject.merge(%w(a), %w(a),     %w(a))).to eq %w(a)
+      expect(subject.merge(%w(a), %w(a b),   %w(a))).to eq %w(a)
+      expect(subject.merge(%w(b), [],        %w(a))).to eq %w(b a)
+      expect(subject.merge(%w(b), %w(a),     %w(a))).to eq %w(b)
+      expect(subject.merge(%w(b), %w(a b),   %w(a))).to eq []
+    end
+
+    it 'merge keeps correct order' do
+      current = %w(a b)
+      expect(subject.merge(current,    [],        %w(a x))).to eq %w(a x b)
+      expect(subject.merge(current,    [],        %w(x b))).to eq %w(a x b)
+      expect(subject.merge(current,    [],        %w(b x))).to eq %w(a b x)
+      expect(subject.merge(current,    [],        %w(x a))).to eq %w(x a b)
+      expect(subject.merge(current,    %w(c),     %w(a c x))).to eq %w(a x b)
+      expect(subject.merge(current,    %w(c),     %w(x c b))).to eq %w(a x b)
+    end
+  end
+
+
   let(:decorator) do
     stub(InformationDecorator,
          field_html: 'abc',
@@ -105,6 +132,15 @@ describe CharacteristicsHtml do
         expect(subject.update).to be_true
       end
 
+      it 'insert new list items at correct position' do
+        changed_decorator.should_receive(:field_list_in_real_estate_language).
+          with('field_characteristics').
+          and_return(['x', 'a', 'y', 'b','z'])
+        changed_decorator.should_receive('field_html=').
+          with("<ul>\r\nx\r\na\r\ny\r\nz\r\n</ul>\r\nabc")
+        expect(subject.update).to be_true
+      end
+
       it 'create new ul when nothing is there' do
         changed_decorator.should_receive(:field_html).and_return('abc')
         changed_decorator.should_receive(:field_list_in_real_estate_language).
@@ -151,6 +187,5 @@ describe CharacteristicsHtml do
       end
 
     end
-
   end
 end

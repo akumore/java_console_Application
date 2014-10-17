@@ -1,6 +1,41 @@
 class CharacteristicsHtml
   attr_reader :list_field, :html_field, :decorator
 
+  def self.merge(current, before, after)
+    current = current.dup
+    to_add = after - before
+    to_add.each {|li|
+      next if current.include?(li)
+
+      # find the index of the closest li before current
+      lis_before_current = after[0..after.index(li)][0..-2]
+      closest = lis_before_current.reverse.find {|l| current.index(l) }
+
+      if closest
+        current.insert(current.index(closest) + 1, li)
+        next
+      end
+
+      # find the index of the closest li after current
+      lis_after_current = after[after.index(li)..-1][1..-1]
+      closest = lis_after_current.find {|l| current.index(l) }
+
+      if closest
+        current.insert(current.index(closest), li)
+        next
+      end
+
+      current.push(li)
+    }
+    to_remove = before - after
+    to_remove.each {|li|
+      current.delete(li)
+    }
+    current
+  end
+
+  # Will update the attribute "#{field}_html" with the list
+  # values returned by "#{field}_characteristics"
   def initialize(decorator, field, options = {})
     @list_field = options[:list_field] || "#{field}_characteristics"
     @html_field = options[:html_field] || "#{field}_html"
@@ -53,21 +88,25 @@ class CharacteristicsHtml
 
   def update_list
     info = @original_html.split(/\r\n|\n/)
+    index_of_ul_start = info.index('<ul>')
     index_of_ul_end = info.index('</ul>')
 
     to_add = lis_after - lis_before
-    if to_add.length > 0 && index_of_ul_end.nil?
+    return if to_add.length == 0 && index_of_ul_start.nil?
+
+    if index_of_ul_end.nil?
       info = ['<ul>','</ul>'] + info
+      index_of_ul_start = 0
       index_of_ul_end = 1
     end
-    to_add.reverse.each {|li|
-      info.insert(index_of_ul_end, li)
-    }
 
-    to_remove = lis_before - lis_after
-    to_remove.each {|li|
-      info.delete(li)
-    }
+    # cut out current lis
+    info_prefix = info[0..index_of_ul_start]
+    current_lis = info[index_of_ul_start+1..index_of_ul_end-1]
+    info_postfix = info[index_of_ul_end..-1]
+    new_lis = self.class.merge(current_lis, lis_before, lis_after)
+
+    info = info_prefix + new_lis + info_postfix
     write_field(info)
   end
 
