@@ -1,18 +1,6 @@
 - if real_estate.description.present?
   = real_estate.description.html_safe
 
-- if figure
-
-  - if figure.try(&:offer_html).present?
-    %h3= t('information.offer')
-    = figure.offer_html.html_safe
-
-  - if real_estate.living? && figure.floor.present?
-    %dl
-      %dt= t('figures.floor')
-      %dd= figure.floor
-
-  - if figure.rooms.present?
-    %dl
-      %dt= t('figures.rooms')
-      %dd= figure.rooms
+- if figure.try(&:offer_html).present?
+  %h3= t('information.offer')
+  = figure.offer_html.html_safe

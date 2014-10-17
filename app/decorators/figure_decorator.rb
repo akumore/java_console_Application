@@ -5,7 +5,7 @@ class FigureDecorator < ApplicationDecorator
 
   OFFER_FIELDS = %w(rooms long_surface long_property_surface long_storage_surface
                     inside_parking_spots outside_parking_spots covered_slot covered_bike
-                    outdoor_bike single_garage double_garage)
+                    outdoor_bike single_garage double_garage floor)
 
   def offer_characteristics
     translate_characteristics(OFFER_FIELDS)

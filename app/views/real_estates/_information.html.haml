@@ -10,15 +10,3 @@
   - if information.try(&:interior_html).present?
     %h3= t('information.interior_html')
     = information.interior_html.html_safe
-
-- if information && real_estate.working? || real_estate.storing?
-
-  - if information.maximal_floor_loading.present?
-    %dl
-      %dt= t('information.maximal_floor_loading')
-      %dd= information.maximal_floor_loading
-
-  - if information.freight_elevator_carrying_capacity.present?
-    %dl
-      %dt= t('information.freight_elevator_carrying_capacity')
-      %dd= information.freight_elevator_carrying_capacity

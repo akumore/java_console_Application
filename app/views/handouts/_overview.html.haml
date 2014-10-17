@@ -15,11 +15,3 @@
         - if real_estate.figure.specification_surface.present?
           %span.helptext
             = "(#{real_estate.figure.specification_surface})"
-
-    - if real_estate.figure.floor.present?
-      %dt= t('figures.floor')
-      %dd= real_estate.figure.floor
-
-    - if real_estate.figure.rooms.present?
-      %dt= t('figures.rooms')
-      %dd= real_estate.figure.rooms
