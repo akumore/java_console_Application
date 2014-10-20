@@ -56,6 +56,10 @@ In order for RVM to work with the whenever gem, we have to write a `.rvmrc` with
 
 ## PDF Generation
 
+Clear cached handouts:
+
+    rm  public/{de,en,fr}/real_estates/*/handout.*
+
 ## Performance
 
 * Response times of Mongolab (currently used for database hosting) are very high, around 100ms for each database access. Don't use it in production.
