@@ -3,7 +3,7 @@
 # Setup
 
 * Make sure you have Ruby 1.9.3 with the gemset `alfred_mueller` running.
-* Install mongodb: `brew install mongodb`. Make sure you install mongodb > 2.0, run `brew update` if necessary.
+* Install mongodb 2.4: `brew tap homebrew/versions` and then `brew install mongodb24`
 * QT is needed for capybara-webkit. You can install it with `brew install qt`
 * Install mmode to handle scrcpt2 maintenance mode: `gem install mmode`
 * Add the remote repo on scrcpt2 to deploy: `bundle exec blazing update staging`
