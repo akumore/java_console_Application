@@ -416,8 +416,8 @@ describe "RealEstates" do
             visit real_estate_path(real_estate)
           end
 
-          it 'does not show the chapter title' do
-            page.should_not have_content('Weitere Informationen')
+          it 'does show the chapter title' do
+            page.should have_content('Weitere Informationen')
           end
         end
       end
