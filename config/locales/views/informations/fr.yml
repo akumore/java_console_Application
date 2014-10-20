@@ -44,6 +44,7 @@ fr:
       high_school: 'Cycle secondaire %{distance} m'
       highway_access: 'Accès autoroutier %{distance} m'
     location_html: 'Lieu'
+    location: 'Lieu'
     interior_html: 'Construction'
     offer: 'Offre'
     infrastructure_html: 'Bâtiment/Bien immobilier'

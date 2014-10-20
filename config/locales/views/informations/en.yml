@@ -44,6 +44,7 @@ en:
       high_school: 'Secondary / high school %{distance} m'
       highway_access: 'Motorway access %{distance} m'
     location_html: 'Location'
+    location: 'Location'
     interior_html: 'Fittings'
     offer: 'Offer'
     infrastructure_html: 'Building/Property'

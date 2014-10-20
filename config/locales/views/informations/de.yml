@@ -44,6 +44,7 @@ de:
       high_school: 'Oberstufe %{distance} m'
       highway_access: 'Autobahnanschluss %{distance} m'
     location_html: 'Standort'
+    location: 'Standort'
     interior_html: 'Ausbau'
     offer: 'Angebot'
     infrastructure_html: 'Gebäude/Liegenschaft'
