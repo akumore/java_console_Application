@@ -63,6 +63,17 @@ module ApplicationHelper
     end
   end
 
+  def parking_floated_field(form, type, field, options = {})
+    real_estate = form.object.real_estate
+    # do not render if realestate is parking and the current
+    # parking spot field does not match the category
+    return '' if real_estate.parking? && 
+      !(real_estate.category.name == field.to_s ||
+        real_estate.category.name == "#{field.to_s}_spots")
+
+    floated_field(form, type, field, options)
+  end
+
   def floated_field(form, type, field, options = {})
     return '' unless accessible?(field)
 

@@ -56,40 +56,13 @@
             .controls
               = f.text_field :extra_storage
 
-        .control-group
-          = f.label :inside_parking
-          .controls
-            = f.text_field :inside_parking
-
-        .control-group
-          = f.label :outside_parking
-          .controls
-            = f.text_field :outside_parking
-
-        .control-group
-          = f.label :covered_slot
-          .controls
-            = f.text_field :covered_slot
-
-        .control-group
-          = f.label :covered_bike
-          .controls
-            = f.text_field :covered_bike
-
-        .control-group
-          = f.label :outdoor_bike
-          .controls
-            = f.text_field :outdoor_bike
-
-        .control-group
-          = f.label :single_garage
-          .controls
-            = f.text_field :single_garage
-
-        .control-group
-          = f.label :double_garage
-          .controls
-            = f.text_field :double_garage
+        - parking_floated_field(f, :text_field, :inside_parking)
+        - parking_floated_field(f, :text_field, :outside_parking)
+        - parking_floated_field(f, :text_field, :covered_slot)
+        - parking_floated_field(f, :text_field, :covered_bike)
+        - parking_floated_field(f, :text_field, :outdoor_bike)
+        - parking_floated_field(f, :text_field, :single_garage)
+        - parking_floated_field(f, :text_field, :double_garage)
 
         .control-group
           = f.label :opted

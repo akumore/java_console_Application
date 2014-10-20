@@ -495,7 +495,7 @@ describe "Cms::Pricings" do
           @real_estate = Fabricate(:real_estate,
             :utilization => Utilization::PARKING,
             :offer => Offer::RENT,
-            :category => Category.last,
+            :category => Fabricate(:category, name: 'covered_bike'),
             :reference => Fabricate.build(:reference)
           )
           visit edit_cms_real_estate_path(@real_estate)
@@ -538,20 +538,22 @@ describe "Cms::Pricings" do
               select '2012', :from => 'pricing_available_from_1i'
               fill_in 'Etwa verfügbar ab', :with => 'Ab Ende April'
 
-              fill_in 'pricing_inside_parking', :with => '200'
-              fill_in 'pricing_outside_parking', :with => '150'
-              fill_in 'pricing_double_garage', :with => '300'
-              fill_in 'pricing_single_garage', :with => '250'
-              fill_in 'pricing_outdoor_bike', :with => '220'
-              fill_in 'pricing_covered_bike', :with => '230'
-              fill_in 'pricing_covered_slot', :with => '205'
 
               check('Optiert')
             end
           end
 
           it 'saves a new Pricing' do
+            fill_in 'pricing_covered_bike', :with => '230'
+            page.should_not have_css('#pricing_inside_parking')
+            page.should_not have_css('#pricing_outside_parking')
+            page.should_not have_css('#pricing_double_garage')
+            page.should_not have_css('#pricing_single_garage')
+            page.should_not have_css('#pricing_outdoor_bike')
+            page.should_not have_css('#pricing_covered_slot')
+
             click_on 'Preise erstellen'
+
             @real_estate.reload
             @real_estate.pricing.should be_a(Pricing)
           end
