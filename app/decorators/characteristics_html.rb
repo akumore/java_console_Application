@@ -1,6 +1,9 @@
 class CharacteristicsHtml
   attr_reader :list_field, :html_field, :decorator
 
+  # merge current list with the difference between
+  # before and after items. Keep order of items
+  # whenever possible
   def self.merge(current, before, after)
     current = current.dup
     to_add = after - before
