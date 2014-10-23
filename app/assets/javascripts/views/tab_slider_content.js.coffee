@@ -31,4 +31,3 @@ class window.AlfredMueller.Views.TabSliderContent extends Backbone.View
 
   handleClick: (event) ->
     makeActive($(event.target))
-
