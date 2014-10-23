@@ -4,8 +4,7 @@ class window.AlfredMueller.Views.Tabs extends Backbone.View
     'click .tabs-navigation li' : 'handleClick'
 
   initialize: ->
-    @navigation = @el.find('.tabs-navigation')
-    @navigationItems = @navigation.find('li')
+    @navigationItems = @el.find('.tabs-navigation li')
     @contentItems = @el.find('.tabs-content .content')
 
   handleClick: (event) ->
