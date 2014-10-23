@@ -11,11 +11,11 @@ class ApplicationController < ActionController::Base
 
   def default_url_options(options={})
     logger.debug "default_url_options is passed options: #{options.inspect}\n"
-    {:locale => I18n.locale}
+    { locale: I18n.locale }
   end
 
   def self.default_url_options(options={})
-    options.merge({ :locale => I18n.locale })
+    options.merge({ locale: I18n.locale })
   end
 
   def stored_location_for(resource_or_scope)
@@ -27,12 +27,12 @@ class ApplicationController < ActionController::Base
   end
 
   def get_news_items_for_footer
-    @footer_news_items = NewsItem.where(:locale=>I18n.locale).desc(:date).limit(4)
+    @footer_news_items = NewsItem.where(locale: I18n.locale).desc(:date).limit(4)
   end
 
   # GA event logger
   def log_event(category, action, label = nil)
     session[:events] ||= Array.new
-    session[:events] << {:category => category, :action => action, :label => label}
+    session[:events] << { category: category, action: action, label: label }
   end
 end
