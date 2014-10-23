@@ -61,8 +61,12 @@ body
       visibility: visible
 
 .footer-navigation
-  +horizontal-list(0.55em)
+  +horizontal-list
   margin-bottom: 4em
+
+  li
+    padding-left: 0
+    padding-right: 1.1em
 
 .meta-navigation
   +horizontal-list(10px)
@@ -166,6 +170,7 @@ h1, h2, h3, h4, p, ul, ol
 
   h4
     font-size: 2.25em
+    line-height: 1
     padding: 0.5em 0
 
   h6
