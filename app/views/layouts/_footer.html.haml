@@ -11,7 +11,6 @@
         %h5= news_item.title
         = footer_news_item_link news_item
 
-  .footer-teasers
     - unless I18n.locale == :en
       %div
         %h5= t ".forum_title"
@@ -19,18 +18,8 @@
           %dt= t ".forum_content"
           %dd= link_to t(".take_me_to_forum_magazine"), "#{t('.forum_url')}"
 
-    %div
-      %h5= t ".we_are_here_for_you"
-      %dl
-        %dt= t ".we_are_here_for_you_content"
-        %dd= link_to t(".take_me_to_image_film"), "#{t('company_url')}#vision"
 
-    %div
-      %h5= t ".we_want_you"
-      %dl
-        %dd=t ".discover_alfred_mueller"
-        %dd= link_to t(".take_me_to_the_jobs"), t('jobs_url')
-
+  .footer-teasers
     %div
       %h5 St. Martin
       %dl

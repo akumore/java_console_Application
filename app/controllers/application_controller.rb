@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def get_news_items_for_footer
-    @footer_news_items = NewsItem.where(locale: I18n.locale).desc(:date).limit(4)
+    @footer_news_items = NewsItem.where(locale: I18n.locale).desc(:date).limit(1)
   end
 
   # GA event logger
