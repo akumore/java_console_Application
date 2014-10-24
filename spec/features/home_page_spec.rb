@@ -19,19 +19,13 @@ describe "Homepage" do
   describe "Services Slider App" do
     it "contains a slide for renting real estates" do
       visit root_path
-      page.should have_css ".rent-slide"
+      page.should have_css "#rent-slides"
     end
 
     it "contains a slide for selling real estates" do
       visit root_path
-      page.should have_css ".sale-slide"
+      page.should have_css "#sale-slides"
     end
-
-    it "contains a slide for advertisement about build abilities" do
-      visit root_path
-      page.should have_css ".build-slide"
-    end
-
 
     describe "The slide for renting real estates" do
       before do
@@ -49,7 +43,7 @@ describe "Homepage" do
 
       it "shows the primary image of the appropriate real estate" do
         visit root_path
-        within(".rent-slide") do
+        within("#rent-slides") do
           page.should have_css("img[src='#{@reference_project_for_rent.slider_image.gallery.url}']")
         end
       end
@@ -66,15 +60,15 @@ describe "Homepage" do
 
         visit root_path
 
-        within(".rent-slide") do
-          page.should have_css("a[href='#{real_estates_path(:offer => 'for_rent', :utilization => 'private')}']")
-          page.should have_css("a[href='#{real_estates_path(:offer => 'for_rent', :utilization => 'commercial')}']")
+        within("#rent-slides") do
+          page.should have_css("a[href='#{real_estates_path(offer: 'for_rent', utilization: 'private')}']")
+          page.should have_css("a[href='#{real_estates_path(offer: 'for_rent', utilization: 'commercial')}']")
         end
       end
 
       it "shows the title of the reference project" do
         visit root_path
-        within(".rent-slide .image-caption-text") do
+        within("#rent-slides .image-caption-text") do
           page.should have_content @reference_project_for_rent.title
         end
       end
@@ -83,27 +77,27 @@ describe "Homepage" do
 
         describe "with real estate published" do
           it "shows the link of the reference project" do
-            real_estate = Fabricate :residential_building, :state => RealEstate::STATE_PUBLISHED
+            real_estate = Fabricate :residential_building, state: RealEstate::STATE_PUBLISHED
             puts real_estate.published?
-            ref = Fabricate :reference_project_for_rent, :real_estate => real_estate
+            ref = Fabricate :reference_project_for_rent, real_estate: real_estate
             visit root_path
-            page.should have_link("Zum Projekt"), :href => real_estate_path(real_estate)
+            page.should have_link("Zum Projekt"), href: real_estate_path(real_estate)
           end
         end
 
         describe "without real estate published" do
           it "shows the link of the reference project" do
-            real_estate = Fabricate :residential_building, :state => RealEstate::STATE_EDITING
-            ref = Fabricate :reference_project_for_rent, :real_estate => real_estate
+            real_estate = Fabricate :residential_building, state: RealEstate::STATE_EDITING
+            ref = Fabricate :reference_project_for_rent, real_estate: real_estate
             visit root_path
-            page.should_not have_link("Zum Projekt", :href => real_estate_path(real_estate))
+            page.should_not have_link("Zum Projekt", href: real_estate_path(real_estate))
           end
         end
       end
 
       describe "with url" do
         before do
-          @reference_project_with_url = Fabricate :reference_project_for_rent, :url => 'link_to_project_website'
+          @reference_project_with_url = Fabricate :reference_project_for_rent, url: 'link_to_project_website'
         end
 
         it "shows the link to the project page in the slider" do
@@ -118,12 +112,12 @@ describe "Homepage" do
         end
 
         before do
-          @reference_project_with_url = Fabricate :reference_project_for_rent, :real_estate => real_estate
+          @reference_project_with_url = Fabricate :reference_project_for_rent, real_estate: real_estate
         end
 
         it "shows the link to the real estate in the slider" do
           visit root_path
-          page.should have_css("a[href='#{real_estate_path real_estate, :offer => 'for_rent', :utilization => 'private'}']")
+          page.should have_css("a[href='#{real_estate_path real_estate, offer: 'for_rent', utilization: 'private'}']")
         end
       end
 
@@ -146,7 +140,7 @@ describe "Homepage" do
 
       it "shows the primary image of the appropriate real estate" do
         visit root_path
-        within(".sale-slide") do
+        within("#sale-slides") do
           page.should have_css("img[src='#{@reference_project_for_sale.slider_image.gallery.url}']")
         end
       end
@@ -163,15 +157,15 @@ describe "Homepage" do
 
         visit root_path
 
-        within(".sale-slide") do
-          page.should have_css("a[href='#{real_estates_path(:offer => 'for_sale', :utilization => 'private')}']")
-          page.should have_css("a[href='#{real_estates_path(:offer => 'for_sale', :utilization => 'commercial')}']")
+        within("#sale-slides") do
+          page.should have_css("a[href='#{real_estates_path(offer: 'for_sale', utilization: 'private')}']")
+          page.should have_css("a[href='#{real_estates_path(offer: 'for_sale', utilization: 'commercial')}']")
         end
       end
 
       it "shows the title of the real estate" do
         visit root_path
-        within(".sale-slide .image-caption-text") do
+        within("#sale-slides .image-caption-text") do
           page.should have_content @reference_project_for_sale.title
         end
       end
@@ -190,7 +184,7 @@ describe "Homepage" do
         visit root_path
 
         within ".footer-news" do
-          page.should have_css("div[id*='footer-news-item-']", :count => 4)
+          page.should have_css("div[id*='footer-news-item-']", count: 1)
         end
       end
 
@@ -214,7 +208,7 @@ describe "Homepage" do
         visit root_path
 
         within "#footer-news-item-#{@news_item.id}" do
-          page.should have_link("Mehr erfahren", :href => "#{news_items_path}#news_item_#{@news_item.id}")
+          page.should have_link("Mehr erfahren", href: "#{news_items_path}#news_item_#{@news_item.id}")
         end
       end
     end
