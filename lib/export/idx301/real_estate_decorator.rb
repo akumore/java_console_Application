@@ -277,13 +277,13 @@ module Export::Idx301
         }
       elsif cat == 'parking'
         subcategories = {
-          'open_slot'                   => 1,
-          'covered_slot'                => 2,
-          'single_garage'               => 3,
-          'double_garage'               => 4,
-          'underground_slot'            => 5,
-          'covered_parking_place_bike'  => 9,
-          'outdoor_parking_place_bike'  => 10
+          'outside_parking'  => 1,
+          'covered_slot'     => 2,
+          'single_garage'    => 3,
+          'double_garage'    => 4,
+          'inside_parking'   => 5,
+          'covered_bike'     => 9,
+          'outdoor_bike'     => 10
           # more here, but unsused
         }
       elsif cat == 'properties'

@@ -356,10 +356,10 @@ describe Export::Idx301::RealEstateDecorator do
   end
 
   describe '#object_type' do
-    it 'returns 5 for an underground_slot' do
+    it 'returns 5 for an inside_parking' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, :category => mock_model(Category, :name => 'underground_slot')),
+          mock_model(RealEstate, :category => mock_model(Category, :name => 'inside_parking')),
           account,
           {}
         )

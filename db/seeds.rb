@@ -97,13 +97,13 @@ module InitialCategories
   end
 
   {
-    'open_slot'                   => { :label_translations => { :de => 'Parkplatz im Freien',              :fr => 'Place ouverte',             :it => 'Parcheggio all\'aperto',    :en => 'Open slot' }},
+    'outside_parking'             => { :label_translations => { :de => 'Parkplatz im Freien',              :fr => 'Place ouverte',             :it => 'Parcheggio all\'aperto',    :en => 'Open slot' }},
     'covered_slot'                => { :label_translations => { :de => 'Parkplatz im Freien überdacht',    :fr => 'Place couverte',            :it => 'Parcheggio coperto',        :en =>  'Covered slot' }},
     'single_garage'               => { :label_translations => { :de => 'Einzelgarage',                     :fr => 'Garage individuel',         :it => 'Garage singolo',            :en =>  'Single garage' }},
     'double_garage'               => { :label_translations => { :de => 'Doppelgarage',                     :fr => 'Garage double',             :it => 'Garage doppio',             :en => 'Double garage' }},
-    'underground_slot'            => { :label_translations => { :de => 'Parkplatz in Autoeinstellhalle',   :fr => 'Place souterraine',         :it => 'Parcheggio sotterraneo',    :en =>  'Underground slot' }},
-    'covered_parking_place_bike'  => { :label_translations => { :de => 'Motorrad-PP in Autoeinstellhalle', :fr => 'Halle à motos',             :it => 'Posteggio moto in garage',  :en => 'Covered parking place bike' }},
-    'outdoor_parking_place_bike'  => { :label_translations => { :de => 'Motorrad-PP im Freien überdacht',  :fr => 'Place extérieure à motos',  :it => 'Posteggio moto esterno',    :en => 'Outdoor parking place bike' }}
+    'inside_parking'              => { :label_translations => { :de => 'Parkplatz in Autoeinstellhalle',   :fr => 'Place souterraine',         :it => 'Parcheggio sotterraneo',    :en =>  'Underground slot' }},
+    'covered_bike'                => { :label_translations => { :de => 'Motorrad-PP in Autoeinstellhalle', :fr => 'Halle à motos',             :it => 'Posteggio moto in garage',  :en => 'Covered parking place bike' }},
+    'outdoor_bike'                => { :label_translations => { :de => 'Motorrad-PP im Freien überdacht',  :fr => 'Place extérieure à motos',  :it => 'Posteggio moto esterno',    :en => 'Outdoor parking place bike' }}
   }
   .each do |key, value|
     create_sublevel_for('parking', key, value)

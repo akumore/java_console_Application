@@ -280,13 +280,13 @@ class RealEstateDecorator < ApplicationDecorator
   def thumbnail
     if parking?
       image_path({
-              'open_slot'                   => 'parking_thumbnails/open_slot.jpg',
-              'covered_slot'                => 'parking_thumbnails/covered_slot.jpg',
-              'single_garage'               => 'parking_thumbnails/covered_slot.jpg',
-              'double_garage'               => 'parking_thumbnails/covered_slot.jpg',
-              'underground_slot'            => 'parking_thumbnails/covered_slot.jpg',
-              'covered_parking_place_bike'  => 'parking_thumbnails/covered_slot_bike.jpg',
-              'outdoor_parking_place_bike'  => 'parking_thumbnails/covered_slot_bike.jpg'
+              'outside_parking'       => 'parking_thumbnails/open_slot.jpg',
+              'covered_slot'          => 'parking_thumbnails/covered_slot.jpg',
+              'single_garage'         => 'parking_thumbnails/covered_slot.jpg',
+              'double_garage'         => 'parking_thumbnails/covered_slot.jpg',
+              'inside_parking'        => 'parking_thumbnails/covered_slot.jpg',
+              'covered_bike'          => 'parking_thumbnails/covered_slot_bike.jpg',
+              'outdoor_bike'          => 'parking_thumbnails/covered_slot_bike.jpg'
             }.fetch(category.name, 'parking_thumbnails/open_slot.jpg'))
     else
       images.primary.file.thumb.url
