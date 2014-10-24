@@ -1,0 +1,58 @@
+.teaser-row
+  +clearfix
+  margin-bottom: 1%
+
+  .teaser
+    float: left
+    padding: 5% 3%
+    position: relative
+    margin-top: 1%
+
+    h2
+      margin-top: 0
+      text-transform: none
+
+  .teaser-left
+    width: 53%
+    margin-right: .5%
+
+  .teaser-right
+    width: 34%
+    float: right
+    margin-left: .5%
+
+  .teaser-overlaps-left:before
+    content: ''
+    background-color: transparent
+    position: absolute
+    top: 0
+    bottom: 0
+    width: 9999px
+    right: 100%
+
+  .teaser-overlaps-right:after
+    content: ''
+    background-color: transparent
+    position: absolute
+    top: 0
+    bottom: 0
+    width: 9999px
+    left: 100%
+
+  .teaser-grey
+    background-color: $head-of-alfred-mueller-tab-slider-border
+
+    &.teaser-overlaps-left:before
+      background-color: $head-of-alfred-mueller-tab-slider-border
+
+  .teaser-blue
+    background-color: #7f95a6
+
+    &.teaser-overlaps-right:after
+      background-color: #7f95a6
+
+  .teaser-blue-dark
+    background-color: #5d788f
+
+  .teaser-browny
+    background-color: #d1caaa
