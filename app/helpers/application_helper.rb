@@ -63,13 +63,18 @@ module ApplicationHelper
     end
   end
 
+  def parking_field_visible?(real_estate, field)
+    return true unless real_estate.parking?
+    category_name = real_estate.category.name
+    category_name == field.to_s || "#{category_name}_spots" == field.to_s
+  end
+
+
   def parking_floated_field(form, type, field, options = {})
     real_estate = form.object.real_estate
     # do not render if realestate is parking and the current
     # parking spot field does not match the category
-    return '' if real_estate.parking? && 
-      !(real_estate.category.name == field.to_s ||
-        real_estate.category.name == "#{field.to_s}_spots")
+    return '' unless parking_field_visible?(real_estate, field)
 
     floated_field(form, type, field, options)
   end

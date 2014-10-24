@@ -93,37 +93,44 @@
     %dt= t "mongoid.attributes.figure.has_garage"
     %dd= t "#{@figure.has_garage?}"
 
-    %dt= t "mongoid.attributes.figure.inside_parking_spots"
-    %dd
-      = @figure.inside_parking_spots
-      &nbsp;
+    - if parking_field_visible?(@figure.real_estate, 'inside_parking_spots')
+      %dt= t "mongoid.attributes.figure.inside_parking_spots"
+      %dd
+        = @figure.inside_parking_spots
+        &nbsp;
 
-    %dt= t "mongoid.attributes.figure.outside_parking_spots"
-    %dd
-      = @figure.outside_parking_spots
-      &nbsp;
+    - if parking_field_visible?(@figure.real_estate, 'outside_parking_spots')
+      %dt= t "mongoid.attributes.figure.outside_parking_spots"
+      %dd
+        = @figure.outside_parking_spots
+        &nbsp;
 
-    %dt= t "mongoid.attributes.figure.covered_slot"
-    %dd
-      = @figure.covered_slot
-      &nbsp;
+    - if parking_field_visible?(@figure.real_estate, 'covered_slot')
+      %dt= t "mongoid.attributes.figure.covered_slot"
+      %dd
+        = @figure.covered_slot
+        &nbsp;
 
-    %dt= t "mongoid.attributes.figure.covered_bike"
-    %dd
-      = @figure.covered_bike
-      &nbsp;
+    - if parking_field_visible?(@figure.real_estate, 'covered_bike')
+      %dt= t "mongoid.attributes.figure.covered_bike"
+      %dd
+        = @figure.covered_bike
+        &nbsp;
 
-    %dt= t "mongoid.attributes.figure.outdoor_bike"
-    %dd
-      = @figure.outdoor_bike
-      &nbsp;
+    - if parking_field_visible?(@figure.real_estate, 'outdoor_bike')
+      %dt= t "mongoid.attributes.figure.outdoor_bike"
+      %dd
+        = @figure.outdoor_bike
+        &nbsp;
 
-    %dt= t "mongoid.attributes.figure.single_garage"
-    %dd
-      = @figure.single_garage
-      &nbsp;
+    - if parking_field_visible?(@figure.real_estate, 'single_garage')
+      %dt= t "mongoid.attributes.figure.single_garage"
+      %dd
+        = @figure.single_garage
+        &nbsp;
 
-    %dt= t "mongoid.attributes.figure.double_garage"
-    %dd
-      = @figure.double_garage
-      &nbsp;
+    - if parking_field_visible?(@figure.real_estate, 'double_garage')
+      %dt= t "mongoid.attributes.figure.double_garage"
+      %dd
+        = @figure.double_garage
+        &nbsp;

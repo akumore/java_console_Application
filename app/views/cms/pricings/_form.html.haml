@@ -56,13 +56,14 @@
             .controls
               = f.text_field :extra_storage
 
-        - parking_floated_field(f, :text_field, :inside_parking)
-        - parking_floated_field(f, :text_field, :outside_parking)
-        - parking_floated_field(f, :text_field, :covered_slot)
-        - parking_floated_field(f, :text_field, :covered_bike)
-        - parking_floated_field(f, :text_field, :outdoor_bike)
-        - parking_floated_field(f, :text_field, :single_garage)
-        - parking_floated_field(f, :text_field, :double_garage)
+        - unless @real_estate.parking?
+          - floated_field(f, :text_field, :inside_parking)
+          - floated_field(f, :text_field, :outside_parking)
+          - floated_field(f, :text_field, :covered_slot)
+          - floated_field(f, :text_field, :covered_bike)
+          - floated_field(f, :text_field, :outdoor_bike)
+          - floated_field(f, :text_field, :single_garage)
+          - floated_field(f, :text_field, :double_garage)
 
         .control-group
           = f.label :opted
