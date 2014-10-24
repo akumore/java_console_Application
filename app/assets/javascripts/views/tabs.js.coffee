@@ -6,9 +6,13 @@ class window.AlfredMueller.Views.Tabs extends Backbone.View
   initialize: ->
     @navigationItems = @el.find('.tabs-navigation li')
     @contentItems = @el.find('.tabs-content .content')
+    @initiallyOpenTab()
 
-  handleClick: (event) ->
-    makeActive($(event.target))
+  initiallyOpenTab: ->
+    if window.location.hash.indexOf('tab-')
+      h = window.location.hash.replace('tab-', '')
+      linkItem = $('a[href=' + h + ']')
+      $(linkItem).click()
 
   makeActive: (link) ->
     @deactivateAll()
@@ -20,8 +24,10 @@ class window.AlfredMueller.Views.Tabs extends Backbone.View
     @contentItems.removeClass('active')
 
   handleClick: (event) ->
-    @makeActive($(event.target))
     event.preventDefault()
+    target = $(event.target)
+    @makeActive(target)
+    window.location.hash = 'tab-' + target.attr('href').replace('#', '')
 
   activateContent: (id) ->
     $(id).addClass('active')
