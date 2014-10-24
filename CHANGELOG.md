@@ -1,5 +1,12 @@
 # CHANGELOG
 
+### features/design_update
+* Design changes on homepage
+  * New tab navigation
+  * Update link box in slider
+  * New teasers
+  * Full browser width footer with content update
+
 ### v2.9.21 on 2014-10-03
 * Hotfix: Add ability to add image to existing download brick
 
