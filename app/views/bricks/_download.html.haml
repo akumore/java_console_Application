@@ -1,1 +1,6 @@
+- if brick.image.present?
+  %p
+    = link_to brick.file.url, class: 'ga-tracking-link', target: '_blank', data: { 'ga-category' => "Download Baustein", 'ga-action' => "Download", 'ga-label' => brick.title } do
+      = image_tag(brick.image)
+
 = link_to brick.title, brick.file.url, class: 'icon-pdf ga-tracking-link', target: '_blank', data: { 'ga-category' => "Download Baustein", 'ga-action' => "Download", 'ga-label' => brick.title }

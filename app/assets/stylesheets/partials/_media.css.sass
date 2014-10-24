@@ -211,8 +211,8 @@
       +push(1)
 
   .brick, .brick.accordion-brick, .brick.download-brick
-    margin-left: $margin-side
-    margin-right: $margin-side
+    margin-left: $margin-side !important
+    margin-right: $margin-side !important
     width: auto
 
   .brick
@@ -377,12 +377,42 @@
   .footer-news, .footer-teasers
     border-bottom: 1px solid $normal
 
-  #footer h4
+  #footer
+    padding: 1em 0
+
+    h4
+      padding: 1em $margin-side
+      margin: 0
+
+  .footer-navigation
     padding: 1em $margin-side
-    margin-bottom: 0
+    margin: 0
+
+    li
+      display: block
+      float: none
+      margin-bottom: .5em
 
   .scrolling-map
     display: none
+
+  .teaser-row
+    .teaser
+      width: 39.5%
+      padding: 5%
+
+      h2
+        font-size: 1.3em
+
+    .teaser:before,
+    .teaser:after
+      display: none
+
+    .teaser-left
+      margin-right: .5%
+
+    .teaser-right
+      margin-left: .5%
 
 
 // tablet
@@ -513,7 +543,7 @@
 // tablet-portrait only
 @media only screen and (min-width : 600px) and (max-width: 1024px) and (orientation : portrait)
   .services-slides-container
-    height: 360px
+    height: 515px
 
   .appointment
     .form-actions

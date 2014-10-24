@@ -16,6 +16,10 @@ body, select, input, textarea
 html
   overflow-y: scroll
 
+html,
+body
+  overflow-x: hidden
+
 .clear
   clear: both
 
@@ -55,6 +59,14 @@ html
     .sub-navigation-wrapper
       padding-top: 20px
       visibility: visible
+
+.footer-navigation
+  +horizontal-list
+  margin-bottom: 4em
+
+  li
+    padding-left: 0
+    padding-right: 1.1em
 
 .meta-navigation
   +horizontal-list(10px)
@@ -136,12 +148,36 @@ h1, h2, h3, h4, p, ul, ol
 #footer
   +row
   margin-top: 2em
-  margin-bottom: 2em
+  background-color: $search-background-color
+  position: relative
+  padding: 5em 0
+
+  &:before,
+  &:after
+    content: ""
+    position: absolute
+    background-color: $search-background-color
+    top: 0
+    bottom: 0
+    width: 9999px
+    display: block
+
+  &:before
+    right: 100%
+
+  &:after
+    left: 100%
 
   h4
-    border-bottom: 2px solid $dark
+    font-size: 2.25em
+    line-height: 1
     padding: 0.5em 0
-    margin-bottom: 2em
+
+  h6
+    font-weight: bold
+
+.footer-wrapper
+  +clearfix
 
 .footer-news
   +column(3)
@@ -161,6 +197,4 @@ h1, h2, h3, h4, p, ul, ol
 
 .footer-news, .footer-teasers, .footer-contact
   div
-    margin-bottom: 30px
-  dl
-    margin-top: 10px
+    margin-bottom: 60px

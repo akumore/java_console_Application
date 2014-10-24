@@ -1,56 +1,66 @@
 - content_for :meta do
   %title Home - Alfred Müller Immobiliendienstleistungen
-  %meta{ :name => "description", :content => "Die Alfred Müller AG, Baar, zählt zu den führenden Immobiliendienstleistern der Schweiz, mit Filialen in Marin und Camorino. Die Alfred Müller AG akquiriert und entwickelt Grundstücke, sie plant, realisiert, vermarktet, bewirtschaftet und renoviert Liegenschaften." }
-  %meta{ :name => "keywords", :content => "Land, Grundstücke, Immobilien, bauen, mieten, kaufen, vermieten, Immobilienverwaltung, umbauen und renovieren" }
+  %meta{ name: "description", content: "Die Alfred Müller AG, Baar, zählt zu den führenden Immobiliendienstleistern der Schweiz, mit Filialen in Marin und Camorino. Die Alfred Müller AG akquiriert und entwickelt Grundstücke, sie plant, realisiert, vermarktet, bewirtschaftet und renoviert Liegenschaften." }
+  %meta{ name: "keywords", content: "Land, Grundstücke, Immobilien, bauen, mieten, kaufen, vermieten, Immobilienverwaltung, umbauen und renovieren" }
 
-.services-slides-container
-  #rent-slide-container.rent-slide
-    .rent-handle.handle
-      %h3= t ".rent"
-    .link-box
-      %ul
-        - if @real_estates.for_rent.living.count > 0
-          %li= link_to t(".living"), real_estates_path(:offer => 'for_rent', :utilization => 'private')
+.services-slides-container.tabs
+  .tabs-navigation
+    %ul
+      %li.selected
+        = link_to(t(".rent"), '#rent-slides')
+      %li
+        = link_to(t(".sale"), '#sale-slides')
 
-        - if @real_estates.for_rent.working.count > 0
-          %li= link_to t(".working"), real_estates_path(:offer => 'for_rent', :utilization => 'commercial')
+  .tabs-content
+    #rent-slides.content.active
+      .link-box
+        %ul
+          - if @real_estates.for_rent.living.count > 0
+            %li= link_to t(".living"), real_estates_path(offer: 'for_rent', utilization: 'private')
 
-        - if @real_estates.for_rent.storing.count > 0
-          %li= link_to t(".storing"), real_estates_path(:offer => 'for_rent', :utilization => 'storage')
+          - if @real_estates.for_rent.working.count > 0
+            %li= link_to t(".working"), real_estates_path(offer: 'for_rent', utilization: 'commercial')
 
-        - if @real_estates.for_rent.parking.count > 0
-          %li= link_to t(".parking"), real_estates_path(:offer => 'for_rent', :utilization => 'parking')
+          - if @real_estates.for_rent.storing.count > 0
+            %li= link_to t(".storing"), real_estates_path(offer: 'for_rent', utilization: 'storage')
 
-    - unless @projects_for_rent.empty?
-      = render 'slider', :projects => @projects_for_rent
+          - if @real_estates.for_rent.parking.count > 0
+            %li= link_to t(".parking"), real_estates_path(offer: 'for_rent', utilization: 'parking')
 
-  #sale-slide-container.sale-slide
-    .sale-handle.handle
-      %h3= t ".sale"
-    .link-box
-      %ul
-        - if @real_estates.for_sale.living.count > 0
-          %li= link_to t(".living"), real_estates_path(:offer => 'for_sale', :utilization => 'private')
+      - unless @projects_for_rent.empty?
+        = render 'slider', projects: @projects_for_rent
 
-        - if @real_estates.for_sale.working.count > 0
-          %li= link_to t(".working"), real_estates_path(:offer => 'for_sale', :utilization => 'commercial')
+    #sale-slides.content
+      .link-box
+        %ul
+          - if @real_estates.for_sale.living.count > 0
+            %li= link_to t(".living"), real_estates_path(offer: 'for_sale', utilization: 'private')
 
-        - if @real_estates.for_sale.storing.count > 0
-          %li= link_to t(".storing"), real_estates_path(:offer => 'for_sale', :utilization => 'storage')
+          - if @real_estates.for_sale.working.count > 0
+            %li= link_to t(".working"), real_estates_path(offer: 'for_sale', utilization: 'commercial')
 
-        - if @real_estates.for_sale.parking.count > 0
-          %li= link_to t(".parking"), real_estates_path(:offer => 'for_sale', :utilization => 'parking')
+          - if @real_estates.for_sale.storing.count > 0
+            %li= link_to t(".storing"), real_estates_path(offer: 'for_sale', utilization: 'storage')
 
-    - unless @projects_for_sale.empty?
-      = render 'slider', :projects => @projects_for_sale
+          - if @real_estates.for_sale.parking.count > 0
+            %li= link_to t(".parking"), real_estates_path(offer: 'for_sale', utilization: 'parking')
 
-  #build-slide-container.build-slide.open.active
-    .build-handle.handle
-      %h3= t ".build"
-    .link-box
-      %ul
-        %li= link_to t(".project_development"), "#{t('company_url')}#project_development", class: 'ga-tracking-link',  data: { 'ga-category' => "Projektentwicklung", 'ga-action' => "Ansicht Projektentwicklung", 'ga-label' => I18n.locale.to_s.upcase }
-        %li= link_to t(".new_building"), "#{t('company_url')}#new_building"
-        %li= link_to t(".rebuilding"), "#{t('company_url')}#rebuilding"
-    .flex-container
-      = image_tag "construction.jpg"
+      - unless @projects_for_sale.empty?
+        = render 'slider', projects: @projects_for_sale
+
+.teaser-row
+  .teaser.teaser-left.teaser-overlaps-left.teaser-grey
+    %h2 Wir realisieren Ihre Bauprojekte nach Ihren Vorstellungen.
+    %p= link_to 'Wir sind Ihre Prozess- und Projektoptimierer', '/de/company#unsere-dienstleistungen'
+
+  .teaser.teaser-right.teaser-overlaps-right.teaser-blue
+    %h2.white Räume für ihre Business.
+    %p= link_to 'Freie Geschäftsflächen zur Miete', '/de/real_estates?offer=for_rent&utilization=commercial', class: 'white'
+
+  .teaser.teaser-right.teaser-blue-dark
+    %h2.white Forum. Unser Magazin rund ums Wohnen.
+    %p= link_to 'Wohnen neu entdecken', '/de/company#unser-magazin', class: 'white'
+
+  .teaser.teaser-left.teaser-browny
+    %h2 Sie engagieren uns, damit Ihr Bauprojekt gelingt.
+    %p= link_to 'Zu unseren Dienstleistungen', '/de/company'
