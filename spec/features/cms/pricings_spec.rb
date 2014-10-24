@@ -544,11 +544,11 @@ describe "Cms::Pricings" do
           end
 
           it 'saves a new Pricing' do
-            fill_in 'pricing_covered_bike', :with => '230'
             page.should_not have_css('#pricing_inside_parking')
             page.should_not have_css('#pricing_outside_parking')
             page.should_not have_css('#pricing_double_garage')
             page.should_not have_css('#pricing_single_garage')
+            page.should_not have_css('#pricing_covered_bike')
             page.should_not have_css('#pricing_outdoor_bike')
             page.should_not have_css('#pricing_covered_slot')
 
