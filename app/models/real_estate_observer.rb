@@ -20,7 +20,7 @@ class RealEstateObserver < Mongoid::Observer
     end
   end
 
-  def context
+  def self.context
     @context ||= ActionController::Base.new
   end
 end
