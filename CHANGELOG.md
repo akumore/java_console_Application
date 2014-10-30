@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.22 on 2014-10-30
+* Hotfix: Update ftp uploader to avoid disconnects because of timeouts
+
 ### v2.9.21 on 2014-10-03
 * Hotfix: Add ability to add image to existing download brick
 
