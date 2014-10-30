@@ -8,19 +8,19 @@ class Employee
 
   mount_uploader :image, EmployeeImageUploader
 
-  has_many :real_estates, :as=>:contact
+  has_many :real_estates, as: :contact
 
-  field :firstname, :type => String
-  field :lastname, :type => String
-  field :phone, :type => String
-  field :mobile, :type => String
-  field :fax, :type => String
-  field :image, :type => String
-  field :email, :type => String
-  field :job_function, :type => String
-  field :department, :type => String
+  field :firstname, type: String
+  field :lastname, type: String
+  field :phone, type: String
+  field :mobile, type: String
+  field :fax, type: String
+  field :image, type: String
+  field :email, type: String
+  field :job_function, type: String
+  field :department, type: String
 
-  validates :firstname, :lastname, :phone, :email, :department, :presence => true
+  validates :firstname, :lastname, :phone, :email, :department, presence: true
 
   def fullname
     [firstname, lastname].join ' '

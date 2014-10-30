@@ -70,6 +70,6 @@ module AlfredMueller
       g.fixture_replacement :fabrication
     end
 
-    config.mongoid.observers = :real_estate_observer
+    config.mongoid.observers = :real_estate_observer, :employee_observer
   end
 end
