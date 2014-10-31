@@ -35,9 +35,9 @@ module Export
         rescue => err
           logger.warn "#{err.class} raised on action 'finish', exception message was:\n#{err.message}"
           logger.info err.backtrace.join("\n")
+          Airbrake.notify(err)
         end
       end
-
     end
   end
 end
