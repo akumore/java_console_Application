@@ -1,10 +1,9 @@
 require 'spec_helper'
 
 describe RealEstateObserver do
-  let :observer do
-    # mongoid observers are singletons
-    RealEstateObserver.instance
-  end
+
+  # mongoid observers are singletons
+  subject { RealEstateObserver.instance }
 
   let :real_estate do
     RealEstate.new :title => 'Test'
@@ -13,21 +12,21 @@ describe RealEstateObserver do
   describe '#after_create' do
     it 'clears the cache' do
       RealEstateObserver.should_receive(:expire_cache_for)
-      observer.after_create(real_estate)
+      subject.after_create(real_estate)
     end
   end
 
   describe '#after_update' do
     it 'clears the cache' do
       RealEstateObserver.should_receive(:expire_cache_for)
-      observer.after_destroy(real_estate)
+      subject.after_update(real_estate)
     end
   end
 
   describe '#after_destroy' do
     it 'clears the cache' do
       RealEstateObserver.should_receive(:expire_cache_for)
-      observer.after_destroy(real_estate)
+      subject.after_destroy(real_estate)
     end
   end
 
