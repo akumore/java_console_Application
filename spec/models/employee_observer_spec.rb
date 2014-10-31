@@ -1,10 +1,9 @@
 require 'spec_helper'
 
 describe EmployeeObserver do
-  let :observer do
-    # mongoid observers are singletons
-    EmployeeObserver.instance
-  end
+
+  # mongoid observers are singletons
+  subject { EmployeeObserver.instance }
 
   let :real_estate do
     RealEstate.new :title => 'Test'
@@ -17,7 +16,7 @@ describe EmployeeObserver do
   describe '#after_update' do
     it 'clears the cache' do
       RealEstateObserver.should_receive(:expire_cache_for)
-      observer.after_update(employee)
+      subject.after_update(employee)
     end
   end
 end
