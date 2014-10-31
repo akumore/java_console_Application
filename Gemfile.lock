@@ -302,7 +302,7 @@ GEM
     simple-navigation (3.6.0)
       activesupport (>= 2.3.2)
     slop (3.4.5)
-    special_sauce (0.3.8)
+    special_sauce (0.3.10)
       airbrake
       blazing
     sprockets (2.0.4)

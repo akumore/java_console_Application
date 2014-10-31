@@ -29,5 +29,4 @@ describe Export::Idx301::Exporter do
       end
     end
   end
-
 end

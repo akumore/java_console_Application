@@ -18,12 +18,23 @@ module Export
       def do_upload!
         logger.info "Uploading files to #{@account.name} account."
         connect! do
-          files.each { |item| upload item }
+          error_count = 0
+          files.each do |item|
+            begin
+              upload item
+            rescue => exception
+              Airbrake.notify(exception)
+              error_count +=1
+              if error_count >= 10
+                raise 'max error count reached'
+              end
+            end
+          end
         end
       end
 
       def files
-        list = Dir.glob("#{local_base_dir}/**/**").sort
+        Dir.glob("#{local_base_dir}/**/**").sort
       end
 
       private
@@ -34,9 +45,12 @@ module Export
 
         logger.info "Uploading file '#{local_element}' to '#{remote_element}' on #{@account.name}"
 
-        if FileTest.directory?(local_element)
-          # check to prevent '550 File exists' error
-        else
+        # check to prevent '550 File exists' error
+        return if FileTest.directory?(local_element)
+        begin
+          @ftp.put element, remote_element
+        rescue Errno::ETIMEDOUT
+          logger.warn "Uploading file '#{local_element}' to '#{remote_element}' on #{@account.name} timeout received (retry)"
           @ftp.put element, remote_element
         end
       end
@@ -49,12 +63,13 @@ module Export
         logger.info "FTP connect to #{@account.name}"
         @ftp ||= Net::FTP.open(@account.host, @account.username, @account.password)
         @ftp.passive = true
-        if block_given?
+        return @ftp unless block_given?
+        begin
           yield self
+        ensure
           logger.info "FTP disconnect from #{@account.name}"
           @ftp.close
         end
-        @ftp
       end
     end
   end
