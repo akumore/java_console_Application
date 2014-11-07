@@ -9,6 +9,7 @@ class AppendAdditionalInformationToInteriorHtml < Mongoid::Migration
       next unless i
       next unless i.additional_information
       i.interior_html = i.interior_html.to_s + i.additional_information
+      i.interior_html = i.interior_html.gsub(/<\/ul>\s*<ul>/m, '')
       i.unset(:additional_information)
       i.save!
     end

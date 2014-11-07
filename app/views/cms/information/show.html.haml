@@ -19,7 +19,7 @@
     %dl.dl-horizontal
       %dt= t "mongoid.attributes.information.location_html"
       %dd
-        = @information.location_html.html_safe
+        = @information.location_html.try(:html_safe)
         &nbsp;
 
 
@@ -47,7 +47,7 @@
       %dl.dl-horizontal
         %dt= t "mongoid.attributes.information.infrastructure_html"
         %dd
-          = @information.infrastructure_html.html_safe
+          = @information.infrastructure_html.try(:html_safe)
           &nbsp;
 
     %legend= t ".building_up"
@@ -69,7 +69,7 @@
       %dl.dl-horizontal
         %dt= t "mongoid.attributes.information.interior_html"
         %dd
-          = @information.interior_html.html_safe
+          = @information.interior_html.try(:html_safe)
           &nbsp;
 
     %legend= t ".relevant_for_external_portals"

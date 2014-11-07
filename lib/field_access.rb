@@ -80,6 +80,7 @@ class FieldAccess
        *.parking.figure.specification_usable_surface
        *.storing.figure.storage_surface
        *.parking.figure.storage_surface
+       *.parking.figure.storage_surface_estimate
        *.living.figure.usable_surface_estimate
        *.parking.figure.usable_surface_estimate
        *.parking.pricing.storage
