@@ -28,6 +28,7 @@ class FillHtmlFields < Mongoid::Migration
           next if lis.length == 0
 
           new_value = (["<ul>"] + lis + ["</ul>"]).join("\r\n") + object.send("#{field_name}_html").to_s
+          new_value.gsub!(/<\/ul>\s*<ul>/m, '')
           object.send("#{field_name}_html=", new_value)
         }
 
