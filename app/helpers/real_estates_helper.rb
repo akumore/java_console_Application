@@ -1,10 +1,12 @@
 module RealEstatesHelper
 
+  def local_request?
+    request.local? || Socket.ip_address_list.map(&:ip_address).include?(request.remote_ip)
+  end
+
   def accessible_real_estates
     # Allow local requests for pdf generation
-    return RealEstate if
-      request.local? || user_signed_in? ||
-      Socket.ip_address_list.map(&:ip_address).include?(request.remote_ip)
+    return RealEstate if local_request? || user_signed_in?
     RealEstate.published
   end
 
