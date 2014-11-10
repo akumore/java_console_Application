@@ -10,6 +10,7 @@ describe "RealEstates" do
   before(:each) do
     # generally treat all requests not as local (for unpublished testing)
     stub_const('ActionDispatch::Request::LOCALHOST', [])
+    Socket.stub(ip_address_list: [double(ip_address: '111.111.111.111')])
   end
 
   let :category do
