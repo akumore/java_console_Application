@@ -2,9 +2,8 @@
   .frame-overlay
     = image_tag('handouts/frame.jpg')
 
-  .offer-utilization-description
-    %span
-      = t(".#{@real_estate.offer}_#{@real_estate.utilization}")
+  %span.offer-utilization-description
+    = t(".#{@real_estate.offer}_#{@real_estate.utilization}")
 
   .primary-title
     = @real_estate.title
