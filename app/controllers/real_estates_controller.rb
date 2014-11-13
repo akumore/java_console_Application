@@ -19,7 +19,7 @@ class RealEstatesController < ApplicationController
   end
 
   def show
-    if user_signed_in? || local_reqeust?
+    if user_signed_in? || local_request?
       @real_estate = accessible_real_estates.find(params[:id])
     else
       @real_estate = accessible_real_estates.web_channel.find(params[:id])
