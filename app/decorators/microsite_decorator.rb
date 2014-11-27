@@ -101,10 +101,10 @@ class MicrositeDecorator < ApplicationDecorator
   def floorplans
     real_estate.floor_plans.collect do |asset|
       attributes = {
-        :url => path_to_url(asset.file.gallery.url),
-        :url_full_size => path_to_url(real_estate_floorplan_path(I18n.locale, real_estate, asset)),
-        :url_full_size_image => path_to_url(asset.file.url),
-        :title => asset.title,
+        url: path_to_url(asset.file.gallery.url),
+        url_full_size: path_to_url(real_estate_floorplan_path(I18n.locale, real_estate, asset)),
+        url_full_size_image: path_to_url(asset.file.url),
+        title: asset.title,
       }
       north_arrow_img = RealEstateDecorator.decorate(asset.real_estate).north_arrow_img
       attributes[:north_arrow] = path_to_url(image_path(north_arrow_img)) if north_arrow_img.present?
@@ -115,8 +115,8 @@ class MicrositeDecorator < ApplicationDecorator
   def images
     real_estate.images.collect do |asset|
       attrs = {
-        :url => path_to_url(asset.file.gallery.url),
-        :title => asset.title,
+        url: path_to_url(asset.file.gallery.url),
+        title: asset.title,
       }
     end
   end
@@ -124,12 +124,12 @@ class MicrositeDecorator < ApplicationDecorator
   def downloads
     dl = []
     dl << {
-            :title => t('real_estates.show.description_download'),
-            :url => path_to_url(real_estate_handout_path(
-              :real_estate_id => model.id,
-              :format => :pdf,
-              :name => "Objektdokumentation-#{model.title.parameterize}",
-              :locale => I18n.locale
+            title: t('real_estates.show.description_download'),
+            url: path_to_url(real_estate_handout_path(
+              real_estate_id: model.id,
+              format: :pdf,
+              name: "Objektdokumentation-#{model.title.parameterize}",
+              locale: I18n.locale
               ))
     } if model.has_handout?
 
@@ -141,10 +141,11 @@ class MicrositeDecorator < ApplicationDecorator
       end
 
       dl << {
-        :title => t('real_estates.show.application_form'),
-        :url => path_to_url(link)
+        title: t('real_estates.show.application_form'),
+        url: path_to_url(link)
       }
     end
+  end
 
   def documents
     model.documents.collect do |doc|
@@ -157,7 +158,7 @@ class MicrositeDecorator < ApplicationDecorator
 
   def as_json(options = {})
     options ||= {}
-    json = real_estate.as_json options.merge({ :only => [ :_id ] })
+    json = real_estate.as_json options.merge({ only: [ :_id ] })
     json['title']       = title()
     json['rooms']       = rooms()
     json['floor_label'] = floor_label()
