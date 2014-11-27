@@ -282,7 +282,8 @@ describe MicrositeDecorator do
           'chapters',
           'floorplans',
           'images',
-          'downloads'
+          'downloads',
+          'documents'
         ]
         decorated_real_estate.as_json.keys.should == got
     end

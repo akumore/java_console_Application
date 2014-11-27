@@ -146,6 +146,13 @@ class MicrositeDecorator < ApplicationDecorator
       }
     end
 
+  def documents
+    model.documents.collect do |doc|
+      attrs = {
+        title: doc.title,
+        url: path_to_url(doc.file.url)
+      }
+    end
   end
 
   def as_json(options = {})
@@ -169,6 +176,7 @@ class MicrositeDecorator < ApplicationDecorator
     json['floorplans']  = floorplans()
     json['images']      = images()
     json['downloads']   = downloads()
+    json['documents']   = documents()
     json
   end
 
