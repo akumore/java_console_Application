@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.23 on 2014-11-27
+* Update real estate api for microsite with documents
+
 ### v2.9.22 on 2014-10-30
 * Hotfix: Update ftp uploader to avoid disconnects because of timeouts
 * New implemented User Stories:
