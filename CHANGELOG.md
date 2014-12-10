@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.24 on 2014-12-10
+* Allow ul tags for homegate
+
 ### v2.9.23 on 2014-11-27
 * Update real estate api for microsite with documents
 
