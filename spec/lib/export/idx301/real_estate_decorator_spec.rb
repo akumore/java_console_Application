@@ -306,6 +306,19 @@ describe Export::Idx301::RealEstateDecorator do
       end
     end
 
+    context 'with homegate as provider' do
+      it 'maintains the ul tags' do
+        real_estate = Export::Idx301::RealEstateDecorator
+          .new(
+            mock_model(RealEstate, :description => "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>"),
+            Account.new(:provider => Provider::HOMEGATE),
+            {}
+          )
+
+        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.")
+      end
+    end
+
     context 'with HTMLEntities' do
       it 'convert the HTMLEntities' do
         real_estate = Export::Idx301::RealEstateDecorator
