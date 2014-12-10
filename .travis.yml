@@ -1,5 +1,5 @@
 language: ruby
-bundler_args: --without development --deployment
+bundler_args: --without development --deployment --retry 3
 cache: bundler
 services:
   - mongodb
