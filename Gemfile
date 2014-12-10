@@ -61,7 +61,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspectacle'
   gem 'pry'
-  gem 'pry-debugger'
+  # gem 'pry-debugger'
 end
 
 group :test do
