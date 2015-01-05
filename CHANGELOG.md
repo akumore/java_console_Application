@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.25 - 2015-01-05
+* Add 50th anniversary button
+
 ### v2.9.24 on 2014-12-10
 * Allow ul tags for homegate
 
