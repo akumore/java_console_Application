@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.26
+* Hotfix: Creater does not have to be present. (Allows save if creator was deleted)
+
 ### v2.9.25 - 2015-01-05
 * Add 50th anniversary button
 
