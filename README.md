@@ -58,7 +58,7 @@ In order for RVM to work with the whenever gem, we have to write a `.rvmrc` with
 
 Clear cached handouts:
 
-    rm  public/{de,en,fr}/real_estates/*/handout.*
+    rm  public/{de,en,fr,it}/real_estates/*/handout.*
 
 ## Performance
 
