@@ -154,18 +154,20 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def mini_doku_link
-    link_to(
-        t('real_estates.show.description_download'),
-        real_estate_handout_path(
-          :real_estate_id => model.id,
-          :format => :pdf),
-        :class => 'icon-description ga-tracking-link', :target => '_blank',
-        data: {
-                'ga-category' => translate_category(model),
-                'ga-action' => "Objektdokumentation",
-                'ga-label' => address.try(:simple)
-              }
-    ) if model.has_handout?
+    return unless model.has_handout?
+
+    data = {
+      'ga-category' => translate_category(model),
+      'ga-action' => "Objektdokumentation",
+      'ga-label' => address.try(:simple)
+    }
+    link = real_estate_handout_path( real_estate_id: model.id, format: :pdf)
+    link.gsub!('handout.pdf', "Printout_#{address.street}_#{address.city}.pdf")
+
+    link_to(t('real_estates.show.description_download'), link, {
+      data: data,
+      class: 'icon-description ga-tracking-link',
+      target: '_blank'})
   end
 
   def object_documentation_title

@@ -51,8 +51,8 @@ AlfredMueller::Application.routes.draw do
       resources :appointments, :only => [:new, :create]
       resources :handout_orders, :only => [:new, :create]
       resources :floorplans, :only => [:index, :show]
-      # TODO: Implement redirect for legacy deep-links to handouts
-      # e.g.: /real_estates/123/A-Fine-Property.pdf -> /real_estates/123/handout.pdf
+
+      get 'Printout_*name', to: 'handouts#show'
       resource :handout, :only => :show do
         member do
           get 'footer'
