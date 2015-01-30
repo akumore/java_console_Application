@@ -6,6 +6,7 @@
   * Update link box in slider
   * New teasers
   * Full browser width footer with content update
+  * #4615 Als Besucher möchte ich keinen Slider im Header sehen
 
 ### v2.9.21 on 2014-10-03
 * Hotfix: Add ability to add image to existing download brick
