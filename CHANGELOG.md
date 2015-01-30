@@ -7,6 +7,7 @@
   * New teasers
   * Full browser width footer with content update
   * #4615 Als Besucher möchte ich keinen Slider im Header sehen
+  * #4616 Als Besucher möchte ich die Unternavigation im Slider (Mieten und Kaufen) auf der Startseite kleiner sehen
 
 ### v2.9.21 on 2014-10-03
 * Hotfix: Add ability to add image to existing download brick
