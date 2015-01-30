@@ -7,10 +7,23 @@
     %h2.white Räume für ihre Business.
     %p= link_to 'Freie Geschäftsflächen zur Miete', '/de/real_estates?offer=for_rent&utilization=commercial', class: 'white'
 
-  .teaser.teaser-right.teaser-blue-dark
+  .teaser.teaser-right.teaser-img-bg
     %h2.white Forum. Unser Magazin rund ums Wohnen.
     %p= link_to 'Wohnen neu entdecken', '/de/company#unser-magazin', class: 'white'
 
   .teaser.teaser-left.teaser-browny
-    %h2 Sie engagieren uns, damit Ihr Bauprojekt gelingt.
-    %p= link_to 'Zu unseren Dienstleistungen', '/de/company'
+    %h2.white Sie engagieren uns, damit Ihr Bauprojekt gelingt.
+    %p= link_to 'Zu unseren Dienstleistungen', '/de/company', class: 'white'
+
+  .teaser.teaser-with-image.teaser-blue-dark
+    = image_tag 'placeholder_1000_513.gif', alt: 'Placeholder'
+    .inner
+      %h2.white Wir sind Ihre Experten für Neubau- und Umbauprojekte. Als Generalunternehmen haben wir viel Erfahrung, die Sie sich zu Nutze machen können.
+      %p= link_to 'Erfahren Sie mehr über unsere Dienstleistungen', '/de/company#unsere-dienstleistungen', class: 'white'
+
+  .teaser.teaser-left.teaser-with-video
+    = render 'partials/image_movie'
+
+  .teaser.teaser-right.teaser-beige
+    %h2 Der Mensch steht bei uns im Mittelpunkt.
+    %p= link_to 'Zu den freien Stellen', '/de/jobs#offene-stellen'

@@ -47,4 +47,4 @@
 
       - unless @projects_for_sale.empty?
         = render 'slider', projects: @projects_for_sale
-= render 'teasers'
+= render 'teasers' if I18n.locale == :de
