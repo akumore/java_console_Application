@@ -14,7 +14,7 @@
   .tabs-content
     #rent-slides.content.active
       .link-box
-        %ul
+        %ul.clearfix
           - if @real_estates.for_rent.living.count > 0
             %li= link_to t(".living"), real_estates_path(offer: 'for_rent', utilization: 'private')
 
@@ -32,7 +32,7 @@
 
     #sale-slides.content
       .link-box
-        %ul
+        %ul.clearfix
           - if @real_estates.for_sale.living.count > 0
             %li= link_to t(".living"), real_estates_path(offer: 'for_sale', utilization: 'private')
 
