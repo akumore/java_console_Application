@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.27
+* Hotfix: Add «Entwicklung Schweiz» membership in footer
+
 ### v2.9.26
 * Hotfix: Creater does not have to be present. (Allows save if creator was deleted)
 
