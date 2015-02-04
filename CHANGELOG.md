@@ -1,6 +1,10 @@
 # CHANGELOG
 
 ### features/design_update
+* New implemented User Stories:
+  * #4623 Als Besucher möchte ich Teaser verwalten können und diese in einem Brick in der Website einfügen
+
+### features/design_update
 * Design changes on homepage
   * New tab navigation
   * Update link box in slider
