@@ -48,7 +48,7 @@ describe "Cms::Teasers" do
 
   describe '#new' do
     before :each do
-      visit new_cms_tesaser_path(:content_locale => :fr)
+      visit new_cms_teaser_path(:content_locale => :fr)
     end
 
     it 'opens the create form' do
