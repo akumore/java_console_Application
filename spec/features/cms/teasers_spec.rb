@@ -41,7 +41,7 @@ describe "Cms::Teasers" do
     end
 
     it "takes me to the page for creating a new teaser" do
-      page.click_link 'Neuen Teaser erstellen'
+      page.click_link 'Neuen Teaser erfassen'
       current_path.should == new_cms_teaser_path
     end
   end
@@ -86,8 +86,8 @@ describe "Cms::Teasers" do
 
         it 'has saved the provided attributes' do
           @teaser.title.should == 'Ein schöner Teaser'
-          @teaser.link.should == 'Geh auf diese Seit'
-          @teaser.href.should '/'
+          @teaser.link.should == 'Geh auf diese Seite'
+          @teaser.href.should == '/'
         end
       end
     end
@@ -95,7 +95,7 @@ describe "Cms::Teasers" do
 
   describe '#edit' do
     before :each do
-      @job = Fabricate(:teaser)
+      @teaser = Fabricate(:teaser)
       visit edit_cms_teaser_path(@teaser)
     end
 
@@ -116,8 +116,8 @@ describe "Cms::Teasers" do
 
       it 'has updated the edited attributes' do
         @teaser.reload
-        @teaser.title.should == 'Titel updated'
-        @teaser.link.should == 'Link updated'
+        @teaser.title.should == 'Titel Updated'
+        @teaser.link.should == 'Link Updated'
         @teaser.href.should == '/fr'
       end
     end

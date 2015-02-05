@@ -8,28 +8,17 @@
       .controls
         = f.text_field :title, class: 'span8'
     .control-group
-      = f.label :text
+      = f.label :link
       .controls
-        = f.text_area :text, class: 'editor'
+        = f.text_field :link, class: 'span8'
     .control-group
-      = f.label :is_published
+      = f.label :href
       .controls
-        = f.check_box :is_published
-    .control-group
-      = f.label :teaser_profile_file
-      .controls
-        = f.file_field :teaser_profile_file
-        = f.hidden_field :teaser_profile_file_cache
-
-        - if @teaser.teaser_profile_file.present?
-          .well
-            = link_to 'Stellenprofil anzeigen', @teaser.teaser_profile_file.url, target: '_new'
-
-    - if @teaser.teaser_profile_file.present?
-      .control-group
-        = f.label :remove_teaser_profile_file
-        .controls
-          = f.check_box :remove_teaser_profile_file
+        = f.text_field :href, class: 'span8'
 
   .form-actions
     = f.submit nil, class: 'btn btn-primary'
+    .pull-right
+      = link_to(cms_teasers_path, :class => 'btn small') do
+        %i.icon-list
+        = t('.overview')

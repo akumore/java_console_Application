@@ -1,0 +1,9 @@
+de:
+  mongoid:
+    models:
+      teaser: Teaser
+    attributes:
+      teaser:
+        title: Titel
+        link: Link Text
+        href: Link

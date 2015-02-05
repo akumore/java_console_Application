@@ -16,19 +16,16 @@
   %table.table.table-bordered.table-striped.teasers-table.sortable
     %thead
       %tr
-        %th
-        %th{ :width => '80%' }= Teaser.human_attribute_name :title
-        %th Veröffentlicht
+        %th= Teaser.human_attribute_name :title
+        %th= Teaser.human_attribute_name :link
+        %th= Teaser.human_attribute_name :href
         %th
         %th
     %tbody
       - @teasers.each do |teaser|
-        %tr.draggable-row{ :id => "teaser_#{teaser.id}"}
-          %td.drag-handle
-            %i.icon-align-justify
-            = form.fields_for :[], teaser do |teaser_fields|
-              = teaser_fields.hidden_field :position, :class => 'position'
+        %tr{ id: "teaser_#{teaser.id}" }
           %td= teaser.title
-          %td= t(".is_published_#{teaser.is_published}")
+          %td= teaser.link
+          %td= teaser.href
           %td= link_to  t('.destroy'), cms_teaser_path(teaser), :method => :delete, :confirm => t('.confirm_delete', :title => teaser.title)
           %td= link_to t('.edit'), edit_cms_teaser_path(teaser)
