@@ -1,7 +1,6 @@
 class Teaser
   include Mongoid::Document
   include Mongoid::Timestamps
-  has_many :brick_teasers
 
   field :title, :type => String
   field :link, :type => String
