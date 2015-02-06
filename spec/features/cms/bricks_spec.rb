@@ -12,6 +12,7 @@ describe "Cms::Bricks" do
       @page.bricks << Fabricate.build(:placeholder_brick)
       @page.bricks << Fabricate.build(:accordion_brick)
       @page.bricks << Fabricate.build(:download_brick)
+      @page.bricks << Fabricate.build(:teaser_brick)
       @page.reload
 
       @title_brick = @page.bricks[0]
@@ -19,6 +20,7 @@ describe "Cms::Bricks" do
       @placeholder_brick = @page.bricks[2]
       @accordion_brick = @page.bricks[3]
       @download_brick = @page.bricks[4]
+      @download_brick = @page.bricks[5]
 
       visit edit_cms_page_path(@page)
     end
@@ -39,6 +41,13 @@ describe "Cms::Bricks" do
         page.click_link 'Editieren'
       end
       current_path.should == edit_cms_page_text_brick_path(@page, @text_brick)
+    end
+
+    it "takes me to the edit page of a teaser brick" do
+      within("tr.teaser") do
+        page.click_link 'Editieren'
+      end
+      current_path.should == edit_cms_page_text_brick_path(@page, @teaser_brick)
     end
 
     it "takes me to the edit page of a accordion brick" do
@@ -158,6 +167,30 @@ describe "Cms::Bricks" do
           @brick = @page.bricks.find(@text_brick.id)
           @brick.text.should == 'Anderer Text'
           @brick.more_text.should == 'Anderer mehr lesen Text'
+        end
+      end
+    end
+  end
+
+  context 'teaser brick' do
+    describe '#new' do
+      before :each do
+        @page = Fabricate(:page)
+        visit new_cms_page_accordion_brick_path(@page)
+      end
+
+      context 'creating' do
+        before :each do
+          within('.new_brick_teaser') do
+            select 'Teaser Name' from: 'teaser_select'
+          end
+        end
+
+        it 'has saved the provided attributes' do
+          click_on 'Teaser Baustein erstellen'
+          @page.reload
+          @brick = @page.bricks.last
+          @brick.teaser_id == @teaser.id
         end
       end
     end
@@ -384,6 +417,16 @@ describe "Cms::Bricks" do
       pending 'figure out why this does not work'
       lambda {
         within("tr.text") do
+          page.click_link 'Löschen'
+        end
+        @page.reload
+      }.should change(@page.bricks, :count).by(-1)
+    end
+
+    it "destroys the accordion brick" do
+      pending 'figure out why this does not work'
+      lambda {
+        within("tr.teaser") do
           page.click_link 'Löschen'
         end
         @page.reload

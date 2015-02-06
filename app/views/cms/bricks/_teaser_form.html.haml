@@ -1,0 +1,20 @@
+- if @teasers.present?
+  = form_for @brick, :url => url do |f|
+    = render 'cms/shared/errors', :model => @brick
+
+    %fieldset
+      .control-group
+        = f.label :title
+        .controls
+          - binding.pry
+          = f.collection_select(:teaser_1_id, @teasers, :id, :title)
+          = f.collection_select(:teaser_2_id, @teasers, :id, :title)
+
+    .form-actions
+      = f.submit nil, :class => 'btn btn-primary'
+- else
+  %p= t('.no-teasers')
+  .padded
+    = link_to new_cms_teaser_path, class: 'btn' do
+      %i.icon-plus-sign
+      = t('.add-teasers')

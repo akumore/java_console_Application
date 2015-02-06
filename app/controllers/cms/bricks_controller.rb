@@ -8,8 +8,8 @@ class Cms::BricksController < Cms::SecuredController
     redirect_to cms_dashboards_path, alert: err.message
   end
 
-
   def new
+    @teasers = Teaser.where(:locale => I18n.locale)
     @brick = @page.bricks.build({}, brick_from_type)
     respond_with @brick
   end
@@ -26,12 +26,14 @@ class Cms::BricksController < Cms::SecuredController
   end
 
   def edit
+    @teasers = Teaser.where(:locale => I18n.locale)
     @brick = @page.bricks.find(params[:id])
     respond_with @brick
   end
 
   def update
     @brick = @page.bricks.find(params[:id])
+    binding.pry
     if @brick.update_attributes(params[brick_name])
       redirect_to edit_cms_page_path(@page)
     else
