@@ -58,7 +58,8 @@ describe 'Cms::RealEstate utilization - category - building-type dependency' do
     end
 
     it 'has the right sort order in the category drop-down' do
-      page.find('select#real_estate_category_id').should have_content('EinzelzimmerDachwohnungAppartment')
+      string = "Einzelzimmer\nDachwohnung\nAppartment"
+      page.find('select#real_estate_category_id').text.should eq(string)
     end
 
     it 'has the building-type radio buttons hidden' do
@@ -104,8 +105,8 @@ describe 'Cms::RealEstate utilization - category - building-type dependency' do
   context 'editing a real estate' do
 
     before :each do
-      @real_estate = Fabricate(:commercial_building, 
-                               :category => @working_category, 
+      @real_estate = Fabricate(:commercial_building,
+                               :category => @working_category,
                                :state => RealEstate::STATE_EDITING )
       visit edit_cms_real_estate_path(@real_estate)
     end
