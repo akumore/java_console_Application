@@ -33,7 +33,6 @@ class Cms::BricksController < Cms::SecuredController
 
   def update
     @brick = @page.bricks.find(params[:id])
-    binding.pry
     if @brick.update_attributes(params[brick_name])
       redirect_to edit_cms_page_path(@page)
     else

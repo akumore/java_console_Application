@@ -6,7 +6,6 @@
       .control-group
         = f.label :title
         .controls
-          - binding.pry
           = f.collection_select(:teaser_1_id, @teasers, :id, :title)
           = f.collection_select(:teaser_2_id, @teasers, :id, :title)
 

@@ -20,7 +20,7 @@ describe "Cms::Bricks" do
       @placeholder_brick = @page.bricks[2]
       @accordion_brick = @page.bricks[3]
       @download_brick = @page.bricks[4]
-      @download_brick = @page.bricks[5]
+      @teaser_brick = @page.bricks[5]
 
       visit edit_cms_page_path(@page)
     end
@@ -43,19 +43,27 @@ describe "Cms::Bricks" do
       current_path.should == edit_cms_page_text_brick_path(@page, @text_brick)
     end
 
-    it "takes me to the edit page of a teaser brick" do
-      within("tr.teaser") do
+    it "takes me to the edit page of a download brick" do
+      within("tr.download") do
         page.click_link 'Editieren'
       end
-      current_path.should == edit_cms_page_text_brick_path(@page, @teaser_brick)
+      current_path.should == edit_cms_page_download_brick_path(@page, @download_brick)
     end
 
     it "takes me to the edit page of a accordion brick" do
       within("tr.accordion") do
+        binding.pry
         page.click_link 'Editieren'
       end
       current_path.should == edit_cms_page_accordion_brick_path(@page, @accordion_brick)
     end
+
+    #it "takes me to the edit page of a teaser brick" do
+    #  within("tr.teaser") do
+    #    page.click_link 'Editieren'
+    #  end
+    #  current_path.should == edit_cms_page_teaser_brick_path(@page, @teaser_brick)
+    #end
 
     it "takes me to the edit page of a placeholder brick" do
       within("tr.placeholder") do
@@ -64,12 +72,6 @@ describe "Cms::Bricks" do
       current_path.should == edit_cms_page_placeholder_brick_path(@page, @placeholder_brick)
     end
 
-    it "takes me to the edit page of a download brick" do
-      within("tr.download") do
-        page.click_link 'Editieren'
-      end
-      current_path.should == edit_cms_page_download_brick_path(@page, @download_brick)
-    end
   end
 
   context 'title brick' do
@@ -182,7 +184,7 @@ describe "Cms::Bricks" do
       context 'creating' do
         before :each do
           within('.new_brick_teaser') do
-            select 'Teaser Name' from: 'teaser_select'
+            select 'Teaser Name', from: 'teaser_select'
           end
         end
 

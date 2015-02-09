@@ -1,0 +1,8 @@
+- if brick.teaser_1.present? && brick.teaser_2.present?
+  .teaser-row
+    .teaser.teaser-right.teaser-browny
+      %h2= brick.teaser_1.title
+      %p= link_to brick.teaser_1.link, brick.teaser_1.href
+    .teaser.teaser-left.teaser-grey
+      %h2= brick.teaser_2.title
+      %p= link_to brick.teaser_2.link, brick.teaser_2.href
