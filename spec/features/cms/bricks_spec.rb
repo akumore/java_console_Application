@@ -12,7 +12,6 @@ describe "Cms::Bricks" do
       @page.bricks << Fabricate.build(:placeholder_brick)
       @page.bricks << Fabricate.build(:accordion_brick)
       @page.bricks << Fabricate.build(:download_brick)
-      @page.bricks << Fabricate.build(:teaser_brick)
       @page.reload
 
       @title_brick = @page.bricks[0]
@@ -20,7 +19,6 @@ describe "Cms::Bricks" do
       @placeholder_brick = @page.bricks[2]
       @accordion_brick = @page.bricks[3]
       @download_brick = @page.bricks[4]
-      @teaser_brick = @page.bricks[5]
 
       visit edit_cms_page_path(@page)
     end
@@ -43,25 +41,11 @@ describe "Cms::Bricks" do
       current_path.should == edit_cms_page_text_brick_path(@page, @text_brick)
     end
 
-    it "takes me to the edit page of a download brick" do
-      within("tr.download") do
-        page.click_link 'Editieren'
-      end
-      current_path.should == edit_cms_page_download_brick_path(@page, @download_brick)
-    end
-
     it "takes me to the edit page of a accordion brick" do
       within("tr.accordion") do
         page.click_link 'Editieren'
       end
       current_path.should == edit_cms_page_accordion_brick_path(@page, @accordion_brick)
-    end
-
-    it "takes me to the edit page of a teaser brick" do
-      within("tr.teaser") do
-        page.click_link 'Editieren'
-      end
-      current_path.should == edit_cms_page_teaser_brick_path(@page, @teaser_brick)
     end
 
     it "takes me to the edit page of a placeholder brick" do
@@ -71,6 +55,12 @@ describe "Cms::Bricks" do
       current_path.should == edit_cms_page_placeholder_brick_path(@page, @placeholder_brick)
     end
 
+    it "takes me to the edit page of a download brick" do
+      within("tr.download") do
+        page.click_link 'Editieren'
+      end
+      current_path.should == edit_cms_page_download_brick_path(@page, @download_brick)
+    end
   end
 
   context 'title brick' do
@@ -176,14 +166,16 @@ describe "Cms::Bricks" do
   context 'teaser brick' do
     describe '#new' do
       before :each do
+        @teaser = Fabricate(:teaser, title: 'Teaser Name')
         @page = Fabricate(:page)
-        visit new_cms_page_accordion_brick_path(@page)
+        visit new_cms_page_teaser_brick_path(@page)
       end
 
       context 'creating' do
         before :each do
           within('.new_brick_teaser') do
-            select 'Teaser Name', from: 'teaser_select'
+            select 'Teaser Name', from: 'brick_teaser_teaser_1_id'
+            select 'Teaser Name', from: 'brick_teaser_teaser_2_id'
           end
         end
 
@@ -191,7 +183,8 @@ describe "Cms::Bricks" do
           click_on 'Teaser Baustein erstellen'
           @page.reload
           @brick = @page.bricks.last
-          @brick.teaser_id == @teaser.id
+          @brick.teaser_1 == @teaser.id
+          @brick.teaser_2 == @teaser.id
         end
       end
     end
