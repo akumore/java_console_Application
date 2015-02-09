@@ -9,7 +9,7 @@ class Cms::BricksController < Cms::SecuredController
   end
 
   def new
-    @teasers = Teaser.where(:locale => I18n.locale)
+    @teasers = Teaser.where(:locale => @page.locale)
     @brick = @page.bricks.build({}, brick_from_type)
     respond_with @brick
   end
@@ -26,7 +26,7 @@ class Cms::BricksController < Cms::SecuredController
   end
 
   def edit
-    @teasers = Teaser.where(:locale => I18n.locale)
+    @teasers = Teaser.where(:locale => @page.locale)
     @brick = @page.bricks.find(params[:id])
     respond_with @brick
   end
