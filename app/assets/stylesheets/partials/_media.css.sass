@@ -401,6 +401,10 @@
   .teaser-row
     .teaser
       padding: 5%
+      word-wrap: break-word
+      -webkit-hyphens: auto
+      -moz-hyphens: auto
+      hyphens: auto
 
       h2
         font-size: 1.3em
@@ -429,6 +433,15 @@
 
     .teaser-beige
       width: 90%
+
+  .teaser-brick
+    .teaser-row
+      .teaser
+        padding-bottom: 100%
+
+        p
+          margin-bottom: 24px
+
 
 // tablet
 @media only screen and (min-width : 600px)
@@ -500,6 +513,9 @@
   .brick, .brick.accordion-brick
     margin: 1em
     width: 90%
+
+  .brick, .brick.teaser-brick
+    width: auto
 
   .contact-box
     max-width: 660px

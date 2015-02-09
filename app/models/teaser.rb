@@ -10,4 +10,6 @@ class Teaser
   validates :title, presence: true
   validates :link, presence: true
   validates :href, presence: true
+
+  scope :with_current_locale, -> { where(:locale => I18n.locale.to_s) }
 end
