@@ -52,18 +52,17 @@ describe "Cms::Bricks" do
 
     it "takes me to the edit page of a accordion brick" do
       within("tr.accordion") do
-        binding.pry
         page.click_link 'Editieren'
       end
       current_path.should == edit_cms_page_accordion_brick_path(@page, @accordion_brick)
     end
 
-    #it "takes me to the edit page of a teaser brick" do
-    #  within("tr.teaser") do
-    #    page.click_link 'Editieren'
-    #  end
-    #  current_path.should == edit_cms_page_teaser_brick_path(@page, @teaser_brick)
-    #end
+    it "takes me to the edit page of a teaser brick" do
+      within("tr.teaser") do
+        page.click_link 'Editieren'
+      end
+      current_path.should == edit_cms_page_teaser_brick_path(@page, @teaser_brick)
+    end
 
     it "takes me to the edit page of a placeholder brick" do
       within("tr.placeholder") do
