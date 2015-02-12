@@ -1,7 +1,7 @@
 .search-filter-container
 
   .default-view
-    .offer-tabs
+    .offer-tabs.tabs-navigation
       %ul
         %li.for-rent-tab{:class => @search_filter.for_rent? ? "selected" : ""}
           = link_to t("real_estates.search_filter.for_rent"), real_estates_path(:offer => Offer::RENT, :utilization => @search_filter.utilization), :class => 'js-for_rent'
