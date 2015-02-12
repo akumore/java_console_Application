@@ -10,6 +10,8 @@
         = link_to(t(".rent"), '#rent-slides')
       %li
         = link_to(t(".sale"), '#sale-slides')
+      %li
+        = link_to(t(".build"), '#build-slides')
 
   .tabs-content
     #rent-slides.content.active
@@ -47,4 +49,15 @@
 
       - unless @projects_for_sale.empty?
         = render 'slider', projects: @projects_for_sale
+
+    #build-slides.content
+      .link-box
+        %ul.clearfix
+          %li= link_to t(".project_development"), "#{t('company_url')}#project_development", class: 'ga-tracking-link',  data: { 'ga-category' => "Projektentwicklung", 'ga-action' => "Ansicht Projektentwicklung", 'ga-label' => I18n.locale.to_s.upcase }
+          %li= link_to t(".new_building"), "#{t('company_url')}#new_building"
+          %li= link_to t(".rebuilding"), "#{t('company_url')}#rebuilding"
+
+      .flex-container
+        = image_tag "construction.jpg"
+
 = render 'teasers' if I18n.locale == :de
