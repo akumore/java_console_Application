@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.28 - 2015-02-12
+* Hotfix: Fix Google Maps Bug in IE10
+
 ### v2.9.27
 * Hotfix: Add «Entwicklung Schweiz» membership in footer
 
