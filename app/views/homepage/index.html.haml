@@ -4,7 +4,7 @@
   %meta{ name: "keywords", content: "Land, Grundstücke, Immobilien, bauen, mieten, kaufen, vermieten, Immobilienverwaltung, umbauen und renovieren" }
 
 .services-slides-container.tabs
-  .tabs-navigation
+  .default-view.tabs-navigation
     %ul
       %li.selected
         = link_to(t(".rent"), '#rent-slides')
@@ -12,6 +12,9 @@
         = link_to(t(".sale"), '#sale-slides')
       %li
         = link_to(t(".build"), '#build-slides')
+
+  .mobile-view.select-filter
+    = select_tag :section, options_for_select([ [t(".rent"), '#rent-slides'], [t(".sale"), '#sale-slides'], [t(".build"), '#build-slides'] ])
 
   .tabs-content
     #rent-slides.content.active
