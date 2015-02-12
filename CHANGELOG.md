@@ -8,6 +8,7 @@
   * Full browser width footer with content update
   * #4615 Als Besucher möchte ich keinen Slider im Header sehen
   * #4616 Als Besucher möchte ich die Unternavigation im Slider (Mieten und Kaufen) auf der Startseite kleiner sehen
+  * #729: Als Besucher möchte ich den Bauen Tab sehen
 
 ### v2.9.21 on 2014-10-03
 * Hotfix: Add ability to add image to existing download brick
