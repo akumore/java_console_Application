@@ -27,6 +27,11 @@ describe "Homepage" do
       page.should have_css "#sale-slides"
     end
 
+    it "contains a slide for advertisement about build abilities" do
+      visit root_path
+      page.should have_css "#build-slides"
+    end
+
     describe "The slide for renting real estates" do
       before do
         MediaAssetUploader.enable_processing = true
