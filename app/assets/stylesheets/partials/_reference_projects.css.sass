@@ -1,15 +1,27 @@
 .reference_projects
   .search-filter-container
-    border-bottom-width: 0
+    background: $brown
+    border-bottom: 0
+    border-top: 1px solid #a6a7a6
+
+    ul
+      border-top: 1px solid #fff
+      text-align: left
+      padding: 1em 40px 0.5em 40px
+      border-bottom-width: 0
 
   .offer-tabs
-    margin-bottom: 0
+    margin: 0
+    li
+      margin: 0 0.2em 0.5em 0
+    .selected
+      border-bottom: 1px solid #a6a7a6
 
     li a
       padding: 7px 5px
 
 .reference-projects-container
-  margin-top: 4em
+  margin-top: 2em
 
   .row
     +clearfix
