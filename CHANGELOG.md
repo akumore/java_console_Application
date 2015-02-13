@@ -1,6 +1,10 @@
 # CHANGELOG
 
 ### features/design_update
+* New implemented User Stories:
+  * #740 Als Besucher möchte ich die neue Referenzobjekt-Navigation sehen
+
+### features/design_update
 * Design changes on homepage
   * New tab navigation
   * Update link box in slider
