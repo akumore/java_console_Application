@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### features/733_make_bigger_p
+* New implemented User Stories:
+  * #733 Als Besucher möchte ich ein grösseres P sehen
+
 ### features/design_update
 * Design changes on homepage
   * New tab navigation
