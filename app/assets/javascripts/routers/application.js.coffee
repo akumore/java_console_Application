@@ -8,7 +8,7 @@ class window.AlfredMueller.Routers.Application extends Backbone.Router
       $('input[placeholder], textarea[placeholder]').placeholder()
 
     # enable mobile real estate filter view
-    $(".search-filter-container").each ->
+    $(".search-filter-container, .button-navigation-container").each ->
       new AlfredMueller.Views.RealEstateFilter(el: $(this))
 
     # initialize map sliders
