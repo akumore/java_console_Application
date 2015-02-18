@@ -1,0 +1,25 @@
+.button-navigation-container
+  background: $brown
+  border: none
+  margin-top: 1em
+
+.button-navigation
+  +clearfix
+  padding: 2em 2em 1em 2em
+
+  li
+    background: $search-background-color
+    margin: 0 1em 1em 0
+    float: left
+
+    a
+      padding: 3px 22px
+      font-family: $sans-serif
+      font-size: 20px
+      font-weight: 200
+      display: block
+      line-height: 1.5em
+
+    &.selected a
+      color: $white
+      background-color: $selected-font-color
