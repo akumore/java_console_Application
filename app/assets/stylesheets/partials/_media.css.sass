@@ -13,10 +13,11 @@
 @media only screen and (max-width : 599px)
   $margin-side: 20px
 
-  .vision-slider
+  .header-img
     display: none
-    margin-top: 0px
-    visibility: hidden
+
+  #header
+    padding-top: 0
 
   .main-logo
     +column(7)
@@ -91,7 +92,7 @@
       .sub-navigation-wrapper
         display: none
 
-  .offer-tabs, .utilization-tabs
+  .utilization-tabs
     li
       width: 50%
       text-align: center
@@ -317,7 +318,8 @@
         margin: 0
         padding: 0
         display: block
-        float: none
+        float: left
+        width: 50%
 
         a
           padding: 1em $margin-side
@@ -398,7 +400,6 @@
 
   .teaser-row
     .teaser
-      width: 39.5%
       padding: 5%
 
       h2
@@ -410,10 +411,24 @@
 
     .teaser-left
       margin-right: .5%
+      width: 39.5%
 
     .teaser-right
       margin-left: .5%
+      width: 39.5%
 
+    .teaser-img-bg
+      background-size: 100% auto
+
+    .teaser-with-video
+      padding: 0
+      width: 100%
+
+    .teaser-with-image
+      padding: 0
+
+    .teaser-beige
+      width: 90%
 
 // tablet
 @media only screen and (min-width : 600px)
@@ -452,11 +467,6 @@
         padding: 10px 15px
         height: auto
 
-  .vision-slider
-    .image-caption-text
-      h3
-        margin-top: 1em
-
   .footer-contact > div
     margin-left: 0
 
@@ -480,14 +490,6 @@
   .sidebar
     ul
       margin-left: 0.5em
-
-  .vision-slider
-    .image-caption-text
-      margin-top: 0
-
-      h3
-        font-size: 1.75em
-        margin-top: 0
 
   .appointment
     min-height: 353px

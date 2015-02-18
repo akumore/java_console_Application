@@ -726,14 +726,16 @@ describe "RealEstates" do
       end
 
       it 'shows only the link to the next search result' do
-        page.should have_link('Nächstes Projekt')
-        page.should_not have_link('Vorheriges Projekt')
+        within '.result-nav' do
+          page.should have_link('Nächstes Projekt')
+          page.should_not have_link('Vorheriges Projekt')
+        end
       end
     end
 
     context 'with three or more real estates' do
       before do
-        2.times do
+        3.times do
           Fabricate :published_real_estate,
             :category => category,
             :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],

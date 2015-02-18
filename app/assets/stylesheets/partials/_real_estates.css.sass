@@ -177,7 +177,8 @@ td
     line-height: 1.5em
     display: block
 
-.offer-utilization-filters
+.offer-utilization-filters,
+.select-filter
   background: $search-background-color
   padding: 0.5em 40px
 
@@ -279,14 +280,14 @@ td
         line-height: 1em
         vertical-align: middle
 
-.offer-tabs, .utilization-tabs
+.utilization-tabs
   margin: 20px 0
 
   ul
     text-align: center
     list-style: none
     margin: 0
-    font-size: 14px
+    font-size: 15px
     position: relative
 
     &:before
@@ -310,6 +311,8 @@ td
     margin: 0 -3px
 
     a
+      font-family: $sans-serif
+      font-weight: normal
       padding: 7px 40px
 
   .selected
