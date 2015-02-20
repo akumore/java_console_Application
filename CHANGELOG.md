@@ -3,7 +3,7 @@
 ### features/design_update
 * New implemented User Stories:
   * #4623 Als Besucher möchte ich Teaser verwalten können und diese in einem Brick in der Website einfügen
-  *732: Als Besucher möchte ich 4 Teaser anstelle von 2 sehen
+  * #732: Als Besucher möchte ich 4 Teaser anstelle von 2 sehen
 
 ### features/design_update
 * Design changes on homepage
