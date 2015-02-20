@@ -13,37 +13,72 @@
       text-transform: none
 
     &:nth-child(1)
-      width: 56%
-      margin-right: .75%
-      background-color: #d9dee4
-
       &:before
-        @extend .teaser-overlaps
         right: 100%
+        background-color: transparent
+        content: ''
+        position: absolute
+        top: 0
+        bottom: 0
+        width: 9999px
+
+      &.teaser-left
         background-color: #d9dee4
+        width: 56%
 
-    &:nth-child(2)
-      width: 22.5%
-      margin-left: .75%
-      background-color: #CEC7A1
-      float: right
+        &:before
+          background-color: #d9dee4
 
-      &:after
-        @extend .teaser-overlaps
-        left: 100%
+      &.teaser-right
+        width: 22.5%
         background-color: #CEC7A1
 
+        &:after
+          background-color: #CEC7A1
+
+    &:nth-child(2)
+      &:after
+        left: 100%
+        background-color: transparent
+        content: ''
+        position: absolute
+        top: 0
+        bottom: 0
+        width: 9999px
+
+      &.teaser-left
+        width: 56%
+        background-color: #d9dee4
+
+        &:after
+          background-color: #d9dee4
+
+      &.teaser-right
+        width: 22.5%
+        background-color: #CEC7A1
+
+        &:after
+          background-color: #CEC7A1
+
     &:nth-child(3)
-      width: 22.5%
-      margin-right: .75%
-      background-color: #CEC7A1
       clear: both
 
+      &.teaser-left
+        background-color: #CEC7A1
+        width: 22.5%
+
+      &.teaser-right
+        width: 56%
+        background-color: #d9dee4
+
     &:nth-child(4)
-      width: 56%
-      margin-left: .75%
-      background-color: #d9dee4
-      float: right
+      &.teaser-left
+        width: 22.5%
+        background-color: #CEC7A1
+
+      &.teaser-right
+        width: 56%
+        background-color: #d9dee4
 
   .teaser-overlaps
     content: ''
@@ -54,6 +89,8 @@
 
   .teaser-left
     float: left
+    margin-right: .75%
 
   .teaser-right
     float: right
+    margin-left: .75%
