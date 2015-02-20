@@ -163,6 +163,33 @@ describe "Cms::Bricks" do
     end
   end
 
+  context 'teaser brick' do
+    describe '#new' do
+      before :each do
+        @teaser = Fabricate(:teaser, title: 'Teaser Name')
+        @page = Fabricate(:page)
+        visit new_cms_page_teaser_brick_path(@page)
+      end
+
+      context 'creating' do
+        before :each do
+          within('.new_brick_teaser') do
+            select 'Teaser Name', from: 'brick_teaser_teaser_1_id'
+            select 'Teaser Name', from: 'brick_teaser_teaser_2_id'
+          end
+        end
+
+        it 'has saved the provided attributes' do
+          click_on 'Teaser Baustein erstellen'
+          @page.reload
+          @brick = @page.bricks.last
+          @brick.teaser_1 == @teaser.id
+          @brick.teaser_2 == @teaser.id
+        end
+      end
+    end
+  end
+
   context 'accordion brick' do
     describe '#new' do
       before :each do
@@ -384,6 +411,16 @@ describe "Cms::Bricks" do
       pending 'figure out why this does not work'
       lambda {
         within("tr.text") do
+          page.click_link 'Löschen'
+        end
+        @page.reload
+      }.should change(@page.bricks, :count).by(-1)
+    end
+
+    it "destroys the accordion brick" do
+      pending 'figure out why this does not work'
+      lambda {
+        within("tr.teaser") do
           page.click_link 'Löschen'
         end
         @page.reload

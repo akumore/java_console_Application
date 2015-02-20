@@ -4,6 +4,7 @@ de:
       brick/title: 'Titel Baustein'
       brick/text: 'Text Baustein'
       brick/accordion: 'Akkordeon Baustein'
+      brick/teaser: 'Teaser Baustein'
       brick/placeholder: 'Platzhalter Baustein'
       brick/download: 'Download Baustein'
     attributes:

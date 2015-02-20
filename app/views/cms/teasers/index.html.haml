@@ -1,0 +1,31 @@
+- content_for :title do
+  Erfasste Teasers
+
+%ul.nav-tabs.nav.language-tabs
+  - I18n.available_locales.each do |locale|
+    %li{ :class => (content_locale.to_s == locale.to_s ? 'active' : nil) }
+      = link_to t("languages.#{locale}"), cms_teasers_path(:content_locale => locale)
+
+.row
+  .pull-right.padded
+    = link_to(new_cms_teaser_path(:content_locale => content_locale), :class => 'btn') do
+      %i.icon-plus-sign
+      = t('.new')
+
+= form_for :teasers, :model => @teasers, :url => sort_cms_teasers_path, :remote => true, :html => { :class => :autosubmit } do |form|
+  %table.table.table-bordered.table-striped.teasers-table.sortable
+    %thead
+      %tr
+        %th= Teaser.human_attribute_name :title
+        %th= Teaser.human_attribute_name :link
+        %th= Teaser.human_attribute_name :href
+        %th
+        %th
+    %tbody
+      - @teasers.each do |teaser|
+        %tr{ id: "teaser_#{teaser.id}" }
+          %td= teaser.title
+          %td= teaser.link
+          %td= teaser.href
+          %td= link_to  t('.destroy'), cms_teaser_path(teaser), :method => :delete, :confirm => t('.confirm_delete', :title => teaser.title)
+          %td= link_to t('.edit'), edit_cms_teaser_path(teaser)

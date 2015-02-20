@@ -36,6 +36,11 @@ AlfredMueller::Application.routes.draw do
     resources :jobs do
       post :sort, :on => :collection
     end
+
+    resources :teasers do
+      post :sort, :on => :collection
+    end
+
     resources :pages do
       Brick::Base::TYPES.each do |type|
         resources "#{type}_bricks", :controller => :bricks, :type => type, :except => :index
