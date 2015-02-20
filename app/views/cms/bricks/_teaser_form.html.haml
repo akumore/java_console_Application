@@ -1,20 +1,20 @@
 - if @teasers.present?
-  = form_for @brick, :url => url do |f|
-    = render 'cms/shared/errors', :model => @brick
+  = form_for @brick, url: url do |f|
+    = render 'cms/shared/errors', model: @brick
 
     %fieldset
       .control-group
         = f.label :title
         .controls
-          = f.collection_select(:teaser_1_id, @teasers, :id, :title)
-          = f.collection_select(:teaser_2_id, @teasers, :id, :title)
+          = f.collection_select(:teaser_1_id, @teasers, :id, :title, { include_blank: 'Leer' })
+          = f.collection_select(:teaser_2_id, @teasers, :id, :title, { include_blank: 'Leer' })
       .control-group
         .controls
-          = f.collection_select(:teaser_3_id, @teasers, :id, :title)
-          = f.collection_select(:teaser_4_id, @teasers, :id, :title)
+          = f.collection_select(:teaser_3_id, @teasers, :id, :title, { include_blank: 'Leer' })
+          = f.collection_select(:teaser_4_id, @teasers, :id, :title, { include_blank: 'Leer' })
 
     .form-actions
-      = f.submit nil, :class => 'btn btn-primary'
+      = f.submit nil, class: 'btn btn-primary'
 - else
   %p= t('.no-teasers')
   .padded

@@ -1,6 +1,6 @@
 %h3 Teaser Baustein
-= brick.teaser_1.title if brick.teaser_1.present?
-= brick.teaser_2.title if brick.teaser_2.present?
+= brick.teaser_1.present? ? brick.teaser_1.title : 'Leer'
+= brick.teaser_2.present? ? brick.teaser_2.title : 'Leer'
 %br
-= brick.teaser_3.title if brick.teaser_3.present?
-= brick.teaser_4.title if brick.teaser_4.present?
+= brick.teaser_3.present? ? brick.teaser_3.title : 'Leer'
+= brick.teaser_4.present? ? brick.teaser_4.title : 'Leer'
