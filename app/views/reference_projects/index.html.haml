@@ -15,4 +15,5 @@
       = render 'slider', projects: @gallery_photos
 
 - if @page.present?
-  = render template: 'pages/show'
+  .brick-list.clearfix
+    = render template: 'pages/show'
