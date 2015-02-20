@@ -1,10 +1,6 @@
 # CHANGELOG
 
 ### features/design_update
-* New implemented User Stories:
-  * #740 Als Besucher möchte ich die neue Referenzobjekt-Navigation sehen
-
-### features/design_update
 * Design changes on homepage
   * New tab navigation
   * Update link box in slider
@@ -14,6 +10,11 @@
   * #4616 Als Besucher möchte ich die Unternavigation im Slider (Mieten und Kaufen) auf der Startseite kleiner sehen
   * #729: Als Besucher möchte ich den Bauen Tab sehen
   * #736: Als Besucher möchte ich die Tabs in einem einheitlichen Look sehen
+
+* New implemented User Stories:
+  * #4623 Als Besucher möchte ich Teaser verwalten können und diese in einem Brick in der Website einfügen
+  * #732: Als Besucher möchte ich 4 Teaser anstelle von 2 sehen
+  * #740 Als Besucher möchte ich die neue Referenzobjekt-Navigation sehen
 
 ### v2.9.21 on 2014-10-03
 * Hotfix: Add ability to add image to existing download brick

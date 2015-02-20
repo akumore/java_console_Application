@@ -1,0 +1,59 @@
+.teaser-brick
+  width: 100%
+  margin: 0
+
+  .teaser
+    float: left
+    padding: 5%
+    position: relative
+    margin-top: 1.5%
+
+    h2
+      margin-top: 0
+      text-transform: none
+
+    &.teaser-1,
+    &.teaser-4
+      width: 56%
+      background-color: $gray-light
+
+    &.teaser-2,
+    &.teaser-3
+      width: 22.5%
+      background-color: $browny
+
+    &.teaser-1,
+      &:before
+        background-color: $gray-light
+        content: ''
+        position: absolute
+        top: 0
+        bottom: 0
+        width: 9999px
+        right: 100%
+
+    &.teaser-2
+      &:after
+        background-color: $browny
+        content: ''
+        position: absolute
+        top: 0
+        bottom: 0
+        width: 9999px
+        left: 100%
+
+
+  .teaser-overlaps
+    content: ''
+    position: absolute
+    top: 0
+    bottom: 0
+    width: 9999px
+
+  .teaser-left
+    float: left
+    margin-right: .75%
+
+  .teaser-right
+    float: right
+    margin-left: .75%

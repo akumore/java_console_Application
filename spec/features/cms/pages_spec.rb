@@ -136,6 +136,10 @@ describe "Cms::Pages" do
         page.should have_link('Akkordeon Baustein')
       end
 
+      it 'has a link to create a new accordion brick' do
+        page.should have_link('Teaser Baustein')
+      end
+
       it 'has a link to create a new placeholder brick' do
         page.should have_link('Platzhalter Baustein')
       end

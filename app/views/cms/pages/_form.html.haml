@@ -48,6 +48,5 @@
                 - Brick::Base::TYPES.each do |type|
                   %li= link_to "brick/#{type}".classify.constantize.model_name.human, send("new_cms_page_#{type}_brick_path", @page)
 
-
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'

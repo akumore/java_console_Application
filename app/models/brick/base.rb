@@ -2,7 +2,7 @@ class Brick::Base
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  TYPES = %w(title text accordion placeholder download)
+  TYPES = %w(title text accordion placeholder download teaser)
 
   embedded_in :page
   default_scope asc(:position)
