@@ -1,0 +1,59 @@
+.teaser-brick
+  width: 100%
+  margin: 0
+
+  .teaser
+    float: left
+    padding: 5%
+    position: relative
+    margin-top: 1.5%
+
+    h2
+      margin-top: 0
+      text-transform: none
+
+    &:nth-child(1)
+      width: 56%
+      margin-right: .75%
+      background-color: #d9dee4
+
+      &:before
+        @extend .teaser-overlaps
+        right: 100%
+        background-color: #d9dee4
+
+    &:nth-child(2)
+      width: 22.5%
+      margin-left: .75%
+      background-color: #CEC7A1
+      float: right
+
+      &:after
+        @extend .teaser-overlaps
+        left: 100%
+        background-color: #CEC7A1
+
+    &:nth-child(3)
+      width: 22.5%
+      margin-right: .75%
+      background-color: #CEC7A1
+      clear: both
+
+    &:nth-child(4)
+      width: 56%
+      margin-left: .75%
+      background-color: #d9dee4
+      float: right
+
+  .teaser-overlaps
+    content: ''
+    position: absolute
+    top: 0
+    bottom: 0
+    width: 9999px
+
+  .teaser-left
+    float: left
+
+  .teaser-right
+    float: right
