@@ -1,15 +1,18 @@
 - unless @reference_projects.empty?
-  = form_for @search_filter, :url => reference_projects_path, :method => 'GET' do |search_form|
-    = render 'search_filter', { :search_form => search_form }
+  = form_for @search_filter, url: reference_projects_path, method: 'GET' do |search_form|
+    = render 'search_filter', { search_form: search_form }
 
   .reference-projects-container
-    = render 'reference_project', :reference_projects => @reference_projects
+    = render 'reference_project', reference_projects: @reference_projects
 
     - if @reference_projects.size > 4
       .load-more
-        = link_to t('pages.show.more'), reference_projects_path(:section => @search_filter.section), :remote => true, :class => 'more'
+        = link_to t('pages.show.more'), reference_projects_path(section: @search_filter.section), remote: true, class: 'more'
 
 - unless @gallery_photos.empty?
   .search-container.clearfix
     .container.gallery-photos-slider
-      = render 'slider', :projects => @gallery_photos
+      = render 'slider', projects: @gallery_photos
+
+- if @page.present?
+  = render template: 'pages/show'

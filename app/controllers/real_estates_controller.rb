@@ -15,6 +15,7 @@ class RealEstatesController < ApplicationController
     @real_estates = RealEstateDecorator.decorate get_filtered_real_estates(@search_filter)
     @filtered_offer_utilization_real_estates = get_filtered_offer_utilization_real_estates(@search_filter)
     @reference_projects = ReferenceProjectDecorator.decorate get_filtered_reference_projects(@search_filter)
+    @page = Page.where(cms_page_params).first or raise Mongoid::Errors::DocumentNotFound.new(Page, cms_page_params)
   end
 
   def show
@@ -51,5 +52,9 @@ class RealEstatesController < ApplicationController
     offer = search_filter.for_sale? ? Offer::SALE : Offer::RENT
     utilization = search_filter.commercial? ? Utilization::WORKING : Utilization::LIVING
     ReferenceProject.where(:locale => I18n.locale, :offer => offer, :utilization => utilization, :displayed_on => ReferenceProject::HOME_AND_OFFER_PAGE)
+  end
+
+  def cms_page_params
+    { name: params[:controller], locale: params[:locale] }
   end
 end

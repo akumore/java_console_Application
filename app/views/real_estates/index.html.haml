@@ -51,3 +51,6 @@
         if(elem.length > 0){
           new AlfredMueller.Views.ScrollingMap({el: elem, real_estates: new AlfredMueller.Collections.RealEstates(#{@real_estates.map(&:model).to_json(:only => :_id, :methods => :coordinates)})})}
       })
+
+- if @page.present?
+  = render template: 'pages/show'
