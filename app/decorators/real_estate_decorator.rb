@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'google_analytics_category_translator'
 
 class RealEstateDecorator < ApplicationDecorator
@@ -146,6 +147,22 @@ class RealEstateDecorator < ApplicationDecorator
   def seo_description
     sanitized_description = strip_tags(description).chomp.chomp if description.present?
     [title, address.try(:simple), sanitized_description].compact.join ' - '
+  end
+
+  def seo_title
+    if living?
+      detail = figure.rooms if figure.try(:rooms).present?
+    elsif working? || storing?
+      detail = figure.surface if figure.surface.present?
+    elsif parking?
+      detail = "Parkieren"
+    end
+
+    city = model.address.city
+
+    utilization = I18n.t(".real_estates.search_filter." + model.offer + "")
+
+    "#{detail} - #{model.address.city} - #{utilization} - Alfred Müller AG"
   end
 
   def handout_order_link
