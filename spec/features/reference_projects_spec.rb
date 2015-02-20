@@ -5,6 +5,10 @@ require 'spec_helper'
 describe ReferenceProject do
   monkey_patch_default_url_options
 
+  before do
+    Fabricate(:page, title: 'Referenzen', name: 'reference_projects')
+  end
+
   describe 'shows the reference projects list' do
     before :each do
       visit reference_projects_path

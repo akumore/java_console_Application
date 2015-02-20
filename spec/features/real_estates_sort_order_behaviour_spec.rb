@@ -39,6 +39,7 @@ describe 'Sort order behaviour' do
 
   before do
     @real_estates = [living_real_estate, working_real_estate]
+    Fabricate(:page, title: 'Angebot', name: 'real_estates')
   end
 
   describe 'Default sort order params' do
