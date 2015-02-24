@@ -44,7 +44,10 @@ $border-light: lighten($search-filter-border-dark, 10%)
 
 $head-of-alfred-mueller-tab-slider-border: #dddddd
 
-$button-bg-dark: #b9b9ae
+$button-bg: #b9b9ae
+
+$blue: #3875d7
+$green-light: #c9c4a6
 
 // Teaser Colors
 $gray-light: #d9dee4
@@ -70,13 +73,13 @@ $browny-light: #E8E5D6
 
 //form submit button mixin
 =form-submit
-  background: $button-bg-dark
+  background-color: $button-bg
   padding: 0.5em 1em
   border: 0
   display: inline-block
   cursor: pointer
   &:hover
-    background-color: red
+    color: $dark
 
 //
 // Adds a background image and includes the retina version as well

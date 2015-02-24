@@ -30,7 +30,7 @@ table
 tr
   background-color: $search-item-color
   &.active
-    background: url(gradient-search-list-hover.png) repeat-x
+    //background: url(gradient-search-list-hover.png) repeat-x
     background-color: $search-hover-color
     cursor: pointer
 td
@@ -154,8 +154,6 @@ td
     margin-left: 2em
 
 .result-nav
-  border: 1px solid $search-filter-border-dark
-  border-bottom: 0px solid transparent
   padding: 0.75em 0.75em 0.6em 0.75em
   position: absolute
   top: -40px
@@ -210,6 +208,13 @@ td
     .chzn-choices
       background-color: #e6e6e2
       @extend .arrow-dropdown
+      border: none
+
+      .search-choice
+        background-image: none
+        border: none
+        background-color: #f4f4f4
+        box-shadow: none
 
   .chzn-container
     +float-left
@@ -219,25 +224,35 @@ td
     li a
       padding: 0px
 
+    .chzn-results
+      .highlighted
+        background:
+          color: $blue
+          image: none
+
+  .chzn-drop
+    border: none
+
+  .chzn-container-active
+    .chzn-choices
+      box-shadow: none
+
+
 .search-filter-order-form
   @extend .clearfix
-  background: #baba99 image-url('search-filter-order-bg.png') repeat-x
-  border: 1px solid #a6a7a6
+  background-color: $green-light
 
   &:hover
-    background: #baba99 image-url('search-filter-order-upside-down-bg.png') repeat-x
+    background-color: $search-hover-color
 
   .sort-field, .sort-order
-    background: #baba99 image-url('search-filter-order-bg.png') repeat-x
+    background-color: $green-light
     +float_left
     &:hover
-      background: #baba99 image-url('search-filter-order-upside-down-bg.png') repeat-x
+      background-color: $search-hover-color
 
   .sort-field
     width: 60%
-
-    .sort-order-dropdown
-      border-right: 1px solid #a6a7a6
 
   .sort-order
     width: 40%
