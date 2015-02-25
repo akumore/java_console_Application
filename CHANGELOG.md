@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### features/769_not_published_new
+* New implemented User Stories:
+  * #769 Als Editor möchte ich News nicht publizieren können
+
 ### features/design_update
 * Design changes on homepage
   * New tab navigation
