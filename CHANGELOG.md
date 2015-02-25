@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### features/752_flat_design
+* New implemented User Stories:
+  * #752 Flat Design umsetzen
+
 ### features/design_update
 * Design changes on homepage
   * New tab navigation
