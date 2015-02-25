@@ -10,6 +10,7 @@
   * #4616 Als Besucher möchte ich die Unternavigation im Slider (Mieten und Kaufen) auf der Startseite kleiner sehen
   * #729: Als Besucher möchte ich den Bauen Tab sehen
   * #736: Als Besucher möchte ich die Tabs in einem einheitlichen Look sehen
+  * #770: Als Besucher möchte ich die News nach Jahren sortiert sehen
 
 * New implemented User Stories:
   * #4623 Als Besucher möchte ich Teaser verwalten können und diese in einem Brick in der Website einfügen
