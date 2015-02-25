@@ -9,7 +9,7 @@ class NewsItemsController < ApplicationController
         @news_items_by_year = @filtered_news_items.group_by { |item| item.date.year.to_s }
 
         @year = params[:year]
-        @year = Date.today.year.to_s unless @news_items_by_year.keys.include?(@year)
+        @year = @filtered_news_items.max(:date).year.to_s unless @news_items_by_year.keys.include?(@year)
 
         @news_items = @news_items_by_year[@year]
       end
