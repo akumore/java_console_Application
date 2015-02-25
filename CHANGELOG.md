@@ -14,7 +14,10 @@
   * #729: Als Besucher möchte ich den Bauen Tab sehen
   * #732: Als Besucher möchte ich 4 Teaser anstelle von 2 sehen
   * #736: Als Besucher möchte ich die Tabs in einem einheitlichen Look sehen
-  * #740 Als Besucher möchte ich die neue Referenzobjekt-Navigation sehen
+  * #740: Als Besucher möchte ich die neue Referenzobjekt-Navigation sehen
+  * #752: Flat Design umsetzen
+  * #769: Als Editor möchte ich News nicht publizieren können
+  * #770: Als Besucher möchte ich die News nach Jahren sortiert sehen
 
 ### v2.9.22 on 2014-10-30
 * Hotfix: Update ftp uploader to avoid disconnects because of timeouts

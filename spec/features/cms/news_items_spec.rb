@@ -95,6 +95,12 @@ describe "Cms News Items Administration" do
       NewsItem.where(:title => 'Hello').first.images.count.should == 1
     end
 
+    it 'has un unchekded chekbox for publishing' do
+      visit new_cms_news_item_path
+      check_box = find('#news_item_published')
+      check_box.should be_checked
+    end
+
 
     it "doesn't add image because uploaded no image" do
       visit new_cms_news_item_path
@@ -214,8 +220,13 @@ describe "Cms News Items Administration" do
 
       page.should_not have_css "#document-#{doc.id}"
     end
-  end
 
+    it 'is possible to unpublish news item' do
+      visit edit_cms_news_item_path(@news_item)
+      uncheck 'news_item_published'
+      expect { click_on 'News speichern' }.to change{ @news_item.reload.published }.to(false)
+    end
+  end
 
   it 'destroys a certain news item' do
     news_item = Fabricate :news_item
@@ -225,5 +236,4 @@ describe "Cms News Items Administration" do
     end
     page.should have_content I18n.t "cms.news_items.destroy.success"
   end
-
 end
