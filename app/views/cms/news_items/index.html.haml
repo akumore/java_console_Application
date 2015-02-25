@@ -1,6 +1,11 @@
 - content_for :title do
   Erfasste News
 
+.news-items-state-bar
+  %ul.legend
+    %li
+      %i.state.published.active
+      Veröffentlicht
 
 %ul.nav-tabs.nav.language-tabs
   - I18n.available_locales.each do |locale|
@@ -16,7 +21,8 @@
 %table.table.table-bordered.table-striped
   %tr
     %th{ :width => '50%' }= NewsItem.human_attribute_name :title
-    %th{ :width => '30%'}= NewsItem.human_attribute_name :date
+    %th{ :width => '20%'}= NewsItem.human_attribute_name :date
+    %th{ :width => '10%'}= NewsItem.human_attribute_name :published
     %th
     %th
 
@@ -24,5 +30,8 @@
     %tr{ :id => "news_item_#{news.id}"}
       %td= news.title
       %td= l(news.date)
+      %td
+        .news-items-state-bar
+          %i.published{ class: news.published == true ? 'active' : 'inactive' }
       %td= link_to  t('.destroy'), cms_news_item_path(news), :method => :delete, :confirm => t('.confirm_delete', :title => news.title)
       %td= link_to t('.edit'), edit_cms_news_item_path(news)
