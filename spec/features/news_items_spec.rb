@@ -2,27 +2,31 @@
 
 require "spec_helper"
 
-describe "News", :js => true do
+describe "News", js: true do
   monkey_patch_default_url_options
 
   describe 'list view' do
     before :each do
       20.times { Fabricate(:news_item) }
-      3.times { Fabricate(:news_item, :locale => :fr) }
+      3.times { Fabricate(:news_item, locale: :fr) }
       visit news_items_path
     end
 
-    it 'has an accordion with 6 news items' do
-      page.should have_css('.accordion-item', :count => 6)
+    it 'has a button nav with year of the news' do
+      expect(page).to have_css('.button-navigation')
+      expect(page.find(".button-navigation li").text).to eq(Date.today.year.to_s)
     end
 
-    it 'loads older news and displays 12 news items' do
-      click_link 'Ältere News anzeigen'
-      page.should have_css('.accordion-item', :count => 12)
+    it 'has an accordion with 20 news items' do
+      expect(page).to have_css('.accordion-item', count: 20)
+    end
+
+    it 'should not have laod more link' do
+      expect(page).to_not have_css('.load-more')
     end
 
     it 'shows auto discovery rss link' do
-      page.should have_xpath("//link[contains(@href, 'news_items.xml')]")
+      expect(page).to have_xpath("//link[contains(@href, 'news_items.xml')]")
     end
   end
 
@@ -32,6 +36,7 @@ describe "News", :js => true do
       # Switching driver because of a bug visiting links with anchors
       Capybara.javascript_driver=:selenium
     end
+
     after do
       Capybara.javascript_driver=:webkit
     end
@@ -49,12 +54,12 @@ describe "News", :js => true do
       it 'opens the first news item by default' do
         news_item
         visit news_items_path
-        page.should have_css('.accordion-item.open', :count => 1)
+        expect(page).to have_css('.accordion-item.open', count: 1)
       end
 
       it 'opens the specified news item in the accordion' do
-        visit news_items_path(:anchor => "news_item_#{news_item.id}")
-        page.should have_css("#news_item_#{news_item.id}.accordion-item.open")
+        visit news_items_path(anchor: "news_item_#{news_item.id}")
+        expect(page).to have_css("#news_item_#{news_item.id}.accordion-item.open")
       end
     end
 
@@ -64,10 +69,10 @@ describe "News", :js => true do
         news_item.images << Fabricate.build(:news_item_image)
         news_item.images << Fabricate.build(:news_item_image)
 
-        visit news_items_path(:anchor => "news_item_#{news_item.id}")
+        visit news_items_path(anchor: "news_item_#{news_item.id}")
 
-        page.should have_css("#news_item_#{news_item.id} .flexslider")
-        page.should have_css("#news_item_#{news_item.id} .flexslider .slides li:not(.clone)", :count => 3)
+        expect(page).to have_css("#news_item_#{news_item.id} .flexslider")
+        expect(page).to have_css("#news_item_#{news_item.id} .flexslider .slides li:not(.clone)", count: 3)
       end
     end
 
@@ -77,15 +82,14 @@ describe "News", :js => true do
         news_item.documents << Fabricate.build(:news_item_document)
         news_item.documents << Fabricate.build(:news_item_document)
 
-        visit news_items_path(:anchor => "news_item_#{news_item.id}")
+        visit news_items_path(anchor: "news_item_#{news_item.id}")
 
-        page.should have_css("#news_item_#{news_item.id} a.icon-document", :count => 3)
+        expect(page).to have_css("#news_item_#{news_item.id} a.icon-document", count: 3)
 
         news_item.documents.each do |doc|
-          page.should have_link(File.basename(doc.file.path))
+          expect(page).to have_link(File.basename(doc.file.path))
         end
       end
     end
   end
 end
-
