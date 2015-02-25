@@ -15,6 +15,7 @@ class NewsItem
   field :content, :type => String
   field :date, :type => Date
   field :locale, :type => String, :default => 'de'
+  field :published, :type => Boolean, :default => true
 
   validates :title, :content, :date, :presence => true
 end

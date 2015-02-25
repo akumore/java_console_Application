@@ -38,6 +38,13 @@
             .controls
               = documents_form.file_field :file
 
+    %fieldset
+      %legend Veröffentlichen
+      .control-group
+        = f.label :published
+        .controls
+          = f.check_box :published
+
     .form-actions
       = f.submit nil, :class => 'btn btn-primary'
       .pull-right
