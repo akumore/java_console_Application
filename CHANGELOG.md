@@ -1,9 +1,5 @@
 # CHANGELOG
 
-### features/header
-* New implemented User Stories:
-  * #825 Als Benutzer möchte ich ein zentriertes Headerbild sehen
-
 ### features/design_update
 * Design changes on homepage
   * New tab navigation
@@ -14,10 +10,12 @@
   * #4616 Als Besucher möchte ich die Unternavigation im Slider (Mieten und Kaufen) auf der Startseite kleiner sehen
   * #729: Als Besucher möchte ich den Bauen Tab sehen
   * #736: Als Besucher möchte ich die Tabs in einem einheitlichen Look sehen
+  * #738: Als Editor möchte ich Meta Daten einer CMS Seite pflegen können
   * #752: Flat Design umsetzen
   * #769: Als Editor möchte ich News nicht publizieren können
   * #770: Als Besucher möchte ich die News nach Jahren sortiert sehen
   * #773: Als Besucher möchte ich für Immobilien einen Page Title und Description sehen können
+  * #825: Als Benutzer möchte ich ein zentriertes Headerbild sehen
 
 * New implemented User Stories:
   * #4623 Als Besucher möchte ich Teaser verwalten können und diese in einem Brick in der Website einfügen
