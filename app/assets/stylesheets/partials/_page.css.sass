@@ -23,18 +23,6 @@ body
 .clear
   clear: both
 
-.header-img
-  position: absolute
-  top: 0
-  width: 945px
-  max-width: 100%
-  height: 428px
-  left: -175px
-  left: 0
-  background-image: image-url('header_am.jpg')
-  background-repeat: no-repeat
-  background-size: 100% auto
-
 #header
   padding-top: 210px
   margin-top: 1em
@@ -50,6 +38,25 @@ body
   margin: 0px auto
   max-width: 1000px
   position: relative
+
+  &:after,
+  &:before
+    content: ' '
+    position: absolute
+
+  &:before
+    +retina-image('header_am')
+    height: 947px
+    width: 1476px
+    right: 190px
+    top: 0
+
+  &:after
+    +retina-image('50_jahre_icon')
+    height: 151px
+    width: 151px
+    right: 290px
+    top: 20px
 
 .main-logo
   position: relative

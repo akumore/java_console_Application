@@ -1,6 +1,10 @@
 # CHANGELOG
 
 ### features/design_update
+* New implemented User Stories:
+  * #825 Als Benutzer möchte ich ein zentriertes Headerbild sehen
+
+### features/design_update
 * Design changes on homepage
   * New tab navigation
   * Update link box in slider
