@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### features/design_update
+### features/header
 * New implemented User Stories:
   * #825 Als Benutzer möchte ich ein zentriertes Headerbild sehen
 
