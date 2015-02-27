@@ -1,53 +1,58 @@
-= form_for @search_filter, :url=>real_estates_path, :method=>'GET' do |search_form|
-  = render 'search_filter', { :search_form => search_form }
+.real-estates-container.clearfix
+  = form_for @search_filter, url:real_estates_path, method:'GET' do |search_form|
+    = render 'search_filter', { search_form: search_form }
 
-  .search-container.clearfix
+    .search-container.clearfix
 
-    %h2
-      = t '.hits', :count=>@real_estates.size
+      %h2
+        = t '.hits', count:@real_estates.size
 
-    .container.clearfix
-      .search-results
-        %table
-          - if @search_filter.sortable? && @real_estates.count > 0
-            = render 'search_filter_order', { :search_form => search_form }
-          %tbody
-            - @real_estates.each do |real_estate|
-              %tr{ :id => "real-estate-#{real_estate.id}" }
-                %td
-                  = link_to image_tag('transparent.png', :class => :lazy, :size => '145x92', 'data-original' => real_estate.thumbnail), real_estate_path(real_estate, @search_filter.to_params)
-                %td
-                  .title
-                    = real_estate.title
+      .container.clearfix
+        .search-results
+          %table
+            - if @search_filter.sortable? && @real_estates.count > 0
+              = render 'search_filter_order', { search_form: search_form }
+            %tbody
+              - @real_estates.each do |real_estate|
+                %tr{ id: "real-estate-#{real_estate.id}" }
+                  %td
+                    = link_to image_tag('transparent.png', class: :lazy, size: '145x92', 'data-original' => real_estate.thumbnail), real_estate_path(real_estate, @search_filter.to_params)
+                  %td
+                    .title
+                      = real_estate.title
 
-                  .col.first
-                    = real_estate.short_info_first
+                    .col.first
+                      = real_estate.short_info_first
 
-                  .col.middle
-                    = real_estate.short_info_second
+                    .col.middle
+                      = real_estate.short_info_second
 
-                  .col.last
-                    = real_estate.short_info_third
+                    .col.last
+                      = real_estate.short_info_third
 
-                  .clear
+                    .clear
 
 
-      - if @real_estates.any?
-        .scrolling-map.search-results-map
+        - if @real_estates.any?
+          .scrolling-map.search-results-map
 
-    - unless @reference_projects.empty?
-      .container.reference-projects-slider
-        = render 'slider', :projects => @reference_projects
+      - unless @reference_projects.empty?
+        .container.reference-projects-slider
+          = render 'slider', projects: @reference_projects
 
-- if @real_estates.any?
-  = render 'google_maps'
+  - if @real_estates.any?
+    = render 'google_maps'
 
-  - content_for :javascripts do
-    :javascript
-      $(function(){
-        $(".search-results img.lazy").lazyload()
+    - content_for :javascripts do
+      :javascript
+        $(function(){
+          $(".search-results img.lazy").lazyload()
 
-        elem = $(".scrolling-map:visible")
-        if(elem.length > 0){
-          new AlfredMueller.Views.ScrollingMap({el: elem, real_estates: new AlfredMueller.Collections.RealEstates(#{@real_estates.map(&:model).to_json(:only => :_id, :methods => :coordinates)})})}
-      })
+          elem = $(".scrolling-map:visible")
+          if(elem.length > 0){
+            new AlfredMueller.Views.ScrollingMap({el: elem, real_estates: new AlfredMueller.Collections.RealEstates(#{@real_estates.map(&:model).to_json(only: :_id, methods: :coordinates)})})}
+        })
+
+- if @page.present?
+  .brick-list
+    = render template: 'pages/show'

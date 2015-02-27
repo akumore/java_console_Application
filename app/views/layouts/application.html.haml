@@ -1,30 +1,30 @@
 !!! 5
 -# http://paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither
--html_tag :class => 'no-js oldie', :lang => I18n.locale do
+-html_tag class: 'no-js oldie', lang: I18n.locale do
   %head
     -# To render a different stylesheet partial inside the head (i.e. for admin layout)
     -# just copy _stylesheets.html.haml, and point to that partial instead.
-    = render 'layouts/head', :stylesheet_partial => 'layouts/stylesheets'
+    = render 'layouts/head', stylesheet_partial: 'layouts/stylesheets'
 
   %body
     #container
       %header#header.clearfix
-        = link_to 'Alfred-Müller.ch', root_path, :class => 'main-logo'
+        = link_to 'Alfred-Müller.ch', root_path, class: 'main-logo'
         .navigations#navigation
-          = link_to 'Navigation', '#navigation', :class => 'navigation-link-open'
-          = link_to 'Navigation', '#close-navigation', :class => 'navigation-link-close'
-          = render_navigation :context => :meta
+          = link_to 'Navigation', '#navigation', class: 'navigation-link-open'
+          = link_to 'Navigation', '#close-navigation', class: 'navigation-link-close'
+          = render_navigation context: :meta
           .clear
-          = render_navigation :context => :main, :renderer => MainNavigationRenderer, :expand_all => true
+          = render_navigation context: :main, renderer: MainNavigationRenderer, expand_all: true
 
-      #main{ :role => 'main', :class => "#{controller_name} #{action_name}" }
+      #main{ role: 'main', class: "#{controller_name} #{action_name}" }
         = render 'layouts/flashes'
         = yield
 
       %footer#footer
         = render 'layouts/footer'
     -# Javascript at the bottom for fast page loading
-    = render 'layouts/javascripts', :javascripts_partial => 'layouts/javascripts'
+    = render 'layouts/javascripts', javascripts_partial: 'layouts/javascripts'
 
     -# Retargeting pixels at the very bottom for fast page loading
     = render 'layouts/retargeting_pixels'

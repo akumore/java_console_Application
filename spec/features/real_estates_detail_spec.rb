@@ -32,6 +32,10 @@ describe "RealEstates" do
               :contact => Fabricate(:employee)
   end
 
+  before do
+    Fabricate(:page, title: 'Angebot', name: 'real_estates')
+  end
+
   describe "Visiting unpublished real estate" do
     it "redirects to real estate index page" do
       visit real_estate_path(unpublished_real_estate)

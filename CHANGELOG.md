@@ -1,9 +1,5 @@
 # CHANGELOG
 
-### features/header
-* New implemented User Stories:
-  * #825 Als Benutzer möchte ich ein zentriertes Headerbild sehen
-
 ### features/design_update
 * Design changes on homepage
   * New tab navigation
@@ -12,17 +8,17 @@
   * Full browser width footer with content update
   * #4615 Als Besucher möchte ich keinen Slider im Header sehen
   * #4616 Als Besucher möchte ich die Unternavigation im Slider (Mieten und Kaufen) auf der Startseite kleiner sehen
+  * #4623 Als Besucher möchte ich Teaser verwalten können und diese in einem Brick in der Website einfügen
   * #729: Als Besucher möchte ich den Bauen Tab sehen
+  * #732: Als Besucher möchte ich 4 Teaser anstelle von 2 sehen
+  * #734: Als Editor möchte ich die Seite «Angebot» und «Referenzen» im CMS pflegen können
   * #736: Als Besucher möchte ich die Tabs in einem einheitlichen Look sehen
+  * #740 Als Besucher möchte ich die neue Referenzobjekt-Navigation sehen
   * #752: Flat Design umsetzen
   * #769: Als Editor möchte ich News nicht publizieren können
   * #770: Als Besucher möchte ich die News nach Jahren sortiert sehen
   * #773: Als Besucher möchte ich für Immobilien einen Page Title und Description sehen können
-
-* New implemented User Stories:
-  * #4623 Als Besucher möchte ich Teaser verwalten können und diese in einem Brick in der Website einfügen
-  * #732: Als Besucher möchte ich 4 Teaser anstelle von 2 sehen
-  * #740 Als Besucher möchte ich die neue Referenzobjekt-Navigation sehen
+  * #825 Als Benutzer möchte ich ein zentriertes Headerbild sehen
 
 ### v2.9.21 on 2014-10-03
 * Hotfix: Add ability to add image to existing download brick
