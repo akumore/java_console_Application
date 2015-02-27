@@ -13,11 +13,15 @@
   * #4623 Als Besucher möchte ich Teaser verwalten können und diese in einem Brick in der Website einfügen
   * #729: Als Besucher möchte ich den Bauen Tab sehen
   * #732: Als Besucher möchte ich 4 Teaser anstelle von 2 sehen
+  * #734: Als Editor möchte ich die Seite «Angebot» und «Referenzen» im CMS pflegen können
   * #736: Als Besucher möchte ich die Tabs in einem einheitlichen Look sehen
+  * #738: Als Editor möchte ich Meta Daten einer CMS Seite pflegen können
   * #740: Als Besucher möchte ich die neue Referenzobjekt-Navigation sehen
   * #752: Flat Design umsetzen
   * #769: Als Editor möchte ich News nicht publizieren können
   * #770: Als Besucher möchte ich die News nach Jahren sortiert sehen
+  * #773: Als Besucher möchte ich für Immobilien einen Page Title und Description sehen können
+  * #825: Als Benutzer möchte ich ein zentriertes Headerbild sehen
 
 ### v2.9.22 on 2014-10-30
 * Hotfix: Update ftp uploader to avoid disconnects because of timeouts

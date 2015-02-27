@@ -1,14 +1,15 @@
 - content_for :meta do
-  %meta{ :name => :description, :content => @real_estate.seo_description }
+  %title= @real_estate.seo_title
+  %meta{ name: :description, content: @real_estate.seo_description }
 
 = render 'google_maps'
 
 - if @real_estate.videos.any?
   - content_for :javascript do
-    %script{ :type => "text/javascript", :src => "http://cdn.sublimevideo.net/js/go4z5g30.js" }
+    %script{ type: "text/javascript", src: "http://cdn.sublimevideo.net/js/go4z5g30.js" }
 
-= form_for @search_filter, :url=>real_estates_path, :method=>'GET' do |search_form|
-  = render 'search_filter', :search_form => search_form
+= form_for @search_filter, url:real_estates_path, method:'GET' do |search_form|
+  = render 'search_filter', search_form: search_form
 
 .detail{ class: "real-estate-#{@real_estate.id}" }
   - if @pagination.valid?
@@ -16,7 +17,7 @@
       %ul
         %li
           - if @pagination.prev?
-            = link_to t('.prev'), real_estate_path(@pagination.prev, @search_filter.to_params), :class => 'arrow-tailed-small-left image-link'
+            = link_to t('.prev'), real_estate_path(@pagination.prev, @search_filter.to_params), class: 'arrow-tailed-small-left image-link'
           - else
             %span.arrow-tailed-small-left.image-link.disabled-link
               = t('.prev')
@@ -25,7 +26,7 @@
 
         %li
           - if @pagination.next?
-            = link_to t('.next'), real_estate_path(@pagination.next, @search_filter.to_params), :class => 'arrow-tailed-small-right image-link'
+            = link_to t('.next'), real_estate_path(@pagination.next, @search_filter.to_params), class: 'arrow-tailed-small-right image-link'
           - else
             %span.arrow-tailed-small-right.image-link.disabled-link
               = t('.next')
@@ -45,10 +46,9 @@
     .clear
 
   .gallery
-    = render 'gallery', :real_estate => @real_estate
+    = render 'gallery', real_estate: @real_estate
 
   .description
-
     .accordion.accordion-classical{ 'data-open_first' => 1 }
 
       - figure_content = render 'figure', :real_estate => @real_estate, :figure => @real_estate.figure
@@ -71,7 +71,7 @@
             = information_content
 
       - if @real_estate.contact.present?
-        = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
+        = render 'contact', real_estate: @real_estate, contact: @real_estate.contact
 
   .sidebar
     %ul

@@ -38,6 +38,10 @@ describe "RealEstates" do
       :contact => Fabricate(:employee)
   end
 
+  before do
+    Fabricate(:page, title: 'Angebot', name: 'real_estates')
+  end
+
   describe "Visiting unpublished real estate" do
     it "redirects to real estate index page" do
       visit real_estate_path(unpublished_real_estate)
@@ -62,6 +66,7 @@ describe "RealEstates" do
         it 'renders the page correct' do
           visit real_estate_path(real_estate)
           page.should have_css("meta[content='#{RealEstateDecorator.new(real_estate).seo_description}']")
+          expect(first('title').native.text).to eq "10.5 Zimmer - Adliswil - Mieten - Alfred Müller AG"
 
           page.should have_css('div.detail')
           page.should have_css("div.real-estate-#{real_estate.id}")

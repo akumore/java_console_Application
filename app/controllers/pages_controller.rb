@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-
   respond_to :html
 
   rescue_from Mongoid::Errors::DocumentNotFound do |err|
@@ -12,10 +11,9 @@ class PagesController < ApplicationController
     respond_with @page
   end
 
-
   private
-  def query_params
-    {:name => params[:name], :locale=>I18n.locale}
-  end
 
+  def query_params
+    { name: params[:name], locale: I18n.locale }
+  end
 end
