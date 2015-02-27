@@ -145,7 +145,7 @@ class RealEstateDecorator < ApplicationDecorator
   end
 
   def seo_description
-    sanitized_description = strip_tags(description).chomp.chomp if description.present?
+    sanitized_description = Sanitize.clean(strip_tags(description).chomp.chomp) if description.present?
     [title, address.try(:simple), sanitized_description].compact.join ' - '
   end
 
