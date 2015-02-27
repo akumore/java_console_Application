@@ -6,3 +6,5 @@ de:
       page:
         title: 'Titel'
         name: 'Eindeutiger Name'
+        seo_title: 'Seitentitel (im Browser)'
+        seo_description: 'Seitenbeschreibung'

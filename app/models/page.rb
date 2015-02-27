@@ -1,5 +1,4 @@
 class Page
-
   include Mongoid::Document
   include Mongoid::Timestamps
 
@@ -9,6 +8,8 @@ class Page
   field :title, type: String
   field :name, type: String
   field :locale, type: String
+  field :seo_title, type: String
+  field :seo_description, type: String
 
   validates :title, :name, presence: true
   validates :locale, presence: true, inclusion: I18n.available_locales.map(&:to_s)
@@ -19,7 +20,6 @@ class Page
   end
 
   class << self
-
     def jobs_page
       where(name: 'jobs', locale: I18n.locale).first
     end
@@ -27,6 +27,5 @@ class Page
     def company_page
       where(name: 'company', locale: I18n.locale).first
     end
-
   end
 end

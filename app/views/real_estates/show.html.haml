@@ -1,6 +1,6 @@
 - content_for :meta do
-  %meta{ name: :description, content: @real_estate.seo_description }
   %title= @real_estate.seo_title
+  %meta{ name: :description, content: @real_estate.seo_description }
 
 = render 'google_maps'
 
