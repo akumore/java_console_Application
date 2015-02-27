@@ -1,10 +1,6 @@
 # CHANGELOG
 
 ### features/design_update
-* New implemented User Stories:
-  * #740 Als Besucher möchte ich die neue Referenzobjekt-Navigation sehen
-
-### features/design_update
 * Design changes on homepage
   * New tab navigation
   * Update link box in slider
@@ -13,7 +9,9 @@
   * #4615 Als Besucher möchte ich keinen Slider im Header sehen
   * #4616 Als Besucher möchte ich die Unternavigation im Slider (Mieten und Kaufen) auf der Startseite kleiner sehen
   * #729: Als Besucher möchte ich den Bauen Tab sehen
+  * #734: Als Editor möchte ich die Seite «Angebot» und «Referenzen» im CMS pflegen können
   * #736: Als Besucher möchte ich die Tabs in einem einheitlichen Look sehen
+  * #740 Als Besucher möchte ich die neue Referenzobjekt-Navigation sehen
 
 ### v2.9.21 on 2014-10-03
 * Hotfix: Add ability to add image to existing download brick
