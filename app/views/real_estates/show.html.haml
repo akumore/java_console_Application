@@ -1,15 +1,15 @@
 - content_for :meta do
-  %meta{ :name => :description, :content => @real_estate.seo_description }
+  %meta{ name: :description, content: @real_estate.seo_description }
   %title= @real_estate.seo_title
 
 = render 'google_maps'
 
 - if @real_estate.videos.any?
   - content_for :javascript do
-    %script{ :type => "text/javascript", :src => "http://cdn.sublimevideo.net/js/go4z5g30.js" }
+    %script{ type: "text/javascript", src: "http://cdn.sublimevideo.net/js/go4z5g30.js" }
 
-= form_for @search_filter, :url=>real_estates_path, :method=>'GET' do |search_form|
-  = render 'search_filter', :search_form => search_form
+= form_for @search_filter, url:real_estates_path, method:'GET' do |search_form|
+  = render 'search_filter', search_form: search_form
 
 .detail{ class: "real-estate-#{@real_estate.id}" }
   - if @pagination.valid?
@@ -17,7 +17,7 @@
       %ul
         %li
           - if @pagination.prev?
-            = link_to t('.prev'), real_estate_path(@pagination.prev, @search_filter.to_params), :class => 'arrow-tailed-small-left image-link'
+            = link_to t('.prev'), real_estate_path(@pagination.prev, @search_filter.to_params), class: 'arrow-tailed-small-left image-link'
           - else
             %span.arrow-tailed-small-left.image-link.disabled-link
               = t('.prev')
@@ -26,7 +26,7 @@
 
         %li
           - if @pagination.next?
-            = link_to t('.next'), real_estate_path(@pagination.next, @search_filter.to_params), :class => 'arrow-tailed-small-right image-link'
+            = link_to t('.next'), real_estate_path(@pagination.next, @search_filter.to_params), class: 'arrow-tailed-small-right image-link'
           - else
             %span.arrow-tailed-small-right.image-link.disabled-link
               = t('.next')
@@ -46,23 +46,23 @@
     .clear
 
   .gallery
-    = render 'gallery', :real_estate => @real_estate
+    = render 'gallery', real_estate: @real_estate
 
   .description
     .accordion.accordion-classical{ 'data-open_first' => 1 }
       - if @real_estate.any_descriptions?
-        = render 'descriptions', :real_estate => @real_estate, :additional_description => @real_estate.additional_description
+        = render 'descriptions', real_estate: @real_estate, additional_description: @real_estate.additional_description
 
       - if @real_estate.any_information? && !@real_estate.parking?
-        = render 'information', :real_estate => @real_estate, :information => @real_estate.information, :figure => @real_estate.figure
+        = render 'information', real_estate: @real_estate, information: @real_estate.information, figure: @real_estate.figure
 
-      = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing, :information => @real_estate.information
+      = render 'pricing', real_estate: @real_estate, pricing: @real_estate.pricing, information: @real_estate.information
 
       - if @real_estate.any_infrastructures?
-        = render 'infrastructure', :real_estate => @real_estate, :infrastructure => @real_estate.infrastructure
+        = render 'infrastructure', real_estate: @real_estate, infrastructure: @real_estate.infrastructure
 
       - if @real_estate.contact.present?
-        = render 'contact', :real_estate => @real_estate, :contact => @real_estate.contact
+        = render 'contact', real_estate: @real_estate, contact: @real_estate.contact
 
   .sidebar
     %ul
