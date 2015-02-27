@@ -13,6 +13,7 @@
   * #752: Flat Design umsetzen
   * #769: Als Editor möchte ich News nicht publizieren können
   * #770: Als Besucher möchte ich die News nach Jahren sortiert sehen
+  * #773: Als Besucher möchte ich für Immobilien einen Page Title und Description sehen können
 
 * New implemented User Stories:
   * #4623 Als Besucher möchte ich Teaser verwalten können und diese in einem Brick in der Website einfügen

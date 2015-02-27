@@ -56,6 +56,10 @@ describe "RealEstates" do
       page.should have_css("meta[content='#{RealEstateDecorator.new(real_estate).seo_description}']")
     end
 
+    it 'has a title for the search engine' do
+      expect(first('title').native.text).to eq "10.5 Zimmer - Adliswil - Mieten - Alfred Müller AG"
+    end
+
     it "has a detail div with a real estate's ID" do
       page.should have_css('div.detail')
       page.should have_css("div.real-estate-#{real_estate.id}")
