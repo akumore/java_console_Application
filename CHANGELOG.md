@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.29 - 2015-03-04
+* Hotfix: Add Team Member
+
 ### v2.9.28 - 2015-02-12
 * Hotfix: Fix Google Maps Bug in IE10
 
