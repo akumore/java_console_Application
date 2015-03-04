@@ -1,5 +1,6 @@
 # CHANGELOG
 
+
 ### features/design_update
 * Design changes on homepage
   * New tab navigation
