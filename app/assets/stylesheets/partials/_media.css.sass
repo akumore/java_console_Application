@@ -18,6 +18,7 @@
     &:after
       display: none
 
+
   #header
     padding-top: 0
 
@@ -383,6 +384,11 @@
 
   #footer
     padding: 1em 0
+    background-color: $search-background-color
+
+    &:before,
+    &:after
+      display: none
 
     h4
       padding: 1em $margin-side
@@ -396,6 +402,10 @@
       display: block
       float: none
       margin-bottom: .5em
+
+  #container
+    #footer
+      height: auto
 
   .scrolling-map
     display: none
@@ -437,8 +447,35 @@
       width: 90%
 
 // tablet
-@media only screen and (min-width : 600px)
+@media only screen and (max-width : 1450px)
   //@content
+
+  #container
+    position: relative
+
+    &:before
+      margin-left: -224px
+
+    &:after
+      right: 150px
+
+  #footer
+    position: relative
+    padding-bottom: 0
+    background-position: bottom right
+    height: 1612px
+
+    &:before
+      top: 0
+      margin-top: 0
+      width: 9999px
+      left: -300px
+
+    &:after
+      top: auto
+      right: -260px
+      background-position: bottom
+
 
 // tablet-landscape
 @media only screen and (min-width : 600px) and (orientation : landscape)
@@ -587,6 +624,8 @@
 // desktop
 @media only screen and (min-width : 1224px)
   //@content
+@media only screen and (min-width : 1380px)
+
 
 // desktop-large
 @media only screen and (min-width : 1824px)

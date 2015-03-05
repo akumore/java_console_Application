@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="1476.3px" height="946.6px" viewBox="465 536.4 1476.3 946.6" enable-background="new 465 536.4 1476.3 946.6"
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="2500px" height="946.6px" viewBox="1218 -441.6 2500 946.6" enable-background="new 1218 -441.6 2500 946.6"
 	 xml:space="preserve">
-<g id="Ebene_2">
-</g>
-<g id="Ebene_1">
-	<g>
-		<g>
-			<polygon fill="#E8E5D6" points="1927.4,566.4 1735,536.4 1603.6,536.4 1247.1,536.4 1216.2,536.4 1210.1,548.2 1202.2,563.5 
-				1414.9,596.7 1941.3,679 			"/>
-			<polygon fill="#E8E5D6" points="1089.3,545.8 1094.1,536.4 1029,536.4 			"/>
-		</g>
-		<polyline fill="#B5B082" points="1210.1,548.2 1216.2,536.4 1094.1,536.4 1089.3,545.8 1063.9,594.9 465,786.2 498,889.6 
-			993.5,731.3 631.2,1433.3 727.6,1483 1139.7,684.6 1414.9,596.7 1202.2,563.5 		"/>
-		<line fill="#B5B082" x1="1202.2" y1="563.5" x2="1210.1" y2="548.2"/>
-	</g>
+<g>
+	<polygon fill="#E8E5D6" points="2712.9,-243.3 2712.7,-357.2 2064.2,-441.6 1218.3,-441.6 	"/>
+	<polygon fill="#B5B082" points="1218,218.5 1460.2,-280.1 1926.5,-441.6 1595,-441.6 1527.3,-418.1 1538.7,-441.6 1418,-441.6 
+		1382.2,-367.9 1218,-311 1218,-196.2 1315.2,-229.8 1218,-29.8 	"/>
 </g>
 </svg>

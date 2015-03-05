@@ -1,5 +1,6 @@
 [![Build Status](https://magnum.travis-ci.com/screenconcept/alfredmueller_web.png?token=vgnCpmpJido3Y8bAsdL1)](https://magnum.travis-ci.com/screenconcept/alfredmueller_web)
 
+
 # Setup
 
 * Make sure you have Ruby 1.9.3 with the gemset `alfred_mueller` running.
