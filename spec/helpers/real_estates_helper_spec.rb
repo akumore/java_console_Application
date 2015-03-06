@@ -20,8 +20,8 @@ describe RealEstatesHelper do
   describe '#microsite_select_options' do
     it 'returns the translated microsite options' do
       expected_arr = [
-        ["Gartenstadt-Schlieren", "gartenstadt"], 
-        ["Feldpark", "feldpark"], 
+        ["Gartenstadt-Schlieren", "gartenstadt"],
+        ["Feldpark", "feldpark"],
         ["Bünzpark", "buenzpark"]
       ]
 
@@ -38,7 +38,7 @@ describe RealEstatesHelper do
 
     it 'returns the category select options with category name data attribute' do
       expected_arr = [
-        ['Einfamilienhaus', 1, { 'data-category_name' => 'single_house' }], 
+        ['Einfamilienhaus', 1, { 'data-category_name' => 'single_house' }],
         ['Wohnung', 2, { 'data-category_name' => 'flat' }]
       ]
       expect(category_options_for_utilization(Utilization::LIVING)).to eq(expected_arr)

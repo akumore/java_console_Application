@@ -2,9 +2,24 @@
   width: 100%
   margin: 0
 
+  .teasers-have-same-height
+    display: block\9
+
+    display: -webkit-box
+    display: -moz-box
+    display: -ms-flexbox
+    display: -webkit-flex
+    display: flex
+    -ms-flex-pack: justify
+    justify-content: space-between
+    margin-top: 1.5%
+
+    .teaser
+      margin-top: 0
+
   .teaser
     float: left
-    padding: 5%
+    padding: 50px 5%
     position: relative
     margin-top: 1.5%
 
@@ -41,7 +56,6 @@
         bottom: 0
         width: 9999px
         left: 100%
-
 
   .teaser-overlaps
     content: ''
