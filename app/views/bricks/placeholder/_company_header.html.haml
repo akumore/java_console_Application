@@ -1,13 +1,14 @@
 #head-of-alfred-mueller-gallery.tab-slider
-  %ul.first-level-navigation
-    %li
-      %a.active{ :href => '#vision' }=t('.vision')
-    %li
-      %a{ :href => '#board-of-directors' }=t('.board_of_directors')
-    %li
-      %a{ :href => '#managing-board' }=t('.managing_board')
-    %li
-      %a{ :href => '#subsidiaries' }=t('.subsidiaries')
+  .button-navigation-container
+    %ul.first-level-navigation.button-navigation
+      %li
+        %a.active{ :href => '#vision' }=t('.vision')
+      %li
+        %a{ :href => '#board-of-directors' }=t('.board_of_directors')
+      %li
+        %a{ :href => '#managing-board' }=t('.managing_board')
+      %li
+        %a{ :href => '#subsidiaries' }=t('.subsidiaries')
 
   .flex-container.hidden#vision.tab-content
     .flexslider
