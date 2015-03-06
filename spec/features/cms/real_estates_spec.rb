@@ -631,7 +631,7 @@ describe "Cms::RealEstates" do
       @real_estate.save!
 
       expect(@real_estate.information.infrastructure_html).to eq "<ul>\r\n\t<li>Baujahr: 1899</li>\r\n\t<li>Letzte Renovierung: 1997</li>\r\n\t<li>10 Geschosse</li>\r\n</ul>\r\nInfrastructure description"
-      expect(@real_estate.information.interior_html).to eq "<ul>\r\n\t<li>Kabelfernsehen</li>\r\n</ul>\r\nInterior description"
+      expect(@real_estate.information.interior_html).to eq "<ul>\r\n\t<li>Kabelanschluss</li>\r\n</ul>\r\nInterior description"
       expect(@real_estate.information.location_html).to eq "<ul>\r\n\t<li>Oberstufe 20 m</li>\r\n</ul>\r\nLocation description"
       expect(@real_estate.figure.offer_html).to eq "<ul>\r\n\t<li>3. Obergeschoss</li>\r\n\t<li>3.5 Zimmer</li>\r\n\t<li>Wohnfläche 120.5 m²</li>\r\n\t<li>Grundstückfläche 200.5 m²</li>\r\n\t<li>Lagerfläche 29.5 m²</li>\r\n\t<li>3 Einzelgaragen</li>\r\n\t<li>1 Doppelgarage</li>\r\n</ul>"
 
