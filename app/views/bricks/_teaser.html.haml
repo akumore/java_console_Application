@@ -1,5 +1,5 @@
 - if brick.teaser_1.present? || brick.teaser_2.present?
-  .teaser-row
+  .teaser-row{ class: css_class_for_same_teaser_height(brick.teaser_1, brick.teaser_2) }
     - if brick.teaser_1.present?
       .teaser.teaser-1.teaser-left
         %h2= brick.teaser_1.title
@@ -11,7 +11,7 @@
         %p= link_to brick.teaser_2.link, brick.teaser_2.href
 
 - if brick.teaser_3.present? || brick.teaser_4.present?
-  .teaser-row
+  .teaser-row{ class: css_class_for_same_teaser_height(brick.teaser_3, brick.teaser_4) }
     - if brick.teaser_3.present?
       .teaser.teaser-3.teaser-left
         %h2= brick.teaser_3.title

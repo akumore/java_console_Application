@@ -78,4 +78,9 @@ module ApplicationHelper
   rescue Mongoid::Errors::DocumentNotFound
     false
   end
+
+  def css_class_for_same_teaser_height(first_teaser, second_teaser)
+    return unless first_teaser.present? && second_teaser.present?
+    'teasers-have-same-height'
+  end
 end

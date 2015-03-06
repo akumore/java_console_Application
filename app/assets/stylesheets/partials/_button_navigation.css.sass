@@ -1,7 +1,7 @@
 .button-navigation-container
   background: $brown
   border: none
-  margin-top: 1em
+  margin-top: 2em
 
 .button-navigation
   +clearfix
@@ -20,6 +20,7 @@
       display: block
       line-height: 1.5em
 
-    &.selected a
+    &.selected a,
+    & a.active
       color: $white
       background-color: $selected-font-color
