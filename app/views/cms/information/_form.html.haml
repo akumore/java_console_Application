@@ -83,6 +83,8 @@
             - floated_field(f, :check_box,  :has_fireplace)
             - floated_field(f, :check_box,  :has_isdn)
             - floated_field(f, :check_box,  :has_cable_tv)
+            - floated_field(f, :check_box,  :has_glass_fiber)
+            - floated_field(f, :check_box,  :has_outlook)
             - floated_field(f, :text_field,  :maximal_floor_loading, class: 'span1')
             - floated_field(f, :text_field,  :number_of_restrooms, class: 'span1')
             - floated_field(f, :text_field,  :ceiling_height, class: 'span1')
@@ -121,11 +123,6 @@
               .controls
                 = f.check_box :is_new_building
                 %i.icon-question-sign.help-popover.push-inline-labels-down{ :rel => 'popover', 'data-original-title' => Information.human_attribute_name(:is_new_building), 'data-content' => t('.help_popover.is_new_building') }
-
-            .control-group
-              = f.label :has_outlook
-              .controls
-                = f.check_box :has_outlook
 
             .control-group
               = f.label :has_raised_ground_floor
