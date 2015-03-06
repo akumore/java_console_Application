@@ -6,6 +6,7 @@
   * Update link box in slider
   * New teasers
   * Full browser width footer with content update
+  * Make Teasers same height in teaser brick
 
 * New implemented User Stories:
   * #4615 Als Besucher möchte ich keinen Slider im Header sehen
