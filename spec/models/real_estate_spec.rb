@@ -44,7 +44,7 @@ describe RealEstate do
       @real_estate.microsite_reference.should be_a(MicrositeReference)
     end
 
-    it 'has 7 errors' do
+    it 'has 6 errors' do
       @real_estate.valid?
       @real_estate.errors.should have(6).items
     end
