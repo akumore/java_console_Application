@@ -211,6 +211,7 @@ GEM
     newrelic_rpm (3.3.4.1)
     nokogiri (1.5.11)
     orm_adapter (0.0.6)
+    phantomjs (1.9.8.0)
     poltergeist (1.0.3)
       capybara (~> 1.1)
       childprocess (~> 0.3)
@@ -380,6 +381,7 @@ DEPENDENCIES
   mongoid_rails_migrations
   newrelic_rpm
   pdfkit!
+  phantomjs (~> 1.9.8.0)
   poltergeist
   pry-debugger
   pry-rails
