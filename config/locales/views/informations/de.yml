@@ -28,6 +28,7 @@ de:
     has_water_supply: 'Wasseranschluss'
     has_sewage_supply: 'Abwasseranschluss'
     has_cable_tv: 'Kabelanschluss'
+    has_glass_fiber: 'Glasfaseranschluss'
     renovated_on: 'Letzte Renovierung'
     built_on: 'Baujahr'
     floors: 'Geschosse'

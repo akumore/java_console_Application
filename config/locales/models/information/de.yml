@@ -30,6 +30,7 @@ de:
         is_developed: Bauland erschlossen
         is_under_building_laws: im Baurecht
         has_cable_tv: Kabelanschluss
+        has_glass_fiber: Glasfaseranschluss
         floors: Anzahl Geschosse
         renovated_on: Renovationsjahr
         built_on: Baujahr

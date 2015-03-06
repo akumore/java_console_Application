@@ -34,6 +34,7 @@ describe "Cms Information" do
                                                 :is_developed => true,
                                                 :is_under_building_laws => true,
                                                 :has_cable_tv => true,
+                                                :has_glass_fiber => true,
                                                 :floors => 3,
                                                 :renovated_on => 1997,
                                                 :built_on => 1956,
@@ -73,7 +74,8 @@ describe "Cms Information" do
           'Swimmingpool',
           'Minergie Bauweise',
           'Minergie zertifiziert',
-          'Kabelanschluss'
+          'Kabelanschluss',
+          'Glasfaseranschluss'
         ].each do |checkbox|
           check checkbox
         end
@@ -98,13 +100,14 @@ describe "Cms Information" do
         expect(information.is_minergie_style).to eq @template_information.is_minergie_style
         expect(information.is_minergie_certified).to eq @template_information.is_minergie_certified
         expect(information.has_cable_tv).to eq @template_information.has_cable_tv
+        expect(information.has_glass_fiber).to eq @template_information.has_glass_fiber
         expect(information.floors).to eq @template_information.floors
         expect(information.renovated_on).to eq @template_information.renovated_on
         expect(information.built_on).to eq @template_information.built_on
         expect(information.points_of_interest.length).to eq 6
         expect(information.location_html).to eq "<ul>\r\n\t<li>Öffentlicher Verkehr 200 m</li>\r\n\t<li>Einkaufen 100 m</li>\r\n</ul>"
         expect(information.infrastructure_html).to eq "<ul>\r\n\t<li>Baujahr: 1956</li>\r\n\t<li>Letzte Renovierung: 1997</li>\r\n\t<li>3 Geschosse</li>\r\n\t<li>Schwimmbecken</li>\r\n\t<li>kinderfreundlich</li>\r\n\t<li>rollstuhltauglich</li>\r\n\t<li>Minergie Bauweise</li>\r\n\t<li>Minergie zertifiziert</li>\r\n\t<li>Liftzugang</li>\r\n</ul>"
-        expect(information.interior_html).to eq "<ul>\r\n\t<li>Balkon</li>\r\n\t<li>Gartensitzplatz</li>\r\n\t<li>Cheminée</li>\r\n\t<li>ISDN Anschluss</li>\r\n\t<li>Kabelanschluss</li>\r\n</ul>"
+        expect(information.interior_html).to eq "<ul>\r\n\t<li>Balkon</li>\r\n\t<li>Gartensitzplatz</li>\r\n\t<li>Cheminée</li>\r\n\t<li>ISDN Anschluss</li>\r\n\t<li>Kabelanschluss</li>\r\n\t<li>Glasfaseranschluss</li>\r\n\t<li>Ausblick</li>\r\n</ul>"
 
         within('.alert') do
           page.should have_content('Standort Beschreibung wurde automatisch ergänzt. Bitte überprüfen Sie den Inhalt')
@@ -176,7 +179,8 @@ describe "Cms Information" do
          'Anfahrrampe',
          'Hebebühne',
          'Bahnanschluss',
-         'Kabelanschluss'
+         'Kabelanschluss',
+         'Glasfaseranschluss'
         ].each do |checkbox|
           check checkbox
         end
@@ -195,6 +199,7 @@ describe "Cms Information" do
         expect(information.has_railway_terminal).to eq @template_information.has_railway_terminal
         expect(information.number_of_restrooms).to eq @template_information.number_of_restrooms
         expect(information.has_cable_tv).to eq @template_information.has_cable_tv
+        expect(information.has_glass_fiber).to eq @template_information.has_glass_fiber
         expect(information.floors).to eq @template_information.floors
         expect(information.renovated_on).to eq @template_information.renovated_on
         expect(information.built_on).to eq @template_information.built_on
@@ -276,7 +281,8 @@ describe "Cms Information" do
           'Bahnanschluss',
           'Wasseranschluss',
           'Abwasseranschluss',
-          'Kabelanschluss'
+          'Kabelanschluss',
+          'Glasfaseranschluss'
         ].each do |checkbox|
           check checkbox
         end
@@ -297,6 +303,7 @@ describe "Cms Information" do
         expect(information.has_sewage_supply).to eq @template_information.has_sewage_supply
         expect(information.number_of_restrooms).to eq @template_information.number_of_restrooms
         expect(information.has_cable_tv).to eq @template_information.has_cable_tv
+        expect(information.has_glass_fiber).to eq @template_information.has_glass_fiber
         expect(information.floors).to eq @template_information.floors
         expect(information.renovated_on).to eq @template_information.renovated_on
         expect(information.built_on).to eq @template_information.built_on
