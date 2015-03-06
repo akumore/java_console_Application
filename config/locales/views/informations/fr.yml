@@ -28,7 +28,7 @@ fr:
     has_water_supply: 'Raccordement eaux claires'
     has_sewage_supply: 'Raccordement eaux usées'
     has_cable_tv: 'Télévision par câble'
-    has_glass_fiber: 'Verre connexion fibre'
+    has_glass_fiber: 'Raccordement fibre optique'
     renovated_on: 'Date rénovation'
     built_on: 'Année construction'
     floors: 'Etages'
