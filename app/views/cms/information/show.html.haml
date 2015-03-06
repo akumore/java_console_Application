@@ -61,6 +61,7 @@
           - floated_field_show(@information, :has_fireplace,     :translate_value => true)
           - floated_field_show(@information, :has_isdn,     :translate_value => true)
           - floated_field_show(@information, :has_cable_tv,     :translate_value => true)
+          - floated_field_show(@information, :has_outlook,     :translate_value => true)
           - floated_field_show(@information, :maximal_floor_loading)
           - floated_field_show(@information, :number_of_restrooms)
           - floated_field_show(@information, :ceiling_height)
@@ -84,10 +85,6 @@
           %dl.dl-horizontal
             %dt= t "mongoid.attributes.information.is_new_building"
             %dd= t "#{@information.is_new_building?}"
-
-          %dl.dl-horizontal
-            %dt= t "mongoid.attributes.information.has_outlook"
-            %dd= t "#{@information.has_outlook?}"
 
           %dl.dl-horizontal
             %dt= t "mongoid.attributes.information.has_raised_ground_floor"
