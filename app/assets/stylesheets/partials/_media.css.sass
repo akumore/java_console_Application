@@ -484,6 +484,7 @@
 // tablet-portrait
 @media only screen and (min-width : 600px) and (max-width: 1024px)
   //and (orientation : portrait)
+
   #container
     padding: 0 10px
 
@@ -588,6 +589,32 @@
     .title
       white-space: normal
       width: auto
+
+
+  .utilization-tabs
+    li
+      a
+        padding: 7px 28px
+
+  .search-filter-form
+    position: relative
+    padding-bottom: 11px
+
+    label
+      width: 100px
+
+    .select-group
+      float: none
+      @extend .clearfix
+      display: block
+
+    input[type='submit']
+      position: absolute
+      top: 12px
+      left: 390px
+
+    .chzn-container
+      margin: 0
 
 // tablet-portrait only
 @media only screen and (min-width : 600px) and (max-width: 1024px) and (orientation : portrait)
