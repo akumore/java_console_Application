@@ -4,17 +4,22 @@
   %meta{ name: "keywords", content: "Land, Grundstücke, Immobilien, bauen, mieten, kaufen, vermieten, Immobilienverwaltung, umbauen und renovieren" }
 
 .services-slides-container.tabs
-  .tabs-navigation
+  .default-view.tabs-navigation
     %ul
       %li.selected
         = link_to(t(".rent"), '#rent-slides')
       %li
         = link_to(t(".sale"), '#sale-slides')
+      %li
+        = link_to(t(".build"), '#build-slides')
+
+  .mobile-view.select-filter
+    = select_tag :section, options_for_select([ [t(".rent"), '#rent-slides'], [t(".sale"), '#sale-slides'], [t(".build"), '#build-slides'] ])
 
   .tabs-content
     #rent-slides.content.active
       .link-box
-        %ul
+        %ul.clearfix
           - if @real_estates.for_rent.living.count > 0
             %li= link_to t(".living"), real_estates_path(offer: 'for_rent', utilization: 'private')
 
@@ -32,7 +37,7 @@
 
     #sale-slides.content
       .link-box
-        %ul
+        %ul.clearfix
           - if @real_estates.for_sale.living.count > 0
             %li= link_to t(".living"), real_estates_path(offer: 'for_sale', utilization: 'private')
 
@@ -48,19 +53,14 @@
       - unless @projects_for_sale.empty?
         = render 'slider', projects: @projects_for_sale
 
-.teaser-row
-  .teaser.teaser-left.teaser-overlaps-left.teaser-grey
-    %h2 Wir realisieren Ihre Bauprojekte nach Ihren Vorstellungen.
-    %p= link_to 'Wir sind Ihre Prozess- und Projektoptimierer', '/de/company#unsere-dienstleistungen'
+    #build-slides.content
+      .link-box
+        %ul.clearfix
+          %li= link_to t(".project_development"), "#{t('company_url')}#project_development", class: 'ga-tracking-link',  data: { 'ga-category' => "Projektentwicklung", 'ga-action' => "Ansicht Projektentwicklung", 'ga-label' => I18n.locale.to_s.upcase }
+          %li= link_to t(".new_building"), "#{t('company_url')}#new_building"
+          %li= link_to t(".rebuilding"), "#{t('company_url')}#rebuilding"
 
-  .teaser.teaser-right.teaser-overlaps-right.teaser-blue
-    %h2.white Räume für ihre Business.
-    %p= link_to 'Freie Geschäftsflächen zur Miete', '/de/real_estates?offer=for_rent&utilization=commercial', class: 'white'
+      .flex-container
+        = image_tag "construction.jpg"
 
-  .teaser.teaser-right.teaser-blue-dark
-    %h2.white Forum. Unser Magazin rund ums Wohnen.
-    %p= link_to 'Wohnen neu entdecken', '/de/company#unser-magazin', class: 'white'
-
-  .teaser.teaser-left.teaser-browny
-    %h2 Sie engagieren uns, damit Ihr Bauprojekt gelingt.
-    %p= link_to 'Zu unseren Dienstleistungen', '/de/company'
+= render 'teasers' if I18n.locale == :de

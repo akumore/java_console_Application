@@ -13,7 +13,7 @@ class InformationDecorator < ApplicationDecorator
   end
 
   INTERIOR_FIELDS = %w(has_sewage_supply has_water_supply has_balcony has_garden_seating has_fireplace has_isdn
-    has_cable_tv maximal_floor_loading ceiling_height number_of_restrooms)
+    has_cable_tv has_glass_fiber has_outlook maximal_floor_loading ceiling_height number_of_restrooms)
 
   def interior_characteristics
     return [] if real_estate.parking?

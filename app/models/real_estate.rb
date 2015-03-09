@@ -25,6 +25,8 @@ class RealEstate
   PRINT_CHANNEL_METHOD_ORDER = 'print_method_order'
   CHANNELS = %W(#{WEBSITE_CHANNEL} #{EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL} #{PRINT_CHANNEL} #{MICROSITE_CHANNEL})
 
+  DESCRIPTION = '<h3>Ihre Vorteile auf einen Blick</h3><ul><li>&nbsp;</li><li>&nbsp;</li><li>&nbsp;</li>'
+
   belongs_to :category
   belongs_to :office
   belongs_to :contact, :class_name => 'Employee'
@@ -58,7 +60,7 @@ class RealEstate
   field :channels, :type => Array
   field :print_channel_method, :type => String # defines if handout is published on website or customer has to order it
   field :title, :type => String
-  field :description, :type => String
+  field :description, :type => String, :default => DESCRIPTION
   field :building_type, :type => String
   field :utilization_description, :type => String
   field :category_label, :type => String, :localize => true # used for sorting, normalized by category.label

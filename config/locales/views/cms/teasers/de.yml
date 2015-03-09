@@ -1,0 +1,16 @@
+de:
+  cms:
+    teasers:
+      form:
+        overview: 'Zurück zur Übersicht'
+      index:
+        new: 'Neuen Teaser erfassen'
+        edit: 'Editieren'
+        confirm_delete: 'Den Teaser %{title} wirklich löschen?'
+        destroy: 'Löschen'
+      create:
+        success: Teaser erfolgreich angelegt
+      update:
+        success: Teaser erfolgreich aktualisiert
+      destroy:
+        success: "Teaser erfolgreich gelöscht"

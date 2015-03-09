@@ -10,6 +10,13 @@ require 'export/export'
 
 # use poltergeist/phantomjs for js testing
 require 'capybara/poltergeist'
+Capybara.register_driver :poltergeist do |app|
+  options = {
+    phantomjs: Phantomjs.path,
+    timeout: 60
+  }
+  Capybara::Poltergeist::Driver.new(app, options)
+end
 Capybara.javascript_driver = :poltergeist
 
 

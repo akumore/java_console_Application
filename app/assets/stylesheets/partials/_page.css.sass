@@ -15,6 +15,7 @@ body, select, input, textarea
 // force vertical scrollbar
 html
   overflow-y: scroll
+  position: relative
 
 html,
 body
@@ -24,17 +25,40 @@ body
   clear: both
 
 #header
+  padding-top: 210px
   margin-top: 1em
   +row
 
 #main
   +row
+  position: relative
 
 #container
   margin: 0px auto
   max-width: 1000px
+  position: static
+
+  &:after,
+  &:before
+    content: ' '
+    position: absolute
+
+  &:before
+    +retina-image('header_am')
+    height: 947px
+    width: 2500px
+    top: 0
+    left: 0
+
+  &:after
+    +retina-image('50_jahre_icon')
+    height: 151px
+    width: 151px
+    top: 20px
+    margin-left: 560px
 
 .main-logo
+  position: relative
   +retina-image("main-logo")
   background-position: left bottom
   height: 60px
@@ -148,25 +172,31 @@ h1, h2, h3, h4, p, ul, ol
 #footer
   +row
   margin-top: 1em
-  background-color: $search-background-color
-  position: relative
+  position: static
   padding: 5em 0
-
-  &:before,
-  &:after
-    content: ""
-    position: absolute
-    background-color: $search-background-color
-    top: 0
-    bottom: 0
-    width: 9999px
-    display: block
+  height: 1532px
 
   &:before
-    right: 100%
+    content: ' '
+    display: block
+    position: absolute
+    width: 100%
+    height: 167px
+    z-index: -1
+    left: 0
+    margin-top: -75px
+    background-color: $search-background-color
 
   &:after
-    left: 100%
+    content: ' '
+    +retina-image('footer')
+    position: absolute
+    display: block
+    height: 1580px
+    width: 2500px
+    z-index: -1
+    right: 0
+    bottom: 0
 
   h4
     font-size: 2.25em

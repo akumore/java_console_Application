@@ -157,139 +157,20 @@
   .sale-slide
     left: 80%
 
-.vision-slider
-  .flexslider
-    .slides
-      position: relative
-      z-index: 9
-
-  .flex-direction-nav li a
-    z-index: 20
-
-  .vision-click-area
-    width: 70%
-    height: 60%
-    display: block
-    position: absolute
-    left: 50%
-    margin-left: -35%
-    background: image-url('transparent.png')
-
-    &.disabled
-      cursor: none
-
-  .image-caption
-    background: transparent
-
-  .vision-header-title
-    text-transform: none
-
-  .image-caption-text
-    width: 50%
-    padding: 2em 140px 2em 2em
-    background: image-url('transparent-white.png')
-    height: 100%
-
-    a, a:link
-      padding-right: 30px
-      background: image-url('arrows/arrow-tailed-small-right.png') no-repeat right center
-
-  .toggle
-    position: absolute
-    left: 15px
-    bottom: 17px
-    z-index: 30
-    cursor: pointer
-
-    span
-      +opacity(0)
-      +single-transition("opacity", 0.5s)
-
-    &:hover
-      span
-        +opacity(1)
-
-
-  .toggle-close, .toggle-open
-    width: 25px
-    height: 25px
-
-  .toggle-close
-    display: none
-    background: image-url('arrows/arrow-header-up.png') no-repeat left center
-
-    &:hover
-      background: image-url('arrows/arrow-header-up-hover.png') no-repeat left center
-      color: $dark
-
-  .toggle-open
-    display: block
-    background: image-url('arrows/arrow-header-down.png') no-repeat left center
-
-    &:hover
-      background: image-url('arrows/arrow-header-down-hover.png') no-repeat left center
-      color: $dark
-
-.vision-slider
-  position: relative
-  margin-bottom: 20px
-  margin-top: -488px
-  height: 535px
-
-.vision-slider-open
-  .vision-slider
-    margin-top: 0px
-
-    .toggle-open
-      display: none
-
-    .toggle-close
-      display: block
-
-.vision-frame
-  position: absolute
-  top: 0px
-  left: 0px
-  z-index: 10
-  width: 100%
-
-  img
-    width: 100%
-
 // Styles for tab slider placeholder
 .tab-slider
-  margin: 50px 0 50px 0
+  margin: 15px 0 50px 0
   width: 1002px
 
-  .first-level-navigation, .second-level-navigation
+  .second-level-navigation
     +horizontal-list
     overflow: hidden
 
-    li
-      padding: 0
-      margin: 0px 5px 0px 0px
-
     a
       display: block
 
-  .first-level-navigation
-    margin-bottom: -1px
-
-    a
-      padding: 10px 20px
-      background-color: $search-background-color
-      border:
-        top: 1px solid $head-of-alfred-mueller-tab-slider-border
-        right: 1px solid $head-of-alfred-mueller-tab-slider-border
-        left: 1px solid $head-of-alfred-mueller-tab-slider-border
-      &:hover, &.active
-        height: 20px
-        position: relative
-        z-index: 2
-        background: image-url('tab-slider-top.png') repeat-x top left
-
   .second-level-navigation
-    background: image-url('tab-slider-bottom.png') repeat-x top left
+    background-color: $browny
     position: absolute
     z-index: 1
     width: 100%
@@ -309,6 +190,7 @@
   .tab-content
     height: 500px
     border: 1px solid $head-of-alfred-mueller-tab-slider-border
+    margin-top: 30px
 
   .tab-slider-description
     background: image-url('image-caption-top-big.png') no-repeat top right

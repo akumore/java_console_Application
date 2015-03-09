@@ -44,6 +44,18 @@ $border-light: lighten($search-filter-border-dark, 10%)
 
 $head-of-alfred-mueller-tab-slider-border: #dddddd
 
+$button-bg: #b9b9ae
+
+$blue: #3875d7
+$green-light: #c9c4a6
+
+// Teaser Colors
+$gray-light: #d9dee4
+$gray-dark: #7F96A8
+$gray-blue: #5d788f
+$browny: #CEC7A1
+$browny-light: #E8E5D6
+
 // Mixins ---------------------------------------------------------------
 
 //Placeholder Mixins are borrowed from https://gist.github.com/923780
@@ -61,11 +73,13 @@ $head-of-alfred-mueller-tab-slider-border: #dddddd
 
 //form submit button mixin
 =form-submit
-  background: #edeae5 image-url('button-bg.png') repeat-x
-  border: 1px solid #848273
+  background-color: $button-bg
   padding: 0.5em 1em
+  border: 0
   display: inline-block
   cursor: pointer
+  &:hover
+    color: $dark
 
 //
 // Adds a background image and includes the retina version as well

@@ -28,6 +28,7 @@ it:
     has_water_supply: 'Allacciamento acqua'
     has_sewage_supply: 'Allacciamento acqua di scarico'
     has_cable_tv: 'TV via cavo'
+    has_glass_fiber: 'Collegamento in fibra ottica'
     renovated_on: 'Anno di risanamento'
     built_on: 'Anno di costruzione'
     floors: 'Piani'

@@ -529,8 +529,7 @@ describe "Handout aka MiniDoku" do
       end
 
       it "has no view" do
-        # only on third party webpages
-        page.should_not have_content 'Ausblick'
+        page.should have_content 'Ausblick'
       end
 
       it 'has fireplace' do

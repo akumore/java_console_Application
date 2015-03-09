@@ -1,0 +1,24 @@
+= form_for [:cms, @teaser], html: { multipart: true } do |f|
+  = render 'cms/shared/errors', model: @teaser
+
+  = f.hidden_field :locale
+  %fieldset.push-checkboxes-down
+    .control-group
+      = f.label :title
+      .controls
+        = f.text_field :title, class: 'span8'
+    .control-group
+      = f.label :link
+      .controls
+        = f.text_field :link, class: 'span8'
+    .control-group
+      = f.label :href
+      .controls
+        = f.text_field :href, class: 'span8'
+
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'
+    .pull-right
+      = link_to(cms_teasers_path, :class => 'btn small') do
+        %i.icon-list
+        = t('.overview')

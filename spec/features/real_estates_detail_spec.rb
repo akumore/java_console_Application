@@ -39,6 +39,10 @@ describe "RealEstates" do
       :contact => Fabricate(:employee)
   end
 
+  before do
+    Fabricate(:page, title: 'Angebot', name: 'real_estates')
+  end
+
   describe "Visiting unpublished real estate" do
     it "redirects to real estate index page" do
       visit real_estate_path(unpublished_real_estate)
@@ -63,6 +67,7 @@ describe "RealEstates" do
         it 'renders the page correct' do
           visit real_estate_path(real_estate)
           page.should have_css("meta[content='#{RealEstateDecorator.new(real_estate).seo_description}']")
+          expect(first('title').native.text).to eq "10.5 Zimmer - Adliswil - Mieten - Alfred Müller AG"
 
           page.should have_css('div.detail')
           page.should have_css("div.real-estate-#{real_estate.id}")
@@ -726,14 +731,16 @@ describe "RealEstates" do
       end
 
       it 'shows only the link to the next search result' do
-        page.should have_link('Nächstes Projekt')
-        page.should_not have_link('Vorheriges Projekt')
+        within '.result-nav' do
+          page.should have_link('Nächstes Projekt')
+          page.should_not have_link('Vorheriges Projekt')
+        end
       end
     end
 
     context 'with three or more real estates' do
       before do
-        2.times do
+        3.times do
           Fabricate :published_real_estate,
             :category => category,
             :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],

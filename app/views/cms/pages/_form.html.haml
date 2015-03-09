@@ -1,17 +1,28 @@
 = form_for [:cms, @page] do |f|
-  = render 'cms/shared/errors', :model => @page
+  = render 'cms/shared/errors', model: @page
 
   %fieldset
     = f.hidden_field :locale
     .control-group
       = f.label :title
       .controls
-        = f.text_field :title, :class => 'span8'
+        = f.text_field :title, class: 'span8'
+
     - unless @page.persisted?
       .control-group
         = f.label :name
         .controls
-          = f.text_field :name, :class => 'span8'
+          = f.text_field :name, class: 'span8'
+
+    .control-group
+      = f.label :seo_title
+      .controls
+        = f.text_field :seo_title, class: 'span8'
+
+    .control-group
+      = f.label :seo_description
+      .controls
+        = f.text_field :seo_description, class: 'span8'
 
   - if @page.persisted?
     .row
@@ -22,32 +33,31 @@
           %thead
             %tr
               %th
-              %th{ :width => '70%' } Baustein
+              %th{ width: '70%' } Baustein
               %th
               %th
           %tbody
             - @page.bricks.each do |brick|
               = f.fields_for :bricks, brick do |brick_form|
-                %tr.draggable-row{ :class => brick.type }
+                %tr.draggable-row{ class: brick.type }
                   %td.drag-handle
                     %i.icon-align-justify
-                    = brick_form.hidden_field :position, :value => brick.position
-                  %td{ :width => '70%' }= render "cms/bricks/#{brick.type}_show", :brick => brick
+                    = brick_form.hidden_field :position, value: brick.position
+                  %td{ width: '70%' }= render "cms/bricks/#{brick.type}_show", brick: brick
 
-                  %td= link_to t('.destroy'), send("cms_page_#{brick.type}_brick_path", @page, brick), :method => :delete, :confirm => t('.confirm_delete')
+                  %td= link_to t('.destroy'), send("cms_page_#{brick.type}_brick_path", @page, brick), method: :delete, confirm: t('.confirm_delete')
 
                   %td= link_to t('.edit'), send("edit_cms_page_#{brick.type}_brick_path", @page, brick)
 
         - if @page.persisted?
           .pull-right
             .btn-group
-              = link_to '#', :class => 'btn dropdown-toggle', 'data-toggle' => 'dropdown' do
+              = link_to '#', class: 'btn dropdown-toggle', 'data-toggle' => 'dropdown' do
                 Baustein hinzufügen
                 %span.caret
               %ul.dropdown-menu
                 - Brick::Base::TYPES.each do |type|
                   %li= link_to "brick/#{type}".classify.constantize.model_name.human, send("new_cms_page_#{type}_brick_path", @page)
 
-
   .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
+    = f.submit nil, class: 'btn btn-primary'

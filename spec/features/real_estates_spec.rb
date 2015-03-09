@@ -33,6 +33,10 @@ describe "RealEstates" do
     Fabricate(:parking_category)
   end
 
+  before do
+    Fabricate(:page, title: 'Angebot', name: 'real_estates')
+  end
+
   describe "Visit real estate index path" do
     before do
       @real_estates = [real_estate, unpublished_real_estate]

@@ -26,6 +26,10 @@ describe GalleryPhoto do
              )
   end
 
+  before do
+    Fabricate(:page, title: 'Referenzen', name: 'reference_projects')
+  end
+
   describe "Gallery Photo Slider" do
     context 'with existing gallery photos' do
       before do

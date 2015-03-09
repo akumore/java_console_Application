@@ -1,5 +1,8 @@
 - content_for :meta do
-  = insert_seo_tags
+  - if @page.seo_title.present?
+    %title= @page.seo_title
+  - if @page.seo_description.present?
+    %meta{ name: :description, content: @page.seo_description }
 
 - @page.bricks.each do |brick|
   - if brick.type == 'accordion'

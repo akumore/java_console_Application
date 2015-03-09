@@ -8,41 +8,51 @@ describe "Pages" do
   describe 'Jobs' do
     before :each do
       [:de, :fr].each do |locale|
-        Fabricate :page, :name => 'jobs', :locale => locale,
-                  :bricks => [
-                    Fabricate.build(:placeholder_brick, :placeholder => 'jobs_openings'),
-                    Fabricate.build(:placeholder_brick, :placeholder => 'job_profile_slider')
+        Fabricate :page, name: 'jobs', locale: locale, seo_title: 'Jobs - Page Title', seo_description: 'Jobs - SEO Description',
+                  bricks: [
+                    Fabricate.build(:placeholder_brick, placeholder: 'jobs_openings'),
+                    Fabricate.build(:placeholder_brick, placeholder: 'job_profile_slider')
                   ]
       end
 
       @unpublished_job = Fabricate :job
-      @german_published_job = Fabricate :published_job, :locale => :de
-      @french_published_job = Fabricate :published_job, :locale => :fr
+      @german_published_job = Fabricate :published_job, locale: :de
+      @french_published_job = Fabricate :published_job, locale: :fr
     end
 
     it 'has an accordion with jobs in german' do
-      visit I18n.t('jobs_url', :locale => 'de')
-      page.should have_css '.jobs .accordion-item', :count => 1
+      visit I18n.t('jobs_url', locale: 'de')
+      page.should have_css '.jobs .accordion-item', count: 1
       page.should have_css "#job_#{@german_published_job.id}"
     end
 
     it 'has an accordion with jobs in french' do
-      visit I18n.t('jobs_url', :locale => 'fr')
-      page.should have_css '.jobs .accordion-item', :count => 1
+      visit I18n.t('jobs_url', locale: 'fr')
+      page.should have_css '.jobs .accordion-item', count: 1
       page.should have_css "#job_#{@french_published_job.id}"
     end
 
     it "has a job profile slider" do
-      visit I18n.t('jobs_url', :locale => 'de')
-      page.should have_css '.tab-slider', :count => 1
+      visit I18n.t('jobs_url', locale: 'de')
+      page.should have_css '.tab-slider', count: 1
+    end
+
+    it 'has a valid page title' do
+      visit I18n.t('jobs_url', locale: 'de')
+      expect(first('title').native.text).to eq "Jobs - Page Title"
+    end
+
+    it 'has a valid seo description' do
+      visit I18n.t('jobs_url', locale: 'de')
+      expect(page).to have_css("meta[content='Jobs - SEO Description']")
     end
   end
 
 
   describe "Company Page" do
     before do
-      @brick = Fabricate.build(:placeholder_brick, :placeholder => 'company_header')
-      @page = Fabricate(:page, :name => 'company', :bricks => [@brick])
+      @brick = Fabricate.build(:placeholder_brick, placeholder: 'company_header')
+      @page = Fabricate(:page, name: 'company', bricks: [@brick])
     end
 
     it "has a tab slider" do
@@ -58,7 +68,7 @@ describe "Pages" do
           page.should have_content "Viktor Naumann"
           page.should have_content "Erich Rüegg"
           # only email of Christoph Müller is needed here
-          page.should have_link 'E-Mail', :href => "mailto:christoph.mueller@alfred-mueller.ch"
+          page.should have_link 'E-Mail', href: "mailto:christoph.mueller@alfred-mueller.ch"
         end
       end
 
@@ -70,11 +80,11 @@ describe "Pages" do
           page.should have_content "Walter Hochreutener"
           page.should have_content "Joe Schmalz"
           page.should_not have_content "David Spiess"
-          page.should have_link 'E-Mail', :href => "mailto:david.hossli@alfred-mueller.ch"
-          page.should have_link 'E-Mail', :href => "mailto:joe.schmalz@alfred-mueller.ch"
-          page.should have_link 'E-Mail', :href => "mailto:michael.mueller@alfred-mueller.ch"
-          page.should_not have_link 'E-Mail', :href => "mailto:david.spiess@alfred-mueller.ch"
-          page.should have_link 'E-Mail', :href => "mailto:beat.stocker@alfred-mueller.ch"
+          page.should have_link 'E-Mail', href: "mailto:david.hossli@alfred-mueller.ch"
+          page.should have_link 'E-Mail', href: "mailto:joe.schmalz@alfred-mueller.ch"
+          page.should have_link 'E-Mail', href: "mailto:michael.mueller@alfred-mueller.ch"
+          page.should_not have_link 'E-Mail', href: "mailto:david.spiess@alfred-mueller.ch"
+          page.should have_link 'E-Mail', href: "mailto:beat.stocker@alfred-mueller.ch"
         end
       end
     end
@@ -82,14 +92,14 @@ describe "Pages" do
 
   describe 'Knowledge Page' do
     before do
-      @page = Fabricate(:page, :name => 'knowledge')
+      @page = Fabricate(:page, name: 'knowledge')
       @page.bricks << Fabricate.build(:download_brick)
       visit '/de/knowledge'
     end
 
     it 'renders a download brick' do
-      page.should have_css(".brick.download-brick", :count => 1)
-      page.should have_link("#{@page.bricks.first.title}", :href => @page.bricks.first.file.url)
+      page.should have_css(".brick.download-brick", count: 1)
+      page.should have_link("#{@page.bricks.first.title}", href: @page.bricks.first.file.url)
     end
   end
 end

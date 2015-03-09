@@ -3,7 +3,7 @@
 
   .teaser
     float: left
-    padding: 5% 3%
+    padding: 5%
     position: relative
     margin-top: 1.5%
 
@@ -12,11 +12,11 @@
       text-transform: none
 
   .teaser-left
-    width: 52.5%
+    width: 56%
     margin-right: .75%
 
   .teaser-right
-    width: 34%
+    width: 22.5%
     float: right
     margin-left: .75%
 
@@ -39,21 +39,47 @@
     left: 100%
 
   .teaser-grey
-    background-color: $head-of-alfred-mueller-tab-slider-border
-    padding-bottom: 100px
+    background-color: $gray-light
+    padding-bottom: 210px
 
     &.teaser-overlaps-left:before
-      background-color: $head-of-alfred-mueller-tab-slider-border
+      background-color: $gray-light
 
   .teaser-blue
-    background-color: #7f95a6
+    background-color: $gray-dark
 
     &.teaser-overlaps-right:after
-      background-color: #7f95a6
+      background-color: $gray-dark
 
   .teaser-blue-dark
-    background-color: #5d788f
-    height: 400px
+    background-color: $gray-blue
 
   .teaser-browny
-    background-color: #d1caaa
+    background-color: $browny
+    padding-bottom: 170px
+
+  .teaser-beige
+    background-color: $browny-light
+    padding-bottom: 91px
+
+  .teaser-img-bg
+    padding-bottom: 275px
+    background-image: image-url('teaser_bg_img.png')
+    background-position: center
+    background-repeat: no-repeat
+    background-size: auto 100%
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{image_path('placeholder_325_480.gif')}',sizingMethod='scale')
+    -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{image_path('placeholder_325_480.gif')}', sizingMethod='scale')"
+
+  .teaser-with-video
+    padding: 0
+    width: 66%
+
+  .teaser-with-image
+    padding: 0
+
+    img
+      width: 100%
+
+    .inner
+      padding: 5%

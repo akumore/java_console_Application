@@ -1,0 +1,29 @@
+.teaser-row
+  .teaser.teaser-left.teaser-overlaps-left.teaser-grey
+    %h2 Wir realisieren Ihre Bauprojekte nach Ihren Vorstellungen.
+    %p= link_to 'Wir sind Ihre Prozess- und Projektoptimierer', '/de/company#unsere-dienstleistungen'
+
+  .teaser.teaser-right.teaser-overlaps-right.teaser-blue
+    %h2.white Räume für ihr Unternehmen.
+    %p= link_to 'Freie Geschäftsflächen zur Miete', '/de/real_estates?offer=for_rent&utilization=commercial', class: 'white'
+
+  .teaser.teaser-right.teaser-img-bg
+    %h2.white Forum. Unser Magazin für Sie.
+    %p= link_to 'Zum Magazin', '/de/company#unser-magazin', class: 'white'
+
+  .teaser.teaser-left.teaser-browny
+    %h2.white Sie engagieren uns, damit Ihr Bauprojekt gelingt.
+    %p= link_to 'Zu unseren Dienstleistungen', '/de/company', class: 'white'
+
+  .teaser.teaser-with-image.teaser-blue-dark
+    = image_tag 'teaser_img.jpg', alt: 'Alfred Müller AG'
+    .inner
+      %h2.white Wir sind Ihre Experten für Neubau- und Umbauprojekte. Als Immobiliendienstleister haben wir viel Erfahrung, die Sie sich zu Nutze machen können.
+      %p= link_to 'Erfahren Sie mehr über unsere Dienstleistungen', '/de/company#unsere-dienstleistungen', class: 'white'
+
+  .teaser.teaser-left.teaser-with-video
+    = render 'partials/image_movie'
+
+  .teaser.teaser-right.teaser-beige
+    %h2 Der Mensch steht bei<br>uns im Mittelpunkt.
+    %p= link_to 'Zu den freien Stellen', '/de/jobs#offene-stellen'

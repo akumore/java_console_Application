@@ -32,6 +32,7 @@ describe RealEstate do
     end
 
     it 'requires a description' do
+      @real_estate.description = ''
       @real_estate.should have(1).error_on(:description)
     end
 
@@ -43,9 +44,9 @@ describe RealEstate do
       @real_estate.microsite_reference.should be_a(MicrositeReference)
     end
 
-    it 'has 7 errors' do
+    it 'has 6 errors' do
       @real_estate.valid?
-      @real_estate.errors.should have(7).items
+      @real_estate.errors.should have(6).items
     end
 
     it 'switches language' do

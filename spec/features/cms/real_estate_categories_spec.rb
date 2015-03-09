@@ -104,8 +104,8 @@ describe 'Cms::RealEstate utilization - category - building-type dependency' do
   context 'editing a real estate' do
 
     before :each do
-      @real_estate = Fabricate(:commercial_building, 
-                               :category => @working_category, 
+      @real_estate = Fabricate(:commercial_building,
+                               :category => @working_category,
                                :state => RealEstate::STATE_EDITING )
       visit edit_cms_real_estate_path(@real_estate)
     end
