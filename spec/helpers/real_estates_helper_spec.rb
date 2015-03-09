@@ -14,7 +14,7 @@ describe RealEstatesHelper do
 
     context 'signed in request' do
       it 'return all realestates' do
-        should_receive(:request).and_return(double('request', 'local?' => false))
+        should_receive(:request).twice.and_return(double('request', 'local?' => false, remote_ip: ''))
         should_receive(:user_signed_in?).and_return(true)
         expect(accessible_real_estates).to eq(RealEstate)
       end
@@ -22,7 +22,7 @@ describe RealEstatesHelper do
 
     context 'public request' do
       it 'return all realestates' do
-        should_receive(:request).and_return(double('request', 'local?' => false))
+        should_receive(:request).twice.and_return(double('request', 'local?' => false, remote_ip: ''))
         should_receive(:user_signed_in?).and_return(false)
         expect(accessible_real_estates).not_to eq(RealEstate)
       end

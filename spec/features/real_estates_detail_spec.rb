@@ -10,6 +10,7 @@ describe "RealEstates" do
   before(:each) do
     # generally treat all requests not as local (for unpublished testing)
     stub_const('ActionDispatch::Request::LOCALHOST', [])
+    Socket.stub(ip_address_list: [])
   end
 
   let :category do
@@ -718,11 +719,10 @@ describe "RealEstates" do
           :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
           :address => Fabricate.build(:address),
           :information => Fabricate.build(:information),
-          :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
+          :figure => Fabricate.build(:figure, :rooms => 10.0, :floor => 99),
           :pricing => Fabricate.build(:pricing),
           :contact => Fabricate(:employee)
-
-        visit real_estate_path(real_estate)
+        visit real_estate_path real_estate
       end
 
       it 'shows only the link to the next search result' do
@@ -739,7 +739,7 @@ describe "RealEstates" do
             :channels => [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL],
             :address => Fabricate.build(:address),
             :information => Fabricate.build(:information),
-            :figure => Fabricate.build(:figure, :rooms => 10.5, :floor => 99),
+            :figure => Fabricate.build(:figure, :rooms => 10.0, :floor => 99),
             :pricing => Fabricate.build(:pricing),
             :contact => Fabricate(:employee)
         end
