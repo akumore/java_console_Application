@@ -11,7 +11,7 @@
 
     .row
       .span5
-        - floated_field(f, :text_field, :floor, class: 'span2') do
+        - floated_field(f, :text_field, :floor, class: 'span2', mandatory: true) do
           %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:floor), 'data-content' => t('.help_popover.floor') }
       .span7
         - floated_field(f, :text_field, :floor_estimate, class: 'span3') do
@@ -19,7 +19,7 @@
 
     .row
       .span5
-        - floated_field(f, :text_field, :rooms, class: 'span2') do
+        - floated_field(f, :text_field, :rooms, class: 'span2', mandatory: true) do
           %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:rooms), 'data-content' => t('.help_popover.rooms') }
       .span7
         - floated_field(f, :text_field, :rooms_estimate, class: 'span3') do
@@ -40,7 +40,7 @@
           %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:specification_living_surface), 'data-content' => t('.help_popover.specification_living_surface') }
     .row
       .span5
-        - floated_field(f, :text_field, :usable_surface, class: 'span2')
+        - floated_field(f, :text_field, :usable_surface, class: 'span2', mandatory: @real_estate.working?)
       .span7
         - floated_field(f, :text_field, :usable_surface_estimate, class: 'span3') do
           %i.icon-question-sign.help-popover{ :rel => 'popover', 'data-original-title' => Figure.human_attribute_name(:usable_surface_estimate), 'data-content' => t('.help_popover.usable_surface_estimate') }
