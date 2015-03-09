@@ -1,44 +1,40 @@
 #title-page-header
+  - if File.exist?(@real_estate.images.primary.file.minidoku.path.to_s)
+    .primary-image
+      = image_tag @real_estate.images.primary.file.minidoku.url
   .frame-overlay
-    = image_tag('handouts/frame.jpg')
-
-  %span.offer-utilization-description
-    = t(".#{@real_estate.offer}_#{@real_estate.utilization}")
-
+    = image_tag('vision/frame.png')
   .primary-title
     = @real_estate.title
-
+    %span
+      = t(".#{@real_estate.offer}_#{@real_estate.utilization}")
   .primary-title-dots
     \...
 
-- if File.exist?(@real_estate.images.primary.file.minidoku.path.to_s)
-  .chapter.primary-image
-    = image_tag @real_estate.images.primary.file.minidoku.url
-
 - figure_content = render('overview', real_estate: @real_estate).to_s
-- figure_content += render('real_estates/figure', real_estate: @real_estate, figure: @real_estate.figure).to_s
+- figure_content += render('real_estates/figure', :real_estate => @real_estate, :figure => @real_estate.figure).to_s
 - if figure_content.present?
-  .chapter.pb-after.description
+  .chapter.pb-after
     %h2= t('figures.title')
     = figure_content
 
 - if @real_estate.floor_plans.any?
   = render 'floorplan'
 
-- pricing_content = render 'real_estates/pricing', real_estate: @real_estate, pricing: @real_estate.pricing
+- pricing_content = render 'real_estates/pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
 - if pricing_content.present?
   .chapter.pricing.pbi-avoid
     %h2= t('pricings.title')
     = pricing_content
 
-- information_content = render 'real_estates/information', real_estate: @real_estate, information: @real_estate.information
+- information_content = render 'real_estates/information', :real_estate => @real_estate, :information => @real_estate.information
 - if information_content.present?
   .chapter.pbi-avoid
     %h2= t('information.title')
     = information_content
 
 - if (handout_images = @real_estate.images.for_print.select {|i| File.exist?(i.file.path) }).any?
-  = render 'images', images: handout_images
+  = render 'images', :images => handout_images
 
 - if @real_estate.contact.present?
-  = render 'contact', contact: @real_estate.contact, direct_link: @real_estate.link_url
+  = render 'contact', :contact => @real_estate.contact, :direct_link => @real_estate.link_url
