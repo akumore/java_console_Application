@@ -3,7 +3,7 @@ require 'spec_helper'
 describe RealEstateDecorator do
   # workaround for issue: https://github.com/jcasimir/draper/issues/60
   include Rails.application.routes.url_helpers
-  before :all do
+  before :each do
     c = ApplicationController.new
     c.request = ActionDispatch::TestRequest.new
     c.set_current_view_context
@@ -12,7 +12,9 @@ describe RealEstateDecorator do
 
   describe 'an invalid real estate' do
     before :each do
-      real_estate = RealEstate.new
+      real_estate = Fabricate :residential_building,
+        state: RealEstate::STATE_PUBLISHED,
+        address: Fabricate.build(:address)
       @decorator = RealEstateDecorator.new(real_estate)
     end
 
@@ -35,7 +37,7 @@ describe RealEstateDecorator do
 
     it 'generate minidoku link with street and city' do
       @decorator.model.should_receive(:has_handout?).and_return(true)
-      expect(@decorator.mini_doku_link).to eq('xxxx')
+      expect(@decorator.mini_doku_link).to match("/de/real_estates/#{@decorator.id}/Printout_Bahnhofstrasse_Adliswil.pdf")
     end
   end
 

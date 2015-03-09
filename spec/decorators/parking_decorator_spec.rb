@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Rent::ParkingDecorator do
   # workaround for issue: https://github.com/jcasimir/draper/issues/60
   include Rails.application.routes.url_helpers
-  before :all do
+  before :each do
     c = ApplicationController.new
     c.request = ActionDispatch::TestRequest.new
     c.set_current_view_context

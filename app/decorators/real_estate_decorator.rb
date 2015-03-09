@@ -179,7 +179,9 @@ class RealEstateDecorator < ApplicationDecorator
       'ga-label' => address.try(:simple)
     }
     link = real_estate_handout_path( real_estate_id: model.id, format: :pdf)
-    link.gsub!('handout.pdf', "Printout_#{address.street}_#{address.city}.pdf")
+    if address
+      link.gsub!('handout.pdf', "Printout_#{address.model.street}_#{address.model.city}.pdf")
+    end
 
     link_to(t('real_estates.show.description_download'), link, {
       data: data,
