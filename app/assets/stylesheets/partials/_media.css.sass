@@ -67,15 +67,14 @@
 
   .meta-navigation
     float: none
-    padding: 14px 0 0 0
+    padding: 14px 0 12px 0
     display: block
     background: #f0f0f0
-    height: 30px
-    overflow: hidden
-    width: 80%
+    width: calc(80% - #{$margin-side})
+    padding-left: $margin-side
 
-    li.first, li:first-child
-      padding-left: $margin-side
+    li
+      padding-left: 0
 
   .main-navigation
     float: none
