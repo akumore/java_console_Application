@@ -8,6 +8,7 @@ class ConsistentParkingCategoryNaming < Mongoid::Migration
   def self.up
     RENAMES.each do |from_name, to_name|
       cat = Category.where(name: from_name).first
+      next if cat.nil?
       cat.name = to_name
       cat.save
     end
