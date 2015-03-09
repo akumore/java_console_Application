@@ -1,6 +1,5 @@
 # CHANGELOG
 
-
 ### features/design_update
 * Design changes on homepage
   * New tab navigation
@@ -12,6 +11,7 @@
   * Fix filter in real estates for meduim
 
 * New implemented User Stories:
+  * #733 Als Besucher möchte ich ein grösseres P sehen
   * #4615 Als Besucher möchte ich keinen Slider im Header sehen
   * #4616 Als Besucher möchte ich die Unternavigation im Slider (Mieten und Kaufen) auf der Startseite kleiner sehen
   * #4623 Als Besucher möchte ich Teaser verwalten können und diese in einem Brick in der Website einfügen
