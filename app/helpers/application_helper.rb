@@ -64,7 +64,7 @@ module ApplicationHelper
   def floated_field(form, type, field, options = {})
     return '' unless accessible?(field)
 
-    haml_tag('.control-group') do
+    haml_tag('.control-group', :class => options.delete(:mandatory) ? 'mandatory' : '') do
       haml_concat form.label(field)
       haml_tag('.controls') do
         haml_concat form.send(type, field, options)
