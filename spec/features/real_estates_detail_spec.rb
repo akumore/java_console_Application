@@ -10,7 +10,7 @@ describe "RealEstates" do
   before(:each) do
     # generally treat all requests not as local (for unpublished testing)
     stub_const('ActionDispatch::Request::LOCALHOST', [])
-    Socket.stub(ip_address_list: [])
+    Socket.stub(ip_address_list: [double(ip_address: '111.111.111.111')])
   end
 
   let :category do
@@ -482,10 +482,7 @@ describe "RealEstates" do
               real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
               visit real_estate_path(real_estate)
               page.within('.sidebar') do
-                page.should have_link('Objektdokumentation', :href => real_estate_handout_path(
-                  :real_estate_id => real_estate.id,
-                  :format => :pdf
-                ))
+                page.should have_link('Objektdokumentation', href: "/de/real_estates/#{real_estate.id}/Printout_Bahnhofstrasse_Adliswil.pdf")
               end
             end
           end
@@ -523,10 +520,7 @@ describe "RealEstates" do
               real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
               visit real_estate_path(real_estate)
               page.within('.sidebar') do
-                page.should have_link('Objektdokumentation', :href => real_estate_handout_path(
-                  :real_estate_id => real_estate.id,
-                  :format => :pdf
-                ))
+                page.should have_link('Objektdokumentation', href: "/de/real_estates/#{real_estate.id}/Printout_Bahnhofstrasse_Adliswil.pdf")
               end
             end
           end

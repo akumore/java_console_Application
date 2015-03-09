@@ -65,7 +65,7 @@ group :development, :test do
   #gem 'ruby-debug19'
   gem 'mmode'
   gem 'pry-rails'
-  gem 'pry-debugger'
+  #gem 'pry-debugger'
 end
 
 group :test do

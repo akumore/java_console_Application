@@ -32,6 +32,11 @@ describe RealEstateDecorator do
         expect { @decorator.send(accessor) }.to_not raise_error
       end
     end
+
+    it 'generate minidoku link with street and city' do
+      @decorator.model.should_receive(:has_handout?).and_return(true)
+      expect(@decorator.mini_doku_link).to eq('xxxx')
+    end
   end
 
   describe 'a valid real estate' do
