@@ -466,6 +466,16 @@
       background-position: bottom
 
 
+  #container
+    &:before
+      width: calc(100*1.3vw - 1450*1.3px + 1300px)
+      margin-left: calc(1460*0.85px - 85vw - 700px)
+
+    .odl
+      height: 714px
+      margin-left: -700px
+      background-size: contain
+
 // tablet-landscape
 @media only screen and (min-width : 600px) and (orientation : landscape)
   //@content
@@ -666,4 +676,10 @@
     a
       font-size: 17px
 
+@media only screen and (max-width: 1000px)
+
+  #container
+    &:before
+      width: 720px
+      margin-left: -310px
 
