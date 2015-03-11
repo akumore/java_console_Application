@@ -11,6 +11,21 @@
       margin-top: 0
       text-transform: none
 
+  .teaser:nth-child(1)
+    height: 300px
+
+  .teaser:nth-child(2)
+    height: 160px
+
+  .teaser:nth-child(3)
+    height: 390px
+
+  .teaser:nth-child(4)
+    height: 250px
+
+  .teaser:nth-child(7)
+    height: 230px
+
   .teaser-left
     width: 56%
     margin-right: .75%
@@ -40,7 +55,6 @@
 
   .teaser-grey
     background-color: $gray-light
-    padding-bottom: 210px
 
     &.teaser-overlaps-left:before
       background-color: $gray-light
@@ -54,19 +68,22 @@
   .teaser-blue-dark
     background-color: $gray-blue
 
+    &.teaser-overlaps-right:after
+      background-color: $gray-blue
+
   .teaser-browny
     background-color: $browny
-    padding-bottom: 170px
+
+    &.teaser-overlaps-right:after
+      background-color: $browny
 
   .teaser-beige
     background-color: $browny-light
-    padding-bottom: 95px
 
     &.teaser-overlaps-right:after
       background-color: $browny-light
 
   .teaser-img-bg
-    padding-bottom: 275px
     background-image: image-url('teaser_bg_img.png')
     background-position: center
     background-repeat: no-repeat
