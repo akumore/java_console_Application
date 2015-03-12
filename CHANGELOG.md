@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.30 - 2015-03-12
+* Correct PLZ: 6568 -> 6528
+
 ### v2.9.29 - 2015-03-04
 * Hotfix: Add Team Member
 
