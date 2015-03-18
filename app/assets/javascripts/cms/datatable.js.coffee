@@ -8,6 +8,7 @@ $ ->
     ]    
     iDisplayLength: 50
     aLengthMenu: [[25, 50, 100, 200, -1], [25, 50, 100, 200, "All"]]
+    bStateSave: true
     oLanguage:
       oPaginate:
         sNext: "Weiter"

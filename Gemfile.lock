@@ -157,8 +157,9 @@ GEM
     jcrop-rails (1.0.3)
       railties (~> 3.0)
       thor (~> 0.14)
-    jquery-datatables-rails (1.11.2)
+    jquery-datatables-rails (3.1.0)
       jquery-rails
+      sass-rails
     jquery-rails (1.0.19)
       railties (~> 3.0)
       thor (~> 0.14)
@@ -360,7 +361,7 @@ DEPENDENCIES
   haml-rails
   html5-rails
   jcrop-rails
-  jquery-datatables-rails
+  jquery-datatables-rails (~> 3.0.0)
   jquery-rails
   jquery-scrollto-rails
   json
