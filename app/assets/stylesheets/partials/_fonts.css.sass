@@ -23,9 +23,14 @@ $serif: "kulturista-web", serif
   @extend .title-font-bold
 
 a
-  +link-colors($classic, $dark)
-  font-size: 17px
-  letter-spacing: 0.5px
+  +link-colors($normal, $dark)
+
+.brick.text-brick,
+.content
+  a
+    +link-colors($classic, $dark)
+    font-size: 17px
+    letter-spacing: 0.5px
 
 a, a:link, a:visited, a:active
   text-decoration: none
