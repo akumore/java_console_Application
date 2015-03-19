@@ -9,6 +9,42 @@
 // handheld-portrait
 //@media only screen and (max-width : 320px)
 
+// scale teaser already at 700px
+@media only screen and (max-width : 700px)
+  .teaser-row
+    .teaser
+      padding: 39px 5%
+      word-wrap: break-word
+      -webkit-hyphens: auto
+      -moz-hyphens: auto
+      hyphens: auto
+
+      h2
+        font-size: 1.3em
+        line-height: 1.15em
+
+    .teaser:before,
+    .teaser:after
+      display: none
+
+    .teaser-left
+      margin-right: .5%
+      width: 39.5%
+
+    .teaser-right
+      margin-left: .5%
+      width: 39.5%
+
+    .teaser:nth-child(7)
+      width: 90%
+
+    .teaser-with-video
+      padding: 0
+      width: 100%
+
+    .teaser-with-image
+      padding: 0
+
 // handheld, up to widescreen
 @media only screen and (max-width : 599px)
   $margin-side: 20px
@@ -415,40 +451,6 @@
   .scrolling-map
     display: none
 
-  .teaser-row
-    .teaser
-      padding: 39px 5%
-      word-wrap: break-word
-      -webkit-hyphens: auto
-      -moz-hyphens: auto
-      hyphens: auto
-
-      h2
-        font-size: 1.3em
-        line-height: 1.15em
-
-    .teaser:before,
-    .teaser:after
-      display: none
-
-    .teaser-left
-      margin-right: .5%
-      width: 39.5%
-
-    .teaser-right
-      margin-left: .5%
-      width: 39.5%
-
-    .teaser:nth-child(7)
-      width: 90%
-
-    .teaser-with-video
-      padding: 0
-      width: 100%
-
-    .teaser-with-image
-      padding: 0
-
 
 // tablet
 @media only screen and (max-width : 1450px)
@@ -458,6 +460,8 @@
     position: relative
     padding-bottom: 0
     background-position: bottom right
+    margin-left: 5px
+    margin-right: 5px
     height: 1612px
 
     &:before
@@ -670,17 +674,17 @@
 // @media only screen and (-webkit-min-device-pixel-ratio: 2)
 
 // shirnk menu spacing
-@media only screen and (max-width: 700px)
+@media only screen and (min-width: 600px) and (max-width: 700px)
   .main-navigation li
     padding-left: 0px
 
     a
-      font-size: 17px
+      font-size: 16.5px
 
 @media only screen and (max-width: 1200px)
   #container
     .nest
-      transform: scale(0.7, 0.7) translate(100px, 0)
+      @include transform( scale(0.7, 0.7) translate(100px, 0) )
 
       &:after
         width: calc(5000px - 100vw)
