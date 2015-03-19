@@ -8,6 +8,10 @@
 
   %body
     #container
+      .nest
+        .balken
+        .balken
+        .balken
       %header#header.clearfix
         = link_to 'Alfred-Müller.ch', root_path, class: 'main-logo'
         .navigations#navigation
@@ -23,6 +27,11 @@
 
       %footer#footer
         = render 'layouts/footer'
+        .nest
+          .balken
+          .balken
+          .balken
+
     -# Javascript at the bottom for fast page loading
     = render 'layouts/javascripts', javascripts_partial: 'layouts/javascripts'
 

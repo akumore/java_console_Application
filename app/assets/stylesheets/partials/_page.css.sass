@@ -38,10 +38,46 @@ body
   max-width: 1000px
   position: static
 
+  .nest
+    position: relative
+
+    .balken
+      position: absolute
+      width: 10000px
+      left: 0px
+      margin-left: -5000px
+      background-color: #B5B082
+      height: 60px
+
+    .balken:nth-child(1)
+      @include transform( rotate(-17.5deg) )
+      top: 15px
+
+    .balken:nth-child(2)
+      @include transform( rotate(8.5deg) )
+      background-color: #E8E4D5
+      position: relative
+      top: -50px
+
+      &:after
+        @include transform( rotate(-8.5deg) )
+        content: ' '
+        position: absolute
+        right: -10px
+        top: -3px
+        background-color: white
+        height: 66px
+        width: 15px
+
+    .balken:nth-child(3)
+      @include transform( rotate(-62deg) )
+      top: -15px
+
   &:after,
   &:before
     content: ' '
     position: absolute
+    top: -3000px
 
   &:before
     +retina-image('header_am')
