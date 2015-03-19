@@ -471,14 +471,10 @@
 
 
   #container
+    .nest
     &:before
       width: calc(100*1.3vw - 1450*1.3px + 1400px)
       margin-left: calc(1450*0.87px - 100*0.87vw - 750px)
-
-    .odl
-      height: 714px
-      margin-left: -700px
-      background-size: contain
 
 // tablet-landscape
 @media only screen and (min-width : 600px) and (orientation : landscape)
@@ -679,10 +675,14 @@
     a
       font-size: 17px
 
-@media only screen and (max-width: 1000px)
-
+@media only screen and (max-width: 1200px)
   #container
-    &:before
-      width: 816px
-      margin-left: -360px
+    .nest
+      transform: scale(0.7, 0.7) translate(100px, 0)
+
+      &:after
+        width: calc(5000px - 100vw)
+
+    #footer .nest:after
+      width: calc(5300px - 100vw)
 

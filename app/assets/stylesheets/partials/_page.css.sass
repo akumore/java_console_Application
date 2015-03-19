@@ -25,7 +25,7 @@ body
   clear: both
 
 #header
-  padding-top: 170px
+  padding-top: 200px
   margin-top: 1em
   +row
 
@@ -39,14 +39,16 @@ body
   position: relative
 
   $nest-size: 10000
-  #footer .nest
-    left: -3950px
-    height: 99%
-    overflow: hidden
+  .nest.rotate180
     @include transform( rotate(180deg) )
 
+  #footer .nest
+    left: -3950px
+    height: 99.9%
+    overflow: hidden
+
     .balken
-      margin-top: 1000px
+      margin-top: 950px
 
       &.grey:after
         content: ' '
@@ -54,13 +56,14 @@ body
         height: #{$nest-size}px
         top: 60px
         position: absolute
-        background-color: red
+        background-color: $gray-light
         @include transform( rotate(0deg) )
 
     .balken:nth-child(1)
       left: -360px
 
   .nest
+    @include transition( transform 1s )
     position: absolute
     //height: #{$nest-size}px
     width: #{$nest-size}px
@@ -102,6 +105,7 @@ body
       top: -15px
 
     &:after
+      @include transition( width 0.5s )
       background-color: white
       content: ' '
       width: 4000px
@@ -110,24 +114,13 @@ body
       right: 0
       top: 0
 
-
-
-
-
   &:after,
   &:before
     content: ' '
     position: absolute
     top: -3000px
 
-  &:before .old
-    +retina-image('header_am')
-    width: 1400px
-    height: 2000px
-    margin-left: -750px
-    background-size: contain
-
-  &:after 
+  &:after
     +retina-image('50_jahre_icon')
     height: 100px
     width: 100px
@@ -264,17 +257,6 @@ h1, h2, h3, h4, p, ul, ol
     left: 0
     margin-top: -75px
     background-color: $search-background-color
-
-  &:after .old
-    content: ' '
-    +retina-image('footer')
-    position: absolute
-    display: block
-    height: 1580px
-    width: 2500px
-    z-index: -1
-    right: 0
-    bottom: 0
 
   h4
     font-size: 2.25em
