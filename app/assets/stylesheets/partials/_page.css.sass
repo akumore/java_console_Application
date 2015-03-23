@@ -25,7 +25,7 @@ body
   clear: both
 
 #header
-  padding-top: 200px
+  padding-top: 255px
   margin-top: 1em
   +row
 
@@ -35,82 +35,75 @@ body
 
 #container
   margin: 0px auto
-  max-width: 1000px
+  max-width: #{$page-width}px
   position: relative
 
-  $nest-size: 10000
   .nest.rotate180
     @include transform( rotate(180deg) )
 
   #footer .nest
-    left: -3950px
     height: 99.9%
     overflow: hidden
+    top: 0px
+
+    &:after
+      top: 360px
+      height: 520px
 
     .balken
-      margin-top: 900px
+      margin-top: 840px
 
       &.grey:after
         content: ' '
         width: #{$nest-size}px
         height: #{$nest-size}px
-        top: 60px
+        top: $nest-line-width
         position: absolute
         background-color: #eeeeee
         @include transform( rotate(0deg) )
 
     .balken:nth-child(1)
-      left: -360px
+      top: -122px
 
   .nest
     @include transition( transform 1s )
     position: absolute
-    //height: #{$nest-size}px
     width: #{$nest-size}px
-    left: -#{$nest-size/2}px
-    //top: -#{$nest-size/2}px
-    top: 0
+    left: #{-$nest-size/2 + $page_width/2}px
+    top: -33px
     z-index: -1
 
     .balken
       position: absolute
       width: #{$nest-size}px
-      left: 0px
-      margin-top: 10px
+      //left: -#{$nest-line-width}
+      left: calc( -#{$page-width}px/2 + 1.7 * #{$nest-line-width} )
+      margin-top: calc( #{$nest-line-width} / 6 )
       background-color: #B5B082
-      height: 60px
+      height: #{$nest-line-width}
 
     .balken:nth-child(1)
-      @include transform( rotate(-17.5deg) )
-      top: 15px
+      @include transform( rotate((-17.5deg-$nest-rotation)) )
+      top: calc( #{$nest-line-width} / 4)
 
     .balken:nth-child(2)
-      @include transform( rotate(8.5deg) )
+      @include transform( rotate((8.5deg-$nest-rotation)) )
       background-color: #E8E4D5
       position: relative
-      top: -50px
-
-      &:after
-        @include transform( rotate(-8.5deg) )
-        content: ' '
-        position: absolute
-        right: -10px
-        top: -3px
-        background-color: white
-        height: 66px
-        width: 15px
+      top: -#{$nest-line-width}
 
     .balken:nth-child(3)
-      @include transform( rotate(-62deg) )
-      top: -15px
+      @include transform( rotate((-62deg-$nest-rotation)) )
+      top: calc( -#{$nest-line-width} / 4)
 
     &:after
       @include transition( width 0.5s )
       background-color: white
       content: ' '
-      width: 4000px
+      // overlap 1/12 from page with from the right
+      width: calc( #{$nest-size/2}px - 50vw + 8.33vw )
       position: absolute
-      height: 1000px
+      height: #{$page-width}px
       right: 0
       top: 0
 
@@ -122,11 +115,11 @@ body
 
   &:after
     +retina-image('50_jahre_icon')
-    height: 100px
-    width: 100px
+    height: 135px
+    width: 135px
     top: 20px
     background-size: contain
-    margin-left: 140px
+    margin-left: 154px
 
 .main-logo
   position: relative

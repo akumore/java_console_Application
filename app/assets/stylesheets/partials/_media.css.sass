@@ -681,20 +681,10 @@
     a
       font-size: 16.5px
 
-@media only screen and (max-width: 1200px)
+@media only screen and (max-width: 1000px)
   #container
     .nest
-      @include transform( scale(0.7, 0.7) translate(100px, 0) )
+      left: calc( #{- $nest-size/2 }px + 50vw )
 
-      &:after
-        width: calc(5000px - 100vw)
-
-    #footer
-      .nest
-        left: calc(-5100px + 100vw)
-
-      .nest:after
-        width: calc(5300px - 100vw)
-        top: 470px
-        height: 408px
-
+      .balken
+        left: calc( -50vw + 1.7 * #{$nest-line-width} )
