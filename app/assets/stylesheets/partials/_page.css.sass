@@ -35,7 +35,7 @@ body
 
 #container
   margin: 0px auto
-  max-width: #{$page-width}px
+  max-width: #{$page-width}
   position: relative
 
   .nest.rotate180
@@ -55,8 +55,8 @@ body
 
       &.grey:after
         content: ' '
-        width: #{$nest-size}px
-        height: #{$nest-size}px
+        width: #{$nest-size}
+        height: #{$nest-size}
         top: $nest-line-width
         position: absolute
         background-color: #eeeeee
@@ -68,16 +68,16 @@ body
   .nest
     @include transition( transform 1s )
     position: absolute
-    width: #{$nest-size}px
-    left: #{-$nest-size/2 + $page_width/2}px
+    width: #{$nest-size}
+    left: #{-$nest-size/2 + $page_width/2}
     top: -33px
     z-index: -1
 
     .balken
       position: absolute
-      width: #{$nest-size}px
+      width: #{$nest-size}
       //left: -#{$nest-line-width}
-      left: calc( -#{$page-width}px/2 + 1.7 * #{$nest-line-width} )
+      left: calc( -#{$page-width}/2 + 1.7 * #{$nest-line-width} )
       margin-top: calc( #{$nest-line-width} / 6 )
       background-color: #B5B082
       height: #{$nest-line-width}
@@ -101,9 +101,9 @@ body
       background-color: white
       content: ' '
       // overlap 1/12 from page with from the right
-      width: calc( #{$nest-size/2}px - 50vw + 8.33vw )
+      width: calc( #{$nest-size/2} - 50vw + 8.33vw )
       position: absolute
-      height: #{$page-width}px
+      height: #{$page-width}
       right: 0
       top: 0
 
