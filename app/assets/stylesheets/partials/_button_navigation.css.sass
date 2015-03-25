@@ -1,9 +1,12 @@
-.button-navigation-container
+@mixin button-navigation-container
   background: $brown
   border: none
   margin-top: 2em
 
-.button-navigation
+.button-navigation-container
+  @include button-navigation-container
+
+@mixin button-navigation
   +clearfix
   padding: 2em 2em 1em 2em
 
@@ -24,3 +27,25 @@
     & a.active
       color: $white
       background-color: $selected-font-color
+
+.button-navigation
+  @include button-navigation()
+
+@mixin full-width-navigation
+  margin-bottom: 0px
+  padding: 1em
+  margin: 0.5em 0
+
+  li
+    display: block
+    float: none
+    margin: 0
+    border: 1px solid $brown
+
+    a
+      padding-top: 8px
+      padding-bottom: 8px
+
+    a:hover, a.active
+      height: auto
+      position: inherit
