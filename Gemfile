@@ -43,6 +43,7 @@ gem 'unicorn'
 gem 'rack-handlers'
 gem 'dotenv-rails'
 gem 'rb-readline'
+gem 'jquery-datatables-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -52,7 +53,6 @@ group :assets do
   gem 'uglifier'
   gem 'compass-rails'
   gem 'compass-h5bp'
-  gem 'jquery-datatables-rails'
 end
 
 group :development, :test do

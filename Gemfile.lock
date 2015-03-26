@@ -361,7 +361,7 @@ DEPENDENCIES
   haml-rails
   html5-rails
   jcrop-rails
-  jquery-datatables-rails (~> 3.0.0)
+  jquery-datatables-rails
   jquery-rails
   jquery-scrollto-rails
   json
