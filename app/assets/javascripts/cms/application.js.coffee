@@ -10,7 +10,7 @@
 #= require jcrop
 #= require jquery.autoresize
 #= require dataTables/jquery.dataTables
-#= require dataTables/jquery.dataTables.bootstrap
+#= require dataTables/bootstrap/2/jquery.dataTables.bootstrap
 #= require underscore
 #= require backbone
 #= require ckeditor/init
