@@ -13,3 +13,22 @@ de:
       project_development: 'Projektentwicklung'
       new_building: 'Neubau'
       rebuilding: 'Umbau'
+    teasers:
+      teaser_1: Wir realisieren Ihre Bauprojekte nach Ihren Vorstellungen.
+      teaser_1_link_text: Wir sind ihre Prozess- und Projektoptimierer
+      teaser_1_link: /de/company#unsere-dienstleistungen
+      teaser_2: Räume für Ihr Unternehmen.
+      teaser_2_link_text: Freie Geschäftsflächen zur Miete
+      teaser_2_link: /de/real_estates?offer=for_rent&utilization=commercial
+      teaser_3: Forum. Unser Magazin für Sie.
+      teaser_3_link_text: Zum Magazin
+      teaser_3_link: /de/real_estates?offer=for_rent&utilization=commercial
+      teaser_4: Sie engagieren uns, damit Ihr Bauprojekt gelingt.
+      teaser_4_link_text: Zu unseren Dienstleistungen
+      teaser_4_link: /de/company#unser-magazin
+      teaser_5: Wir sind Ihre Experten für Neubau- und Umbauprojekte. Als Immobiliendienstleister haben wir viel Erfahrung, die sich zu Nutzen machen können.
+      teaser_5_link_text: Erfahren Sie mehr über unsere Dienstleistungen
+      teaser_5_link: /de/company#unsere-dienstleistungen
+      teaser_6: Der Mensch steht bei uns im Mittelpunkt.
+      teaser_6_link_text: Zu den freien Stellen
+      teaser_6_link: /de/jobs#offene-stellen

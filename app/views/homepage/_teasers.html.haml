@@ -1,29 +1,29 @@
 .teaser-row
   .teaser.teaser-left.teaser-overlaps-left.teaser-grey
-    %h2 Wir realisieren Ihre Bauprojekte nach Ihren Vorstellungen.
-    %p= link_to 'Wir sind Ihre Prozess- und Projektoptimierer', '/de/company#unsere-dienstleistungen'
+    %h2=t '.teaser_1'
+    %p= link_to t('.teaser_1_link_text'), t('.teaser_1_link')
 
   .teaser.teaser-right.teaser-overlaps-right.teaser-blue
-    %h2.white Räume für Ihr Unternehmen.
-    %p= link_to 'Freie Geschäftsflächen zur Miete', '/de/real_estates?offer=for_rent&utilization=commercial', class: 'white'
+    %h2.white= t '.teaser_2'
+    %p= link_to t('.teaser_2_link_text'), t('.teaser_2_link'), class: 'white'
 
   .teaser.teaser-right.teaser-img-bg
-    %h2.white Forum. Unser Magazin für Sie.
-    %p= link_to 'Zum Magazin', '/de/company#unser-magazin', class: 'white'
+    %h2.white= t '.teaser_3'
+    %p= link_to t('.teaser_3_link_text'), t('.teaser_3_link'), class: 'white'
 
   .teaser.teaser-left.teaser-browny
-    %h2.white Sie engagieren uns, damit Ihr Bauprojekt gelingt.
-    %p= link_to 'Zu unseren Dienstleistungen', '/de/company', class: 'white'
+    %h2.white= t '.teaser_4'
+    %p= link_to t('.teaser_4_link_text'), t('.teaser_4_link'), class: 'white'
 
   .teaser.teaser-with-image.teaser-blue-dark
     = image_tag 'teaser_img.jpg', alt: 'Alfred Müller AG'
     .inner
-      %h2.white Wir sind Ihre Experten für Neubau- und Umbauprojekte. Als Immobiliendienstleister haben wir viel Erfahrung, die Sie sich zu Nutzen machen können.
-      %p= link_to 'Erfahren Sie mehr über unsere Dienstleistungen', '/de/company#unsere-dienstleistungen', class: 'white'
+      %h2.white= t '.teaser_5'
+      %p= link_to t('.teaser_5_link_text'), t('.teaser_5_link'), class: 'white'
 
   .teaser.teaser-left.teaser-with-video
     = render 'partials/image_movie'
 
   .teaser.teaser-right.teaser-beige.teaser-overlaps-right
-    %h2 Der Mensch steht bei<br>uns im Mittelpunkt.
-    %p= link_to 'Zu den freien Stellen', '/de/jobs#offene-stellen'
+    %h2=t '.teaser_6'
+    %p= link_to t('.teaser_6_link_text'), t('.teaser_6_link')
