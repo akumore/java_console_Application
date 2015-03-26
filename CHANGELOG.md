@@ -1,5 +1,8 @@
 # CHANGELOG
 
+### v2.9.31 - 2015-03-26
+* update job description text of David Hossli
+
 ### v2.9.30 - 2015-03-12
 * Correct PLZ: 6568 -> 6528
 
