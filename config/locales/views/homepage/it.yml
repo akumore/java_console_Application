@@ -13,3 +13,22 @@ it:
       project_development: 'Sviluppo progetti'
       new_building: 'Nuova costruzione'
       rebuilding: 'Ristrutturazione'
+    teasers:
+      teaser_1: Diamo forma alle vostre idee.
+      teaser_1_link_text: Siamo i vostri esperti nella pianificazione e nella realizzazione
+      teaser_1_link: /it/company#i-nostri-servizi
+      teaser_2: Spazi per la vostra azienda.
+      teaser_2_link_text: Spazi liberi commerciali da affittare
+      teaser_2_link: /it/real_estates?offer=for_rent&utilization=commercial
+      teaser_3: Forum. La nostra rivista per voi.
+      teaser_3_link_text: Al Forum
+      teaser_3_link: /it/company#la-nostra-rivista
+      teaser_4: Voi ci incaricate per la riuscita del vostro progetto di costruzione.
+      teaser_4_link_text: I nostri servizi
+      teaser_4_link: /it/compnay
+      teaser_5: Siamo esperti in tutte le questioni costruttive. Abbiamo una grande esperienza nella gestione di immobili.
+      teaser_5_link_text: Maggiori informazioni sulle nostre prestazioni di servizi
+      teaser_5_link: /it/company#i-nostri-servizi
+      teaser_job: La persona è al centro della nostra attenzione.
+      teaser_job_link_text: Alle offerte d'impiego
+      teaser_job_link: /it/jobs#al-momento-non-abbiamo-impieghi-vacanti

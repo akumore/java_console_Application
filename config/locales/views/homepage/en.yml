@@ -13,3 +13,22 @@ en:
       project_development: 'Project Development'
       new_building: 'New Buildings'
       rebuilding: 'Conversion Work'
+    teasers:
+      teaser_1:
+      teaser_1_link_text:
+      teaser_1_link: /en/company#our-services
+      teaser_2:
+      teaser_2_link_text:
+      teaser_2_link: /en/real_estates?offer=for_rent&utilization=commercial
+      teaser_3:
+      teaser_3_link_text:
+      teaser_3_link:
+      teaser_4:
+      teaser_4_link_text:
+      teaser_4_link: /en/company
+      teaser_5:
+      teaser_5_link_text:
+      teaser_5_link: /en/company#our-services
+      teaser_job:
+      teaser_job_link_text:
+      teaser_job_link: /en/jobs#currently-no-employment-opportunities

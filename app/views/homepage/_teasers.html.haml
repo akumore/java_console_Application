@@ -1,29 +1,35 @@
 .teaser-row
-  .teaser.teaser-left.teaser-overlaps-left.teaser-grey
-    %h2=t '.teaser_1'
-    %p= link_to t('.teaser_1_link_text'), t('.teaser_1_link')
+  - if t('.teaser_1').present?
+    .teaser.teaser-left.teaser-overlaps-left.teaser-grey
+      %h2=t '.teaser_1'
+      %p= link_to t('.teaser_1_link_text'), t('.teaser_1_link')
 
-  .teaser.teaser-right.teaser-overlaps-right.teaser-blue
-    %h2.white= t '.teaser_2'
-    %p= link_to t('.teaser_2_link_text'), t('.teaser_2_link'), class: 'white'
+  - if t('.teaser_2').present?
+    .teaser.teaser-right.teaser-overlaps-right.teaser-blue
+      %h2.white= t '.teaser_2'
+      %p= link_to t('.teaser_2_link_text'), t('.teaser_2_link'), class: 'white'
 
-  .teaser.teaser-right.teaser-img-bg
-    %h2.white= t '.teaser_3'
-    %p= link_to t('.teaser_3_link_text'), t('.teaser_3_link'), class: 'white'
+  - if t('.teaser_3').present?
+    .teaser.teaser-right.teaser-img-bg
+      %h2.white= t '.teaser_3'
+      %p= link_to t('.teaser_3_link_text'), t('.teaser_3_link'), class: 'white'
 
-  .teaser.teaser-left.teaser-browny
-    %h2.white= t '.teaser_4'
-    %p= link_to t('.teaser_4_link_text'), t('.teaser_4_link'), class: 'white'
+  - if t('.teaser_4').present?
+    .teaser.teaser-left.teaser-browny
+      %h2.white= t '.teaser_4'
+      %p= link_to t('.teaser_4_link_text'), t('.teaser_4_link'), class: 'white'
 
-  .teaser.teaser-with-image.teaser-blue-dark
-    = image_tag 'teaser_img.jpg', alt: 'Alfred Müller AG'
-    .inner
-      %h2.white= t '.teaser_5'
-      %p= link_to t('.teaser_5_link_text'), t('.teaser_5_link'), class: 'white'
+  - if t('.teaser_5').present?
+    .teaser.teaser-with-image.teaser-blue-dark
+      = image_tag 'teaser_img.jpg', alt: 'Alfred Müller AG'
+      .inner
+        %h2.white= t '.teaser_5'
+        %p= link_to t('.teaser_5_link_text'), t('.teaser_5_link'), class: 'white'
 
   .teaser.teaser-left.teaser-with-video
     = render 'partials/image_movie'
 
   .teaser.teaser-right.teaser-beige.teaser-overlaps-right
-    %h2=t '.teaser_6'
-    %p= link_to t('.teaser_6_link_text'), t('.teaser_6_link')
+    %h2=t '.teaser_job'
+    - job_link = ( Job.where(locale: I18n.locale).any? ? t('.teaser_job_link') : t('.teaser_job_link', locale: :de) )
+    %p= link_to t('.teaser_job_link_text'), job_link

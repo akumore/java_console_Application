@@ -22,13 +22,13 @@ de:
       teaser_2_link: /de/real_estates?offer=for_rent&utilization=commercial
       teaser_3: Forum. Unser Magazin für Sie.
       teaser_3_link_text: Zum Magazin
-      teaser_3_link: /de/real_estates?offer=for_rent&utilization=commercial
+      teaser_3_link: /de/company#unser-magazin
       teaser_4: Sie engagieren uns, damit Ihr Bauprojekt gelingt.
       teaser_4_link_text: Zu unseren Dienstleistungen
-      teaser_4_link: /de/company#unser-magazin
+      teaser_4_link: /de/company
       teaser_5: Wir sind Ihre Experten für Neubau- und Umbauprojekte. Als Immobiliendienstleister haben wir viel Erfahrung, die sich zu Nutzen machen können.
       teaser_5_link_text: Erfahren Sie mehr über unsere Dienstleistungen
       teaser_5_link: /de/company#unsere-dienstleistungen
-      teaser_6: Der Mensch steht bei uns im Mittelpunkt.
-      teaser_6_link_text: Zu den freien Stellen
-      teaser_6_link: /de/jobs#offene-stellen
+      teaser_job: Der Mensch steht bei uns im Mittelpunkt.
+      teaser_job_link_text: Zu den freien Stellen
+      teaser_job_link: /de/jobs#offene-stellen

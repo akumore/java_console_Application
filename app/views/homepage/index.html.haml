@@ -63,4 +63,4 @@
       .flex-container
         = image_tag "construction.jpg"
 
-= render 'teasers' if I18n.locale == :de
+= render 'teasers' unless I18n.locale == :en

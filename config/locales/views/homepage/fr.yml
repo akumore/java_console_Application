@@ -13,3 +13,22 @@ fr:
       project_development: 'Développement de projets'
       new_building: 'Nouvelle construction'
       rebuilding: 'Transformation'
+    teasers:
+      teaser_1: Nous donnons forme à vos idées.
+      teaser_1_link_text: Nous sommes votre partenaire dans l'optimisation de vos projets
+      teaser_1_link: /fr/company#nos-prestations
+      teaser_2: Espaces pour votre entreprise.
+      teaser_2_link_text: Surfaces commerciales disponibles à louer
+      teaser_2_link: /fr/real_estates?offer=for_rent&utilization=commercial
+      teaser_3: Forum, notre magazine.
+      teaser_3_link_text: Vers le magazine
+      teaser_3_link: /fr/company#notre-magazine
+      teaser_4: Vous nous mandatez pour la réussite de votre projet.
+      teaser_4_link_text: Vers nos prestations
+      teaser_4_link: /fr/company
+      teaser_5: Nous sommes votre partenaire expérimenté pour vos nouvelles constructions et assainissements. Notre service immobilier possède une grande expérience dont vous pouvez bénéficier.
+      teaser_5_link_text: En savoir plus sur nos prestations
+      teaser_5_link: /fr/company#nos-prestations
+      teaser_job: L'être humain est toujours au centre de nos préoccupations.
+      teaser_job_link_text: Vers les offres d'emploi
+      teaser_job_link: /fr/jobs#poste-a-repourvoir
