@@ -324,7 +324,9 @@ describe Export::Idx301::RealEstateDecorator do
       it 'maintains the ul tags' do
         real_estate = Export::Idx301::RealEstateDecorator
           .new(
-            mock_model(RealEstate, :description => "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>"),
+            mock_model(RealEstate, 
+                       description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
+                       figure: mock_model(Figure, offer_html: '')),
             Account.new(:provider => Provider::HOMEGATE),
             {}
           )
