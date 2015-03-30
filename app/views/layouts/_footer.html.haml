@@ -44,10 +44,12 @@
       %h5= t '.memberships'
       %dl
         - if I18n.locale == :de
-          %dt Verband Schweizerischer Generalunternehmer VSGU
-          %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", target: "_blank"
           %dt Schweizerischer Verband der Immobilienwirtschaft SVIT
-          %dd= link_to "www.svit.ch", "http://www.svit.ch", target: "_blank"
-        - else
-          %dd= link_to  "www.vsgu.ch", "http://www.vsgu.ch", target: "_blank"
-          %dd= link_to "www.svit.ch", "http://www.svit.ch", target: "_blank"
+        %dd= link_to "www.svit.ch", "http://www.svit.ch", :target => "_blank"
+
+      %dl
+        - if I18n.locale == :de
+          %dt Entwicklung Schweiz
+        - elsif I18n.locale == :fr
+          Développement Suisse
+        %dd= link_to "www.entwicklung-schweiz.ch", "http://www.entwicklung-schweiz.ch", :target => "_blank"

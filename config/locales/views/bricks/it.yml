@@ -18,13 +18,13 @@ it:
       jobs_apply_with_success:
         apply: 'Candidatura diretta'
         title: 'Massimiliano Paganini'
-        person_html: 'Telefono +41 91 858 25 94<br>Centro Monda 3<br>CH-6568 Camorino'
+        person_html: 'Telefono +41 91 858 25 94<br>Centro Monda 3<br>CH-6528 Camorino'
         address_text: 'E-Mail'
         address_link: 'mailto:massimiliano.paganini@alfred-mueller.ch'
       contact_form:
         form_title: 'Formulario di contatto'
         title: 'Massimiliano Paganini'
-        person_html: 'Telefono +41 91 858 25 94<br>Centro Monda 3<br>CH-6568 Camorino'
+        person_html: 'Telefono +41 91 858 25 94<br>Centro Monda 3<br>CH-6528 Camorino'
         address_html: '<a href="mailto:massimiliano.paganini@alfred-mueller.ch">E-Mail</a>'
       company_header:
         vision: 'Visione'
@@ -35,7 +35,7 @@ it:
         president_of_board_of_directors: 'Presidente del Consiglio di amministrazione'
         vice_president_of_board_of_directors: 'Vicepresidente del Consiglio di amministrazione'
         member_of_board_of_directors: 'Membro del Consiglio di amministrazione'
-        chairman_of_managing_board: 'Presidente della direzione aziendale e direttore marketing e vendita ad interim'
+        chairman_of_managing_board: 'Presidente della direzione aziendale'
         member_of_managing_board: 'Membro della Direzione aziendale'
         subsidiaries: 'Succursali'
         chief_financial_officer: 'Direttore finanze'
@@ -43,6 +43,7 @@ it:
         head_of_real_estate_management: 'Direttore amministrazione immobili'
         head_of_marketing_and_sales: 'Direttore marketing e vendita'
         head_development_and_general_contracting: 'Direttore sviluppo e impresa generale'
+        head_department_acquisition_sales_and_marketing: Direttore Acquisizione, vendita e marketing
         head_of_subsidiaries: 'Direttore succursali'
         director_of_subsidiary_western_switzerland: 'Direttore succursale Svizzera romanda'
         director_of_subsidiary_southern_switzerland: 'Direttore succursale Ticino'

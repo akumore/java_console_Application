@@ -27,6 +27,33 @@
   * #773: Als Besucher möchte ich für Immobilien einen Page Title und Description sehen können
   * #825: Als Benutzer möchte ich ein zentriertes Headerbild sehen
 
+### v2.9.31 - 2015-03-26
+* update job description text of David Hossli
+
+### v2.9.30 - 2015-03-12
+* Correct PLZ: 6568 -> 6528
+
+### v2.9.29 - 2015-03-04
+* Hotfix: Add Team Member
+
+### v2.9.28 - 2015-02-12
+* Hotfix: Fix Google Maps Bug in IE10
+
+### v2.9.27
+* Hotfix: Add «Entwicklung Schweiz» membership in footer
+
+### v2.9.26
+* Hotfix: Creater does not have to be present. (Allows save if creator was deleted)
+
+### v2.9.25 - 2015-01-05
+* Add 50th anniversary button
+
+### v2.9.24 on 2014-12-10
+* Allow ul tags for homegate
+
+### v2.9.23 on 2014-11-27
+* Update real estate api for microsite with documents
+
 ### v2.9.22 on 2014-10-30
 * Hotfix: Update ftp uploader to avoid disconnects because of timeouts
 * New implemented User Stories:

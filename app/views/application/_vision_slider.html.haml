@@ -1,0 +1,58 @@
+.vision-slider
+  = render 'anniversary_50th'
+  .toggle
+    .toggle-open
+      %span
+
+    .toggle-close
+      %span
+
+  .flex-container
+    .flexslider
+      %ul.slides
+        %li
+          = image_tag 'vision/slide-1.jpg'
+          .image-caption
+            .image-caption-text
+              %h3.vision-header-title= t('.vision.real_estate_title_kids')
+              = link_to t('layouts.footer.take_me_to_image_film'), "#{t('company_url')}#vision", class: :go
+
+        %li
+          = image_tag 'vision/slide-2.jpg'
+          .image-caption
+            .image-caption-text
+              %h3.vision-header-title= t('.vision.real_estate_title_couple')
+              = link_to t('.vision.real_estate_link_title'), real_estates_path, class: :go
+
+        %li
+          = image_tag 'vision/slide-3.jpg'
+          .image-caption
+            .image-caption-text
+              %h3.vision-header-title= t('.vision.workspaces_title')
+              = link_to t('.vision.workspaces_link_title'), real_estates_path(offer: 'for_rent', utilization: 'commercial'), class: :go
+
+        %li
+          = image_tag 'vision/slide-4.jpg'
+          .image-caption
+            .image-caption-text
+              %h3.vision-header-title= t('.vision.jobs_title')
+              = link_to t('.vision.jobs_link_title'), t('jobs_url'), class: :go
+
+        - unless I18n.locale == :en
+          %li
+            = image_tag 'vision/slide-5.jpg'
+            .image-caption
+              .image-caption-text
+                %h3.vision-header-title= t('.vision.forum_title').html_safe
+                - forum_brick = get_forum_brick
+
+                - if forum_brick.present?
+                  - forum_link = forum_brick.file.to_s
+                  = link_to t('.vision.forum_link_title'), forum_link, class: 'go ga-tracking-link', data: { 'ga-category' => "Download Baustein", 'ga-action' => "Download", 'ga-label' => forum_brick.title }
+                - else
+                  - forum_link = t('forum_url')
+                  = link_to t('.vision.forum_link_title'), forum_link, class: :go
+
+      .vision-frame
+        %a.vision-click-area.disabled{ href: '#' }
+        = image_tag 'vision/frame.png'

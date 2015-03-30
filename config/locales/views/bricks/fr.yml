@@ -33,7 +33,7 @@ fr:
         president_of_board_of_directors: "Président du Conseil d'administration"
         vice_president_of_board_of_directors: "Vice-président du Conseil d'administration"
         member_of_board_of_directors: "Membre du Conseil d'administration"
-        chairman_of_managing_board: "Président de la direction de l'entreprise et directeur marketing et vente ad interim"
+        chairman_of_managing_board: "Président de la direction de l'entreprise"
         member_of_managing_board: 'Membre de la direction'
         subsidiaries: 'Succursales'
         chief_financial_officer: 'Directeur finance'
@@ -41,6 +41,7 @@ fr:
         head_of_real_estate_management: 'Directeur gestion immobilière'
         head_of_marketing_and_sales: 'Directeur marketing et vente'
         head_development_and_general_contracting: 'Directeur développement et entreprise générale'
+        head_department_acquisition_sales_and_marketing: Directeur Acquisition, vente et marketing
         head_of_subsidiaries: 'Directeur des succursales'
         director_of_subsidiary_western_switzerland: 'Directeur de la succursale Suisse romande'
         director_of_subsidiary_southern_switzerland: 'Directeur de la succursale du Tessin'

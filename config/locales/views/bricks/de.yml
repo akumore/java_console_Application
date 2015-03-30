@@ -36,7 +36,7 @@ de:
         president_of_board_of_directors: 'Präsident des Verwaltungsrates'
         vice_president_of_board_of_directors: 'Vizepräsident des Verwaltungsrates'
         member_of_board_of_directors: 'Mitglied des Verwaltungsrates'
-        chairman_of_managing_board: 'Vorsitzender der Geschäftsleitung und Leiter Marketing und Verkauf ad interim'
+        chairman_of_managing_board: 'Vorsitzender der Geschäftsleitung'
         member_of_managing_board: 'Mitglied der Geschäftsleitung'
         subsidiaries: 'Filialen'
         chief_financial_officer: 'Leiter Finanzen'
@@ -44,6 +44,7 @@ de:
         head_of_real_estate_management: 'Leiter Immobilienbewirtschaftung'
         head_of_marketing_and_sales: 'Leiter Marketing und Verkauf'
         head_development_and_general_contracting: 'Leiter Projektentwicklung und Generalunternehmung'
+        head_department_acquisition_sales_and_marketing: Leiter Akquisition, Verkauf und Marketing
         head_of_subsidiaries: 'Leiter Filialen'
         director_of_subsidiary_western_switzerland: 'Filialleiter Westschweiz'
         director_of_subsidiary_southern_switzerland: 'Filialleiter Tessin'

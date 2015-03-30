@@ -7,7 +7,7 @@ describe MicrositeDecorator do
 
     before do
       @real_estate =  Fabricate :residential_building,
-        :figure => Fabricate.build(:figure, :rooms => '1.5')
+        figure: Fabricate.build(:figure, rooms: '1.5')
       @decorated_real_estate = MicrositeDecorator.decorate @real_estate
     end
 
@@ -19,7 +19,7 @@ describe MicrositeDecorator do
   context "with correct net price" do
     it 'returns the rendered net price' do
       real_estate =  Fabricate :residential_building,
-        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 2500)
+        pricing: Fabricate.build(:pricing_for_rent, for_rent_netto: 2500)
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.price.should == '2 500.00 CHF/Mt.'
     end
@@ -29,14 +29,14 @@ describe MicrositeDecorator do
 
     it 'returns the net rent price without extras' do
       real_estate =  Fabricate :residential_building,
-        :pricing => Fabricate.build(:pricing_for_rent, :for_rent_netto => 2500)
+        pricing: Fabricate.build(:pricing_for_rent, for_rent_netto: 2500)
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.price.should == '2 500.00 CHF/Mt.'
     end
 
     it 'returns nil if no pricing is specified' do
       real_estate =  Fabricate :residential_building,
-        :pricing => nil
+        pricing: nil
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.price.should be_nil
     end
@@ -52,8 +52,8 @@ describe MicrositeDecorator do
     let :microsite_reference do
       Fabricate.build(
         :microsite_reference,
-        :building_key => 'A',
-        :property_key => '22.34'
+        building_key: 'A',
+        property_key: '22.34'
       )
     end
 
@@ -76,7 +76,7 @@ describe MicrositeDecorator do
       MicrositeDecorator.decorate(
         Fabricate(
           :residential_building,
-          :figure => Fabricate.build(:figure, :floor => floor)
+          figure: Fabricate.build(:figure, floor: floor)
         )
       )
     end
@@ -122,7 +122,7 @@ describe MicrositeDecorator do
 
       it 'returns the living surface' do
         real_estate =  Fabricate :residential_building,
-          :figure => Fabricate.build(:figure, :living_surface => '50')
+          figure: Fabricate.build(:figure, living_surface: '50')
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.surface.should == '50 m²'
       end
@@ -132,7 +132,7 @@ describe MicrositeDecorator do
 
       it 'returns the usable surface' do
         real_estate =  Fabricate :commercial_building,
-          :figure => Fabricate.build(:figure, living_surface: nil, :usable_surface => '50')
+          figure: Fabricate.build(:figure, living_surface: nil, usable_surface: '50')
         decorated_real_estate = MicrositeDecorator.decorate real_estate
         decorated_real_estate.surface.should == '50 m²'
       end
@@ -144,7 +144,7 @@ describe MicrositeDecorator do
     it 'delegates to get_group in Microsite::GroupRealEstates' do
       real_estate =  Fabricate :residential_building
       Microsite::GroupRealEstates.should_receive(:get_group).with(real_estate).
-        and_return({:label => 'MYGROUP'})
+        and_return({label: 'MYGROUP'})
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.group.should == 'MYGROUP'
     end
@@ -170,7 +170,7 @@ describe MicrositeDecorator do
 
   context 'category' do
     it 'returns the category' do
-      real_estate =  Fabricate :real_estate, :category => Fabricate(:category, :label => 'my category')
+      real_estate =  Fabricate :real_estate, category: Fabricate(:category, label: 'my category')
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.category.should == 'my category'
     end
@@ -179,7 +179,7 @@ describe MicrositeDecorator do
   context "with assigned id" do
 
     it 'returns model\'s id' do
-      real_estate =  Fabricate :real_estate, :category => Fabricate(:category)
+      real_estate =  Fabricate :real_estate, category: Fabricate(:category)
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.id.should == real_estate.id
     end
@@ -187,7 +187,7 @@ describe MicrositeDecorator do
 
   context "with title" do
     it 'returns the title' do
-      real_estate =  Fabricate :real_estate, :title => 'my title', :category=>Fabricate(:category)
+      real_estate =  Fabricate :real_estate, title: 'my title', category:Fabricate(:category)
       decorated_real_estate = MicrositeDecorator.decorate real_estate
       decorated_real_estate.title.should == 'my title'
     end
@@ -201,18 +201,18 @@ describe MicrositeDecorator do
 
     let :decorated_real_estate do
       decorated_real_estate = MicrositeDecorator.decorate real_estate
-      decorated_real_estate.stub(:path_to_url => 'link', :real_estate_floorplan_path => '')
+      decorated_real_estate.stub(path_to_url: 'link', real_estate_floorplan_path: '')
       decorated_real_estate
     end
 
     context "returns the list of floor plans" do
       it "returns all floor plans" do
         decorated_real_estate.floorplans.should include({
-          :url => "link",
-          :url_full_size => "link",
-          :url_full_size_image => "link",
-          :title => "Floor plan title",
-          :north_arrow => "link"
+          url: "link",
+          url_full_size: "link",
+          url_full_size_image: "link",
+          title: "Floor plan title",
+          north_arrow: "link"
         })
       end
 
@@ -224,7 +224,7 @@ describe MicrositeDecorator do
 
       it "should call path_to_url for each image link" do
         decorated_real_estate = MicrositeDecorator.decorate real_estate
-        decorated_real_estate.stub(:real_estate_floorplan_path => '')
+        decorated_real_estate.stub(real_estate_floorplan_path: '')
         decorated_real_estate.should_receive(:path_to_url).exactly(4).times.and_return('http://abosute_url')
         decorated_real_estate.floorplans
       end
@@ -234,7 +234,7 @@ describe MicrositeDecorator do
     context "with orientation set" do
       let :real_estate do
         real_estate =  Fabricate :residential_building,
-          :floor_plans => [Fabricate.build(:media_assets_floor_plan, orientation_degrees: 289)]
+          floor_plans: [Fabricate.build(:media_assets_floor_plan, orientation_degrees: 289)]
       end
 
       it "adds the north-arrow image link to the returned hash" do
@@ -243,7 +243,7 @@ describe MicrositeDecorator do
 
       it "should call path_to_url for each image link and the north arrow" do
         decorated_real_estate = MicrositeDecorator.decorate real_estate
-        decorated_real_estate.stub(:real_estate_floorplan_path => '')
+        decorated_real_estate.stub(real_estate_floorplan_path: '')
         decorated_real_estate.should_receive(:path_to_url).exactly(4).times.and_return('http://abosute_url')
         decorated_real_estate.floorplans
       end
@@ -263,9 +263,9 @@ describe MicrositeDecorator do
   context "as json" do
 
     it 'returns only the selected attributes' do
-      real_estate =  Fabricate :commercial_building, :figure => Fabricate.build(:figure)
+      real_estate =  Fabricate :commercial_building, figure: Fabricate.build(:figure)
         decorated_real_estate = MicrositeDecorator.decorate real_estate
-        decorated_real_estate.stub(:real_estate_handout_path => '', :path_to_url => '')
+        decorated_real_estate.stub(real_estate_handout_path: '', path_to_url: '')
         got = [
           '_id',
           'title',
@@ -282,7 +282,8 @@ describe MicrositeDecorator do
           'chapters',
           'floorplans',
           'images',
-          'downloads'
+          'downloads',
+          'documents'
         ]
         decorated_real_estate.as_json.keys.should == got
     end
@@ -291,31 +292,31 @@ describe MicrositeDecorator do
 
   describe "Order real estates" do
     it "orders by groups/categories" do
-      @loft = MicrositeDecorator.new(Fabricate :real_estate, :category => Fabricate(:category, :label => 'Loft'), :figure => Fabricate.build(:figure))
-      @commercial = MicrositeDecorator.new(Fabricate :commercial_building, :category => Fabricate(:category, :label => 'Atelier'), :figure => Fabricate.build(:figure))
-      @category = Fabricate(:category, :label => 'Wohnung')
-      @small = MicrositeDecorator.new(Fabricate :real_estate, :figure => Fabricate.build(:figure, :rooms => '2.5'), :category => @category)
-      @medium = MicrositeDecorator.new(Fabricate :real_estate, :figure => Fabricate.build(:figure, :rooms => '3.5'), :category => @category)
-      @large = MicrositeDecorator.new(Fabricate :real_estate, :figure => Fabricate.build(:figure, :rooms => '4.5'), :category => @category)
+      @loft = MicrositeDecorator.new(Fabricate :real_estate, category: Fabricate(:category, label: 'Loft'), figure: Fabricate.build(:figure))
+      @commercial = MicrositeDecorator.new(Fabricate :commercial_building, category: Fabricate(:category, label: 'Atelier'), figure: Fabricate.build(:figure))
+      @category = Fabricate(:category, label: 'Wohnung')
+      @small = MicrositeDecorator.new(Fabricate :real_estate, figure: Fabricate.build(:figure, rooms: '2.5'), category: @category)
+      @medium = MicrositeDecorator.new(Fabricate :real_estate, figure: Fabricate.build(:figure, rooms: '3.5'), category: @category)
+      @large = MicrositeDecorator.new(Fabricate :real_estate, figure: Fabricate.build(:figure, rooms: '4.5'), category: @category)
 
       [@large, @medium, @small, @commercial, @loft].sort.should == [@small, @medium, @large, @loft, @commercial]
     end
 
     describe "Inner order of a group of real estates" do
       let :flat do
-        Fabricate(:category, :label => 'Wohnung')
+        Fabricate(:category, label: 'Wohnung')
       end
 
       let :real_estate_a do
         MicrositeDecorator.new(Fabricate.build :real_estate,
-                                               :figure => Fabricate.build(:figure, :rooms => '2.5'),
-                                               :category => flat)
+                                               figure: Fabricate.build(:figure, rooms: '2.5'),
+                                               category: flat)
       end
 
       let :real_estate_b do
         MicrositeDecorator.new(Fabricate.build :real_estate,
-                                               :figure => Fabricate.build(:figure, :rooms => '2.5'),
-                                               :category => flat)
+                                               figure: Fabricate.build(:figure, rooms: '2.5'),
+                                               category: flat)
       end
 
       let :house_L do

@@ -398,11 +398,7 @@ module Export::Idx301
       html.gsub!(/\<\/h2>/, '</h2><br><br>')
       html.gsub!(/\<\/h3>/, '</h3><br><br>')
       html.gsub!(/\<\/h4>/, '</h4><br><br>')
-      if @account.provider == Provider::IMMOSCOUT
-        html = Sanitize.clean(html, :elements => ['b', 'ul', 'li', 'br']).strip
-      else
-        html = Sanitize.clean(html, :elements => ['b', 'li', 'br']).strip
-      end
+      html = Sanitize.clean(html, elements: Provider.elements(@account.provider)).strip
       html.to_s.gsub(/>\s+/, '>').gsub(/\s+</, '<')
     end
 

@@ -141,7 +141,6 @@ class RealEstate
 
     state :in_review do
       # editor needed for review notification
-      validates :creator, :presence => true
       validates :editor, :presence => true
 
       # :if => :state_changed?, # Allows admin to save real estate in_review state
