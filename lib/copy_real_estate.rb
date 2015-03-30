@@ -5,6 +5,7 @@ module CopyRealEstate
     copied.state = RealEstate::STATE_EDITING
     copied.title = "Kopie von #{other.title}"
     copy_assets!(copied)
+    copied.channels.delete(RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL)
     copied.save!
     copied
   end

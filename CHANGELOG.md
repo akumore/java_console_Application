@@ -1,4 +1,6 @@
 # CHANGELOG
+### v3.0.1 - 2015-03-30
+* Hotfix: Allow cloning of real estates with reference number
 
 ### v3.0.0 - 2015-03-30
 * Design changes on homepage
