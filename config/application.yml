@@ -34,7 +34,7 @@ defaults: &defaults
         - baar
 
 
-development1:
+development:
   <<: *defaults
 
 staging:
@@ -53,7 +53,7 @@ test:
       offices:
         - camorino
 
-development:
+production:
   google_account_id: ''
   google_api_key: ''
   google_maps_api_key: 'AIzaSyCNWg9D3wR2T69wlEu6ARAtNdPSgAN-N9w'
