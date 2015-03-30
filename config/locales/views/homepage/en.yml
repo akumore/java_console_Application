@@ -14,21 +14,21 @@ en:
       new_building: 'New Buildings'
       rebuilding: 'Conversion Work'
     teasers:
-      teaser_1:
-      teaser_1_link_text:
+      teaser_1: We transform your ideas into reality.
+      teaser_1_link_text: We are your experts for planning and construction
       teaser_1_link: /en/company#our-services
-      teaser_2:
-      teaser_2_link_text:
+      teaser_2: Spaces for your business.
+      teaser_2_link_text: Vacant commercial space for rent
       teaser_2_link: /en/real_estates?offer=for_rent&utilization=commercial
-      teaser_3:
-      teaser_3_link_text:
-      teaser_3_link:
-      teaser_4:
-      teaser_4_link_text:
+      teaser_3: Forum. Our magazine for you.
+      teaser_3_link_text: Go to the magazine
+      teaser_3_link: /de/company#unser-magazin
+      teaser_4: We are committed to the success of your construction project.
+      teaser_4_link_text: Go to our services
       teaser_4_link: /en/company
-      teaser_5:
-      teaser_5_link_text:
+      teaser_5: We are your experts for new buildings and conversion projects. As real estate service providers, we have accumulated a wealth of experience that you can benefit from.
+      teaser_5_link_text: Learn more about our services.
       teaser_5_link: /en/company#our-services
-      teaser_job:
-      teaser_job_link_text:
+      teaser_job: "Above all, it's people we value."
+      teaser_job_link_text: Go to job vacancies
       teaser_job_link: /en/jobs#currently-no-employment-opportunities
