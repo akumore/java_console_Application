@@ -1,6 +1,6 @@
 # CHANGELOG
 
-### features/design_update
+### v3.0.0 - 2015-03-30
 * Design changes on homepage
   * New tab navigation
   * Update link box in slider
