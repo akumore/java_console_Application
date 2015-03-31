@@ -18,9 +18,14 @@ describe Handout do
       lambda{ handout.cache_key(:html, :de) }.should_not raise_error
     end
 
-    it 'returns a key' do
+    it 'returns the html cache key' do
       handout.real_estate.stub!(:id).and_return('123')
       handout.cache_key(:html, :de).should == "/de/real_estates/123/handout.html"
+    end
+
+    it 'return the pdf cache key' do
+      handout.real_estate.stub!(:id).and_return('456')
+      handout.cache_key(:pdf, :de).should == "/de/real_estates/456/Printout_Objektdokumentation-some-real-estate.pdf"
     end
   end
 
