@@ -1,4 +1,8 @@
 # CHANGELOG
+### v3.0.2 - 2015-04-01
+* fix little writing mistake in DE home teaser ('Ihr' instead of 'ihr')
+* translate main nav item 'Referenzen' in IT 'Referenze'
+
 ### v3.0.1 - 2015-03-30
 * Hotfix: Allow cloning of real estates with reference number
 
