@@ -125,10 +125,10 @@ class MicrositeDecorator < ApplicationDecorator
     dl = []
     dl << {
             title: t('real_estates.show.description_download'),
-            url: path_to_url(real_estate_handout_path(
+            url: path_to_url(Rails.application.routes.url_helpers.real_estate_printout_path(
               real_estate_id: model.id,
               format: :pdf,
-              name: model.handout.filename,
+              name: model.handout.printout_filename,
               locale: I18n.locale
               ))
     } if model.has_handout?

@@ -179,16 +179,13 @@ class RealEstateDecorator < ApplicationDecorator
       'ga-label' => address.try(:simple)
     }
 
-    link = real_estate_handout_path(real_estate_id: model.id, format: :pdf, name: model.handout.filename)
+    link = real_estate_handout_path(real_estate_id: model.id, format: :pdf)
+    link.gsub!('handout.pdf', "#{model.handout.printout_filename}.pdf")
 
     link_to(t('real_estates.show.description_download'), link, {
       data: data,
       class: 'icon-description ga-tracking-link',
       target: '_blank'})
-  end
-
-  def object_documentation_title
-    model.handout.filename
   end
 
   def render_document_links

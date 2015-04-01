@@ -15,6 +15,9 @@ describe 'handout routing' do
     expect(get: "/de/real_estates/111222111222/handout.pdf")
       .to route_to(handout_params)
 
+    expect(get: "/de/real_estates/111222111222/Printout_Xxx_Vvvv.pdf")
+      .to route_to(handout_params.merge(name: 'Xxx_Vvvv'))
+
     expect(get: "/de/real_estates/111222111222/Xxx_Vvvv.pdf")
       .to route_to(handout_params.merge(name: 'Xxx_Vvvv', action: 'deprecated_route'))
   end

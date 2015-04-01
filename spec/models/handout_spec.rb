@@ -13,6 +13,10 @@ describe Handout do
     expect(handout.filename).to eq 'Objektdokumentation-some-real-estate'
   end
 
+  it 'has a printout filename' do
+    expect(handout.printout_filename).to eq 'Printout_Objektdokumentation-some-real-estate'
+  end
+
   describe '#cache_key' do
     it 'does not fail' do
       lambda{ handout.cache_key(:html, :de) }.should_not raise_error
@@ -25,7 +29,7 @@ describe Handout do
 
     it 'return the pdf cache key' do
       handout.real_estate.stub!(:id).and_return('456')
-      expect(handout.cache_key(:pdf, :de)).to eq '/de/real_estates/456/handout.pdf'
+      expect(handout.cache_key(:pdf, :de)).to eq '/de/real_estates/456/Printout_Objektdokumentation-some-real-estate.pdf'
     end
   end
 

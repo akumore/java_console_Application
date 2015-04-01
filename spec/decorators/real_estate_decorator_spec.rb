@@ -37,7 +37,7 @@ describe RealEstateDecorator do
 
     it 'generate minidoku link with name' do
       @decorator.model.should_receive(:has_handout?).and_return(true)
-      link = /\/de\/real_estates\/#{@decorator.id}\/handout.pdf\?name=#{@decorator.model.handout.filename}/
+      link = "/de/real_estates/#{@decorator.id}/#{@decorator.model.handout.printout_filename}.pdf"
       expect(@decorator.mini_doku_link).to match(link)
     end
   end
@@ -96,13 +96,6 @@ describe RealEstateDecorator do
         decorated_real_estate.stub_chain(:category, :name).and_return('open_slot')
         decorated_real_estate.thumbnail.should == '/assets/parking_thumbnails/open_slot.jpg'
       end
-    end
-  end
-
-  describe '#object_documentation_title' do
-    it 'is generated from the title' do
-      real_estate = RealEstate.new :title => 'My Handout'
-      RealEstateDecorator.new(real_estate).object_documentation_title.should == 'Objektdokumentation-my-handout'
     end
   end
 
