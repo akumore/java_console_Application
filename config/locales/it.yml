@@ -8,7 +8,7 @@ it:
       jobs: 'Offerte di lavoro'
       company: 'L‘azienda'
       news: 'Attualità'
-      reference_projects: 'Riferimenti'
+      reference_projects: 'Referenze'
     meta:
       contact: 'Contatto'
     cms:
