@@ -495,7 +495,7 @@ module Export::Idx301
 
     def year_built
       #  int(4)  year object has been built, a.e. 1975
-      model.try(:figure).try(:built_on).presence.to_i
+      model.try(:information).try(:built_on).presence.to_i
     end
 
     def prop_view

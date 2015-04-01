@@ -272,7 +272,7 @@ describe Export::Idx301::RealEstateDecorator do
     it 'remove double break after heading' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, 
+          mock_model(RealEstate,
                      description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
                      figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
           account,
@@ -324,7 +324,7 @@ describe Export::Idx301::RealEstateDecorator do
       it 'maintains the ul tags' do
         real_estate = Export::Idx301::RealEstateDecorator
           .new(
-            mock_model(RealEstate, 
+            mock_model(RealEstate,
                        description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
                        figure: mock_model(Figure, offer_html: '')),
             Account.new(:provider => Provider::HOMEGATE),
@@ -354,8 +354,8 @@ describe Export::Idx301::RealEstateDecorator do
   describe '#available_from' do
     it 'returns the reference date of the real estate' do
       real_estate = Export::Idx301::RealEstateDecorator.new(
-        mock_model(RealEstate, 
-          pricing: mock_model(Pricing, 
+        mock_model(RealEstate,
+          pricing: mock_model(Pricing,
             available_from: Date.parse('2012-01-01'),
             for_rent?: false,
             mandatory_for_rentable_parking?: false,
@@ -643,6 +643,21 @@ describe Export::Idx301::RealEstateDecorator do
           decorator.agency_fax.should == '321'
         end
       end
+    end
+  end
+
+  describe '#year_built' do
+    it 'returns the built_on date' do
+      real_estate = Export::Idx301::RealEstateDecorator
+        .new(
+          mock_model(RealEstate,
+                     description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
+                     information: mock_model(Information, built_on: 1991)),
+          account,
+          {}
+        )
+
+      expect(real_estate.year_built).to eq 1991
     end
   end
 end
