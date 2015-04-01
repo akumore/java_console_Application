@@ -23,15 +23,17 @@
 
 - pricing_content = render 'real_estates/pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
 - if pricing_content.present?
-  .chapter.pricing.pbi-avoid
-    %h2= t('pricings.title')
-    = pricing_content
+  .chapter.pricing.pb-before-avoid
+    .pbi-avoid
+      %h2= t('pricings.title')
+      = pricing_content
 
 - information_content = render 'real_estates/information', :real_estate => @real_estate, :information => @real_estate.information
 - if information_content.present?
-  .chapter.pbi-avoid
-    %h2= t('information.title')
-    = information_content
+  .chapter.pb-before-avoid
+    .pbi-avoid
+      %h2= t('information.title')
+      = information_content
 
 - if (handout_images = @real_estate.images.for_print.select {|i| File.exist?(i.file.path) }).any?
   = render 'images', :images => handout_images
