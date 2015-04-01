@@ -3,8 +3,8 @@ fr:
     link_title: 'Vers le projet'
     project_website_link: 'Vers le site internet du projet'
     section:
-      residential_building: 'Maisons d’hab.'
-      residential_commercial_building: 'Maisons d’hab. et imm. commerciaux'
+      residential_building: "Maisons d'hab."
+      residential_commercial_building: "Maisons d'hab. et imm. commerciaux"
       business_building: 'Imm. commerciaux'
       trade_industrial_building: 'Bât. indust. et artisanaux'
       special_building: 'Constr. spéciales'
