@@ -14,11 +14,11 @@ namespace :export do
         logger.info(real_estate.id)
         export.add(real_estate)
       end
-    end
 
-    logger.info "Starting real estate upload rake task"
-    raise "do not run upload from development!" if Rails.env.development?
-    export.upload
+      logger.info "Starting real estate upload rake task"
+      raise "do not run upload from development!" if Rails.env.development?
+      export.upload
+    end
 
     logger.info "Finished real estate export rake task."
   end
