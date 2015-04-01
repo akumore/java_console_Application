@@ -30,7 +30,7 @@
 
 - information_content = render 'real_estates/information', :real_estate => @real_estate, :information => @real_estate.information
 - if information_content.present?
-  .chapter.pb-before-avoid
+  .chapter.information.pb-before-avoid
     .pbi-avoid
       %h2= t('information.title')
       = information_content

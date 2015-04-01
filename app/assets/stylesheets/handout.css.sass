@@ -98,7 +98,8 @@ strong, b
   dl
     +clearfix
 
-  dt, h3
+
+  dt, > h3, &.information h3
     font-weight: bold
     font-size: 9pt
     line-height: 1.35em
@@ -111,8 +112,8 @@ strong, b
     @extend .pbi-avoid
 
   dd, > p, > ul,
-  > .pbi-avoid ul,
-  > .pbi-avoid p
+  &.information ul,
+  &.information p
     padding: 0.083em 0 0.25em 0
     margin-left: 215px
     margin-top: 0
