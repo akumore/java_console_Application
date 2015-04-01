@@ -128,7 +128,7 @@ class MicrositeDecorator < ApplicationDecorator
             url: path_to_url(Rails.application.routes.url_helpers.real_estate_printout_path(
               real_estate_id: model.id,
               format: :pdf,
-              name: model.handout.printout_filename,
+              name: model.handout.filename,
               locale: I18n.locale
               ))
     } if model.has_handout?
