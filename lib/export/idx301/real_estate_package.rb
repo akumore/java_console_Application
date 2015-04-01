@@ -71,7 +71,9 @@ module Export
       def add_handout(handout)
         filename = "d_#{@real_estate.id}_#{@documents.length + 1}.pdf"
         account_path = File.join(@packager.doc_path, filename)
-        handout_path = File.join Rails.root, 'public', handout.path
+        I18n.with_locale(@real_estate.language.to_sym || I18n.default_locale) do
+          handout_path = File.join Rails.root, 'public', handout.path
+        end
         if File.exists? handout_path
           logger.info "Adding cache file for handout #{handout.path}"
           FileUtils.ln(handout_path, account_path)
