@@ -646,18 +646,20 @@ describe Export::Idx301::RealEstateDecorator do
     end
   end
 
-  describe '#year_built' do
-    it 'returns the built_on date' do
+  describe 'moved fields from figure to information model' do
+    it 'returns the right values' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
           mock_model(RealEstate,
                      description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
-                     information: mock_model(Information, built_on: 1991)),
+                     information: mock_model(Information, built_on: 1991, floors: 3, renovated_on: 2015)),
           account,
           {}
         )
 
       expect(real_estate.year_built).to eq 1991
+      expect(real_estate.number_of_floors).to eq 3
+      expect(real_estate.year_renovated).to eq 2015
     end
   end
 end

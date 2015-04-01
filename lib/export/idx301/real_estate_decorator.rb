@@ -1109,12 +1109,12 @@ module Export::Idx301
 
     def number_of_floors
       #  int(2)  number of floors in object itself
-      model.try(:figure).try(:floors).presence
+      model.try(:information).try(:floors).presence
     end
 
     def year_renovated
       #  int(4)  year of last renovation job on object
-      model.try(:figure).try(:renovated_on).presence
+      model.try(:information).try(:renovated_on).presence
     end
 
     def flat_sharing_community
