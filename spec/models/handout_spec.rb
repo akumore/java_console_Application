@@ -10,7 +10,7 @@ describe Handout do
   end
 
   it 'has a title' do
-    handout.filename.should == 'Objektdokumentation-some-real-estate'
+    expect(handout.filename).to eq 'Objektdokumentation-some-real-estate'
   end
 
   describe '#cache_key' do
@@ -20,12 +20,12 @@ describe Handout do
 
     it 'returns the html cache key' do
       handout.real_estate.stub!(:id).and_return('123')
-      handout.cache_key(:html, :de).should == "/de/real_estates/123/handout.html"
+      expect(handout.cache_key(:html, :de)).to eq '/de/real_estates/123/handout.html'
     end
 
     it 'return the pdf cache key' do
       handout.real_estate.stub!(:id).and_return('456')
-      handout.cache_key(:pdf, :de).should == "/de/real_estates/456/Printout_Objektdokumentation-some-real-estate.pdf"
+      expect(handout.cache_key(:pdf, :de)).to eq '/de/real_estates/456/handout.pdf'
     end
   end
 
@@ -35,7 +35,7 @@ describe Handout do
       expectation = 'yes, this is pdf'
       handout.should_receive(:html_url).and_return(host)
       PDFKit.should_receive(:new).with(host).and_return mock(PDFKit, :to_pdf => expectation)
-      handout.to_pdf.should == expectation
+      expect(handout.to_pdf).to eq expectation
     end
   end
 

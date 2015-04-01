@@ -57,7 +57,6 @@ AlfredMueller::Application.routes.draw do
       resources :handout_orders, :only => [:new, :create]
       resources :floorplans, :only => [:index, :show]
 
-      get 'Printout_*name', to: 'handouts#show', :as => :printout
       resource :handout, :only => :show do
         member do
           get 'footer'

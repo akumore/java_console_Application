@@ -483,7 +483,8 @@ describe "RealEstates" do
               visit real_estate_path(real_estate)
 
               page.within('.sidebar') do
-                page.should have_link('Objektdokumentation', href: "/de/real_estates/#{real_estate.id}/Printout_Bahnhofstrasse_Adliswil.pdf")
+                link_href = "/de/real_estates/#{real_estate.id}/handout.pdf?name=#{real_estate.handout.filename}"
+                page.should have_link('Objektdokumentation', href: link_href)
               end
             end
           end
@@ -521,7 +522,8 @@ describe "RealEstates" do
               real_estate.update_attribute :channels, [RealEstate::WEBSITE_CHANNEL, RealEstate::PRINT_CHANNEL]
               visit real_estate_path(real_estate)
               page.within('.sidebar') do
-                page.should have_link('Objektdokumentation', href: "/de/real_estates/#{real_estate.id}/Printout_Bahnhofstrasse_Adliswil.pdf")
+                link_href = "/de/real_estates/#{real_estate.id}/handout.pdf?name=#{real_estate.handout.filename}"
+                page.should have_link('Objektdokumentation', href: link_href)
               end
             end
           end

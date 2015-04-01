@@ -128,7 +128,7 @@ class MicrositeDecorator < ApplicationDecorator
             url: path_to_url(real_estate_handout_path(
               real_estate_id: model.id,
               format: :pdf,
-              name: "Objektdokumentation-#{model.title.parameterize}",
+              name: model.handout.filename,
               locale: I18n.locale
               ))
     } if model.has_handout?

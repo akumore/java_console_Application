@@ -11,9 +11,6 @@ class HandoutsController < ApplicationController
       format.html { render :show }
 
       filename = "#{@real_estate.handout.filename}.pdf"
-      if params[:name]
-        filename = "Printout_#{params[:name]}.pdf"
-      end
 
       format.pdf do
         send_data @real_estate.handout.to_pdf,

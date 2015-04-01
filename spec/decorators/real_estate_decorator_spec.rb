@@ -35,9 +35,10 @@ describe RealEstateDecorator do
       end
     end
 
-    it 'generate minidoku link with street and city' do
+    it 'generate minidoku link with name' do
       @decorator.model.should_receive(:has_handout?).and_return(true)
-      expect(@decorator.mini_doku_link).to match("/de/real_estates/#{@decorator.id}/Printout_Bahnhofstrasse_Adliswil.pdf")
+      link = /\/de\/real_estates\/#{@decorator.id}\/handout.pdf\?name=#{@decorator.model.handout.filename}/
+      expect(@decorator.mini_doku_link).to match(link)
     end
   end
 

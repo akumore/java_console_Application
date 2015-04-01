@@ -13,9 +13,7 @@ class Handout
 
   def cache_key(format, locale)
     url_params = { real_estate_id: real_estate.id, format: format, locale: locale }
-    return Rails.application.routes.url_helpers.real_estate_handout_path(url_params) unless format.to_sym == :pdf
-
-    Rails.application.routes.url_helpers.real_estate_printout_path(url_params.merge(name: filename))
+    Rails.application.routes.url_helpers.real_estate_handout_path(url_params)
   end
 
   def path
