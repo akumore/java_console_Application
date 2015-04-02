@@ -1,4 +1,10 @@
 # CHANGELOG
+### v3.0.4 - 2015-04-02
+* fix handout:
+  - fix handout caching (save file as Printout_[real_estate_title])
+  - fix disappearance of 'Kontakt'
+  - fix styles
+
 ### v3.0.3 - 2015-04-02
 * fix exporter:
   - fix export rake task
