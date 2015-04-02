@@ -1,9 +1,9 @@
-.chapter.floorplan.pb-after
-  %h2= t('.title')
-
-  - @real_estate.floor_plans.each do |floorplan|
-    - if File.exist?(floorplan.file.path)
-      .floorplan-image.pbi-avoid
-        %div
-          = floorplan.north_arrow_img_tag
-        = image_tag(floorplan.file.minidoku.url)
+.chapter.floorplan.pb-before-avoid
+  - @real_estate.floor_plans.each_with_index do |floorplan, index|
+    .pbi-avoid
+      %h2= t('.title') if index == 0
+      - if File.exist?(floorplan.file.path)
+        .floorplan-image.pbi-avoid
+          %div
+            = floorplan.north_arrow_img_tag
+          = image_tag(floorplan.file.minidoku.url)

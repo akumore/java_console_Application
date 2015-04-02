@@ -11,12 +11,15 @@ class Handout
     "Objektdokumentation-#{real_estate.title.parameterize}"
   end
 
+  def printout_filename
+    "Printout_#{filename}"
+  end
+
   def cache_key(format, locale)
-    Rails.application.routes.url_helpers.real_estate_handout_path(
-      real_estate_id: real_estate.id,
-      format: format,
-      locale: locale
-    )
+    url_params = { real_estate_id: real_estate.id, format: format, locale: locale }
+    return Rails.application.routes.url_helpers.real_estate_handout_path(url_params) unless format.to_sym == :pdf
+
+    Rails.application.routes.url_helpers.real_estate_printout_path(url_params.merge(name: filename))
   end
 
   def path

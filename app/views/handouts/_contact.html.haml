@@ -1,40 +1,41 @@
-.chapter.contact.pbi-avoid
-  %h2= t '.title'
+.chapter.contact.pb-before-avoid
+  .pbi-avoid
+    %h2= t '.title'
 
-  %dl
-    %dd.dd-without-margin
-      = contact.firstname
-      = contact.lastname
-      %br
-      = contact.job_function
-
-  %dl
-    %dd.dd-without-margin
-      = t '.street'
-      %br
-      = t '.zip'
-      = t '.city'
-
-  %dl
-    %dd.dd-without-margin
-      = t '.phone'
-      = contact.phone
-
-      - if contact.mobile.present?
+    %dl
+      %dd.dd-without-margin
+        = contact.firstname
+        = contact.lastname
         %br
-        = t '.mobile'
-        = contact.mobile
+        = contact.job_function
 
-      -if contact.fax.present?
+    %dl
+      %dd.dd-without-margin
+        = t '.street'
         %br
-        = t '.fax'
-        = contact.fax
+        = t '.zip'
+        = t '.city'
 
-      %br
-      = contact.email
-      %br
-      = t '.www'
+    %dl
+      %dd.dd-without-margin
+        = t '.phone'
+        = contact.phone
 
-      - if direct_link.present?
+        - if contact.mobile.present?
+          %br
+          = t '.mobile'
+          = contact.mobile
+
+        -if contact.fax.present?
+          %br
+          = t '.fax'
+          = contact.fax
+
         %br
-        = direct_link
+        = contact.email
+        %br
+        = t '.www'
+
+        - if direct_link.present?
+          %br
+          = direct_link

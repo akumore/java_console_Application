@@ -13,7 +13,7 @@ require 'capybara/poltergeist'
 Capybara.register_driver :poltergeist do |app|
   options = {
     phantomjs: Phantomjs.path,
-    timeout: 60
+    timeout: 90
   }
   Capybara::Poltergeist::Driver.new(app, options)
 end

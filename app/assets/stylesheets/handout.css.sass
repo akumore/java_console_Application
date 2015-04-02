@@ -20,6 +20,8 @@ $text-font: "GothamBook"
 
 .pb-before
   page-break-before: always !important
+.pb-before-avoid
+  page-break-before: avoid !important
 .pb-after
   page-break-after: always !important
 .pbi-avoid
@@ -90,16 +92,13 @@ strong, b
     width: 30px
 
 .chapter
-  margin: 60px
+  margin: 60px 60px 5px 60px
   +clearfix
-
-  &:last-child
-    margin: 60px 60px 0 60px
 
   dl
     +clearfix
 
-  dt, > h3
+  dt, > h3, &.information h3
     font-weight: bold
     font-size: 9pt
     line-height: 1.35em
@@ -111,7 +110,9 @@ strong, b
     margin-top: 0
     @extend .pbi-avoid
 
-  dd, > p, > ul
+  dd, > p, > ul,
+  &.information ul,
+  &.information p
     padding: 0.083em 0 0.25em 0
     margin-left: 215px
     margin-top: 0
@@ -213,6 +214,6 @@ img.north-arrow
   bottom: 0
   right: 50px
   bottom: 25px
-  background-color: white  
+  background-color: white
   width: 50px
   height: 50px

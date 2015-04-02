@@ -12,7 +12,7 @@ class HandoutsController < ApplicationController
 
       filename = "#{@real_estate.handout.filename}.pdf"
       if params[:name]
-        filename = "Printout_#{params[:name]}.pdf"
+        filename = "#{params[:name]}.pdf"
       end
 
       format.pdf do

@@ -1,11 +1,14 @@
 - if information.try(&:location_html).present?
-  %h3= t('information.location_html')
-  = information.location_html.html_safe
+  .pbi-avoid
+    %h3= t('information.location_html')
+    = information.location_html.html_safe
 
 - if information.try(&:infrastructure_html).present?
-  %h3= t('information.infrastructure_html')
-  = information.infrastructure_html.html_safe
+  .pbi-avoid
+    %h3= t('information.infrastructure_html')
+    = information.infrastructure_html.html_safe
 
 - if information.try(&:interior_html).present?
-  %h3= t('information.interior_html')
-  = information.interior_html.html_safe
+  .pbi-avoid
+    %h3= t('information.interior_html')
+    = information.interior_html.html_safe
