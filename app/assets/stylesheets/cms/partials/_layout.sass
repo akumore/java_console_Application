@@ -94,9 +94,12 @@ table.reference-projects
   margin-right: 5px
 
 .dl-horizontal
+  overflow: hidden
   margin: 0
+
   dt, dd
     line-height: 1.5
+
   dt
     float: left
     clear: left
@@ -104,14 +107,19 @@ table.reference-projects
     text-align: right
     &:after
       content: ":"
+
   dd
-    margin-left: 250px
+    margin: 0 0 1px 250px
+    &:after
+      content: ''
+      display: block
+      clear: both
 
 .dl-shrinked
   dt
     width: 75px
   dd
-    margin-left: 125px
+    margin: 0 0 1px 125px
 
 .extra-wide
   dt
