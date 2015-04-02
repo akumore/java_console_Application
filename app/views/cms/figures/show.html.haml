@@ -134,3 +134,8 @@
       %dd
         = @figure.double_garage
         &nbsp;
+
+    - if accessible?(:offer_html)
+      %dt= t "mongoid.attributes.figure.offer_html"
+      %dd= @figure.offer_html.try(:html_safe)
+      &nbsp;
