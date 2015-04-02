@@ -272,7 +272,7 @@ describe Export::Idx301::RealEstateDecorator do
     it 'remove double break after heading' do
       real_estate = Export::Idx301::RealEstateDecorator
         .new(
-          mock_model(RealEstate, 
+          mock_model(RealEstate,
                      description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
                      figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
           account,
@@ -324,7 +324,7 @@ describe Export::Idx301::RealEstateDecorator do
       it 'maintains the ul tags' do
         real_estate = Export::Idx301::RealEstateDecorator
           .new(
-            mock_model(RealEstate, 
+            mock_model(RealEstate,
                        description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
                        figure: mock_model(Figure, offer_html: '')),
             Account.new(:provider => Provider::HOMEGATE),
@@ -354,8 +354,8 @@ describe Export::Idx301::RealEstateDecorator do
   describe '#available_from' do
     it 'returns the reference date of the real estate' do
       real_estate = Export::Idx301::RealEstateDecorator.new(
-        mock_model(RealEstate, 
-          pricing: mock_model(Pricing, 
+        mock_model(RealEstate,
+          pricing: mock_model(Pricing,
             available_from: Date.parse('2012-01-01'),
             for_rent?: false,
             mandatory_for_rentable_parking?: false,
@@ -643,6 +643,23 @@ describe Export::Idx301::RealEstateDecorator do
           decorator.agency_fax.should == '321'
         end
       end
+    end
+  end
+
+  describe 'moved fields from figure to information model' do
+    it 'returns the right values' do
+      real_estate = Export::Idx301::RealEstateDecorator
+        .new(
+          mock_model(RealEstate,
+                     description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
+                     information: mock_model(Information, built_on: 1991, floors: 3, renovated_on: 2015)),
+          account,
+          {}
+        )
+
+      expect(real_estate.year_built).to eq 1991
+      expect(real_estate.number_of_floors).to eq 3
+      expect(real_estate.year_renovated).to eq 2015
     end
   end
 end

@@ -14,25 +14,13 @@ namespace :export do
         logger.info(real_estate.id)
         export.add(real_estate)
       end
-    end
 
-    logger.info "Finished real estate export rake task."
-  end
-
-  desc 'Upload all exports (build must already be done)'
-  task :upload => :environment do
-    logger = Logger.new(STDOUT)
-    logger.formatter = Logger::Formatter.new
-    logger.info "Starting real estate upload rake task"
-
-    raise "do not run upload from development!" if Rails.env.development?
-
-    Account.all.each do |account|
-      export = Export::Idx301::Exporter.new(account)
+      logger.info "Starting real estate upload rake task"
+      raise "do not run upload from development!" if Rails.env.development?
       export.upload
     end
 
-    logger.info "Finished real estate upload rake task."
+    logger.info "Finished real estate export rake task."
   end
 
   desc 'Run all export cleanups (homegate, immoscout, home.ch, immostreet)'
@@ -46,7 +34,7 @@ namespace :export do
   end
 
   desc 'Run all export tasks'
-  task :all => [:build, :upload, :cleanup]
+  task :all => [:build, :cleanup]
 end
 
 desc 'Runs the export and export cleanup tasks'

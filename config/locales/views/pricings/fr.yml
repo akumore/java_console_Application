@@ -22,9 +22,9 @@ fr:
     extra_storage: 'Frais accessoires entrepôt'
     inside_parking: 'Place de parc dans parking souterrain'
     outside_parking: 'Place de parc à l‘extérieur'
-    covered_slot: 'Place de stationnement couverte à l’extérieur'
+    covered_slot: "Place de stationnement couverte à l'extérieur"
     covered_bike: 'Place de stationnement pour moto dans parking'
-    outdoor_bike: 'Place de stationnement pour moto couverte à l’extérieur'
+    outdoor_bike: "Place de stationnement pour moto couverte à l'extérieur"
     single_garage: 'Garage simple'
     double_garage: 'Garage double'
     for_sale: 'Prix de vente'

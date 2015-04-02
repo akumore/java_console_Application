@@ -35,7 +35,9 @@ module Export
         end
 
         if @real_estate.has_handout?
-          add_handout(@real_estate.handout)
+          I18n.with_locale(@real_estate.language.to_sym || I18n.default_locale) do
+            add_handout(@real_estate.handout)
+          end
         end
 
         @real_estate.documents.each do |document|
