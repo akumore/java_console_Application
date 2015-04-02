@@ -1,4 +1,10 @@
 # CHANGELOG
+### v3.0.3 - 2015-04-02
+* fix exporter:
+  - fix export rake task
+  - fix wrong single quotes
+  - fix movement of built_on field from figure to information model
+
 ### v3.0.2 - 2015-04-01
 * fix little writing mistake in DE home teaser ('Ihr' instead of 'ihr')
 * translate main nav item 'Referenzen' in IT 'Referenze'
