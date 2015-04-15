@@ -1,4 +1,14 @@
 # CHANGELOG
+### v3.0.6 - 2015-04-15
+* Fix exporter:
+  * Handle links in object description
+
+* features/fix_undefined_method_year_for_nilclass
+  * Avoiding the NoMethodError: undefined method 'year' for nil:NilClass when majestic12 bot is crawling
+
+* features/add_forgotten_offer_html_to_cms_show_view
+  * Add the forgotten offer_html field to figure show view in cms
+
 ### v3.0.5 - 2015-04-15
 * Fix exporter:
   * Add title to offer_html
