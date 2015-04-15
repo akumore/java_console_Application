@@ -250,11 +250,11 @@ describe Export::Idx301::RealEstateDecorator do
         .new(
           mock_model(RealEstate,
                      description: "<p>It<br />breaks</p><p>into new lines</p><br>blabl<br><br>",
-                     figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
+                     figure: mock_model(Figure, offer_html: '<ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p>')),
           account,
           {}
         )
-      expect(real_estate.object_description).to eq('It<br>breaks<br><br>into new lines<br>blabl<br><br>blabl<br><br>')
+      expect(real_estate.object_description).to eq('It<br>breaks<br><br>into new lines<br>blabl<br><br>Angebot<br><br><li>Element 1</li><li>Element 2</li><br>Und noch ein bisschen Text.')
     end
 
     it 'renders asteriks (*) into <li> bullet points' do
@@ -262,11 +262,11 @@ describe Export::Idx301::RealEstateDecorator do
         .new(
           mock_model(RealEstate,
                      description: "<p>I<br />have</p><ul><li>one</li><li>two</li><li>three</li></ul><p>list items</p>",
-                     figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
+                     figure: mock_model(Figure, offer_html: '<ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p>')),
           account,
           {}
         )
-      expect(real_estate.object_description).to eq('I<br>have<br><br><li>one</li><li>two</li><li>three</li><br>list items<br><br>blabl<br><br>')
+      expect(real_estate.object_description).to eq('I<br>have<br><br><li>one</li><li>two</li><li>three</li><br>list items<br><br>Angebot<br><br><li>Element 1</li><li>Element 2</li><br>Und noch ein bisschen Text.')
     end
 
     it 'remove double break after heading' do
@@ -274,11 +274,11 @@ describe Export::Idx301::RealEstateDecorator do
         .new(
           mock_model(RealEstate,
                      description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
-                     figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
+                     figure: mock_model(Figure, offer_html: '<ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p>')),
           account,
           {}
         )
-      expect(real_estate.object_description).to eq("Vorteile<br><br><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li><br>Autoeinstellhalle kann dazugemietet werden.<br><br>blabl<br><br>")
+      expect(real_estate.object_description).to eq("Vorteile<br><br><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Angebot<br><br><li>Element 1</li><li>Element 2</li><br>Und noch ein bisschen Text.")
     end
 
     it 'inserts a <br> tag before the second h3' do
@@ -286,11 +286,11 @@ describe Export::Idx301::RealEstateDecorator do
         .new(
           mock_model(RealEstate,
                      description: "<h3>Vorteile</h3><ul><li>Teststring 1</li><li>Teststring 2</li></ul>\n<h3>Angebot</h3><ul><li>Teststring 3</li></ul>",
-                     figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
+                     figure: mock_model(Figure, offer_html: '<ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p>')),
           account,
           {}
         )
-      expect(real_estate.object_description).to eq("Vorteile<br><br><li>Teststring 1</li><li>Teststring 2</li><br>Angebot<br><br><li>Teststring 3</li><br>blabl<br><br>")
+      expect(real_estate.object_description).to eq("Vorteile<br><br><li>Teststring 1</li><li>Teststring 2</li><br>Angebot<br><br><li>Teststring 3</li><br>Angebot<br><br><li>Element 1</li><li>Element 2</li><br>Und noch ein bisschen Text.")
     end
 
     it 'inserts two <br> tags after an ending p-tag that is followed by a h-tag' do
@@ -298,30 +298,69 @@ describe Export::Idx301::RealEstateDecorator do
         .new(
           mock_model(RealEstate,
                      description: "<p>Einleitung</p><h3>Vorteile</h3><ul><li>Teststring 1</li></ul><h3>Angebot</h3><ul><li>Teststring 2</li></ul>",
-                     figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
+                     figure: mock_model(Figure, offer_html: '<ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p>')),
           account,
           {}
         )
-      expect(real_estate.object_description).to eq("Einleitung<br><br>Vorteile<br><br><li>Teststring 1</li><br>Angebot<br><br><li>Teststring 2</li><br>blabl<br><br>")
+      expect(real_estate.object_description).to eq("Einleitung<br><br>Vorteile<br><br><li>Teststring 1</li><br>Angebot<br><br><li>Teststring 2</li><br>Angebot<br><br><li>Element 1</li><li>Element 2</li><br>Und noch ein bisschen Text.")
     end
 
     context 'with immoscout as provider' do
-      it 'maintains the ul tags' do
+      it 'handles the text with empty html_offer field' do
         real_estate = Export::Idx301::RealEstateDecorator
           .new(
             mock_model(RealEstate,
                        description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
-                       figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
+                       figure: mock_model(Figure, offer_html: '')),
             Account.new(:provider => Provider::IMMOSCOUT),
             {}
           )
 
-        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>blabl<br><br>")
+        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.")
+      end
+
+      it 'handles the text with additional list in html_offer field' do
+        real_estate = Export::Idx301::RealEstateDecorator
+          .new(
+            mock_model(RealEstate,
+                       description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
+                       figure: mock_model(Figure, offer_html: '<ul><li>Element 1</li><li>Element 2</li></ul>')),
+            Account.new(:provider => Provider::IMMOSCOUT),
+            {}
+          )
+
+        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Angebot<br><br><ul><li>Element 1</li><li>Element 2</li></ul>")
+      end
+
+      it 'handles the text with additional list and p tag in html_offer field' do
+        real_estate = Export::Idx301::RealEstateDecorator
+          .new(
+            mock_model(RealEstate,
+                       description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
+                       figure: mock_model(Figure, offer_html: '<ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p>')),
+            Account.new(:provider => Provider::IMMOSCOUT),
+            {}
+          )
+
+        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Angebot<br><br><ul><li>Element 1</li><li>Element 2</li></ul><br>Und noch ein bisschen Text.")
+      end
+
+      it 'handles the text with additional p tag in front and after list in html_offer field' do
+        real_estate = Export::Idx301::RealEstateDecorator
+          .new(
+            mock_model(RealEstate,
+                       description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
+                       figure: mock_model(Figure, offer_html: '<p>Und noch ein bisschen Text.</p><ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p>')),
+            Account.new(:provider => Provider::IMMOSCOUT),
+            {}
+          )
+
+        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Angebot<br><br>Und noch ein bisschen Text.<br><br><ul><li>Element 1</li><li>Element 2</li></ul><br>Und noch ein bisschen Text.")
       end
     end
 
     context 'with homegate as provider' do
-      it 'maintains the ul tags' do
+      it 'handles the text with empty html_offer field' do
         real_estate = Export::Idx301::RealEstateDecorator
           .new(
             mock_model(RealEstate,
@@ -333,6 +372,32 @@ describe Export::Idx301::RealEstateDecorator do
 
         expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.")
       end
+
+      it 'handles the text with additional list in html_offer field' do
+        real_estate = Export::Idx301::RealEstateDecorator
+          .new(
+            mock_model(RealEstate,
+                       description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
+                       figure: mock_model(Figure, offer_html: '<ul><li>Element 1</li><li>Element 2</li></ul>')),
+            Account.new(:provider => Provider::HOMEGATE),
+            {}
+          )
+
+        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Angebot<br><br><ul><li>Element 1</li><li>Element 2</li></ul>")
+      end
+
+      it 'handles the text with additional list and p tag in html_offer field' do
+        real_estate = Export::Idx301::RealEstateDecorator
+          .new(
+            mock_model(RealEstate,
+                       description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
+                       figure: mock_model(Figure, offer_html: '<ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p>')),
+            Account.new(:provider => Provider::HOMEGATE),
+            {}
+          )
+
+        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Angebot<br><br><ul><li>Element 1</li><li>Element 2</li></ul><br>Und noch ein bisschen Text.")
+      end
     end
 
     context 'with HTMLEntities' do
@@ -341,12 +406,12 @@ describe Export::Idx301::RealEstateDecorator do
           .new(
             mock_model(RealEstate,
                        description: "<h3>&Uuml;bersicht</h3><ul><li>Element mit &ouml;</li><li>Element mit &auml;</li><li>Element mit &uuml;</li></ul>",
-                       figure: mock_model(Figure, offer_html: '<h3>blabl</h3>')),
+                       figure: mock_model(Figure, offer_html: '<ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p>')),
             account,
             {}
           )
 
-        expect(real_estate.object_description).to eq("Übersicht<br><br><li>Element mit ö</li><li>Element mit ä</li><li>Element mit ü</li><br>blabl<br><br>")
+        expect(real_estate.object_description).to eq("Übersicht<br><br><li>Element mit ö</li><li>Element mit ä</li><li>Element mit ü</li><br>Angebot<br><br><li>Element 1</li><li>Element 2</li><br>Und noch ein bisschen Text.")
       end
     end
   end

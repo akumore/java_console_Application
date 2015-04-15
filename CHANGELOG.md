@@ -1,12 +1,18 @@
 # CHANGELOG
+### v3.0.5 - 2015-04-15
+* Fix exporter:
+  * Add title to offer_html
+  * Do not remove opening ul tag after closing p tag
+  * Update spec to match latest conditions
+
 ### v3.0.4 - 2015-04-02
-* fix handout:
+* Fix handout:
   - fix handout caching (save file as Printout_[real_estate_title])
   - fix disappearance of 'Kontakt'
   - fix styles
 
 ### v3.0.3 - 2015-04-02
-* fix exporter:
+* Fix exporter:
   - fix export rake task
   - fix wrong single quotes
   - fix movement of built_on field from figure to information model
