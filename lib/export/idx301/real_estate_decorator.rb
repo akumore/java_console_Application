@@ -394,7 +394,7 @@ module Export::Idx301
       html.gsub!(/\s+</, '<')
       html.gsub!(/<br\ \/>/, '<br>')
       html.gsub!(/<\/p><p>/, '<br><br>')
-      html.gsub!(/<\/p><ul>/, '<br><br>')
+      html.gsub!(/<\/p><ul>/, '<br><br><ul>')
       html.gsub!(/<\/p><h\d>/, '<br><br>')
       html.gsub!(/<\/ul></, '</ul><br><')
       html.gsub!(/\<\/h1>/, '</h1><br><br>')
