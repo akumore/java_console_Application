@@ -5,7 +5,7 @@ cache: bundler
 services:
   - mongodb
 rvm:
-  - 1.9.3-p448
+  - 1.9.3-p551
 before_script:
   - cp config/mongoid.travis.yml config/mongoid.yml
 script:
