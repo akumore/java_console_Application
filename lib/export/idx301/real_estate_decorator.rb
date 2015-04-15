@@ -383,7 +383,10 @@ module Export::Idx301
       # The following HTML-Tags can be used: <LI>,</LI>,<BR>, <B>,</B>. All other Tags will be removed.
       #pre_html = model.description.presence.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>')
       html = model.description.to_s
-      html += model.figure.try(&:offer_html).to_s
+      if model.figure.try(&:offer_html).present?
+        html += "<h3>Angebot</h3>"
+        html += model.figure.try(&:offer_html).to_s
+      end
 
       return '-' unless html.present?
 
