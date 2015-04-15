@@ -386,17 +386,17 @@ describe Export::Idx301::RealEstateDecorator do
         expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Angebot<br><br><ul><li>Element 1</li><li>Element 2</li></ul>")
       end
 
-      it 'handles the text with additional list and p tag in html_offer field' do
+      it 'handles the text with additional list, a tag and p tag in html_offer field' do
         real_estate = Export::Idx301::RealEstateDecorator
           .new(
             mock_model(RealEstate,
                        description: "<h3>Vorteile</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
-                       figure: mock_model(Figure, offer_html: '<ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p>')),
+                       figure: mock_model(Figure, offer_html: "<ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p><a href='#'>Link</a>")),
             Account.new(:provider => Provider::HOMEGATE),
             {}
           )
 
-        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Angebot<br><br><ul><li>Element 1</li><li>Element 2</li></ul><br>Und noch ein bisschen Text.")
+        expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Angebot<br><br><ul><li>Element 1</li><li>Element 2</li></ul><br>Und noch ein bisschen Text.<a href=\"#\">Link</a>")
       end
     end
 
