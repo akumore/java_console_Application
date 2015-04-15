@@ -51,7 +51,7 @@ AlfredMueller::Application.routes.draw do
     resources :users
   end
 
-  scope ':locale' do
+  scope ':locale', locale: /#{I18n.available_locales.join('|')}/ do
     resources :real_estates, :only => [:index, :show] do
       resources :appointments, :only => [:new, :create]
       resources :handout_orders, :only => [:new, :create]

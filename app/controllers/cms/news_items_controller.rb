@@ -8,7 +8,7 @@ module Cms
     end
 
     rescue_from Mongoid::Errors::DocumentNotFound do |err|
-      flash[:warn] = "Gesuchter Newseintrag wirde nicht gefunden"
+      flash[:warn] = "Gesuchter Newseintrag wurde nicht gefunden"
       redirect_to cms_news_items_path
     end
 
