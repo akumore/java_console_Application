@@ -401,7 +401,11 @@ module Export::Idx301
       html.gsub!(/\<\/h2>/, '</h2><br><br>')
       html.gsub!(/\<\/h3>/, '</h3><br><br>')
       html.gsub!(/\<\/h4>/, '</h4><br><br>')
-      html = Sanitize.clean(html, elements: Provider.elements(@account.provider)).strip
+      provider = @account.provider
+      html = Sanitize.clean(html,
+                            elements: Provider.elements(provider),
+                            attributes: Provider.attributes(provider)
+                           ).strip
       html.to_s.gsub(/>\s+/, '>').gsub(/\s+</, '<')
     end
 
