@@ -384,7 +384,7 @@ module Export::Idx301
       #pre_html = model.description.presence.to_s.gsub(/\r\n?/, "\n").gsub(/\n/, '<br>')
       html = model.description.to_s
       if model.figure.try(&:offer_html).present?
-        html += "<h3>Angebot</h3>"
+        html += "<h3>#{I18n.t('information.offer')}</h3>"
         html += model.figure.try(&:offer_html).to_s
       end
 

@@ -1,4 +1,8 @@
 # CHANGELOG
+### v3.0.7 - 2015-04-17
+* Fix exporter:
+  * Insert right translation for «Angebot»
+
 ### v3.0.6 - 2015-04-15
 * Fix exporter:
   * Handle links in object description

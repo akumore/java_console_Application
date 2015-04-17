@@ -357,6 +357,21 @@ describe Export::Idx301::RealEstateDecorator do
 
         expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Angebot<br><br>Und noch ein bisschen Text.<br><br><ul><li>Element 1</li><li>Element 2</li></ul><br>Und noch ein bisschen Text.")
       end
+
+      it 'handles the text with additional p tag in front and after list in html_offer field in Italian' do
+        I18n.with_locale(:it) do
+          real_estate = Export::Idx301::RealEstateDecorator
+            .new(
+              mock_model(RealEstate,
+                         description: "<h3>Babedibibedi</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
+                         figure: mock_model(Figure, offer_html: '<p>Babedibubi.</p><ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p>')),
+              Account.new(:provider => Provider::IMMOSCOUT),
+              {}
+            )
+
+          expect(real_estate.object_description).to eq("Babedibibedi<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Offerta<br><br>Babedibubi.<br><br><ul><li>Element 1</li><li>Element 2</li></ul><br>Und noch ein bisschen Text.")
+        end
+      end
     end
 
     context 'with homegate as provider' do
@@ -397,6 +412,21 @@ describe Export::Idx301::RealEstateDecorator do
           )
 
         expect(real_estate.object_description).to eq("Vorteile<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Angebot<br><br><ul><li>Element 1</li><li>Element 2</li></ul><br>Und noch ein bisschen Text.<a href=\"#\">Link</a>")
+      end
+
+      it 'handles the text with additional p tag in front and after list in html_offer field in French' do
+        I18n.with_locale(:fr) do
+          real_estate = Export::Idx301::RealEstateDecorator
+            .new(
+              mock_model(RealEstate,
+                         description: "<h3>Frère Jacques</h3><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><p>Autoeinstellhalle kann dazugemietet werden.</p>",
+                         figure: mock_model(Figure, offer_html: '<p>Bonjour.</p><ul><li>Element 1</li><li>Element 2</li></ul><p>Und noch ein bisschen Text.</p>')),
+              Account.new(:provider => Provider::HOMEGATE),
+              {}
+            )
+
+          expect(real_estate.object_description).to eq("Frère Jacques<br><br><ul><li>Maisonette-Wohnung</li><li>Bad und Waschturm</li></ul><br>Autoeinstellhalle kann dazugemietet werden.<br><br>Offre<br><br>Bonjour.<br><br><ul><li>Element 1</li><li>Element 2</li></ul><br>Und noch ein bisschen Text.")
+        end
       end
     end
 
