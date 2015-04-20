@@ -35,9 +35,7 @@ module Export
         end
 
         if @real_estate.has_handout?
-          I18n.with_locale(@real_estate.language.to_sym || I18n.default_locale) do
-            add_handout(@real_estate.handout)
-          end
+          add_handout(@real_estate.handout)
         end
 
         @real_estate.documents.each do |document|
@@ -93,9 +91,11 @@ module Export
       end
 
       def save(unload_file)
-        package_assets
-        logger.info "Writing unload.txt for #{@account.name}"
-        writer(unload_file).write Idx301::RealEstateDecorator.new(@real_estate, @account, asset_information).to_a
+        I18n.with_locale(@real_estate.language.to_sym || I18n.default_locale) do
+          package_assets
+          logger.info "Writing unload.txt for #{@account.name}"
+          writer(unload_file).write Idx301::RealEstateDecorator.new(@real_estate, @account, asset_information).to_a
+        end
       end
 
       private

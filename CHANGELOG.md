@@ -1,4 +1,8 @@
 # CHANGELOG
+### v3.0.8 - 2015-04-20
+* Fix exporter:
+  * export real eastates correctly translated
+
 ### v3.0.7 - 2015-04-17
 * Fix exporter:
   * Insert right translation for «Angebot»
