@@ -1,4 +1,8 @@
 # CHANGELOG
+### features/1166_clear_search
+* New implemented User Stories:
+  * #1166: Als Editor möchte ich neben dem Suchfeld in der Immobverwaltung einen Clear Butten haben
+
 ### v3.0.8 - 2015-04-20
 * Fix exporter:
   * export real eastates correctly translated
