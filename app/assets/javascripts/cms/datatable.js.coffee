@@ -1,6 +1,6 @@
 $ ->
-  $(".datatable").dataTable
-    "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>"
+  table = $(".datatable").DataTable
+    "sDom": "<'row-fluid data-table__header'<'span6'l><'span6'<'js-clear-search clear-search'>f>r>t<'row-fluid'<'span6'i><'span6'p>>"
     "sPaginationType": "bootstrap"
     aaSorting: [[0, "asc"], [1, "asc"], [2, "asc"] ]
     aoColumnDefs: [
@@ -20,3 +20,9 @@ $ ->
       sLengthMenu: "Einträge pro Seite: _MENU_"
       sEmptyTable: "keine Einträge gefunden"
       sZeroRecords: "keine Einträge gefunden"
+
+  $('.js-clear-search').append("<button class='js-clear-search__button clear-search__button btn'>Zurücksetzen</button>")
+
+  $('.js-clear-search__button').on 'click', (e) ->
+    e.preventDefault()
+    table.search('').columns().search('').draw()
