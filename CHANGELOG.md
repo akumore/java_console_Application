@@ -1,4 +1,9 @@
 # CHANGELOG
+
+### features/1165_scroll_to_floorplan
+* New implemented User Stories:
+  * #1165: Als Besucher möchte ich nach Klick auf “Grundriss anzeigen“ zum Grundriss gelangen
+
 ### v3.0.8 - 2015-04-20
 * Fix exporter:
   * export real eastates correctly translated
