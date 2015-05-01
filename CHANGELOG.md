@@ -1,4 +1,9 @@
 # CHANGELOG
+
+### features/1164_reference_slider
+* New implemented User Stories:
+  * #1164: Als Besucher möchte ich die Referenzslider auf Mobile überarbeitet sehen
+
 ### v3.0.8 - 2015-04-20
 * Fix exporter:
   * export real eastates correctly translated
