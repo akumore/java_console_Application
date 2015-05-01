@@ -10,7 +10,7 @@ class window.AlfredMueller.Views.SliderDeeplink extends Backbone.View
 
   gotoTarget: ->
     @slider.flexAnimate(@targetIdx, false)
-    $.scrollTo(@target, 500, offset: -20)
+    $.scrollTo(@target, 500, offset: -15)
 
   handleClick: (event) =>
     @gotoTarget()
