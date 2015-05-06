@@ -1,7 +1,8 @@
 # CHANGELOG
 
-### features/1165_scroll_to_floorplan
+### New Release
 * New implemented User Stories:
+  * #1164: Als Besucher möchte ich die Referenzslider auf Mobile überarbeitet sehen
   * #1165: Als Besucher möchte ich nach Klick auf “Grundriss anzeigen“ zum Grundriss gelangen
 
 ### v3.0.8 - 2015-04-20
