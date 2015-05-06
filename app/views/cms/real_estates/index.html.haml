@@ -19,25 +19,23 @@
       %i.state.microsite.active
       Micro-Site
 
-
-
 %ul.nav-tabs.nav
-  %li{ :class => params[:filter].blank? ? 'active' : nil }
+  %li{ class: params[:filter].blank? ? 'active' : nil }
     = link_to t('.tabs.all'), cms_real_estates_path
-  %li{ :class => params[:filter] == RealEstate::STATE_PUBLISHED ? 'active' : nil }
-    = link_to t('.tabs.published'), cms_real_estates_path(:filter => RealEstate::STATE_PUBLISHED)
-  %li{ :class => params[:filter] == RealEstate::STATE_EDITING ? 'active' : nil }
-    = link_to t('.tabs.in_progress'), cms_real_estates_path(:filter => RealEstate::STATE_EDITING)
-  %li{ :class => params[:filter] == RealEstate::STATE_ARCHIVED ? 'active' : nil }
-    = link_to t('.tabs.archived'), cms_real_estates_path(:filter => RealEstate::STATE_ARCHIVED)
+  %li{ class: params[:filter] == RealEstate::STATE_PUBLISHED ? 'active' : nil }
+    = link_to t('.tabs.published'), cms_real_estates_path(filter: RealEstate::STATE_PUBLISHED)
+  %li{ class: params[:filter] == RealEstate::STATE_EDITING ? 'active' : nil }
+    = link_to t('.tabs.in_progress'), cms_real_estates_path(filter: RealEstate::STATE_EDITING)
+  %li{ class: params[:filter] == RealEstate::STATE_ARCHIVED ? 'active' : nil }
+    = link_to t('.tabs.archived'), cms_real_estates_path(filter: RealEstate::STATE_ARCHIVED)
 
 .row
   .pull-right.padded
-    = link_to(new_cms_real_estate_path, :class => 'btn') do
+    = link_to(new_cms_real_estate_path, class: 'btn') do
       %i.icon-plus-sign
       = t('cms.real_estates.index.new')
 
-%table.table.table-bordered.table-striped.datatable{ :id=>'real_estate' }
+%table.table.table-bordered.table-striped.datatable{ id: 'real_estate' }
   %thead
     %tr
       %th{ width: '10%' }= Address.human_attribute_name :canton
@@ -45,14 +43,14 @@
       %th{ width: '15%' }= Address.model_name.human
       %th{ width: '20%' }= RealEstate.human_attribute_name :titel
       %th{ width: '10%' }= Figure.human_attribute_name :floor
-      %th{ width: '10%' }= t'figures.surface.commercial'
+      %th{ width: '10%' }= t('figures.surface.commercial')
       %th{ width: '10%' }= RealEstate.human_attribute_name :contact
       %th{ width: '15%' } Status
       %th
       %th
   %tbody
     - @real_estates.each do |real_estate|
-      %tr{:id => "real_estate_#{real_estate.id}"}
+      %tr{id: "real_estate_#{real_estate.id}"}
         - a = real_estate.address
         - f = real_estate.figure
         - c = real_estate.model.contact
@@ -76,6 +74,6 @@
           - else
             = link_to  t('.show'), cms_real_estate_path(real_estate)
         %td
-          = link_to copy_cms_real_estate_path(real_estate), :title => t('.copy') do
+          = link_to copy_cms_real_estate_path(real_estate), title: t('.copy') do
             %span.hidden-text= t('.copy')
             %i.icon-share
