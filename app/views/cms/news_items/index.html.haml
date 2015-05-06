@@ -9,29 +9,29 @@
 
 %ul.nav-tabs.nav.language-tabs
   - I18n.available_locales.each do |locale|
-    %li{ :class => (content_locale.to_s == locale.to_s ? 'active' : nil) }
-      = link_to t("languages.#{locale}"), cms_news_items_path(:content_locale => locale)
+    %li{ class: (content_locale.to_s == locale.to_s ? 'active' : nil) }
+      = link_to t("languages.#{locale}"), cms_news_items_path(content_locale: locale)
 
 .row
   .pull-right.padded
-    = link_to(new_cms_news_item_path(:content_locale => content_locale), :class => 'btn') do
+    = link_to(new_cms_news_item_path(content_locale: content_locale), class: 'btn') do
       %i.icon-plus-sign
       = t('.new')
 
 %table.table.table-bordered.table-striped
   %tr
-    %th{ :width => '50%' }= NewsItem.human_attribute_name :title
-    %th{ :width => '20%'}= NewsItem.human_attribute_name :date
-    %th{ :width => '10%'}= NewsItem.human_attribute_name :published
+    %th{ width: '50%' }= NewsItem.human_attribute_name :title
+    %th{ width: '20%'}= NewsItem.human_attribute_name :date
+    %th{ width: '10%'}= NewsItem.human_attribute_name :published
     %th
     %th
 
   - @news_items.each do |news|
-    %tr{ :id => "news_item_#{news.id}"}
-      %td= news.title
+    %tr{ id: "news_item_#{news.id}"}
+      %td= news.title_translations[content_locale.to_s]
       %td= l(news.date)
       %td
         .news-items-state-bar
-          %i.published{ class: news.published == true ? 'active' : 'inactive' }
-      %td= link_to  t('.destroy'), cms_news_item_path(news), :method => :delete, :confirm => t('.confirm_delete', :title => news.title)
-      %td= link_to t('.edit'), edit_cms_news_item_path(news)
+          %i.published{ class: news.published_translations[content_locale.to_s] ? 'active' : 'inactive' }
+      %td= link_to  t('.destroy'), cms_news_item_path(news), method: :delete, confirm: t('.confirm_delete', title: news.title)
+      %td= link_to t('.edit'), edit_cms_news_item_path(news, content_locale: content_locale)
