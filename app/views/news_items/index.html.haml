@@ -1,4 +1,4 @@
-.button-navigation-container
+%nav.button-navigation-container
   .default-view
     %ul.button-navigation
       - @news_items_by_year.keys.each do |year|
@@ -8,5 +8,5 @@
   .mobile-view.select-filter
     = select_tag :section, options_for_select(@news_items_by_year.keys, @year)
 
-.accordion.accordion-spacey{ 'data-open_first' => '1' }
+.news.accordion.accordion--spacey{ 'data-open_first' => '1' }
   = render @news_items

@@ -114,6 +114,9 @@
     li
       padding-left: 0
 
+  .main-navigation-wrapper
+    height: 100%
+
   .main-navigation
     float: none
     margin: 0em
@@ -285,21 +288,23 @@
     .image-caption
       background: $clay
 
-  .accordion-classical
-    .title
+  .accordion--classical
+    .accordion__title
       font-size: 1.25em
 
-  .accordion-spacey
+  .accordion--spacey
     margin-top: 1em
 
-    .title
+    .accordion__title h1
       font-size: 1.5em
 
-    .title, .content
+    .accordion__title,
+    .accordion__content
       margin-left: $margin-side
       margin-right: $margin-side
 
-    p, .title
+    .accordion__title,
+    p
       width: auto
       max-width: 100%
 
@@ -407,7 +412,7 @@
   .footer-news, .footer-teasers
     border-bottom: 1px solid $normal
 
-  #footer
+  .footer
     padding: 1em 0
     background-color: $search-background-color
 
@@ -429,7 +434,7 @@
       margin-bottom: .5em
 
   #container
-    #footer
+    .footer
       height: auto
 
   .scrolling-map
@@ -447,7 +452,7 @@
 @media only screen and (max-width : 1450px)
   //@content
 
-  #footer
+  .footer
     position: relative
     padding-bottom: 0
     background-position: bottom right

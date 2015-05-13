@@ -8,8 +8,8 @@
         %p
           = t('.address_html')
       .clear
-  .accordion.accordion-square
-    .accordion-item
+  .accordion.accordion--square
+    .accordion__item
       = link_to t('.form_title'), new_contact_path, :remote => true, :class => :title
-      .content
+      .accordion__content
         #contact

@@ -8,8 +8,8 @@
         %p
           = link_to t('.address_text'), t('.address_link'), class: 'ga-tracking-link', data: { 'ga-category' => "Mitarbeiter", 'ga-action' => "Anzahl HR-Kontakte" }
       .clear
-  .accordion.accordion-square
-    .accordion-item
+  .accordion.accordion--square
+    .accordion__item
       = link_to t('.apply'), new_job_application_path, :remote => true, :class => :title
-      .content
+      .accordion__content
         #job-application

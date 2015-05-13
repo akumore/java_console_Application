@@ -1,8 +1,8 @@
-.accordion-item{ id: "news_item_#{news_item.id}" }
-  .title
-    %span.date= l(news_item.date)
-    = news_item.title
-  .content
+%article.news__item.accordion__item{ id: "news_item_#{news_item.id}" }
+  %header.accordion__title
+    %time.date{ datetime: news_item.date }= l(news_item.date)
+    %h1.news__item__title= news_item.title
+  .accordion__content
     - if news_item.images.any?
       .flex-container
         .flexslider
@@ -12,6 +12,6 @@
     = news_item.content.html_safe
 
     - if news_item.documents.any?
-      %ul.icon-list
+      %ul.icon-list.icon-list--dark
         - news_item.documents.each do |document|
           %li= link_to File.basename(document.file.path), document.file.url, class: 'icon-document ga-tracking-link', data: { 'ga-category' => "Download Baustein", 'ga-action' => "Download", 'ga-label' => File.basename(document.file.path) }

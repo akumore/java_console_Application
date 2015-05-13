@@ -50,7 +50,8 @@ a.classic:hover
 body
   @extend .text-font
 
-h1
+h1,
+.h1
   @extend .title-font-bold
   font-size: 3.1em
   line-height: 1em
@@ -58,7 +59,12 @@ h1
   margin-left: 10%
   margin-top: 1em
 
-h2
+h2, h3, h4, h5, h6,
+.h2, .h3, .h4, .h5, .h6
+  margin-left: 0
+
+h2,
+.h2
   @extend text-font-bold
   font-size: 2.25em
   color: $link-hover-color
@@ -68,23 +74,26 @@ h2
   margin-top: 2em
   line-height: 1em
 
-h3
+h3,
+.h3
   @extend text-font-bold
   font-size: 1.45em
   color: $normal
   margin-top: 1em
   text-transform: uppercase
 
-h4
+h4,
+.h4
   @extend .title-font-bold
   font-size: 1.25em
   color: $dark
 
-h5
+h5,
+.h5
   @extend .text-font
   font-size: 1.25em
   color: $footer-title
-  margin-top: 1em 0
+  margin-top: 1em
 
 p,
 .content li
@@ -151,8 +160,8 @@ input, select, textarea
   span
     @extend .text-font-bold
 
-.accordion-classical
-  .title
+.accordion--classical
+  .accordion__title
     font-size: 1.5em
     line-height: 1.175em
     @extend .title-font
@@ -161,12 +170,12 @@ input, select, textarea
       color: $classic
 
     .open
-      .title
+      .accordion__title
         &:hover
           color: $classic
 
-.accordion-square
-  .title
+.accordion--square
+  .accordion__title
     font-size: 1.5em
     color: #fff
     line-height: 1em
@@ -175,21 +184,21 @@ input, select, textarea
     &:hover
       color: $clay
 
-  .content
+  .accordion__content
     color: #fff
 
   .open
-    .title
+    .accordion__title
       &:hover
         color: #fff
 
-    .content
+    .accordion__content
       color: lighten($clay, 6%)
 
   h3
     color: #fff
 
-#footer
+.footer
   a
     @extend .title-font-bold
   a

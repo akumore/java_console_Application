@@ -1,9 +1,9 @@
 .jobs
-  .accordion.accordion-square
+  .accordion.accordion--square
     - Job.published.where(:locale => I18n.locale).each do |job|
-      .accordion-item.accordion-ga-tracking-link{ :id => "job_#{job.id}", data: { 'ga-category' => "Mitarbeiter", 'ga-action' => "Ansicht Jobs", 'ga-label' => job.title } }
-        .title= job.title
-        .content
+      .accordion__item.accordion-ga-tracking-link{ :id => "job_#{job.id}", data: { 'ga-category' => "Mitarbeiter", 'ga-action' => "Ansicht Jobs", 'ga-label' => job.title } }
+        .accordion__title= job.title
+        .accordion__content
           = job.text.html_safe
           %ul.icon-list
             - if job.job_profile_file.present?

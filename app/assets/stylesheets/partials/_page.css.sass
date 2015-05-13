@@ -41,7 +41,7 @@ body
   .nest.rotate180
     @include transform( rotate(180deg) )
 
-  #footer .nest
+  .footer .nest
     height: 99.9%
     overflow: hidden
     top: 0px
@@ -165,60 +165,3 @@ h1, h2, h3, h4, p, ul, ol
   margin: 1em
   position: relative
   overflow: hidden
-
-.icon-list
-  margin: 2em 0
-  +no-bullets
-
-  .pages &
-    margin: 2em 0
-    +no-bullets
-
-#footer
-  +row
-  margin-top: 1em
-  position: relative
-  padding: 5em 0
-  height: 1532px
-
-  &:before
-    content: ' '
-    display: block
-    position: absolute
-    width: 100%
-    height: 167px
-    z-index: -1
-    left: 0
-    margin-top: -75px
-    background-color: $search-background-color
-
-  h4
-    font-size: 2.25em
-    line-height: 1
-    padding: 0.5em 0
-
-  h6
-    font-weight: bold
-
-.footer-wrapper
-  +clearfix
-
-.footer-news
-  +column(3)
-
-.footer-teasers
-  +column(3)
-  margin-left: 5%
-  margin-right: 5%
-
-.footer-contact
-  +column(3)
-  .memberships dd
-    padding-bottom: 7px
-
-  > div
-    margin-left: 80px
-
-.footer-news, .footer-teasers, .footer-contact
-  div
-    margin-bottom: 60px
