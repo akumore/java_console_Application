@@ -1,7 +1,6 @@
 = form_for [:cms, @news_item], html: { multipart: true } do |f|
   = render 'cms/shared/errors', model: @news_item
 
-  - I18n.locale = content_locale
   %fieldset
     = hidden_field_tag(:content_locale, content_locale)
     .control-group.mandatory
@@ -31,7 +30,7 @@
               = image_form.file_field :file
       %fieldset
         %legend Dokumente
-        = f.fields_for :documents do |documents_form|
+        = f.fields_for localized_documents do |documents_form|
           .control-group
             = documents_form.label :file
             .controls

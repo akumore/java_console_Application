@@ -17,8 +17,10 @@ module Cms
     end
 
     def new
-      @news_item = NewsItem.new(locale: content_locale)
-      build_images_and_documents!(@news_item)
+      I18n.with_locale(content_locale) do
+        @news_item = NewsItem.new(locale: content_locale)
+        build_images_and_documents!(@news_item)
+      end
     end
 
     def edit
