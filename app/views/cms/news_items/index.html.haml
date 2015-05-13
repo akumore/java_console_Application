@@ -28,10 +28,10 @@
 
   - @news_items.each do |news|
     %tr{ id: "news_item_#{news.id}"}
-      %td= news.title_translations[content_locale.to_s]
+      %td= news.title_in_locale content_locale
       %td= l(news.date)
       %td
         .news-items-state-bar
-          %i.published{ class: news.published_translations[content_locale.to_s] ? 'active' : 'inactive' }
+          %i.published{ class: news.published_in_locale(content_locale) ? 'active' : 'inactive' }
       %td= link_to  t('.destroy'), cms_news_item_path(news), method: :delete, confirm: t('.confirm_delete', title: news.title)
       %td= link_to t('.edit'), edit_cms_news_item_path(news, content_locale: content_locale)

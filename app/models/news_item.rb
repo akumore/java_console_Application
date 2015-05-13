@@ -30,4 +30,10 @@ class NewsItem
   def documents=(*args)
     send :"documents_#{I18n.locale}=", *args
   end
+
+  %w(title published).each do |attrib|
+    define_method "#{attrib}_in_locale" do |locale|
+      I18n.with_locale(locale) { send attrib.to_sym }
+    end
+  end
 end
