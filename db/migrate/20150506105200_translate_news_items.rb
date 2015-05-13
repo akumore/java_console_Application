@@ -9,9 +9,9 @@ class TranslateNewsItems < Mongoid::Migration
         @published_root_translation = item.published_translations
       end
 
-      item.title_translations     = Hash[@locales.collect { |locale| [locale, @title_root_translation] }]
-      item.content_translations   = Hash[@locales.collect { |locale| [locale, @content_root_translation] }]
-      item.published_translations = Hash[@locales.collect { |locale| [locale, @published_root_translation] }]
+      item.title_translations     = Hash[@locales.zip(@title_root_translation * @locales.count)]
+      item.content_translations   = Hash[@locales.zip(@content_root_translation * @locales.count)]
+      item.published_translations = Hash[@locales.zip(@published_root_translation * @locales.count)]
       item.save!
     end
   end
