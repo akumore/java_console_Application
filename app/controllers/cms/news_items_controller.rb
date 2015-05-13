@@ -25,9 +25,9 @@ module Cms
     end
 
     def create
-      I18n.with_locale(content_locale) do
+      success = I18n.with_locale(content_locale) do
         @news_item = NewsItem.new params[:news_item]
-        success = @news_item.save
+        @news_item.save
       end
 
       if success
