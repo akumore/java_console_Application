@@ -1,7 +1,5 @@
 class TranslateNewsItems < Mongoid::Migration
   def self.up
-    NewsItem.collection.update({}, { '$rename' => { "documents" => "documents_de"} }, :multi => true)
-
     NewsItem.all.each do |item|
       I18n.with_locale item.locale do
         item.title_translations     = { I18n.locale.to_s => item.title_translations }
