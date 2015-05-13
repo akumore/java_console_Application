@@ -25,8 +25,12 @@ module Cms
     end
 
     def create
-      @news_item = NewsItem.new params[:news_item]
-      if @news_item.save
+      I18n.with_locale(content_locale) do
+        @news_item = NewsItem.new params[:news_item]
+        success = @news_item.save
+      end
+
+      if success
         flash[:success] = t("cms.news_items.create.success")
         redirect_to cms_news_items_path(content_locale: content_locale)
       else
