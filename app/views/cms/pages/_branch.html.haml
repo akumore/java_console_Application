@@ -1,0 +1,19 @@
+- unless pages.blank?
+  %ol.dd-list
+    - pages.each do |page|
+      %li.dd-item.dd3-item{ id: "page_#{page.id}" }
+        .dd3-content
+          = link_to page.title.presence, edit_cms_page_path(page)
+          = "(#{page.name})"
+
+          .btn-group
+            - if page.children.empty?
+              = link_to cms_page_path(page), method: :delete, confirm: t('cms.pages.index.confirm_delete', title: page.title), class: 'btn btn-small btn-danger' do
+                %i.icon-trash.icon-white= t('cms.pages.index.destroy')
+
+            = link_to new_cms_page_path(parent_id: page.id), class: 'btn btn-small' do
+              %i.icon-plus-sign
+              = t('cms.pages.index.add_sub_page')
+
+        - unless page.children.empty?
+          = render partial: 'branch', locals: { pages:  page.children }

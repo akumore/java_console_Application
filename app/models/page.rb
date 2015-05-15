@@ -1,9 +1,11 @@
 class Page
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Ancestry
 
   embeds_many :bricks, class_name: 'Brick::Base'
   accepts_nested_attributes_for :bricks
+  has_ancestry
 
   field :title, type: String
   field :name, type: String

@@ -3,16 +3,16 @@ class Cms::PagesController < Cms::SecuredController
   authorize_resource
 
   rescue_from CanCan::AccessDenied do |err|
-    redirect_to cms_dashboards_path, :alert => err.message
+    redirect_to cms_dashboards_path, alert: err.message
   end
 
   def index
-    @pages = Page.all.where(:locale => content_locale).order([:updated, :asc])
+    @pages = Page.roots.all.where(locale: content_locale).order([:updated, :asc])
     respond_with @pages
   end
 
   def new
-    @page = Page.new(:locale => content_locale)
+    @page = Page.new(locale: content_locale, parent_id: params[:parent_id])
     respond_with @page
   end
 

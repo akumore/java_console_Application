@@ -6,6 +6,7 @@ de:
         new: 'Neue Seite erstellen'
         edit: 'Editieren'
         destroy: 'Löschen'
+        add_sub_page: 'Neue Unterseite'
       form:
         edit: 'Editieren'
         destroy: 'Löschen'
