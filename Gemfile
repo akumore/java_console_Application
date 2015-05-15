@@ -44,6 +44,7 @@ gem 'rack-handlers'
 gem 'dotenv-rails'
 gem 'rb-readline'
 gem 'jquery-datatables-rails'
+gem 'mongoid-ancestry', '~> 0.2.3'
 
 # Gems used only for assets and not required
 # in production environments by default.
