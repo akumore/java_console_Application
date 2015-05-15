@@ -75,13 +75,15 @@ describe "Cms News Items Administration" do
     end
 
     it "creates news item within the chosen language" do
-      visit new_cms_news_item_path
+      visit new_cms_news_item_path(content_locale: :it)
 
       fill_in 'news_item_title', with: 'it: Invasion vom Mars'
       fill_in 'news_item_content', with: 'it: Das ist ja kaum zu glauben!'
 
       expect { click_button 'News erstellen' }.to change(NewsItem, :count).by(1)
-      NewsItem.where(title: 'it: Invasion vom Mars').first.locale.should == 'it'
+      I18n.with_locale :it do
+        NewsItem.where(title: 'it: Invasion vom Mars').first.locale.should == 'it'
+      end
     end
 
     it 'adds images to the news item' do
