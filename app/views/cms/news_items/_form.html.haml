@@ -3,6 +3,7 @@
 
   %fieldset
     = hidden_field_tag(:content_locale, content_locale)
+    = f.hidden_field(:locale, value: content_locale)
     .control-group.mandatory
       = f.label :title
       .controls
