@@ -7,6 +7,7 @@ class Page
   accepts_nested_attributes_for :bricks
   has_ancestry
 
+  field :position, type: Integer
   field :title, type: String
   field :name, type: String
   field :locale, type: String
@@ -16,6 +17,8 @@ class Page
   validates :title, :name, presence: true
   validates :locale, presence: true, inclusion: I18n.available_locales.map(&:to_s)
   validates_uniqueness_of :name,  scope: :locale
+
+  scope :ordered_by_position, order_by(position: :asc)
 
   def subnavigation
     bricks.where(_type: 'Brick::Title').skip(1)

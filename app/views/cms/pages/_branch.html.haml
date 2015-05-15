@@ -1,7 +1,8 @@
 - unless pages.blank?
   %ol.dd-list
     - pages.each do |page|
-      %li.dd-item.dd3-item{ id: "page_#{page.id}" }
+      %li.dd-item.dd3-item{ id: "page_#{page.id}", 'data-id' => page.id }
+        .dd-handle.dd3-handle
         .dd3-content
           = link_to page.title.presence, edit_cms_page_path(page)
           = "(#{page.name})"

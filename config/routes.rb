@@ -9,9 +9,11 @@ AlfredMueller::Application.routes.draw do
   namespace :cms do
     resource :dashboards
     resources :news_items, :except => :show
+
     resources :gallery_photos, :except => :show do
       post :sort, :on => :collection
     end
+
     resources :reference_projects, :except => :show do
       post :sort, :on => :collection
     end
@@ -45,6 +47,8 @@ AlfredMueller::Application.routes.draw do
       Brick::Base::TYPES.each do |type|
         resources "#{type}_bricks", :controller => :bricks, :type => type, :except => :index
       end
+
+      post :sort, on: :collection
     end
 
     resources :employees

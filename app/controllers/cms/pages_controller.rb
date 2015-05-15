@@ -1,3 +1,5 @@
+require 'page_tree'
+
 class Cms::PagesController < Cms::SecuredController
   respond_to :html
   authorize_resource
@@ -7,7 +9,7 @@ class Cms::PagesController < Cms::SecuredController
   end
 
   def index
-    @pages = Page.roots.all.where(locale: content_locale).order([:updated, :asc])
+    @pages = Page.roots.ordered_by_position.where(locale: content_locale).order([:updated, :asc])
     respond_with @pages
   end
 
@@ -43,5 +45,9 @@ class Cms::PagesController < Cms::SecuredController
     page = Page.find(params[:id])
     page.destroy
     redirect_to cms_pages_path
+  end
+
+  def sort
+    PageTree.update(params[:page_tree])
   end
 end
