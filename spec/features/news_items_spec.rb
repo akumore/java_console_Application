@@ -17,8 +17,8 @@ describe "News", js: true do
       expect(page.find(".button-navigation li").text).to eq(Date.today.year.to_s)
     end
 
-    it 'has an accordion with 20 news items' do
-      expect(page).to have_css('.accordion-item', count: 20)
+    it 'has an accordion with 23 news items' do
+      expect(page).to have_css('.accordion-item', count: 23)
     end
 
     it 'should not have laod more link' do
