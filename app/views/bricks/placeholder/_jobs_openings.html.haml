@@ -2,8 +2,9 @@
   .accordion.accordion--square
     - Job.published.where(:locale => I18n.locale).each do |job|
       .accordion__item.accordion-ga-tracking-link{ :id => "job_#{job.id}", data: { 'ga-category' => "Mitarbeiter", 'ga-action' => "Ansicht Jobs", 'ga-label' => job.title } }
-        .accordion__title= job.title
-        .accordion__content
+        .accordion__title
+          %h3= job.title
+        .accordion__content.content
           = job.text.html_safe
           %ul.icon-list
             - if job.job_profile_file.present?

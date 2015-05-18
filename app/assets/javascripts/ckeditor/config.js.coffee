@@ -9,7 +9,7 @@ CKEDITOR.editorConfig = (config) ->
     ['Source']
   ]
 
-  config.format_tags = 'p;h3'
+  config.format_tags = 'p;h3;h4;h5;h6'
 
 # FULL OPTIONS:
 #[

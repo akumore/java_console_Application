@@ -55,19 +55,19 @@
       - if figure_content.present?
         .accordion__item
           .accordion__title= t('figures.title')
-          .accordion__content= figure_content
+          .accordion__content.content= figure_content
 
       - pricing_content = render 'pricing', :real_estate => @real_estate, :pricing => @real_estate.pricing
       - if pricing_content.present?
         .accordion__item
           .accordion__title= t('pricings.title')
-          .accordion__content= pricing_content
+          .accordion__content.content= pricing_content
 
       - information_content = render 'information', :real_estate => @real_estate, :information => @real_estate.information
       - if information_content.present?
         .accordion__item
           .accordion__title= t('information.title')
-          .accordion__content
+          .accordion__content.content
             = information_content
 
       - if @real_estate.contact.present?

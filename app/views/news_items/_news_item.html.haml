@@ -2,7 +2,7 @@
   %header.accordion__title
     %time.date{ datetime: news_item.date }= l(news_item.date)
     %h1.news__item__title= news_item.title
-  .accordion__content
+  .accordion__content.content
     - if news_item.images.any?
       .flex-container
         .flexslider

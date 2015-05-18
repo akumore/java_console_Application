@@ -13,13 +13,15 @@
         .balken
         .balken
       %header#header.clearfix{ role: 'banner'}
-        = link_to 'Alfred-Müller.ch', root_path, class: 'main-logo'
+        = link_to root_path, class: 'main-logo' do
+          %h1 Alfred-Müller.ch
         .navigations#navigation
           = link_to 'Navigation', '#navigation', class: 'navigation-link-open'
           = link_to 'Navigation', '#close-navigation', class: 'navigation-link-close'
           = render_navigation context: :meta
           .clear
           %nav.main-navigation-wrapper{ role: 'navigation' }
+            %h1.hidden= t('navigation.title')
             = render_navigation context: :main, renderer: MainNavigationRenderer, expand_all: true
 
       %main#main{ role: 'content', class: "#{controller_name} #{action_name}" }
