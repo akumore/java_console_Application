@@ -21,7 +21,7 @@ class Page
   scope :ordered_by_position, order_by(position: :asc)
 
   def subnavigation
-    bricks.where(_type: 'Brick::Title').skip(1)
+    page.children
   end
 
   class << self

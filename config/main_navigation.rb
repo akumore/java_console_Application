@@ -33,30 +33,30 @@ SimpleNavigation::Configuration.run do |navigation|
   # Define the primary navigation
   navigation.items do |primary|
 
-    primary.item :real_estate, t('navigation.main.real_estate'), real_estates_path, :highlights_on => proc { controller.request.path.include?('real_estate') } do |offer|
-      offer.item  t("real_estates.search_filter.for_rent"), t("real_estates.search_filter.for_rent"),  real_estates_path(:offer => Offer::RENT, :utilization => Utilization::WORKING)
-      offer.item  t("real_estates.search_filter.for_sale"), t("real_estates.search_filter.for_sale"), real_estates_path(:offer => Offer::SALE, :utilization => Utilization::LIVING)
+    primary.item :real_estate, t('navigation.main.real_estate'), real_estates_path, highlights_on: proc { controller.request.path.include?('real_estate') } do |offer|
+      offer.item  t("real_estates.search_filter.for_rent"), t("real_estates.search_filter.for_rent"),  real_estates_path(offer: Offer::RENT, utilization: Utilization::WORKING)
+      offer.item  t("real_estates.search_filter.for_sale"), t("real_estates.search_filter.for_sale"), real_estates_path(offer: Offer::SALE, utilization: Utilization::LIVING)
     end
 
-    primary.item :jobs, t('navigation.main.jobs'), t('jobs_url'), :highlights_on => proc { controller.request.path == I18n.t('jobs_url') } do |jobs|
-      jobs_subnavigation do |title|
-        jobs.item "title-#{title.id}", title.title, "#{t('jobs_url')}##{title.title.parameterize}"
+    primary.item :jobs, t('navigation.main.jobs'), t('jobs_url'), highlights_on: proc { controller.request.path == I18n.t('jobs_url') } do |jobs|
+      jobs_subnavigation.each do |page|
+        jobs.item page.id, page.title, "/#{I18n.locale}/#{page.name}"
       end
 
       jobs.dom_class = 'clearfix'
     end
 
-    primary.item :company, t('navigation.main.company'), t('company_url'), :highlights_on => proc { controller.request.path == I18n.t('company_url') } do |company|
-      company_subnavigation do |title|
-        company.item "title-#{title.id}", title.title, "#{t('company_url')}##{title.title.parameterize}"
+    primary.item :company, t('navigation.main.company'), t('company_url'), highlights_on: proc { controller.request.path == I18n.t('company_url') } do |company|
+      company_subnavigation.each do |page|
+        company.item page.id, page.title, "/#{I18n.locale}/#{page.name}"
       end
 
       company.dom_class = 'clearfix'
     end
 
-    primary.item :news, t('navigation.main.news'), news_items_path, :highlights_on => proc { controller.request.path == news_items_path }
+    primary.item :news, t('navigation.main.news'), news_items_path, highlights_on: proc { controller.request.path == news_items_path }
 
-    primary.item :reference_projects, t('navigation.main.reference_projects'), reference_projects_path, :highlights_on => proc { controller.request.path == reference_projects_path }
+    primary.item :reference_projects, t('navigation.main.reference_projects'), reference_projects_path, highlights_on: proc { controller.request.path == reference_projects_path }
 
     # you can also specify a css id or class to attach to this particular level
     # works for all levels of the menu
@@ -66,5 +66,4 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.auto_highlight = false
 
   end
-
 end
