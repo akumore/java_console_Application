@@ -68,6 +68,14 @@ describe "Main Navigation" do
       end
     end
 
+    it "shows no sub nav container if no sub pages are present" do
+      Page.create(title: 'Jobs', name: 'jobs', locale: I18n.locale)
+      visit I18n.t('jobs_url')
+
+      # scope within second sub-navigation
+      expect(page).to have_css('.sub-navigation', count: 1)
+    end
+
     it "links to the content page 'company'" do
       visit root_path(locale: lang)
       within '.main-navigation' do
