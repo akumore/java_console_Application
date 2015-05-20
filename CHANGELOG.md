@@ -5,9 +5,11 @@
   * #1164: Als Besucher möchte ich die Referenzslider auf Mobile überarbeitet sehen
   * #1165: Als Besucher möchte ich nach Klick auf “Grundriss anzeigen“ zum Grundriss gelangen
   * #1166: Als Editor möchte ich neben dem Suchfeld in der Immobverwaltung einen Clear Butten haben
+  * #1241: Google Site Verification einfügen
 
 * Other changes
   * Update newrelic integration to work again
+  * Try to fix failing travis because of the js error
 
 ### v3.0.8 - 2015-04-20
 * Fix exporter:
