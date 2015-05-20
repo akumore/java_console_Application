@@ -21,7 +21,7 @@ class Page
   scope :ordered_by_position, order_by(position: :asc)
 
   def subnavigation
-    page.children
+    children
   end
 
   class << self

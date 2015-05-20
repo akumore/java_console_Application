@@ -39,7 +39,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     primary.item :jobs, t('navigation.main.jobs'), t('jobs_url'), highlights_on: proc { controller.request.path == I18n.t('jobs_url') } do |jobs|
-      jobs_subnavigation.each do |page|
+      jobs_subnavigation do |page|
         jobs.item page.id, page.title, "/#{I18n.locale}/#{page.name}", highlights_on: proc { controller.request.path == "/#{I18n.locale}/#{page.name}" }
       end
 
@@ -47,7 +47,7 @@ SimpleNavigation::Configuration.run do |navigation|
     end
 
     primary.item :company, t('navigation.main.company'), t('company_url'), highlights_on: proc { controller.request.path == I18n.t('company_url') } do |company|
-      company_subnavigation.each do |page|
+      company_subnavigation do |page|
         company.item page.id, page.title, "/#{I18n.locale}/#{page.name}", highlights_on: proc { controller.request.path == "/#{I18n.locale}/#{page.name}" }
       end
 
