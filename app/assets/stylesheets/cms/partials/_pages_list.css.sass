@@ -13,6 +13,7 @@
   margin: 0
   padding: 0
   list-style: none
+
   .dd-list
     padding-left: 30px
 
@@ -20,7 +21,6 @@
   display: none
 
 .dd-item, .dd-empty, .dd-placeholder
-  +clearfix
   display: block
   position: relative
   margin: 0
@@ -46,9 +46,28 @@
   border-radius: 3px
   box-sizing: border-box
   -moz-box-sizing: border-box
+
   &:hover
     color: #2ea8e5
     background: #fff
+
+.dd-item > button
+  display: block
+  position: relative
+  cursor: pointer
+  float: left
+  width: 25px
+  height: 30px
+  margin: 5px 0
+  padding: 0
+  white-space: nowrap
+  overflow: hidden
+  border: 0
+  background: transparent
+  font-size: 12px
+  line-height: 1
+  text-align: center
+  font-weight: bold
 
 .dd-placeholder
   margin: 5px 0
@@ -80,16 +99,19 @@
   position: absolute
   pointer-events: none
   z-index: 9999
+
   > .dd-item .dd-handle
     margin-top: 0
+
   .dd-handle
     -webkit-box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.1)
     box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, 0.1)
 
 .dd3-content
   display: block
+  height: 40px
   margin: 5px 0
-  padding: 0px 10px 0px 30px
+  padding: 0px 10px 0px 38px
   color: #333
   text-decoration: none
   font-weight: bold
@@ -103,13 +125,15 @@
   border-radius: 3px
   box-sizing: border-box
   -moz-box-sizing: border-box
+
   &:hover
     background: #fff
-  &.unpublished
-    background: #e9e9e9
 
 .dd-dragel > .dd3-item > .dd3-content
   margin: 0
+
+.dd3-item > button
+  margin-left: 30px
 
 .dd3-handle
   position: absolute
@@ -128,6 +152,7 @@
   background: linear-gradient(top, #ddd 0%, #bbb 100%)
   border-top-right-radius: 0
   border-bottom-right-radius: 0
+
   &:before
     content: '≡'
     display: block
@@ -140,6 +165,7 @@
     color: #fff
     font-size: 20px
     font-weight: normal
+
   &:hover
     background: #ddd
 
@@ -150,4 +176,3 @@
 .btn i
   &.icon-trash
     +hide-text
-
