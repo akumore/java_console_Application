@@ -6,7 +6,7 @@ class NewsItem
   accepts_nested_attributes_for :images, allow_destroy: true, reject_if: :all_blank
   embeds_many :images, class_name: "NewsItemImage", cascade_callbacks: true
 
-  [:de, :en, :fr, :it].each do |locale|
+  I18n.available_locales.each do |locale|
     accepts_nested_attributes_for :"documents_#{locale}", allow_destroy: true, reject_if: :all_blank
     embeds_many :"documents_#{locale}", class_name: "NewsItemDocument", cascade_callbacks: true
   end
