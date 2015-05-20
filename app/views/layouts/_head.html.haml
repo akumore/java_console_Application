@@ -1,26 +1,26 @@
-%meta{ :charset => "utf-8" }
-%meta{ "http-equiv" => "X-UA-Compatible", :content => "IE=edge,chrome=1" }
+%meta{ charset: 'utf-8' }
+%meta{ 'http-equiv' => 'X-UA-Compatible', content: 'IE=edge,chrome=1' }
 
 - if content_for?(:meta)
   = yield :meta
 
-%link{ :rel => 'apple-touch-icon', :href => '/apple-touch-icon.png' }
-%link{ :rel => 'apple-touch-icon', :href => '/apple-touch-icon-72x72.png', :sizes => '72x72' }
-%link{ :rel => 'apple-touch-icon', :href => '/apple-touch-icon-114x114.png', :sizes => '114x114' }
+%link{ rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }
+%link{ rel: 'apple-touch-icon', href: '/apple-touch-icon-72x72.png', sizes: '72x72' }
+%link{ rel: 'apple-touch-icon', href: '/apple-touch-icon-114x114.png', sizes: '114x114' }
 
 -# RSS feed link
-= auto_discovery_link_tag(:rss, news_items_path(:format => 'xml'))
+= auto_discovery_link_tag(:rss, news_items_path(format: 'xml'))
 
 -# Mobile viewport optimized: j.mp/bplateviewport
-%meta{ :name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" }
+%meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0' }
 
 -# load typekit fonts first
 = javascript_include_tag 'http://use.typekit.com/ind7bpo.js'
-%script{ :type => 'text/javascript' } try{Typekit.load();}catch(e){}
+%script{ type: 'text/javascript' } try{Typekit.load();}catch(e){}
 
 -# Pass in a stylesheet_partial to render inside your head
 - if local_assigns[:stylesheet_partial]
-  = render :partial => local_assigns[:stylesheet_partial]
+  = render partial: local_assigns[:stylesheet_partial]
 
 -#
   All JavaScript at the bottom, except for Modernizr / Respond.
