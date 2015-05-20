@@ -7,8 +7,7 @@ describe "News", js: true do
 
   describe 'list view' do
     before :each do
-      20.times { Fabricate(:news_item) }
-      3.times { Fabricate(:news_item, locale: :fr) }
+      I18n.with_locale(:de) { 20.times { Fabricate(:news_item) } }
       visit news_items_path
     end
 
@@ -27,6 +26,21 @@ describe "News", js: true do
 
     it 'shows auto discovery rss link' do
       expect(page).to have_xpath("//link[contains(@href, 'news_items.xml')]")
+    end
+
+    describe 'in French' do
+      before :each do
+        @news_item = NewsItem.first
+        I18n.with_locale(:fr) do
+          3.times { Fabricate(:news_item, locale: :fr) }
+          @news_item.update_attributes(title: "Bonjour monsieur", content: "Frère Jacques", published: true)
+        end
+        visit news_items_path(locale: :fr)
+      end
+
+      it 'has an accordion with 4 French news items' do
+        expect(page).to have_css('.accordion-item', count: 4)
+      end
     end
   end
 
@@ -47,7 +61,7 @@ describe "News", js: true do
     # https://github.com/thoughtbot/capybara-webkit/issues/52
     #
     let :news_item do
-      Fabricate(:news_item)
+      I18n.with_locale(:de) { Fabricate(:news_item) }
     end
 
     context 'linking to a specific news item' do
@@ -78,9 +92,11 @@ describe "News", js: true do
 
     context 'with documents' do
       it 'displays a list of the attached documents' do
-        news_item.documents << Fabricate.build(:news_item_document)
-        news_item.documents << Fabricate.build(:news_item_document)
-        news_item.documents << Fabricate.build(:news_item_document)
+        I18n.with_locale(:de) do
+          news_item.documents << Fabricate.build(:news_item_document)
+          news_item.documents << Fabricate.build(:news_item_document)
+          news_item.documents << Fabricate.build(:news_item_document)
+        end
 
         visit news_items_path(anchor: "news_item_#{news_item.id}")
 
