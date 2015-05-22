@@ -13,6 +13,7 @@
 #= require dataTables/bootstrap/2/jquery.dataTables.bootstrap
 #= require underscore
 #= require backbone
+#= require ckeditor/fix
 #= require ckeditor/init
 #= require ./backbone_setup
 #= require ./datatable
@@ -63,7 +64,7 @@ $(document).ready ->
   if $('#real_estate_utilization').length
     new AlfredMueller.Cms.Views.RealEstateUtilizationSelect $('#real_estate_utilization')
 
-  # initialize real estate language listener 
+  # initialize real estate language listener
   if $('#real_estate_office_id').length
     new AlfredMueller.Cms.Views.RealEstateOfficeSelect $('#real_estate_office_id')
 

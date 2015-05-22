@@ -13,8 +13,16 @@ require 'capybara/poltergeist'
 Capybara.register_driver :poltergeist do |app|
   options = {
     phantomjs: Phantomjs.path,
-    timeout: 90
+    js_errors: false,
+    timeout: 180,
+    phantomjs_logger: StringIO.new,
+    logger: nil,
+    phantomjs_options: [
+      '--load-images=no',
+      '--ignore-ssl-errors=yes'
+    ]
   }
+
   Capybara::Poltergeist::Driver.new(app, options)
 end
 Capybara.javascript_driver = :poltergeist
@@ -41,9 +49,9 @@ RSpec.configure do |config|
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
-  config.include Devise::TestHelpers, :type => :controller
-  config.include ControllerHelpers, :type => :controller
-  config.extend ControllerMacros, :type => :controller
+  config.include Devise::TestHelpers, type: :controller
+  config.include ControllerHelpers, type: :controller
+  config.extend ControllerMacros, type: :controller
   config.extend DefaultUrlOptionsHelper
   config.extend RequestMacros
   config.include ActionView::Helpers::NumberHelper
@@ -71,12 +79,12 @@ end
 # prepare monkey patch to set default locale for ALL spec but not within the Cms
 class ActionView::TestCase::TestController
   def default_url_options_with_locale(options={})
-    default_url_options_without_locale.merge(:locale => I18n.default_locale)
+    default_url_options_without_locale.merge(locale: I18n.default_locale)
   end
 end
 
 class ActionDispatch::Routing::RouteSet
   def default_url_options_with_locale(options={})
-    default_url_options_without_locale.merge(:locale => I18n.default_locale)
+    default_url_options_without_locale.merge(locale: I18n.default_locale)
   end
 end
