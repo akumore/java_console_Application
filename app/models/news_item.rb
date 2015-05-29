@@ -19,7 +19,7 @@ class NewsItem
   field :content, type: String, localize: true
   field :date, type: Date
   field :locale, type: String, default: 'de'
-  field :published, type: Boolean, default: true, localize: true
+  field :published, type: Boolean, default: false, localize: true
 
   validates :title, :content, :date, presence: true
 
