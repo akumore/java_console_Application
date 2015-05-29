@@ -1,4 +1,8 @@
 # CHANGELOG
+### v3.0.9 - 2015-05-29
+* New implemented User Stories:
+  * 1272: Neues Mitarbeiter-Foto aufschalten
+
 ### v3.0.8 - 2015-04-20
 * Fix exporter:
   * export real eastates correctly translated
