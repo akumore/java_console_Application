@@ -42,7 +42,8 @@
       .control-group
         = f.label :published
         .controls
-          = f.check_box :published
+          - I18n.with_locale(content_locale) do
+            = f.check_box :published
 
     .form-actions
       = f.submit nil, class: 'btn btn-primary'
