@@ -1,7 +1,7 @@
 class NewsItemsController < ApplicationController
 
   def index
-    @news_items = NewsItem.where(locale: I18n.locale).order([:date, :desc]).published
+    @news_items = NewsItem.all.order([:date, :desc]).published
 
     respond_to do |format|
       format.html do

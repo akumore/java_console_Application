@@ -5,9 +5,18 @@
   * #1164: Als Besucher möchte ich die Referenzslider auf Mobile überarbeitet sehen
   * #1165: Als Besucher möchte ich nach Klick auf “Grundriss anzeigen“ zum Grundriss gelangen
   * #1166: Als Editor möchte ich neben dem Suchfeld in der Immobverwaltung einen Clear Butten haben
+  * #1167: Als Editor möchte ich, dass News automatisch in den anderen Sprachen erscheinen
+  * #1241: Google Site Verification einfügen
 
 * Other changes
   * Update newrelic integration to work again
+  * Try to fix failing travis because of the js error
+    * CKEditor error does currently not appear
+    * Still errors because of postergeist timeout
+
+### v3.0.9 - 2015-05-29
+* New implemented User Stories:
+  * 1272: Neues Mitarbeiter-Foto aufschalten
 
 ### v3.0.8 - 2015-04-20
 * Fix exporter:

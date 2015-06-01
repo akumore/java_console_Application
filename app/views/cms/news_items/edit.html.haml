@@ -1,4 +1,9 @@
 - content_for :title do
   News bearbeiten
 
+%ul.nav-tabs.nav.language-tabs
+  - I18n.available_locales.each do |locale|
+    %li{ class: (content_locale.to_s == locale.to_s ? 'active' : nil) }
+      = link_to t("languages.#{locale}"), edit_cms_news_item_path(@news_item, content_locale: locale)
+
 = render 'form'

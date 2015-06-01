@@ -7,7 +7,7 @@ describe "Cms News Items Administration" do
   describe '#index' do
     before do
       3.times { Fabricate(:news_item) }
-      3.times { Fabricate(:news_item, :locale => :fr) }
+      3.times { Fabricate(:news_item, locale: :fr) }
       @news_item = NewsItem.first
       visit cms_news_items_path
     end
@@ -24,13 +24,13 @@ describe "Cms News Items Administration" do
       end
 
       it 'selects the tab according to the content langauge' do
-        visit cms_news_items_path(:content_language => :fr)
+        visit cms_news_items_path(content_locale: :fr)
         page.should have_css('li.active:contains(FR)')
       end
     end
 
     it "shows the list of news items for the current content locale" do
-      page.should have_selector('table tr', :count => NewsItem.where(:locale => :de).count + 1)
+      page.should have_selector('table tr', count: NewsItem.all.count + 1)
     end
 
     it "takes me to the edit page of a news_item" do
@@ -50,8 +50,8 @@ describe "Cms News Items Administration" do
     it "creates a news item" do
       visit new_cms_news_item_path
 
-      fill_in 'news_item_title', :with => 'Invasion vom Mars'
-      fill_in 'news_item_content', :with => 'Das ist ja kaum zu glauben!'
+      fill_in 'news_item_title', with: 'Invasion vom Mars'
+      fill_in 'news_item_content', with: 'Das ist ja kaum zu glauben!'
 
       expect { click_button 'News erstellen' }.to change(NewsItem, :count).by(1)
       page.should have_content I18n.t("cms.news_items.create.success")
@@ -75,38 +75,40 @@ describe "Cms News Items Administration" do
     end
 
     it "creates news item within the chosen language" do
-      visit new_cms_news_item_path :content_locale => 'it'
+      visit new_cms_news_item_path(content_locale: :it)
 
-      fill_in 'news_item_title', :with => 'it: Invasion vom Mars'
-      fill_in 'news_item_content', :with => 'it: Das ist ja kaum zu glauben!'
+      fill_in 'news_item_title', with: 'it: Invasion vom Mars'
+      fill_in 'news_item_content', with: 'it: Das ist ja kaum zu glauben!'
 
       expect { click_button 'News erstellen' }.to change(NewsItem, :count).by(1)
-      NewsItem.where(:title => 'it: Invasion vom Mars').first.locale.should == 'it'
+      I18n.with_locale :it do
+        NewsItem.where(title: 'it: Invasion vom Mars').first.locale.should == 'it'
+      end
     end
 
     it 'adds images to the news item' do
       visit new_cms_news_item_path
 
-      fill_in 'news_item_title', :with => 'Hello'
-      fill_in 'news_item_content', :with => 'Hello World'
+      fill_in 'news_item_title', with: 'Hello'
+      fill_in 'news_item_content', with: 'Hello World'
       attach_file 'news_item_images_attributes_0_file', "#{Rails.root}/spec/support/test_files/image.jpg"
 
       click_button 'News erstellen'
-      NewsItem.where(:title => 'Hello').first.images.count.should == 1
+      NewsItem.where(title: 'Hello').first.images.count.should == 1
     end
 
     it 'has un unchekded chekbox for publishing' do
       visit new_cms_news_item_path
       check_box = find('#news_item_published')
-      check_box.should be_checked
+      expect(check_box).not_to be_checked
     end
 
 
     it "doesn't add image because uploaded no image" do
       visit new_cms_news_item_path
 
-      fill_in 'news_item_title', :with => 'Hello'
-      fill_in 'news_item_content', :with => 'Hello World'
+      fill_in 'news_item_title', with: 'Hello'
+      fill_in 'news_item_content', with: 'Hello World'
       attach_file 'news_item_images_attributes_0_file', "#{Rails.root}/spec/support/test_files/document.pdf"
 
       expect {
@@ -119,20 +121,20 @@ describe "Cms News Items Administration" do
     it 'adds documents to the news item' do
       visit new_cms_news_item_path
 
-      fill_in 'news_item_title', :with => 'Hello'
-      fill_in 'news_item_content', :with => 'Hello World'
-      attach_file 'news_item_documents_attributes_0_file', "#{Rails.root}/spec/support/test_files/document.pdf"
+      fill_in 'news_item_title', with: 'Hello'
+      fill_in 'news_item_content', with: 'Hello World'
+      attach_file "news_item_documents_#{I18n.locale}_attributes_0_file", "#{Rails.root}/spec/support/test_files/document.pdf"
 
       click_button 'News erstellen'
-      NewsItem.where(:title => 'Hello').first.documents.count.should == 1
+      NewsItem.where(title: 'Hello').first.documents.count.should == 1
     end
 
     it "doesn't add document because uploaded non of the supported types" do
       visit new_cms_news_item_path
 
-      fill_in 'news_item_title', :with => 'Hello'
-      fill_in 'news_item_content', :with => 'Hello World'
-      attach_file 'news_item_documents_attributes_0_file', "#{Rails.root}/spec/support/test_files/image.jpg"
+      fill_in 'news_item_title', with: 'Hello'
+      fill_in 'news_item_content', with: 'Hello World'
+      attach_file "news_item_documents_#{I18n.locale}_attributes_0_file", "#{Rails.root}/spec/support/test_files/image.jpg"
 
       expect {
         click_button 'News erstellen'
@@ -149,10 +151,32 @@ describe "Cms News Items Administration" do
       @content_for_update = Fabricate.attributes_for :news_item
     end
 
+    describe 'language tabs' do
+      before do
+        visit edit_cms_news_item_path(@news_item)
+      end
+
+      it 'shows a tab for every content language' do
+        I18n.available_locales.each do |locale|
+          page.should have_link(I18n.t("languages.#{locale}"))
+        end
+      end
+
+      it 'has the DE tab activated by default' do
+        page.should have_css('li.active:contains(DE)')
+      end
+
+      it 'selects the tab according to the content langauge' do
+        visit cms_news_items_path(content_locale: :fr)
+        page.should have_css('li.active:contains(FR)')
+      end
+    end
+
+
     [:title, :content].each do |attr|
       it "updates the news item #{attr}" do
         visit edit_cms_news_item_path(@news_item)
-        fill_in "news_item_#{attr}", :with => @content_for_update[attr]
+        fill_in "news_item_#{attr}", with: @content_for_update[attr]
 
         click_button 'News speichern'
         NewsItem.find(@news_item.id).send(attr).should == @content_for_update[attr]
@@ -161,7 +185,7 @@ describe "Cms News Items Administration" do
 
       it "doesn't update because of validation error caused by #{attr}" do
         visit edit_cms_news_item_path(@news_item)
-        fill_in "news_item_#{attr}", :with => ""
+        fill_in "news_item_#{attr}", with: ""
 
         click_button 'News speichern'
         page.should have_content "#{NewsItem.human_attribute_name(attr)} muss ausgefüllt werden"
@@ -200,7 +224,7 @@ describe "Cms News Items Administration" do
     it 'adds documents to the news item' do
       visit edit_cms_news_item_path(@news_item)
       within ".documents-table" do
-        attach_file 'news_item_documents_attributes_0_file', "#{Rails.root}/spec/support/test_files/document.pdf"
+        attach_file "news_item_documents_#{I18n.locale}_attributes_0_file", "#{Rails.root}/spec/support/test_files/document.pdf"
       end
       click_button 'News speichern'
 
@@ -215,7 +239,7 @@ describe "Cms News Items Administration" do
 
       page.should have_css "#document-#{doc.id}"
 
-      check "news_item_documents_attributes_0__destroy"
+      check "news_item_documents_#{I18n.locale}_attributes_0__destroy"
       click_button 'News speichern'
 
       page.should_not have_css "#document-#{doc.id}"

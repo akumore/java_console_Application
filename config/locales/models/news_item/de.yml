@@ -10,4 +10,8 @@ de:
         date: Angezeigtes Datum
         images: Bild
         documents: Dokument
+        documents_de: Dokument
+        documents_fr: Dokument
+        documents_it: Dokument
+        documents_en: Dokument
         published: Publiziert

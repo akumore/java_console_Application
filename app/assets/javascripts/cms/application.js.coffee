@@ -14,6 +14,7 @@
 #= require jquery.nestable
 #= require underscore
 #= require backbone
+#= require ckeditor/fix
 #= require ckeditor/init
 #= require ./backbone_setup
 #= require ./datatable

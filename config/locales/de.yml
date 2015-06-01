@@ -79,3 +79,8 @@ de:
   contact_url: '/de/contact'
   'true': 'Ja'
   'false': 'Nein'
+
+  mongoid:
+    errors:
+      messages:
+        blank_on_locale: "muss ausgefüllt werden"
