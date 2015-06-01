@@ -100,7 +100,7 @@ describe "Cms News Items Administration" do
     it 'has un unchekded chekbox for publishing' do
       visit new_cms_news_item_path
       check_box = find('#news_item_published')
-      check_box.should be_checked
+      expect(check_box).not_to be_checked
     end
 
 
