@@ -39,7 +39,7 @@ describe "News", js: true do
       end
 
       it 'has an accordion with 4 French news items' do
-        expect(page).to have_css('.accordion-item', count: 4)
+        expect(page).to have_css('.accordion__item', count: 4)
       end
     end
   end

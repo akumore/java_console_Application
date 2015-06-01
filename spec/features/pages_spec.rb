@@ -22,13 +22,13 @@ describe "Pages" do
 
     it 'has an accordion with jobs in german' do
       visit I18n.t('jobs_url', locale: 'de')
-      expect(page).to have_css '.jobs .accordion-item', count: 1
+      expect(page).to have_css '.jobs .accordion__item', count: 1
       expect(page).to have_css "#job_#{@german_published_job.id}"
     end
 
     it 'has an accordion with jobs in french' do
       visit I18n.t('jobs_url', locale: 'fr')
-      expect(page).to have_css '.jobs .accordion-item', count: 1
+      expect(page).to have_css '.jobs .accordion__item', count: 1
       expect(page).to have_css "#job_#{@french_published_job.id}"
     end
 
