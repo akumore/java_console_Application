@@ -334,7 +334,7 @@ describe "Cms::RealEstates" do
       before do
         visit edit_cms_real_estate_path(@fabricated_real_estate)
       end
-      
+
       describe '#update with valid microsite reference numbers' do
         before :each do
           within(".microsite_reference") do
@@ -386,7 +386,7 @@ describe "Cms::RealEstates" do
         before :each do
           Fabricate(:real_estate,
                     channels: [RealEstate::EXTERNAL_REAL_ESTATE_PORTAL_CHANNEL],
-                    reference: Reference.new( property_key: '123', building_key: '456', unit_key: '789'), 
+                    reference: Reference.new( property_key: '123', building_key: '456', unit_key: '789'),
                     category: Fabricate(:category))
         end
 
