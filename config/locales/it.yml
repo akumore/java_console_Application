@@ -3,6 +3,7 @@
 
 it:
   navigation:
+    title: 'navigazione'
     main:
       real_estate: 'Offerta'
       jobs: 'Offerte di lavoro'

@@ -114,6 +114,9 @@
     li
       padding-left: 0
 
+  .main-navigation-wrapper
+    height: 100%
+
   .main-navigation
     float: none
     margin: 0em
@@ -122,15 +125,26 @@
     width: 80%
     height: 100%
 
-    li, li:first-child
-      float: none
+    li,
+    li:first-child
       display: block
       padding: 1em $margin-side
+      float: none
+
+    > li
       border-top: 1px solid $border-light
 
-    > li:hover
-      .sub-navigation-wrapper
-        display: none
+    ul
+      margin: 0
+
+  .sub-navigation
+    li,
+    li:first-child
+      padding-top: 1em
+      padding-bottom: 0
+
+    .selected a
+      border-bottom: 1px solid $normal
 
   .utilization-tabs
     li
@@ -274,21 +288,23 @@
     .image-caption
       background: $clay
 
-  .accordion-classical
-    .title
+  .accordion--classical
+    .accordion__title
       font-size: 1.25em
 
-  .accordion-spacey
+  .accordion--spacey
     margin-top: 1em
 
-    .title
+    .accordion__title h1
       font-size: 1.5em
 
-    .title, .content
+    .accordion__title,
+    .accordion__content
       margin-left: $margin-side
       margin-right: $margin-side
 
-    p, .title
+    .accordion__title,
+    p
       width: auto
       max-width: 100%
 
@@ -396,7 +412,7 @@
   .footer-news, .footer-teasers
     border-bottom: 1px solid $normal
 
-  #footer
+  .footer
     padding: 1em 0
     background-color: $search-background-color
 
@@ -418,7 +434,7 @@
       margin-bottom: .5em
 
   #container
-    #footer
+    .footer
       height: auto
 
   .scrolling-map
@@ -436,7 +452,7 @@
 @media only screen and (max-width : 1450px)
   //@content
 
-  #footer
+  .footer
     position: relative
     padding-bottom: 0
     background-position: bottom right
@@ -475,11 +491,6 @@
 
   .navigations
     margin-top: 10px
-
-  .main-navigation
-    > li:hover
-      .sub-navigation-wrapper
-        display: none
 
   .main-logo
     background-size: 90%
@@ -694,3 +705,61 @@
       a
         font-family: $sans-serif
 
+  .main-navigation
+    > li:hover
+      .sub-navigation-wrapper
+        padding-top: 20px
+        visibility: visible
+
+  .sub-navigation-wrapper
+    position: absolute
+    top: 20px
+    right: 0
+    z-index: 30
+    padding-top: 15px
+    +transition(padding-top 0.1s linear, opacity 0.3s linear 0.2s)
+    visibility: hidden
+
+  .sub-navigation
+    position: relative
+    background: #eee
+    border: 1px solid #d3d3d3
+    +single-box-shadow(#ccc, 0px, 0px, 20px)
+
+    ul
+      margin: 0
+
+    li
+      float: none
+      display: block
+      padding: 10px 20px
+      border-top: 1px solid lighten(#eee, 3%)
+      border-bottom: 1px solid #d3d3d3
+
+    li.first, li:first-child
+      padding: 10px 20px
+      border-top: 0px solid transparent
+
+    li.last, li:last-child
+      padding: 10px 20px
+
+  .sub-navigation:after, .sub-navigation:before
+    bottom: 100%
+    border: solid transparent
+    content: " "
+    height: 0
+    width: 0
+    position: absolute
+    pointer-events: none
+
+  .sub-navigation:after
+    border-bottom-color: #eee
+    border-width: 12px
+    right: 21px
+    margin-left: -12px
+
+  .sub-navigation:before
+    border-bottom-color: #d3d3d3
+    border-width: 13px
+    right: 20px
+    margin-left: -13px

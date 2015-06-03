@@ -7,6 +7,8 @@
   * #1166: Als Editor möchte ich neben dem Suchfeld in der Immobverwaltung einen Clear Butten haben
   * #1167: Als Editor möchte ich, dass News automatisch in den anderen Sprachen erscheinen
   * #1241: Google Site Verification einfügen
+  * #1231: Als User möchte ich auf der Website über eine vollwertige 2nd-Level Navigation navigieren können.
+  * #1172: Semantische Überarbeitung HTML
 
 * Other changes
   * Update newrelic integration to work again

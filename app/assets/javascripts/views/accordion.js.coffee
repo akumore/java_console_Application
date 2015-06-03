@@ -2,9 +2,9 @@
 # The structure should be as follows:
 #
 # <div class='accordion'>
-#   <div class='accordion-item'>
-#     <div class='title'>Title</div>
-#     <div class='content'> ... your content ... </div>
+#   <div class='accordion__item'>
+#     <div class='accordion__title'>Title</div>
+#     <div class='accordion__content'> ... your content ... </div>
 #   </div>
 #
 #   // repeat accordion-items ...
@@ -16,10 +16,10 @@
 class window.AlfredMueller.Views.Accordion extends Backbone.View
 
   events:
-    "click .title" : "handleClick"
+    "click .accordion__title" : "handleClick"
 
   initialize: ->
-    @items = @el.find(".accordion-item")
+    @items = @el.find(".accordion__item")
     @open  = null
     @initiallyOpenItem()
 
@@ -28,10 +28,10 @@ class window.AlfredMueller.Views.Accordion extends Backbone.View
       @closeItem($(elem))
 
     if window.location.hash
-      elem = $(window.location.hash).closest('.accordion-item')
-      @openItem(elem) if elem.find(".title").length > 0
+      elem = $(window.location.hash).closest('.accordion__item')
+      @openItem(elem) if elem.find(".accordion__title").length > 0
     else if @el.data('open_first')
-      elem = @el.find(".accordion-item:first-child")
+      elem = @el.find(".accordion__item:first-child")
       @openItem(elem, false)
 
   openItem: (elem, scroll=true) ->

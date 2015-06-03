@@ -3,18 +3,19 @@
   %meta{ name: "description", content: "Die Alfred Müller AG, Baar, zählt zu den führenden Immobiliendienstleistern der Schweiz, mit Filialen in Marin und Camorino. Die Alfred Müller AG akquiriert und entwickelt Grundstücke, sie plant, realisiert, vermarktet, bewirtschaftet und renoviert Liegenschaften." }
   %meta{ name: "keywords", content: "Land, Grundstücke, Immobilien, bauen, mieten, kaufen, vermieten, Immobilienverwaltung, umbauen und renovieren" }
 
-.services-slides-container.tabs
-  .default-view.tabs-navigation
-    %ul
-      %li.selected
-        = link_to(t(".rent"), '#rent-slides')
-      %li
-        = link_to(t(".sale"), '#sale-slides')
-      %li
-        = link_to(t(".build"), '#build-slides')
+%section.services-slides-container.tabs
+  %header
+    .default-view.tabs-navigation
+      %ul
+        %li.selected
+          = link_to(t(".rent"), '#rent-slides')
+        %li
+          = link_to(t(".sale"), '#sale-slides')
+        %li
+          = link_to(t(".build"), '#build-slides')
 
-  .mobile-view.select-filter
-    = select_tag :section, options_for_select([ [t(".rent"), '#rent-slides'], [t(".sale"), '#sale-slides'], [t(".build"), '#build-slides'] ])
+    .mobile-view.select-filter
+      = select_tag :section, options_for_select([ [t(".rent"), '#rent-slides'], [t(".sale"), '#sale-slides'], [t(".build"), '#build-slides'] ])
 
   .tabs-content
     #rent-slides.content.active

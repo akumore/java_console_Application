@@ -22,19 +22,19 @@ describe "Pages" do
 
     it 'has an accordion with jobs in german' do
       visit I18n.t('jobs_url', locale: 'de')
-      page.should have_css '.jobs .accordion-item', count: 1
-      page.should have_css "#job_#{@german_published_job.id}"
+      expect(page).to have_css '.jobs .accordion__item', count: 1
+      expect(page).to have_css "#job_#{@german_published_job.id}"
     end
 
     it 'has an accordion with jobs in french' do
       visit I18n.t('jobs_url', locale: 'fr')
-      page.should have_css '.jobs .accordion-item', count: 1
-      page.should have_css "#job_#{@french_published_job.id}"
+      expect(page).to have_css '.jobs .accordion__item', count: 1
+      expect(page).to have_css "#job_#{@french_published_job.id}"
     end
 
     it "has a job profile slider" do
       visit I18n.t('jobs_url', locale: 'de')
-      page.should have_css '.tab-slider', count: 1
+      expect(page).to have_css '.tab-slider', count: 1
     end
 
     it 'has a valid page title' do
@@ -57,34 +57,34 @@ describe "Pages" do
 
     it "has a tab slider" do
       visit "/de/company"
-      page.should have_css "#head-of-alfred-mueller-gallery"
+      expect(page).to have_css "#head-of-alfred-mueller-gallery"
     end
 
     describe "The tab slider" do
       it "shows the board of directors" do
         visit "/de/company"
         within "#board-of-directors" do
-          page.should have_content "Christoph Müller"
-          page.should have_content "Viktor Naumann"
-          page.should have_content "Erich Rüegg"
+          expect(page).to have_content "Christoph Müller"
+          expect(page).to have_content "Viktor Naumann"
+          expect(page).to have_content "Erich Rüegg"
           # only email of Christoph Müller is needed here
-          page.should have_link 'E-Mail', href: "mailto:christoph.mueller@alfred-mueller.ch"
+          expect(page).to have_link 'E-Mail', href: "mailto:christoph.mueller@alfred-mueller.ch"
         end
       end
 
       it "shows the managing directors" do
         visit "/de/company"
         within "#managing-board" do
-          page.should have_content "David Hossli"
-          page.should have_content "Michael Müller"
-          page.should have_content "Walter Hochreutener"
-          page.should have_content "Joe Schmalz"
-          page.should_not have_content "David Spiess"
-          page.should have_link 'E-Mail', href: "mailto:david.hossli@alfred-mueller.ch"
-          page.should have_link 'E-Mail', href: "mailto:joe.schmalz@alfred-mueller.ch"
-          page.should have_link 'E-Mail', href: "mailto:michael.mueller@alfred-mueller.ch"
-          page.should_not have_link 'E-Mail', href: "mailto:david.spiess@alfred-mueller.ch"
-          page.should have_link 'E-Mail', href: "mailto:beat.stocker@alfred-mueller.ch"
+          expect(page).to have_content "David Hossli"
+          expect(page).to have_content "Michael Müller"
+          expect(page).to have_content "Walter Hochreutener"
+          expect(page).to have_content "Joe Schmalz"
+          expect(page).to_not have_content "David Spiess"
+          expect(page).to have_link 'E-Mail', href: "mailto:david.hossli@alfred-mueller.ch"
+          expect(page).to have_link 'E-Mail', href: "mailto:joe.schmalz@alfred-mueller.ch"
+          expect(page).to have_link 'E-Mail', href: "mailto:michael.mueller@alfred-mueller.ch"
+          expect(page).to_not have_link 'E-Mail', href: "mailto:david.spiess@alfred-mueller.ch"
+          expect(page).to have_link 'E-Mail', href: "mailto:beat.stocker@alfred-mueller.ch"
         end
       end
     end
@@ -98,8 +98,8 @@ describe "Pages" do
     end
 
     it 'renders a download brick' do
-      page.should have_css(".brick.download-brick", count: 1)
-      page.should have_link("#{@page.bricks.first.title}", href: @page.bricks.first.file.url)
+      expect(page).to have_css(".brick.download-brick", count: 1)
+      expect(page).to have_link("#{@page.bricks.first.title}", href: @page.bricks.first.file.url)
     end
   end
 end

@@ -17,7 +17,7 @@ describe "News", js: true do
     end
 
     it 'has an accordion with 20 news items' do
-      expect(page).to have_css('.accordion-item', count: 20)
+      expect(page).to have_css('.accordion__item', count: 20)
     end
 
     it 'should not have laod more link' do
@@ -39,7 +39,7 @@ describe "News", js: true do
       end
 
       it 'has an accordion with 4 French news items' do
-        expect(page).to have_css('.accordion-item', count: 4)
+        expect(page).to have_css('.accordion__item', count: 4)
       end
     end
   end
@@ -68,12 +68,12 @@ describe "News", js: true do
       it 'opens the first news item by default' do
         news_item
         visit news_items_path
-        expect(page).to have_css('.accordion-item.open', count: 1)
+        expect(page).to have_css('.accordion__item.open', count: 1)
       end
 
       it 'opens the specified news item in the accordion' do
         visit news_items_path(anchor: "news_item_#{news_item.id}")
-        expect(page).to have_css("#news_item_#{news_item.id}.accordion-item.open")
+        expect(page).to have_css("#news_item_#{news_item.id}.accordion__item.open")
       end
     end
 

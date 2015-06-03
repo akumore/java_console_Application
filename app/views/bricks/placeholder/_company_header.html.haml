@@ -1,5 +1,5 @@
-#head-of-alfred-mueller-gallery.tab-slider
-  .button-navigation-container
+%section#head-of-alfred-mueller-gallery.tab-slider
+  %nav.button-navigation-container
     %ul.first-level-navigation.button-navigation
       %li
         %a.active{ :href => '#vision' }=t('.vision')
@@ -10,13 +10,15 @@
       %li
         %a{ :href => '#subsidiaries' }=t('.subsidiaries')
 
-  .flex-container.hidden#vision.tab-content
+  %section.flex-container.hidden#vision.tab-content
+    %h1.hidden=t('.vision')
     .flexslider
       %ul.slides
         %li
           = render 'partials/image_movie'
 
-  .flex-container.hidden#board-of-directors.tab-content
+  %section.flex-container.hidden#board-of-directors.tab-content
+    %h1.hidden=t('.board_of_directors')
     .flexslider
       %ul.second-level-navigation
         %li
@@ -40,7 +42,7 @@
         %li
           = image_tag 'head_of_alfred_mueller/board_of_directors/Christoph_Mueller.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Christoph Müller
             %p
               = t('.president_of_board_of_directors')
@@ -50,54 +52,55 @@
         %li
           = image_tag 'head_of_alfred_mueller/board_of_directors/Viktor_Naumann.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Viktor Naumann
             %p
               = t('.vice_president_of_board_of_directors')
         %li
           = image_tag 'head_of_alfred_mueller/board_of_directors/Adrian_Bult.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Adrian R. Bult
             %p
               = t('.member_of_board_of_directors')
         %li
           = image_tag 'head_of_alfred_mueller/board_of_directors/Ida_Hardegger.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Ida M. Hardegger
             %p
               = t('.member_of_board_of_directors')
         %li
           = image_tag 'head_of_alfred_mueller/board_of_directors/Ulrich_Moser.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Ulrich H. Moser
             %p
               = t('.member_of_board_of_directors')
         %li
           = image_tag 'head_of_alfred_mueller/board_of_directors/Dr_Erich_Rueegg.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Erich Rüegg
             %p
               = t('.member_of_board_of_directors')
         %li
           = image_tag 'head_of_alfred_mueller/board_of_directors/Thomas_Rueppel.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Thomas Rüppel
             %p
               = t('.member_of_board_of_directors')
         %li
           = image_tag 'head_of_alfred_mueller/board_of_directors/Alfred_Mueller.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Alfred Müller
             %p
               = t('.honorary_president')
 
-  .flex-container.hidden#managing-board.tab-content
+  %section.flex-container.hidden#managing-board.tab-content
+    %h1.hidden=t('.managing_board')
     .flexslider
       %ul.second-level-navigation
         %li
@@ -117,7 +120,7 @@
         %li
           = image_tag 'head_of_alfred_mueller/managing_board/David_Hossli.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               David Hossli
             %p
               =t('.chairman_of_managing_board')
@@ -127,7 +130,7 @@
         %li
           = image_tag 'head_of_alfred_mueller/managing_board/Joe_Schmalz.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Joe Schmalz
             %p
               =t('.chief_financial_officer')
@@ -137,7 +140,7 @@
         %li
           = image_tag 'head_of_alfred_mueller/managing_board/Michael_Mueller.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Michael Müller
             %p
               =t('.head_of_portfolio')
@@ -147,7 +150,7 @@
         %li
           = image_tag 'head_of_alfred_mueller/managing_board/Walter_Hochreutener.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Walter Hochreutener
             %p
               =t('.head_of_real_estate_management')
@@ -157,7 +160,7 @@
         %li
           = image_tag 'head_of_alfred_mueller/managing_board/Beat_Stocker.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Beat Stocker
             %p
               =t('.head_development_and_general_contracting')
@@ -167,7 +170,7 @@
         %li
           = image_tag 'head_of_alfred_mueller/managing_board/Francois_Bernath.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               François Bernath
             %p
               =t('.head_department_acquisition_sales_and_marketing')
@@ -175,7 +178,8 @@
               %a{ :href => 'mailto:francois.bernath@alfred-mueller.ch' }
                 =t('.mailto_text')
 
-  .flex-container.hidden#subsidiaries.tab-content
+  %section.flex-container.hidden#subsidiaries.tab-content
+    %h1.hidden=t('.subsidiaries')
     .flexslider
       %ul.second-level-navigation
         %li
@@ -187,7 +191,7 @@
         %li
           = image_tag 'head_of_alfred_mueller/branch/Pierre_El_Soda.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Pierre El Soda
             %p
               = t('.director_of_subsidiary_western_switzerland')
@@ -197,7 +201,7 @@
         %li
           = image_tag 'head_of_alfred_mueller/branch/Massimiliano_Paganini.jpg'
           .tab-slider-description
-            %h1
+            %strong.h1.tab-slider__title
               Massimiliano Paganini
             %p
               = t('.director_of_subsidiary_southern_switzerland')

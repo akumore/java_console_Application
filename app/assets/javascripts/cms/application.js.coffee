@@ -11,6 +11,7 @@
 #= require jquery.autoresize
 #= require dataTables/jquery.dataTables
 #= require dataTables/bootstrap/2/jquery.dataTables.bootstrap
+#= require jquery.nestable
 #= require underscore
 #= require backbone
 #= require ckeditor/fix
@@ -71,6 +72,15 @@ $(document).ready ->
   # initialize real estate categories listener
   if $('#real_estate_category_id').length
     new AlfredMueller.Cms.Views.RealEstateCategorySelect $('#real_estate_category_id')
+
+  $('.dd').on 'change', ->
+    pageTree = $('.dd').nestable('serialize')
+    url = '/cms/pages/sort'
+    $.post(url, { page_tree: pageTree }, "json")
+
+  $('.dd').nestable
+    collapseBtnHTML: '<button data-action="collapse"><i class="icon-minus-sign"></i></button>'
+    expandBtnHTML: '<button data-action="expand"><i class="icon-plus-sign"></i></button>'
 
 $(window).load ->
   # initialize image cropper

@@ -1,4 +1,4 @@
-%h4= t('.title')
+%strong.footer__title.title-font-bold= t('.title')
 = render_navigation(context: :footer)
 
 .footer-wrapper
@@ -6,14 +6,14 @@
     - if @footer_news_items.empty?
       %br
     - @footer_news_items.each do |news_item|
-      %div{ id: "footer-news-item-#{news_item.id}" }
-        %h6= l news_item.date
-        %h5= news_item.title
+      .footer__news-item{ id: "footer-news-item-#{news_item.id}" }
+        %time{ datetime: news_item.date}= l news_item.date
+        %strong.h5.footer__item-title= news_item.title
         = footer_news_item_link news_item
 
     - unless I18n.locale == :en
       %div
-        %h5= t ".forum_title"
+        %strong.h5.footer__item-title= t ".forum_title"
         %dl
           %dt= t ".forum_content"
           %dd= link_to t(".take_me_to_forum_magazine"), "#{t('.forum_url')}"
@@ -21,27 +21,27 @@
 
   .footer-teasers
     %div
-      %h5 St. Martin
+      %strong.h5.footer__item-title St. Martin
       %dl
         %dt=t ".cameroon_drinking_water"
         %dd=link_to t(".take_me_to_st_martin_website"), 'http://www.martinstiftung.ch/', target: '_target'
 
     %div
-      %h5 Allmig
+      %strong.h5.footer__item-title Allmig
       %dl
         %dt=t ".compost_and_nuclear_plant_in_region_zug"
         %dd=link_to t(".take_me_to_allmig_website"), 'http://www.allmig.ch/', target: '_target'
 
   .footer-contact
     %div
-      %h5= t('.contact.title')
+      %strong.h5.footer__item-title= t('.contact.title')
       %dl
         %dd= t('.contact.address_html')
         %dd= t('.contact.phone_html')
         %dd= link_to t('.contact.directions'), contact_path
 
     .memberships
-      %h5= t '.memberships'
+      %strong.h5.footer__item-title= t '.memberships'
       %dl
         - if I18n.locale == :de
           %dt Schweizerischer Verband der Immobilienwirtschaft SVIT

@@ -16,16 +16,16 @@ module ApplicationHelper
 
   def jobs_subnavigation
     if jobs_page = Page.jobs_page
-      jobs_page.subnavigation.each do |title|
-        yield title
+      jobs_page.subnavigation.each do |page|
+        yield page
       end
     end
   end
 
   def company_subnavigation
     if company_page = Page.company_page
-      company_page.subnavigation.each do |title|
-        yield title
+      company_page.subnavigation.each do |page|
+        yield page
       end
     end
   end

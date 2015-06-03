@@ -7,7 +7,7 @@ describe "Cms::Pages" do
   describe '#index' do
     before do
       3.times { Fabricate(:page) }
-      3.times { Fabricate(:page, :locale => 'fr') }
+      3.times { Fabricate(:page, locale: 'fr') }
       @page = Page.first
       visit cms_pages_path
     end
@@ -24,18 +24,18 @@ describe "Cms::Pages" do
       end
 
       it 'selects the tab according to the content langauge' do
-        visit cms_pages_path(:content_language => :fr)
+        visit cms_pages_path(content_language: :fr)
         page.should have_css('li.active:contains(FR)')
       end
     end
 
     it "shows the list of pages for the current content locale" do
-      page.should have_selector('table tr', :count => Page.where(:locale => :de).count + 1)
+      page.should have_selector('.pages-list .dd-item', count: Page.where(locale: :de).count)
     end
 
     it "takes me to the edit page of a page" do
       within("#page_#{@page.id}") do
-        page.click_link 'Editieren'
+        page.click_link @page.title
       end
       current_path.should == edit_cms_page_path(@page)
     end
@@ -48,7 +48,7 @@ describe "Cms::Pages" do
 
   describe '#new' do
     before :each do
-      visit new_cms_page_path(:content_locale => :fr)
+      visit new_cms_page_path(content_locale: :fr)
     end
 
     it 'opens the create form' do
@@ -78,8 +78,8 @@ describe "Cms::Pages" do
     context 'a valid Page' do
       before :each do
         within(".new_page") do
-          fill_in 'Titel', :with => 'Seiten Titel'
-          fill_in 'Eindeutiger Name', :with => 'seiten-titel'
+          fill_in 'Titel', with: 'Seiten Titel'
+          fill_in 'Eindeutiger Name', with: 'seiten-titel'
         end
       end
 
@@ -100,6 +100,24 @@ describe "Cms::Pages" do
           @page.name.should == 'seiten-titel'
           @page.locale.should == 'fr'
         end
+      end
+    end
+
+    context 'with parent page' do
+      before :each do
+        @parent_page = Fabricate(:page)
+        visit new_cms_page_path(content_locale: :de, parent_id: @parent_page.id)
+      end
+
+      it 'saves the new page with right parent' do
+        within(".new_page") do
+          fill_in 'Titel', with: 'Unterseite Titel'
+          fill_in 'Eindeutiger Name', with: 'unterseite-titel'
+        end
+
+        click_on 'Seite erstellen'
+
+        expect(Page.last.parent).to eq(@parent_page)
       end
     end
   end
@@ -152,7 +170,7 @@ describe "Cms::Pages" do
     context '#update' do
       before :each do
         within(".edit_page") do
-          fill_in 'Titel', :with => 'Seiten Titel 2'
+          fill_in 'Titel', with: 'Seiten Titel 2'
         end
 
         click_on 'Seite speichern'

@@ -1,12 +1,16 @@
-.button-navigation-container
-  .default-view
-    %ul.button-navigation
-      - @news_items_by_year.keys.each do |year|
-        %li{ class: @year == year ? 'selected' : '' }
-          = link_to year, news_items_path(year: year), class: "js-#{year}"
+%section
+  %header
+    %h1.hidden=t('.title')
+    %nav.button-navigation-container
+      %h1.hidden=t('.navigation')
+      .default-view
+        %ul.button-navigation
+          - @news_items_by_year.keys.each do |year|
+            %li{ class: @year == year ? 'selected' : '' }
+              = link_to year, news_items_path(year: year), class: "js-#{year}"
 
-  .mobile-view.select-filter
-    = select_tag :section, options_for_select(@news_items_by_year.keys, @year)
+      .mobile-view.select-filter
+        = select_tag :section, options_for_select(@news_items_by_year.keys, @year)
 
-.accordion.accordion-spacey{ 'data-open_first' => '1' }
-  = render @news_items
+  .news.accordion.accordion--spacey{ 'data-open_first' => '1' }
+    = render @news_items

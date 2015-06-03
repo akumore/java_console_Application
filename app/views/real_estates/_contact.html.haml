@@ -1,6 +1,6 @@
-.accordion-item
-  .title= t('real_estates.show.contact_title')
-  .content
+.accordion__item
+  .accordion__title= t('real_estates.show.contact_title')
+  .accordion__content.content
     %p
       - if contact.image.present?
         = image_tag contact.image

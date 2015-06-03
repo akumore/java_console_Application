@@ -102,17 +102,19 @@
   &.wide
     background: image-url('image-caption-top-wide.png') no-repeat top right
 
-.icon-list
-  +no-bullets
-
-  li
-    line-height: 1.5em
-    padding-bottom: 10px
-    list-style: none !important
-
 .jobs
   a
     +link-colors(#fff)
+
+  .accordion__title
+    > h3
+      color: inherit
+      font-size: inherit
+      margin: 0
+      text-transform: none
+
+  h4
+    color: white
 
 .absolutify
   position: absolute
